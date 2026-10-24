@@ -79,7 +79,7 @@ class MarcadeModule implements Module {
       typeof this.api.composer?.insertPlaintextIntoComposer === "function"
         ? (text) => this.api.composer.insertPlaintextIntoComposer(text, { view: "room" })
         : undefined,
-    askModerator: (command) => this.api.openDialog({ title: t("moderator_title") }, ModeratorDialog, { command }),
+    askModerator: (command, reason = "moderator") => this.api.openDialog({ title: t("moderator_title") }, ModeratorDialog, { command, reason }),
     notify: (key, vars) => toast(t(key, vars), key === "adding" ? 3000 : 8000),
   });
 

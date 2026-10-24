@@ -45,5 +45,6 @@ describe("planClick", () => {
     expect(planClick([other], true, cfg).kind).toBe("add");
     expect(planClick([], false, cfg).kind).toBe("ask_moderator");
     expect(planClick([], undefined, cfg).kind).toBe("composer");
+    expect(planClick([], undefined, parseConfig({ hide_integrations: true })).kind).toBe("show_command");
   });
 });

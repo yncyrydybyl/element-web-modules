@@ -123,10 +123,15 @@ describe("(d) no client access", () => {
     expect(f.d.insertIntoComposer).toHaveBeenCalledWith(`/addwidget ${f.d.cfg.widgetUrl}`);
     expect(f.notes).toEqual(["composer_hint"]);
   });
-  it("does nothing when there is no composer API either", async () => {
+  it("shows the line in a dialog without a composer API, or when hide_integrations disabled /addwidget", async () => {
     const f = fake({ client: false });
     f.d.insertIntoComposer = undefined;
-    expect(await handleClick(f.d, ROOM)).toBe("nothing");
+    expect(await handleClick(f.d, ROOM)).toBe("showed_command");
+    expect(f.d.askModerator).toHaveBeenCalledWith(`/addwidget ${f.d.cfg.widgetUrl}`, "manual");
+    const g = fake({ client: false });
+    g.d.cfg = parseConfig({ hide_integrations: true });
+    expect(await handleClick(g.d, ROOM)).toBe("showed_command");
+    expect(g.d.insertIntoComposer).not.toHaveBeenCalled();
   });
 });
 

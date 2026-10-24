@@ -58,19 +58,27 @@ export type ClickPlan =
   | { kind: "open"; widget: IWidget }
   | { kind: "add" }
   | { kind: "ask_moderator" }
-  | { kind: "composer" };
+  | { kind: "composer" }
+  | { kind: "show_command" };
 
 /**
  * What a click on the Apps button does.
  *  - store widget in the room → open it (a)
- *  - no client access (future Element without `mxMatrixClientPeg`) → put `/addwidget …` into the composer (d)
+ *  - no client access (future Element without `mxMatrixClientPeg`) → put `/addwidget …` into the composer (d),
+ *    or show it in a dialog when hide_integrations switched Element's /addwidget off
  *  - may send widget state → add it, then open (b)
  *  - otherwise → explain that a moderator has to add it (c)
  * `canSend` is undefined when the client is not reachable.
  */
-export function planClick(widgets: readonly IWidget[], canSend: boolean | undefined, cfg: Pick<ModuleConfig, "storePrefix">): ClickPlan {
+export function planClick(
+  widgets: readonly IWidget[],
+  canSend: boolean | undefined,
+  cfg: Pick<ModuleConfig, "storePrefix" | "hideIntegrations">,
+): ClickPlan {
   const widget = findStoreWidget(widgets, cfg);
   if (widget) return { kind: "open", widget };
-  if (canSend === undefined) return { kind: "composer" };
+  // hide_integrations also disables Element's /addwidget (SlashCommands: isEnabled checks AddIntegrations), so the
+  // composer line would be an unknown command: show it in a dialog instead, for a client that has the command
+  if (canSend === undefined) return cfg.hideIntegrations ? { kind: "show_command" } : { kind: "composer" };
   return canSend ? { kind: "add" } : { kind: "ask_moderator" };
 }

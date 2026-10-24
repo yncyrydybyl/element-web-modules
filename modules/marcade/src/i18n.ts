@@ -26,8 +26,12 @@ export const STRINGS = {
   },
   moderator_title: { de: "Apps hinzufügen", en: "Add apps" },
   moderator_body: {
-    de: "In diesem Raum können nur Moderatoren Apps hinzufügen. Gib diese Zeile an einen Moderator weiter; im Raum gesendet, fügt sie den Marcade Store hinzu:",
-    en: "Only moderators can add apps to this room. Pass this line on to a moderator; sent in the room, it adds the Marcade Store:",
+    de: "In diesem Raum können nur Moderatoren Apps hinzufügen. Ein Moderator kann selbst auf „Apps“ oben im Raum klicken oder diese Zeile im Raum senden:",
+    en: "Only moderators can add apps to this room. A moderator can click “Apps” at the top of the room or send this line in the room:",
+  },
+  manual_body: {
+    de: "Dieses Element kann den Marcade Store nicht selbst hinzufügen. Diese Zeile, in einem Matrix-Client mit /addwidget im Raum gesendet, fügt ihn hinzu:",
+    en: "This Element cannot add the Marcade Store by itself. Sent in the room from a Matrix client with /addwidget, this line adds it:",
   },
   copy: { de: "Kopieren", en: "Copy" },
   copied: { de: "Kopiert", en: "Copied" },

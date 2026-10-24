@@ -22,7 +22,7 @@ export interface Deps {
       }
     | undefined;
   insertIntoComposer?: (text: string) => void;
-  askModerator: (command: string) => void;
+  askModerator: (command: string, reason?: "moderator" | "manual") => void;
   notify: (key: "adding" | "add_failed" | "add_timeout" | "composer_hint", vars?: Record<string, string>) => void;
   now?: () => number;
   sleep?: (ms: number) => Promise<void>;
@@ -40,7 +40,7 @@ export type ClickResult =
   | "add_failed"
   | "asked_moderator"
   | "composer"
-  | "nothing";
+  | "showed_command";
 
 const safeWidgets = (d: Deps, roomId: string): IWidget[] => {
   try {
@@ -90,8 +90,14 @@ export async function handleClick(d: Deps, roomId: string): Promise<ClickResult>
     case "ask_moderator":
       d.askModerator(addWidgetCommand(d.cfg));
       return "asked_moderator";
+    case "show_command":
+      d.askModerator(addWidgetCommand(d.cfg), "manual");
+      return "showed_command";
     case "composer":
-      if (!d.insertIntoComposer) return "nothing";
+      if (!d.insertIntoComposer) {
+        d.askModerator(addWidgetCommand(d.cfg), "manual");
+        return "showed_command";
+      }
       d.insertIntoComposer(addWidgetCommand(d.cfg));
       d.notify("composer_hint");
       return "composer";
