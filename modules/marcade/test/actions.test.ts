@@ -39,7 +39,14 @@ function fake(opts: { widgets?: IWidget[]; may?: boolean; membership?: string; c
       opts.rightPanel === false
         ? undefined
         : {
-            setCard: (card) => ((panel.card = card), (panel.open = true)),
+            // like Element's RightPanelStore.setCard: same phase with a state → only the state is updated, the
+            // panel is not shown; a different phase → card replaced and panel shown
+            setCard: (card) => {
+              const same = panel.card?.phase === card.phase && !!card.state;
+              panel.card = card;
+              if (!same) panel.open = true;
+            },
+            show: () => void (panel.open = true),
             isOpenForRoom: () => panel.open,
             currentCardForRoom: () => panel.card,
             hide: () => void (panel.open = false),
@@ -67,6 +74,9 @@ describe("(a) store already in the room", () => {
     expect(f.layout.get("s1")).toBe("right");
     expect(await handleClick(f.d, ROOM)).toBe("closed");
     expect(f.panel.open).toBe(false);
+    // third click reopens (the room's card is still the widget card, setCard alone would not show the panel)
+    expect(await handleClick(f.d, ROOM)).toBe("opened_right");
+    expect(f.panel.open).toBe(true);
   });
   it("leaves a pinned or maximised store alone", async () => {
     const f = fake({ widgets: [store] });

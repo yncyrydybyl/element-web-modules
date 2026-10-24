@@ -34,6 +34,7 @@ interface RightPanelStoreLike {
   isOpenForRoom?(roomId: string): boolean;
   currentCardForRoom?(roomId: string): { phase?: string | null; state?: { widgetId?: string } } | undefined;
   hide?(roomId: string | null): void;
+  show?(roomId: string | null): void;
 }
 
 type G = { mxMatrixClientPeg?: Peg; mxSdkContext?: { rightPanelStore?: RightPanelStoreLike } };

@@ -19,6 +19,7 @@ export interface Deps {
         isOpenForRoom?(roomId: string): boolean;
         currentCardForRoom?(roomId: string): { phase?: string | null; state?: { widgetId?: string } } | undefined;
         hide?(roomId: string | null): void;
+        show?(roomId: string | null): void;
       }
     | undefined;
   insertIntoComposer?: (text: string) => void;
@@ -71,6 +72,9 @@ export function openWidget(d: Deps, widget: IWidget, roomId: string, toggle = tr
       }
       w.moveAppToContainer(widget, "right", roomId);
       rp.setCard({ phase: "Widget", state: { widgetId: widget.id } }, true, roomId);
+      // RightPanelStore.setCard only updates the state when the room's current card already has phase "Widget"
+      // (e.g. the store was open and the panel got closed): it does not show the panel then. Show it explicitly.
+      if (rp.isOpenForRoom && rp.show && !rp.isOpenForRoom(roomId)) rp.show(roomId);
       return "opened_right";
     } catch (e) {
       console.warn("[marcade-element-module] right panel failed, pinning instead", e);
