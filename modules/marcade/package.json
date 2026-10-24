@@ -13,6 +13,7 @@
     "check": "tsc --noEmit",
     "test": "vitest run",
     "e2e": "node e2e/live.mjs",
+    "e2e:ess": "node e2e/live-ess.mjs",
     "e2e:stack": "e2e/stack.sh up",
     "e2e:down": "e2e/stack.sh down"
   },

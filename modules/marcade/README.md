@@ -144,6 +144,8 @@ npm run e2e:stack # throwaway Synapse (127.0.0.1:18448) + Element 1.12.30 with d
                   # + a second Element with hide_integrations (5792); state in e2e/.run, podman
 npm run e2e       # Playwright against that stack; screenshots in e2e/out/
 npm run e2e:down
+MCM_CREDS=creds.env npm run e2e:ess   # against a deployed ESS Pro (default chat.example.com) with two fresh
+                                      # MAS users; MCM_LOCAL_DIST=1 serves this dist/ instead of the deployed module
 ```
 
 The e2e loads the real store from marcade.store into the widget iframe (read-only; nothing is published).
