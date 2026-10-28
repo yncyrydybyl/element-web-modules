@@ -1,0 +1,22 @@
+{
+  "default_server_config": {
+    "m.homeserver": { "base_url": "__HS__", "server_name": "marcade.test" }
+  },
+  "disable_custom_urls": false,
+  "disable_guests": true,
+  "disable_3pid_login": true,
+  "brand": "Element (marcade-element-module e2e)",
+  "default_theme": "light",
+  "show_labs_settings": false,
+  "setting_defaults": {
+    "UIFeature.feedback": false,
+    "UIFeature.registration": false,
+    "UIFeature.passwordReset": false,
+    "UIFeature.widgets": true
+  },
+  "integrations_ui_url": "",
+  "integrations_rest_url": "",
+  "integrations_widgets_urls": [],
+  "bug_report_endpoint_url": "",
+  "de.minagawa.marcade_element_module": {}
+}
