@@ -1,12 +1,15 @@
-# Releases one module: builds and tests it, then creates the tag <module>-v<version> and a GitHub release.
+# Releases one module: builds and tests it, then creates the tag <module>-v<version> and a GitHub release
+# with the build attached (index.js, index.js.map, SHA256SUMS).
 #
 #   gh workflow run release.yml -f module=keyboard-shortcuts
 #
 # The version comes from modules/<module>/package.json. The tag points to a commit on top of the
-# current branch that also contains the build under dist/<module>/, so the file can be loaded straight
-# from GitHub via jsDelivr:
-#   https://cdn.jsdelivr.net/gh/<owner>/<repo>@<module>-v<version>/dist/<module>/index.js
-# The release has the same files attached, for downloading them onto a server.
+# current branch that also contains the build under dist/<module>/, so every release's files stay
+# in git as well.
+#
+# Servers download the build from the release (see the ESS notes in the deployment docs). Browsers
+# can't load it from a CDN: Element Web's Content Security Policy only allows scripts from its own
+# origin, unless Element was built with CSP_EXTRA_SOURCE.
 name: Release module
 
 on:
@@ -80,14 +83,12 @@ jobs:
         run: |
           cd "dist/$MODULE"
           sha256sum index.js* > SHA256SUMS
-          cdn="https://cdn.jsdelivr.net/gh/$GITHUB_REPOSITORY@$TAG/dist/$MODULE/index.js"
           dl="https://github.com/$GITHUB_REPOSITORY/releases/download/$TAG/index.js"
           printf '%s\n' \
             "$MODULE $VERSION, built from ${GITHUB_SHA::7}." \
             "" \
-            "- Download (e.g. for an init container): $dl" \
-            "- Load directly in the browser (CDN): $cdn" \
+            "Download: $dl" \
             "" \
-            "See modules/$MODULE/README.md for configuration and the deployment notes for ESS Community and matrix-docker-ansible-deploy." \
+            "Serve it from your Element Web's own origin. For ESS Community, an init container can download it at startup; see the ESS section of modules/keyboard-shortcuts/docs/deployment.md. Module settings: modules/$MODULE/README.md." \
             > ../notes.md
           gh release create "$TAG" --verify-tag --title "$MODULE $VERSION" --notes-file ../notes.md index.js* SHA256SUMS

@@ -109,7 +109,37 @@ For more modules, repeat the ConfigMap, volume and mount with another name. A Co
 
 **Updating:** replace the ConfigMap (`kubectl create configmap … --dry-run=client -o yaml | kubectl apply -f -`). Kubernetes refreshes the mounted file within about a minute, without a restart. The URL stays the same and has no cache-buster, so browsers may keep a cached copy for a while. If users must get the new build right away, mount each version under a new name (e.g. `/modules/keyboard-shortcuts-0.2.0`) and run the `helm upgrade` again.
 
-This was checked against Element Web v1.12.33 with ESS's nginx configuration, a read-only root filesystem and a ConfigMap-style mount: the module was added to `config.json`, served with `200`, and <kbd>?</kbd> opened the overlay.
+This was checked against Element Web v1.12.33 with ESS's nginx configuration and a read-only root filesystem, both with a ConfigMap-style mount and with the init container below downloading the v0.1.0 release: the module was added to `config.json`, served with `200`, and <kbd>?</kbd> opened the overlay.
+
+### Straight from a GitHub release
+
+Each module is published as a [GitHub release](https://github.com/yncyrydybyl/element-web-modules/releases) (tag `<module>-v<version>`, file `index.js`). Instead of a ConfigMap, an init container can download it into an empty volume every time the pod starts:
+
+```yaml
+elementWeb:
+  extraVolumes:
+    - name: keyboard-shortcuts
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: keyboard-shortcuts
+      mountPath: /modules/keyboard-shortcuts
+      readOnly: true
+  extraInitContainers:
+    - name: fetch-keyboard-shortcuts
+      image: curlimages/curl:8.11.1
+      args:
+        - -fsSL
+        - -o
+        - /out/index.js
+        - https://github.com/yncyrydybyl/element-web-modules/releases/download/keyboard-shortcuts-v0.1.0/index.js
+      volumeMounts:
+        - name: keyboard-shortcuts
+          mountPath: /out
+```
+
+The pod needs outbound access to GitHub when it starts. To upgrade, change the version in the URL and run `helm upgrade` again. For a different module, replace both `keyboard-shortcuts` names and the tag.
+
+**Why not just put the GitHub/CDN URL into `modules`?** Element Web's own Content Security Policy (in its `index.html`) only allows scripts from Element's origin, so the browser refuses to load a module from `cdn.jsdelivr.net` or GitHub. `raw.githubusercontent.com` also serves files as `text/plain`, which browsers never run as a module. The module has to be served by Element Web itself.
 
 ## Verifying
 

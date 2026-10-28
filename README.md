@@ -11,7 +11,7 @@ Each module is a standalone package with its own README, build, tests and licens
 
 ## Using a module
 
-1. Build it (`pnpm build` / `npm run build`), or take the built file from a release. Each build is a single ES module file.
+1. Build it (`pnpm build` / `npm run build`), or download `index.js` from the module's [release](https://github.com/yncyrydybyl/element-web-modules/releases). Each build is a single ES module file.
 2. Serve that file from your Element Web's origin, e.g. at `/element-modules/<name>/index.js`.
 3. List its URL in Element's `config.json` under `"modules"`, with a cache-buster such as `?v=<hash>`.
 
@@ -35,6 +35,8 @@ elementWeb:
       mountPath: /modules/keyboard-shortcuts
       readOnly: true
 ```
+
+Or skip the ConfigMap and let an init container download the module from its [GitHub release](https://github.com/yncyrydybyl/element-web-modules/releases) when the pod starts: see [Straight from a GitHub release](modules/keyboard-shortcuts/docs/deployment.md#straight-from-a-github-release). Listing a GitHub or CDN URL directly in `modules` does not work, because Element Web's Content Security Policy only allows scripts from its own origin.
 
 ### More
 

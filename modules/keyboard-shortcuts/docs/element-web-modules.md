@@ -21,7 +21,7 @@ Don't confuse this with the **legacy module system**: `build_config.yaml`, `@mat
 ## Lifecycle
 
 1. Element starts. `init.tsx` sets `window.React` (part of the contract: modules don't bundle React).
-2. For each URL in `config.json` → `"modules"`, Element runs `import(url)`. The URL is used as-is (`webpackIgnore`), so absolute URLs, same-origin paths and query strings all work.
+2. For each URL in `config.json` → `"modules"`, Element runs `import(url)`. The URL is used as-is (`webpackIgnore`), so paths and query strings work. **It must be on Element's own origin:** the Content Security Policy in Element's `index.html` allows `script-src 'self'` only (plus reCAPTCHA and whatever the build set in `CSP_EXTRA_SOURCE`, empty in the official image), so a module on a CDN or another host is blocked.
 3. `ModuleLoader.load()` checks that the default export looks like a module (a class with a static `moduleApiVersion` string and a `load` method), then that the host's API version satisfies the module's semver range. Otherwise it throws `ModuleIncompatibleError`.
 4. Every module is constructed with the `Api` object, then all `load()` methods run in parallel **before the app renders and before login**. If any `load()` rejects, Element shows an error screen, so throw only for real misconfiguration.
 

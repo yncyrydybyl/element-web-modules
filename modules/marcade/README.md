@@ -70,7 +70,9 @@ elementWeb:
       readOnly: true
 ```
 
-See [the keyboard-shortcuts deployment notes](../keyboard-shortcuts/docs/deployment.md#ess-community-helm) for updates
+Or download it from the [`marcade-v0.1.0` release](https://github.com/yncyrydybyl/element-web-modules/releases/tag/marcade-v0.1.0)
+with an init container instead of a ConfigMap. See
+[the keyboard-shortcuts deployment notes](../keyboard-shortcuts/docs/deployment.md#ess-community-helm) for that, updates
 and caching.
 
 **matrix-docker-ansible-deploy**: the auto-loader does *not* work there (the playbook also installs
