@@ -77,24 +77,39 @@ Deploy with `--tags=setup-aux,setup-client-element`, then restart `matrix-client
 
 ## ESS Community (Helm)
 
-ESS has no module setting, but none is needed: it mounts only `config.json`, so the image's `/modules` auto-loader works, and the chart's nginx already serves `/modules`. Mount the module at `/modules/<name>/` and the image adds `/modules/<name>/index.js` to the config at startup:
+ESS has no module setting, but none is needed. The chart mounts only `config.json` (no `config.<hostname>.json`), so the image's `/modules` auto-loader works, and the chart's nginx already serves `/modules`. Mount the module at `/modules/<name>/` and the image adds `/modules/<name>/index.js` to `config.json` when the pod starts.
 
-```yaml
-elementWeb:
-  extraVolumes:
-    - name: keyboard-shortcuts
-      configMap:
-        name: element-module-keyboard-shortcuts   # kubectl create configmap element-module-keyboard-shortcuts --from-file=lib/index.js
-  extraVolumeMounts:
-    - name: keyboard-shortcuts
-      mountPath: /modules/keyboard-shortcuts
-      readOnly: true
-  additional:
-    keyboard-shortcuts.json: |
-      {"de.datanauten.keyboard_shortcuts": {"hidden_categories": ["labs"]}}
-```
+1. Put the built module into a ConfigMap in the ESS namespace:
 
-A ConfigMap holds at most 1 MiB, which is plenty for this module. The auto-loader's URL has no cache-buster, so after an update some browsers may run the old build for a while.
+   ```sh
+   kubectl create configmap element-module-keyboard-shortcuts -n ess --from-file=lib/index.js
+   ```
+
+2. Add a values file, e.g. `~/ess-config-values/element-modules.yaml`:
+
+   ```yaml
+   elementWeb:
+     extraVolumes:
+       - name: keyboard-shortcuts
+         configMap:
+           name: element-module-keyboard-shortcuts
+     extraVolumeMounts:
+       - name: keyboard-shortcuts
+         mountPath: /modules/keyboard-shortcuts
+         readOnly: true
+     # Optional: the module's settings, merged into config.json
+     additional:
+       keyboard-shortcuts.json: |
+         {"de.datanauten.keyboard_shortcuts": {"hidden_categories": ["labs"]}}
+   ```
+
+3. Pass it to your usual `helm upgrade --install … matrix-stack` command with one more `-f ~/ess-config-values/element-modules.yaml`. The Element Web pod restarts and loads the module.
+
+For more modules, repeat the ConfigMap, volume and mount with another name. A ConfigMap holds at most 1 MiB, which is plenty for this module (~73 kB).
+
+**Updating:** replace the ConfigMap (`kubectl create configmap … --dry-run=client -o yaml | kubectl apply -f -`). Kubernetes refreshes the mounted file within about a minute, without a restart. The URL stays the same and has no cache-buster, so browsers may keep a cached copy for a while. If users must get the new build right away, mount each version under a new name (e.g. `/modules/keyboard-shortcuts-0.2.0`) and run the `helm upgrade` again.
+
+This was checked against Element Web v1.12.33 with ESS's nginx configuration, a read-only root filesystem and a ConfigMap-style mount: the module was added to `config.json`, served with `200`, and <kbd>?</kbd> opened the overlay.
 
 ## Verifying
 

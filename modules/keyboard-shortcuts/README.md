@@ -46,9 +46,11 @@ Press <kbd>?</kbd> anywhere in Element Web to see every keyboard shortcut in a G
 
    Change `?v=` on every update. The image's nginx sends no cache headers for module files, so browsers otherwise keep running the old build.
 
-> **Docker image gotcha:** don't rely on the image's `/modules` auto-loader. It only rewrites `config.json`. If a `config.<hostname>.json` exists (matrix-docker-ansible-deploy always creates one), Element reads that file instead and the module never loads. List the module explicitly. See [docs/deployment.md](docs/deployment.md).
+> **Docker image gotcha:** with matrix-docker-ansible-deploy, don't rely on the image's `/modules` auto-loader. It only rewrites `config.json`. If a `config.<hostname>.json` exists (matrix-docker-ansible-deploy always creates one), Element reads that file instead and the module never loads. List the module explicitly. See [docs/deployment.md](docs/deployment.md).
 
-For matrix-docker-ansible-deploy and ESS Community, see **[docs/deployment.md](docs/deployment.md)**.
+**ESS Community (Helm):** no config change is needed there. Put `lib/index.js` into a ConfigMap and mount it at `/modules/keyboard-shortcuts` with `elementWeb.extraVolumes` / `elementWeb.extraVolumeMounts`, and the image loads it automatically. See [docs/deployment.md § ESS Community](docs/deployment.md#ess-community-helm) for the values file.
+
+For matrix-docker-ansible-deploy and other details, see **[docs/deployment.md](docs/deployment.md)**.
 
 ## Configuration
 

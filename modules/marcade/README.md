@@ -50,6 +50,33 @@ podman run -v ./dist:/modules/marcade:ro -v ./config.json:/app/config.json:ro â€
 
 Mounting the whole repo checkout at `/modules/marcade` works too (`package.json` `"main": "dist/index.js"`).
 
+**ESS Community (Helm)**: the same auto-loader applies. Put the build into a ConfigMap and mount it at
+`/modules/marcade`:
+
+```sh
+kubectl create configmap element-module-marcade -n ess --from-file=dist/index.js
+```
+
+```yaml
+# ~/ess-config-values/element-modules.yaml, passed to helm upgrade with -f
+elementWeb:
+  extraVolumes:
+    - name: marcade
+      configMap:
+        name: element-module-marcade
+  extraVolumeMounts:
+    - name: marcade
+      mountPath: /modules/marcade
+      readOnly: true
+```
+
+See [the keyboard-shortcuts deployment notes](../keyboard-shortcuts/docs/deployment.md#ess-community-helm) for updates
+and caching.
+
+**matrix-docker-ansible-deploy**: the auto-loader does *not* work there (the playbook also installs
+`config.<hostname>.json`, which Element reads first). See
+[the keyboard-shortcuts deployment notes](../keyboard-shortcuts/docs/deployment.md#matrix-docker-ansible-deploy).
+
 **Any other Element hosting**: serve `index.js` somewhere on the Element origin and list it yourself:
 
 ```json

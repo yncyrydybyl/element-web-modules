@@ -15,6 +15,29 @@ Each module is a standalone package with its own README, build, tests and licens
 2. Serve that file from your Element Web's origin, e.g. at `/element-modules/<name>/index.js`.
 3. List its URL in Element's `config.json` under `"modules"`, with a cache-buster such as `?v=<hash>`.
 
+### ESS Community
+
+No config change is needed: put the built file into a ConfigMap and mount it at `/modules/<name>/`. The Element Web image then adds it to `config.json` by itself when the pod starts.
+
+```sh
+kubectl create configmap element-module-keyboard-shortcuts -n ess --from-file=modules/keyboard-shortcuts/lib/index.js
+```
+
+```yaml
+# ~/ess-config-values/element-modules.yaml, pass it to your helm upgrade command with -f
+elementWeb:
+  extraVolumes:
+    - name: keyboard-shortcuts
+      configMap:
+        name: element-module-keyboard-shortcuts
+  extraVolumeMounts:
+    - name: keyboard-shortcuts
+      mountPath: /modules/keyboard-shortcuts
+      readOnly: true
+```
+
+### More
+
 [modules/keyboard-shortcuts/docs/deployment.md](modules/keyboard-shortcuts/docs/deployment.md) covers matrix-docker-ansible-deploy and ESS Community in detail and applies to any module. [modules/keyboard-shortcuts/docs/element-web-modules.md](modules/keyboard-shortcuts/docs/element-web-modules.md) collects notes on how Element Web modules work and where the upstream docs are.
 
 ## History
