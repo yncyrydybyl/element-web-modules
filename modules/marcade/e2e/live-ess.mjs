@@ -1,8 +1,8 @@
-// Live e2e against a real ESS Pro deployment (default: chat.example.com, Element Web 1.12.29 "element-web-pro",
+// Live e2e against a real ESS Pro deployment (tested with Element Web 1.12.29 "element-web-pro",
 // MAS login), where the module is already deployed. Read-only towards the deployment; it only creates a room,
 // a DM and the store widget with two test accounts you provide (fresh MAS users, see below).
 //
-//   MCM_CREDS=/path/creds.env node e2e/live-ess.mjs [--headed]
+//   MCM_ELEMENT=https://chat.example.com MCM_SERVER_NAME=example.com MCM_CREDS=/path/creds.env node e2e/live-ess.mjs [--headed]
 //   MCM_LOCAL_DIST=1 … serves this checkout's dist/index.js in place of the deployed /marcade-module/index.js
 //     creds.env (0600): USER_A=… PASS_A=… USER_B=… PASS_B=…   (localparts; A creates the room → PL100, B → PL0)
 //   screenshots → docs/screenshots/ess-*.png, console + results → e2e/out/ess-*.{log,json}
@@ -28,8 +28,9 @@ const SHOTS = path.resolve(HERE, "../docs/screenshots");
 const OUT = path.join(HERE, "out");
 fs.mkdirSync(SHOTS, { recursive: true });
 fs.mkdirSync(OUT, { recursive: true });
-const ELEMENT = process.env.MCM_ELEMENT ?? "https://chat.example.com";
-const SERVER = process.env.MCM_SERVER_NAME ?? "example.com";
+const ELEMENT = process.env.MCM_ELEMENT;
+const SERVER = process.env.MCM_SERVER_NAME;
+if (!ELEMENT || !SERVER) throw new Error("Set MCM_ELEMENT (Element Web URL) and MCM_SERVER_NAME (Matrix server name)");
 const HEADED = process.argv.includes("--headed");
 const STORE_PREFIX = "https://marcade.store/apps/de.minagawa.marcade-store/";
 const LOG_TAG = "[marcade-element-module]";
