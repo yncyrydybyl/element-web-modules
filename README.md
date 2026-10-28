@@ -1,0 +1,22 @@
+# Element Web modules
+
+Runtime modules for [Element Web](https://github.com/element-hq/element-web) and Element Desktop. They use the [module API](https://github.com/element-hq/element-web/tree/develop/packages/module-api) (2.x), so they load into a stock Element without a custom build.
+
+| Module | What it does | License |
+| --- | --- | --- |
+| [keyboard-shortcuts](modules/keyboard-shortcuts) | Press <kbd>?</kbd> for a Gmail-style overview of all of Element's keyboard shortcuts, and add your own (synced via account data). | AGPL-3.0-only |
+| [marcade](modules/marcade) | An **Apps** button in every room header that opens (or adds) the [Marcade Store](https://marcade.store) widget. | Apache-2.0 |
+
+Each module is a standalone package with its own README, build, tests and license. There is no shared workspace: `cd modules/<name>` and use that module's package manager (pnpm for keyboard-shortcuts, npm for marcade).
+
+## Using a module
+
+1. Build it (`pnpm build` / `npm run build`), or take the built file from a release. Each build is a single ES module file.
+2. Serve that file from your Element Web's origin, e.g. at `/element-modules/<name>/index.js`.
+3. List its URL in Element's `config.json` under `"modules"`, with a cache-buster such as `?v=<hash>`.
+
+[modules/keyboard-shortcuts/docs/deployment.md](modules/keyboard-shortcuts/docs/deployment.md) covers matrix-docker-ansible-deploy and ESS Community in detail and applies to any module. [modules/keyboard-shortcuts/docs/element-web-modules.md](modules/keyboard-shortcuts/docs/element-web-modules.md) collects notes on how Element Web modules work and where the upstream docs are.
+
+## History
+
+The modules started as separate repositories. Their histories were imported into `modules/<name>/` unchanged.

@@ -1,86 +1,106 @@
-# Deployment with matrix-docker-ansible-deploy (datanauten.de)
+# Deployment
 
-The datanauten.de Element Web (`matrix.datanauten.de`, upstream image v1.12.32, the playbook default) is configured in `~/projects/dtn10/datanauten.de/inventory/host_vars/matrix.datanauten.de/vars.yml`.
+The module is one file, `lib/index.js` (plus an optional `index.js.map`). Element Web needs to be able to fetch it, and its URL has to be listed under `modules` in Element's config. Everything below applies to any Element Web module, not just this one.
 
-## What MDAD offers for Element modules
+General rules, whatever the setup:
 
-**Nothing first-class.** This was checked on 2026-10-28 against MDAD @ `c6c03cde5` (the submodule) and upstream master. The role `roles/custom/matrix-client-element` has no module variables, and its docs don't mention modules. What it does have are two generic hooks:
+- **Serve it from Element's own origin** if you can, e.g. at `/element-modules/keyboard-shortcuts/index.js`. Then no CORS headers are needed.
+- **Cache-bust the URL** (`index.js?v=<content hash>`). The official image's nginx sends no cache headers for module files, so without a new URL browsers can keep running an old build. `config.json` itself is always re-fetched, so changing the URL there is enough.
+- **Restart the container after changing the config.** The image copies the config at startup.
 
-- `matrix_client_element_container_extra_arguments`: extra `podman/docker run` arguments, used for a bind mount.
-- `matrix_client_element_configuration_extension_json`: JSON that MDAD deep-merges into the generated `config.json`.
+## matrix-docker-ansible-deploy
 
-Plus the playbook-wide `aux_directory_definitions_custom` / `aux_file_definitions_custom`, which copy files from the inventory to the server.
+### With native module support
 
-### Why not the image's built-in `/modules` auto-loader?
-
-The image's `18-load-element-modules.sh` adds every `/modules/<name>/` to `modules` in **`config.json` only**. MDAD bind-mounts the same generated file as both `/app/config.json` and `/app/config.element.datanauten.de.json`. Element fetches the host-specific file first and uses it if it's non-empty (`apps/web/src/vector/getconfig.ts`). So anything the auto-loader adds is never seen. Mounting at `/modules` *and* listing the module explicitly would also put it into `config.json` twice. The previous setup (Marcade only) had already worked this out correctly.
-
-## Previous setup and what changed
-
-Before, the Marcade module was wired up by hand: one aux dir, one aux file, a mount of `modules/marcade` at `/app/marcade-module`, and a hard-coded `"modules": ["/marcade-module/index.js"]`. That works, but:
-
-- Each additional module needed edits in **four** places: dirs, files, a new mount, and the modules list.
-- One bind mount per module meant more `podman run` arguments over time.
-- **No cache-busting.** The image's nginx sends no cache headers for module files, so after updating `index.js` browsers could keep running the old build. That happened during testing for this module.
-
-The new setup is driven by one list. All four variables are generated from it:
+A pull request adds `matrix_client_element_modules` to the `matrix-client-element` role ([yncyrydybyl/matrix-docker-ansible-deploy#26](https://github.com/yncyrydybyl/matrix-docker-ansible-deploy/pull/26)). With it, a module is one list entry:
 
 ```yaml
-datanauten_element_modules_src_dir: "{{ inventory_dir }}/host_vars/matrix.datanauten.de/files/element-modules"
-datanauten_element_modules:
-  - name: marcade
-    files: [index.js]
+matrix_client_element_modules:
+  - name: keyboard-shortcuts
+    src: "{{ inventory_dir }}/files/element-modules/keyboard-shortcuts"   # holds index.js
+    config:
+      de.datanauten.keyboard_shortcuts:
+        hidden_categories: [labs]
+```
+
+The role copies the files, mounts them, adds the hashed URL to `modules` and restarts Element Web when needed.
+
+### Without it
+
+The released playbook has no module variables, so three generic hooks do the job. This setup runs in production with two modules. It is driven by one list:
+
+```yaml
+my_element_modules_src_dir: "{{ inventory_dir }}/files/element-modules"
+my_element_modules:
   - name: keyboard-shortcuts
     files: [index.js, index.js.map]
-    # optional:
-    # entry: index.js                  # file listed in "modules" (default index.js)
-    # config:                          # merged into config.json
-    #   de.datanauten.keyboard_shortcuts:
-    #     hidden_categories: [accessibility]
+    # entry: index.js        # the file listed in "modules" (default index.js)
+    # config: {…}            # merged into config.json
+
+aux_directory_definitions_custom: |-
+  {%- set dirs = [{'dest': matrix_client_element_data_path ~ '/modules'}] -%}
+  {%- for m in my_element_modules -%}
+  {%-   set _ = dirs.append({'dest': matrix_client_element_data_path ~ '/modules/' ~ m.name}) -%}
+  {%- endfor -%}
+  {{ dirs }}
+
+aux_file_definitions_custom: |-
+  {%- set files = [] -%}
+  {%- for m in my_element_modules -%}
+  {%-   for f in m.files -%}
+  {%-     set _ = files.append({
+            'dest': matrix_client_element_data_path ~ '/modules/' ~ m.name ~ '/' ~ f,
+            'src': my_element_modules_src_dir ~ '/' ~ m.name ~ '/' ~ f,
+            'mode': '0644'}) -%}
+  {%-   endfor -%}
+  {%- endfor -%}
+  {{ files }}
+
+matrix_client_element_container_extra_arguments:
+  - "--mount type=bind,src={{ matrix_client_element_data_path }}/modules,dst=/app/element-modules,ro"
+
+matrix_client_element_configuration_extension_json: |-
+  {%- set urls = [] -%}
+  {%- set extra = {} -%}
+  {%- for m in my_element_modules -%}
+  {%-   set entry = m.entry | default('index.js') -%}
+  {%-   set hash = lookup('ansible.builtin.file', my_element_modules_src_dir ~ '/' ~ m.name ~ '/' ~ entry) | hash('sha1') -%}
+  {%-   set _ = urls.append('/element-modules/' ~ m.name ~ '/' ~ entry ~ '?v=' ~ hash[:12]) -%}
+  {%-   set _ = extra.update(m.config | default({})) -%}
+  {%- endfor -%}
+  {{ extra | combine({'modules': urls}) | to_json }}
 ```
 
-What it renders to, checked with a local `debug` playbook:
+Deploy with `--tags=setup-aux,setup-client-element`, then restart `matrix-client-element`. (In current playbook versions, the `start` tag restarts every service, which a module update doesn't need.)
 
-| Variable                                         | Value                                                                                                                                  |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `aux_directory_definitions_custom`               | `/matrix/client-element/modules`, `…/modules/marcade`, `…/modules/keyboard-shortcuts`                                                  |
-| `aux_file_definitions_custom`                    | each listed file → `/matrix/client-element/modules/<name>/<file>` (mode 0644)                                                          |
-| `matrix_client_element_container_extra_arguments` | one mount: `…/modules` → `/app/element-modules` (ro)                                                                                  |
-| `matrix_client_element_configuration_extension_json` | `{"modules": ["/element-modules/marcade/index.js?v=<sha1[:12]>", "/element-modules/keyboard-shortcuts/index.js?v=<sha1[:12]>"]}` plus any `config` |
+**Don't use the image's `/modules` auto-loader here.** It only adds modules to `config.json`, but the playbook installs the same config as `config.<element hostname>.json` too, and Element Web reads that file first (`apps/web/src/vector/getconfig.ts`). Modules mounted at `/modules` therefore never load.
 
-The `?v=` value is the SHA-1 of the entry file in the inventory, so it changes exactly when the build changes. That layout (one mount, two modules, hashed URLs) was tested end-to-end against `ghcr.io/element-hq/element-web:v1.12.32`: both modules load and the overlay works.
+## ESS Community (Helm)
 
-Marcade's public URL moves from `/marcade-module/index.js` to `/element-modules/marcade/index.js`. Nothing else references that URL, and the bundle has no path-relative imports. The files stay in the same place on the server.
+ESS has no module setting, but none is needed: it mounts only `config.json`, so the image's `/modules` auto-loader works, and the chart's nginx already serves `/modules`. Mount the module at `/modules/<name>/` and the image adds `/modules/<name>/index.js` to the config at startup:
 
-## Updating the keyboard-shortcuts module
-
-```sh
-cd ~/projects/element-modules/keyboard-shortcuts
-pnpm test && pnpm build
-cp lib/index.js lib/index.js.map \
-   ~/projects/dtn10/datanauten.de/inventory/host_vars/matrix.datanauten.de/files/element-modules/keyboard-shortcuts/
-# bump the version note next to the list entry in vars.yml, then:
-cd ~/projects/dtn10/datanauten.de
-ansible-playbook -i inventory/hosts matrix-docker-ansible-deploy/setup.yml --tags=setup-client-element,start
+```yaml
+elementWeb:
+  extraVolumes:
+    - name: keyboard-shortcuts
+      configMap:
+        name: element-module-keyboard-shortcuts   # kubectl create configmap element-module-keyboard-shortcuts --from-file=lib/index.js
+  extraVolumeMounts:
+    - name: keyboard-shortcuts
+      mountPath: /modules/keyboard-shortcuts
+      readOnly: true
+  additional:
+    keyboard-shortcuts.json: |
+      {"de.datanauten.keyboard_shortcuts": {"hidden_categories": ["labs"]}}
 ```
 
-(Or `./up.sh` → *Element Web*.) `setup-client-element` re-renders `config.json` and restarts the container. Users get the new build on their next page load.
+A ConfigMap holds at most 1 MiB, which is plenty for this module. The auto-loader's URL has no cache-buster, so after an update some browsers may run the old build for a while.
 
-## Adding another module
-
-1. Build it and copy the output to `files/element-modules/<name>/`.
-2. Add `- name: <name>` with its `files` (and `config` if needed) to `datanauten_element_modules`.
-3. Deploy as above.
-
-## Verifying after a deploy
+## Verifying
 
 ```sh
-curl -s https://element.datanauten.de/config.element.datanauten.de.json | jq .modules
-curl -sI "https://element.datanauten.de/element-modules/keyboard-shortcuts/index.js" | head -1   # 200
+curl -s https://element.example.com/config.element.example.com.json | jq .modules   # or /config.json
+curl -sI "https://element.example.com/element-modules/keyboard-shortcuts/index.js" | head -1   # 200
 ```
 
 Then open Element, press <kbd>?</kbd> outside the composer, and check the browser console for `[keyboard-shortcuts]` messages.
-
-## If MDAD ever adds native support
-
-If upstream MDAD gains module variables, move the list over and drop the four generated variables. The `?v=` cache-busting is still worth keeping unless the new variables provide it too.

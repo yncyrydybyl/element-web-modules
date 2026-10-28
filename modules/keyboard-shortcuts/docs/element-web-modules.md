@@ -1,6 +1,6 @@
 # Element Web modules: how they work
 
-These are notes from investigating the Element Web source (monorepo `element-hq/element-web`, develop as of 2026-09-25, local checkout `~/projects/browser-src/element-web`) and the published `@element-hq/element-web-module-api` 2.0–2.3. They apply to any module, not just this one.
+These are notes from investigating the Element Web source (monorepo `element-hq/element-web`, develop as of 2026-09-25) and the published `@element-hq/element-web-module-api` 2.0–2.3. They apply to any module, not just this one.
 
 ## Where the upstream documentation is
 

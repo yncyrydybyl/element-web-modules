@@ -48,7 +48,7 @@ Press <kbd>?</kbd> anywhere in Element Web to see every keyboard shortcut in a G
 
 > **Docker image gotcha:** don't rely on the image's `/modules` auto-loader. It only rewrites `config.json`. If a `config.<hostname>.json` exists (matrix-docker-ansible-deploy always creates one), Element reads that file instead and the module never loads. List the module explicitly. See [docs/deployment.md](docs/deployment.md).
 
-For matrix-docker-ansible-deploy (as used for datanauten.de), see **[docs/deployment.md](docs/deployment.md)**.
+For matrix-docker-ansible-deploy and ESS Community, see **[docs/deployment.md](docs/deployment.md)**.
 
 ## Configuration
 
@@ -115,8 +115,8 @@ Further reading:
 
 - [docs/element-web-modules.md](docs/element-web-modules.md): how Element Web modules work in general, and where the upstream docs are.
 - [docs/architecture.md](docs/architecture.md): how this module works and why it's built this way.
-- [docs/deployment.md](docs/deployment.md): deploying with matrix-docker-ansible-deploy.
+- [docs/deployment.md](docs/deployment.md): deploying with matrix-docker-ansible-deploy or ESS Community.
 
 ## License
 
-AGPL-3.0-only, like Element Web and the official Element modules.
+AGPL-3.0-only, like Element Web and the official Element modules. See [LICENSE](LICENSE).
