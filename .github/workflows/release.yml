@@ -1,0 +1,93 @@
+# Releases one module: builds and tests it, then creates the tag <module>-v<version> and a GitHub release.
+#
+#   gh workflow run release.yml -f module=keyboard-shortcuts
+#
+# The version comes from modules/<module>/package.json. The tag points to a commit on top of the
+# current branch that also contains the build under dist/<module>/, so the file can be loaded straight
+# from GitHub via jsDelivr:
+#   https://cdn.jsdelivr.net/gh/<owner>/<repo>@<module>-v<version>/dist/<module>/index.js
+# The release has the same files attached, for downloading them onto a server.
+name: Release module
+
+on:
+  workflow_dispatch:
+    inputs:
+      module:
+        description: Module to release (a directory name under modules/)
+        required: true
+        type: choice
+        options:
+          - keyboard-shortcuts
+          - marcade
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      MODULE: ${{ inputs.module }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Determine version and tag
+        run: |
+          version=$(jq -r .version "modules/$MODULE/package.json")
+          tag="$MODULE-v$version"
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null; then
+            echo "::error::$tag already exists. Bump the version in modules/$MODULE/package.json first."
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          echo "TAG=$tag" >> "$GITHUB_ENV"
+
+      - name: Install, test and build
+        working-directory: modules/${{ inputs.module }}
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            corepack enable
+            pnpm install --frozen-lockfile
+            pnpm test
+            pnpm build
+            out=lib
+          else
+            npm ci
+            npm test
+            npm run build
+            out=dist
+          fi
+          mkdir -p "$GITHUB_WORKSPACE/dist/$MODULE"
+          cp "$out"/index.js* "$GITHUB_WORKSPACE/dist/$MODULE/"
+          ls -l "$GITHUB_WORKSPACE/dist/$MODULE"
+
+      - name: Create the tag on a commit that includes the build
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --force "dist/$MODULE"
+          git commit -m "Release $MODULE $VERSION (build)"
+          git tag "$TAG"
+          git push origin "refs/tags/$TAG"
+
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd "dist/$MODULE"
+          sha256sum index.js* > SHA256SUMS
+          cdn="https://cdn.jsdelivr.net/gh/$GITHUB_REPOSITORY@$TAG/dist/$MODULE/index.js"
+          dl="https://github.com/$GITHUB_REPOSITORY/releases/download/$TAG/index.js"
+          printf '%s\n' \
+            "$MODULE $VERSION, built from ${GITHUB_SHA::7}." \
+            "" \
+            "- Download (e.g. for an init container): $dl" \
+            "- Load directly in the browser (CDN): $cdn" \
+            "" \
+            "See modules/$MODULE/README.md for configuration and the deployment notes for ESS Community and matrix-docker-ansible-deploy." \
+            > ../notes.md
+          gh release create "$TAG" --verify-tag --title "$MODULE $VERSION" --notes-file ../notes.md index.js* SHA256SUMS
