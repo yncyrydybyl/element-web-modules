@@ -1,0 +1,3 @@
+# Don't install package versions published less than a day ago (supply-chain safety, and the
+# default of newer pnpm versions).
+minimumReleaseAge: 1440
