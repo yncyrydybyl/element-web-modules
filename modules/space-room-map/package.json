@@ -1,0 +1,48 @@
+{
+    "name": "@datanauten/element-web-module-space-room-map",
+    "version": "0.1.0",
+    "description": "Element Web module: a zoomable 2D map of your spaces and rooms (Ctrl+I), with a space list that steers the map",
+    "private": true,
+    "type": "module",
+    "main": "lib/index.js",
+    "license": "AGPL-3.0-only",
+    "packageManager": "pnpm@10.29.3",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch",
+        "lint:types": "tsc --noEmit",
+        "test": "vitest run",
+        "test:watch": "vitest"
+    },
+    "dependencies": {
+        "@sigma/node-border": "^3.0.0",
+        "@sigma/node-image": "^3.0.0",
+        "d3-hierarchy": "^3.1.2",
+        "graphology": "^0.26.0",
+        "match-sorter": "^8.3.0",
+        "sigma": "^3.0.3"
+    },
+    "devDependencies": {
+        "@element-hq/element-web-module-api": "^2.3.0",
+        "@testing-library/dom": "^10.4.2",
+        "@testing-library/react": "^16.3.3",
+        "@testing-library/user-event": "^14.6.8",
+        "@types/d3-hierarchy": "^3.1.7",
+        "@types/node": "^24.19.2",
+        "@types/react": "^19.3.0",
+        "@types/react-dom": "^19.3.0",
+        "@vitejs/plugin-react": "^6.1.2",
+        "graphology-types": "^0.24.8",
+        "jsdom": "^27.4.0",
+        "react": "^19.3.1",
+        "react-dom": "^19.3.1",
+        "rollup": "^4.66.0",
+        "rollup-plugin-external-globals": "^0.13.0",
+        "typescript": "^5.9.3",
+        "vite": "^8.3.5",
+        "vitest": "^4.1.12"
+    }
+}

@@ -1,0 +1,50 @@
+import type { Translations } from "@element-hq/element-web-module-api";
+
+// Flat keys: Element treats "|" in a translation key as a path separator.
+export const P = "datanauten_space_room_map_";
+
+export const translations = {
+    [`${P}title`]: { en: "Map", de: "Karte" },
+    [`${P}canvas_label`]: { en: "Map of your spaces and rooms", de: "Karte deiner Spaces und Räume" },
+    [`${P}search`]: { en: "Search rooms and spaces", de: "Räume und Spaces suchen" },
+    [`${P}close`]: { en: "Close", de: "Schließen" },
+    [`${P}group_rooms`]: { en: "Other rooms", de: "Weitere Räume" },
+    [`${P}group_people`]: { en: "People", de: "Personen" },
+    [`${P}results`]: { en: "Results", de: "Treffer" },
+    [`${P}no_results`]: { en: "Nothing matches “%(query)s”.", de: "Nichts passt zu „%(query)s“." },
+    [`${P}hint`]: {
+        en: "Point at a space or use ↑↓ to show it on the map · Enter open · Esc close · scroll to zoom, drag to pan",
+        de: "Auf einen Space zeigen oder ↑↓, um ihn auf der Karte zu zeigen · Enter öffnet · Esc schließt · Scrollen zoomt, Ziehen verschiebt",
+    },
+    [`${P}empty`]: { en: "No rooms yet.", de: "Noch keine Räume." },
+    [`${P}spaces`]: { en: "Spaces", de: "Spaces" },
+    [`${P}all_spaces`]: { en: "All spaces", de: "Alle Spaces" },
+    [`${P}space_rooms_one`]: { en: "%(count)s room", de: "%(count)s Raum" },
+    [`${P}space_rooms_other`]: { en: "%(count)s rooms", de: "%(count)s Räume" },
+    [`${P}tip_action_zoom`]: { en: "Click to zoom in", de: "Klicken zum Hineinzoomen" },
+    [`${P}tip_group`]: { en: "Rooms outside any space", de: "Räume ohne Space" },
+    [`${P}tip_invite`]: { en: "Invitation", de: "Einladung" },
+    [`${P}tip_dm`]: { en: "Direct message", de: "Direktnachricht" },
+    [`${P}tip_space_one`]: { en: "Space · %(count)s room", de: "Space · %(count)s Raum" },
+    [`${P}tip_space_other`]: { en: "Space · %(count)s rooms", de: "Space · %(count)s Räume" },
+    [`${P}tip_room_one`]: { en: "Room · %(count)s member", de: "Raum · %(count)s Mitglied" },
+    [`${P}tip_room_other`]: { en: "Room · %(count)s members", de: "Raum · %(count)s Mitglieder" },
+    [`${P}tip_unread_one`]: { en: "%(count)s unread", de: "%(count)s ungelesen" },
+    [`${P}tip_unread_other`]: { en: "%(count)s unread", de: "%(count)s ungelesen" },
+    [`${P}tip_mentions_one`]: { en: "%(count)s mention", de: "%(count)s Erwähnung" },
+    [`${P}tip_mentions_other`]: { en: "%(count)s mentions", de: "%(count)s Erwähnungen" },
+    [`${P}tip_current`]: { en: "You're here", de: "Du bist hier" },
+    [`${P}tip_action_open`]: { en: "Click to open", de: "Klicken zum Öffnen" },
+    [`${P}tip_action_space`]: { en: "Click to zoom in, click again to open", de: "Klicken zum Hineinzoomen, nochmal klicken zum Öffnen" },
+    [`${P}legend`]: { en: "Legend", de: "Legende" },
+    [`${P}legend_unread`]: { en: "Unread messages", de: "Ungelesene Nachrichten" },
+    [`${P}legend_highlight`]: { en: "Mentions you", de: "Erwähnt dich" },
+    [`${P}legend_current`]: { en: "Room you're in", de: "Raum, in dem du bist" },
+    [`${P}legend_selected`]: { en: "Selected in the list", de: "In der Liste ausgewählt" },
+    [`${P}legend_space_circle`]: { en: "Space, with its rooms inside", de: "Space, mit seinen Räumen darin" },
+    [`${P}legend_colour`]: {
+        en: "Avatar or colour: just the room's own, like in Element",
+        de: "Avatar oder Farbe: nur die des Raums, wie in Element",
+    },
+    [`${P}legend_dim`]: { en: "Faded: doesn't match the search", de: "Blass: passt nicht zur Suche" },
+} satisfies Translations;

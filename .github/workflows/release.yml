@@ -21,6 +21,7 @@ on:
         type: choice
         options:
           - keyboard-shortcuts
+          - space-room-map
           - marcade
 
 permissions:
