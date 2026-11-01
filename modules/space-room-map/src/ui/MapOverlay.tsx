@@ -71,7 +71,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
 
     useEffect(() => searchRef.current?.focus(), []);
 
-    const labels = useMemo(() => ({ rooms: t(`${P}group_rooms`), people: t(`${P}group_people`) }), [t]);
+    const labels = useMemo(() => ({ rooms: t(`${P}group_rooms`), people: t(`${P}group_people`), empty: t(`${P}group_empty`) }), [t]);
     const mapGraph = useMemo(() => buildAllGraph(graph, labels), [graph, labels]);
     // Packed to roughly the shape of the map's area: the window minus the list and the header.
     const tubeLayout = useMemo(

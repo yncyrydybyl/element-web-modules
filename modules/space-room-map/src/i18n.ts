@@ -10,6 +10,7 @@ export const translations = {
     [`${P}close`]: { en: "Close", de: "Schließen" },
     [`${P}group_rooms`]: { en: "Other rooms", de: "Weitere Räume" },
     [`${P}group_people`]: { en: "People", de: "Personen" },
+    [`${P}group_empty`]: { en: "Spaces without rooms", de: "Spaces ohne Räume" },
     [`${P}results`]: { en: "Results", de: "Treffer" },
     [`${P}no_results`]: { en: "Nothing matches “%(query)s”.", de: "Nichts passt zu „%(query)s“." },
     [`${P}hint`]: {

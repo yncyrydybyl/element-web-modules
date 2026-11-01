@@ -56,6 +56,8 @@ const FOCUS_SCALE = 1.3;
 const READABLE_SCALE = 0.85;
 const NAME_CHARS = 22;
 const PILL_H = 20;
+/** Screen room kept right of the map in the overview, for block names. */
+const NAME_ROOM = 160;
 const TIP_HIDE_MS = 120;
 /** Below this, a press that moves is a click, not a drag. */
 const DRAG_PX = 4;
@@ -169,7 +171,12 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         const cx = w >= (x1 - x0) * 1.08 ? (x0 + x1) / 2 : x0 + w / 2;
         return { cx, cy, w };
     };
-    const overview = (): View => fit(layout.bounds.x0, layout.bounds.y0, layout.bounds.x1, layout.bounds.y1);
+    const overview = (): View => {
+        const { x0, y0, x1, y1 } = layout.bounds;
+        // Block names keep their size on screen, so the last column's may reach past its block.
+        const pad = (NAME_ROOM * fit(x0, y0, x1, y1).w) / (svgRef.current?.clientWidth || 1);
+        return fit(x0, y0, x1 + pad, y1);
+    };
     const lineView = (id: string): View => {
         let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
         for (const l of layout.lines) {

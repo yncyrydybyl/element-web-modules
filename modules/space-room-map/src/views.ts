@@ -41,6 +41,8 @@ export type TipNode = Pick<NodeAttrs, "label" | "roomId" | "container" | "unread
 export interface GroupLabels {
     rooms: string;
     people: string;
+    /** Tube map: the line of spaces without rooms. */
+    empty?: string;
 }
 
 interface TreeNode {

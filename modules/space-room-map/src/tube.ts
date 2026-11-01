@@ -7,7 +7,8 @@
  * within the block's width instead of running off to the right. A line's sub-spaces come first,
  * so their branches drop down on the left, past the line's later rows, which start further right;
  * the branch that leaves furthest right is placed nearest, so no drop crosses a line of its tree.
- * The blocks are then packed into columns (shortest column first) to roughly fill a screen.
+ * The blocks are then packed into columns (masonry, wide blocks spanning several) to roughly fill
+ * a screen.
  */
 
 import { spaceStats, spaceTree, type RoomGraph, type RoomKind } from "./rooms";
@@ -93,6 +94,8 @@ interface Block {
 export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 1.6): TubeLayout {
     const stats = spaceStats(graph);
     const hasLine = new Set<string>();
+    /** No rooms anywhere inside: no line of its own. */
+    const isEmpty = (id: string): boolean => (stats.get(id)?.rooms ?? 0) === 0;
     let colour = 0;
     let total = 0;
 
@@ -122,16 +125,17 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
 
             const ids = members.filter((m) => graph.rooms.has(m)).slice(0, Math.max(0, MAX_STATIONS - total));
             total += ids.length;
-            // Sub-spaces first: their branches drop down on the left.
-            const isSpace = (m: string): boolean => graph.rooms.get(m)!.kind === "space";
-            const ordered = [...ids.filter(isSpace), ...ids.filter((m) => !isSpace(m))];
-            const junctions = ids.filter(isSpace).length;
+            // Sub-spaces that get a line of their own first: their branches drop down on the left.
+            const branching = (m: string): boolean => graph.rooms.get(m)!.kind === "space" && !hasLine.has(m) && !isEmpty(m);
+            const ordered = [...ids.filter(branching), ...ids.filter((m) => !branching(m))];
+            const junctions = ids.filter(branching).length;
 
             const start = branch ? branch.col + 1 : 0;
-            // Later rows start right of the junctions and wind between `inner` and `inner + run - 1`.
+            // Later rows start right of the junctions and wind between `inner` and `inner + run - 1`;
+            // a long line gets longer rows, so its block comes out roughly square instead of a tower.
             const inner = start + junctions;
-            const run = Math.max(MIN_RUN, MAX_COL - inner);
-            const firstRun = Math.max(junctions + MIN_RUN, MAX_COL - start);
+            const run = Math.max(MIN_RUN, MAX_COL - inner, Math.ceil(Math.sqrt(((ordered.length - junctions) * ROW) / COL)));
+            const firstRun = junctions + run;
             const rows: Array<{ y: number; cols: number[] }> = [];
             let i = 0;
             while (i < ordered.length || rows.length === 0) {
@@ -187,7 +191,7 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
             }
 
             const branches = line.stations
-                .filter((s) => s.kind === "space" && !hasLine.has(s.roomId) && s.y === rows[0].y)
+                .filter((s) => s.kind === "space" && !hasLine.has(s.roomId) && !isEmpty(s.roomId) && s.y === rows[0].y)
                 .sort((a, b) => b.x - a.x);
             for (const s of branches) {
                 // An earlier branch may have drawn it already (a sub-space in two places).
@@ -205,10 +209,15 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
     };
 
     const blocks: Block[] = [];
-    // Top-level spaces, then any space not drawn yet (cut off by the limit).
+    // Top-level spaces, then any space not drawn yet (cut off by the limit). Spaces without any
+    // rooms would be stubs: they're stations on a line of their own instead.
+    const empty: string[] = [];
     for (const id of [...graph.topSpaces, ...spaceTree(graph).map((s) => s.id)]) {
-        if (!hasLine.has(id)) blocks.push(buildBlock(id, graph.rooms.get(id)!.name, graph.rooms.get(id)!.children));
+        if (hasLine.has(id) || empty.includes(id)) continue;
+        if (isEmpty(id) && graph.rooms.get(id)!.parents.length === 0) empty.push(id);
+        else if (!isEmpty(id)) blocks.push(buildBlock(id, graph.rooms.get(id)!.name, graph.rooms.get(id)!.children));
     }
+    if (empty.length) blocks.push(buildBlock("empty", labels.empty ?? "", empty));
     if (graph.orphans.length) blocks.push(buildBlock("rooms", labels.rooms, graph.orphans));
     if (graph.dms.length) blocks.push(buildBlock("people", labels.people, graph.dms));
 
@@ -230,25 +239,40 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
     return layout;
 }
 
-/** Blocks into columns, each into the shortest so far, with the number of columns that best fits `aspect`. */
+/**
+ * Blocks into columns of a standard width, each where it ends up highest; a wide block spans
+ * several columns and is placed first. The number of columns is the one that best fits `aspect`.
+ */
 function pack(blocks: Block[], aspect: number): TubeLayout {
-    const colWidth = Math.max(COL * MIN_RUN, ...blocks.map((b) => b.width)) + GUTTER_X;
-    const place = (n: number): { at: Array<[number, number]>; height: number } => {
+    const colWidth = MAX_COL * COL + NAME_REACH + GUTTER_X;
+    const span = (b: Block): number => Math.max(1, Math.ceil((b.width + GUTTER_X) / colWidth));
+    const order = [...blocks.keys()].sort((a, b) => span(blocks[b]) - span(blocks[a]) || a - b);
+    const place = (n: number): { at: Array<[number, number]>; width: number; height: number } => {
         const heights = new Array<number>(n).fill(0);
-        const at = blocks.map((b): [number, number] => {
-            const c = heights.indexOf(Math.min(...heights));
-            const pos: [number, number] = [c * colWidth, heights[c]];
-            heights[c] += b.height + GUTTER_Y;
-            return pos;
-        });
-        return { at, height: Math.max(0, ...heights) };
+        const at = new Array<[number, number]>(blocks.length);
+        for (const i of order) {
+            const w = Math.min(span(blocks[i]), n);
+            let best = 0;
+            let bestTop = Infinity;
+            for (let c = 0; c + w <= n; c++) {
+                const top = Math.max(...heights.slice(c, c + w));
+                if (top < bestTop) (best = c), (bestTop = top);
+            }
+            at[i] = [best * colWidth, bestTop];
+            for (let c = best; c < best + w; c++) heights[c] = bestTop + blocks[i].height + GUTTER_Y;
+        }
+        const width = Math.max(0, ...blocks.map((b, i) => at[i][0] + b.width));
+        return { at, width, height: Math.max(0, ...heights) };
     };
-    let best = place(1);
+    const widest = Math.max(1, ...blocks.map(span));
+    let best = place(widest);
     let bestScore = Infinity;
-    for (let n = 1; n <= Math.max(1, blocks.length); n++) {
+    for (let n = widest; n <= Math.max(widest, blocks.length * widest); n++) {
         const p = place(n);
-        const score = Math.abs(Math.log((n * colWidth) / Math.max(1, p.height) / aspect));
+        const score = Math.abs(Math.log(p.width / Math.max(1, p.height) / aspect));
         if (score < bestScore) (best = p), (bestScore = score);
+        // More columns only make it wider from here.
+        if (p.width / Math.max(1, p.height) > aspect * 2) break;
     }
 
     const layout: TubeLayout = { lines: [], stations: [], links: [], bounds: { x0: -COL, y0: 0, x1: COL, y1: COL } };
