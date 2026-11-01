@@ -32,6 +32,9 @@ export interface NodeAttrs {
 
 export type MapGraph = Graph<NodeAttrs>;
 
+/** What the tooltip needs, from either map. */
+export type TipNode = Pick<NodeAttrs, "label" | "roomId" | "container" | "unread" | "highlight">;
+
 export interface GroupLabels {
     rooms: string;
     people: string;

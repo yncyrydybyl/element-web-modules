@@ -10,10 +10,11 @@ import type { NodeLabelDrawingFunction } from "sigma/rendering";
 import type { Settings } from "sigma/settings";
 
 import type { MapGraph, NodeAttrs } from "../views";
-import { flyTo, type Flight } from "./camera";
-import { mix, withAlpha } from "./colour";
+import { flyTo, prefersReducedMotion, type Flight } from "./camera";
+import { mix, premultiplied, withAlpha } from "./colour";
 import { buildPrograms } from "./programs";
 import { readTheme, type Theme } from "./theme";
+import { placeTooltip } from "./tooltip";
 
 /** Where the camera should go: a room or space by id, a node by key (the "Other rooms" circle), or everything. */
 export interface FocusTarget {
@@ -45,8 +46,6 @@ export interface SigmaMapProps {
     children?: ReactNode;
 }
 
-/** Gap between the pointer and the tooltip. */
-const TIP_OFFSET = 14;
 /** Moving from one node to the next doesn't blink the tooltip off and on. */
 const TIP_HIDE_MS = 120;
 /** On opening, how long the map may stay hidden while the first avatars become textures. */
@@ -55,6 +54,10 @@ const REVEAL_WAIT_MS = 250;
 const GRID = 24;
 /** The camera showing the whole map. */
 const OVERVIEW = { x: 0.5, y: 0.5, ratio: 1 };
+/** One pulse of a room that mentions you. */
+const PULSE_MS = 1600;
+/** Rooms that mention you stay findable at any zoom: their beacon is never smaller than this. */
+const BEACON_MIN_RADIUS = 6;
 
 export function SigmaMap(props: SigmaMapProps): JSX.Element {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -63,6 +66,7 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
     const sigmaRef = useRef<Sigma<NodeAttrs> | null>(null);
     const flightRef = useRef<Flight | null>(null);
     const tipRef = useRef<HTMLDivElement>(null);
+    const beaconRef = useRef<HTMLCanvasElement>(null);
     const lastTip = useRef<ReactNode>(null);
     const pointer = useRef({ x: 0, y: 0 });
     const [hovered, setHovered] = useState<NodeAttrs | null>(null);
@@ -83,8 +87,10 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
         try {
             const { drawLabel, drawHover } = labelDrawers(theme);
             programs = buildPrograms(drawLabel, drawHover);
+            // Read rooms only pale when something else is unread.
+            const anyUnread = props.graph.someNode((_, a) => !a.container && (a.unread > 0 || a.highlight > 0));
             sigma = new Sigma(props.graph, container, {
-                ...settings(theme, propsRef),
+                ...settings(theme, propsRef, anyUnread),
                 ...programs.settings,
             } as Partial<Settings<NodeAttrs>>);
         } catch (e) {
@@ -112,8 +118,49 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
             reveal();
         }
 
+        // Rooms that mention you pulse, with their count, on a canvas of their own: redrawing
+        // sigma's thousands of labels every frame would be too slow.
+        const mentions = sigma.getGraph().filterNodes((_, a) => !a.container && a.highlight > 0);
+        const animate = mentions.length > 0 && !prefersReducedMotion() && !theme.highContrast;
+        let beaconFrame = 0;
+        const drawBeacons = (): void => {
+            const canvas = beaconRef.current;
+            const ctx = canvas?.getContext("2d");
+            if (!canvas || !ctx) return;
+            const w = container.clientWidth;
+            const h = container.clientHeight;
+            const dpr = window.devicePixelRatio || 1;
+            if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+                canvas.width = Math.round(w * dpr);
+                canvas.height = Math.round(h * dpr);
+            }
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, w, h);
+            const phase = animate ? (performance.now() % PULSE_MS) / PULSE_MS : 0;
+            const { matches } = propsRef.current;
+            for (const key of mentions) {
+                const a = sigma.getGraph().getNodeAttributes(key);
+                const d = sigma.getNodeDisplayData(key);
+                if (!d || (matches && !matches.has(a.roomId ?? ""))) continue;
+                const p = sigma.framedGraphToViewport(d);
+                const r = Math.max(BEACON_MIN_RADIUS, sigma.scaleSize(d.size));
+                if (p.x < -r - 40 || p.y < -r - 40 || p.x > w + r + 40 || p.y > h + r + 40) continue;
+                ctx.lineWidth = 2.5;
+                ctx.strokeStyle = theme.highlight;
+                ctx.globalAlpha = animate ? (1 - phase) * 0.8 : 0.8;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, r + 3 + phase * 14, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+                drawBadge(ctx, p.x + r * 0.72, p.y - r * 0.72, a.highlight, theme.highlight, theme);
+            }
+            if (animate) beaconFrame = requestAnimationFrame(drawBeacons);
+        };
+        if (animate) beaconFrame = requestAnimationFrame(drawBeacons);
+
         // The dot grid moves and scales with the camera, like a surface the map lies on.
         sigma.on("afterRender", () => {
+            if (mentions.length && !animate) drawBeacons();
             const origin = sigma.framedGraphToViewport({ x: 0, y: 0 });
             let size = GRID / sigma.getCamera().ratio;
             while (size >= GRID * 2) size /= 2;
@@ -166,6 +213,7 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
         return () => {
             clearTimeout(revealTimer);
             clearTimeout(hideTimer);
+            cancelAnimationFrame(beaconFrame);
             programs.textures?.off("newTexture", onTexture);
             flightRef.current?.cancel();
             container.removeEventListener("mousemove", onPointerMove);
@@ -204,13 +252,7 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
 
     const placeTip = (x: number, y: number): void => {
         pointer.current = { x, y };
-        const tip = tipRef.current;
-        const box = containerRef.current;
-        if (!tip || !box) return;
-        // Below right of the pointer; flipped to the other side near the right and bottom edges.
-        const left = x + TIP_OFFSET + tip.offsetWidth > box.clientWidth ? x - TIP_OFFSET - tip.offsetWidth : x + TIP_OFFSET;
-        const top = y + TIP_OFFSET + tip.offsetHeight > box.clientHeight ? y - TIP_OFFSET - tip.offsetHeight : y + TIP_OFFSET;
-        tip.style.transform = `translate(${Math.max(4, left)}px, ${Math.max(4, top)}px)`;
+        placeTooltip(tipRef.current, containerRef.current, x, y);
     };
     const tip = hovered && props.tooltip?.(hovered);
     // Kept while fading out.
@@ -219,6 +261,7 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
     return (
         <div className="srm-stage">
             <div ref={containerRef} className={`srm-map${ready ? " srm-map--ready" : ""}`} role="img" aria-label={props.label} />
+            <canvas ref={beaconRef} className="srm-beacons" aria-hidden="true" />
             {/* Pointer-only: keyboard users get the same details in the list. */}
             <div ref={tipRef} className="srm-tooltip" data-visible={Boolean(tip)} aria-hidden="true">
                 {tip || lastTip.current}
@@ -266,7 +309,8 @@ function fitCircles(sigma: Sigma<NodeAttrs>): void {
     if (x0 < x1) sigma.setCustomBBox({ x: [x0, x1], y: [y0, y1] });
 }
 
-function settings(theme: Theme, propsRef: { current: SigmaMapProps }): Partial<Settings<NodeAttrs>> {
+function settings(theme: Theme, propsRef: { current: SigmaMapProps }, anyUnread: boolean): Partial<Settings<NodeAttrs>> {
+    const veil = premultiplied(theme.bg, 0.6);
     return {
         allowInvalidContainer: true,
         renderEdgeLabels: false,
@@ -319,6 +363,10 @@ function settings(theme: Theme, propsRef: { current: SigmaMapProps }): Partial<S
                 Object.assign(out, { borderColor: theme.accent, borderSize: 4, zIndex: 1000 });
                 glow = theme.accent;
             }
+            // Nothing new here: paled, so the rooms with something unread stand out.
+            if (anyUnread && !matches && !a.unread && !a.highlight && a.roomId !== current && a.roomId !== selected) {
+                Object.assign(out, { quiet: true, veilColor: veil });
+            }
             // A thin gap between the ring and the avatar keeps both readable.
             if (out.borderSize) Object.assign(out, { gapSize: 1.5, gapColor: theme.bg });
             if (glow && lit && !theme.highContrast) Object.assign(out, { haloColor: withAlpha(glow, 0.5), haloSpread: 1.3 });
@@ -332,7 +380,7 @@ function labelDrawers(theme: Theme): Record<"drawLabel" | "drawHover", NodeLabel
     const fade = (v: number, from: number, to: number): number => Math.min(1, Math.max(0, (v - from) / (to - from)));
     const drawLabel: NodeLabelDrawingFunction<NodeAttrs> = (ctx, data, s) => {
         if (!data.label) return;
-        const attrs = data as Partial<NodeAttrs> & typeof data & { image?: string };
+        const attrs = data as Partial<NodeAttrs> & typeof data & { image?: string; quiet?: boolean };
         ctx.save();
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -349,9 +397,16 @@ function labelDrawers(theme: Theme): Record<"drawLabel" | "drawHover", NodeLabel
                 ctx.fillStyle = theme.text;
                 ctx.fillText(data.label, data.x, y);
             }
+            // The space's unread messages, on its rim; mentions in red.
+            const count = attrs.highlight || attrs.unread;
+            ctx.globalAlpha = fade(data.size, 18, 30);
+            if (count && ctx.globalAlpha > 0) {
+                const r = data.size * Math.SQRT1_2;
+                drawBadge(ctx, data.x + r, data.y - r, count, attrs.highlight ? theme.highlight : theme.unread, theme);
+            }
         } else if (attrs.image) {
             // Rooms with an avatar: the name in a pill under the circle, so the picture stays visible.
-            ctx.globalAlpha = fade(data.size, 12, 22);
+            ctx.globalAlpha = fade(data.size, 12, 22) * (attrs.quiet ? 0.55 : 1);
             if (ctx.globalAlpha > 0) {
                 const fontSize = Math.min(14, Math.max(10, data.size / 3));
                 ctx.font = `600 ${fontSize}px ${s.labelFont}`;
@@ -368,17 +423,45 @@ function labelDrawers(theme: Theme): Record<"drawLabel" | "drawHover", NodeLabel
             }
         } else {
             // The name inside the circle, like the initials in Element's avatars.
-            ctx.globalAlpha = fade(data.size, 16, 28);
+            ctx.globalAlpha = fade(data.size, 16, 28) * (attrs.quiet ? 0.55 : 1);
             if (ctx.globalAlpha > 0) {
                 ctx.font = `600 ${Math.min(14, Math.max(10, data.size / 3))}px ${s.labelFont}`;
                 ctx.fillStyle = attrs.roomId ? theme.decorative[colourIndex(attrs.roomId)].fg : theme.text;
                 ctx.fillText(truncate(ctx, data.label, data.size * 1.8), data.x, data.y);
             }
         }
+        // A room's unread count on its top right (mentions have theirs on the beacon canvas).
+        if (!attrs.container && attrs.unread && !attrs.highlight) {
+            ctx.globalAlpha = fade(data.size, 7, 12);
+            const r = data.size * Math.SQRT1_2;
+            if (ctx.globalAlpha > 0) drawBadge(ctx, data.x + r, data.y - r, attrs.unread, theme.unread, theme);
+        }
         ctx.restore();
     };
     // Nothing extra on hover: the tooltip has the details.
     return { drawLabel, drawHover: drawLabel };
+}
+
+/** A count in a pill centred on (x, y), like Element's notification badges. */
+function drawBadge(ctx: CanvasRenderingContext2D, x: number, y: number, count: number, colour: string, theme: Theme): void {
+    const text = count > 99 ? "99+" : String(count);
+    ctx.save();
+    ctx.font = `700 11px ${theme.font}`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    const h = 17;
+    const w = Math.max(h, ctx.measureText(text).width + 10);
+    ctx.beginPath();
+    ctx.roundRect(x - w / 2, y - h / 2, w, h, h / 2);
+    ctx.fillStyle = colour;
+    ctx.fill();
+    // Outlined in the background colour, to stand off the avatar under it.
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = theme.bg;
+    ctx.stroke();
+    ctx.fillStyle = "#fff";
+    ctx.fillText(text, x, y + 0.5);
+    ctx.restore();
 }
 
 function truncate(ctx: CanvasRenderingContext2D, text: string, max: number): string {

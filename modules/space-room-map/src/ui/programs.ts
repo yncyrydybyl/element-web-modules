@@ -3,7 +3,8 @@
  *
  * A room is three layers (sigma draws each layer for all nodes before the next): a soft glow for
  * unread, mention and selected rooms; the avatar, or the room's colour; then the status ring with
- * a thin gap that separates it from the avatar. Space circles are a flat fill with a rim.
+ * a thin gap that separates it from the avatar, and inside it a veil that pales read rooms. Space
+ * circles are a flat fill with a rim.
  */
 
 import { createNodeCompoundProgram, NodeProgram, type NodeLabelDrawingFunction, type NodeProgramType, type ProgramInfo } from "sigma/rendering";
@@ -149,7 +150,8 @@ export function buildPrograms(drawLabel: NodeLabelDrawingFunction<NodeAttrs>, dr
         borders: [
             { size: { attribute: "borderSize", defaultValue: 0, mode: "pixels" }, color: { attribute: "borderColor", defaultValue: "rgba(0,0,0,0)" } },
             { size: { attribute: "gapSize", defaultValue: 0, mode: "pixels" }, color: { attribute: "gapColor", defaultValue: "rgba(0,0,0,0)" } },
-            { size: { fill: true }, color: { transparent: true } },
+            // A veil over the avatar of rooms with nothing unread.
+            { size: { fill: true }, color: { attribute: "veilColor", defaultValue: "rgba(0,0,0,0)" } },
         ],
     });
     const room = createNodeCompoundProgram<NodeAttrs>([NodeHaloProgram as unknown as NodeProgramType<NodeAttrs>, image, ring], drawLabel, drawHover);

@@ -84,17 +84,19 @@ export function buildGraph(client: SdkClient): RoomGraph {
     const sdkRooms = client.getVisibleRooms().filter((r) => ["join", "invite"].includes(r.getMyMembership()));
     for (const r of sdkRooms) {
         const isSpace = r.isSpaceRoom();
+        const kind: RoomKind = isSpace ? "space" : dmIds.has(r.roomId) ? "dm" : "room";
         rooms.set(r.roomId, {
             id: r.roomId,
             name: r.name || r.getCanonicalAlias() || r.roomId,
-            kind: isSpace ? "space" : dmIds.has(r.roomId) ? "dm" : "room",
+            kind,
             aliases: [r.getCanonicalAlias(), ...(r.getAltAliases?.() ?? [])].filter((a): a is string => Boolean(a)),
             members: r.getJoinedMemberCount(),
             lastActive: r.getLastActiveTimestamp(),
             unread: isSpace ? 0 : r.getUnreadNotificationCount("total"),
             highlight: isSpace ? 0 : r.getUnreadNotificationCount("highlight"),
             invite: r.getMyMembership() === "invite",
-            avatar: r.getMxcAvatarUrl?.() || (isSpace ? undefined : r.getAvatarFallbackMember?.()?.getMxcAvatarUrl()) || undefined,
+            // Like Element, only DMs fall back to the other person's avatar: the SDK offers one for any room of two.
+            avatar: r.getMxcAvatarUrl?.() || (kind === "dm" ? r.getAvatarFallbackMember?.()?.getMxcAvatarUrl() : undefined) || undefined,
             children: [],
             parents: [],
         });

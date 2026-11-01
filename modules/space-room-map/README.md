@@ -1,10 +1,11 @@
 # Space & room map module for Element Web
 
-Press <kbd>Ctrl</kbd>+<kbd>I</kbd> (<kbd>⌘</kbd>+<kbd>I</kbd> on macOS) to get a zoomable 2D map of your spaces and rooms. Spaces are circles that contain their rooms and sub-spaces. Your spaces are listed on the left: point at one (or move to it with the arrow keys) and the map flies there. Type to find a room, <kbd>Enter</kbd> to open it. It's an alternative to Element's <kbd>Ctrl</kbd>+<kbd>K</kbd> search that shows where everything is.
+Press <kbd>Ctrl</kbd>+<kbd>I</kbd> (<kbd>⌘</kbd>+<kbd>I</kbd> on macOS) to get a zoomable 2D map of your spaces and rooms. Spaces are circles that contain their rooms and sub-spaces; or, in the **Tube map** tab, lines with their rooms as stations. Your spaces are listed on the left: point at one (or move to it with the arrow keys) and the map flies there. Type to find a room, <kbd>Enter</kbd> to open it. It's an alternative to Element's <kbd>Ctrl</kbd>+<kbd>K</kbd> search that shows where everything is.
 
 | Key / action | Does |
 | --- | --- |
 | <kbd>Ctrl</kbd>+<kbd>I</kbd> | Open / close. In the composer, with text selected, Ctrl+I still makes the text italic |
+| **Circles** / **Tube map** tabs | Switch between the two maps; the choice is remembered on this device |
 | Point at a space in the list, or <kbd>↑</kbd> <kbd>↓</kbd> | The map flies to that space and outlines it. **All spaces** at the top zooms back out to everything. Below it, each space with its sub-spaces indented, how many rooms it has (through its sub-spaces) and their unread messages, then the rooms outside any space and your DMs |
 | <kbd>Enter</kbd> or click in the list | Open the space's home (or the room, for a search result) |
 | Type | Search room and space names and aliases; the list shows the results, matches light up on the map and the camera flies to the selected one |
@@ -14,12 +15,17 @@ Press <kbd>Ctrl</kbd>+<kbd>I</kbd> (<kbd>⌘</kbd>+<kbd>I</kbd> on macOS) to get
 | Click a space circle | Zoom into it; click it again to open the space's home |
 | Click the background | Zoom out to everything |
 
-Rooms show their avatar (for a DM without one, the other person's), otherwise their colour. Unread rooms have a green ring and glow, mentions a red one, the room you're in has a dark ring, and the room or space selected in the list is outlined blue. Space circles are tinted with their space's avatar colour. Names fade in as you zoom, and the camera flies (zooms out, pans, zooms in) to what you pick. Glows, tints, the dot grid and the vignette are off in high-contrast themes, animations with reduced motion. The **Legend** in the corner of the map explains the rings and colours; it can be folded away.
+Rooms show their avatar (for a DM without one, the other person's), otherwise their colour. Unread rooms have a green ring, glow and count badge; rooms that mention you a red one, and they pulse, visible at any zoom. While anything is unread, read rooms are paled so the rest stands out. Space circles carry the unread count of everything inside them. The list on the left shows unread spaces in bold with their count. The room you're in has a dark ring, and the room or space selected in the list is outlined blue. Space circles are tinted with their space's avatar colour. Names fade in as you zoom, and the camera flies (zooms out, pans, zooms in) to what you pick. Glows, tints, the dot grid and the vignette are off in high-contrast themes, animations with reduced motion. The **Legend** in the corner of the map explains the rings and colours; it can be folded away.
+
+### Tube map
+
+Every space is a line, its rooms are the stations. A sub-space is an interchange on its parent's line, where its own line branches off; a room that's in several spaces is an interchange too, linked across its lines (lined up where that doesn't stretch a line too far). Rooms outside any space and DMs are grey dotted lines. Line names stay at the left edge while you scroll along a line. Pointing at a space in the list flies to its line and pales the others; clicking a line, its name or a sub-space interchange does the same, and a second click opens the space. Station names are hidden when zoomed far out (unread ones stay longer); rooms that mention you keep a pulsing beacon with their count at any zoom.
 
 ## How it's built
 
 - **[sigma.js](https://www.sigmajs.org/) 3** renders the map with WebGL: zoom, pan, hover, label placement and hit testing. Hovering doesn't redraw nodes on top (sigma's default), which would cover a space's rooms; the tooltip shows what's under the pointer instead.
 - Each room is drawn in three layers: a soft glow (a small custom WebGL program, `src/ui/programs.ts`), the avatar ([`@sigma/node-image`](https://www.npmjs.com/package/@sigma/node-image)) and the status ring with a gap ([`@sigma/node-border`](https://www.npmjs.com/package/@sigma/node-border)). Labels are drawn by the module and fade in with size, so they don't pop in and out while zooming.
+- The tube map is SVG (`src/ui/TubeMap.tsx`), laid out by `src/tube.ts`: one row per line, a space's branches below it with the one furthest right nearest, so the branches never cross their own tree. Panning and zooming set one transform directly, without re-rendering React; line names and mention beacons sit in a layer of fixed screen size above it.
 - Camera flights follow van Wijk & Nuij's smooth zoom path (as in `d3.interpolateZoom`), `src/ui/camera.ts`.
 - **[graphology](https://graphology.github.io/)** holds the graph, laid out with **[d3-hierarchy](https://d3js.org/d3-hierarchy)** circle packing.
 - **[match-sorter](https://github.com/kentcdodds/match-sorter)** ranks search results (prefix > word start > substring > acronym > fuzzy), with ties going to the rooms you use most.
@@ -71,7 +77,7 @@ Optional, under `de.datanauten.space_room_map` in `config.json`:
 ## Development
 
 ```sh
-pnpm test          # vitest + jsdom: space graph, circle packing, search, space list, avatars, legend, keyboard flows
+pnpm test          # vitest + jsdom: space graph, circle packing, tube layout, search, space list, avatars, legend, tabs, keyboard flows
 pnpm lint:types
 pnpm build
 ```

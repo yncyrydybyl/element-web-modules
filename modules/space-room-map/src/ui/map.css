@@ -43,6 +43,38 @@
     line-height: 24px;
 }
 
+/* Circles | Tube map, as a segmented control. */
+.srm-tabs {
+    display: flex;
+    flex: none;
+    padding: 2px;
+    border-radius: 10px;
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+}
+
+.srm-tab {
+    padding: 5px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--cpd-color-text-secondary, #656d77);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.srm-tab[aria-selected="true"] {
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    color: var(--cpd-color-text-primary, #1b1d22);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.srm-tab:focus-visible {
+    outline: 2px solid var(--cpd-color-border-focused, #0467dd);
+    outline-offset: 1px;
+}
+
 
 
 
@@ -113,6 +145,216 @@
 .srm-map--ready {
     opacity: 1;
     transition: opacity 160ms ease-out;
+}
+
+/* Pulsing rings and counts of rooms that mention you (SigmaMap draws them). */
+.srm-beacons {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.srm-map--ready + .srm-beacons {
+    opacity: 1;
+}
+
+/* The tube map. Lines get their colour inline; everything else follows the theme. */
+.srm-tube {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    font-family: var(--cpd-font-family-sans, Inter, system-ui, sans-serif);
+    touch-action: none;
+    cursor: grab;
+    user-select: none;
+}
+
+.srm-tube--dragging {
+    cursor: grabbing;
+}
+
+.srm-tube-line,
+.srm-tube-link,
+.srm-station,
+.srm-tube-pill,
+.srm-beacon {
+    transition: opacity 160ms ease-out;
+}
+
+.srm-tube-casing,
+.srm-tube-track,
+.srm-tube-link path {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* A margin of background around each line, so crossings stay readable. */
+.srm-tube-casing {
+    stroke: var(--cpd-color-bg-canvas-default, #fff);
+    stroke-width: 11;
+}
+
+.srm-tube-track {
+    stroke-width: 6;
+    cursor: pointer;
+}
+
+.srm-tube-track--group {
+    stroke-dasharray: 2 9;
+}
+
+.srm-tube-link-outer {
+    stroke: var(--cpd-color-text-primary, #1b1d22);
+    stroke-width: 9;
+}
+
+.srm-tube-link-inner {
+    stroke: var(--cpd-color-bg-canvas-default, #fff);
+    stroke-width: 4;
+}
+
+.srm-station {
+    cursor: pointer;
+}
+
+.srm-station-hit {
+    fill: transparent;
+}
+
+.srm-station-dot {
+    fill: var(--cpd-color-bg-canvas-default, #fff);
+    stroke-width: 3;
+}
+
+.srm-station.is-interchange .srm-station-dot {
+    stroke: var(--cpd-color-text-primary, #1b1d22);
+}
+
+.srm-station.is-mention .srm-station-dot {
+    fill: var(--cpd-color-icon-critical-primary, #d51928);
+    stroke: var(--cpd-color-bg-canvas-default, #fff);
+}
+
+.srm-station.is-invite .srm-station-dot {
+    stroke-dasharray: 3 2;
+}
+
+.srm-station-here {
+    fill: none;
+    stroke: var(--cpd-color-text-primary, #1b1d22);
+    stroke-width: 2.5;
+}
+
+.srm-station-selected {
+    fill: none;
+    stroke: var(--cpd-color-border-focused, #0467dd);
+    stroke-width: 3.5;
+}
+
+.srm-station-name {
+    fill: var(--cpd-color-text-primary, #1b1d22);
+    font-size: 12px;
+    font-weight: 500;
+    paint-order: stroke;
+    stroke: var(--cpd-color-bg-canvas-default, #fff);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+}
+
+.srm-station.is-unread .srm-station-name {
+    font-weight: 700;
+}
+
+.srm-station.is-mention .srm-station-name {
+    fill: var(--cpd-color-text-critical-primary, #d51928);
+}
+
+/* Nothing new: paled, so what's unread stands out. */
+.srm-station.is-quiet {
+    opacity: 0.5;
+}
+
+.srm-station.is-miss,
+.srm-tube-link.is-miss,
+.srm-beacon.is-miss {
+    opacity: 0.15;
+}
+
+.srm-tube-line.is-off,
+.srm-station.is-off,
+.srm-tube-pill.is-off,
+.srm-beacon.is-off {
+    opacity: 0.2;
+}
+
+/* Far out, station names would be noise; the unread ones stay a little longer. */
+.srm-tube[data-zoom="far"] .srm-station-name,
+.srm-tube[data-zoom="far"] .srm-station .srm-tube-badge,
+.srm-tube[data-zoom="mid"] .srm-station:not(.is-unread, .is-interchange, .is-current) .srm-station-name {
+    display: none;
+}
+
+.srm-tube-pill {
+    cursor: pointer;
+}
+
+.srm-tube-pill > text {
+    fill: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    dominant-baseline: central;
+}
+
+.srm-tube-badge rect {
+    stroke: var(--cpd-color-bg-canvas-default, #fff);
+    stroke-width: 2;
+}
+
+.srm-tube-badge text {
+    fill: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+.srm-tube-badge--unread rect {
+    fill: var(--cpd-color-icon-success-primary, #007a62);
+}
+
+.srm-tube-badge--mention rect {
+    fill: var(--cpd-color-icon-critical-primary, #d51928);
+}
+
+.srm-beacon {
+    pointer-events: none;
+}
+
+.srm-beacon-pulse {
+    fill: none;
+    stroke: var(--cpd-color-icon-critical-primary, #d51928);
+    stroke-width: 2.5;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: srm-pulse 1.6s ease-out infinite;
+}
+
+@keyframes srm-pulse {
+    from {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    to {
+        transform: scale(2.6);
+        opacity: 0;
+    }
 }
 
 
@@ -258,8 +500,13 @@
     background: var(--cpd-color-bg-decorative-4, #f1efff);
 }
 
+.srm-swatch--unread, .srm-swatch--mention { position: relative; }
 .srm-swatch--unread { border: 3px solid var(--cpd-color-icon-success-primary, #007a62); box-shadow: 0 0 6px var(--cpd-color-icon-success-primary, #007a62); }
-.srm-swatch--highlight { border: 3px solid var(--cpd-color-icon-critical-primary, #d51928); box-shadow: 0 0 6px var(--cpd-color-icon-critical-primary, #d51928); }
+.srm-swatch--mention { border: 3px solid var(--cpd-color-icon-critical-primary, #d51928); box-shadow: 0 0 6px var(--cpd-color-icon-critical-primary, #d51928); }
+.srm-swatch--line { width: 22px; height: 6px; border-radius: 3px; background: #dc241f; }
+.srm-swatch--station { width: 12px; height: 12px; margin: 0 5px 0 5px; border: 3px solid #0098d4; background: var(--cpd-color-bg-canvas-default, #fff); }
+.srm-swatch--interchange { border: 3px solid var(--cpd-color-text-primary, #1b1d22); background: var(--cpd-color-bg-canvas-default, #fff); }
+.srm-swatch--unread-count { width: 18px; border-radius: 8px; background: var(--cpd-color-icon-success-primary, #007a62); }
 .srm-swatch--current { border: 3px solid var(--cpd-color-text-primary, #1b1d22); }
 .srm-swatch--selected { border: 4px solid var(--cpd-color-border-focused, #0467dd); box-shadow: 0 0 6px var(--cpd-color-border-focused, #0467dd); }
 
@@ -269,7 +516,7 @@
 
 :root[class*="-hc"] .srm-swatch { box-shadow: none !important; }
 .srm-swatch--space { border: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da); background: var(--cpd-color-bg-subtle-secondary, #f0f2f5); }
-.srm-swatch--dim { background: var(--cpd-color-border-disabled, #e1e6ec); }
+.srm-swatch--dim { background: var(--cpd-color-border-disabled, #e1e6ec); opacity: 0.6; }
 
 .srm-swatch--colour {
     background: conic-gradient(
@@ -387,6 +634,10 @@
     font-weight: 500;
 }
 
+.srm-item--unread .srm-item-name {
+    font-weight: 700;
+}
+
 .srm-item-path {
     color: var(--cpd-color-text-secondary, #656d77);
     font-size: 12px;
@@ -451,6 +702,10 @@
         flex-basis: 100%;
     }
 
+    .srm-tabs {
+        margin-left: auto;
+    }
+
 
     .srm-results {
         position: absolute;
@@ -488,7 +743,15 @@
     }
 
     .srm-map--ready,
-    .srm-tooltip {
+    .srm-tooltip,
+    .srm-tube *,
+    .srm-tube-pill {
         transition: none;
+    }
+
+    .srm-beacon-pulse {
+        animation: none;
+        opacity: 0.6;
+        transform: scale(1.5);
     }
 }

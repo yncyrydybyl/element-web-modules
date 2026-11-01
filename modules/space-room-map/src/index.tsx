@@ -6,13 +6,14 @@ import { AvatarCache } from "./avatars";
 import { translations } from "./i18n";
 import { buildFlatGraph, buildGraph, currentRoomId, getSdkClient, type RoomGraph, type SdkClient } from "./rooms";
 import { comboLabel, matchesCombo, parseCombo, type Combo } from "./trigger";
-import { MapOverlay, type ModuleTranslate } from "./ui/MapOverlay";
+import { MAP_VIEWS, MapOverlay, type MapView, type ModuleTranslate } from "./ui/MapOverlay";
 import css from "./ui/map.css?inline";
 import { UsageTracker } from "./usage";
 
 export const CONFIG_KEY = "de.datanauten.space_room_map";
 const STYLE_ID = "de-datanauten-space-room-map-style";
 const LEGEND_STORAGE_KEY = "de.datanauten.space_room_map.legend";
+const VIEW_STORAGE_KEY = "de.datanauten.space_room_map.view";
 
 export interface SpaceRoomMapConfig {
     /** Combo that opens and closes the map. */
@@ -136,12 +137,14 @@ export class SpaceRoomMapModule implements Module {
                 graph={graph}
                 current={currentRoomId(graph)}
                 legendOpen={readStored(LEGEND_STORAGE_KEY) !== "closed"}
+                view={MAP_VIEWS.find((v) => v === readStored(VIEW_STORAGE_KEY)) ?? "circles"}
                 avatars={avatars}
                 avatarVersion={avatarVersion}
                 usage={this.usageScore}
                 triggerLabel={comboLabel(this.trigger)}
                 t={this.t}
                 onLegendToggle={(open) => writeStored(LEGEND_STORAGE_KEY, open ? "open" : "closed")}
+                onViewChange={(view) => writeStored(VIEW_STORAGE_KEY, view)}
                 onOpen={(id) => this.openRoom(id)}
                 onClose={() => this.close()}
             />
@@ -175,7 +178,7 @@ function hasSelectedText(): boolean {
     return Boolean(selection && !selection.isCollapsed);
 }
 
-/** Per-device UI choices (the legend). */
+/** Per-device UI choices (the legend, the view). */
 function readStored(key: string): string | undefined {
     try {
         return localStorage.getItem(key) ?? undefined;

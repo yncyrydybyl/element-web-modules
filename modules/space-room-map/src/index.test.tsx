@@ -112,12 +112,25 @@ describe("SpaceRoomMapModule", () => {
         press("i", { ctrlKey: true });
         await vi.waitFor(() => expect(items()[1].querySelector("img")!.getAttribute("src")).toBe("blob:eng"));
         const legend = screen.getByRole("button", { name: /Legend/ });
-        expect(screen.getByText("Mentions you")).toBeTruthy();
+        expect(screen.getByText("Mentions you (pulses)")).toBeTruthy();
         await userEvent.click(legend);
-        expect(screen.queryByText("Mentions you")).toBeNull();
+        expect(screen.queryByText("Mentions you (pulses)")).toBeNull();
         press("i", { ctrlKey: true });
         press("i", { ctrlKey: true });
         expect(screen.getByRole("button", { name: /Legend/ }).getAttribute("aria-expanded")).toBe("false");
+    });
+
+    it("switches to the tube map and remembers it", async () => {
+        await loadModule();
+        press("i", { ctrlKey: true });
+        await userEvent.click(screen.getByRole("tab", { name: "Tube map" }));
+        expect(screen.getByRole("img", { name: "Tube map of your spaces and rooms" })).toBeTruthy();
+        expect(screen.getByText("Interchange: a sub-space, or a room in several spaces")).toBeTruthy();
+        press("i", { ctrlKey: true });
+        press("i", { ctrlKey: true });
+        expect(screen.getByRole("tab", { name: "Tube map" }).getAttribute("aria-selected")).toBe("true");
+        await userEvent.click(screen.getByRole("tab", { name: "Circles" }));
+        expect(screen.getByRole("img", { name: "Map of your spaces and rooms" })).toBeTruthy();
     });
 
     it("leaves Ctrl+I to the composer when text is selected", async () => {

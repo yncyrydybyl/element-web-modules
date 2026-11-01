@@ -29,6 +29,12 @@ export function withAlpha(colour: string | Rgb, alpha: number): string {
     return c ? rgba(c, alpha) : (colour as string);
 }
 
+/** For a WebGL layer drawn over others: sigma blends premultiplied colours. */
+export function premultiplied(colour: string | Rgb, alpha: number): string {
+    const c = typeof colour === "string" ? parseColour(colour) : colour;
+    return c ? rgba(c.map((v) => v * alpha) as Rgb, alpha) : "rgba(0, 0, 0, 0)";
+}
+
 function rgba([r, g, b]: Rgb, a: number): string {
     return `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${a})`;
 }

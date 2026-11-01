@@ -73,6 +73,8 @@ describe("avatars", () => {
             { id: "!dm:x", name: "Bob", memberAvatar: "mxc://x/bob" },
             { id: "!s:x", name: "S", space: true, memberAvatar: "mxc://x/nope" },
             { id: "!plain:x", name: "Plain" },
+            // Not a DM, but only two members: the SDK still offers the other one's avatar.
+            { id: "!pair:x", name: "Pair", memberAvatar: "mxc://x/carol" },
         ],
         { "@bob:x": ["!dm:x"] },
     );
@@ -83,5 +85,9 @@ describe("avatars", () => {
         expect(graph.rooms.get("!dm:x")!.avatar).toBe("mxc://x/bob");
         expect(graph.rooms.get("!s:x")!.avatar).toBeUndefined();
         expect(graph.rooms.get("!plain:x")!.avatar).toBeUndefined();
+    });
+
+    it("doesn't give a room that isn't a DM someone's face", () => {
+        expect(buildGraph(client).rooms.get("!pair:x")!.avatar).toBeUndefined();
     });
 });

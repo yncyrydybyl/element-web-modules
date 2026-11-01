@@ -38,7 +38,6 @@ export const translations = {
     [`${P}tip_action_space`]: { en: "Click to zoom in, click again to open", de: "Klicken zum Hineinzoomen, nochmal klicken zum Öffnen" },
     [`${P}legend`]: { en: "Legend", de: "Legende" },
     [`${P}legend_unread`]: { en: "Unread messages", de: "Ungelesene Nachrichten" },
-    [`${P}legend_highlight`]: { en: "Mentions you", de: "Erwähnt dich" },
     [`${P}legend_current`]: { en: "Room you're in", de: "Raum, in dem du bist" },
     [`${P}legend_selected`]: { en: "Selected in the list", de: "In der Liste ausgewählt" },
     [`${P}legend_space_circle`]: { en: "Space, with its rooms inside", de: "Space, mit seinen Räumen darin" },
@@ -46,5 +45,19 @@ export const translations = {
         en: "Avatar or colour: just the room's own, like in Element",
         de: "Avatar oder Farbe: nur die des Raums, wie in Element",
     },
-    [`${P}legend_dim`]: { en: "Faded: doesn't match the search", de: "Blass: passt nicht zur Suche" },
+    [`${P}legend_dim`]: {
+        en: "Pale: nothing unread, or doesn't match the search",
+        de: "Blass: nichts Ungelesenes, oder passt nicht zur Suche",
+    },
+    [`${P}legend_highlight`]: { en: "Mentions you (pulses)", de: "Erwähnt dich (pulsiert)" },
+    [`${P}legend_line`]: { en: "Line: a space; branches are its sub-spaces", de: "Linie: ein Space; Abzweige sind seine Sub-Spaces" },
+    [`${P}legend_station`]: { en: "Station: a room", de: "Station: ein Raum" },
+    [`${P}legend_interchange`]: {
+        en: "Interchange: a sub-space, or a room in several spaces",
+        de: "Umstieg: ein Sub-Space, oder ein Raum in mehreren Spaces",
+    },
+    [`${P}view`]: { en: "View", de: "Ansicht" },
+    [`${P}view_circles`]: { en: "Circles", de: "Kreise" },
+    [`${P}view_tube`]: { en: "Tube map", de: "U-Bahn-Plan" },
+    [`${P}tube_label`]: { en: "Tube map of your spaces and rooms", de: "U-Bahn-Plan deiner Spaces und Räume" },
 } satisfies Translations;

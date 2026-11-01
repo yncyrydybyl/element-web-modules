@@ -4,16 +4,23 @@ import type { AvatarCache } from "../avatars";
 import { P } from "../i18n";
 import { breadcrumb, spaceStats, spaceTree, type RoomGraph, type RoomInfo } from "../rooms";
 import { search } from "../search";
-import { buildAllGraph, roomScore, type NodeAttrs, type ScoreOptions } from "../views";
+import { buildTubeLayout } from "../tube";
+import { buildAllGraph, roomScore, type ScoreOptions, type TipNode } from "../views";
 import { colourIndex, SigmaMap, type FocusTarget } from "./SigmaMap";
+import { TubeMap } from "./TubeMap";
 
 /** Translates one of this module's own strings. */
 export type ModuleTranslate = (key: string, variables?: Record<string, string>) => string;
+
+/** The two maps: spaces as circles, or as the lines of a tube map. */
+export type MapView = "circles" | "tube";
+export const MAP_VIEWS: MapView[] = ["circles", "tube"];
 
 export interface MapOverlayProps {
     graph: RoomGraph;
     current?: string;
     legendOpen: boolean;
+    view: MapView;
     avatars?: Pick<AvatarCache, "get" | "colour" | "request">;
     /** Changes when more avatars have loaded. */
     avatarVersion?: number;
@@ -21,6 +28,7 @@ export interface MapOverlayProps {
     triggerLabel: string;
     t: ModuleTranslate;
     onLegendToggle(open: boolean): void;
+    onViewChange(view: MapView): void;
     onOpen(roomId: string): void;
     onClose(): void;
 }
@@ -59,11 +67,13 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
     const [follow, setFollow] = useState(false);
     const [focus, setFocus] = useState<FocusTarget | null>(null);
     const [legendOpen, setLegendOpen] = useState(props.legendOpen);
+    const [view, setView] = useState(props.view);
 
     useEffect(() => searchRef.current?.focus(), []);
 
     const labels = useMemo(() => ({ rooms: t(`${P}group_rooms`), people: t(`${P}group_people`) }), [t]);
     const mapGraph = useMemo(() => buildAllGraph(graph, labels), [graph, labels]);
+    const tubeLayout = useMemo(() => (view === "tube" ? buildTubeLayout(graph, labels) : null), [graph, labels, view]);
 
     const scoreOpts = useMemo<ScoreOptions>(() => ({ usage: props.usage, now: Date.now() }), [props.usage]);
     const rank = useMemo(() => (r: RoomInfo) => roomScore(r, scoreOpts), [scoreOpts]);
@@ -144,7 +154,13 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
         props.onLegendToggle(!legendOpen);
     };
 
-    const tooltip = (node: NodeAttrs): JSX.Element => {
+    const switchView = (next: MapView): void => {
+        if (next === view) return;
+        setView(next);
+        props.onViewChange(next);
+    };
+
+    const tooltip = (node: TipNode): JSX.Element => {
         const room = node.roomId ? graph.rooms.get(node.roomId) : undefined;
         const path = room ? breadcrumb(graph, room.id) : [];
         let kind: string;
@@ -204,6 +220,21 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                     <h2 id={titleId} className="srm-title">
                         {t(`${P}title`)}
                     </h2>
+                    <div className="srm-tabs" role="tablist" aria-label={t(`${P}view`)}>
+                        {MAP_VIEWS.map((v) => (
+                            <button
+                                key={v}
+                                type="button"
+                                role="tab"
+                                className="srm-tab"
+                                aria-selected={v === view}
+                                onMouseDown={(ev) => ev.preventDefault()}
+                                onClick={() => switchView(v)}
+                            >
+                                {t(`${P}view_${v}`)}
+                            </button>
+                        ))}
+                    </div>
                     <input
                         ref={searchRef}
                         className="srm-search"
@@ -228,21 +259,37 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                 </header>
 
                 <div className="srm-body">
-                    <SigmaMap
-                        graph={mapGraph}
-                        matches={matches}
-                        selected={follow ? selected?.room?.id : undefined}
-                        current={current}
-                        focus={focus}
-                        label={t(`${P}canvas_label`)}
-                        onActivate={(id) => props.onOpen(id)}
-                        avatarUrl={props.avatars?.get.bind(props.avatars)}
-                        avatarColour={props.avatars?.colour.bind(props.avatars)}
-                        avatarVersion={props.avatarVersion}
-                        tooltip={tooltip}
-                    >
-                        <Legend open={legendOpen} onToggle={toggleLegend} t={t} />
-                    </SigmaMap>
+                    {tubeLayout ? (
+                        <TubeMap
+                            layout={tubeLayout}
+                            matches={matches}
+                            selected={follow ? selected?.room?.id : undefined}
+                            selectedLine={follow ? (selected?.room?.kind === "space" ? selected.room.id : selected?.nodeKey) : undefined}
+                            current={current}
+                            focus={focus}
+                            label={t(`${P}tube_label`)}
+                            onActivate={(id) => props.onOpen(id)}
+                            tooltip={tooltip}
+                        >
+                            <Legend open={legendOpen} onToggle={toggleLegend} t={t} view="tube" />
+                        </TubeMap>
+                    ) : (
+                        <SigmaMap
+                            graph={mapGraph}
+                            matches={matches}
+                            selected={follow ? selected?.room?.id : undefined}
+                            current={current}
+                            focus={focus}
+                            label={t(`${P}canvas_label`)}
+                            onActivate={(id) => props.onOpen(id)}
+                            avatarUrl={props.avatars?.get.bind(props.avatars)}
+                            avatarColour={props.avatars?.colour.bind(props.avatars)}
+                            avatarVersion={props.avatarVersion}
+                            tooltip={tooltip}
+                        >
+                            <Legend open={legendOpen} onToggle={toggleLegend} t={t} view="circles" />
+                        </SigmaMap>
+                    )}
 
                     <div className="srm-results">
                         <div className="srm-results-title">{query.trim() ? t(`${P}results`) : t(`${P}spaces`)}</div>
@@ -261,7 +308,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                                         id={`${listId}-${row.key}`}
                                         role="option"
                                         aria-selected={row === selected}
-                                        className="srm-item"
+                                        className={`srm-item${row.highlight || row.unread ? " srm-item--unread" : ""}`}
                                         style={row.depth ? { paddingInlineStart: 8 + row.depth * 16 } : undefined}
                                         onMouseMove={() => {
                                             if (i !== active) setActive(i);
@@ -324,19 +371,30 @@ function Avatar({ row, url }: { row: Row; url?: string }): JSX.Element {
     );
 }
 
-/** What the rings, fills and circles on the map mean. */
-function Legend(props: { open: boolean; onToggle(): void; t: ModuleTranslate }): JSX.Element {
+/** What the marks on the map mean. */
+function Legend(props: { open: boolean; onToggle(): void; t: ModuleTranslate; view: MapView }): JSX.Element {
     const { open, t } = props;
     const id = useId();
-    const items: Array<[string, string]> = [
-        ["srm-swatch--unread", t(`${P}legend_unread`)],
-        ["srm-swatch--highlight", t(`${P}legend_highlight`)],
-        ["srm-swatch--current", t(`${P}legend_current`)],
-        ["srm-swatch--selected", t(`${P}legend_selected`)],
-        ["srm-swatch--space", t(`${P}legend_space_circle`)],
-        ["srm-swatch--colour", t(`${P}legend_colour`)],
-        ["srm-swatch--dim", t(`${P}legend_dim`)],
-    ];
+    const items: Array<[string, string]> =
+        props.view === "tube"
+            ? [
+                  ["srm-swatch--line", t(`${P}legend_line`)],
+                  ["srm-swatch--station", t(`${P}legend_station`)],
+                  ["srm-swatch--interchange", t(`${P}legend_interchange`)],
+                  ["srm-swatch--unread-count", t(`${P}legend_unread`)],
+                  ["srm-swatch--mention", t(`${P}legend_highlight`)],
+                  ["srm-swatch--current", t(`${P}legend_current`)],
+                  ["srm-swatch--dim", t(`${P}legend_dim`)],
+              ]
+            : [
+                  ["srm-swatch--unread", t(`${P}legend_unread`)],
+                  ["srm-swatch--mention", t(`${P}legend_highlight`)],
+                  ["srm-swatch--current", t(`${P}legend_current`)],
+                  ["srm-swatch--selected", t(`${P}legend_selected`)],
+                  ["srm-swatch--space", t(`${P}legend_space_circle`)],
+                  ["srm-swatch--colour", t(`${P}legend_colour`)],
+                  ["srm-swatch--dim", t(`${P}legend_dim`)],
+              ];
     return (
         <div className="srm-legend">
             <button type="button" className="srm-legend-toggle" aria-expanded={open} aria-controls={id} onClick={props.onToggle}>
