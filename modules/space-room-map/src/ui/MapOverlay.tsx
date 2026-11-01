@@ -73,7 +73,11 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
 
     const labels = useMemo(() => ({ rooms: t(`${P}group_rooms`), people: t(`${P}group_people`) }), [t]);
     const mapGraph = useMemo(() => buildAllGraph(graph, labels), [graph, labels]);
-    const tubeLayout = useMemo(() => (view === "tube" ? buildTubeLayout(graph, labels) : null), [graph, labels, view]);
+    // Packed to roughly the shape of the map's area: the window minus the list and the header.
+    const tubeLayout = useMemo(
+        () => (view === "tube" ? buildTubeLayout(graph, labels, Math.max(0.5, (window.innerWidth - 400) / Math.max(1, window.innerHeight - 160))) : null),
+        [graph, labels, view],
+    );
 
     const scoreOpts = useMemo<ScoreOptions>(() => ({ usage: props.usage, now: Date.now() }), [props.usage]);
     const rank = useMemo(() => (r: RoomInfo) => roomScore(r, scoreOpts), [scoreOpts]);
@@ -177,6 +181,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                 <div className="srm-tooltip-name">{node.label}</div>
                 <div className="srm-tooltip-meta">{kind}</div>
                 {path.length > 0 && <div className="srm-tooltip-meta">{path.join(" › ")}</div>}
+                {node.also && node.also.length > 0 && <div className="srm-tooltip-meta">{t(`${P}tip_also`, { spaces: node.also.join(", ") })}</div>}
                 {(node.highlight > 0 || node.unread > 0 || node.roomId === current) && (
                     <div className="srm-tooltip-status">
                         {node.highlight > 0 && <span className="srm-dot srm-dot--highlight">{plural(t, "tip_mentions", node.highlight)}</span>}

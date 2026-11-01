@@ -33,7 +33,10 @@ export interface NodeAttrs {
 export type MapGraph = Graph<NodeAttrs>;
 
 /** What the tooltip needs, from either map. */
-export type TipNode = Pick<NodeAttrs, "label" | "roomId" | "container" | "unread" | "highlight">;
+export type TipNode = Pick<NodeAttrs, "label" | "roomId" | "container" | "unread" | "highlight"> & {
+    /** The other lines a room is on (tube map). */
+    also?: string[];
+};
 
 export interface GroupLabels {
     rooms: string;

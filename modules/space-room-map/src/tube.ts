@@ -1,10 +1,13 @@
 /**
  * The tube map: every space is a line and its rooms are the stations along it. A sub-space is an
  * interchange on its parent's line, where its own line branches off; a room in several spaces is
- * an interchange too, linked across its lines.
+ * an interchange too, linked to its other stations where they're close.
  *
- * Lines run left to right, one row each. A space's branches are stacked below it, the one that
- * branches off furthest right nearest, so the branches' drops never cross another line of the tree.
+ * Each top-level space, with all its branches, is a block. A long line winds back and forth
+ * within the block's width instead of running off to the right. A line's sub-spaces come first,
+ * so their branches drop down on the left, past the line's later rows, which start further right;
+ * the branch that leaves furthest right is placed nearest, so no drop crosses a line of its tree.
+ * The blocks are then packed into columns (shortest column first) to roughly fill a screen.
  */
 
 import { spaceStats, spaceTree, type RoomGraph, type RoomKind } from "./rooms";
@@ -12,12 +15,21 @@ import type { GroupLabels } from "./views";
 
 /** Between stations. */
 export const COL = 36;
-/** Between lines: room for the slanted station names. */
-export const ROW = 112;
-/** Extra space between top-level spaces. */
-const BLOCK_GAP = 32;
-/** A shared room further along than this isn't worth stretching the line for: it gets a link instead. */
-const MAX_JUMP = 8;
+/** Between rows: room for the slanted station names. */
+export const ROW = 92;
+/** Lines wrap at this column; a line that starts further right still gets MIN_RUN stations per row. */
+const MAX_COL = 12;
+const MIN_RUN = 4;
+/** Above a block's first row: its name, then the slanted station names. */
+const HEADER = 34;
+const NAMES = ROW - 14;
+/** How far the slanted station names reach right of the last column. */
+const NAME_REACH = 84;
+/** Between blocks. */
+const GUTTER_X = 56;
+const GUTTER_Y = 40;
+/** Interchanges further apart than this aren't linked. */
+const LINK_REACH = ROW * 1.5;
 /** Protection against huge accounts: SVG slows down long before WebGL does. */
 const MAX_STATIONS = 6000;
 
@@ -30,6 +42,7 @@ export interface TubeStation {
     y: number;
     label: string;
     kind: RoomKind;
+    /** For a sub-space: through all its rooms, like the list on the left. */
     unread: number;
     highlight: number;
     invite: boolean;
@@ -46,9 +59,11 @@ export interface TubeLine {
     colour: number;
     depth: number;
     parent?: string;
-    /** From the branch point (or the start) to the end of the line. */
+    /** From the branch point (or the start) to the end of the line, around every bend. */
     points: Array<[number, number]>;
     stations: TubeStation[];
+    /** Top-level lines: where the block's name goes (its top left corner). */
+    anchor?: [number, number];
     /** Through all sub-spaces, like the list on the left. */
     unread: number;
     highlight: number;
@@ -62,142 +77,202 @@ export interface TubeLink {
 export interface TubeLayout {
     lines: TubeLine[];
     stations: TubeStation[];
-    /** The stations of a room that is on several lines. */
+    /** A room on several lines of the same block, linked. Across blocks, hovering shows the others. */
     links: TubeLink[];
     bounds: { x0: number; y0: number; x1: number; y1: number };
 }
 
-export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels): TubeLayout {
+interface Block {
+    lines: TubeLine[];
+    stations: TubeStation[];
+    width: number;
+    height: number;
+}
+
+/** `aspect`: width / height of the view, which the packed blocks should roughly fill. */
+export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 1.6): TubeLayout {
     const stats = spaceStats(graph);
-    const lines: TubeLine[] = [];
-    const stations: TubeStation[] = [];
-    /** The column of each room's first station, which later lines line up with. */
-    const placed = new Map<string, number>();
     const hasLine = new Set<string>();
-    let y = 0;
     let colour = 0;
+    let total = 0;
 
-    const addLine = (id: string, label: string, members: string[], depth: number, branch?: { col: number; y: number; parent: string }): void => {
-        hasLine.add(id);
-        const lineY = y;
-        y += ROW;
-        const room = graph.rooms.get(id);
-        const line: TubeLine = {
-            id,
-            roomId: room?.id,
-            label,
-            colour: room ? colour++ : -1,
-            depth,
-            parent: branch?.parent,
-            points: [],
-            stations: [],
-            unread: 0,
-            highlight: 0,
-        };
-        if (room) Object.assign(line, { unread: stats.get(id)?.unread ?? 0, highlight: stats.get(id)?.highlight ?? 0 });
-        lines.push(line);
+    /** One top-level space (or group) and its branches, at the origin. */
+    const buildBlock = (id: string, label: string, members: string[]): Block => {
+        const block: Block = { lines: [], stations: [], width: 0, height: 0 };
+        /** The lowest row so far. */
+        let bottom = HEADER + NAMES - ROW;
+        let maxX = 0;
 
-        const ids = members.filter((m) => graph.rooms.has(m)).slice(0, Math.max(0, MAX_STATIONS - stations.length));
-        const first = branch ? branch.col + 1 : 0;
-        for (const [roomId, col] of assignColumns(ids, first, placed)) {
-            const r = graph.rooms.get(roomId)!;
-            const station: TubeStation = {
-                key: `${id}/${roomId}`,
-                roomId,
-                lineId: id,
-                x: col * COL,
-                y: lineY,
-                label: r.name,
-                kind: r.kind,
-                unread: r.unread,
-                highlight: r.highlight,
-                invite: r.invite,
-                interchange: r.kind === "space",
+        const addLine = (id: string, label: string, members: string[], depth: number, branch?: { col: number; y: number; parent: string }): void => {
+            hasLine.add(id);
+            const room = graph.rooms.get(id);
+            const line: TubeLine = {
+                id,
+                roomId: room?.id,
+                label,
+                colour: room ? colour++ : -1,
+                depth,
+                parent: branch?.parent,
+                points: [],
+                stations: [],
+                unread: room ? (stats.get(id)?.unread ?? 0) : 0,
+                highlight: room ? (stats.get(id)?.highlight ?? 0) : 0,
             };
-            if (!placed.has(roomId)) placed.set(roomId, col);
-            line.stations.push(station);
-            stations.push(station);
-        }
-        if (!room) {
-            line.unread = line.stations.reduce((n, s) => n + s.unread, 0);
-            line.highlight = line.stations.reduce((n, s) => n + s.highlight, 0);
-        }
+            block.lines.push(line);
 
-        const end = (line.stations.at(-1)?.x ?? (branch ? (branch.col + 1) * COL : 0)) + COL / 2;
-        line.points = branch
-            ? [[branch.col * COL, branch.y], [branch.col * COL, lineY], [end, lineY]]
-            : [[-COL / 2, lineY], [end, lineY]];
+            const ids = members.filter((m) => graph.rooms.has(m)).slice(0, Math.max(0, MAX_STATIONS - total));
+            total += ids.length;
+            // Sub-spaces first: their branches drop down on the left.
+            const isSpace = (m: string): boolean => graph.rooms.get(m)!.kind === "space";
+            const ordered = [...ids.filter(isSpace), ...ids.filter((m) => !isSpace(m))];
+            const junctions = ids.filter(isSpace).length;
 
-        // Branches, furthest right first, so each drop passes only lines that start further right.
-        const branches = line.stations
-            .filter((s) => s.kind === "space" && !hasLine.has(s.roomId))
-            .sort((a, b) => b.x - a.x);
-        for (const s of branches) {
-            // An earlier branch may already have drawn it (a sub-space in two places).
-            if (hasLine.has(s.roomId)) continue;
-            const sub = graph.rooms.get(s.roomId)!;
-            addLine(sub.id, sub.name, sub.children, depth + 1, { col: s.x / COL, y: lineY, parent: id });
-        }
+            const start = branch ? branch.col + 1 : 0;
+            // Later rows start right of the junctions and wind between `inner` and `inner + run - 1`.
+            const inner = start + junctions;
+            const run = Math.max(MIN_RUN, MAX_COL - inner);
+            const firstRun = Math.max(junctions + MIN_RUN, MAX_COL - start);
+            const rows: Array<{ y: number; cols: number[] }> = [];
+            let i = 0;
+            while (i < ordered.length || rows.length === 0) {
+                const y = (bottom += ROW);
+                const n = rows.length === 0 ? firstRun : run;
+                const count = Math.min(n, ordered.length - i);
+                const right = rows.length % 2 === 0;
+                const cols =
+                    rows.length === 0
+                        ? Array.from({ length: count }, (_, j) => start + j)
+                        : Array.from({ length: count }, (_, j) => (right ? inner + j : inner + run - 1 - j));
+                rows.push({ y, cols });
+                for (const col of cols) {
+                    const r = graph.rooms.get(ordered[i++])!;
+                    const s = stats.get(r.id);
+                    const station: TubeStation = {
+                        key: `${id}/${r.id}`,
+                        roomId: r.id,
+                        lineId: id,
+                        x: col * COL,
+                        y,
+                        label: r.name,
+                        kind: r.kind,
+                        unread: r.kind === "space" ? (s?.unread ?? 0) : r.unread,
+                        highlight: r.kind === "space" ? (s?.highlight ?? 0) : r.highlight,
+                        invite: r.invite,
+                        interchange: r.kind === "space",
+                    };
+                    line.stations.push(station);
+                    block.stations.push(station);
+                    maxX = Math.max(maxX, station.x);
+                }
+                if (!count) break;
+            }
+
+            // The track: in from the branch point (or the start), along each row, bending round to the next.
+            const points: Array<[number, number]> = branch
+                ? [[branch.col * COL, branch.y], [branch.col * COL, rows[0].y]]
+                : [[start * COL - COL / 2, rows[0].y]];
+            rows.forEach((row, r) => {
+                const right = r % 2 === 0;
+                const xs = row.cols.map((c) => c * COL);
+                const next = rows[r + 1]?.cols.map((c) => c * COL) ?? [];
+                const edge = right ? Math.max(...xs, ...next, start * COL) + COL / 2 : Math.min(...xs, ...next) - COL / 2;
+                points.push([edge, row.y]);
+                if (rows[r + 1]) points.push([edge, rows[r + 1].y]);
+                maxX = Math.max(maxX, edge);
+            });
+            line.points = points;
+            if (!room) {
+                line.unread = line.stations.reduce((n, s) => n + s.unread, 0);
+                line.highlight = line.stations.reduce((n, s) => n + s.highlight, 0);
+            }
+
+            const branches = line.stations
+                .filter((s) => s.kind === "space" && !hasLine.has(s.roomId) && s.y === rows[0].y)
+                .sort((a, b) => b.x - a.x);
+            for (const s of branches) {
+                // An earlier branch may have drawn it already (a sub-space in two places).
+                if (hasLine.has(s.roomId)) continue;
+                const sub = graph.rooms.get(s.roomId)!;
+                addLine(sub.id, sub.name, sub.children, depth + 1, { col: s.x / COL, y: s.y, parent: id });
+            }
+        };
+
+        addLine(id, label, members, 0);
+        block.lines[0].anchor = [-COL / 2, 0];
+        block.width = maxX + NAME_REACH;
+        block.height = bottom + COL;
+        return block;
     };
 
-    for (const { id, depth } of spaceTree(graph)) {
-        if (depth > 0 || hasLine.has(id)) continue;
-        addLine(id, graph.rooms.get(id)!.name, graph.rooms.get(id)!.children, 0);
-        y += BLOCK_GAP;
+    const blocks: Block[] = [];
+    // Top-level spaces, then any space not drawn yet (cut off by the limit).
+    for (const id of [...graph.topSpaces, ...spaceTree(graph).map((s) => s.id)]) {
+        if (!hasLine.has(id)) blocks.push(buildBlock(id, graph.rooms.get(id)!.name, graph.rooms.get(id)!.children));
     }
-    // Spaces only reachable through a cycle, or below one already drawn elsewhere.
-    for (const { id } of spaceTree(graph)) {
-        if (hasLine.has(id)) continue;
-        addLine(id, graph.rooms.get(id)!.name, graph.rooms.get(id)!.children, 0);
-        y += BLOCK_GAP;
-    }
-    if (graph.orphans.length) {
-        addLine("rooms", labels.rooms, graph.orphans, 0);
-        y += BLOCK_GAP;
-    }
-    if (graph.dms.length) addLine("people", labels.people, graph.dms, 0);
+    if (graph.orphans.length) blocks.push(buildBlock("rooms", labels.rooms, graph.orphans));
+    if (graph.dms.length) blocks.push(buildBlock("people", labels.people, graph.dms));
 
+    const layout = pack(blocks, aspect);
+    // Rooms on several lines; linked where the lines are in the same block.
     const byRoom = new Map<string, TubeStation[]>();
-    for (const s of stations) byRoom.set(s.roomId, [...(byRoom.get(s.roomId) ?? []), s]);
-    const links: TubeLink[] = [];
+    for (const s of layout.stations) byRoom.set(s.roomId, [...(byRoom.get(s.roomId) ?? []), s]);
+    const blockOf = new Map<string, number>();
+    blocks.forEach((b, i) => b.lines.forEach((l) => blockOf.set(l.id, i)));
     for (const [roomId, list] of byRoom) {
         if (list.length < 2) continue;
         for (const s of list) s.interchange = true;
-        links.push({ roomId, points: list.map((s) => [s.x, s.y] as [number, number]).sort((a, b) => a[1] - b[1]) });
-    }
-
-    let x1 = COL;
-    for (const l of lines) x1 = Math.max(x1, ...l.points.map((p) => p[0]));
-    return {
-        lines,
-        stations,
-        links,
-        // Station names slant up and to the right of their station.
-        bounds: { x0: -COL, y0: -ROW * 0.7, x1: x1 + ROW * 0.7, y1: Math.max(0, y - ROW) + COL },
-    };
-}
-
-/**
- * Columns for a line's stations, from `first` on. Rooms already on an earlier line keep that
- * line's column where they can, so the interchange lines up; the others fill the gaps in order.
- */
-export function assignColumns(members: string[], first: number, placed: Map<string, number>): Array<[string, number]> {
-    const fixed = members.filter((m) => placed.has(m)).sort((a, b) => placed.get(a)! - placed.get(b)!);
-    const free = members.filter((m) => !placed.has(m));
-    const out: Array<[string, number]> = [];
-    let cursor = first;
-    while (fixed.length || free.length) {
-        const next = fixed[0];
-        const col = next === undefined ? Infinity : placed.get(next)!;
-        if (next !== undefined && (col <= cursor || !free.length)) {
-            fixed.shift();
-            const at = col >= cursor && col - cursor <= MAX_JUMP ? col : cursor;
-            out.push([next, at]);
-            cursor = at + 1;
-        } else {
-            out.push([free.shift()!, cursor++]);
+        // Only short links: a long one would cut across the block. Hovering shows the others anyway.
+        for (const [, group] of groupBy(list, (s) => blockOf.get(s.lineId)!)) {
+            const near = group.filter((s) => group.some((o) => o !== s && Math.abs(o.x - s.x) <= LINK_REACH && Math.abs(o.y - s.y) <= LINK_REACH));
+            if (near.length > 1) layout.links.push({ roomId, points: near.map((s) => [s.x, s.y] as [number, number]).sort((a, b) => a[1] - b[1] || a[0] - b[0]) });
         }
     }
+    return layout;
+}
+
+/** Blocks into columns, each into the shortest so far, with the number of columns that best fits `aspect`. */
+function pack(blocks: Block[], aspect: number): TubeLayout {
+    const colWidth = Math.max(COL * MIN_RUN, ...blocks.map((b) => b.width)) + GUTTER_X;
+    const place = (n: number): { at: Array<[number, number]>; height: number } => {
+        const heights = new Array<number>(n).fill(0);
+        const at = blocks.map((b): [number, number] => {
+            const c = heights.indexOf(Math.min(...heights));
+            const pos: [number, number] = [c * colWidth, heights[c]];
+            heights[c] += b.height + GUTTER_Y;
+            return pos;
+        });
+        return { at, height: Math.max(0, ...heights) };
+    };
+    let best = place(1);
+    let bestScore = Infinity;
+    for (let n = 1; n <= Math.max(1, blocks.length); n++) {
+        const p = place(n);
+        const score = Math.abs(Math.log((n * colWidth) / Math.max(1, p.height) / aspect));
+        if (score < bestScore) (best = p), (bestScore = score);
+    }
+
+    const layout: TubeLayout = { lines: [], stations: [], links: [], bounds: { x0: -COL, y0: 0, x1: COL, y1: COL } };
+    blocks.forEach((b, i) => {
+        const [dx, dy] = best.at[i];
+        for (const l of b.lines) {
+            l.points = l.points.map(([x, y]) => [x + dx, y + dy]);
+            if (l.anchor) l.anchor = [l.anchor[0] + dx, l.anchor[1] + dy];
+            layout.lines.push(l);
+        }
+        for (const s of b.stations) {
+            s.x += dx;
+            s.y += dy;
+            layout.stations.push(s);
+        }
+        layout.bounds.x1 = Math.max(layout.bounds.x1, dx + b.width);
+        layout.bounds.y1 = Math.max(layout.bounds.y1, dy + b.height);
+    });
+    return layout;
+}
+
+function groupBy<T, K>(items: T[], key: (item: T) => K): Map<K, T[]> {
+    const out = new Map<K, T[]>();
+    for (const item of items) out.set(key(item), [...(out.get(key(item)) ?? []), item]);
     return out;
 }
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { buildGraph } from "./rooms";
 import { fakeClient } from "./tests/fakeClient";
-import { assignColumns, buildTubeLayout, COL, roundedPath } from "./tube";
+import { buildTubeLayout, ROW, roundedPath } from "./tube";
 
 const labels = { rooms: "Other rooms", people: "People" };
 
@@ -26,14 +26,15 @@ describe("tube map", () => {
     const layout = buildTubeLayout(graph, labels);
     const line = (id: string) => layout.lines.find((l) => l.id === id)!;
 
-    it("makes a line per space and group, with the rooms as stations", () => {
+    it("makes a line per space and group, with the rooms as stations, sub-spaces first", () => {
         expect(layout.lines.map((l) => l.label)).toEqual(["Engineering", "Team", "Infra", "Other rooms", "People"]);
-        // In the space's order: by name, as none of these children has an `order`.
-        expect(line("!eng:x").stations.map((s) => s.label)).toEqual(["Infra", "Ops", "Team", "Web"]);
+        expect(line("!eng:x").stations.map((s) => s.label)).toEqual(["Infra", "Team", "Ops", "Web"]);
         expect(line("rooms").colour).toBe(-1);
+        // Only blocks (top-level lines) are named.
+        expect(layout.lines.filter((l) => l.anchor).map((l) => l.id)).toEqual(["!eng:x", "rooms", "people"]);
     });
 
-    it("branches sub-spaces off their parent, furthest right nearest, without crossing", () => {
+    it("branches sub-spaces off their parent, furthest right nearest", () => {
         const eng = line("!eng:x");
         const team = line("!team:x");
         const infra = line("!infra:x");
@@ -45,24 +46,32 @@ describe("tube map", () => {
         expect(infra.points[0][0]).toBeLessThan(team.stations[0].x);
     });
 
-    it("lines up a room on several lines as an interchange, with a link", () => {
+    it("marks a room on several lines as an interchange, and only links it where that's short", () => {
         const ops = layout.stations.filter((s) => s.roomId === "!ops:x");
         expect(ops).toHaveLength(2);
         expect(ops.every((s) => s.interchange)).toBe(true);
-        expect(layout.links.map((l) => l.roomId)).toEqual(["!ops:x"]);
+        // Ops on Engineering and on Infra, two rows further down: too far for a link.
+        expect(Math.abs(ops[0].y - ops[1].y)).toBeGreaterThan(ROW * 1.5);
+        expect(layout.links).toEqual([]);
     });
 
     it("counts unread messages through sub-spaces", () => {
         expect(line("!eng:x")).toMatchObject({ unread: 3, highlight: 1 });
         expect(line("!infra:x")).toMatchObject({ unread: 1, highlight: 1 });
+        expect(line("!eng:x").stations.find((s) => s.roomId === "!infra:x")).toMatchObject({ unread: 1, highlight: 1 });
     });
 
-    it("assigns columns that keep earlier interchanges in place where it can", () => {
-        const placed = new Map([["b", 4]]);
-        expect(assignColumns(["a", "b", "c"], 1, placed)).toEqual([["a", 1], ["c", 2], ["b", 4]]);
-        // Too far ahead: not worth stretching the line.
-        expect(assignColumns(["b"], 1, new Map([["b", 40]]))).toEqual([["b", 1]]);
-        expect(COL).toBeGreaterThan(0);
+    it("winds long lines back and forth, and packs blocks to the screen's shape", () => {
+        const many = Array.from({ length: 60 }, (_, i) => ({ id: `!r${i}:x`, name: `Room ${i}` }));
+        const spaces = Array.from({ length: 12 }, (_, i) => ({ id: `!s${i}:x`, name: `Space ${i}`, space: true, children: many.slice(i * 3, i * 3 + 3).map((r) => r.id) }));
+        const big = buildTubeLayout(buildGraph(fakeClient([...spaces, ...many, { id: "!lone:x", name: "Lone" }])), labels, 1.6);
+        const rows = new Set(big.lines.find((l) => l.id === "rooms")!.stations.map((s) => s.y));
+        expect(rows.size).toBeGreaterThan(1);
+        const xs = big.stations.map((s) => s.x);
+        expect(new Set(big.lines.filter((l) => l.anchor).map((l) => l.anchor![0])).size).toBeGreaterThan(1);
+        const { x0, x1, y0, y1 } = big.bounds;
+        expect((x1 - x0) / (y1 - y0)).toBeGreaterThan(0.6);
+        expect(Math.max(...xs)).toBeLessThanOrEqual(x1);
     });
 
     it("rounds the corners of a path", () => {

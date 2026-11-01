@@ -52,6 +52,8 @@ const GROUP_COLOUR = "var(--cpd-color-icon-tertiary, #8d97a5)";
 const MAX_SCALE = 2.5;
 /** Flying to a line or room stops here, where names are a comfortable size. */
 const FOCUS_SCALE = 1.3;
+/** Station names show from this scale on (see the data-zoom levels). */
+const READABLE_SCALE = 0.85;
 const NAME_CHARS = 22;
 const PILL_H = 20;
 const TIP_HIDE_MS = 120;
@@ -80,23 +82,27 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
 
     const lines = useMemo(() => new Map(layout.lines.map((l) => [l.id, l])), [layout]);
     const stations = useMemo(() => new Map(layout.stations.map((s) => [s.key, s])), [layout]);
-    const mentions = useMemo(() => layout.stations.filter((s) => s.highlight > 0), [layout]);
+    const byRoom = useMemo(() => {
+        const out = new Map<string, TubeStation[]>();
+        for (const s of layout.stations) out.set(s.roomId, [...(out.get(s.roomId) ?? []), s]);
+        return out;
+    }, [layout]);
+    // Beacons for rooms; a sub-space with mentions inside has a red badge on its interchange instead.
+    const mentions = useMemo(() => layout.stations.filter((s) => s.highlight > 0 && s.kind !== "space"), [layout]);
+    const named = useMemo(() => layout.lines.filter((l) => l.anchor), [layout]);
     const anyUnread = useMemo(() => layout.stations.some((s) => s.unread > 0 || s.highlight > 0), [layout]);
     const font = useMemo(() => getComputedStyle(document.body).getPropertyValue("--cpd-font-family-sans").trim() || "Inter, system-ui, sans-serif", []);
     const pills = useMemo(() => {
         const out = new Map<string, { text: string; width: number; count: number }>();
-        for (const l of layout.lines) {
+        for (const l of named) {
             const text = truncate(l.label, 28);
             const count = l.highlight || l.unread;
             out.set(l.id, { text, count, width: textWidth(text, `600 12px ${font}`) + 20 + (count ? badgeWidth(count) + 4 : 0) });
         }
         return out;
-    }, [layout, font]);
-    // Line names are placed in this order and skipped where they'd overlap: mentions first, then by depth.
-    const pillOrder = useMemo(
-        () => [...layout.lines].sort((a, b) => Number(b.highlight > 0) - Number(a.highlight > 0) || a.depth - b.depth),
-        [layout],
-    );
+    }, [named, font]);
+    // Block names are placed in this order and skipped where they'd overlap: mentions first.
+    const pillOrder = useMemo(() => [...named].sort((a, b) => Number(b.highlight > 0) - Number(a.highlight > 0)), [named]);
     const active = useMemo(() => (selectedLine && lines.has(selectedLine) ? withBranches(layout, selectedLine) : null), [layout, lines, selectedLine]);
 
     const apply = (): void => {
@@ -117,14 +123,10 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         for (const line of pillOrder) {
             const el = pillRefs.current.get(line.id);
             const pill = pills.get(line.id);
-            if (!el || !pill) continue;
-            const branch = line.points.length > 2;
-            const [ax, ay] = line.points[branch ? 1 : 0];
-            const endX = line.points.at(-1)![0] * k + tx;
-            let x = branch ? ax * k + tx + 10 : ax * k + tx - pill.width - 6;
-            const y = branch ? ay * k + ty + PILL_H / 2 + 8 : ay * k + ty;
-            // The name stays at the left edge while the line runs across the view.
-            if (x < 8 && endX > 8 + pill.width + 24) x = 8;
+            if (!el || !pill || !line.anchor) continue;
+            // The block's top left corner; the name keeps its size on screen, so it stays readable far out.
+            const x = line.anchor[0] * k + tx;
+            const y = line.anchor[1] * k + ty + PILL_H / 2;
             const box: [number, number, number, number] = [x, y - PILL_H / 2 - 2, x + pill.width, y + PILL_H / 2 + 2];
             const visible =
                 box[2] > 0 && box[0] < W && box[3] > 0 && box[1] < H && !taken.some((t) => t[0] < box[2] && box[0] < t[2] && t[1] < box[3] && box[1] < t[3]);
@@ -155,12 +157,17 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         flight.current = flyTo(camera, { x: target.cx, y: target.cy, ratio: target.w });
     };
     /** The view that shows a box, no closer than FOCUS_SCALE. */
-    const fit = (x0: number, y0: number, x1: number, y1: number): View => {
+    /** `readable`: no further out than where station names show; a box too big then shows its top left. */
+    const fit = (x0: number, y0: number, x1: number, y1: number, readable = false): View => {
         const svg = svgRef.current;
         const W = svg?.clientWidth || 1;
         const H = svg?.clientHeight || 1;
-        const w = Math.max((x1 - x0) * 1.08, (y1 - y0) * 1.08 * (W / H), W / FOCUS_SCALE);
-        return { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, w };
+        let w = Math.max((x1 - x0) * 1.08, (y1 - y0) * 1.08 * (W / H), W / FOCUS_SCALE);
+        if (readable) w = Math.min(w, W / READABLE_SCALE);
+        const visibleH = (w * H) / W;
+        const cy = visibleH >= (y1 - y0) * 1.08 ? (y0 + y1) / 2 : y0 + visibleH / 2 - (y1 - y0) * 0.04;
+        const cx = w >= (x1 - x0) * 1.08 ? (x0 + x1) / 2 : x0 + w / 2;
+        return { cx, cy, w };
     };
     const overview = (): View => fit(layout.bounds.x0, layout.bounds.y0, layout.bounds.x1, layout.bounds.y1);
     const lineView = (id: string): View => {
@@ -175,7 +182,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
             }
         }
         // Room for the names: slanted station names above and to the right, the line name on the left.
-        return fit(x0 - COL * 3, y0 - ROW * 0.7, x1 + ROW * 0.6, y1 + COL);
+        return fit(x0 - COL, y0 - ROW * 1.2, x1 + ROW, y1 + COL, true);
     };
 
     // The first view shows everything; resizing keeps the centre and the scale.
@@ -288,19 +295,33 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
 
     const hideTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
     useEffect(() => () => clearTimeout(hideTimer.current), []);
+    /** The room under the pointer, whose stations elsewhere on the map light up. */
+    const twinRoom = useRef<string | undefined>(undefined);
+    const markTwins = (roomId: string | undefined): void => {
+        if (roomId === twinRoom.current) return;
+        const svg = svgRef.current;
+        svg?.querySelectorAll(".is-twin").forEach((el) => el.classList.remove("is-twin"));
+        twinRoom.current = roomId;
+        if (svg && roomId && (byRoom.get(roomId)?.length ?? 0) > 1) {
+            svg.querySelectorAll(`[data-room="${CSS.escape(roomId)}"]`).forEach((el) => el.classList.add("is-twin"));
+        }
+    };
     const onPointerOver = (ev: ReactPointerEvent): void => {
         const el = (ev.target as Element).closest("[data-key], [data-line]");
         const station = el?.getAttribute("data-key") ? stations.get(el.getAttribute("data-key")!) : undefined;
         const line = el?.getAttribute("data-line") ? lines.get(el.getAttribute("data-line")!) : undefined;
         let tip: TipNode | null = null;
+        markTwins(station?.roomId);
         if (station) {
             const space = station.kind === "space" ? lines.get(station.roomId) : undefined;
+            const others = (byRoom.get(station.roomId) ?? []).filter((s) => s !== station);
             tip = {
                 label: station.label,
                 roomId: station.roomId,
                 container: Boolean(space),
                 unread: space ? space.unread : station.unread,
                 highlight: space ? space.highlight : station.highlight,
+                also: others.map((s) => lines.get(s.lineId)!.label),
             };
         } else if (line) {
             tip = { label: line.label, roomId: line.roomId, container: true, unread: line.unread, highlight: line.highlight };
@@ -321,7 +342,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
     const stationClass = (s: TubeStation): string => {
         const c = ["srm-station"];
         if (s.interchange) c.push("is-interchange");
-        if (s.highlight) c.push("is-mention");
+        if (s.highlight && s.kind !== "space") c.push("is-mention");
         if (s.unread || s.highlight) c.push("is-unread");
         else if (anyUnread && !matches && s.roomId !== current) c.push("is-quiet");
         if (matches && !matches.has(s.roomId)) c.push("is-miss");
@@ -342,7 +363,10 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
                 onPointerDown={onPointerDown}
                 onPointerOver={onPointerOver}
                 onPointerMove={onPointerMove}
-                onPointerLeave={() => setHovered(null)}
+                onPointerLeave={() => {
+                    setHovered(null);
+                    markTwins(undefined);
+                }}
                 onClick={onClick}
             >
                 <g ref={worldRef}>
@@ -359,7 +383,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
                         </g>
                     ))}
                     {layout.stations.map((s) => (
-                        <g key={s.key} className={stationClass(s)} transform={`translate(${s.x} ${s.y})`} data-key={s.key}>
+                        <g key={s.key} className={stationClass(s)} transform={`translate(${s.x} ${s.y})`} data-key={s.key} data-room={s.roomId}>
                             <circle className="srm-station-hit" r={13} />
                             {s.roomId === current && <circle className="srm-station-here" r={s.interchange ? 12 : 10} />}
                             {s.roomId === selected && <circle className="srm-station-selected" r={s.interchange ? 13 : 11} />}
@@ -371,12 +395,16 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
                             <text className="srm-station-name" transform="rotate(-45)" x={s.interchange ? 12 : 10} y={4}>
                                 {truncate(s.label, NAME_CHARS)}
                             </text>
-                            {s.unread > 0 && !s.highlight && <Badge x={9} y={11} count={s.unread} kind="unread" />}
+                            {s.kind === "space" && (s.highlight || s.unread) > 0 ? (
+                                <Badge x={11} y={12} count={s.highlight || s.unread} kind={s.highlight ? "mention" : "unread"} />
+                            ) : (
+                                s.unread > 0 && !s.highlight && <Badge x={9} y={11} count={s.unread} kind="unread" />
+                            )}
                         </g>
                     ))}
                 </g>
                 <g className="srm-tube-overlay">
-                    {layout.lines.map((l) => {
+                    {named.map((l) => {
                         const pill = pills.get(l.id)!;
                         return (
                             <g
@@ -402,7 +430,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
                             className={`srm-beacon${matches && !matches.has(s.roomId) ? " is-miss" : ""}${active && !active.has(s.lineId) ? " is-off" : ""}`}
                             data-key={s.key}
                         >
-                            <circle className="srm-beacon-pulse" r={9} />
+                            <circle className="srm-beacon-pulse" r={7} />
                             <Badge x={11} y={12} count={s.highlight} kind="mention" />
                         </g>
                     ))}

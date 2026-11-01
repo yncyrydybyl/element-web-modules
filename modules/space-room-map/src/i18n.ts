@@ -33,6 +33,7 @@ export const translations = {
     [`${P}tip_unread_other`]: { en: "%(count)s unread", de: "%(count)s ungelesen" },
     [`${P}tip_mentions_one`]: { en: "%(count)s mention", de: "%(count)s Erwähnung" },
     [`${P}tip_mentions_other`]: { en: "%(count)s mentions", de: "%(count)s Erwähnungen" },
+    [`${P}tip_also`]: { en: "Also on: %(spaces)s", de: "Auch auf: %(spaces)s" },
     [`${P}tip_current`]: { en: "You're here", de: "Du bist hier" },
     [`${P}tip_action_open`]: { en: "Click to open", de: "Klicken zum Öffnen" },
     [`${P}tip_action_space`]: { en: "Click to zoom in, click again to open", de: "Klicken zum Hineinzoomen, nochmal klicken zum Öffnen" },
