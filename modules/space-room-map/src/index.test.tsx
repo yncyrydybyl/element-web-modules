@@ -18,7 +18,7 @@ async function loadModule(options: Parameters<typeof mockApi>[0] = {}) {
 }
 
 /** The rows of the list on the left (the space selector has options too). */
-const items = (name = "Spaces") => within(screen.getByRole("listbox", { name })).getAllByRole("option");
+const items = (name = "Places") => within(screen.getByRole("listbox", { name })).getAllByRole("option");
 const names = (options: HTMLElement[]) => options.map((o) => o.querySelector(".srm-item-name")!.textContent);
 
 function press(key: string, init: KeyboardEventInit = {}, target: EventTarget = document.body) {
@@ -56,21 +56,23 @@ describe("SpaceRoomMapModule", () => {
         expect(ModuleDefault.moduleApiVersion).toBe("^2.0.0");
     });
 
-    it("opens on Ctrl+I with the spaces on the left, and opens a space with Enter", async () => {
+    it("opens on Ctrl+I with districts, groups and spaces on the left, and opens a space with Enter", async () => {
         const { openRoom } = await loadModule();
         const ev = press("i", { ctrlKey: true, code: "KeyI" });
         expect(ev.defaultPrevented).toBe(true);
         expect(screen.getByRole("dialog", { name: "Map" })).toBeTruthy();
         const rows = items();
-        expect(names(rows)).toEqual(["All spaces", "Engineering", "Design", "Other rooms"]);
+        // Random is a room of two outside any space, last active in 1970: an older chat.
+        expect(names(rows)).toEqual(["Everything", "Communities", "Engineering", "Design", "People", "Matrix (older)"]);
         // Rooms and unread messages add up through sub-spaces; a mention shows in red.
         expect(rows[0].textContent).toContain("4 rooms");
-        expect(rows[1].textContent).toContain("3 rooms");
-        expect(rows[1].querySelector(".srm-badge--highlight")!.textContent).toBe("1");
+        expect(rows[2].textContent).toContain("3 rooms");
+        expect(rows[2].querySelector(".srm-badge--highlight")!.textContent).toBe("1");
         expect(rows[3].textContent).toContain("1 room");
+        expect(rows[5].textContent).toContain("1 room");
 
-        await userEvent.keyboard("{ArrowDown}{ArrowDown}");
-        expect(rows[2].getAttribute("aria-selected")).toBe("true");
+        await userEvent.keyboard("{ArrowDown}{ArrowDown}{ArrowDown}");
+        expect(rows[3].getAttribute("aria-selected")).toBe("true");
         await userEvent.keyboard("{Enter}");
         expect(openRoom).toHaveBeenCalledWith("!design:x");
         expect(screen.queryByRole("dialog")).toBeNull();
@@ -79,12 +81,13 @@ describe("SpaceRoomMapModule", () => {
     it("selects the space under the pointer", async () => {
         await loadModule();
         press("i", { ctrlKey: true });
-        const design = items()[2];
+        const design = items()[3];
         await userEvent.hover(design);
         expect(design.getAttribute("aria-selected")).toBe("true");
-        // "All spaces" and the groups have no room to open: clicking them keeps the map open.
+        // "Everything", districts and groups that aren't a space only fly the map there.
         await userEvent.click(items()[0]);
-        await userEvent.click(items()[3]);
+        await userEvent.click(items()[1]);
+        await userEvent.click(items()[5]);
         expect(screen.getByRole("dialog")).toBeTruthy();
     });
 
@@ -110,7 +113,7 @@ describe("SpaceRoomMapModule", () => {
         URL.revokeObjectURL = () => undefined;
         await loadModule();
         press("i", { ctrlKey: true });
-        await vi.waitFor(() => expect(items()[1].querySelector("img")!.getAttribute("src")).toBe("blob:eng"));
+        await vi.waitFor(() => expect(items()[2].querySelector("img")!.getAttribute("src")).toBe("blob:eng"));
         const legend = screen.getByRole("button", { name: /Legend/ });
         expect(screen.getByText("Mentions you (pulses)")).toBeTruthy();
         await userEvent.click(legend);

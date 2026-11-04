@@ -9,6 +9,7 @@ import Sigma from "sigma";
 import type { NodeLabelDrawingFunction } from "sigma/rendering";
 import type { Settings } from "sigma/settings";
 
+import type { DistrictId } from "../districts";
 import type { MapGraph, NodeAttrs } from "../views";
 import { flyTo, prefersReducedMotion, type Flight } from "./camera";
 import { mix, premultiplied, withAlpha } from "./colour";
@@ -16,10 +17,13 @@ import { buildPrograms } from "./programs";
 import { readTheme, type Theme } from "./theme";
 import { placeTooltip } from "./tooltip";
 
-/** Where the camera should go: a room or space by id, a node by key (the "Other rooms" circle), or everything. */
+/** Where the camera should go: a room or space by id, a node or line by key (a district, a group), or everything. */
 export interface FocusTarget {
     roomId?: string;
     nodeKey?: string;
+    /** The tube map's line (a space's id, or a group's key). */
+    line?: string;
+    district?: DistrictId;
     overview?: boolean;
     nonce: number;
 }

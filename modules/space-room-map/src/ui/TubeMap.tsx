@@ -56,14 +56,16 @@ const FOCUS_SCALE = 1.3;
 const READABLE_SCALE = 0.85;
 const NAME_CHARS = 22;
 const PILL_H = 20;
+/** District names on screen. */
+const DISTRICT_H = 24;
 /** Screen room kept right of the map in the overview, for block names. */
 const NAME_ROOM = 160;
 const TIP_HIDE_MS = 120;
 /** Below this, a press that moves is a click, not a drag. */
 const DRAG_PX = 4;
 
-export function lineColour(line: Pick<TubeLine, "colour">): string {
-    return line.colour < 0 ? GROUP_COLOUR : LINE_COLOURS[line.colour % LINE_COLOURS.length];
+export function lineColour(line: Pick<TubeLine, "colour" | "hex">): string {
+    return line.hex ?? (line.colour < 0 ? GROUP_COLOUR : LINE_COLOURS[line.colour % LINE_COLOURS.length]);
 }
 
 export function TubeMap(props: TubeMapProps): JSX.Element {
@@ -72,6 +74,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
     const svgRef = useRef<SVGSVGElement>(null);
     const worldRef = useRef<SVGGElement>(null);
     const pillRefs = useRef(new Map<string, SVGGElement>());
+    const districtRefs = useRef(new Map<string, SVGGElement>());
     const beaconRefs = useRef(new Map<string, SVGGElement>());
     const tipRef = useRef<HTMLDivElement>(null);
     const lastTip = useRef<ReactNode>(null);
@@ -104,6 +107,10 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         return out;
     }, [named, font]);
     // Block names are placed in this order and skipped where they'd overlap: mentions first.
+    const districtWidths = useMemo(
+        () => new Map(layout.districts.map((d) => [d.id, textWidth(d.label.toUpperCase(), `700 15px ${font}`) + textWidth(String(d.rooms), `600 12px ${font}`) + 36])),
+        [layout, font],
+    );
     const pillOrder = useMemo(() => [...named].sort((a, b) => Number(b.highlight > 0) - Number(a.highlight > 0)), [named]);
     const active = useMemo(() => (selectedLine && lines.has(selectedLine) ? withBranches(layout, selectedLine) : null), [layout, lines, selectedLine]);
 
@@ -122,6 +129,21 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         svg.dataset.zoom = k < 0.45 ? "far" : k < 0.8 ? "mid" : "near";
 
         const taken: Array<[number, number, number, number]> = [];
+        // District names first: they're what orients you when far out.
+        for (const d of layout.districts) {
+            const el = districtRefs.current.get(d.id);
+            if (!el) continue;
+            const x = Math.max(8, d.x0 * k + tx);
+            const y = d.y0 * k + ty + DISTRICT_H / 2;
+            const w = districtWidths.get(d.id) ?? 120;
+            const visible = d.x1 * k + tx > 0 && x < W && (d.y1 * k + ty) > 0 && y < H;
+            el.style.display = visible ? "" : "none";
+            if (!visible) continue;
+            // It stays at the top while the district reaches past the top edge.
+            const top = Math.min(Math.max(y, DISTRICT_H / 2 + 8), d.y1 * k + ty - DISTRICT_H);
+            taken.push([x, top - DISTRICT_H / 2 - 4, x + w, top + DISTRICT_H / 2 + 4]);
+            el.setAttribute("transform", `translate(${x} ${top})`);
+        }
         for (const line of pillOrder) {
             const el = pillRefs.current.get(line.id);
             const pill = pills.get(line.id);
@@ -285,8 +307,12 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
     useEffect(() => {
         const focus = props.focus;
         if (!focus) return;
-        const lineId = focus.nodeKey ?? focus.roomId;
-        if (focus.overview) {
+        const lineId = focus.line ?? focus.roomId;
+        const district = focus.district ? layout.districts.find((d) => d.id === focus.district) : undefined;
+        if (district) {
+            focusedLine.current = undefined;
+            fly(fit(district.x0 - COL, district.y0, district.x1, district.y1));
+        } else if (focus.overview) {
             focusedLine.current = undefined;
             fly(overview());
         } else if (lineId && lines.has(lineId)) {
@@ -357,6 +383,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         if (s.roomId === current) c.push("is-current");
         if (s.roomId === selected) c.push("is-selected");
         if (s.invite) c.push("is-invite");
+        if (lines.get(s.lineId)?.district === "archive") c.push("is-archive");
         return c.join(" ");
     };
 
@@ -378,7 +405,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
             >
                 <g ref={worldRef}>
                     {layout.lines.map((l) => (
-                        <g key={l.id} className={`srm-tube-line${active && !active.has(l.id) ? " is-off" : ""}`} data-line={l.id}>
+                        <g key={l.id} className={`srm-tube-line${active && !active.has(l.id) ? " is-off" : ""}${l.district === "archive" ? " is-archive" : ""}`} data-line={l.id}>
                             <path className="srm-tube-casing" d={roundedPath(l.points)} />
                             <path className={`srm-tube-track${l.colour < 0 ? " srm-tube-track--group" : ""}`} d={roundedPath(l.points)} style={{ stroke: lineColour(l) }} />
                         </g>
@@ -411,6 +438,20 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
                     ))}
                 </g>
                 <g className="srm-tube-overlay">
+                    {layout.districts.map((d) => (
+                        <g
+                            key={d.id}
+                            ref={(el) => void (el ? districtRefs.current.set(d.id, el) : districtRefs.current.delete(d.id))}
+                            className={`srm-tube-district srm-tube-district--${d.id}`}
+                        >
+                            <text x={0} y={0.5}>
+                                {d.label.toUpperCase()}
+                                <tspan className="srm-tube-district-count" dx={8}>
+                                    {d.rooms}
+                                </tspan>
+                            </text>
+                        </g>
+                    ))}
                     {named.map((l) => {
                         const pill = pills.get(l.id)!;
                         return (

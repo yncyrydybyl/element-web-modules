@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { buildGraph } from "./rooms";
+import { buildDistricts } from "./districts";
+import { buildGraph, type RoomGraph } from "./rooms";
 import { fakeClient } from "./tests/fakeClient";
 import { buildTubeLayout, ROW, roundedPath } from "./tube";
 
-const labels = { rooms: "Other rooms", people: "People" };
+const names = { communities: "Communities", events: "Events", people: "People", bridges: "Bridges", unsorted: "Unsorted", archive: "Archive" };
+const tube = (graph: RoomGraph, aspect?: number) => buildTubeLayout(graph, buildDistricts(graph), names, aspect);
 
 describe("tube map", () => {
     const graph = buildGraph(
@@ -13,25 +15,29 @@ describe("tube map", () => {
                 { id: "!eng:x", name: "Engineering", space: true, children: ["!web:x", "!ops:x", "!infra:x", "!team:x"] },
                 { id: "!infra:x", name: "Infra", space: true, children: ["!k8s:x", "!ops:x"] },
                 { id: "!team:x", name: "Team", space: true, children: ["!lunch:x"] },
-                { id: "!web:x", name: "Web", unread: 2 },
-                { id: "!ops:x", name: "Ops", highlight: 1, unread: 1 },
-                { id: "!k8s:x", name: "K8s" },
-                { id: "!lunch:x", name: "Lunch" },
-                { id: "!random:x", name: "Random" },
+                { id: "!web:x", name: "Web", unread: 2, members: 5 },
+                { id: "!ops:x", name: "Ops", highlight: 1, unread: 1, members: 5 },
+                { id: "!k8s:x", name: "K8s", members: 5 },
+                { id: "!lunch:x", name: "Lunch", members: 5 },
+                { id: "!random:x", name: "Random", members: 40, alias: "#random:y" },
                 { id: "!alice:x", name: "Alice" },
             ],
             { "@alice:x": ["!alice:x"] },
         ),
     );
-    const layout = buildTubeLayout(graph, labels);
+    const layout = tube(graph);
     const line = (id: string) => layout.lines.find((l) => l.id === id)!;
 
     it("makes a line per space and group, with the rooms as stations, sub-spaces first", () => {
-        expect(layout.lines.map((l) => l.label)).toEqual(["Engineering", "Team", "Infra", "Other rooms", "People"]);
+        expect(layout.lines.map((l) => l.label)).toEqual(["Engineering", "Team", "Infra", "Matrix", "Loose rooms"]);
         expect(line("!eng:x").stations.map((s) => s.label)).toEqual(["Infra", "Team", "Ops", "Web"]);
-        expect(line("rooms").colour).toBe(-1);
+        expect(line("unsorted/loose").colour).toBe(-1);
+        // Districts in their fixed places: Communities, People, Unsorted down the left.
+        expect(layout.districts.map((d) => d.id)).toEqual(["communities", "people", "unsorted"]);
+        expect(layout.districts[0].x0).toBe(layout.districts[1].x0);
+        expect(layout.districts[1].y0).toBeGreaterThan(layout.districts[0].y1);
         // Only blocks (top-level lines) are named.
-        expect(layout.lines.filter((l) => l.anchor).map((l) => l.id)).toEqual(["!eng:x", "rooms", "people"]);
+        expect(layout.lines.filter((l) => l.anchor).map((l) => l.id)).toEqual(["!eng:x", "people/Matrix", "unsorted/loose"]);
     });
 
     it("branches sub-spaces off their parent, furthest right nearest", () => {
@@ -62,10 +68,11 @@ describe("tube map", () => {
     });
 
     it("winds long lines back and forth, and packs blocks to the screen's shape", () => {
-        const many = Array.from({ length: 60 }, (_, i) => ({ id: `!r${i}:x`, name: `Room ${i}` }));
+        // Names without a shared first word, so they don't form a group of their own.
+        const many = Array.from({ length: 60 }, (_, i) => ({ id: `!r${i}:x`, name: `Q${i}` }));
         const spaces = Array.from({ length: 12 }, (_, i) => ({ id: `!s${i}:x`, name: `Space ${i}`, space: true, children: many.slice(i * 3, i * 3 + 3).map((r) => r.id) }));
-        const big = buildTubeLayout(buildGraph(fakeClient([...spaces, ...many, { id: "!lone:x", name: "Lone" }])), labels, 1.6);
-        const rows = new Set(big.lines.find((l) => l.id === "rooms")!.stations.map((s) => s.y));
+        const big = tube(buildGraph(fakeClient([...spaces, ...many.map((r) => ({ ...r, members: 30, alias: `#${r.id.slice(1)}` }))])), 1.6);
+        const rows = new Set(big.lines.find((l) => l.id === "unsorted/loose")!.stations.map((s) => s.y));
         expect(rows.size).toBeGreaterThan(1);
         const xs = big.stations.map((s) => s.x);
         expect(new Set(big.lines.filter((l) => l.anchor).map((l) => l.anchor![0])).size).toBeGreaterThan(1);

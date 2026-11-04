@@ -1,11 +1,12 @@
 import { useEffect, useId, useMemo, useRef, useState, type JSX, type KeyboardEvent as ReactKeyboardEvent } from "react";
 
 import type { AvatarCache } from "../avatars";
+import { buildDistricts, DISTRICTS, type DistrictId, type GroupNames } from "../districts";
 import { P } from "../i18n";
-import { breadcrumb, spaceStats, spaceTree, type RoomGraph, type RoomInfo } from "../rooms";
+import { breadcrumb, type RoomGraph, type RoomInfo } from "../rooms";
 import { search } from "../search";
 import { buildTubeLayout } from "../tube";
-import { buildAllGraph, roomScore, type ScoreOptions, type TipNode } from "../views";
+import { buildAllGraph, districtNodeKey, groupNodeKey, roomScore, type ScoreOptions, type TipNode } from "../views";
 import { colourIndex, SigmaMap, type FocusTarget } from "./SigmaMap";
 import { TubeMap } from "./TubeMap";
 
@@ -34,15 +35,18 @@ export interface MapOverlayProps {
 }
 
 /**
- * A line in the list on the left: "All spaces", a space, a group circle ("Other rooms", "People")
- * or a search result.
+ * A line in the list on the left: "Everything", a district, a group (a space, or a group like
+ * "WhatsApp" or "Small groups"), a sub-space, or a search result.
  */
 interface Row {
     key: string;
-    /** The room or space; missing for "All spaces" and the groups. */
+    /** The room or space; missing for "Everything", districts and groups that aren't a space. */
     room?: RoomInfo;
-    /** The group's node on the map. */
+    /** Its node on the circle map. */
     nodeKey?: string;
+    /** Its line on the tube map. */
+    line?: string;
+    district?: DistrictId;
     /** The whole map. */
     overview?: boolean;
     name: string;
@@ -71,12 +75,30 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
 
     useEffect(() => searchRef.current?.focus(), []);
 
-    const labels = useMemo(() => ({ rooms: t(`${P}group_rooms`), people: t(`${P}group_people`), empty: t(`${P}group_empty`) }), [t]);
-    const mapGraph = useMemo(() => buildAllGraph(graph, labels), [graph, labels]);
+    const districtNames = useMemo(
+        () => Object.fromEntries(DISTRICTS.map((d) => [d, t(`${P}district_${d}`)])) as Record<DistrictId, string>,
+        [t],
+    );
+    const districts = useMemo(() => {
+        const names: GroupNames = {
+            older: t(`${P}group_older`, { network: "%(network)s" }),
+            smallGroups: t(`${P}group_small`),
+            loose: t(`${P}group_loose`),
+            otherSpaces: t(`${P}group_spaces`),
+            junk: t(`${P}group_junk`),
+            nameless: t(`${P}group_nameless`),
+            solo: t(`${P}group_solo`),
+        };
+        return buildDistricts(graph, names);
+    }, [graph, t]);
+    const mapGraph = useMemo(() => buildAllGraph(graph, districts, districtNames), [graph, districts, districtNames]);
     // Packed to roughly the shape of the map's area: the window minus the list and the header.
     const tubeLayout = useMemo(
-        () => (view === "tube" ? buildTubeLayout(graph, labels, Math.max(0.5, (window.innerWidth - 400) / Math.max(1, window.innerHeight - 160))) : null),
-        [graph, labels, view],
+        () =>
+            view === "tube"
+                ? buildTubeLayout(graph, districts, districtNames, Math.max(0.5, (window.innerWidth - 400) / Math.max(1, window.innerHeight - 160)))
+                : null,
+        [graph, districts, districtNames, view],
     );
 
     const scoreOpts = useMemo<ScoreOptions>(() => ({ usage: props.usage, now: Date.now() }), [props.usage]);
@@ -87,39 +109,45 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
     }, [graph, query]);
 
     const spaceRows = useMemo<Row[]>(() => {
-        const stats = spaceStats(graph);
-        const everything = [...graph.rooms.values()].filter((r) => r.kind !== "space");
-        const rows: Row[] = [
-            {
-                key: "all",
-                overview: true,
-                name: t(`${P}all_spaces`),
-                depth: 0,
-                meta: plural(t, "space_rooms", everything.length),
-                unread: everything.reduce((n, r) => n + r.unread, 0),
-                highlight: everything.reduce((n, r) => n + r.highlight, 0),
-            },
-        ];
-        for (const { id, depth } of spaceTree(graph)) {
-            const room = graph.rooms.get(id)!;
-            const s = stats.get(id)!;
-            rows.push({ key: id, room, name: room.name, depth, meta: plural(t, "space_rooms", s.rooms), unread: s.unread, highlight: s.highlight });
-        }
-        for (const [key, ids] of [["rooms", graph.orphans], ["people", graph.dms]] as const) {
-            if (!ids.length) continue;
-            const members = ids.map((id) => graph.rooms.get(id)!);
+        const roomsOf = (ids: string[]): RoomInfo[] => ids.map((id) => graph.rooms.get(id)!).filter((r) => r.kind !== "space");
+        const counts = (rooms: RoomInfo[]): Pick<Row, "meta" | "unread" | "highlight"> => ({
+            meta: plural(t, "space_rooms", rooms.length),
+            unread: rooms.reduce((n, r) => n + r.unread, 0),
+            highlight: rooms.reduce((n, r) => n + r.highlight, 0),
+        });
+        const rows: Row[] = [{ key: "all", overview: true, name: t(`${P}all_spaces`), depth: 0, ...counts(roomsOf([...graph.rooms.keys()])) }];
+        for (const district of DISTRICTS) {
+            const groups = districts.groups.filter((g) => g.district === district);
+            if (!groups.length) continue;
             rows.push({
-                key,
-                nodeKey: key,
-                name: labels[key],
+                key: `district:${district}`,
+                district,
+                nodeKey: districtNodeKey(district),
+                name: districtNames[district],
                 depth: 0,
-                meta: plural(t, "space_rooms", ids.length),
-                unread: members.reduce((n, r) => n + r.unread, 0),
-                highlight: members.reduce((n, r) => n + r.highlight, 0),
+                ...counts(roomsOf(groups.flatMap((g) => g.rooms))),
             });
+            for (const g of groups) {
+                const space = g.spaceId ? graph.rooms.get(g.spaceId) : undefined;
+                const key = groupNodeKey(g);
+                rows.push({ key: `group:${g.key}`, room: space, nodeKey: key, line: g.spaceId ?? g.key, name: g.label, depth: 1, ...counts(roomsOf(g.rooms)) });
+                // A space's sub-spaces that hold rooms of this group, as on the map.
+                const walk = (id: string, path: string, depth: number, seen: Set<string>): void => {
+                    for (const c of graph.rooms.get(id)!.children) {
+                        const sub = graph.rooms.get(c)!;
+                        if (sub.kind !== "space" || seen.has(c)) continue;
+                        const own = roomsOf(g.rooms).filter((r) => isBelow(graph, r.id, c));
+                        if (!own.length) continue;
+                        seen.add(c);
+                        rows.push({ key: `group:${g.key}:${c}`, room: sub, nodeKey: `${path}/${c}`, line: c, name: sub.name, depth, ...counts(own) });
+                        walk(c, `${path}/${c}`, depth + 1, seen);
+                    }
+                };
+                if (space) walk(space.id, key, 2, new Set([space.id]));
+            }
         }
         return rows;
-    }, [graph, labels, t]);
+    }, [graph, districts, districtNames, t]);
     const rows = useMemo<Row[]>(() => {
         if (!query.trim()) return spaceRows;
         return search(graph, query, { exclude: current, limit: RESULT_LIMIT, rank }).map((room) => ({
@@ -269,7 +297,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                             layout={tubeLayout}
                             matches={matches}
                             selected={follow ? selected?.room?.id : undefined}
-                            selectedLine={follow ? (selected?.room?.kind === "space" ? selected.room.id : selected?.nodeKey) : undefined}
+                            selectedLine={follow ? selected?.line : undefined}
                             current={current}
                             focus={focus}
                             label={t(`${P}tube_label`)}
@@ -313,7 +341,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                                         id={`${listId}-${row.key}`}
                                         role="option"
                                         aria-selected={row === selected}
-                                        className={`srm-item${row.highlight || row.unread ? " srm-item--unread" : ""}`}
+                                        className={`srm-item${row.highlight || row.unread ? " srm-item--unread" : ""}${row.district ? " srm-item--district" : ""}`}
                                         style={row.depth ? { paddingInlineStart: 8 + row.depth * 16 } : undefined}
                                         onMouseMove={() => {
                                             if (i !== active) setActive(i);
@@ -349,7 +377,21 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
 }
 
 function focusOf(row: Row): FocusTarget {
-    return { roomId: row.room?.id, nodeKey: row.nodeKey, overview: row.overview, nonce: Date.now() };
+    return { roomId: row.room?.id, nodeKey: row.nodeKey, line: row.line, district: row.district, overview: row.overview, nonce: Date.now() };
+}
+
+/** Whether a room is anywhere below a space. */
+function isBelow(graph: RoomGraph, roomId: string, spaceId: string): boolean {
+    const seen = new Set<string>();
+    const stack = [...(graph.rooms.get(roomId)?.parents ?? [])];
+    while (stack.length) {
+        const p = stack.pop()!;
+        if (p === spaceId) return true;
+        if (seen.has(p)) continue;
+        seen.add(p);
+        stack.push(...(graph.rooms.get(p)?.parents ?? []));
+    }
+    return false;
 }
 
 function Avatar({ row, url }: { row: Row; url?: string }): JSX.Element {

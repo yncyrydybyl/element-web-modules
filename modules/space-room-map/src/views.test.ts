@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest";
 
-import { buildGraph } from "./rooms";
+import { buildDistricts } from "./districts";
+import { buildGraph, type RoomGraph } from "./rooms";
 import { search } from "./search";
 import { bigAccount, fakeClient } from "./tests/fakeClient";
 import { buildAllGraph, roomScore } from "./views";
 
-const labels = { rooms: "Other rooms", people: "People" };
+const names = { communities: "Communities", events: "Events", people: "People", bridges: "Bridges", unsorted: "Unsorted", archive: "Archive" };
+const all = (graph: RoomGraph) => buildAllGraph(graph, buildDistricts(graph), names);
 
 describe("views", () => {
     const graph = buildGraph(
@@ -21,16 +23,16 @@ describe("views", () => {
         ),
     );
 
-    it("all: every space and room, children inside their parent's circle", () => {
-        const g = buildAllGraph(graph, labels);
-        expect(g.mapNodes((_, a) => a.label).sort()).toEqual(["Alice", "Engineering", "Ops", "Other rooms", "People", "Random", "Web"]);
+    it("all: districts, their groups, and every room inside its parent's circle", () => {
+        const g = all(graph);
+        expect(g.mapNodes((_, a) => a.label).sort()).toEqual(["Alice", "Communities", "Engineering", "Matrix (older)", "Ops", "People", "Random", "Web"]);
         g.forEachNode((key, a) => {
             const parentKey = key.slice(0, key.lastIndexOf("/"));
             if (!g.hasNode(parentKey)) return;
             const p = g.getNodeAttributes(parentKey);
             expect(Math.hypot(a.x - p.x, a.y - p.y) + a.size).toBeLessThanOrEqual(p.size + 1e-6);
         });
-        const eng = g.getNodeAttributes("/!eng:x");
+        const eng = g.getNodeAttributes("d.communities/!eng:x");
         expect(eng.container).toBe(true);
         // Unread counts add up into the space.
         expect(eng).toMatchObject({ unread: 3, highlight: 1 });
@@ -46,8 +48,8 @@ describe("views", () => {
     it("lays out a big account quickly", () => {
         const big = buildGraph(fakeClient(bigAccount(60, 50)));
         const start = performance.now();
-        const g = buildAllGraph(big, labels);
-        expect(g.order).toBe(60 * 2 + 60 * 50);
+        const g = all(big);
+        expect(g.order).toBe(1 + 60 * 2 + 60 * 50);
         expect(performance.now() - start).toBeLessThan(500);
     });
 });

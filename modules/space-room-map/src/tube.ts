@@ -11,8 +11,8 @@
  * a screen.
  */
 
-import { spaceStats, spaceTree, type RoomGraph, type RoomKind } from "./rooms";
-import type { GroupLabels } from "./views";
+import type { DistrictId, Districts, Group } from "./districts";
+import type { RoomGraph, RoomKind } from "./rooms";
 
 /** Between stations. */
 export const COL = 36;
@@ -29,6 +29,12 @@ const NAME_REACH = 84;
 /** Between blocks. */
 const GUTTER_X = 56;
 const GUTTER_Y = 40;
+/** Above each district's blocks: its name. */
+const DISTRICT_HEADER = 70;
+/** Between districts: wider than between blocks, so the regions read as such. */
+const DISTRICT_GAP = 200;
+/** People and bridged chats in their network's colour. */
+const NETWORK_COLOURS: Record<string, string> = { WhatsApp: "#25a35a", Telegram: "#229ed9", Signal: "#3a76f0", Discord: "#5865f2", Slack: "#9b4f96" };
 /** Interchanges further apart than this aren't linked. */
 const LINK_REACH = ROW * 1.5;
 /** Protection against huge accounts: SVG slows down long before WebGL does. */
@@ -58,6 +64,9 @@ export interface TubeLine {
     label: string;
     /** Index into the line palette; -1 for the groups. */
     colour: number;
+    /** A group's own colour (a network's), instead of the palette. */
+    hex?: string;
+    district: DistrictId;
     depth: number;
     parent?: string;
     /** From the branch point (or the start) to the end of the line, around every bend. */
@@ -75,7 +84,15 @@ export interface TubeLink {
     points: Array<[number, number]>;
 }
 
+export interface TubeDistrict extends Record<"x0" | "y0" | "x1" | "y1", number> {
+    id: DistrictId;
+    label: string;
+    rooms: number;
+}
+
 export interface TubeLayout {
+    /** The districts' regions, named at their top left. */
+    districts: TubeDistrict[];
     lines: TubeLine[];
     stations: TubeStation[];
     /** A room on several lines of the same block, linked. Across blocks, hovering shows the others. */
@@ -90,18 +107,36 @@ interface Block {
     height: number;
 }
 
-/** `aspect`: width / height of the view, which the packed blocks should roughly fill. */
-export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 1.6): TubeLayout {
-    const stats = spaceStats(graph);
-    const hasLine = new Set<string>();
-    /** No rooms anywhere inside: no line of its own. */
-    const isEmpty = (id: string): boolean => (stats.get(id)?.rooms ?? 0) === 0;
+/** `aspect`: width / height of the view, which each district's packed blocks should roughly fill. */
+export function buildTubeLayout(graph: RoomGraph, districts: Districts, names: Record<DistrictId, string>, aspect = 1.6): TubeLayout {
     let colour = 0;
     let total = 0;
+    const blocks: Block[] = [];
 
-    /** One top-level space (or group) and its branches, at the origin. */
-    const buildBlock = (id: string, label: string, members: string[]): Block => {
+    /**
+     * One group at the origin: a space and its branches, keeping only rooms whose home is this
+     * group; or, for any other group, one line of its rooms.
+     */
+    const buildBlock = (group: Group): Block => {
         const block: Block = { lines: [], stations: [], width: 0, height: 0 };
+        const hasLine = new Set<string>();
+        const keptMemo = new Map<string, boolean>();
+        /** A sub-space with any room of this group below it. */
+        const keptSpace = (id: string, seen = new Set<string>()): boolean => {
+            if (!group.spaceId) return false;
+            if (keptMemo.has(id)) return keptMemo.get(id)!;
+            if (seen.has(id)) return false;
+            seen.add(id);
+            const out = (graph.rooms.get(id)?.children ?? []).some((c) =>
+                graph.rooms.get(c)?.kind === "space" ? keptSpace(c, seen) : districts.home.get(c) === group.key,
+            );
+            keptMemo.set(id, out);
+            return out;
+        };
+        const keep = (id: string): boolean => {
+            if (!group.spaceId) return true;
+            return graph.rooms.get(id)?.kind === "space" ? keptSpace(id) : districts.home.get(id) === group.key;
+        };
         /** The lowest row so far. */
         let bottom = HEADER + NAMES - ROW;
         let maxX = 0;
@@ -114,19 +149,21 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
                 roomId: room?.id,
                 label,
                 colour: room ? colour++ : -1,
+                hex: room ? undefined : (NETWORK_COLOURS[group.label] ?? undefined),
+                district: group.district,
                 depth,
                 parent: branch?.parent,
                 points: [],
                 stations: [],
-                unread: room ? (stats.get(id)?.unread ?? 0) : 0,
-                highlight: room ? (stats.get(id)?.highlight ?? 0) : 0,
+                unread: 0,
+                highlight: 0,
             };
             block.lines.push(line);
 
-            const ids = members.filter((m) => graph.rooms.has(m)).slice(0, Math.max(0, MAX_STATIONS - total));
+            const ids = members.filter((m) => graph.rooms.has(m) && keep(m)).slice(0, Math.max(0, MAX_STATIONS - total));
             total += ids.length;
             // Sub-spaces that get a line of their own first: their branches drop down on the left.
-            const branching = (m: string): boolean => graph.rooms.get(m)!.kind === "space" && !hasLine.has(m) && !isEmpty(m);
+            const branching = (m: string): boolean => graph.rooms.get(m)!.kind === "space" && !hasLine.has(m) && keptSpace(m);
             const ordered = [...ids.filter(branching), ...ids.filter((m) => !branching(m))];
             const junctions = ids.filter(branching).length;
 
@@ -150,7 +187,6 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
                 rows.push({ y, cols });
                 for (const col of cols) {
                     const r = graph.rooms.get(ordered[i++])!;
-                    const s = stats.get(r.id);
                     const station: TubeStation = {
                         key: `${id}/${r.id}`,
                         roomId: r.id,
@@ -159,8 +195,8 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
                         y,
                         label: r.name,
                         kind: r.kind,
-                        unread: r.kind === "space" ? (s?.unread ?? 0) : r.unread,
-                        highlight: r.kind === "space" ? (s?.highlight ?? 0) : r.highlight,
+                        unread: r.kind === "space" ? 0 : r.unread,
+                        highlight: r.kind === "space" ? 0 : r.highlight,
                         invite: r.invite,
                         interchange: r.kind === "space",
                     };
@@ -185,14 +221,8 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
                 maxX = Math.max(maxX, edge);
             });
             line.points = points;
-            if (!room) {
-                line.unread = line.stations.reduce((n, s) => n + s.unread, 0);
-                line.highlight = line.stations.reduce((n, s) => n + s.highlight, 0);
-            }
 
-            const branches = line.stations
-                .filter((s) => s.kind === "space" && !hasLine.has(s.roomId) && !isEmpty(s.roomId) && s.y === rows[0].y)
-                .sort((a, b) => b.x - a.x);
+            const branches = line.stations.filter((s) => branching(s.roomId) && s.y === rows[0].y).sort((a, b) => b.x - a.x);
             for (const s of branches) {
                 // An earlier branch may have drawn it already (a sub-space in two places).
                 if (hasLine.has(s.roomId)) continue;
@@ -201,27 +231,63 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
             }
         };
 
-        addLine(id, label, members, 0);
+        const space = group.spaceId ? graph.rooms.get(group.spaceId) : undefined;
+        if (space) addLine(space.id, group.label, space.children, 0);
+        else addLine(group.key, group.label, group.rooms, 0);
         block.lines[0].anchor = [-COL / 2, 0];
         block.width = maxX + NAME_REACH;
         block.height = bottom + COL;
+
+        // Unread counts of this group's rooms only, through each line's branches; a sub-space's
+        // interchange shows its branch's.
+        // Each room counted once, even where it's on two lines.
+        const roomsBelow = new Map<string, Map<string, TubeStation>>();
+        for (const line of [...block.lines].reverse()) {
+            const rooms = new Map(line.stations.filter((s) => s.kind !== "space").map((s) => [s.roomId, s]));
+            const below = block.lines.filter((l) => l.parent === line.id);
+            for (const l of below) for (const [id, s] of roomsBelow.get(l.id)!) rooms.set(id, s);
+            roomsBelow.set(line.id, rooms);
+            line.unread = [...rooms.values()].reduce((n, s) => n + s.unread, 0);
+            line.highlight = [...rooms.values()].reduce((n, s) => n + s.highlight, 0);
+            for (const l of below) {
+                const junction = line.stations.find((s) => s.roomId === l.id);
+                if (junction) Object.assign(junction, { unread: l.unread, highlight: l.highlight });
+            }
+        }
         return block;
     };
 
-    const blocks: Block[] = [];
-    // Top-level spaces, then any space not drawn yet (cut off by the limit). Spaces without any
-    // rooms would be stubs: they're stations on a line of their own instead.
-    const empty: string[] = [];
-    for (const id of [...graph.topSpaces, ...spaceTree(graph).map((s) => s.id)]) {
-        if (hasLine.has(id) || empty.includes(id)) continue;
-        if (isEmpty(id) && graph.rooms.get(id)!.parents.length === 0) empty.push(id);
-        else if (!isEmpty(id)) blocks.push(buildBlock(id, graph.rooms.get(id)!.name, graph.rooms.get(id)!.children));
+    // Each district packed on its own, then the districts in two fixed columns: the same
+    // district is always in the same place.
+    const layout: TubeLayout = { lines: [], stations: [], links: [], districts: [], bounds: { x0: -COL, y0: 0, x1: COL, y1: COL } };
+    const columns: DistrictId[][] = [
+        ["communities", "people", "unsorted"],
+        ["events", "bridges", "archive"],
+    ];
+    let x = 0;
+    for (const column of columns) {
+        let y = 0;
+        let width = 0;
+        for (const id of column) {
+            const own = districts.groups.filter((g) => g.district === id && g.rooms.length).map(buildBlock);
+            if (!own.length) continue;
+            blocks.push(...own);
+            const part = pack(own, aspect);
+            const dy = y + DISTRICT_HEADER;
+            shift(part, x, dy);
+            layout.lines.push(...part.lines);
+            layout.stations.push(...part.stations);
+            const region = { x0: x, y0: y, x1: x + part.bounds.x1, y1: dy + part.bounds.y1 };
+            const rooms = districts.groups.filter((g) => g.district === id).reduce((n, g) => n + g.rooms.length, 0);
+            layout.districts.push({ id, label: names[id], rooms, ...region });
+            width = Math.max(width, part.bounds.x1);
+            y = region.y1 + DISTRICT_GAP;
+            layout.bounds.y1 = Math.max(layout.bounds.y1, region.y1);
+        }
+        x += width + DISTRICT_GAP;
+        layout.bounds.x1 = Math.max(layout.bounds.x1, x - DISTRICT_GAP);
     }
-    if (empty.length) blocks.push(buildBlock("empty", labels.empty ?? "", empty));
-    if (graph.orphans.length) blocks.push(buildBlock("rooms", labels.rooms, graph.orphans));
-    if (graph.dms.length) blocks.push(buildBlock("people", labels.people, graph.dms));
 
-    const layout = pack(blocks, aspect);
     // Rooms on several lines; linked where the lines are in the same block.
     const byRoom = new Map<string, TubeStation[]>();
     for (const s of layout.stations) byRoom.set(s.roomId, [...(byRoom.get(s.roomId) ?? []), s]);
@@ -239,11 +305,22 @@ export function buildTubeLayout(graph: RoomGraph, labels: GroupLabels, aspect = 
     return layout;
 }
 
+function shift(part: Pick<TubeLayout, "lines" | "stations">, dx: number, dy: number): void {
+    for (const l of part.lines) {
+        l.points = l.points.map(([x, y]) => [x + dx, y + dy]);
+        if (l.anchor) l.anchor = [l.anchor[0] + dx, l.anchor[1] + dy];
+    }
+    for (const s of part.stations) {
+        s.x += dx;
+        s.y += dy;
+    }
+}
+
 /**
  * Blocks into columns of a standard width, each where it ends up highest; a wide block spans
  * several columns and is placed first. The number of columns is the one that best fits `aspect`.
  */
-function pack(blocks: Block[], aspect: number): TubeLayout {
+function pack(blocks: Block[], aspect: number): Omit<TubeLayout, "districts"> {
     const colWidth = MAX_COL * COL + NAME_REACH + GUTTER_X;
     const span = (b: Block): number => Math.max(1, Math.ceil((b.width + GUTTER_X) / colWidth));
     const order = [...blocks.keys()].sort((a, b) => span(blocks[b]) - span(blocks[a]) || a - b);
@@ -275,7 +352,7 @@ function pack(blocks: Block[], aspect: number): TubeLayout {
         if (p.width / Math.max(1, p.height) > aspect * 2) break;
     }
 
-    const layout: TubeLayout = { lines: [], stations: [], links: [], bounds: { x0: -COL, y0: 0, x1: COL, y1: COL } };
+    const layout: Omit<TubeLayout, "districts"> = { lines: [], stations: [], links: [], bounds: { x0: -COL, y0: 0, x1: COL, y1: COL } };
     blocks.forEach((b, i) => {
         const [dx, dy] = best.at[i];
         for (const l of b.lines) {

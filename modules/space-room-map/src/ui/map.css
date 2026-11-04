@@ -339,6 +339,32 @@
     cursor: pointer;
 }
 
+/* District names: the coarsest level of orientation, readable at any zoom. */
+.srm-tube-district > text {
+    fill: var(--cpd-color-text-primary, #1b1d22);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    dominant-baseline: central;
+    paint-order: stroke;
+    stroke: var(--cpd-color-bg-canvas-default, #fff);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+}
+
+.srm-tube-district-count {
+    fill: var(--cpd-color-text-secondary, #656d77);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+/* The archive is there to be found, not to be looked at. */
+.srm-tube-line.is-archive,
+.srm-station.is-archive {
+    opacity: 0.45;
+}
+
 .srm-tube-pill > text {
     fill: #fff;
     font-size: 12px;
@@ -671,6 +697,18 @@
 
 .srm-item--unread .srm-item-name {
     font-weight: 700;
+}
+
+/* District rows head their groups in the list. */
+.srm-item--district {
+    margin-top: 8px;
+}
+
+.srm-item--district .srm-item-name {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .srm-item-path {
