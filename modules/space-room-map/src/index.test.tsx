@@ -136,6 +136,32 @@ describe("SpaceRoomMapModule", () => {
         expect(screen.getByRole("img", { name: "Map of your spaces and rooms" })).toBeTruthy();
     });
 
+    it("comes back to where the map was after opening a room", async () => {
+        await loadModule();
+        press("i", { ctrlKey: true });
+        await userEvent.click(screen.getByRole("tab", { name: "Tube map" }));
+        const world = () => screen.getByRole("img", { name: "Tube map of your spaces and rooms" }).querySelector(":scope > g")!.getAttribute("transform");
+        const first = world();
+        const svg = screen.getByRole("img", { name: "Tube map of your spaces and rooms" });
+        svg.getBoundingClientRect = () => ({ left: 0, top: 0, width: 800, height: 600 }) as DOMRect;
+        act(() => {
+            svg.dispatchEvent(new WheelEvent("wheel", { deltaY: -300, clientX: 100, clientY: 100, cancelable: true }));
+        });
+        const zoomed = world();
+        expect(zoomed).not.toBe(first);
+
+        await userEvent.keyboard("Web{Enter}");
+        expect(screen.queryByRole("dialog")).toBeNull();
+        press("i", { ctrlKey: true });
+        expect(world()).toBe(zoomed);
+    });
+
+    it("shows the module's version at the bottom", async () => {
+        await loadModule();
+        press("i", { ctrlKey: true });
+        expect(screen.getByText(/^v\d+\.\d+\.\d+/)).toBeTruthy();
+    });
+
     it("leaves Ctrl+I to the composer when text is selected", async () => {
         await loadModule();
         const input = document.createElement("textarea");

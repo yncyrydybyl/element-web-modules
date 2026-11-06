@@ -5,7 +5,7 @@ Press <kbd>Ctrl</kbd>+<kbd>I</kbd> (<kbd>⌘</kbd>+<kbd>I</kbd> on macOS) to get
 | Key / action | Does |
 | --- | --- |
 | <kbd>Ctrl</kbd>+<kbd>I</kbd> | Open / close. In the composer, with text selected, Ctrl+I still makes the text italic |
-| **Circles** / **Tube map** tabs | Switch between the two maps; the choice is remembered on this device |
+| **Circles** / **Tube map** tabs | Switch between the two maps; the choice is remembered on this device, and each map reopens where you left it (until Element reloads) |
 | Point at a space in the list, or <kbd>↑</kbd> <kbd>↓</kbd> | The map flies to that space and outlines it. **All spaces** at the top zooms back out to everything. Below it, each space with its sub-spaces indented, how many rooms it has (through its sub-spaces) and their unread messages, then the rooms outside any space and your DMs |
 | <kbd>Enter</kbd> or click in the list | Open the space's home (or the room, for a search result) |
 | Type | Search room and space names and aliases; the list shows the results, matches light up on the map and the camera flies to the selected one |

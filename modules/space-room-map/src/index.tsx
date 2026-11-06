@@ -6,6 +6,7 @@ import { AvatarCache } from "./avatars";
 import { translations } from "./i18n";
 import { buildFlatGraph, buildGraph, currentRoomId, getSdkClient, type RoomGraph, type SdkClient } from "./rooms";
 import { comboLabel, matchesCombo, parseCombo, type Combo } from "./trigger";
+import type { SavedCamera } from "./ui/camera";
 import { MAP_VIEWS, MapOverlay, type MapView, type ModuleTranslate } from "./ui/MapOverlay";
 import css from "./ui/map.css?inline";
 import { UsageTracker } from "./usage";
@@ -48,6 +49,11 @@ export class SpaceRoomMapModule implements Module {
     private usage!: UsageTracker;
     private container?: HTMLElement;
     private root?: Root;
+    /**
+     * Where each map's camera was, so after opening a room the map comes back the same. Kept for
+     * this page only: after a reload rooms may have moved.
+     */
+    private readonly cameras: Partial<Record<MapView, SavedCamera>> = {};
     private restoreFocus?: HTMLElement | null;
     /** Kept between openings, so avatars only load once per client. */
     private avatars?: { client: SdkClient; cache: AvatarCache };
@@ -145,6 +151,8 @@ export class SpaceRoomMapModule implements Module {
                 t={this.t}
                 onLegendToggle={(open) => writeStored(LEGEND_STORAGE_KEY, open ? "open" : "closed")}
                 onViewChange={(view) => writeStored(VIEW_STORAGE_KEY, view)}
+                cameras={this.cameras}
+                onCameraChange={(view, camera) => (this.cameras[view] = camera)}
                 onOpen={(id) => this.openRoom(id)}
                 onClose={() => this.close()}
             />

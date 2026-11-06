@@ -11,7 +11,7 @@ import type { Settings } from "sigma/settings";
 
 import type { DistrictId } from "../districts";
 import type { MapGraph, NodeAttrs } from "../views";
-import { flyTo, prefersReducedMotion, type Flight } from "./camera";
+import { flyTo, prefersReducedMotion, type Flight, type SavedCamera } from "./camera";
 import { mix, premultiplied, withAlpha } from "./colour";
 import { buildPrograms } from "./programs";
 import { readTheme, type Theme } from "./theme";
@@ -46,6 +46,9 @@ export interface SigmaMapProps {
     avatarVersion?: number;
     /** Content of the tooltip shown while the pointer is over a node. */
     tooltip?(node: NodeAttrs): ReactNode;
+    /** Where the camera starts; the whole map when missing. Read once. */
+    camera?: SavedCamera;
+    onCameraChange?(camera: SavedCamera): void;
     /** Drawn over the map (the legend). */
     children?: ReactNode;
 }
@@ -105,6 +108,8 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
         }
         sigmaRef.current = sigma;
         fitCircles(sigma);
+        if (props.camera) sigma.getCamera().setState(props.camera);
+        sigma.getCamera().on("updated", ({ x, y, ratio }) => propsRef.current.onCameraChange?.({ x, y, ratio }));
 
         // Show the map once the first avatars are textures, so they don't pop in a moment later.
         let revealTimer: ReturnType<typeof setTimeout> | undefined;

@@ -11,6 +11,13 @@ interface Camera {
     setState(state: Partial<CameraState>): void;
 }
 
+/** Where a map's camera was, so reopening the map shows the same place. */
+export interface SavedCamera {
+    x: number;
+    y: number;
+    ratio: number;
+}
+
 export interface Flight {
     cancel(): void;
 }

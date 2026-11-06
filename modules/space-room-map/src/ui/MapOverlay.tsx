@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState, type JSX, type KeyboardEvent as ReactKeyboardEvent } from "react";
 
+import { version } from "../../package.json";
 import type { AvatarCache } from "../avatars";
 import { buildDistricts, DISTRICTS, type DistrictId, type GroupNames } from "../districts";
 import { P } from "../i18n";
@@ -7,6 +8,7 @@ import { breadcrumb, type RoomGraph, type RoomInfo } from "../rooms";
 import { search } from "../search";
 import { buildTubeLayout } from "../tube";
 import { buildAllGraph, districtNodeKey, groupNodeKey, roomScore, type ScoreOptions, type TipNode } from "../views";
+import type { SavedCamera } from "./camera";
 import { colourIndex, SigmaMap, type FocusTarget } from "./SigmaMap";
 import { TubeMap } from "./TubeMap";
 
@@ -22,6 +24,8 @@ export interface MapOverlayProps {
     current?: string;
     legendOpen: boolean;
     view: MapView;
+    /** Where each map's camera was when the overlay last closed. */
+    cameras?: Partial<Record<MapView, SavedCamera>>;
     avatars?: Pick<AvatarCache, "get" | "colour" | "request">;
     /** Changes when more avatars have loaded. */
     avatarVersion?: number;
@@ -30,6 +34,7 @@ export interface MapOverlayProps {
     t: ModuleTranslate;
     onLegendToggle(open: boolean): void;
     onViewChange(view: MapView): void;
+    onCameraChange?(view: MapView, camera: SavedCamera): void;
     onOpen(roomId: string): void;
     onClose(): void;
 }
@@ -303,6 +308,8 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                             label={t(`${P}tube_label`)}
                             onActivate={(id) => props.onOpen(id)}
                             tooltip={tooltip}
+                            camera={props.cameras?.tube}
+                            onCameraChange={(c) => props.onCameraChange?.("tube", c)}
                         >
                             <Legend open={legendOpen} onToggle={toggleLegend} t={t} view="tube" />
                         </TubeMap>
@@ -319,6 +326,8 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                             avatarColour={props.avatars?.colour.bind(props.avatars)}
                             avatarVersion={props.avatarVersion}
                             tooltip={tooltip}
+                            camera={props.cameras?.circles}
+                            onCameraChange={(c) => props.onCameraChange?.("circles", c)}
                         >
                             <Legend open={legendOpen} onToggle={toggleLegend} t={t} view="circles" />
                         </SigmaMap>
@@ -370,6 +379,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                 <footer className="srm-footer">
                     <span>{t(`${P}hint`)}</span>
                     <kbd className="srm-kbd">{props.triggerLabel}</kbd>
+                    <span className="srm-version">v{version}</span>
                 </footer>
             </div>
         </div>

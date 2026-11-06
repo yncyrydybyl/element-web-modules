@@ -18,7 +18,7 @@ import {
 
 import { COL, ROW, roundedPath, type TubeLayout, type TubeLine, type TubeStation } from "../tube";
 import type { TipNode } from "../views";
-import { flyTo, type Flight } from "./camera";
+import { flyTo, type Flight, type SavedCamera } from "./camera";
 import type { FocusTarget } from "./SigmaMap";
 import { placeTooltip } from "./tooltip";
 
@@ -35,6 +35,9 @@ export interface TubeMapProps {
     label: string;
     onActivate(roomId: string): void;
     tooltip?(node: TipNode): ReactNode;
+    /** Where the camera starts (centre and width in layout units); the whole map when missing. Read once. */
+    camera?: SavedCamera;
+    onCameraChange?(camera: SavedCamera): void;
     /** Drawn over the map (the legend). */
     children?: ReactNode;
 }
@@ -125,6 +128,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         const tx = W / 2 - cx * k;
         const ty = H / 2 - cy * k;
         world.setAttribute("transform", `translate(${tx} ${ty}) scale(${k})`);
+        props.onCameraChange?.({ x: cx, y: cy, ratio: w });
         // Station names are unreadable when far out; CSS hides them, keeping the unread ones longer.
         svg.dataset.zoom = k < 0.45 ? "far" : k < 0.8 ? "mid" : "near";
 
@@ -214,9 +218,12 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         return fit(x0 - COL, y0 - ROW * 1.2, x1 + ROW, y1 + COL, true);
     };
 
-    // The first view shows everything; resizing keeps the centre and the scale.
+    // The first view shows everything, or where the map was last; resizing keeps the centre and the scale.
+    const restore = useRef(props.camera);
     useLayoutEffect(() => {
-        view.current = overview();
+        const saved = restore.current;
+        restore.current = undefined;
+        view.current = saved ? { cx: saved.x, cy: saved.y, w: saved.ratio } : overview();
         apply();
         if (typeof ResizeObserver !== "function") return;
         const observer = new ResizeObserver(() => apply());

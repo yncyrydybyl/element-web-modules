@@ -748,6 +748,12 @@
     flex: 1;
 }
 
+.srm-footer > .srm-version {
+    flex: none;
+    opacity: 0.7;
+    font-variant-numeric: tabular-nums;
+}
+
 
 .srm-kbd {
     padding: 1px 6px;
