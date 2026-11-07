@@ -6,6 +6,7 @@ Runtime modules for [Element Web](https://github.com/element-hq/element-web) and
 | --- | --- | --- |
 | [keyboard-shortcuts](modules/keyboard-shortcuts) | Press <kbd>?</kbd> for a Gmail-style overview of all of Element's keyboard shortcuts, and add your own (synced via account data). | AGPL-3.0-only |
 | [space-room-map](modules/space-room-map) | Press <kbd>Ctrl</kbd>+<kbd>I</kbd> for a zoomable 2D map of your spaces and rooms, with your spaces listed beside it: point at one and the map flies there. | AGPL-3.0-only |
+| [people-map](modules/people-map) | Press <kbd>Alt</kbd>+<kbd>P</kbd> for a map of the people you share rooms with: grouped by where you know them from, the closest ones nearest you, with a card per person. | AGPL-3.0-only |
 | [marcade](modules/marcade) | An **Apps** button in every room header that opens (or adds) the [Marcade Store](https://marcade.store) widget. | Apache-2.0 |
 
 Each module is a standalone package with its own README, build, tests and license. There is no shared workspace: `cd modules/<name>` and use that module's package manager (pnpm for keyboard-shortcuts and space-room-map, npm for marcade).

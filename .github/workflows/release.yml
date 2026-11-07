@@ -22,6 +22,7 @@ on:
         options:
           - keyboard-shortcuts
           - space-room-map
+          - people-map
           - marcade
 
 permissions:
