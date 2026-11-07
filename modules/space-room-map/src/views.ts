@@ -23,6 +23,8 @@ export interface NodeAttrs {
     /** Drawn as a big circle with its children inside. */
     container: boolean;
     depth: number;
+    /** The district the node lies in. */
+    district: DistrictId;
     zIndex: number;
     unread: number;
     highlight: number;
@@ -136,6 +138,7 @@ export function buildAllGraph(graph: RoomGraph, districts: Districts, names: Rec
             kind: n.data.kind,
             container,
             depth: n.depth,
+            district: n.data.key.split("/")[0].slice(2) as DistrictId,
             zIndex: n.depth,
             // On a space circle it tints the fill rather than being drawn.
             avatar: room?.avatar,
@@ -143,6 +146,36 @@ export function buildAllGraph(graph: RoomGraph, districts: Districts, names: Rec
         });
     });
     return g;
+}
+
+/**
+ * Takes new unread counts from `graph` into the map without laying it out again. Returns the
+ * rooms that got something new.
+ */
+export function refreshCounts(map: MapGraph, graph: RoomGraph): Set<string> {
+    const totals = new Map<string, { unread: number; highlight: number }>();
+    const grown = new Set<string>();
+    map.forEachNode((key, a) => {
+        if (a.container) return;
+        const room = a.roomId ? graph.rooms.get(a.roomId) : undefined;
+        const unread = room?.unread ?? 0;
+        const highlight = room?.highlight ?? 0;
+        if (a.roomId && (unread > a.unread || highlight > a.highlight)) grown.add(a.roomId);
+        // Containers add up their rooms, as when the map is built.
+        for (let k = key.slice(0, key.lastIndexOf("/")); k; k = k.slice(0, Math.max(0, k.lastIndexOf("/")))) {
+            const t = totals.get(k) ?? { unread: 0, highlight: 0 };
+            t.unread += unread;
+            t.highlight += highlight;
+            totals.set(k, t);
+        }
+        if (unread !== a.unread || highlight !== a.highlight) map.mergeNodeAttributes(key, { unread, highlight });
+    });
+    map.forEachNode((key, a) => {
+        if (!a.container) return;
+        const t = totals.get(key) ?? { unread: 0, highlight: 0 };
+        if (t.unread !== a.unread || t.highlight !== a.highlight) map.mergeNodeAttributes(key, t);
+    });
+    return grown;
 }
 
 export interface ScoreOptions {

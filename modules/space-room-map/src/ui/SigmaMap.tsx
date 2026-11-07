@@ -14,7 +14,8 @@ import type { MapGraph, NodeAttrs } from "../views";
 import { flyTo, prefersReducedMotion, type Flight, type SavedCamera } from "./camera";
 import { mix, premultiplied, withAlpha } from "./colour";
 import { buildPrograms } from "./programs";
-import { readTheme, type Theme } from "./theme";
+import type { ColourMode } from "../settings";
+import { districtColour, readTheme, type Theme } from "./theme";
 import { placeTooltip } from "./tooltip";
 
 /** Where the camera should go: a room or space by id, a node or line by key (a district, a group), or everything. */
@@ -25,6 +26,10 @@ export interface FocusTarget {
     line?: string;
     district?: DistrictId;
     overview?: boolean;
+    /** Right up to a room, as when walking into it. */
+    close?: boolean;
+    /** Straight back to a saved camera, without a flight. */
+    camera?: SavedCamera;
     nonce: number;
 }
 
@@ -48,6 +53,17 @@ export interface SigmaMapProps {
     tooltip?(node: NodeAttrs): ReactNode;
     /** Where the camera starts; the whole map when missing. Read once. */
     camera?: SavedCamera;
+    /** Without a saved camera: start on this room and zoom out from it. Read once. */
+    introRoom?: string;
+    colours: ColourMode;
+    /** Zooms on opening and leaving (the setting, unless the system asks for less motion). */
+    animate: boolean;
+    /** False while the map is kept ready but hidden: nothing is drawn then. */
+    visible: boolean;
+    /** Changes when unread counts in `graph` were updated in place. */
+    countsVersion?: number;
+    /** Rooms that just got something new: they light up once. */
+    flash?: { rooms: Set<string>; nonce: number };
     onCameraChange?(camera: SavedCamera): void;
     /** Drawn over the map (the legend). */
     children?: ReactNode;
@@ -65,6 +81,10 @@ const OVERVIEW = { x: 0.5, y: 0.5, ratio: 1 };
 const PULSE_MS = 1600;
 /** Rooms that mention you stay findable at any zoom: their beacon is never smaller than this. */
 const BEACON_MIN_RADIUS = 6;
+/** A room with a new message lights up this long. */
+const FLASH_MS = 1400;
+/** On opening, how long the map shows your room before zooming out. */
+const INTRO_PAUSE_MS = 120;
 
 export function SigmaMap(props: SigmaMapProps): JSX.Element {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -78,6 +98,10 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
     const pointer = useRef({ x: 0, y: 0 });
     const [hovered, setHovered] = useState<NodeAttrs | null>(null);
     const [ready, setReady] = useState(false);
+    const anyUnreadRef = useRef(false);
+    /** Room id → when it started lighting up. */
+    const flashes = useRef(new Map<string, number>());
+    const loop = useRef<{ refresh(): void; wake(): void } | null>(null);
 
     const fly = (target: { x: number; y: number; ratio: number }): void => {
         const sigma = sigmaRef.current;
@@ -92,12 +116,10 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
         let sigma: Sigma<NodeAttrs> | undefined;
         let programs: ReturnType<typeof buildPrograms>;
         try {
-            const { drawLabel, drawHover } = labelDrawers(theme);
+            const { drawLabel, drawHover } = labelDrawers(theme, () => propsRef.current.colours);
             programs = buildPrograms(drawLabel, drawHover);
-            // Read rooms only pale when something else is unread.
-            const anyUnread = props.graph.someNode((_, a) => !a.container && (a.unread > 0 || a.highlight > 0));
             sigma = new Sigma(props.graph, container, {
-                ...settings(theme, propsRef, anyUnread),
+                ...settings(theme, propsRef, anyUnreadRef),
                 ...programs.settings,
             } as Partial<Settings<NodeAttrs>>);
         } catch (e) {
@@ -108,7 +130,10 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
         }
         sigmaRef.current = sigma;
         fitCircles(sigma);
+        const introNode = !props.camera && props.animate && props.introRoom ? nodeOfRoom(sigma, props.introRoom) : undefined;
         if (props.camera) sigma.getCamera().setState(props.camera);
+        // Zoomed in on the room you're in, then out to everything once the map shows.
+        else if (introNode) sigma.getCamera().setState(focusState(sigma, introNode));
         sigma.getCamera().on("updated", ({ x, y, ratio }) => propsRef.current.onCameraChange?.({ x, y, ratio }));
 
         // Show the map once the first avatars are textures, so they don't pop in a moment later.
@@ -117,6 +142,7 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
             clearTimeout(revealTimer);
             programs.textures?.off("newTexture", onTexture);
             setReady(true);
+            if (introNode) setTimeout(() => fly(OVERVIEW), INTRO_PAUSE_MS);
         };
         const onTexture = (): void => void requestAnimationFrame(reveal);
         const hasAvatars = sigma.getGraph().someNode((_, a) => Boolean(propsRef.current.avatarUrl?.(a.avatar)));
@@ -129,10 +155,13 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
 
         // Rooms that mention you pulse, with their count, on a canvas of their own: redrawing
         // sigma's thousands of labels every frame would be too slow.
-        const mentions = sigma.getGraph().filterNodes((_, a) => !a.container && a.highlight > 0);
-        const animate = mentions.length > 0 && !prefersReducedMotion() && !theme.highContrast;
+        const pulse = !prefersReducedMotion() && !theme.highContrast;
+        const findMentions = (): string[] => sigma.getGraph().filterNodes((_, a) => !a.container && a.highlight > 0);
+        let mentions = findMentions();
+        const animating = (): boolean => propsRef.current.visible && ((pulse && mentions.length > 0) || flashes.current.size > 0);
         let beaconFrame = 0;
         const drawBeacons = (): void => {
+            beaconFrame = 0;
             const canvas = beaconRef.current;
             const ctx = canvas?.getContext("2d");
             if (!canvas || !ctx) return;
@@ -145,7 +174,8 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
             }
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             ctx.clearRect(0, 0, w, h);
-            const phase = animate ? (performance.now() % PULSE_MS) / PULSE_MS : 0;
+            const now = performance.now();
+            const phase = pulse ? (now % PULSE_MS) / PULSE_MS : 0;
             const { matches } = propsRef.current;
             for (const key of mentions) {
                 const a = sigma.getGraph().getNodeAttributes(key);
@@ -156,20 +186,61 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
                 if (p.x < -r - 40 || p.y < -r - 40 || p.x > w + r + 40 || p.y > h + r + 40) continue;
                 ctx.lineWidth = 2.5;
                 ctx.strokeStyle = theme.highlight;
-                ctx.globalAlpha = animate ? (1 - phase) * 0.8 : 0.8;
+                ctx.globalAlpha = pulse ? (1 - phase) * 0.8 : 0.8;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, r + 3 + phase * 14, 0, Math.PI * 2);
                 ctx.stroke();
                 ctx.globalAlpha = 1;
                 drawBadge(ctx, p.x + r * 0.72, p.y - r * 0.72, a.highlight, theme.highlight, theme);
             }
-            if (animate) beaconFrame = requestAnimationFrame(drawBeacons);
+            // New messages: one ring that grows and fades, around every place the room is shown.
+            for (const [roomId, start] of flashes.current) {
+                const t = (now - start) / FLASH_MS;
+                if (t >= 1) {
+                    flashes.current.delete(roomId);
+                    continue;
+                }
+                for (const key of roomNodes.get(roomId) ?? []) {
+                    const a = sigma.getGraph().getNodeAttributes(key);
+                    const d = sigma.getNodeDisplayData(key);
+                    if (!d) continue;
+                    const p = sigma.framedGraphToViewport(d);
+                    const r = Math.max(BEACON_MIN_RADIUS, sigma.scaleSize(d.size));
+                    if (p.x < -r - 60 || p.y < -r - 60 || p.x > w + r + 60 || p.y > h + r + 60) continue;
+                    const ease = 1 - Math.pow(1 - t, 3);
+                    ctx.lineWidth = 3;
+                    ctx.strokeStyle = a.highlight ? theme.highlight : theme.unread;
+                    ctx.globalAlpha = (1 - t) * 0.9;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, r + 2 + ease * 28, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.globalAlpha = 1;
+                }
+            }
+            if (animating()) beaconFrame = requestAnimationFrame(drawBeacons);
         };
-        if (animate) beaconFrame = requestAnimationFrame(drawBeacons);
+        const roomNodes = new Map<string, string[]>();
+        sigma.getGraph().forEachNode((key, a) => {
+            if (a.roomId && !a.container) roomNodes.set(a.roomId, [...(roomNodes.get(a.roomId) ?? []), key]);
+        });
+        loop.current = {
+            // Counts changed in the graph: mentions may have come or gone.
+            refresh: () => {
+                mentions = findMentions();
+                anyUnreadRef.current = hasUnread(sigma.getGraph());
+                loop.current?.wake();
+            },
+            wake: () => {
+                if (!beaconFrame && animating()) beaconFrame = requestAnimationFrame(drawBeacons);
+                else if (!beaconFrame) drawBeacons();
+            },
+        };
+        anyUnreadRef.current = hasUnread(sigma.getGraph());
+        if (animating()) beaconFrame = requestAnimationFrame(drawBeacons);
 
         // The dot grid moves and scales with the camera, like a surface the map lies on.
         sigma.on("afterRender", () => {
-            if (mentions.length && !animate) drawBeacons();
+            if (!beaconFrame && (mentions.length || flashes.current.size)) drawBeacons();
             const origin = sigma.framedGraphToViewport({ x: 0, y: 0 });
             let size = GRID / sigma.getCamera().ratio;
             while (size >= GRID * 2) size /= 2;
@@ -232,27 +303,48 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
             container.removeEventListener("touchstart", stopFlight);
             sigma.kill();
             sigmaRef.current = null;
+            loop.current = null;
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // Search, selection, current room and avatars only change how nodes look.
+    // Search, selection, current room, avatars and colours only change how nodes look.
     useEffect(() => {
         sigmaRef.current?.refresh({ skipIndexation: true });
-    }, [props.matches, props.selected, props.current, props.avatarVersion]);
+    }, [props.matches, props.selected, props.current, props.avatarVersion, props.colours]);
+
+    useEffect(() => {
+        if (props.countsVersion) loop.current?.refresh();
+    }, [props.countsVersion]);
+
+    useEffect(() => {
+        if (!props.flash) return;
+        const now = performance.now();
+        for (const id of props.flash.rooms) flashes.current.set(id, now);
+        loop.current?.wake();
+    }, [props.flash]);
+
+    // Shown again after being kept hidden: the window may have changed size meanwhile.
+    useEffect(() => {
+        const sigma = sigmaRef.current;
+        if (!props.visible || !sigma) return;
+        sigma.resize();
+        sigma.refresh({ skipIndexation: true });
+        loop.current?.wake();
+    }, [props.visible]);
 
     useEffect(() => {
         const sigma = sigmaRef.current;
         const focus = props.focus;
         if (!sigma || !focus) return;
-        if (focus.overview) return fly(OVERVIEW);
-        let node = focus.nodeKey && sigma.getGraph().hasNode(focus.nodeKey) ? focus.nodeKey : undefined;
-        if (!node && focus.roomId) {
-            sigma.getGraph().forEachNode((key, a) => {
-                if (!node && a.roomId === focus.roomId) node = key;
-            });
+        if (focus.camera) {
+            flightRef.current?.cancel();
+            sigma.getCamera().setState(focus.camera);
+            return;
         }
-        if (node) fly(focusState(sigma, node));
+        if (focus.overview) return fly(OVERVIEW);
+        const node = focus.nodeKey && sigma.getGraph().hasNode(focus.nodeKey) ? focus.nodeKey : focus.roomId ? nodeOfRoom(sigma, focus.roomId) : undefined;
+        if (node) fly(focus.close ? closeState(sigma, node) : focusState(sigma, node));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.focus]);
 
@@ -278,6 +370,27 @@ export function SigmaMap(props: SigmaMapProps): JSX.Element {
             {props.children}
         </div>
     );
+}
+
+function nodeOfRoom(sigma: Sigma<NodeAttrs>, roomId: string): string | undefined {
+    let node: string | undefined;
+    sigma.getGraph().forEachNode((key, a) => {
+        if (!node && a.roomId === roomId) node = key;
+    });
+    return node;
+}
+
+function hasUnread(graph: MapGraph): boolean {
+    return graph.someNode((_, a) => !a.container && (a.unread > 0 || a.highlight > 0));
+}
+
+/** Right up to a node: it fills most of the view. */
+function closeState(sigma: Sigma<NodeAttrs>, node: string): { x: number; y: number; ratio: number } {
+    const display = sigma.getNodeDisplayData(node)!;
+    const { x, y } = sigma.getCustomBBox() ?? sigma.getBBox();
+    const extent = Math.max(x[1] - x[0], y[1] - y[0]);
+    const size = sigma.getGraph().getNodeAttribute(node, "size");
+    return { x: display.x, y: display.y, ratio: Math.max(0.0005, ((2 * size) / extent) * 1.6) };
 }
 
 /** Camera state that shows a node: a space fills the view; a room shows with its space around it. */
@@ -318,7 +431,7 @@ function fitCircles(sigma: Sigma<NodeAttrs>): void {
     if (x0 < x1) sigma.setCustomBBox({ x: [x0, x1], y: [y0, y1] });
 }
 
-function settings(theme: Theme, propsRef: { current: SigmaMapProps }, anyUnread: boolean): Partial<Settings<NodeAttrs>> {
+function settings(theme: Theme, propsRef: { current: SigmaMapProps }, anyUnreadRef: { current: boolean }): Partial<Settings<NodeAttrs>> {
     const veil = premultiplied(theme.bg, 0.6);
     return {
         allowInvalidContainer: true,
@@ -337,15 +450,23 @@ function settings(theme: Theme, propsRef: { current: SigmaMapProps }, anyUnread:
         minCameraRatio: 0.0005,
         maxCameraRatio: 3,
         nodeReducer: (_, a) => {
-            const { matches, selected, current, avatarUrl, avatarColour } = propsRef.current;
+            const { matches, selected, current, avatarUrl, avatarColour, colours } = propsRef.current;
+            const anyUnread = anyUnreadRef.current;
+            const byDistrict = colours === "district";
             const lit = !matches || (a.roomId !== undefined && matches.has(a.roomId));
             // Every name is drawn, fading in with size: no labels popping in and out while zooming.
             const out: Record<string, unknown> = { ...a, forceLabel: true };
 
             if (a.container) {
                 // Tinted with the space's avatar (or its own colour), lighter at every other depth.
-                const tint = a.kind === "group" ? theme.hover : (avatarColour?.(a.avatar) ?? theme.decorative[colourIndex(a.roomId ?? a.label)].fg);
-                const strength = theme.highContrast ? 0 : a.depth % 2 ? 0.07 : 0.13;
+                // By district: the district's colour all the way in, so you know where you are.
+                const tint = byDistrict
+                    ? districtColour(theme, a.district).fg
+                    : a.kind === "group"
+                      ? theme.hover
+                      : (avatarColour?.(a.avatar) ?? theme.decorative[colourIndex(a.roomId ?? a.label)].fg);
+                // District colours carry meaning, so they're a little stronger than avatar tints.
+                const strength = theme.highContrast ? 0 : byDistrict ? (a.depth % 2 ? 0.12 : 0.2) : a.depth % 2 ? 0.07 : 0.13;
                 Object.assign(out, {
                     type: "container",
                     color: mix(tint, a.depth % 2 ? theme.spaceFill : theme.groupFill, strength),
@@ -357,7 +478,7 @@ function settings(theme: Theme, propsRef: { current: SigmaMapProps }, anyUnread:
             }
 
             out.type = "room";
-            out.color = lit ? theme.decorative[colourIndex(a.roomId ?? a.label)].bg : theme.dim;
+            out.color = !lit ? theme.dim : byDistrict ? districtColour(theme, a.district).bg : theme.decorative[colourIndex(a.roomId ?? a.label)].bg;
             // Faded nodes are plain discs; a photo would stand out more than the search matches.
             if (lit) out.image = avatarUrl?.(a.avatar);
             else out.label = "";
@@ -385,7 +506,7 @@ function settings(theme: Theme, propsRef: { current: SigmaMapProps }, anyUnread:
 }
 
 /** Names fade in as their circle grows, instead of popping. */
-function labelDrawers(theme: Theme): Record<"drawLabel" | "drawHover", NodeLabelDrawingFunction<NodeAttrs>> {
+function labelDrawers(theme: Theme, colours: () => ColourMode): Record<"drawLabel" | "drawHover", NodeLabelDrawingFunction<NodeAttrs>> {
     const fade = (v: number, from: number, to: number): number => Math.min(1, Math.max(0, (v - from) / (to - from)));
     const drawLabel: NodeLabelDrawingFunction<NodeAttrs> = (ctx, data, s) => {
         if (!data.label) return;
@@ -435,7 +556,12 @@ function labelDrawers(theme: Theme): Record<"drawLabel" | "drawHover", NodeLabel
             ctx.globalAlpha = fade(data.size, 16, 28) * (attrs.quiet ? 0.55 : 1);
             if (ctx.globalAlpha > 0) {
                 ctx.font = `600 ${Math.min(14, Math.max(10, data.size / 3))}px ${s.labelFont}`;
-                ctx.fillStyle = attrs.roomId ? theme.decorative[colourIndex(attrs.roomId)].fg : theme.text;
+                ctx.fillStyle =
+                    colours() === "district" && attrs.district
+                        ? districtColour(theme, attrs.district).fg
+                        : attrs.roomId
+                          ? theme.decorative[colourIndex(attrs.roomId)].fg
+                          : theme.text;
                 ctx.fillText(truncate(ctx, data.label, data.size * 1.8), data.x, data.y);
             }
         }

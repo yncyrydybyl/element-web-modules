@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { buildDistricts } from "./districts";
 import { buildGraph, type RoomGraph } from "./rooms";
 import { fakeClient } from "./tests/fakeClient";
-import { buildTubeLayout, ROW, roundedPath } from "./tube";
+import { buildTubeLayout, refreshTubeCounts, ROW, roundedPath } from "./tube";
 
 const names = { communities: "Communities", events: "Events", people: "People", bridges: "Bridges", unsorted: "Unsorted", archive: "Archive" };
 const tube = (graph: RoomGraph, aspect?: number) => buildTubeLayout(graph, buildDistricts(graph), names, aspect);
@@ -83,5 +83,27 @@ describe("tube map", () => {
 
     it("rounds the corners of a path", () => {
         expect(roundedPath([[0, 0], [0, 100], [100, 100]], 10)).toBe("M0 0L0 90Q0 100 10 100L100 100");
+    });
+
+    it("takes new unread counts in place, adding them up along the lines", () => {
+        const rooms = [
+            { id: "!eng:x", name: "Engineering", space: true, children: ["!web:x", "!infra:x"] },
+            { id: "!infra:x", name: "Infra", space: true, children: ["!k8s:x"] },
+            { id: "!web:x", name: "Web", unread: 2, members: 5 },
+            { id: "!k8s:x", name: "K8s", members: 5 },
+        ];
+        const g = buildGraph(fakeClient(rooms));
+        const l = tube(g);
+        const before = l.stations.map((s) => [s.x, s.y]);
+        g.rooms.get("!k8s:x")!.unread = 3;
+        g.rooms.get("!k8s:x")!.highlight = 1;
+        g.rooms.get("!web:x")!.unread = 0;
+        expect([...refreshTubeCounts(l, g)]).toEqual(["!k8s:x"]);
+        const find = (id: string) => l.lines.find((x) => x.id === id)!;
+        expect(find("!infra:x")).toMatchObject({ unread: 3, highlight: 1 });
+        expect(find("!eng:x")).toMatchObject({ unread: 3, highlight: 1 });
+        // The sub-space's interchange shows its branch's count; nothing moved.
+        expect(l.stations.find((s) => s.lineId === "!eng:x" && s.roomId === "!infra:x")).toMatchObject({ unread: 3 });
+        expect(l.stations.map((s) => [s.x, s.y])).toEqual(before);
     });
 });

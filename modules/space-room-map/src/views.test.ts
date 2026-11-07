@@ -4,7 +4,7 @@ import { buildDistricts } from "./districts";
 import { buildGraph, type RoomGraph } from "./rooms";
 import { search } from "./search";
 import { bigAccount, fakeClient } from "./tests/fakeClient";
-import { buildAllGraph, roomScore } from "./views";
+import { buildAllGraph, refreshCounts, roomScore } from "./views";
 
 const names = { communities: "Communities", events: "Events", people: "People", bridges: "Bridges", unsorted: "Unsorted", archive: "Archive" };
 const all = (graph: RoomGraph) => buildAllGraph(graph, buildDistricts(graph), names);
@@ -36,6 +36,29 @@ describe("views", () => {
         expect(eng.container).toBe(true);
         // Unread counts add up into the space.
         expect(eng).toMatchObject({ unread: 3, highlight: 1 });
+    });
+
+    it("knows each node's district, and takes new counts in place", () => {
+        const g2 = buildGraph(
+            fakeClient([
+                { id: "!eng:x", name: "Engineering", space: true, children: ["!web:x", "!ops:x"] },
+                { id: "!web:x", name: "Web", unread: 2 },
+                { id: "!ops:x", name: "Ops" },
+            ]),
+        );
+        const map = all(g2);
+        expect(map.getNodeAttribute("d.communities/!eng:x/!web:x", "district")).toBe("communities");
+        const xy = map.mapNodes((_, a) => [a.x, a.y, a.size]);
+        g2.rooms.get("!ops:x")!.highlight = 1;
+        g2.rooms.get("!ops:x")!.unread = 1;
+        expect([...refreshCounts(map, g2)]).toEqual(["!ops:x"]);
+        expect(map.getNodeAttributes("d.communities/!eng:x")).toMatchObject({ unread: 3, highlight: 1 });
+        expect(map.getNodeAttributes("d.communities")).toMatchObject({ unread: 3, highlight: 1 });
+        expect(map.mapNodes((_, a) => [a.x, a.y, a.size])).toEqual(xy);
+        // Reading counts that went down lights nothing up.
+        g2.rooms.get("!web:x")!.unread = 0;
+        expect(refreshCounts(map, g2).size).toBe(0);
+        expect(map.getNodeAttributes("d.communities/!eng:x")).toMatchObject({ unread: 1 });
     });
 
     it("scores rooms by use, recent activity and unread messages", () => {

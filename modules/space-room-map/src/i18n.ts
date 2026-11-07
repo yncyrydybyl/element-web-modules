@@ -72,4 +72,42 @@ export const translations = {
     [`${P}view_circles`]: { en: "Circles", de: "Kreise" },
     [`${P}view_tube`]: { en: "Tube map", de: "U-Bahn-Plan" },
     [`${P}tube_label`]: { en: "Tube map of your spaces and rooms", de: "U-Bahn-Plan deiner Spaces und Räume" },
+    [`${P}legend_district`]: { en: "Colour: the district a room is in", de: "Farbe: der Bezirk, in dem ein Raum liegt" },
+    [`${P}settings_title`]: { en: "Space map", de: "Space-Karte" },
+    [`${P}settings_description`]: {
+        en: "The map of your spaces and rooms that opens with %(key)s.",
+        de: "Die Karte deiner Spaces und Räume, die sich mit %(key)s öffnet.",
+    },
+    [`${P}settings_colours`]: { en: "Colours", de: "Farben" },
+    [`${P}settings_colours_district`]: { en: "By district", de: "Nach Bezirk" },
+    [`${P}settings_colours_district_help`]: {
+        en: "Communities, events, people and bridges each have a colour, so you see at a glance where you are.",
+        de: "Communities, Events, Personen und Brücken haben je eine Farbe, so siehst du sofort, wo du bist.",
+    },
+    [`${P}settings_colours_room`]: { en: "By room", de: "Nach Raum" },
+    [`${P}settings_colours_room_help`]: {
+        en: "Every room and space in its own colour, as in Element's avatars.",
+        de: "Jeder Raum und Space in seiner eigenen Farbe, wie bei Elements Avataren.",
+    },
+    [`${P}settings_animations`]: { en: "Animations", de: "Animationen" },
+    [`${P}settings_animations_help`]: {
+        en: "Zoom out from your room on opening, and into a room when you choose it. Always off when your system asks for less motion.",
+        de: "Beim Öffnen aus deinem Raum herauszoomen und in einen Raum hinein, wenn du ihn wählst. Immer aus, wenn dein System weniger Bewegung wünscht.",
+    },
+    [`${P}settings_live`]: { en: "Live updates", de: "Live-Aktualisierung" },
+    [`${P}settings_live_help`]: {
+        en: "Unread counts update while the map is open, and rooms with new messages light up.",
+        de: "Ungelesene Nachrichten werden bei offener Karte aktualisiert, und Räume mit neuen Nachrichten leuchten auf.",
+    },
+    [`${P}settings_keepReady`]: { en: "Keep the map ready", de: "Karte bereithalten" },
+    [`${P}settings_keepReady_help`]: {
+        en: "Closing only hides the map, so it opens again at once. Uses more memory while Element is open.",
+        de: "Schließen versteckt die Karte nur, so öffnet sie sofort wieder. Braucht mehr Speicher, solange Element offen ist.",
+    },
+    [`${P}settings_cacheAvatars`]: { en: "Keep avatars between sessions", de: "Avatare zwischen Sitzungen behalten" },
+    [`${P}settings_cacheAvatars_help`]: {
+        en: "Room pictures are stored in this browser, so the map doesn't load them again after a reload. Turning this off deletes them.",
+        de: "Raumbilder werden in diesem Browser gespeichert, damit die Karte sie nach dem Neuladen nicht wieder lädt. Ausschalten löscht sie.",
+    },
+    [`${P}settings_error`]: { en: "Couldn't save the setting. Try again.", de: "Die Einstellung konnte nicht gespeichert werden. Versuch es nochmal." },
 } satisfies Translations;

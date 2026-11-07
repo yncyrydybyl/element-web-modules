@@ -238,22 +238,7 @@ export function buildTubeLayout(graph: RoomGraph, districts: Districts, names: R
         block.width = maxX + NAME_REACH;
         block.height = bottom + COL;
 
-        // Unread counts of this group's rooms only, through each line's branches; a sub-space's
-        // interchange shows its branch's.
-        // Each room counted once, even where it's on two lines.
-        const roomsBelow = new Map<string, Map<string, TubeStation>>();
-        for (const line of [...block.lines].reverse()) {
-            const rooms = new Map(line.stations.filter((s) => s.kind !== "space").map((s) => [s.roomId, s]));
-            const below = block.lines.filter((l) => l.parent === line.id);
-            for (const l of below) for (const [id, s] of roomsBelow.get(l.id)!) rooms.set(id, s);
-            roomsBelow.set(line.id, rooms);
-            line.unread = [...rooms.values()].reduce((n, s) => n + s.unread, 0);
-            line.highlight = [...rooms.values()].reduce((n, s) => n + s.highlight, 0);
-            for (const l of below) {
-                const junction = line.stations.find((s) => s.roomId === l.id);
-                if (junction) Object.assign(junction, { unread: l.unread, highlight: l.highlight });
-            }
-        }
+        sumLines(block.lines);
         return block;
     };
 
@@ -399,4 +384,46 @@ export function roundedPath(points: Array<[number, number]>, radius = 14): strin
         d += `L${ax} ${ay}Q${x} ${y} ${bx} ${by}`;
     }
     return d;
+}
+
+/**
+ * Unread counts of each line's own rooms, through its branches; a sub-space's interchange shows
+ * its branch's. Each room counted once, even where it's on two lines. `lines` lists every line
+ * after its parent.
+ */
+function sumLines(lines: TubeLine[]): void {
+    const roomsBelow = new Map<string, Map<string, TubeStation>>();
+    const children = new Map<string, TubeLine[]>();
+    for (const l of lines) if (l.parent) children.set(l.parent, [...(children.get(l.parent) ?? []), l]);
+    for (const line of [...lines].reverse()) {
+        const rooms = new Map(line.stations.filter((s) => s.kind !== "space").map((s) => [s.roomId, s]));
+        const below = children.get(line.id) ?? [];
+        for (const l of below) for (const [id, s] of roomsBelow.get(l.id)!) rooms.set(id, s);
+        roomsBelow.set(line.id, rooms);
+        line.unread = [...rooms.values()].reduce((n, s) => n + s.unread, 0);
+        line.highlight = [...rooms.values()].reduce((n, s) => n + s.highlight, 0);
+        for (const l of below) {
+            const junction = line.stations.find((s) => s.roomId === l.id);
+            if (junction) Object.assign(junction, { unread: l.unread, highlight: l.highlight });
+        }
+    }
+}
+
+/**
+ * Takes new unread counts from `graph` into the layout without laying it out again (stations
+ * keep their places). Returns the rooms that got something new.
+ */
+export function refreshTubeCounts(layout: TubeLayout, graph: RoomGraph): Set<string> {
+    const grown = new Set<string>();
+    for (const s of layout.stations) {
+        if (s.kind === "space") continue;
+        const r = graph.rooms.get(s.roomId);
+        const unread = r?.unread ?? 0;
+        const highlight = r?.highlight ?? 0;
+        if (unread > s.unread || highlight > s.highlight) grown.add(s.roomId);
+        s.unread = unread;
+        s.highlight = highlight;
+    }
+    sumLines(layout.lines);
+    return grown;
 }

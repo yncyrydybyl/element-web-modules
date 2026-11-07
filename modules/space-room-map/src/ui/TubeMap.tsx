@@ -18,6 +18,7 @@ import {
 
 import { COL, ROW, roundedPath, type TubeLayout, type TubeLine, type TubeStation } from "../tube";
 import type { TipNode } from "../views";
+import type { ColourMode } from "../settings";
 import { flyTo, type Flight, type SavedCamera } from "./camera";
 import type { FocusTarget } from "./SigmaMap";
 import { placeTooltip } from "./tooltip";
@@ -37,6 +38,15 @@ export interface TubeMapProps {
     tooltip?(node: TipNode): ReactNode;
     /** Where the camera starts (centre and width in layout units); the whole map when missing. Read once. */
     camera?: SavedCamera;
+    /** Without a saved camera: start on this room and zoom out from it. Read once. */
+    introRoom?: string;
+    colours: ColourMode;
+    /** Zooms on opening and leaving (the setting, unless the system asks for less motion). */
+    animate: boolean;
+    /** Changes when unread counts in `layout` were updated in place. */
+    countsVersion?: number;
+    /** Rooms that just got something new: they light up once. */
+    flash?: { rooms: Set<string>; nonce: number };
     onCameraChange?(camera: SavedCamera): void;
     /** Drawn over the map (the legend). */
     children?: ReactNode;
@@ -66,13 +76,17 @@ const NAME_ROOM = 160;
 const TIP_HIDE_MS = 120;
 /** Below this, a press that moves is a click, not a drag. */
 const DRAG_PX = 4;
+/** A room with a new message lights up this long (see .is-new in the CSS). */
+const FLASH_MS = 1400;
+/** On opening, how long the map shows your room before zooming out. */
+const INTRO_PAUSE_MS = 120;
 
 export function lineColour(line: Pick<TubeLine, "colour" | "hex">): string {
     return line.hex ?? (line.colour < 0 ? GROUP_COLOUR : LINE_COLOURS[line.colour % LINE_COLOURS.length]);
 }
 
 export function TubeMap(props: TubeMapProps): JSX.Element {
-    const { layout, matches, current, selected, selectedLine } = props;
+    const { layout, matches, current, selected, selectedLine, countsVersion } = props;
     const boxRef = useRef<HTMLDivElement>(null);
     const svgRef = useRef<SVGSVGElement>(null);
     const worldRef = useRef<SVGGElement>(null);
@@ -96,9 +110,13 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         return out;
     }, [layout]);
     // Beacons for rooms; a sub-space with mentions inside has a red badge on its interchange instead.
-    const mentions = useMemo(() => layout.stations.filter((s) => s.highlight > 0 && s.kind !== "space"), [layout]);
+    // Counts change in place on live updates (countsVersion).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const mentions = useMemo(() => layout.stations.filter((s) => s.highlight > 0 && s.kind !== "space"), [layout, countsVersion]);
     const named = useMemo(() => layout.lines.filter((l) => l.anchor), [layout]);
-    const anyUnread = useMemo(() => layout.stations.some((s) => s.unread > 0 || s.highlight > 0), [layout]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const anyUnread = useMemo(() => layout.stations.some((s) => s.unread > 0 || s.highlight > 0), [layout, countsVersion]);
+    const [flashing, setFlashing] = useState<Set<string>>(() => new Set());
     const font = useMemo(() => getComputedStyle(document.body).getPropertyValue("--cpd-font-family-sans").trim() || "Inter, system-ui, sans-serif", []);
     const pills = useMemo(() => {
         const out = new Map<string, { text: string; width: number; count: number }>();
@@ -108,13 +126,15 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
             out.set(l.id, { text, count, width: textWidth(text, `600 12px ${font}`) + 20 + (count ? badgeWidth(count) + 4 : 0) });
         }
         return out;
-    }, [named, font]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [named, font, countsVersion]);
     // Block names are placed in this order and skipped where they'd overlap: mentions first.
     const districtWidths = useMemo(
         () => new Map(layout.districts.map((d) => [d.id, textWidth(d.label.toUpperCase(), `700 15px ${font}`) + textWidth(String(d.rooms), `600 12px ${font}`) + 36])),
         [layout, font],
     );
-    const pillOrder = useMemo(() => [...named].sort((a, b) => Number(b.highlight > 0) - Number(a.highlight > 0)), [named]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const pillOrder = useMemo(() => [...named].sort((a, b) => Number(b.highlight > 0) - Number(a.highlight > 0)), [named, countsVersion]);
     const active = useMemo(() => (selectedLine && lines.has(selectedLine) ? withBranches(layout, selectedLine) : null), [layout, lines, selectedLine]);
 
     const apply = (): void => {
@@ -218,17 +238,36 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         return fit(x0 - COL, y0 - ROW * 1.2, x1 + ROW, y1 + COL, true);
     };
 
+    /** A room's (first) station, at `scale`. */
+    const stationView = (roomId: string, scale = FOCUS_SCALE): View | undefined => {
+        const s = layout.stations.find((st) => st.roomId === roomId);
+        const svg = svgRef.current;
+        return s && svg ? { cx: s.x + COL, cy: s.y - ROW * 0.25, w: (svg.clientWidth || 1) / scale } : undefined;
+    };
+
     // The first view shows everything, or where the map was last; resizing keeps the centre and the scale.
     const restore = useRef(props.camera);
+    const introDone = useRef(false);
     useLayoutEffect(() => {
         const saved = restore.current;
         restore.current = undefined;
-        view.current = saved ? { cx: saved.x, cy: saved.y, w: saved.ratio } : overview();
+        const intro = !saved && !introDone.current && props.animate && props.introRoom ? stationView(props.introRoom) : undefined;
+        introDone.current = true;
+        let introTimer: ReturnType<typeof setTimeout> | undefined;
+        if (saved) view.current = { cx: saved.x, cy: saved.y, w: saved.ratio };
+        else if (intro) {
+            // Zoomed in on the room you're in, then out to everything.
+            view.current = intro;
+            introTimer = setTimeout(() => fly(overview()), INTRO_PAUSE_MS);
+        } else view.current = overview();
         apply();
         if (typeof ResizeObserver !== "function") return;
         const observer = new ResizeObserver(() => apply());
         observer.observe(svgRef.current!);
-        return () => observer.disconnect();
+        return () => {
+            clearTimeout(introTimer);
+            observer.disconnect();
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [layout]);
 
@@ -314,6 +353,11 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
     useEffect(() => {
         const focus = props.focus;
         if (!focus) return;
+        if (focus.camera) {
+            flight.current?.cancel();
+            view.current = { cx: focus.camera.x, cy: focus.camera.y, w: focus.camera.ratio };
+            return apply();
+        }
         const lineId = focus.line ?? focus.roomId;
         const district = focus.district ? layout.districts.find((d) => d.id === focus.district) : undefined;
         if (district) {
@@ -326,12 +370,19 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
             focusedLine.current = lineId;
             fly(lineView(lineId));
         } else if (focus.roomId) {
-            const s = layout.stations.find((st) => st.roomId === focus.roomId);
-            const svg = svgRef.current;
-            if (s && svg) fly({ cx: s.x + COL, cy: s.y - ROW * 0.25, w: (svg.clientWidth || 1) / FOCUS_SCALE });
+            const target = stationView(focus.roomId, focus.close ? MAX_SCALE : FOCUS_SCALE);
+            if (target) fly(target);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.focus]);
+
+    // New messages: the room's stations light up once.
+    useEffect(() => {
+        if (!props.flash?.rooms.size) return;
+        setFlashing(new Set(props.flash.rooms));
+        const timer = setTimeout(() => setFlashing(new Set()), FLASH_MS);
+        return () => clearTimeout(timer);
+    }, [props.flash]);
 
     const hideTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
     useEffect(() => () => clearTimeout(hideTimer.current), []);
@@ -390,6 +441,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
         if (s.roomId === current) c.push("is-current");
         if (s.roomId === selected) c.push("is-selected");
         if (s.invite) c.push("is-invite");
+        if (flashing.has(s.roomId)) c.push("is-new");
         if (lines.get(s.lineId)?.district === "archive") c.push("is-archive");
         return c.join(" ");
     };
@@ -399,6 +451,7 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
             <svg
                 ref={svgRef}
                 className="srm-tube"
+                data-colours={props.colours}
                 role="img"
                 aria-label={props.label}
                 onPointerDown={onPointerDown}
@@ -411,6 +464,17 @@ export function TubeMap(props: TubeMapProps): JSX.Element {
                 onClick={onClick}
             >
                 <g ref={worldRef}>
+                    {layout.districts.map((d) => (
+                        <rect
+                            key={d.id}
+                            className={`srm-tube-area srm-tube-area--${d.id}`}
+                            x={d.x0 - COL}
+                            y={d.y0}
+                            width={d.x1 - d.x0 + COL}
+                            height={d.y1 - d.y0}
+                            rx={COL}
+                        />
+                    ))}
                     {layout.lines.map((l) => (
                         <g key={l.id} className={`srm-tube-line${active && !active.has(l.id) ? " is-off" : ""}${l.district === "archive" ? " is-archive" : ""}`} data-line={l.id}>
                             <path className="srm-tube-casing" d={roundedPath(l.points)} />

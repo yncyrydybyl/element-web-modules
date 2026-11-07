@@ -35,6 +35,9 @@ export interface SdkEvent {
 export interface SdkClient extends AvatarClient {
     getVisibleRooms(): SdkRoom[];
     getAccountData(type: string): { getContent(): Record<string, unknown> } | undefined;
+    /** matrix-js-sdk's event emitter, for "sync" (live updates). */
+    on?(event: string, listener: (...args: unknown[]) => void): unknown;
+    removeListener?(event: string, listener: (...args: unknown[]) => void): unknown;
 }
 
 export type RoomKind = "space" | "room" | "dm";
@@ -131,6 +134,22 @@ export function buildGraph(client: SdkClient): RoomGraph {
         orphans: all.filter((r) => r.kind === "room" && r.parents.length === 0).map((r) => r.id).sort(byName),
         dms: all.filter((r) => r.kind === "dm" && r.parents.length === 0).map((r) => r.id).sort(byName),
     };
+}
+
+/** Reads just the unread counts into `graph`, much cheaper than building it again. Whether any changed. */
+export function updateCounts(graph: RoomGraph, client: SdkClient): boolean {
+    let changed = false;
+    for (const r of client.getVisibleRooms()) {
+        const room = graph.rooms.get(r.roomId);
+        if (!room || room.kind === "space") continue;
+        const unread = r.getUnreadNotificationCount("total");
+        const highlight = r.getUnreadNotificationCount("highlight");
+        if (unread === room.unread && highlight === room.highlight) continue;
+        room.unread = unread;
+        room.highlight = highlight;
+        changed = true;
+    }
+    return changed;
 }
 
 /** Spaces in tree order with their depth, for the list on the left. */

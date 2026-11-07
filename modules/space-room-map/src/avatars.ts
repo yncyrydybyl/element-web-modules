@@ -20,6 +20,9 @@ export interface AvatarClient {
     getAccessToken?(): string | null;
 }
 
+/** Cache Storage bucket for avatars kept between sessions (see `persist`). */
+export const PERSIST_CACHE = "de.datanauten.space_room_map.avatars";
+
 /** Enough for a 48 px circle on a 2x screen. */
 const SIZE = 96;
 const CONCURRENCY = 6;
@@ -38,7 +41,20 @@ export class AvatarCache {
     private notifyTimer?: ReturnType<typeof setTimeout>;
     private disposed = false;
 
-    public constructor(private readonly client: AvatarClient) {}
+    /** `persist`: whether thumbnails are kept in Cache Storage, so a reload doesn't fetch them again. */
+    public constructor(
+        private readonly client: AvatarClient,
+        private readonly persist: () => boolean = () => false,
+    ) {}
+
+    /** Deletes the avatars kept between sessions. */
+    public static async clearPersisted(): Promise<void> {
+        try {
+            await globalThis.caches?.delete(PERSIST_CACHE);
+        } catch {
+            // Nothing stored, or storage blocked.
+        }
+    }
 
     /** The `blob:` URL of a loaded avatar. */
     public get(mxc: string | undefined): string | undefined {
@@ -89,8 +105,10 @@ export class AvatarCache {
     }
 
     private async load(mxc: string): Promise<void> {
-        const blob = (await this.fetch(mxc, true)) ?? (await this.fetch(mxc, false));
+        const stored = await this.readPersisted(mxc);
+        const blob = stored ?? (await this.fetch(mxc, true)) ?? (await this.fetch(mxc, false));
         if (!blob || this.disposed) return;
+        if (!stored) void this.writePersisted(mxc, blob);
         const colour = await averageColour(blob);
         if (this.disposed) return;
         this.urls.set(mxc, URL.createObjectURL(blob));
@@ -100,6 +118,26 @@ export class AvatarCache {
             this.version++;
             for (const cb of this.listeners) cb();
         }, NOTIFY_MS);
+    }
+
+    private async readPersisted(mxc: string): Promise<Blob | undefined> {
+        if (!this.persist()) return undefined;
+        try {
+            const res = await (await caches.open(PERSIST_CACHE)).match(persistKey(mxc));
+            const blob = await res?.blob();
+            return blob?.type.startsWith("image/") ? blob : undefined;
+        } catch {
+            return undefined;
+        }
+    }
+
+    private async writePersisted(mxc: string, blob: Blob): Promise<void> {
+        if (!this.persist()) return;
+        try {
+            await (await caches.open(PERSIST_CACHE)).put(persistKey(mxc), new Response(blob, { headers: { "Content-Type": blob.type } }));
+        } catch {
+            // Storage full or blocked: the avatar is still shown.
+        }
     }
 
     private async fetch(mxc: string, authenticated: boolean): Promise<Blob | undefined> {
@@ -115,6 +153,11 @@ export class AvatarCache {
             return undefined;
         }
     }
+}
+
+/** Cache Storage only takes http(s) URLs; this one is never requested. */
+function persistKey(mxc: string): string {
+    return new URL(`/__space_room_map/avatar/${encodeURIComponent(mxc.slice("mxc://".length))}`, window.location.origin).href;
 }
 
 /** Downscaled to 4×4 by the browser, then averaged, skipping transparent pixels. */

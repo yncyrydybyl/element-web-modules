@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { breadcrumb, buildGraph, currentRoomId, spaceStats, spaceTree } from "./rooms";
+import { breadcrumb, buildGraph, currentRoomId, spaceStats, spaceTree, updateCounts } from "./rooms";
 import { fakeClient } from "./tests/fakeClient";
 
 describe("buildGraph", () => {
@@ -89,5 +89,20 @@ describe("avatars", () => {
 
     it("doesn't give a room that isn't a DM someone's face", () => {
         expect(buildGraph(client).rooms.get("!pair:x")!.avatar).toBeUndefined();
+    });
+});
+
+describe("updateCounts", () => {
+    it("reads just the unread counts into an existing graph", () => {
+        const list = [
+            { id: "!s:x", name: "Space", space: true, children: ["!a:x"] },
+            { id: "!a:x", name: "A", unread: 1 },
+        ];
+        const client = fakeClient(list);
+        const graph = buildGraph(client);
+        expect(updateCounts(graph, client)).toBe(false);
+        Object.assign(list[1], { unread: 5, highlight: 2 });
+        expect(updateCounts(graph, client)).toBe(true);
+        expect(graph.rooms.get("!a:x")).toMatchObject({ unread: 5, highlight: 2 });
     });
 });

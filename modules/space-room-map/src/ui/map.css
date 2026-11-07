@@ -178,6 +178,67 @@
     cursor: grabbing;
 }
 
+/* Districts as soft areas under the lines; one colour each when colouring by district. */
+.srm-tube-area {
+    pointer-events: none;
+    fill: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+    opacity: 0.6;
+}
+
+.srm-tube[data-colours="district"] .srm-tube-area--communities {
+    fill: var(--cpd-color-bg-decorative-4, #f1efff);
+}
+
+.srm-tube[data-colours="district"] .srm-tube-area--events {
+    fill: var(--cpd-color-bg-decorative-6, #ffefe4);
+}
+
+.srm-tube[data-colours="district"] .srm-tube-area--people {
+    fill: var(--cpd-color-bg-decorative-3, #faeefb);
+}
+
+.srm-tube[data-colours="district"] .srm-tube-area--bridges {
+    fill: var(--cpd-color-bg-decorative-2, #e3f5f8);
+}
+
+/* Compound's decorative backgrounds are much stronger in the dark theme. */
+.cpd-theme-dark .srm-tube-area {
+    opacity: 0.35;
+}
+
+.srm-tube[data-colours="district"] .srm-tube-area--archive {
+    opacity: 0.35;
+}
+
+.srm-tube[data-colours="district"] .srm-tube-district--communities text {
+    fill: var(--cpd-color-text-decorative-4, #5d26cd);
+}
+
+.srm-tube[data-colours="district"] .srm-tube-district--events text {
+    fill: var(--cpd-color-text-decorative-6, #9b2200);
+}
+
+.srm-tube[data-colours="district"] .srm-tube-district--people text {
+    fill: var(--cpd-color-text-decorative-3, #82008f);
+}
+
+.srm-tube[data-colours="district"] .srm-tube-district--bridges text {
+    fill: var(--cpd-color-text-decorative-2, #00566e);
+}
+
+/* A new message: the station lights up once. */
+.srm-station.is-new .srm-station-dot {
+    animation: srm-new 1.4s ease-out;
+}
+
+@keyframes srm-new {
+    0%,
+    30% {
+        stroke: var(--cpd-color-icon-success-primary, #007a62);
+        stroke-width: 7;
+    }
+}
+
 .srm-tube-line,
 .srm-tube-link,
 .srm-station,
@@ -579,6 +640,15 @@
 .srm-swatch--space { border: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da); background: var(--cpd-color-bg-subtle-secondary, #f0f2f5); }
 .srm-swatch--dim { background: var(--cpd-color-border-disabled, #e1e6ec); opacity: 0.6; }
 
+.srm-swatch--district {
+    background: conic-gradient(
+        var(--cpd-color-text-decorative-4, #5d26cd) 0 25%,
+        var(--cpd-color-text-decorative-6, #9b2200) 0 50%,
+        var(--cpd-color-text-decorative-3, #82008f) 0 75%,
+        var(--cpd-color-text-decorative-2, #00566e) 0
+    );
+}
+
 .srm-swatch--colour {
     background: conic-gradient(
         var(--cpd-color-text-decorative-1, #005f00) 0 25%,
@@ -810,6 +880,115 @@
     }
 }
 
+/* Choosing a room: the map zooms into it while it fades away. */
+.srm-backdrop--leaving {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 240ms ease-in 40ms;
+}
+
+/* Settings → Preferences → Space map, laid out like Element's own settings. */
+.srm-settings-container {
+    margin-top: var(--cpd-space-6x, 24px);
+}
+
+.srm-settings .mx_SettingsSubsection_content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.srm-setting-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.srm-setting,
+.srm-setting-radio {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.srm-setting-text,
+.srm-setting-radio > span {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.srm-setting-label {
+    padding: 0;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: var(--cpd-font-body-md-medium, 500 1rem/1.5rem Inter, sans-serif);
+}
+
+.srm-setting-help {
+    color: var(--cpd-color-text-secondary, #656d77);
+    font: var(--cpd-font-body-sm-regular, 400 0.875rem/1.25rem Inter, sans-serif);
+}
+
+.srm-setting-radio input {
+    width: 20px;
+    height: 20px;
+    margin: 2px 0 0;
+    accent-color: var(--cpd-color-bg-accent-rest, #0b7a5a);
+}
+
+/* A switch like Compound's: 44 × 24, the knob slides right when on. */
+.srm-switch {
+    position: relative;
+    flex: none;
+    width: 44px;
+    height: 24px;
+    margin: 0;
+    border: 1px solid var(--cpd-color-border-interactive-primary, #8d97a5);
+    border-radius: 12px;
+    appearance: none;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    cursor: pointer;
+    transition: background-color 120ms ease-out;
+}
+
+.srm-switch::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--cpd-color-icon-secondary, #656d77);
+    transition: transform 120ms ease-out;
+}
+
+.srm-switch:checked {
+    border-color: var(--cpd-color-bg-accent-rest, #0b7a5a);
+    background: var(--cpd-color-bg-accent-rest, #0b7a5a);
+}
+
+.srm-switch:checked::after {
+    background: var(--cpd-color-icon-on-solid-primary, #fff);
+    transform: translateX(20px);
+}
+
+.srm-switch:focus-visible,
+.srm-setting-radio input:focus-visible {
+    outline: 2px solid var(--cpd-color-border-focused, #0467dd);
+    outline-offset: 2px;
+}
+
+.srm-setting-error {
+    color: var(--cpd-color-text-critical-primary, #d51928);
+    font: var(--cpd-font-body-sm-regular, 400 0.875rem/1.25rem Inter, sans-serif);
+}
+
 @keyframes srm-fade {
     from {
         opacity: 0;
@@ -826,6 +1005,16 @@
     .srm-tube *,
     .srm-tube-pill {
         transition: none;
+    }
+
+    .srm-backdrop--leaving,
+    .srm-switch,
+    .srm-switch::after {
+        transition: none;
+    }
+
+    .srm-station.is-new .srm-station-dot {
+        animation: none;
     }
 
     .srm-beacon-pulse {

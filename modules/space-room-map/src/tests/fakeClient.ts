@@ -16,8 +16,10 @@ export interface FakeRoom {
     memberAvatar?: string;
 }
 
-/** Just enough of matrix-js-sdk's MatrixClient for `buildGraph`. */
-export function fakeClient(rooms: FakeRoom[], dms: Record<string, string[]> = {}): SdkClient {
+export type FakeClient = SdkClient & { emit(event: string): void; listenerCount(event: string): number };
+
+/** Just enough of matrix-js-sdk's MatrixClient for `buildGraph`. Rooms read `rooms` live, so tests can change them. */
+export function fakeClient(rooms: FakeRoom[], dms: Record<string, string[]> = {}): FakeClient {
     const sdkRooms: SdkRoom[] = rooms.map((r) => ({
         roomId: r.id,
         name: r.name,
@@ -43,7 +45,12 @@ export function fakeClient(rooms: FakeRoom[], dms: Record<string, string[]> = {}
                       }),
         },
     }));
+    const listeners = new Map<string, Set<(...args: unknown[]) => void>>();
     return {
+        on: (event, fn) => listeners.set(event, (listeners.get(event) ?? new Set()).add(fn)),
+        removeListener: (event, fn) => listeners.get(event)?.delete(fn),
+        emit: (event: string) => listeners.get(event)?.forEach((fn) => fn()),
+        listenerCount: (event: string) => listeners.get(event)?.size ?? 0,
         getVisibleRooms: () => sdkRooms,
         getAccountData: (type: string) => (type === "m.direct" ? { getContent: () => dms } : undefined),
         mxcUrlToHttp: (mxc, w, h, method, _direct, _redirects, auth) =>

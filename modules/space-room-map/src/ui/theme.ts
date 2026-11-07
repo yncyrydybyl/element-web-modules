@@ -1,3 +1,5 @@
+import type { DistrictId } from "../districts";
+
 /**
  * Colours for the canvas, read from Element's Compound design tokens. A canvas can't use CSS
  * variables, so they are resolved once when the map opens; the fallbacks are Compound's light theme.
@@ -51,7 +53,19 @@ export function readTheme(el: Element = document.body): Theme {
             fg: v(`--cpd-color-text-decorative-${i + 1}`, fg),
         })),
         highContrast:
-            /(^|\s)cpd-theme-[a-z]+-hc(\s|$)/.test(document.documentElement.className) ||
+            /(^|\s)cpd-theme-[a-z]+-hc(\s|$)/.test(`${document.documentElement.className} ${document.body.className}`) ||
             (typeof matchMedia === "function" && matchMedia("(prefers-contrast: more)").matches),
     };
+}
+
+/**
+ * One colour per district, from Compound's decorative palette. Green and red are left out: on
+ * the map they mean unread messages and mentions. Unsorted and the archive stay grey.
+ */
+const DISTRICT_DECORATIVE: Partial<Record<DistrictId, number>> = { communities: 3, events: 5, people: 2, bridges: 1 };
+
+export function districtColour(theme: Theme, district: DistrictId): { bg: string; fg: string } {
+    const i = DISTRICT_DECORATIVE[district];
+    if (i !== undefined) return theme.decorative[i];
+    return district === "archive" ? { bg: theme.dim, fg: theme.border } : { bg: theme.groupFill, fg: theme.hover };
 }

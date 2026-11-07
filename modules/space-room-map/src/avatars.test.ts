@@ -44,4 +44,39 @@ describe("AvatarCache", () => {
         expect(URL.revokeObjectURL).toHaveBeenCalledTimes(2);
         expect(cache.get("mxc://x/auth")).toBeUndefined();
     });
+
+    it("keeps avatars in Cache Storage between sessions when asked to, and deletes them", async () => {
+        const store = new Map<string, Response>();
+        const bucket = {
+            match: vi.fn(async (key: string) => store.get(key)?.clone()),
+            put: vi.fn(async (key: string, res: Response) => void store.set(key, res)),
+        };
+        const caches = { open: vi.fn(async () => bucket), delete: vi.fn(async () => store.clear() === undefined) };
+        vi.stubGlobal("caches", caches);
+        const fetchMock = vi.fn(async () => png());
+        vi.stubGlobal("fetch", fetchMock);
+        vi.stubGlobal("URL", Object.assign(URL, { createObjectURL: () => "blob:x", revokeObjectURL: vi.fn() }));
+
+        let persist = true;
+        const first = new AvatarCache(fakeClient([]), () => persist);
+        first.request(["mxc://x/a"]);
+        await vi.waitFor(() => expect(first.get("mxc://x/a")).toBe("blob:x"));
+        expect(store.size).toBe(1);
+
+        // After a reload: from the cache, not the network.
+        const second = new AvatarCache(fakeClient([]), () => persist);
+        second.request(["mxc://x/a"]);
+        await vi.waitFor(() => expect(second.get("mxc://x/a")).toBe("blob:x"));
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+
+        persist = false;
+        const third = new AvatarCache(fakeClient([]), () => persist);
+        third.request(["mxc://x/a"]);
+        await vi.waitFor(() => expect(third.get("mxc://x/a")).toBe("blob:x"));
+        expect(fetchMock).toHaveBeenCalledTimes(2);
+
+        await AvatarCache.clearPersisted();
+        expect(caches.delete).toHaveBeenCalledWith("de.datanauten.space_room_map.avatars");
+        expect(store.size).toBe(0);
+    });
 });

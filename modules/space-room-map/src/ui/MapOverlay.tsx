@@ -6,8 +6,9 @@ import { buildDistricts, DISTRICTS, type DistrictId, type GroupNames } from "../
 import { P } from "../i18n";
 import { breadcrumb, type RoomGraph, type RoomInfo } from "../rooms";
 import { search } from "../search";
-import { buildTubeLayout } from "../tube";
-import { buildAllGraph, districtNodeKey, groupNodeKey, roomScore, type ScoreOptions, type TipNode } from "../views";
+import type { ColourMode } from "../settings";
+import { buildTubeLayout, refreshTubeCounts } from "../tube";
+import { buildAllGraph, districtNodeKey, groupNodeKey, refreshCounts, roomScore, type ScoreOptions, type TipNode } from "../views";
 import type { SavedCamera } from "./camera";
 import { colourIndex, SigmaMap, type FocusTarget } from "./SigmaMap";
 import { TubeMap } from "./TubeMap";
@@ -26,6 +27,17 @@ export interface MapOverlayProps {
     view: MapView;
     /** Where each map's camera was when the overlay last closed. */
     cameras?: Partial<Record<MapView, SavedCamera>>;
+    colours: ColourMode;
+    /** Zooms on opening and on choosing a room (the setting, unless the system asks for less motion). */
+    animate: boolean;
+    /** Unread counts were updated in `graph` in place: changes each time. */
+    countsVersion?: number;
+    /** Rooms with something new light up. */
+    live: boolean;
+    /** False while the overlay is kept ready but hidden. */
+    visible?: boolean;
+    /** Changes each time the overlay is shown again without being rebuilt. */
+    openNonce?: number;
     avatars?: Pick<AvatarCache, "get" | "colour" | "request">;
     /** Changes when more avatars have loaded. */
     avatarVersion?: number;
@@ -64,6 +76,8 @@ interface Row {
 const RESULT_LIMIT = 8;
 /** Hovering down the list doesn't send the camera to every space on the way. */
 const FLY_DEBOUNCE_MS = 140;
+/** Choosing a room: the map zooms into it this long before it closes (see .srm-backdrop--leaving). */
+const LEAVE_MS = 260;
 
 export function MapOverlay(props: MapOverlayProps): JSX.Element {
     const { graph, current, t } = props;
@@ -77,8 +91,33 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
     const [focus, setFocus] = useState<FocusTarget | null>(null);
     const [legendOpen, setLegendOpen] = useState(props.legendOpen);
     const [view, setView] = useState(props.view);
+    /** Zooming into the chosen room before closing. */
+    const [leaving, setLeaving] = useState(false);
+    const leavingRef = useRef(false);
+    const leaveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+    useEffect(() => () => clearTimeout(leaveTimer.current), []);
+    const visible = props.visible ?? true;
+    /** Where the map was opened from: zoomed out from it once. */
+    const [introRoom] = useState(current);
 
     useEffect(() => searchRef.current?.focus(), []);
+
+    // Shown again while kept ready: a fresh start, back where the map was before a room was chosen.
+    const firstOpen = useRef(props.openNonce);
+    useEffect(() => {
+        if (props.openNonce === firstOpen.current) return;
+        setQuery("");
+        setActive(0);
+        setFollow(false);
+        searchRef.current?.focus();
+        if (leavingRef.current) {
+            leavingRef.current = false;
+            setLeaving(false);
+            const camera = props.cameras?.[view];
+            setFocus(camera ? { camera, nonce: Date.now() } : { overview: true, nonce: Date.now() });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.openNonce]);
 
     const districtNames = useMemo(
         () => Object.fromEntries(DISTRICTS.map((d) => [d, t(`${P}district_${d}`)])) as Record<DistrictId, string>,
@@ -105,6 +144,16 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                 : null,
         [graph, districts, districtNames, view],
     );
+
+    // Live updates: new counts into both maps, in place, and which rooms got something new.
+    // Done while rendering, so the maps draw the new counts in the same pass.
+    const flash = useMemo(() => {
+        if (!props.countsVersion) return undefined;
+        const rooms = refreshCounts(mapGraph, graph);
+        if (tubeLayout) for (const id of refreshTubeCounts(tubeLayout, graph)) rooms.add(id);
+        return props.live && rooms.size ? { rooms, nonce: props.countsVersion } : undefined;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.countsVersion]);
 
     const scoreOpts = useMemo<ScoreOptions>(() => ({ usage: props.usage, now: Date.now() }), [props.usage]);
     const rank = useMemo(() => (r: RoomInfo) => roomScore(r, scoreOpts), [scoreOpts]);
@@ -152,7 +201,8 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
             }
         }
         return rows;
-    }, [graph, districts, districtNames, t]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [graph, districts, districtNames, t, props.countsVersion]);
     const rows = useMemo<Row[]>(() => {
         if (!query.trim()) return spaceRows;
         return search(graph, query, { exclude: current, limit: RESULT_LIMIT, rank }).map((room) => ({
@@ -181,9 +231,24 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
         return () => clearTimeout(timer);
     }, [selected?.key, follow]); // eslint-disable-line react-hooks/exhaustive-deps
 
+    /** Zooms into the room first, then opens it. */
+    const openRoom = (roomId: string): void => {
+        if (leavingRef.current) return;
+        if (!props.animate) return props.onOpen(roomId);
+        leavingRef.current = true;
+        setLeaving(true);
+        setFocus({ roomId, close: true, nonce: Date.now() });
+        leaveTimer.current = setTimeout(() => props.onOpen(roomId), LEAVE_MS);
+    };
+
     const activate = (row: Row): void => {
-        if (row.room) props.onOpen(row.room.id);
+        if (row.room) openRoom(row.room.id);
         else setFocus(focusOf(row));
+    };
+
+    const saveCamera = (v: MapView, c: SavedCamera): void => {
+        // The zoom into a chosen room isn't where the user left the map.
+        if (!leavingRef.current) props.onCameraChange?.(v, c);
     };
 
     const toggleLegend = (): void => {
@@ -248,7 +313,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
 
     return (
         <div
-            className="srm-backdrop"
+            className={`srm-backdrop${leaving ? " srm-backdrop--leaving" : ""}`}
             onMouseDown={(ev) => {
                 if (ev.target === ev.currentTarget) props.onClose();
             }}
@@ -306,10 +371,15 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                             current={current}
                             focus={focus}
                             label={t(`${P}tube_label`)}
-                            onActivate={(id) => props.onOpen(id)}
+                            onActivate={openRoom}
                             tooltip={tooltip}
                             camera={props.cameras?.tube}
-                            onCameraChange={(c) => props.onCameraChange?.("tube", c)}
+                            onCameraChange={(c) => saveCamera("tube", c)}
+                            introRoom={introRoom}
+                            colours={props.colours}
+                            animate={props.animate}
+                            countsVersion={props.countsVersion}
+                            flash={flash}
                         >
                             <Legend open={legendOpen} onToggle={toggleLegend} t={t} view="tube" />
                         </TubeMap>
@@ -321,15 +391,21 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                             current={current}
                             focus={focus}
                             label={t(`${P}canvas_label`)}
-                            onActivate={(id) => props.onOpen(id)}
+                            onActivate={openRoom}
                             avatarUrl={props.avatars?.get.bind(props.avatars)}
                             avatarColour={props.avatars?.colour.bind(props.avatars)}
                             avatarVersion={props.avatarVersion}
                             tooltip={tooltip}
                             camera={props.cameras?.circles}
-                            onCameraChange={(c) => props.onCameraChange?.("circles", c)}
+                            onCameraChange={(c) => saveCamera("circles", c)}
+                            introRoom={introRoom}
+                            colours={props.colours}
+                            animate={props.animate}
+                            visible={visible}
+                            countsVersion={props.countsVersion}
+                            flash={flash}
                         >
-                            <Legend open={legendOpen} onToggle={toggleLegend} t={t} view="circles" />
+                            <Legend open={legendOpen} onToggle={toggleLegend} t={t} view="circles" colours={props.colours} />
                         </SigmaMap>
                     )}
 
@@ -429,7 +505,7 @@ function Avatar({ row, url }: { row: Row; url?: string }): JSX.Element {
 }
 
 /** What the marks on the map mean. */
-function Legend(props: { open: boolean; onToggle(): void; t: ModuleTranslate; view: MapView }): JSX.Element {
+function Legend(props: { open: boolean; onToggle(): void; t: ModuleTranslate; view: MapView; colours?: ColourMode }): JSX.Element {
     const { open, t } = props;
     const id = useId();
     const items: Array<[string, string]> =
@@ -449,7 +525,7 @@ function Legend(props: { open: boolean; onToggle(): void; t: ModuleTranslate; vi
                   ["srm-swatch--current", t(`${P}legend_current`)],
                   ["srm-swatch--selected", t(`${P}legend_selected`)],
                   ["srm-swatch--space", t(`${P}legend_space_circle`)],
-                  ["srm-swatch--colour", t(`${P}legend_colour`)],
+                  props.colours === "district" ? ["srm-swatch--district", t(`${P}legend_district`)] : ["srm-swatch--colour", t(`${P}legend_colour`)],
                   ["srm-swatch--dim", t(`${P}legend_dim`)],
               ];
     return (
