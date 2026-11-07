@@ -24,6 +24,7 @@ on:
           - space-room-map
           - people-map
           - marcade
+          - multi-tab
 
 permissions:
   contents: write

@@ -1,0 +1,73 @@
+/* "Open tabs" in Settings → Preferences. Element's own subsection classes do the layout; this is the list. */
+
+.mt-tabs-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--cpd-space-2x, 8px);
+}
+
+.mt-tab {
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #e1e6ec);
+    border-radius: 8px;
+    padding: var(--cpd-space-3x, 12px) var(--cpd-space-4x, 16px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--cpd-space-1x, 4px);
+    min-width: 0;
+}
+
+.mt-tab[data-this="true"] {
+    border-color: var(--cpd-color-border-interactive-primary, #656d77);
+}
+
+.mt-tab-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cpd-space-2x, 8px);
+    min-width: 0;
+}
+
+.mt-tab-title {
+    font: var(--cpd-font-body-md-semibold, 600 15px/22px Inter, sans-serif);
+    color: var(--cpd-color-text-primary, #1b1d22);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    flex: 1 1 12em;
+}
+
+.mt-badge {
+    font: var(--cpd-font-body-xs-medium, 500 12px/16px Inter, sans-serif);
+    border-radius: 999px;
+    padding: 2px 8px;
+    white-space: nowrap;
+    color: var(--cpd-color-text-secondary, #656d77);
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+}
+
+.mt-badge-main {
+    color: var(--cpd-color-text-success-primary, #007a61);
+    background: var(--cpd-color-bg-success-subtle, #e3f7ed);
+}
+
+.mt-badge-warn {
+    color: var(--cpd-color-text-critical-primary, #d51928);
+    background: var(--cpd-color-bg-critical-subtle, #fff0f0);
+}
+
+.mt-tab-facts {
+    font: var(--cpd-font-body-sm-regular, 400 14px/20px Inter, sans-serif);
+    color: var(--cpd-color-text-secondary, #656d77);
+    overflow-wrap: anywhere;
+}
+
+.mt-tabs-note {
+    font: var(--cpd-font-body-sm-regular, 400 14px/20px Inter, sans-serif);
+    color: var(--cpd-color-text-secondary, #656d77);
+    margin-top: var(--cpd-space-2x, 8px);
+}
