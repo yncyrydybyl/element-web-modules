@@ -702,6 +702,11 @@
     cursor: pointer;
 }
 
+/* Under the pointer, before it's chosen (see HOVER_REST_MS). */
+.srm-item:hover {
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+}
+
 .srm-item[aria-selected="true"] {
     background: var(--cpd-color-bg-action-secondary-hovered, #f0f2f5);
     box-shadow: inset 3px 0 0 var(--cpd-color-border-focused, #0467dd);

@@ -76,6 +76,13 @@ interface Row {
 const RESULT_LIMIT = 8;
 /** Hovering down the list doesn't send the camera to every space on the way. */
 const FLY_DEBOUNCE_MS = 140;
+/**
+ * Hover intent: a row is only chosen once the pointer rests on it this long, so crossing other
+ * rows on the way to the map doesn't send the map somewhere else.
+ */
+const HOVER_REST_MS = 200;
+/** Moving less than this over a row still counts as resting. */
+const HOVER_JITTER_PX = 4;
 /** Choosing a room: the map zooms into it this long before it closes (see .srm-backdrop--leaving). */
 const LEAVE_MS = 260;
 
@@ -224,12 +231,40 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
         props.avatars?.request([...rows.map((r) => r.room?.avatar), ...mapAvatars]);
     }, [rows, mapGraph, props.avatars]);
 
-    // The map flies to what's selected in the list; while hovering or typing, once it settles.
+    // The map flies to what's selected in the list; with the arrow keys or while typing, once it
+    // settles. A row chosen by resting the pointer on it has waited already.
+    const hoverChosen = useRef(false);
     useEffect(() => {
         if (!selected || !follow) return;
-        const timer = setTimeout(() => setFocus(focusOf(selected)), FLY_DEBOUNCE_MS);
+        const delay = hoverChosen.current ? 0 : FLY_DEBOUNCE_MS;
+        hoverChosen.current = false;
+        const timer = setTimeout(() => setFocus(focusOf(selected)), delay);
         return () => clearTimeout(timer);
     }, [selected?.key, follow]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const activeRef = useRef(active);
+    activeRef.current = active;
+    /** The row under the pointer, until it has rested there long enough to choose it. */
+    const hover = useRef<{ index: number; x: number; y: number; timer?: ReturnType<typeof setTimeout> } | null>(null);
+    const cancelHover = (): void => {
+        clearTimeout(hover.current?.timer);
+        hover.current = null;
+    };
+    useEffect(() => cancelHover, []);
+    const onRowPointer = (index: number, ev: { clientX: number; clientY: number }): void => {
+        const h = hover.current;
+        // Still on the same row and barely moved: keep waiting.
+        if (h && h.index === index && Math.hypot(ev.clientX - h.x, ev.clientY - h.y) < HOVER_JITTER_PX) return;
+        cancelHover();
+        const timer = setTimeout(() => {
+            hover.current = null;
+            if (index === activeRef.current) return setFollow(true);
+            hoverChosen.current = true;
+            setActive(index);
+            setFollow(true);
+        }, HOVER_REST_MS);
+        hover.current = { index, x: ev.clientX, y: ev.clientY, timer };
+    };
 
     /** Zooms into the room first, then opens it. */
     const openRoom = (roomId: string): void => {
@@ -303,6 +338,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
             ev.preventDefault();
             if (!rows.length) return;
             const delta = ev.key === "ArrowDown" ? 1 : -1;
+            cancelHover();
             setFollow(true);
             setActive((a) => (Math.min(a, rows.length - 1) + delta + rows.length) % rows.length);
         } else if (ev.key === "Enter" && selected) {
@@ -352,6 +388,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                         value={query}
                         onChange={(ev) => {
                             setQuery(ev.target.value);
+                            cancelHover();
                             setActive(0);
                             setFollow(Boolean(ev.target.value.trim()));
                         }}
@@ -418,6 +455,8 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                                 id={listId}
                                 role="listbox"
                                 className="srm-list"
+                                // Leaving the list (towards the map) chooses nothing.
+                                onMouseLeave={cancelHover}
                                 aria-label={query.trim() ? t(`${P}results`) : t(`${P}spaces`)}
                             >
                                 {rows.map((row, i) => (
@@ -428,10 +467,7 @@ export function MapOverlay(props: MapOverlayProps): JSX.Element {
                                         aria-selected={row === selected}
                                         className={`srm-item${row.highlight || row.unread ? " srm-item--unread" : ""}${row.district ? " srm-item--district" : ""}`}
                                         style={row.depth ? { paddingInlineStart: 8 + row.depth * 16 } : undefined}
-                                        onMouseMove={() => {
-                                            if (i !== active) setActive(i);
-                                            if (!follow) setFollow(true);
-                                        }}
+                                        onMouseMove={(ev) => onRowPointer(i, ev)}
                                         onMouseDown={(ev) => ev.preventDefault()}
                                         onClick={() => activate(row)}
                                     >

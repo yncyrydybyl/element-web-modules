@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-space-room-map",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "Element Web module: a zoomable 2D map (circles or tube map) of your spaces and rooms (Ctrl+I), with a space list that steers the map",
     "private": true,
     "type": "module",

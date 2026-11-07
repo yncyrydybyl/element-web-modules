@@ -85,7 +85,9 @@ describe("SpaceRoomMapModule", () => {
         press("i", { ctrlKey: true });
         const design = items()[3];
         await userEvent.hover(design);
-        expect(design.getAttribute("aria-selected")).toBe("true");
+        // Chosen once the pointer rests on it.
+        expect(design.getAttribute("aria-selected")).toBe("false");
+        await vi.waitFor(() => expect(design.getAttribute("aria-selected")).toBe("true"));
         // "Everything", districts and groups that aren't a space only fly the map there.
         await userEvent.click(items()[0]);
         await userEvent.click(items()[1]);
@@ -178,6 +180,34 @@ describe("SpaceRoomMapModule", () => {
         press("i", { ctrlKey: true }, input);
         expect(screen.getByRole("dialog")).toBeTruthy();
         input.remove();
+    });
+});
+
+describe("hover intent", () => {
+    it("doesn't choose rows the pointer only crosses on its way to the map", async () => {
+        vi.useFakeTimers();
+        try {
+            await loadModule();
+            press("i", { ctrlKey: true });
+            const rows = items();
+            const move = (el: Element) => act(() => void el.dispatchEvent(new MouseEvent("mousemove", { bubbles: true, clientX: 10, clientY: rows.indexOf(el as HTMLElement) * 40 })));
+            // Down across three rows, then off the list.
+            for (const row of rows.slice(2, 5)) {
+                move(row);
+                act(() => vi.advanceTimersByTime(80));
+            }
+            act(() => void screen.getByRole("listbox", { name: "Places" }).dispatchEvent(new MouseEvent("mouseout", { bubbles: true, relatedTarget: document.body })));
+            act(() => vi.advanceTimersByTime(1000));
+            expect(rows[0].getAttribute("aria-selected")).toBe("true");
+            expect(rows.slice(1).some((r) => r.getAttribute("aria-selected") === "true")).toBe(false);
+
+            // Resting on one chooses it.
+            move(rows[3]);
+            act(() => vi.advanceTimersByTime(250));
+            expect(rows[3].getAttribute("aria-selected")).toBe("true");
+        } finally {
+            vi.useRealTimers();
+        }
     });
 });
 
