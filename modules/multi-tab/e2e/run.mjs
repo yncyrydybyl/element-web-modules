@@ -241,8 +241,8 @@ async function T4(r, c) {
 }
 
 /** T5/T7 core: get rid of the engine, check promotion and re-attachment. how = close|kill|crash|freeze-kill */
-async function promotionCase(r, how) {
-    await withHarness(r, {}, async (h) => {
+async function promotionCase(r, how, opts = {}) {
+    await withHarness(r, opts, async (h) => {
         const { a, b, from } = await T1(r, h);
         const t = Date.now();
         if (how === "close") await h.closeTab(a);
@@ -272,6 +272,7 @@ async function promotionCase(r, how) {
         await Promise.all([h.waitForMessage(b, enc, t2), h.waitForMessage(c, enc, t2)]);
         r.check("encrypted messages decrypt in B (new engine) and C after the handover", true);
         invariants(r, h, from);
+        await opts.after?.(h);
     });
 }
 const T5 = (r) => promotionCase(r, "close");
@@ -731,6 +732,19 @@ const domTabRows = (h, i) =>
     );
 const normRows = (xs) => JSON.stringify((xs ?? []).map((x) => ({ tabId: x.tabId, role: x.role, isThis: !!x.isThis })).sort((p, q) => (p.tabId < q.tabId ? -1 : 1)));
 
+/** T19: config.json lists the module twice, as Element Pro's server does: the second instance must stay off. */
+async function T19(r) {
+    const twice = (json) => ({ ...json, modules: [...(json.modules ?? []), ...(json.modules ?? [])] });
+    await promotionCase(r, "close", {
+        ctxConfigPatch: twice,
+        after: async (h) => {
+            const skipped = h.console.filter((c) => /Already loaded in this page/.test(c.text));
+            // A, B (twice: before and after its promotion reload) and C each log it once per page load.
+            r.check("every page load skipped the second copy", skipped.length >= 4, skipped.map((c) => c.tab));
+        },
+    });
+}
+
 async function T18(r) {
     await withHarness(r, { peer: false }, async (h) => {
         const from = h.mark();
@@ -997,7 +1011,7 @@ async function LIVE() {
 }
 
 // ------------------------------------------------------------------ main
-const SCENARIOS = { T1, T2, T3, T4, T5, T5b, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T17b, T18 };
+const SCENARIOS = { T1, T2, T3, T4, T5, T5b, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T17b, T18, T19 };
 const TITLES = {
     STOCK: "harness self-test on stock Element",
     T1: "second tab mirrors without the lock screen",
@@ -1020,6 +1034,7 @@ const TITLES = {
     T17: "hung engine, not closed: takeover time",
     T17b: "hung engine + new tab: the new tab takes over",
     T18: "open tabs in Preferences",
+    T19: "module listed twice in config.json (Element Pro): one instance runs",
 };
 
 const results = [];

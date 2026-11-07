@@ -1,6 +1,6 @@
 import type { Api, Module, ModuleFactory } from "@element-hq/element-web-module-api";
 
-import pkg from "../package.json";
+import { version } from "../package.json";
 import { Channel } from "./channel";
 import {
     type Claim,
@@ -71,7 +71,7 @@ export class MultiTabModule implements Module {
     public readonly status: Status = {
         role: "pending",
         tabId: randomId(),
-        version: pkg.version,
+        version,
         stats: () => ({}),
         tabs: async () => [],
     };
@@ -83,21 +83,25 @@ export class MultiTabModule implements Module {
     /** A logout happened (here or in another tab): every tab reloads into the signed-out roles. */
     private signedOut = false;
 
-    public constructor(_api: Api) {
-        (window as unknown as { __multiTab: Status }).__multiTab = this.status;
-    }
+    public constructor(_api: Api) {}
 
     /**
      * Element awaits this before it creates its client and takes its session lock, so the role is decided in
      * time. Waits only for the Web Lock, the app version and, in a new mirror, the engine's first answer.
      */
     public async load(): Promise<void> {
+        // Element creates one instance per entry in config.json "modules", and Element Pro's server lists each
+        // configured module twice. Only the first instance may run: two in one page would be two tabs in one.
+        const w = window as unknown as { __multiTab?: Status };
+        if (w.__multiTab) return void console.info("[multi-tab] Already loaded in this page; this copy stays off");
+        w.__multiTab = this.status;
+
         const pre = preflight();
         if (!pre.ok) return this.off(pre.reason);
 
         const platform = el().mxPlatformPeg!.get()!;
         const elementVersion = await withTimeout(platform.getAppVersion?.() ?? Promise.resolve("?"), VERSION_WAIT_MS, "?");
-        this.build = `${pkg.version}/${elementVersion}`;
+        this.build = `${version}/${elementVersion}`;
         const deps: ElectionDeps = { locks: navigator.locks, local: localStorage, session: sessionStorage, now: Date.now };
 
         if (!pre.session) return this.loggedOut(deps);
