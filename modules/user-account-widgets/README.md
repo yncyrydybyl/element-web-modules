@@ -52,6 +52,7 @@ Element only renders `m.widgets` entries of type `m.stickerpicker`, and the modu
 
 - **One room at a time.** A widget that wants to follow several rooms at once (`org.matrix.msc2762.timeline:*`) gets the capability if you allow it, but its iframe still restarts on every room switch.
 - **Restart on room switch.** A widget loses unsaved input when you change rooms. That's the price of never letting it see the wrong room.
+- **Loaded through remote-modules, the button can come late.** Remote modules start after login, and Element asks header-button callbacks only when it renders a header, so the button may first appear after the next room switch. Modules listed in `config.json` load before Element renders and aren't affected.
 - **Not on other clients.** Element X, the Marcade Player and other clients don't show these widgets. The `m.widgets` entries are standard, so a client could.
 - **Relies on Element internals:** `mxMatrixClientPeg`, `mxSdkContext.roomViewStore`, `.mx_RoomHeader` and the overlay containers. Checked against Element Web v1.12.32 and develop (November 2026). Without the client the button is not shown. Without the room store the URL hash is used. Without the header element the panel starts at the top of the window.
 - **Widgets that only read once.** The PDF viewer lists a room's documents when it starts and ignores live events (`send_event`), so a PDF posted while it is open shows up after the next room switch. A room-pinned PDF viewer behaves the same way.
