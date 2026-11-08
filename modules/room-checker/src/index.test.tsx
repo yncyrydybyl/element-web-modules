@@ -41,6 +41,7 @@ async function setup(list: FakeRoom[] = rooms()) {
 }
 
 const tableRows = () => within(screen.getByRole("table")).getAllByRole("row").slice(1);
+const row = (name: string) => tableRows().find((r) => r.querySelector(".rc-room-name")!.textContent === name)!;
 const rowNames = () => tableRows().map((r) => r.querySelector(".rc-room-name")!.textContent);
 
 function press(key: string, init: KeyboardEventInit = {}) {
@@ -70,9 +71,10 @@ describe("RoomCheckerModule", () => {
         expect(ev.defaultPrevented).toBe(true);
         await screen.findByText("Archive");
         expect(screen.getByRole("dialog", { name: "Room checker" })).toBeTruthy();
-        expect(rowNames()).toEqual(["Random", "Deep", "General", "Archive"]);
+        // Archive (not joined) is checked from the server's summary: no topic, no picture.
+        expect(rowNames()).toEqual(["Random", "Archive", "Deep", "General"]);
         expect(tableRows()[0].textContent).toContain("1 error · 2 warnings");
-        expect(tableRows()[3].textContent).toContain("Not joined");
+        expect(tableRows()[1].textContent).toContain("Not joined · 2 warnings");
         expect(screen.getByText("33 % of the rooms you're in pass every policy")).toBeTruthy();
         expect(screen.getByText(`v${version}`)).toBeTruthy();
         press("r", { altKey: true, code: "KeyR" });
@@ -121,7 +123,7 @@ describe("RoomCheckerModule", () => {
     it("links a room to the sub-space it's listed in", async () => {
         const user = userEvent.setup();
         const { sendStateEvent } = await setup();
-        await user.click(tableRows()[1]);
+        await user.click(row("Deep"));
         const detail = screen.getByTestId("room-checker-detail");
         expect(within(detail).getByText("In Backend")).toBeTruthy();
         await user.click(within(detail).getByRole("button", { name: "Link it to the space" }));
@@ -168,6 +170,90 @@ describe("RoomCheckerModule", () => {
         expect(screen.getByText(/Only people who may change/)).toBeTruthy();
         expect((screen.getByRole("switch", { name: "Picture" }) as HTMLInputElement).disabled).toBe(true);
         expect(screen.queryByRole("button", { name: "Save to the space" })).toBeNull();
+    });
+
+    it("checks rooms you aren't in from the server's summary, sub-spaces included", async () => {
+        const user = userEvent.setup();
+        const list = rooms();
+        list.find((r) => r.id === "!left:x")!.summary = {
+            topic: "Old stuff, kept for reference",
+            avatar_url: "mxc://x/p",
+            join_rule: "public",
+            world_readable: true,
+            room_version: "12",
+        };
+        list.push({ id: "!other:x", name: "Others", space: true, left: true, children: ["!far:x"] }, { id: "!far:x", name: "Far away", left: true });
+        list[0].children!.push("!other:x");
+        await setup(list);
+        await screen.findByText("Far away");
+        await user.click(row("Archive"));
+        const detail = screen.getByTestId("room-checker-detail");
+        expect(within(detail).getByText(/these checks use what the server tells everyone/)).toBeTruthy();
+        // Unencrypted (the server sends summary fields, and no encryption), public, readable by anyone.
+        expect(within(detail).getByText("Not encrypted")).toBeTruthy();
+        expect(within(detail).getByText("Join rule is “Anyone”")).toBeTruthy();
+        expect(within(detail).getAllByText("Can't be checked without being in the room")).toHaveLength(2);
+        expect(within(detail).getAllByText("Join the room to fix this.").length).toBeGreaterThan(0);
+        await user.click(row("Far away"));
+        expect(within(screen.getByTestId("room-checker-detail")).getByText("In Others")).toBeTruthy();
+    });
+
+    it("accepts a failure for one room, and takes it back", async () => {
+        const user = userEvent.setup();
+        const { sendStateEvent } = await setup();
+        await user.click(row("Random"));
+        const topic = () => within(screen.getByTestId("room-checker-detail")).getByText("Topic").closest("li")!;
+        await user.click(within(topic()).getByRole("button", { name: "Accept for this room …" }));
+        await user.type(within(topic()).getByRole("textbox", { name: "Why is this fine here?" }), "Random is random");
+        await user.click(within(topic()).getByRole("button", { name: "Accept" }));
+        expect(sendStateEvent).toHaveBeenLastCalledWith(
+            "!eng:x",
+            POLICY_TYPE,
+            expect.objectContaining({ exceptions: { "!bad:x": { topic: expect.objectContaining({ reason: "Random is random", by: "@me:x" }) } } }),
+            "",
+        );
+        await waitFor(() => expect(within(topic()).getByText("“Random is random”")).toBeTruthy());
+        expect(row("Random").textContent).toContain("1 error · 1 warning");
+        expect(screen.getByText(/1 accepted exception/)).toBeTruthy();
+
+        // Saving the policies keeps the exception.
+        await user.click(screen.getByRole("tab", { name: "Policies" }));
+        expect(screen.getByText("“Random is random”")).toBeTruthy();
+        await user.click(screen.getByRole("switch", { name: "Address" }));
+        await user.click(screen.getByRole("button", { name: "Save to the space" }));
+        expect(sendStateEvent).toHaveBeenLastCalledWith("!eng:x", POLICY_TYPE, expect.objectContaining({ exceptions: { "!bad:x": expect.anything() } }), "");
+
+        await user.click(screen.getByRole("tab", { name: "Rooms" }));
+        await user.click(row("Random"));
+        await user.click(within(topic()).getByRole("button", { name: "Take back" }));
+        await waitFor(() => expect(row("Random").textContent).toContain("1 error · 3 warnings"));
+    });
+
+    it("fixes one policy in every room it can", async () => {
+        const user = userEvent.setup();
+        const list = rooms();
+        const extra = goodState("!eng:x", "Extra");
+        delete extra["m.room.encryption"];
+        list.push({ id: "!extra:x", state: extra }, { id: "!locked:x", state: { ...extra, "m.room.name": { name: "Locked" } }, denied: ["m.room.encryption"] });
+        list[0].children!.push("!extra:x", "!locked:x");
+        const { sendStateEvent } = await setup(list);
+        await user.click(screen.getByRole("button", { name: /^Encryption/ }));
+        const bulk = screen.getByTestId("room-checker-bulk");
+        expect(within(bulk).getByText("3 rooms fail this policy.")).toBeTruthy();
+        expect(within(bulk).getByText(/^1 can't be fixed from here/)).toBeTruthy();
+        await user.click(within(bulk).getByRole("button", { name: "Turn on encryption in 2 rooms" }));
+        // Encryption can't be undone: the list of rooms, and the warning.
+        expect(within(bulk).getByText(/can't be turned off again/)).toBeTruthy();
+        expect(within(bulk).getAllByRole("listitem").map((li) => li.textContent)).toEqual(["Random", "Extra"]);
+        await user.click(within(bulk).getByRole("button", { name: "Change 2 rooms" }));
+        await waitFor(() => expect(within(bulk).getByText("Changed 2 of 2 rooms.")).toBeTruthy());
+        expect(sendStateEvent).toHaveBeenCalledWith("!bad:x", "m.room.encryption", { algorithm: "m.megolm.v1.aes-sha2" }, "");
+        expect(sendStateEvent).toHaveBeenCalledWith("!extra:x", "m.room.encryption", { algorithm: "m.megolm.v1.aes-sha2" }, "");
+        expect(sendStateEvent).not.toHaveBeenCalledWith("!locked:x", expect.anything(), expect.anything(), expect.anything());
+
+        // Fixes that need input per room aren't offered in bulk.
+        await user.click(screen.getByRole("button", { name: /^Picture/ }));
+        expect(within(screen.getByTestId("room-checker-bulk")).getByText("This one is fixed room by room: click a room.")).toBeTruthy();
     });
 
     it("does nothing without Element's client", async () => {

@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-room-checker",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Element Web module: checks a space's rooms against policies kept in the space (name, topic, avatar, encryption, join rule …), with quick fixes (Alt+R)",
     "private": true,
     "type": "module",

@@ -2,13 +2,14 @@ import { useEffect, useState, type JSX } from "react";
 
 import { P } from "../i18n";
 import { ALLOWED_OPTIONS, POLICY_IDS, validPattern, type PolicyConfig, type PolicyId, type PolicySet } from "../policies";
-import { savePolicies, type SdkClient, type SpacePolicies } from "../space";
+import { saveException, savePolicies, type SdkClient, type SpacePolicies } from "../space";
 import { relative, type ModuleTranslate } from "./CheckerOverlay";
 
 export interface PoliciesTabProps {
     client: SdkClient;
     spaceId: string;
     space: SpacePolicies;
+    roomName(roomId: string): string;
     revision: number;
     language: string;
     t: ModuleTranslate;
@@ -57,11 +58,14 @@ export function PoliciesTab(props: PoliciesTabProps): JSX.Element {
                 </p>
                 {readOnly && <p className="rc-note">{t(`${P}policies_readonly`)}</p>}
             </div>
-            <ul className="rc-policy-list">
-                {POLICY_IDS.map((id) => (
-                    <PolicyRow key={id} id={id} config={draft[id]} readOnly={readOnly} t={t} onChange={(patch) => change(id, patch)} />
-                ))}
-            </ul>
+            <div className="rc-policies-scroll">
+                <ul className="rc-policy-list">
+                    {POLICY_IDS.map((id) => (
+                        <PolicyRow key={id} id={id} config={draft[id]} readOnly={readOnly} t={t} onChange={(patch) => change(id, patch)} />
+                    ))}
+                </ul>
+                <ExceptionList {...props} />
+            </div>
             {!readOnly && (
                 <div className="rc-savebar">
                     {typeof save === "object" && <span className="rc-note rc-note--error">{t(`${P}fix_failed`, { error: save.error })}</span>}
@@ -167,5 +171,46 @@ function NumberField(props: { label: string; value: number; max: number; disable
                 }}
             />
         </label>
+    );
+}
+
+/** Every accepted failure in the space, for a review now and then. */
+function ExceptionList(props: PoliciesTabProps): JSX.Element {
+    const { space, t } = props;
+    const [error, setError] = useState<string | undefined>();
+    const rows = Object.entries(space.exceptions).flatMap(([roomId, byPolicy]) =>
+        POLICY_IDS.filter((id) => byPolicy[id]).map((id) => ({ roomId, id, ex: byPolicy[id]! })),
+    );
+    return (
+        <section className="rc-exceptions" aria-label={t(`${P}exceptions_title`)}>
+            <div className="rc-section-title">{t(`${P}exceptions_title`)}</div>
+            {rows.length === 0 ? (
+                <p className="rc-note">{t(`${P}exceptions_none`)}</p>
+            ) : (
+                <ul className="rc-exception-list">
+                    {rows.map(({ roomId, id, ex }) => (
+                        <li key={`${roomId}|${id}`}>
+                            <span className="rc-exception-what">
+                                <strong>{props.roomName(roomId)}</strong> · {t(`${P}policy_${id}`)}
+                            </span>
+                            <span className="rc-exception-reason">“{ex.reason}”</span>
+                            <span className="rc-note">{t(`${P}excepted_by`, { user: ex.by, when: relative(ex.at, props.language) })}</span>
+                            {space.canEdit && (
+                                <button
+                                    type="button"
+                                    className="rc-link"
+                                    onClick={() =>
+                                        void saveException(props.client, props.spaceId, roomId, id).catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)))
+                                    }
+                                >
+                                    {t(`${P}remove`)}
+                                </button>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            )}
+            {error && <p className="rc-note rc-note--error">{t(`${P}fix_failed`, { error })}</p>}
+        </section>
     );
 }

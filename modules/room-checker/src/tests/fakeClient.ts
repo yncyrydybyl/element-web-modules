@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 
-import type { SdkClient, SdkEvent, SdkRoom } from "../space";
+import type { HierarchyRoom, SdkClient, SdkEvent, SdkRoom } from "../space";
 
 export const ME = "@me:x";
 
@@ -16,6 +16,8 @@ export interface FakeRoom {
     state?: Record<string, Record<string, unknown>>;
     /** Event types you may not send here. */
     denied?: string[];
+    /** What the server's space hierarchy says about it (rooms you aren't in). */
+    summary?: Partial<HierarchyRoom>;
 }
 
 /** A well-kept room: passes every default policy. */
@@ -78,9 +80,27 @@ export function fakeClient(rooms: FakeRoom[]) {
         sendStateEvent,
         createAlias: vi.fn(async () => ({})),
         uploadContent: vi.fn(async () => ({ content_uri: "mxc://x/new" })),
-        getRoomHierarchy: vi.fn(async (spaceId: string) => ({
-            rooms: (byId.get(spaceId)?.children ?? []).map((id) => ({ room_id: id, name: byId.get(id)?.name, room_type: byId.get(id)?.space ? "m.space" : undefined })),
-        })),
+        // The space and everything under it, three rooms per page.
+        getRoomHierarchy: vi.fn(async (spaceId: string, _limit?: number, _depth?: number, _suggested?: boolean, from?: string) => {
+            const all: HierarchyRoom[] = [];
+            const queue = [spaceId];
+            for (const seen = new Set<string>(); queue.length; ) {
+                const id = queue.shift()!;
+                const r = byId.get(id);
+                if (!r || seen.has(id)) continue;
+                seen.add(id);
+                all.push({
+                    room_id: id,
+                    name: r.name,
+                    room_type: r.space ? "m.space" : undefined,
+                    children_state: (r.children ?? []).map((c) => ({ state_key: c, content: { via: ["x"] } })),
+                    ...r.summary,
+                });
+                queue.push(...(r.children ?? []));
+            }
+            const start = Number(from ?? 0);
+            return { rooms: all.slice(start, start + 3), next_batch: start + 3 < all.length ? String(start + 3) : undefined };
+        }),
         on: (name: string, l: (...args: unknown[]) => void) => void (listeners.get(name) ?? listeners.set(name, new Set()).get(name)!).add(l),
         removeListener: (name: string, l: (...args: unknown[]) => void) => void listeners.get(name)?.delete(l),
     };

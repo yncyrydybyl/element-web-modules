@@ -83,9 +83,45 @@ export function sanitisePolicies(value: unknown): PolicySet {
     return out;
 }
 
-/** The state event's content for a policy set. */
-export function policyContent(policies: PolicySet): { version: 1; policies: PolicySet } {
-    return { version: 1, policies };
+/** A failure a space's admins accepted for one room, e.g. a lobby that is public on purpose. */
+export interface Exception {
+    reason: string;
+    by: string;
+    at: number;
+}
+
+/** Room ID → policy → exception. */
+export type Exceptions = Record<string, Partial<Record<PolicyId, Exception>>>;
+
+/** The exceptions from a space's state event; malformed ones are dropped. */
+export function sanitiseExceptions(value: unknown): Exceptions {
+    const raw = value && typeof value === "object" ? (value as { exceptions?: unknown }).exceptions : undefined;
+    const out: Exceptions = {};
+    if (!raw || typeof raw !== "object") return out;
+    for (const [roomId, byPolicy] of Object.entries(raw as Record<string, unknown>)) {
+        if (!roomId.startsWith("!") || !byPolicy || typeof byPolicy !== "object") continue;
+        for (const id of POLICY_IDS) {
+            const e = (byPolicy as Record<string, unknown>)[id] as Partial<Record<keyof Exception, unknown>> | undefined;
+            if (!e || typeof e !== "object" || typeof e.reason !== "string" || typeof e.by !== "string" || typeof e.at !== "number") continue;
+            (out[roomId] ??= {})[id] = { reason: e.reason, by: e.by, at: e.at };
+        }
+    }
+    return out;
+}
+
+/** The state event's content: the policies and the exceptions. */
+export function policyContent(policies: PolicySet, exceptions: Exceptions): { version: 1; policies: PolicySet; exceptions: Exceptions } {
+    return { version: 1, policies, exceptions };
+}
+
+/** The exceptions with one added (or, without `exception`, removed). */
+export function withException(exceptions: Exceptions, roomId: string, id: PolicyId, exception?: Exception): Exceptions {
+    const room = { ...exceptions[roomId] };
+    if (exception) room[id] = exception;
+    else delete room[id];
+    const out = { ...exceptions, [roomId]: room };
+    if (!Object.keys(room).length) delete out[roomId];
+    return out;
 }
 
 export function validPattern(pattern: string): boolean {
@@ -110,6 +146,8 @@ export interface CheckedRoom {
     parentSpace: string;
     /** Room version 12 and later: the creators, who have unlimited power and aren't in the power levels. */
     creators?: string[];
+    /** Rooms you aren't in are checked from the server's summary: some policies can't be decided from it. */
+    unknown?(id: PolicyId, config: PolicyConfig): boolean;
 }
 
 /** What failed, as a translation key (`check_<key>`) and its variables. */
@@ -118,55 +156,61 @@ export interface Detail {
     vars?: Record<string, string>;
 }
 
+/** excepted: failed, but the space's admins accepted it for this room. unknown: can't be checked. */
+export type Status = "pass" | "fail" | "excepted" | "unknown";
+
 export interface CheckResult {
-    pass: boolean;
+    status: Status;
     detail?: Detail;
+    exception?: Exception;
 }
+
+const PASS: CheckResult = { status: "pass" };
 
 const PL_ADMIN = 100;
 
 /** Runs one policy against a room. */
 export function check(id: PolicyId, room: CheckedRoom, config: PolicyConfig): CheckResult {
-    const fail = (key: string, vars?: Record<string, string>): CheckResult => ({ pass: false, detail: { key, vars } });
+    const fail = (key: string, vars?: Record<string, string>): CheckResult => ({ status: "fail", detail: { key, vars } });
     switch (id) {
         case "name": {
             const name = String(room.state("m.room.name")?.name ?? "").trim();
             if (!name) return fail("name_missing");
             if (config.pattern && !new RegExp(config.pattern, "u").test(name)) return fail("name_pattern", { pattern: config.pattern });
-            return { pass: true };
+            return PASS;
         }
         case "topic": {
             const topic = topicOf(room.state("m.room.topic"));
             if (!topic) return fail("topic_missing");
             const min = config.minLength ?? 0;
             if (Array.from(topic).length < min) return fail("topic_short", { min: String(min) });
-            return { pass: true };
+            return PASS;
         }
         case "avatar":
-            return room.state("m.room.avatar")?.url ? { pass: true } : fail("avatar_missing");
+            return room.state("m.room.avatar")?.url ? PASS : fail("avatar_missing");
         case "encryption":
-            return room.state("m.room.encryption")?.algorithm ? { pass: true } : fail("encryption_off");
+            return room.state("m.room.encryption")?.algorithm ? PASS : fail("encryption_off");
         case "join_rule": {
             const rule = String(room.state("m.room.join_rules")?.join_rule ?? "invite");
-            return config.allowed?.includes(rule) ? { pass: true } : fail("join_rule", { value: rule });
+            return config.allowed?.includes(rule) ? PASS : fail("join_rule", { value: rule });
         }
         case "history_visibility": {
             const v = String(room.state("m.room.history_visibility")?.history_visibility ?? "shared");
-            return config.allowed?.includes(v) ? { pass: true } : fail("history_visibility", { value: v });
+            return config.allowed?.includes(v) ? PASS : fail("history_visibility", { value: v });
         }
         case "guest_access":
-            return room.state("m.room.guest_access")?.guest_access === "can_join" ? fail("guest_access") : { pass: true };
+            return room.state("m.room.guest_access")?.guest_access === "can_join" ? fail("guest_access") : PASS;
         case "address":
-            return room.state("m.room.canonical_alias")?.alias ? { pass: true } : fail("address_missing");
+            return room.state("m.room.canonical_alias")?.alias ? PASS : fail("address_missing");
         case "admins": {
             const admins = joinedAdmins(room).length;
             const min = config.min ?? 1;
-            return admins >= min ? { pass: true } : fail("admins", { count: String(admins), min: String(min) });
+            return admins >= min ? PASS : fail("admins", { count: String(admins), min: String(min) });
         }
         case "space_parent": {
             // A parent event without `via` counts as removed (spec, m.space.parent).
             const via = room.state("m.space.parent", room.parentSpace)?.via;
-            return Array.isArray(via) && via.length ? { pass: true } : fail("space_parent");
+            return Array.isArray(via) && via.length ? PASS : fail("space_parent");
         }
     }
 }
@@ -198,22 +242,23 @@ export interface RoomReport {
     results: Map<PolicyId, CheckResult>;
     errors: number;
     warnings: number;
+    /** Policies that couldn't be checked (rooms you aren't in). */
+    unknown: number;
 }
 
-/** All enabled policies against one room. */
-export function checkRoom(room: CheckedRoom, policies: PolicySet): RoomReport {
+/** All enabled policies against one room; failures the space accepted for it count as passed. */
+export function checkRoom(room: CheckedRoom, policies: PolicySet, exceptions: Exceptions = {}): RoomReport {
     const results = new Map<PolicyId, CheckResult>();
-    let errors = 0;
-    let warnings = 0;
+    const report: RoomReport = { results, errors: 0, warnings: 0, unknown: 0 };
     for (const id of POLICY_IDS) {
         const config = policies[id];
         if (!config.enabled) continue;
-        const r = check(id, room, config);
+        let r = room.unknown?.(id, config) ? { status: "unknown" as const } : check(id, room, config);
+        const exception = exceptions[room.id]?.[id];
+        if (r.status === "fail" && exception) r = { ...r, status: "excepted", exception };
         results.set(id, r);
-        if (!r.pass) {
-            if (config.severity === "error") errors++;
-            else warnings++;
-        }
+        if (r.status === "unknown") report.unknown++;
+        else if (r.status === "fail") report[config.severity === "error" ? "errors" : "warnings"]++;
     }
-    return { results, errors, warnings };
+    return report;
 }

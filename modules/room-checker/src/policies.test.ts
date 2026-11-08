@@ -19,14 +19,14 @@ describe("policies", () => {
     it("has ten, and a well-kept room passes every default", () => {
         expect(POLICY_IDS).toHaveLength(10);
         const report = checkRoom(room(goodState(SPACE, "Team")), { ...DEFAULT_POLICIES, address: { ...DEFAULT_POLICIES.address, enabled: false } });
-        expect([...report.results.values()].every((r) => r.pass)).toBe(true);
+        expect([...report.results.values()].every((r) => r.status === "pass")).toBe(true);
         expect(report.errors + report.warnings).toBe(0);
     });
 
     it("finds what's missing, counted by severity", () => {
         const r = room(without("m.room.name", "m.room.topic", "m.room.avatar", "m.room.encryption", `m.space.parent|${SPACE}`));
         const report = checkRoom(r, DEFAULT_POLICIES);
-        expect(report.results.get("name")).toEqual({ pass: false, detail: { key: "name_missing", vars: undefined } });
+        expect(report.results.get("name")).toEqual({ status: "fail", detail: { key: "name_missing", vars: undefined } });
         // name, encryption are errors; topic, avatar, space_parent warnings.
         expect(report.errors).toBe(2);
         expect(report.warnings).toBe(3);
@@ -44,19 +44,19 @@ describe("policies", () => {
         expect(check("name", r, { enabled: true, severity: "error", pattern: "^[A-Z]" }).detail?.key).toBe("name_pattern");
         expect(check("topic", r, DEFAULT_POLICIES.topic).detail).toEqual({ key: "topic_short", vars: { min: "10" } });
         expect(check("join_rule", r, DEFAULT_POLICIES.join_rule).detail?.vars).toEqual({ value: "public" });
-        expect(check("history_visibility", r, DEFAULT_POLICIES.history_visibility).pass).toBe(false);
-        expect(check("guest_access", r, DEFAULT_POLICIES.guest_access).pass).toBe(false);
+        expect(check("history_visibility", r, DEFAULT_POLICIES.history_visibility).status).toBe("fail");
+        expect(check("guest_access", r, DEFAULT_POLICIES.guest_access).status).toBe("fail");
         // The admin who left doesn't count.
         expect(check("admins", r, DEFAULT_POLICIES.admins).detail?.vars).toEqual({ count: "1", min: "2" });
-        expect(check("address", r, DEFAULT_POLICIES.address).pass).toBe(false);
+        expect(check("address", r, DEFAULT_POLICIES.address).status).toBe("fail");
         // Room version 12: the creator is an admin without being in the power levels.
-        expect(check("admins", { ...r, creators: ["@c:x"] }, DEFAULT_POLICIES.admins).pass).toBe(false);
+        expect(check("admins", { ...r, creators: ["@c:x"] }, DEFAULT_POLICIES.admins).status).toBe("fail");
         s["m.room.member|@c:x"] = { membership: "join" };
-        expect(check("admins", { ...r, creators: ["@c:x"] }, DEFAULT_POLICIES.admins).pass).toBe(true);
+        expect(check("admins", { ...r, creators: ["@c:x"] }, DEFAULT_POLICIES.admins).status).toBe("pass");
         expect(creatorsOf("12", "@c:x", ["@d:x", 3])).toEqual(["@c:x", "@d:x"]);
         expect(creatorsOf("11", "@c:x", [])).toEqual([]);
         expect(creatorsOf("org.example.custom", "@c:x", [])).toEqual([]);
-        expect(check("address", room({ ...s, "m.room.canonical_alias": { alias: "#t:x" } }), DEFAULT_POLICIES.address).pass).toBe(true);
+        expect(check("address", room({ ...s, "m.room.canonical_alias": { alias: "#t:x" } }), DEFAULT_POLICIES.address).status).toBe("pass");
     });
 
     it("reads both topic formats", () => {

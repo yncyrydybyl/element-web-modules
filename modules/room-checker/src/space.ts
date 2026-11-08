@@ -3,7 +3,23 @@
  * that change it. The module API has no room state, so this goes through `window.mxMatrixClientPeg`.
  */
 
-import { checkRoom, creatorsOf, POLICY_TYPE, sanitisePolicies, topicOf, type CheckedRoom, type PolicyConfig, type PolicyId, type PolicySet, type RoomReport } from "./policies";
+import {
+    checkRoom,
+    creatorsOf,
+    policyContent,
+    POLICY_TYPE,
+    sanitiseExceptions,
+    sanitisePolicies,
+    topicOf,
+    withException,
+    type CheckedRoom,
+    type Exception,
+    type Exceptions,
+    type PolicyConfig,
+    type PolicyId,
+    type PolicySet,
+    type RoomReport,
+} from "./policies";
 
 /** The parts of matrix-js-sdk's `MatrixEvent` used here. */
 export interface SdkEvent {
@@ -36,7 +52,7 @@ export interface SdkClient {
     setRoomTopic?(roomId: string, topic: string): Promise<unknown>;
     createAlias(alias: string, roomId: string): Promise<unknown>;
     uploadContent(file: File): Promise<{ content_uri: string }>;
-    getRoomHierarchy?(roomId: string, limit?: number): Promise<{ rooms: Array<{ room_id: string; name?: string; canonical_alias?: string; room_type?: string }> }>;
+    getRoomHierarchy?(roomId: string, limit?: number, maxDepth?: number, suggestedOnly?: boolean, fromToken?: string): Promise<{ rooms: HierarchyRoom[]; next_batch?: string }>;
     on?(event: string, listener: (...args: unknown[]) => void): unknown;
     removeListener?(event: string, listener: (...args: unknown[]) => void): unknown;
 }
@@ -90,6 +106,7 @@ export function joinedSpaces(client: SdkClient): SpaceInfo[] {
 
 export interface SpacePolicies {
     policies: PolicySet;
+    exceptions: Exceptions;
     /** False: the space has no policies yet and the defaults apply. */
     saved: boolean;
     by?: string;
@@ -106,6 +123,7 @@ export function readPolicies(client: SdkClient, spaceId: string): SpacePolicies 
     const me = client.getUserId() ?? "";
     return {
         policies: sanitisePolicies(saved ? content : undefined),
+        exceptions: sanitiseExceptions(content),
         saved,
         by: saved ? ev?.getSender?.() : undefined,
         at: saved ? ev?.getTs?.() : undefined,
@@ -113,8 +131,20 @@ export function readPolicies(client: SdkClient, spaceId: string): SpacePolicies 
     };
 }
 
+/** Saves the policies, keeping the exceptions as they are in the space now. */
 export function savePolicies(client: SdkClient, spaceId: string, policies: PolicySet): Promise<unknown> {
-    return client.sendStateEvent(spaceId, POLICY_TYPE, { version: 1, policies }, "");
+    const current = readPolicies(client, spaceId);
+    return client.sendStateEvent(spaceId, POLICY_TYPE, policyContent(policies, current.exceptions), "");
+}
+
+/**
+ * Accepts a failure for one room (or, without `reason`, takes that back). Reads the space's
+ * current policies first, so a change someone else just made isn't overwritten.
+ */
+export function saveException(client: SdkClient, spaceId: string, roomId: string, id: PolicyId, reason?: string): Promise<unknown> {
+    const current = readPolicies(client, spaceId);
+    const exception: Exception | undefined = reason === undefined ? undefined : { reason, by: client.getUserId() ?? "", at: Date.now() };
+    return client.sendStateEvent(spaceId, POLICY_TYPE, policyContent(current.policies, withException(current.exceptions, roomId, id, exception)), "");
 }
 
 export interface RoomEntry {
@@ -122,56 +152,127 @@ export interface RoomEntry {
     name: string;
     /** The (sub)space it's listed in. */
     parentSpace: string;
-    /** Missing for rooms you aren't in: their state can't be read. */
+    /** Missing for rooms you aren't in: they're checked from the server's summary, as far as it goes. */
     room?: SdkRoom;
+    /** Missing when there's nothing to check it with (not joined, and the server didn't describe it). */
     report?: RoomReport;
+}
+
+/** A room as the server's space hierarchy describes it (also to people who aren't in it). */
+export interface HierarchyRoom {
+    room_id: string;
+    name?: string;
+    topic?: string;
+    avatar_url?: string;
+    canonical_alias?: string;
+    join_rule?: string;
+    world_readable?: boolean;
+    guest_can_join?: boolean;
+    room_type?: string;
+    /** Room summary fields (MSC3266); Synapse adds them to the hierarchy. */
+    room_version?: string;
+    encryption?: string;
+    "im.nheko.summary.encryption"?: string;
+    children_state?: Array<{ state_key?: string; content?: { via?: unknown } }>;
 }
 
 /**
  * Every room in the space and its sub-spaces (the sub-spaces themselves aren't checked), each
  * checked against the space's policies. Rooms listed twice count once, under the first space.
  */
-export function spaceRooms(client: SdkClient, spaceId: string, policies: PolicySet, names: Map<string, string> = new Map()): RoomEntry[] {
+export function spaceRooms(
+    client: SdkClient,
+    spaceId: string,
+    policies: PolicySet,
+    exceptions: Exceptions = {},
+    hierarchy: Map<string, HierarchyRoom> = new Map(),
+): RoomEntry[] {
     const out: RoomEntry[] = [];
     const seen = new Set<string>([spaceId]);
     const queue = [spaceId];
     while (queue.length) {
         const sid = queue.shift()!;
-        const space = client.getRoom(sid);
-        if (!space) continue;
-        for (const ev of space.currentState.getStateEvents("m.space.child")) {
-            const id = ev.getStateKey();
-            const via = ev.getContent().via;
-            if (!id || seen.has(id) || !Array.isArray(via) || !via.length) continue;
+        for (const id of childrenOf(client, sid, hierarchy)) {
+            if (seen.has(id)) continue;
             seen.add(id);
             const room = client.getRoom(id);
             const joined = room && room.getMyMembership() === "join" ? room : undefined;
-            if (joined?.isSpaceRoom()) {
+            const summary = hierarchy.get(id);
+            // Sub-spaces you aren't in too: the server lists their children.
+            if (joined ? joined.isSpaceRoom() : summary?.room_type === "m.space") {
                 queue.push(id);
                 continue;
             }
-            if (!joined && names.get(id) === SUBSPACE) continue;
-            const entry: RoomEntry = { id, name: joined?.name || names.get(id) || id, parentSpace: sid, room: joined };
-            if (joined) entry.report = checkRoom(checkedRoom(joined, sid), policies);
+            const entry: RoomEntry = { id, name: joined?.name || summary?.name || summary?.canonical_alias || id, parentSpace: sid, room: joined };
+            const checked = joined ? checkedRoom(joined, sid) : summary ? summaryRoom(summary, sid) : undefined;
+            if (checked) entry.report = checkRoom(checked, policies, exceptions);
             out.push(entry);
         }
     }
     return out;
 }
 
-/** Marks a sub-space you aren't in, in the names from the hierarchy. */
-export const SUBSPACE = "\u0000space";
+/** A space's children: from its state when you're in it, else from the server's hierarchy. */
+function childrenOf(client: SdkClient, spaceId: string, hierarchy: Map<string, HierarchyRoom>): string[] {
+    const space = client.getRoom(spaceId);
+    const children =
+        space && space.getMyMembership() === "join"
+            ? space.currentState.getStateEvents("m.space.child").map((ev) => ({ state_key: ev.getStateKey(), content: ev.getContent() }))
+            : (hierarchy.get(spaceId)?.children_state ?? []);
+    return children.filter((c) => c.state_key && Array.isArray(c.content?.via) && (c.content.via as unknown[]).length).map((c) => c.state_key!);
+}
 
-/** Names of the space's rooms you aren't in, from the server's space hierarchy. */
-export async function hierarchyNames(client: SdkClient, spaceId: string): Promise<Map<string, string>> {
-    const names = new Map<string, string>();
+/** At most this many hierarchy pages (of up to 100 rooms) per space. */
+const HIERARCHY_PAGES = 20;
+
+/** The space's rooms and sub-spaces as the server describes them, also those you aren't in. */
+export async function fetchHierarchy(client: SdkClient, spaceId: string): Promise<Map<string, HierarchyRoom>> {
+    const rooms = new Map<string, HierarchyRoom>();
+    let from: string | undefined;
     try {
-        const res = await client.getRoomHierarchy?.(spaceId, 200);
-        for (const r of res?.rooms ?? []) names.set(r.room_id, r.room_type === "m.space" ? SUBSPACE : r.name || r.canonical_alias || r.room_id);
+        for (let page = 0; page < HIERARCHY_PAGES && client.getRoomHierarchy; page++) {
+            const res = await client.getRoomHierarchy(spaceId, 100, undefined, false, from);
+            for (const r of res.rooms ?? []) rooms.set(r.room_id, r);
+            from = res.next_batch;
+            if (!from) break;
+        }
     } catch {
-        // Without names, room IDs it is.
+        // What came so far; rooms you aren't in stay unchecked.
     }
-    return names;
+    return rooms;
+}
+
+/** Policies the server's summary can't answer: the power levels and the room's parents aren't in it. */
+const NOT_IN_SUMMARY = new Set<PolicyId>(["admins", "space_parent"]);
+const HISTORY_FOR_MEMBERS = ["joined", "invited", "shared"];
+
+/** A room you aren't in, checked from the server's summary of it. */
+export function summaryRoom(r: HierarchyRoom, parentSpace: string): CheckedRoom {
+    const encryption = r.encryption ?? r["im.nheko.summary.encryption"];
+    // A server that sends summary fields leaves `encryption` out for unencrypted rooms.
+    const knowsEncryption = encryption !== undefined || r.room_version !== undefined;
+    const state: Record<string, Record<string, unknown> | undefined> = {
+        "m.room.name": r.name ? { name: r.name } : undefined,
+        "m.room.topic": r.topic ? { topic: r.topic } : undefined,
+        "m.room.avatar": r.avatar_url ? { url: r.avatar_url } : undefined,
+        "m.room.canonical_alias": r.canonical_alias ? { alias: r.canonical_alias } : undefined,
+        "m.room.join_rules": r.join_rule ? { join_rule: r.join_rule } : undefined,
+        "m.room.encryption": encryption ? { algorithm: encryption } : undefined,
+        "m.room.guest_access": { guest_access: r.guest_can_join ? "can_join" : "forbidden" },
+        // Not readable by anyone means members only, but not which of the three member settings.
+        "m.room.history_visibility": { history_visibility: r.world_readable ? "world_readable" : "shared" },
+    };
+    return {
+        id: r.room_id,
+        parentSpace,
+        state: (type, stateKey = "") => (stateKey ? undefined : state[type]),
+        unknown: (id, config) =>
+            NOT_IN_SUMMARY.has(id) ||
+            (id === "encryption" && !knowsEncryption) ||
+            (id === "join_rule" && !r.join_rule) ||
+            // Members only: it passes when every members-only setting is allowed, else it depends on which.
+            (id === "history_visibility" && !r.world_readable && !HISTORY_FOR_MEMBERS.every((v) => config.allowed?.includes(v))),
+    };
 }
 
 export function checkedRoom(room: SdkRoom, parentSpace: string): CheckedRoom {
