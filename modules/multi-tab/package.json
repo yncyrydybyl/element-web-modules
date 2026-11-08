@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-multi-tab",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "Element Web module: keep several Element tabs open at once; one tab syncs and holds the crypto, the others mirror it",
     "private": true,
     "type": "module",

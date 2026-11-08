@@ -23,7 +23,8 @@ import { el, type MatrixClientLike, SESSION_LOCK, type StoredSession, SYNC_STORE
 import { claimLoginTab, isLoginCallback, waitForLogin } from "./login";
 import { Mirror } from "./mirror";
 import { fingerprint, preflight } from "./preflight";
-import { baseStatus, formatBytes, listTabs, serveStatus, type TabInfo, type TabStatus } from "./tabs";
+import { baseStatus, formatBytes, listTabs, serveStatus, TabColour, type TabInfo, type TabStatus } from "./tabs";
+import { TabRing } from "./ui/tabRing";
 import { TabsSection } from "./ui/tabsSection";
 import { quietly, sleep, withTimeout } from "./util";
 
@@ -270,15 +271,20 @@ export class MultiTabModule implements Module {
         console.info("[multi-tab] This tab mirrors the engine tab");
     }
 
-    /** Answers other tabs' "status", and shows all tabs in Settings → Preferences. */
+    /** Answers other tabs' "status", shows all tabs in Settings → Preferences, and this tab's ring on the avatar. */
     private showTabs(channel: Channel, roleStatus: () => Pick<TabStatus, "syncState" | "lastSyncAt" | "details">): void {
+        const colour = new TabColour(sessionStorage);
         const own = (): TabStatus => ({
             ...baseStatus(this.status.tabId, this.status.role, this.build, this.openedAt, el().mxMatrixClientPeg?.get() ?? null),
             ...roleStatus(),
+            colour: colour.colour,
+            colourSince: colour.since,
         });
+        const list = (): Promise<TabInfo[]> => listTabs(channel, own);
         serveStatus(channel, own);
-        this.status.tabs = () => listTabs(channel, own);
-        new TabsSection(() => listTabs(channel, own)).start();
+        this.status.tabs = list;
+        new TabsSection(list).start();
+        new TabRing(list, (others) => colour.settle(this.status.tabId, this.openedAt, others)).start();
     }
 
     /** This mirror got the lock: record who the dead engine was, then come back as the engine. */

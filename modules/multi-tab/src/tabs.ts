@@ -1,4 +1,5 @@
 import type { Channel } from "./channel";
+import { quietly } from "./util";
 
 /**
  * What every tab of the session says about itself, for the "Open tabs" list in Settings → Preferences.
@@ -12,6 +13,9 @@ import type { Channel } from "./channel";
 const COLLECT_MS = 400;
 /** How long it waits for the engine in particular. */
 const ENGINE_STATUS_MS = 3_000;
+/** Ring colours: Compound's six decorative colours, as Element uses for avatars. */
+export const COLOURS = 6;
+const COLOUR_KEY = "de.datanauten.multi_tab.colour";
 
 export interface TabStatus {
     tabId: string;
@@ -31,6 +35,10 @@ export interface TabStatus {
     lastSyncAt: number | null;
     /** A few role-specific numbers, already in words: "4 responses buffered (1.2 MB)". */
     details: string[];
+    /** This tab's ring colour (0 … COLOURS-1), -1 until it has one. */
+    colour: number;
+    /** When the tab took that colour: on a clash the tab that had it first keeps it. */
+    colourSince: number;
 }
 
 export interface TabInfo extends TabStatus {
@@ -78,7 +86,7 @@ export function baseStatus(
     version: string,
     openedAt: number,
     client: { getRoom(id: string): { name?: string } | null } | null,
-): Omit<TabStatus, "syncState" | "lastSyncAt" | "details"> {
+): Omit<TabStatus, "syncState" | "lastSyncAt" | "details" | "colour" | "colourSince"> {
     return {
         tabId,
         role,
@@ -100,6 +108,52 @@ export function placeOf(hash: string, client: { getRoom(id: string): { name?: st
         return client?.getRoom(id)?.name ?? (id.startsWith("#") ? id : null);
     }
     return null;
+}
+
+type ColourClaim = Pick<TabStatus, "tabId" | "openedAt" | "colour" | "colourSince">;
+
+/**
+ * The colour this tab should have, given the other tabs'. It keeps its colour unless an older claim has it (taken
+ * earlier, or as early but by a tab open longer: a duplicated tab copies sessionStorage), else takes the first
+ * free one. With more tabs than colours, colours repeat.
+ */
+export function pickColour(me: ColourClaim, others: ColourClaim[]): number {
+    const older = (o: ColourClaim): boolean =>
+        o.colour === me.colour &&
+        (o.colourSince < me.colourSince ||
+            (o.colourSince === me.colourSince && (o.openedAt < me.openedAt || (o.openedAt === me.openedAt && o.tabId < me.tabId))));
+    const counts = Array.from({ length: COLOURS }, (_, c) => others.filter((o) => o.colour === c).length);
+    const full = counts.every((n) => n > 0);
+    if (me.colour >= 0 && (full || !others.some(older))) return me.colour;
+    return counts.indexOf(Math.min(...counts));
+}
+
+/** This tab's colour, kept in sessionStorage so it survives the tab's reloads (promotion, Element updates). */
+export class TabColour {
+    public colour = -1;
+    public since = 0;
+
+    public constructor(
+        private readonly session: Storage,
+        private readonly now: () => number = Date.now,
+    ) {
+        const saved = quietly(() => JSON.parse(session.getItem(COLOUR_KEY) ?? "null") as { colour?: unknown; since?: unknown } | null, null);
+        if (typeof saved?.colour === "number" && typeof saved.since === "number" && saved.colour >= 0 && saved.colour < COLOURS) {
+            this.colour = saved.colour;
+            this.since = saved.since;
+        }
+    }
+
+    /** Settles this tab's colour against the other tabs' and returns it. */
+    public settle(tabId: string, openedAt: number, others: ColourClaim[]): number {
+        const colour = pickColour({ tabId, openedAt, colour: this.colour, colourSince: this.since }, others);
+        if (colour !== this.colour) {
+            this.colour = colour;
+            this.since = this.now();
+            quietly(() => this.session.setItem(COLOUR_KEY, JSON.stringify({ colour, since: this.since })), undefined);
+        }
+        return colour;
+    }
 }
 
 export function formatBytes(n: number): string {

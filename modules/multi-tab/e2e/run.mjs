@@ -727,9 +727,27 @@ async function openPreferences(h, i) {
 
 const domTabRows = (h, i) =>
     h.page(i).evaluate(
-        (sel) => [...document.querySelectorAll(`${sel} li[data-tab-id]`)].map((li) => ({ tabId: li.getAttribute("data-tab-id"), role: li.getAttribute("data-role"), isThis: li.getAttribute("data-this") === "true" })),
+        (sel) =>
+            [...document.querySelectorAll(`${sel} li[data-tab-id]`)].map((li) => ({
+                tabId: li.getAttribute("data-tab-id"),
+                role: li.getAttribute("data-role"),
+                isThis: li.getAttribute("data-this") === "true",
+                colour: li.querySelector("[data-mt-colour]")?.getAttribute("data-mt-colour") ?? null,
+            })),
         TABS_SECTION,
     );
+/** The ring colour on the tab's avatar (`data-mt-ring`), or null without a ring. */
+const ringOf = (h, i) => h.page(i).evaluate(() => document.querySelector(".mx_UserMenu [data-mt-ring]")?.getAttribute("data-mt-ring") ?? null);
+/** Waits until every tab in `tabs` has a ring and all colours differ; returns { label: colour }. */
+async function distinctRings(h, tabs, ms = 15_000) {
+    let last = {};
+    const ok = await waitFor(async () => {
+        last = Object.fromEntries(await Promise.all(tabs.map(async (i) => [h.tabs[i].label, await ringOf(h, i)])));
+        const v = Object.values(last);
+        return v.every((c) => c !== null) && new Set(v).size === v.length;
+    }, ms, 250);
+    return { ok: !!ok, rings: last };
+}
 const normRows = (xs) => JSON.stringify((xs ?? []).map((x) => ({ tabId: x.tabId, role: x.role, isThis: !!x.isThis })).sort((p, q) => (p.tabId < q.tabId ? -1 : 1)));
 
 /** T19: config.json lists the module twice, as Element Pro's server does: the second instance must stay off. */
@@ -772,6 +790,13 @@ async function T18(r) {
         r.check("__multiTab.tabs() returns the same list", normRows(api) === normRows(rows), { api, rows });
         await section.screenshot({ path: path.join(h.outDir, "t18-tabs.png") }).catch((e) => r.note(`screenshot failed: ${e.message.slice(0, 100)}`));
 
+        // The ring around the avatar: one colour per tab, the same colour as the tab's dot in the list.
+        const three = await distinctRings(h, [a, b, c]);
+        r.check("A, B and C each have a ring on the avatar, all colours different", three.ok, three.rings);
+        const dots = Object.fromEntries((await domTabRows(h, b)).map((x) => [x.tabId, x.colour]));
+        r.check("each row's dot has that tab's ring colour", dots[ids.A] === three.rings.A && dots[ids.B] === three.rings.B && dots[ids.C] === three.rings.C, { dots, rings: three.rings });
+        await h.page(b).locator(".mx_UserMenu").first().screenshot({ path: path.join(h.outDir, "t18-ring-B.png") }).catch(() => {});
+
         await h.closeTab(c);
         const t = Date.now();
         const after = await waitFor(async () => {
@@ -782,6 +807,12 @@ async function T18(r) {
         r.check("after closing C the list shows 2 rows within 10 s", !!after && !after.some((x) => x.tabId === ids.C), after ?? (await domTabRows(h, b).catch(() => null)));
         if (after) r.check("__multiTab.tabs() matches after the close", normRows(await h.mtTabs(b)) === normRows(after), await h.mtTabs(b));
         await section.screenshot({ path: path.join(h.outDir, "t18-tabs-after-close.png") }).catch(() => {});
+        const two = await distinctRings(h, [a, b]);
+        r.check("after closing C, A and B keep their colours", two.ok && two.rings.A === three.rings.A && two.rings.B === three.rings.B, { before: three.rings, after: two.rings });
+
+        await h.closeTab(b);
+        const gone = await waitFor(async () => (await ringOf(h, a)) === null, 15_000, 250);
+        r.check("with only A left, A's ring goes away", !!gone, await ringOf(h, a));
         invariants(r, h, from);
     });
 }
@@ -898,13 +929,15 @@ async function LIVE() {
     let libBody = fs.readFileSync(libFile, "utf8");
     if (flag("api-shim")) libBody = libBody.replace(/moduleApiVersion = "\^2\.0\.0"/, 'moduleApiVersion = "^1.0.0 || ^2.0.0"');
     const ctxRoutes = [[/\/modules\/multi-tab\/index\.js(\?|$)/, (route) => route.fulfill({ body: libBody, contentType: "text/javascript" })]];
+    // --deployed: test the module chat.blackpony.club itself serves (config.json lists it twice), not lib/.
+    const deployed = flag("deployed");
     const extraWait = Number(opt("ttl-margin", 90));
     const r = new Result("T11", TITLES.T11 + " (live chat.blackpony.club, MAS OAuth)");
-    console.log(`\n== T11 live on ${env.element}: module ${modUrl}${flag("api-shim") ? " (API-range shim)" : ""}, user ${env.users.main.userId}`);
+    console.log(`\n== T11 live on ${env.element}: module ${deployed ? "as deployed" : modUrl}${flag("api-shim") ? " (API-range shim)" : ""}, user ${env.users.main.userId}`);
     if (flag("api-shim")) r.note("module served with moduleApiVersion widened to ^1.0.0 || ^2.0.0 (experiment)");
     const t0 = Date.now();
     try {
-        await withHarness(r, { peer: true, oauth: true, ctxConfigPatch, ctxRoutes }, async (h) => {
+        await withHarness(r, { peer: true, oauth: true, ...(deployed ? {} : { ctxConfigPatch, ctxRoutes }) }, async (h) => {
             const a = await h.openTab({ label: "A", oauth: env.users.main });
             r.elementVersion = await h.page(a).evaluate(() => window.mxPlatformPeg?.get()?.getAppVersion?.()).catch(() => "?");
             r.note(`Element on ${env.element}: ${r.elementVersion}`);

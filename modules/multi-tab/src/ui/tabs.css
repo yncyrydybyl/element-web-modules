@@ -1,4 +1,5 @@
-/* "Open tabs" in Settings → Preferences. Element's own subsection classes do the layout; this is the list. */
+/* "Open tabs" in Settings → Preferences (Element's own subsection classes do the layout; this is the list), and the
+   ring around the avatar. Each tab's colour is one of Compound's decorative colours, the same in both places. */
 
 .mt-tabs-list {
     list-style: none;
@@ -70,4 +71,25 @@
     font: var(--cpd-font-body-sm-regular, 400 14px/20px Inter, sans-serif);
     color: var(--cpd-color-text-secondary, #656d77);
     margin-top: var(--cpd-space-2x, 8px);
+}
+
+[data-mt-ring="0"], [data-mt-colour="0"] { --mt-colour: var(--cpd-color-text-decorative-1, #3e7b00); }
+[data-mt-ring="1"], [data-mt-colour="1"] { --mt-colour: var(--cpd-color-text-decorative-2, #00748f); }
+[data-mt-ring="2"], [data-mt-colour="2"] { --mt-colour: var(--cpd-color-text-decorative-3, #b026ad); }
+[data-mt-ring="3"], [data-mt-colour="3"] { --mt-colour: var(--cpd-color-text-decorative-4, #7a4fc9); }
+[data-mt-ring="4"], [data-mt-colour="4"] { --mt-colour: var(--cpd-color-text-decorative-5, #b74800); }
+[data-mt-ring="5"], [data-mt-colour="5"] { --mt-colour: var(--cpd-color-text-decorative-6, #c22457); }
+
+[data-mt-ring] {
+    border-radius: 50%;
+    outline: 3px solid var(--mt-colour);
+    outline-offset: 1px;
+}
+
+.mt-dot {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--mt-colour);
 }
