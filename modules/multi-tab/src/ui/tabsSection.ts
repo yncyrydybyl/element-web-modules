@@ -108,6 +108,12 @@ function row(t: TabInfo, now: number): HTMLElement {
     if (t.isThis) li.dataset.this = "true";
 
     const head = element("div", "mt-tab-head");
+    if (t.colour >= 0) {
+        const dot = element("span", "mt-dot");
+        dot.setAttribute("data-mt-colour", String(t.colour));
+        dot.setAttribute("aria-hidden", "true");
+        head.appendChild(dot);
+    }
     head.appendChild(element("span", "mt-tab-title", t.place ?? roomOf(t.title)));
     if (t.role === "engine") head.appendChild(element("span", "mt-badge mt-badge-main", "Main tab"));
     if (t.isThis) head.appendChild(element("span", "mt-badge", "This tab"));
@@ -150,7 +156,7 @@ function element<K extends keyof HTMLElementTagNameMap>(tag: K, className: strin
     return node;
 }
 
-function injectStyle(): void {
+export function injectStyle(): void {
     if (document.getElementById(STYLE_ID)) return;
     const style = document.createElement("style");
     style.id = STYLE_ID;

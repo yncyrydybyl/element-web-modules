@@ -1,0 +1,232 @@
+/* Header button: matches Compound's IconButton in the room header (32px, round). */
+.uaw-header-button {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    color: var(--cpd-color-icon-secondary, #656d77);
+}
+.uaw-header-button svg {
+    display: block;
+}
+.uaw-header-button:hover {
+    background: var(--cpd-color-bg-subtle-primary, #e1e6ec);
+    color: var(--cpd-color-icon-primary, #1b1d22);
+}
+.uaw-header-button:focus-visible,
+.uaw-icon-button:focus-visible,
+.uaw-button:focus-visible {
+    outline: 2px solid var(--cpd-color-border-focused, #0467dd);
+    outline-offset: 1px;
+}
+.uaw-header-button[aria-pressed="true"] {
+    color: var(--cpd-color-icon-accent-primary, #1b1d22);
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+}
+
+/* The panel, docked right below the room header. */
+.uaw-panel {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    /* Within its own isolated container (see Panel.mount): above the room view. */
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: calc(100vw - 240px);
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    color: var(--cpd-color-text-primary, #1b1d22);
+    border-left: 1px solid var(--cpd-color-border-interactive-secondary, #e1e6ec);
+    box-shadow: -4px 0 16px rgb(0 0 0 / 0.08);
+    font: var(--cpd-font-body-md-regular, 400 15px/22px Inter, sans-serif);
+}
+.uaw-panel[hidden] {
+    display: none;
+}
+.uaw-resize {
+    position: absolute;
+    left: -3px;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    cursor: ew-resize;
+}
+.uaw-panel--resizing .uaw-frame {
+    pointer-events: none;
+}
+.uaw-header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 8px 8px 12px;
+    border-bottom: 1px solid var(--cpd-color-border-interactive-secondary, #e1e6ec);
+}
+.uaw-select {
+    flex: 1;
+    min-width: 0;
+    padding: 4px 8px;
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #c0c6cd);
+    border-radius: 8px;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    color: inherit;
+    font: inherit;
+}
+.uaw-select[hidden] {
+    display: block;
+    visibility: hidden;
+}
+.uaw-icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: var(--cpd-color-icon-secondary, #656d77);
+    cursor: pointer;
+}
+.uaw-icon-button:hover {
+    background: var(--cpd-color-bg-subtle-primary, #e1e6ec);
+    color: var(--cpd-color-icon-primary, #1b1d22);
+}
+.uaw-body {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+}
+.uaw-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.uaw-message {
+    padding: 24px 16px;
+    color: var(--cpd-color-text-secondary, #656d77);
+}
+.uaw-message p {
+    margin: 0 0 16px;
+}
+
+/* Dialogs */
+.uaw-dialog p {
+    margin: 0 0 12px;
+}
+.uaw-dialog__intro,
+.uaw-dialog__none,
+.uaw-list__url,
+.uaw-dialog__url,
+.uaw-cap__raw {
+    color: var(--cpd-color-text-secondary, #656d77);
+}
+.uaw-dialog__url {
+    word-break: break-all;
+}
+.uaw-dialog__heading {
+    margin: 16px 0 8px;
+    font: var(--cpd-font-body-md-semibold, 600 15px/22px Inter, sans-serif);
+}
+.uaw-list,
+.uaw-caps {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+}
+.uaw-list__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--cpd-color-border-interactive-secondary, #e1e6ec);
+}
+.uaw-list__text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.uaw-list__name {
+    font-weight: 600;
+}
+.uaw-list__url {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+}
+.uaw-cap {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 4px 0;
+}
+.uaw-cap__raw {
+    display: block;
+    font: 12px/18px ui-monospace, SFMono-Regular, Menlo, monospace;
+    word-break: break-all;
+}
+.uaw-cap__broad {
+    color: var(--cpd-color-text-critical-primary, #d51928);
+    font-weight: 600;
+}
+.uaw-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.uaw-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.uaw-field input {
+    margin: 0;
+    padding: 8px 12px;
+    border: 1px solid var(--cpd-color-border-interactive-primary, #9199a4);
+    border-radius: 8px;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: inherit;
+}
+.uaw-error {
+    color: var(--cpd-color-text-critical-primary, #d51928);
+}
+.uaw-dialog__buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+.uaw-button {
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #c0c6cd);
+    border-radius: 999px;
+    padding: 4px 16px;
+    background: none;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: var(--cpd-font-body-md-semibold, 600 15px/22px Inter, sans-serif);
+    cursor: pointer;
+    white-space: nowrap;
+}
+.uaw-button--primary {
+    background: var(--cpd-color-bg-action-primary-rest, #1b1d22);
+    color: var(--cpd-color-text-on-solid-primary, #fff);
+    border-color: transparent;
+}
+.uaw-button--danger {
+    color: var(--cpd-color-text-critical-primary, #d51928);
+}
+.uaw-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}

@@ -8,7 +8,7 @@ Element Web runs in only one tab per browser: open a second one and it says "Ele
 | When the main tab closes | Another tab takes over within about a second (it reloads once). The remaining tabs reload once too, to follow it. Drafts are kept. |
 | What only the main tab can do | Verify this or another device, set up or reset recovery, key backup and cross-signing, import or export room keys, encrypted to-device messages from widgets. Other tabs show "This needs your main Element tab" instead. |
 | Notifications | Only the main tab shows pop-ups and plays sounds, so you aren't notified once per tab. |
-| Which tab is which | Settings → Preferences → **Open tabs** lists every tab: which one is the main tab, which room it shows, whether it's in front, when it last got an update and how quickly it answers. |
+| Which tab is which | While more than one tab is open, your avatar (top left) has a coloured ring: each tab its own colour, kept when the tab reloads. Settings → Preferences → **Open tabs** lists every tab with its colour: which one is the main tab, which room it shows, whether it's in front, when it last got an update and how quickly it answers. |
 | Signed out | One tab shows the login. The others say "You're signed out. Sign in in your other Element tab" and follow by themselves once you have. If Element asks you to confirm your identity after signing in, the other tabs wait until you've done so. |
 | What is stored | Almost nothing. Tabs talk over `BroadcastChannel`s. In `localStorage`, a short promotion note (`de.datanauten.multi_tab.claim`) lives at most 30 s while a tab takes over, and `de.datanauten.multi_tab.engine_build` names the main tab's version. Element's logout clears both. |
 
@@ -45,7 +45,7 @@ The details, the reasoning and the rejected alternatives (service worker, Shared
 
 ## Requirements
 
-Element Web with module API 1.x or 2.x, in a browser with Web Locks and `BroadcastChannel` (Chrome 69+, Firefox 96+, Safari 15.4+). One file, ~62 kB (19 kB gzipped).
+Element Web with module API 1.x or 2.x, in a browser with Web Locks and `BroadcastChannel` (Chrome 69+, Firefox 96+, Safari 15.4+). One file, ~66 kB (20 kB gzipped).
 
 ## Development
 

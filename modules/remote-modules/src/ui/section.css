@@ -1,0 +1,189 @@
+/*
+ * The section reuses Element's settings classes (mx_SettingsSection, mx_SettingsSubsection_*);
+ * these rules only cover the parts Element has no class for. Colours are Compound tokens.
+ */
+
+/* The tab: Element's panel and title make way while it's open (see settingsInjector.ts). */
+.mx_TabbedView[data-drm-modules] > .mx_TabbedView_tabPanel:not(.drm-tab-panel),
+.mx_TabbedView:not([data-drm-modules]) > .drm-tab-panel {
+    display: none;
+}
+
+.mx_TabbedView[data-drm-modules] .mx_TabbedView_tabLabel_active:not(.drm-tab-label) {
+    background-color: transparent;
+    color: inherit;
+}
+
+.mx_UserSettingsDialog_title[data-drm-tab] {
+    font-size: 0 !important;
+}
+
+.mx_UserSettingsDialog_title[data-drm-tab] > * {
+    display: none;
+}
+
+.mx_UserSettingsDialog_title[data-drm-tab]::before {
+    content: attr(data-drm-prefix) " ";
+    font: var(--cpd-font-heading-md-semibold);
+    white-space: pre;
+}
+
+.mx_UserSettingsDialog_title[data-drm-tab]::after {
+    content: attr(data-drm-tab);
+    font: var(--cpd-font-heading-md-regular);
+}
+
+.drm-warning {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--cpd-color-bg-critical-subtle, #fff0f1);
+    color: var(--cpd-color-text-critical-primary, #d51928);
+}
+
+.drm-notice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 14px;
+}
+
+.drm-empty {
+    color: var(--cpd-color-text-secondary, #656d77);
+}
+
+/* Element's subsection content is a grid that shrinks its items to their content. */
+.drm-list,
+.drm-add,
+.drm-notice,
+.drm-hint {
+    justify-self: stretch;
+}
+
+.drm-list {
+    margin: 12px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.drm-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--cpd-color-border-interactive-secondary, #e1e6ec);
+}
+
+.drm-row-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.drm-name {
+    font-weight: 600;
+}
+
+.drm-source {
+    overflow: hidden;
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.drm-status {
+    font-size: 13px;
+}
+
+.drm-status--loaded {
+    color: var(--cpd-color-text-success-primary, #007a62);
+}
+
+.drm-status--failed {
+    color: var(--cpd-color-text-critical-primary, #d51928);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.drm-add {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.drm-input {
+    flex: 1 1 260px;
+    min-width: 0;
+    height: 36px;
+    margin: 0;
+    padding: 0 12px;
+    border: 1px solid var(--cpd-color-border-interactive-primary, #8d97a5);
+    border-radius: 8px;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: inherit;
+    font-family: var(--cpd-font-family-mono, monospace);
+    font-size: 13px;
+}
+
+.drm-button {
+    height: 36px;
+    padding: 0 16px;
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da);
+    border-radius: 18px;
+    background: transparent;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.drm-button:hover:not(:disabled) {
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+}
+
+.drm-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.drm-button--primary,
+.drm-button--primary:hover:not(:disabled) {
+    border-color: transparent;
+    background: var(--cpd-color-bg-action-primary-rest, #1b1d22);
+    color: var(--cpd-color-text-on-solid-primary, #fff);
+}
+
+.drm-button--danger {
+    color: var(--cpd-color-text-critical-primary, #d51928);
+}
+
+.drm-input:focus-visible,
+.drm-button:focus-visible {
+    outline: 2px solid var(--cpd-color-border-focused, #0467dd);
+    outline-offset: 1px;
+}
+
+.drm-error {
+    margin-top: 8px;
+    color: var(--cpd-color-text-critical-primary, #d51928);
+    font-size: 14px;
+}
+
+.drm-hint {
+    margin-top: 12px;
+}
+
+.drm-locked {
+    color: var(--cpd-color-text-secondary);
+    font: var(--cpd-font-body-sm-regular);
+    white-space: nowrap;
+}
