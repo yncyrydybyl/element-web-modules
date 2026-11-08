@@ -25,6 +25,7 @@ on:
           - people-map
           - room-checker
           - remote-modules
+          - text-reactions
           - marcade
           - multi-tab
           - user-account-widgets
