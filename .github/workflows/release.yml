@@ -24,6 +24,7 @@ on:
           - space-room-map
           - people-map
           - room-checker
+          - remote-modules
           - marcade
           - multi-tab
           - user-account-widgets
