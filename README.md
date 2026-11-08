@@ -9,6 +9,7 @@ Runtime modules for [Element Web](https://github.com/element-hq/element-web) and
 | [people-map](modules/people-map) | Press <kbd>Alt</kbd>+<kbd>P</kbd> for a map of the people you share rooms with: grouped by where you know them from, the closest ones nearest you, with a card per person. | AGPL-3.0-only |
 | [room-checker](modules/room-checker) | Press <kbd>Alt</kbd>+<kbd>R</kbd> to check a space's rooms against policies kept in the space (name, topic, picture, encryption, who can join …), with quick fixes. | AGPL-3.0-only |
 | [multi-tab](modules/multi-tab) | Keep several Element tabs open at once: the first one syncs and holds the encryption keys, the others mirror it and take over when it closes. | AGPL-3.0-only |
+| [user-account-widgets](modules/user-account-widgets) | Your own widgets (a PDF viewer, a participant panel …) in every room, from a **My apps** button in the room header. They live in your account, not in the room: nothing is published, and they act in whichever room you open them in. | AGPL-3.0-only |
 | [marcade](modules/marcade) | An **Apps** button in every room header that opens (or adds) the [Marcade Store](https://marcade.store) widget. | Apache-2.0 |
 
 Each module is a standalone package with its own README, build, tests and license. There is no shared workspace: `cd modules/<name>` and use that module's package manager (pnpm for keyboard-shortcuts and space-room-map, npm for marcade).

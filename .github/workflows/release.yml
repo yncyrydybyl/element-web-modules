@@ -26,6 +26,7 @@ on:
           - room-checker
           - marcade
           - multi-tab
+          - user-account-widgets
 
 permissions:
   contents: write
