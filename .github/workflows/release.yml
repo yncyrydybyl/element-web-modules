@@ -23,6 +23,7 @@ on:
           - keyboard-shortcuts
           - space-room-map
           - people-map
+          - room-checker
           - marcade
           - multi-tab
 

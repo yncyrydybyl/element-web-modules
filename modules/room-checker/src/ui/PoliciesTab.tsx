@@ -1,0 +1,171 @@
+import { useEffect, useState, type JSX } from "react";
+
+import { P } from "../i18n";
+import { ALLOWED_OPTIONS, POLICY_IDS, validPattern, type PolicyConfig, type PolicyId, type PolicySet } from "../policies";
+import { savePolicies, type SdkClient, type SpacePolicies } from "../space";
+import { relative, type ModuleTranslate } from "./CheckerOverlay";
+
+export interface PoliciesTabProps {
+    client: SdkClient;
+    spaceId: string;
+    space: SpacePolicies;
+    revision: number;
+    language: string;
+    t: ModuleTranslate;
+}
+
+type SaveState = "idle" | "saving" | "saved" | { error: string };
+
+/** The space's policies, editable by whoever may change the space's settings. */
+export function PoliciesTab(props: PoliciesTabProps): JSX.Element {
+    const { space, t } = props;
+    const [draft, setDraft] = useState<PolicySet>(space.policies);
+    const [save, setSave] = useState<SaveState>("idle");
+    const dirty = JSON.stringify(draft) !== JSON.stringify(space.policies);
+    const invalid = draft.name.pattern !== undefined && !validPattern(draft.name.pattern);
+    const readOnly = !space.canEdit;
+
+    // Someone else changed them (or our save came back): show theirs unless we're editing.
+    useEffect(() => {
+        if (!dirty) setDraft(space.policies);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [space]);
+
+    const change = (id: PolicyId, patch: Partial<PolicyConfig>): void => {
+        setDraft((d) => ({ ...d, [id]: { ...d[id], ...patch } }));
+        setSave("idle");
+    };
+
+    const onSave = async (): Promise<void> => {
+        setSave("saving");
+        try {
+            await savePolicies(props.client, props.spaceId, draft);
+            setSave("saved");
+        } catch (e) {
+            setSave({ error: e instanceof Error ? e.message : String(e) });
+        }
+    };
+
+    return (
+        <div className="rc-policies">
+            <div className="rc-policies-intro">
+                <p>
+                    {space.saved && space.at
+                        ? t(`${P}policies_saved`, { user: space.by ?? "?", when: relative(space.at, props.language) })
+                        : t(`${P}policies_defaults`)}{" "}
+                    {t(`${P}policies_scope`)}
+                </p>
+                {readOnly && <p className="rc-note">{t(`${P}policies_readonly`)}</p>}
+            </div>
+            <ul className="rc-policy-list">
+                {POLICY_IDS.map((id) => (
+                    <PolicyRow key={id} id={id} config={draft[id]} readOnly={readOnly} t={t} onChange={(patch) => change(id, patch)} />
+                ))}
+            </ul>
+            {!readOnly && (
+                <div className="rc-savebar">
+                    {typeof save === "object" && <span className="rc-note rc-note--error">{t(`${P}fix_failed`, { error: save.error })}</span>}
+                    {save === "saved" && !dirty && <span className="rc-note rc-note--ok">{t(`${P}saved`)}</span>}
+                    <button type="button" className="rc-button" disabled={!dirty || save === "saving"} onClick={() => setDraft(space.policies)}>
+                        {t(`${P}discard`)}
+                    </button>
+                    <button
+                        type="button"
+                        className="rc-button rc-button--primary"
+                        disabled={(!dirty && space.saved) || invalid || save === "saving"}
+                        onClick={() => void onSave()}
+                    >
+                        {save === "saving" ? t(`${P}saving`) : t(`${P}save_policies`)}
+                    </button>
+                </div>
+            )}
+        </div>
+    );
+}
+
+function PolicyRow(props: { id: PolicyId; config: PolicyConfig; readOnly: boolean; t: ModuleTranslate; onChange(patch: Partial<PolicyConfig>): void }): JSX.Element {
+    const { id, config: c, readOnly, t } = props;
+    const options = ALLOWED_OPTIONS[id];
+    const patternOk = c.pattern === undefined || validPattern(c.pattern);
+    return (
+        <li className="rc-policy" data-enabled={c.enabled}>
+            <label className="rc-switch">
+                <input type="checkbox" role="switch" checked={c.enabled} disabled={readOnly} onChange={(ev) => props.onChange({ enabled: ev.target.checked })} />
+                <span className="rc-policy-name">{t(`${P}policy_${id}`)}</span>
+            </label>
+            <p className="rc-policy-desc">{t(`${P}policy_${id}_desc`)}</p>
+            <label className="rc-field rc-field--inline">
+                <span>{t(`${P}severity`)}</span>
+                <select
+                    value={c.severity}
+                    disabled={readOnly || !c.enabled}
+                    aria-label={`${t(`${P}policy_${id}`)}: ${t(`${P}severity`)}`}
+                    onChange={(ev) => props.onChange({ severity: ev.target.value as PolicyConfig["severity"] })}
+                >
+                    <option value="error">{t(`${P}severity_error`)}</option>
+                    <option value="warning">{t(`${P}severity_warning`)}</option>
+                </select>
+            </label>
+            {c.pattern !== undefined && (
+                <label className="rc-field">
+                    <span>{t(`${P}param_pattern`)}</span>
+                    <input
+                        value={c.pattern}
+                        disabled={readOnly || !c.enabled}
+                        placeholder="^[A-Z].*"
+                        aria-invalid={!patternOk}
+                        spellCheck={false}
+                        onChange={(ev) => props.onChange({ pattern: ev.target.value })}
+                    />
+                    {!patternOk && <span className="rc-note rc-note--error">{t(`${P}param_pattern_invalid`)}</span>}
+                </label>
+            )}
+            {c.minLength !== undefined && (
+                <NumberField label={t(`${P}param_min_length`)} value={c.minLength} max={1000} disabled={readOnly || !c.enabled} onChange={(minLength) => props.onChange({ minLength })} />
+            )}
+            {c.min !== undefined && <NumberField label={t(`${P}param_min`)} value={c.min} max={100} disabled={readOnly || !c.enabled} onChange={(min) => props.onChange({ min })} />}
+            {options && c.allowed && (
+                <fieldset className="rc-field" disabled={readOnly || !c.enabled}>
+                    <legend>{t(`${P}param_allowed`)}</legend>
+                    <div className="rc-options">
+                        {options.map((o) => (
+                            <label key={o} className="rc-option">
+                                <input
+                                    type="checkbox"
+                                    checked={c.allowed!.includes(o)}
+                                    // At least one stays allowed: the quick fix needs something to set.
+                                    disabled={c.allowed!.length === 1 && c.allowed![0] === o}
+                                    onChange={(ev) =>
+                                        props.onChange({ allowed: ev.target.checked ? options.filter((x) => x === o || c.allowed!.includes(x)) : c.allowed!.filter((x) => x !== o) })
+                                    }
+                                />
+                                {t(`${P}value_${o}`)}
+                            </label>
+                        ))}
+                    </div>
+                    <span className="rc-hint">{t(`${P}param_allowed_fix`)}</span>
+                </fieldset>
+            )}
+        </li>
+    );
+}
+
+function NumberField(props: { label: string; value: number; max: number; disabled: boolean; onChange(v: number): void }): JSX.Element {
+    return (
+        <label className="rc-field rc-field--inline">
+            <span>{props.label}</span>
+            <input
+                type="number"
+                min={0}
+                max={props.max}
+                step={1}
+                value={props.value}
+                disabled={props.disabled}
+                onChange={(ev) => {
+                    const v = Math.round(Number(ev.target.value));
+                    if (Number.isFinite(v)) props.onChange(Math.max(0, Math.min(props.max, v)));
+                }}
+            />
+        </label>
+    );
+}

@@ -7,6 +7,7 @@ Runtime modules for [Element Web](https://github.com/element-hq/element-web) and
 | [keyboard-shortcuts](modules/keyboard-shortcuts) | Press <kbd>?</kbd> for a Gmail-style overview of all of Element's keyboard shortcuts, and add your own (synced via account data). | AGPL-3.0-only |
 | [space-room-map](modules/space-room-map) | Press <kbd>Ctrl</kbd>+<kbd>I</kbd> for a zoomable 2D map of your spaces and rooms, with your spaces listed beside it: point at one and the map flies there. | AGPL-3.0-only |
 | [people-map](modules/people-map) | Press <kbd>Alt</kbd>+<kbd>P</kbd> for a map of the people you share rooms with: grouped by where you know them from, the closest ones nearest you, with a card per person. | AGPL-3.0-only |
+| [room-checker](modules/room-checker) | Press <kbd>Alt</kbd>+<kbd>R</kbd> to check a space's rooms against policies kept in the space (name, topic, picture, encryption, who can join …), with quick fixes. | AGPL-3.0-only |
 | [multi-tab](modules/multi-tab) | Keep several Element tabs open at once: the first one syncs and holds the encryption keys, the others mirror it and take over when it closes. | AGPL-3.0-only |
 | [marcade](modules/marcade) | An **Apps** button in every room header that opens (or adds) the [Marcade Store](https://marcade.store) widget. | Apache-2.0 |
 

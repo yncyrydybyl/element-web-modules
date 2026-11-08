@@ -1,0 +1,181 @@
+import { act, screen, waitFor, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { afterEach, describe, expect, it, vi } from "vitest";
+
+import ModuleDefault, { parseConfig, RoomCheckerModule } from "./index";
+import { POLICY_TYPE } from "./policies";
+import { fakeClient, goodState, type FakeRoom } from "./tests/fakeClient";
+import { mockApi } from "./tests/mockApi";
+import { version } from "../package.json";
+
+const modules: RoomCheckerModule[] = [];
+
+function rooms(): FakeRoom[] {
+    const bad = goodState("!eng:x", "Random");
+    delete bad["m.room.topic"];
+    delete bad["m.room.encryption"];
+    delete bad["m.room.avatar"];
+    const deep = goodState("!eng:x", "Deep");
+    return [
+        { id: "!eng:x", name: "Engineering", space: true, children: ["!good:x", "!bad:x", "!sub:x", "!left:x"] },
+        { id: "!sub:x", name: "Backend", space: true, children: ["!deep:x"] },
+        { id: "!good:x", state: goodState("!eng:x", "General") },
+        { id: "!bad:x", state: bad },
+        // Points at the top space instead of its own sub-space.
+        { id: "!deep:x", state: deep },
+        { id: "!left:x", name: "Archive", left: true },
+    ];
+}
+
+async function setup(list: FakeRoom[] = rooms()) {
+    const fake = fakeClient(list);
+    (window as { mxMatrixClientPeg?: unknown }).mxMatrixClientPeg = { get: () => fake.client };
+    const mock = mockApi();
+    const module = new RoomCheckerModule(mock.api);
+    await module.load();
+    modules.push(module);
+    act(() => module.open());
+    // The hierarchy (names of rooms you aren't in) arrives async.
+    await screen.findByText("Archive");
+    return { module, ...fake, ...mock };
+}
+
+const tableRows = () => within(screen.getByRole("table")).getAllByRole("row").slice(1);
+const rowNames = () => tableRows().map((r) => r.querySelector(".rc-room-name")!.textContent);
+
+function press(key: string, init: KeyboardEventInit = {}) {
+    const ev = new KeyboardEvent("keydown", { key, bubbles: true, cancelable: true, ...init });
+    act(() => void document.body.dispatchEvent(ev));
+    return ev;
+}
+
+afterEach(() => {
+    for (const m of modules.splice(0)) act(() => m.dispose());
+    delete (window as { mxMatrixClientPeg?: unknown }).mxMatrixClientPeg;
+    vi.restoreAllMocks();
+});
+
+describe("RoomCheckerModule", () => {
+    it("is a valid module for Element's loader", () => {
+        expect(typeof ModuleDefault).toBe("function");
+        expect(ModuleDefault.moduleApiVersion).toBe("^2.0.0");
+        expect(parseConfig(undefined)).toEqual({ trigger_key: "Alt+R" });
+        expect(() => parseConfig({ trigger_key: 3 })).toThrow();
+    });
+
+    it("opens with Alt+R and checks the space's rooms, worst first", async () => {
+        const { module } = await setup();
+        act(() => module.close());
+        const ev = press("r", { altKey: true, code: "KeyR" });
+        expect(ev.defaultPrevented).toBe(true);
+        await screen.findByText("Archive");
+        expect(screen.getByRole("dialog", { name: "Room checker" })).toBeTruthy();
+        expect(rowNames()).toEqual(["Random", "Deep", "General", "Archive"]);
+        expect(tableRows()[0].textContent).toContain("1 error · 2 warnings");
+        expect(tableRows()[3].textContent).toContain("Not joined");
+        expect(screen.getByText("33 % of the rooms you're in pass every policy")).toBeTruthy();
+        expect(screen.getByText(`v${version}`)).toBeTruthy();
+        press("r", { altKey: true, code: "KeyR" });
+        expect(module.isOpen()).toBe(false);
+    });
+
+    it("filters by status and by policy", async () => {
+        const user = userEvent.setup();
+        await setup();
+        await user.click(screen.getByRole("button", { name: /With errors/ }));
+        expect(rowNames()).toEqual(["Random"]);
+        await user.click(screen.getByRole("button", { name: "Not joined" }));
+        expect(rowNames()).toEqual(["Archive"]);
+        await user.click(screen.getByRole("button", { name: /Belongs to the space/ }));
+        expect(rowNames()).toEqual(["Deep"]);
+        await user.type(screen.getByRole("searchbox"), "zzz");
+        expect(screen.getByText("No room matches.")).toBeTruthy();
+    });
+
+    it("shows a room's checks and fixes them", async () => {
+        const user = userEvent.setup();
+        const { sendStateEvent, client } = await setup();
+        await user.click(tableRows()[0]);
+        const detail = screen.getByTestId("room-checker-detail");
+        expect(within(detail).getByText("Not encrypted")).toBeTruthy();
+
+        await user.click(within(detail).getByRole("button", { name: "Write a topic" }));
+        await user.type(within(detail).getByRole("textbox", { name: "Write a topic" }), "Anything goes, within reason");
+        await user.click(within(detail).getByRole("button", { name: "Save" }));
+        expect(sendStateEvent).toHaveBeenCalledWith("!bad:x", "m.room.topic", expect.objectContaining({ topic: "Anything goes, within reason" }), "");
+
+        // Encryption can't be undone: it asks first.
+        await user.click(within(detail).getByRole("button", { name: "Turn on encryption" }));
+        await user.click(within(detail).getByRole("button", { name: "Turn on encryption" }));
+        expect(sendStateEvent).toHaveBeenCalledWith("!bad:x", "m.room.encryption", { algorithm: "m.megolm.v1.aes-sha2" }, "");
+
+        const file = new File(["x"], "a.png", { type: "image/png" });
+        await user.upload(within(detail).getByTestId("room-checker-avatar-input"), file);
+        expect(client.uploadContent).toHaveBeenCalledWith(file);
+        await waitFor(() => expect(sendStateEvent).toHaveBeenCalledWith("!bad:x", "m.room.avatar", { url: "mxc://x/new" }, ""));
+
+        // Checked again once the state comes back.
+        await waitFor(() => expect(tableRows().find((r) => r.textContent?.includes("Random"))!.textContent).toContain("Passes every policy"));
+    });
+
+    it("links a room to the sub-space it's listed in", async () => {
+        const user = userEvent.setup();
+        const { sendStateEvent } = await setup();
+        await user.click(tableRows()[1]);
+        const detail = screen.getByTestId("room-checker-detail");
+        expect(within(detail).getByText("In Backend")).toBeTruthy();
+        await user.click(within(detail).getByRole("button", { name: "Link it to the space" }));
+        expect(sendStateEvent).toHaveBeenCalledWith("!deep:x", "m.space.parent", { via: ["x"], canonical: true }, "!sub:x");
+    });
+
+    it("says so when you can't change a room", async () => {
+        const user = userEvent.setup();
+        const list = rooms();
+        list.find((r) => r.id === "!bad:x")!.denied = ["m.room.topic"];
+        await setup(list);
+        await user.click(tableRows()[0]);
+        const topic = within(screen.getByTestId("room-checker-detail")).getByText("No topic").closest("li")!;
+        expect(within(topic).getByText("You can't change this in this room.")).toBeTruthy();
+    });
+
+    it("edits the space's policies and checks against them", async () => {
+        const user = userEvent.setup();
+        const { sendStateEvent } = await setup();
+        await user.click(screen.getByRole("tab", { name: "Policies" }));
+        expect(screen.getByText(/This space has no policies yet/)).toBeTruthy();
+        await user.click(screen.getByRole("switch", { name: "Picture" }));
+        await user.click(screen.getByRole("switch", { name: "Address" }));
+        await user.click(screen.getByRole("button", { name: "Save to the space" }));
+        expect(sendStateEvent).toHaveBeenCalledWith(
+            "!eng:x",
+            POLICY_TYPE,
+            expect.objectContaining({ version: 1, policies: expect.objectContaining({ avatar: expect.objectContaining({ enabled: false }) }) }),
+            "",
+        );
+        await waitFor(() => expect(screen.getByText(/Last changed by @me:x/)).toBeTruthy());
+        await user.click(screen.getByRole("tab", { name: "Rooms" }));
+        const headers = within(screen.getByRole("table")).getAllByRole("columnheader").map((h) => h.textContent);
+        expect(headers).toContain("Address");
+        expect(headers).not.toContain("Picture");
+    });
+
+    it("shows the policies read-only to people who can't change the space", async () => {
+        const user = userEvent.setup();
+        const list = rooms();
+        list[0].denied = [POLICY_TYPE];
+        await setup(list);
+        await user.click(screen.getByRole("tab", { name: "Policies" }));
+        expect(screen.getByText(/Only people who may change/)).toBeTruthy();
+        expect((screen.getByRole("switch", { name: "Picture" }) as HTMLInputElement).disabled).toBe(true);
+        expect(screen.queryByRole("button", { name: "Save to the space" })).toBeNull();
+    });
+
+    it("does nothing without Element's client", async () => {
+        vi.spyOn(console, "warn").mockImplementation(() => {});
+        const module = new RoomCheckerModule(mockApi().api);
+        await module.load();
+        modules.push(module);
+        act(() => module.open());
+        expect(module.isOpen()).toBe(false);
+    });
+});
