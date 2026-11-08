@@ -111,6 +111,21 @@ describe("PeopleMapModule", () => {
         expect(toMatrixToLink).toHaveBeenCalledWith("https://matrix.to/#/%40carol%3Ay");
     });
 
+    it("zooms to a person or a room's people without opening anything", async () => {
+        const user = userEvent.setup();
+        const { module, openRoom } = await loadModule();
+        act(() => module.open());
+        await user.hover(rows()[1]);
+        await user.click(screen.getByRole("button", { name: "Show Bob on the map" }));
+        expect(screen.queryByTestId("people-map-card")).toBeNull();
+        await user.click(rows()[0]);
+        const card = screen.getByTestId("people-map-card");
+        await user.hover(within(card).getByText("Web"));
+        await user.click(within(card).getByRole("button", { name: "Show the people of Web on the map" }));
+        expect(openRoom).not.toHaveBeenCalled();
+        expect(module.isOpen()).toBe(true);
+    });
+
     it("walks the list with the keyboard; Esc goes back, then closes", async () => {
         const user = userEvent.setup();
         const { module } = await loadModule();

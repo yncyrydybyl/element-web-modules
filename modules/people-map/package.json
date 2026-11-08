@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-people-map",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Element Web module: a map of the people you share rooms with, grouped by where you know them from and ordered by how close you are (Alt+P)",
     "private": true,
     "type": "module",

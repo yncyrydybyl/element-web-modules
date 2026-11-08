@@ -52,12 +52,16 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
     const [filter, setFilter] = useState<Filter>("all");
     const [sort, setSort] = useState<SortOrder>(props.sort);
     const [active, setActive] = useState(0);
-    const [pointed, setPointed] = useState<string | undefined>();
+    /** Pointed at in the list or the card: a person, or everyone in a room. */
+    const [glow, setGlow] = useState<ReadonlySet<string> | null>(null);
+    /** Zoomed to with a zoom button: they keep glowing once the pointer leaves the list. */
+    const [zoomed, setZoomed] = useState<ReadonlySet<string> | null>(null);
     const [selected, setSelected] = useState<string | undefined>();
     const [focus, setFocus] = useState<FocusTarget | null>(null);
     const [legendOpen, setLegendOpen] = useState(props.legendOpen);
     const nonce = useRef(0);
     const people = useMemo(() => [...data.people.values()], [data]);
+    const membersOf = (roomId: string): string[] => people.filter((p) => p.rooms.includes(roomId)).map((p) => p.id);
 
     useEffect(() => searchRef.current?.focus(), []);
 
@@ -82,7 +86,14 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
 
     const choose = (id: string | undefined): void => {
         setSelected(id);
+        setGlow(null);
+        setZoomed(null);
         setFocus({ personId: id, overview: !id, nonce: ++nonce.current });
+    };
+    /** Only moves the map: to a person, or to everyone in a room. */
+    const zoomTo = (ids: string[]): void => {
+        setZoomed(new Set(ids));
+        setFocus({ people: ids, nonce: ++nonce.current });
     };
 
     const onKeyDown = (ev: ReactKeyboardEvent): void => {
@@ -97,7 +108,7 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
             ev.preventDefault();
             const next = Math.max(0, Math.min(rows.length - 1, active + (ev.key === "ArrowDown" ? 1 : -1)));
             setActive(next);
-            setPointed(rows[next]?.id);
+            setGlow(rows[next] ? new Set([rows[next].id]) : null);
             document.getElementById(`${listId}-${next}`)?.scrollIntoView?.({ block: "nearest" });
         } else if (ev.key === "Enter" && rows[active]) {
             ev.preventDefault();
@@ -137,7 +148,8 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
                         onChange={(ev) => {
                             setQuery(ev.target.value);
                             setActive(0);
-                            setPointed(undefined);
+                            setGlow(null);
+                            setZoomed(null);
                             if (person) setSelected(undefined);
                         }}
                     />
@@ -151,7 +163,7 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
                         layout={props.layout}
                         matches={matches}
                         selected={selected}
-                        pointed={person ? undefined : pointed}
+                        glow={glow ?? zoomed}
                         focus={focus}
                         label={t(`${P}canvas_label`)}
                         onActivate={(id) => (id ? choose(id) : choose(undefined))}
@@ -174,7 +186,13 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
 
                     <div className="pm-side">
                         {person ? (
-                            <PersonCard person={person} {...props} onBack={() => choose(undefined)} />
+                            <PersonCard
+                                person={person}
+                                {...props}
+                                onBack={() => choose(undefined)}
+                                onPointRoom={(id) => setGlow(id ? new Set(membersOf(id)) : null)}
+                                onZoomRoom={(id) => zoomTo(membersOf(id))}
+                            />
                         ) : (
                             <>
                                 <div className="pm-controls">
@@ -216,7 +234,7 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
                                 {rows.length === 0 ? (
                                     <div className="pm-empty">{query.trim() ? t(`${P}no_results`, { query }) : t(`${P}empty`)}</div>
                                 ) : (
-                                    <ul id={listId} role="listbox" className="pm-list" aria-label={t(`${P}title`)} onMouseLeave={() => setPointed(undefined)}>
+                                    <ul id={listId} role="listbox" className="pm-list" aria-label={t(`${P}title`)} onMouseLeave={() => setGlow(null)}>
                                         {rows.map((p, i) => (
                                             <li
                                                 key={p.id}
@@ -224,7 +242,7 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
                                                 role="option"
                                                 aria-selected={i === active}
                                                 className="pm-item"
-                                                onMouseEnter={() => setPointed(p.id)}
+                                                onMouseEnter={() => setGlow(new Set([p.id]))}
                                                 onMouseDown={(ev) => ev.preventDefault()}
                                                 onClick={() => {
                                                     setActive(i);
@@ -237,6 +255,13 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
                                                     <span className="pm-item-meta">{summary(p, props, t)}</span>
                                                 </span>
                                                 {p.presence === "online" && <span className="pm-online" title={t(`${P}presence_online`)} />}
+                                                <ZoomButton
+                                                    label={t(`${P}zoom_person`, { name: p.name })}
+                                                    onClick={() => {
+                                                        setActive(i);
+                                                        zoomTo([p.id]);
+                                                    }}
+                                                />
                                             </li>
                                         ))}
                                         {filtered.length > rows.length && <li className="pm-more">+{filtered.length - rows.length}</li>}
@@ -256,7 +281,15 @@ export function PeopleOverlay(props: PeopleOverlayProps): JSX.Element {
     );
 }
 
-function PersonCard(props: PeopleOverlayProps & { person: Person; onBack(): void }): JSX.Element {
+interface PersonCardProps extends PeopleOverlayProps {
+    person: Person;
+    onBack(): void;
+    /** A shared room is pointed at (undefined: none any more): its people glow on the map. */
+    onPointRoom(roomId: string | undefined): void;
+    onZoomRoom(roomId: string): void;
+}
+
+function PersonCard(props: PersonCardProps): JSX.Element {
     const { person: p, t, graph } = props;
     const group = props.data.groups.find((g) => g.key === p.group);
     const facts: string[] = [
@@ -313,19 +346,45 @@ function PersonCard(props: PeopleOverlayProps & { person: Person; onBack(): void
             {rooms.length > 0 && (
                 <>
                     <div className="pm-section-title">{t(`${P}shared_rooms`)}</div>
-                    <ul className="pm-rooms">
-                        {rooms.map((id) => (
-                            <li key={id}>
-                                <button type="button" className="pm-room" onClick={() => props.onOpenRoom(id)}>
-                                    <span className="pm-room-name">{graph.rooms.get(id)?.name ?? id}</span>
-                                    <span className="pm-room-meta">{graph.rooms.get(id)?.members}</span>
-                                </button>
-                            </li>
-                        ))}
+                    <ul className="pm-rooms" onMouseLeave={() => props.onPointRoom(undefined)}>
+                        {rooms.map((id) => {
+                            const name = graph.rooms.get(id)?.name ?? id;
+                            return (
+                                <li key={id} className="pm-room-row" onMouseEnter={() => props.onPointRoom(id)}>
+                                    <button type="button" className="pm-room" onClick={() => props.onOpenRoom(id)} onFocus={() => props.onPointRoom(id)}>
+                                        <span className="pm-room-name">{name}</span>
+                                        <span className="pm-room-meta">{graph.rooms.get(id)?.members}</span>
+                                    </button>
+                                    <ZoomButton label={t(`${P}zoom_room`, { name })} onClick={() => props.onZoomRoom(id)} />
+                                </li>
+                            );
+                        })}
                     </ul>
                 </>
             )}
         </div>
+    );
+}
+
+/** Moves the map there without opening anything. */
+function ZoomButton(props: { label: string; onClick(): void }): JSX.Element {
+    return (
+        <button
+            type="button"
+            className="pm-zoom"
+            aria-label={props.label}
+            title={props.label}
+            onMouseDown={(ev) => ev.preventDefault()}
+            onClick={(ev) => {
+                ev.stopPropagation();
+                props.onClick();
+            }}
+        >
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                <path d="M10.4 10.4 14 14M7 5v4M5 7h4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+        </button>
     );
 }
 

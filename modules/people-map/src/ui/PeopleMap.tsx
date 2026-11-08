@@ -18,6 +18,8 @@ import { placeTooltip } from "./tooltip";
 
 export interface FocusTarget {
     personId?: string;
+    /** Everyone of a group (a room's members): the view that fits them all. */
+    people?: string[];
     overview?: boolean;
     nonce: number;
 }
@@ -28,8 +30,8 @@ export interface PeopleMapProps {
     /** People matching the search and filters; null when everyone is shown. */
     matches: Set<string> | null;
     selected?: string;
-    /** Pointed at in the list: marked on the map, without moving it. */
-    pointed?: string;
+    /** Pointed at in the list (a person, or everyone in a room): glowing on the map, without moving it. */
+    glow?: ReadonlySet<string> | null;
     focus: FocusTarget | null;
     label: string;
     /** A person was clicked; undefined: you, in the middle. */
@@ -234,19 +236,27 @@ export function PeopleMap(props: PeopleMapProps): JSX.Element {
 
     useEffect(() => {
         sigmaRef.current?.refresh({ skipIndexation: true });
-    }, [props.matches, props.selected, props.pointed, props.avatarVersion]);
+    }, [props.matches, props.selected, props.glow, props.avatarVersion]);
 
     useEffect(() => {
         const sigma = sigmaRef.current;
         const focus = props.focus;
         if (!sigma || !focus) return;
-        if (focus.overview || !focus.personId) return fly(OVERVIEW);
-        const key = nodeKey(focus.personId);
-        if (!sigma.getGraph().hasNode(key)) return;
-        const d = sigma.getNodeDisplayData(key)!;
+        const ids = focus.people ?? (focus.personId ? [focus.personId] : []);
+        const keys = ids.map(nodeKey).filter((k) => sigma.getGraph().hasNode(k));
+        if (focus.overview || !keys.length) return fly(OVERVIEW);
+        const graph = sigma.getGraph();
+        const xs = keys.map((k) => graph.getNodeAttribute(k, "x"));
+        const ys = keys.map((k) => graph.getNodeAttribute(k, "y"));
+        const shown = keys.map((k) => sigma.getNodeDisplayData(k)!);
         const { x } = sigma.getCustomBBox() ?? sigma.getBBox();
-        // The person with a few rings of neighbours around them.
-        fly({ x: d.x, y: d.y, ratio: Math.min(1, (STEP * 16) / (x[1] - x[0])) });
+        // Everyone in view, with a few rings of neighbours around them.
+        const extent = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)) * 1.25 + STEP * 16;
+        fly({
+            x: (Math.min(...shown.map((d) => d.x)) + Math.max(...shown.map((d) => d.x))) / 2,
+            y: (Math.min(...shown.map((d) => d.y)) + Math.max(...shown.map((d) => d.y))) / 2,
+            ratio: Math.min(1, extent / (x[1] - x[0])),
+        });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.focus]);
 
@@ -291,8 +301,11 @@ function settings(theme: Theme, propsRef: { current: PeopleMapProps }): Partial<
         minCameraRatio: 0.01,
         maxCameraRatio: 2,
         nodeReducer: (_, a) => {
-            const { matches, selected, pointed, avatarUrl } = propsRef.current;
-            const lit = !matches || a.me || (a.personId !== undefined && matches.has(a.personId));
+            const { matches, selected, glow, avatarUrl } = propsRef.current;
+            const glowing = a.personId !== undefined && Boolean(glow?.has(a.personId));
+            // A room's people glow and the others step back; one person just glows.
+            const matching = !matches || (a.personId !== undefined && matches.has(a.personId));
+            const lit = glowing || a.me || (matching && !(glow && glow.size > 1));
             const out: Record<string, unknown> = { ...a, type: "person", forceLabel: true };
             out.color = lit ? districtColour(theme, a.district).bg : theme.dim;
             if (lit) out.image = avatarUrl?.(a.avatar);
@@ -304,9 +317,13 @@ function settings(theme: Theme, propsRef: { current: PeopleMapProps }): Partial<
             else if (a.presence === "online") (ring = theme.unread), (size = 3);
             else if (a.hasDm) (ring = mix(theme.text, theme.bg, 0.55)), (size = 1.5);
             if (lit && ring) Object.assign(out, { borderColor: ring, borderSize: size });
-            const mark = a.personId !== undefined && (a.personId === selected || a.personId === pointed);
-            if (mark) {
-                Object.assign(out, { borderColor: theme.accent, borderSize: a.personId === selected ? 4 : 3, zIndex: 1000, label: a.label });
+            if (glowing) {
+                // Big enough to find on the whole map.
+                Object.assign(out, { borderColor: theme.accent, borderSize: 3, zIndex: 1000, label: a.label, size: a.size * 1.3 });
+                if (!theme.highContrast) Object.assign(out, { haloColor: withAlpha(theme.accent, 0.55), haloSpread: 3 });
+                delete out.veilColor;
+            } else if (a.personId !== undefined && a.personId === selected) {
+                Object.assign(out, { borderColor: theme.accent, borderSize: 4, zIndex: 1000, label: a.label });
                 if (!theme.highContrast) Object.assign(out, { haloColor: withAlpha(theme.accent, 0.5), haloSpread: 1.4 });
                 delete out.veilColor;
             }

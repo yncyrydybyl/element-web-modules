@@ -5,8 +5,9 @@ An [Element Web](https://github.com/element-hq/element-web) module: press <kbd>A
 - **You are in the middle.** The closer someone sits, the more you have in common: a DM counts most, a small room more than a big one, and replies and mentions between you count on top. Contact that's long ago counts less.
 - **One sector per context**: the space, event, bridge network or "Direct messages" where you share the most with someone, so you see where you know people from. Sectors take the district colours of the [space-room-map](../space-room-map) module.
 - **Bigger circles** for closer people, a **green ring** for people online now, a **dark ring** for people you have a DM with.
-- **The list beside the map**: search, filter (everyone, with a DM, your server, bridged) and sort (closest, recent contact, shared rooms, name). Pointing at someone marks them on the map.
-- **A card per person** (click them, or Enter in the list): their names, presence, where you know them from, closeness, shared rooms and spaces, their role there, replies and mentions between you, messages seen, last contact. It has buttons to open your DM or their profile, and a link to every shared room.
+- **The list beside the map**: search, filter (everyone, with a DM, your server, bridged) and sort (closest, recent contact, shared rooms, name). Pointing at someone makes them glow on the map; the magnifier on their row zooms the map to them without opening anything.
+- **A card per person** (click them, or Enter in the list): their names, presence, where you know them from, closeness, shared rooms and spaces, their role there, replies and mentions between you, messages seen, last contact. It has buttons to open your DM or their profile, and a link to every shared room. Pointing at a room makes everyone on the map who's in it glow and the rest fade; its magnifier zooms to them.
+- Whoever you zoomed to keeps glowing until you point at someone else.
 
 Everything is worked out in the browser from what Element has already loaded; nothing is sent anywhere.
 

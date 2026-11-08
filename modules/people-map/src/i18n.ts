@@ -54,6 +54,8 @@ export const translations = {
     [`${P}open_profile`]: { en: "Profile", de: "Profil" },
     [`${P}shared_rooms`]: { en: "Rooms you share", de: "Räume, die ihr teilt" },
     [`${P}tip_action`]: { en: "Click for details", de: "Klicken für Details" },
+    [`${P}zoom_person`]: { en: "Show %(name)s on the map", de: "%(name)s auf der Karte zeigen" },
+    [`${P}zoom_room`]: { en: "Show the people of %(name)s on the map", de: "Die Leute aus %(name)s auf der Karte zeigen" },
     [`${P}legend`]: { en: "Legend", de: "Legende" },
     [`${P}legend_middle`]: { en: "Middle: you. Closer to it: closer to you", de: "Mitte: du. Näher dran: näher bei dir" },
     [`${P}legend_sector`]: {

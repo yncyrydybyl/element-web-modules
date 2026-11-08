@@ -506,7 +506,8 @@
 .pm-sort select:focus-visible,
 .pm-button:focus-visible,
 .pm-back:focus-visible,
-.pm-room:focus-visible {
+.pm-room:focus-visible,
+.pm-zoom:focus-visible {
     outline: 2px solid var(--cpd-color-border-focused, #0467dd);
     outline-offset: 1px;
 }
@@ -699,9 +700,22 @@
     list-style: none;
 }
 
+.pm-room-row {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border-radius: 6px;
+}
+
+/* Under the pointer: its people glow on the map. */
+.pm-room-row:hover {
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+}
+
 .pm-room {
     display: flex;
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     gap: 8px;
     padding: 5px 8px;
     border: none;
@@ -714,8 +728,36 @@
     cursor: pointer;
 }
 
-.pm-room:hover {
-    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+/* Shows the person or the room's people on the map, without opening anything. */
+.pm-zoom {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    color: var(--cpd-color-icon-secondary, #656d77);
+    cursor: pointer;
+}
+
+.pm-zoom:hover {
+    background: var(--cpd-color-bg-subtle-primary, #e1e6ec);
+    color: var(--cpd-color-icon-primary, #1b1d22);
+}
+
+/* In the list only under the pointer or keyboard focus, so rows stay calm. */
+.pm-item .pm-zoom {
+    opacity: 0;
+}
+
+.pm-item:hover .pm-zoom,
+.pm-item[aria-selected="true"] .pm-zoom,
+.pm-zoom:focus-visible {
+    opacity: 1;
 }
 
 .pm-room-name {
