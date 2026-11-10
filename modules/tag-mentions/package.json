@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-tag-mentions",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Element Web module: Teams-style tag mentions (@oncall, @designers) that expand into ordinary Matrix user mentions, so every client notifies the right people",
     "private": true,
     "type": "module",

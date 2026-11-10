@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-files-hub",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Element Web module: a Teams-style Files view across rooms and spaces, with filters, search and local previews of encrypted attachments",
     "private": true,
     "type": "module",

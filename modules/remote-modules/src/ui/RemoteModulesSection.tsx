@@ -11,6 +11,8 @@ export type ModuleTranslate = (key: string, variables?: Record<string, string>) 
 export interface ServerModule {
     src: string;
     key: string;
+    /** The module's own version, from its build, once read. */
+    version?: string;
     /** From the `about` config, in the user's language. */
     description?: string;
     usage: string[];
@@ -205,7 +207,10 @@ function ServerRow(props: {
     return (
         <li className="drm-row drm-row--server">
             <div className="drm-row-text">
-                <span className="drm-name">{name}</span>
+                <span className="drm-name">
+                    {name}
+                    {m.version && <Version version={m.version} t={t} />}
+                </span>
                 {m.description && <p className="drm-description">{m.description}</p>}
                 <span className={`drm-status drm-status--${state}`}>{t(`${P}${status}`)}</span>
                 <code className="drm-source">{m.src}</code>
@@ -261,7 +266,10 @@ function ModuleRow(props: {
     return (
         <li className="drm-row">
             <div className="drm-row-text">
-                <span className="drm-name">{entry.name}</span>
+                <span className="drm-name">
+                    {entry.name}
+                    {status && "version" in status && status.version && <Version version={status.version} t={t} />}
+                </span>
                 <code className="drm-source">{entry.source}</code>
                 <span className={`drm-status drm-status--${status?.state ?? "pending"}`}>{statusText(status, t)}</span>
             </div>
@@ -296,6 +304,14 @@ function ModuleRow(props: {
                 {t(`${P}remove`)}
             </button>
         </li>
+    );
+}
+
+function Version({ version, t }: { version: string; t: ModuleTranslate }): JSX.Element {
+    return (
+        <span className="drm-version" aria-label={t(`${P}version_label`, { version })}>
+            {version}
+        </span>
     );
 }
 

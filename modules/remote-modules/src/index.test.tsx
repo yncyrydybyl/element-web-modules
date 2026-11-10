@@ -6,6 +6,7 @@ import { Watchable, type Api } from "@element-hq/element-web-module-api";
 
 import ModuleDefault, { isSafeMode, localise, parseConfig, RemoteModulesModule, skipDisabledServerModules } from "./index";
 import { fetchSource, runModule, type SdkClient } from "./loader";
+import { versionFromSource } from "./version";
 import { isValidSource } from "./store";
 import { nameFromSource } from "./ui/RemoteModulesSection";
 
@@ -155,7 +156,28 @@ describe("RemoteModulesModule", () => {
         settingsDialog();
         await screen.findByTestId("remote-modules-server");
         expect(screen.queryByTestId("remote-modules-dynamic")).toBeNull();
-        expect(fetchMock).not.toHaveBeenCalled();
+        // Only the server's own modules, for their versions: nothing of the user's.
+        const fetched = fetchMock.mock.calls.map(([url]) => new URL(String(url)).pathname);
+        expect(fetched.every((path) => CONFIG_MODULES.some((src) => src.startsWith(path)))).toBe(true);
+    });
+
+    it("shows the version from each module's build", async () => {
+        fetchMock.mockImplementation(async (url: string) => {
+            const body = url.includes("space-room-map")
+                ? "/*! @datanauten/element-web-module-space-room-map 0.4.1 */\nexport default class {}"
+                : url.includes("dev.example")
+                  ? "/*! my-module 1.2.0-beta.1 */\nexport default class {}"
+                  : "export default class {}";
+            return new Response(body, { status: 200 });
+        });
+        await start({ config: { allowed_users: [ME] }, accountData: list({ id: "mine", source: "https://dev.example/x.js" }) });
+        settingsDialog();
+        const server = within(await screen.findByTestId("remote-modules-server"));
+        expect(await server.findByLabelText("Version 0.4.1")).toBeTruthy();
+        expect(server.queryAllByText(/^\d+\.\d+\.\d+/)).toHaveLength(1);
+        expect(fetchMock).toHaveBeenCalledWith(`${window.location.origin}/element-modules/space-room-map/index.js?v=def`, { cache: "force-cache" });
+        const dynamic = within(screen.getByTestId("remote-modules-dynamic"));
+        expect(dynamic.getByLabelText("Version 1.2.0-beta.1")).toBeTruthy();
     });
 
     it("turns server modules off for the next start, which then skips them", async () => {
@@ -320,6 +342,19 @@ describe("loader", () => {
         await fetchSource("https://dev.example/x.js", undefined);
         expect(fetchMock).toHaveBeenCalledWith("https://dev.example/x.js", { headers: {}, cache: "no-store" });
         await expect(fetchSource("mxc://a/b", undefined)).rejects.toThrow("Not logged in");
+    });
+});
+
+describe("versionFromSource", () => {
+    it.each([
+        ["/*! @datanauten/element-web-module-speed-start 0.2.0 */\nvar e", "0.2.0"],
+        ["/*! marcade-element-module v1.10.3 */", "1.10.3"],
+        ["/**\n * Some module\n * @version 2.0.0-rc.1\n */", "2.0.0-rc.1"],
+        ["// 1.2.3\nvar e", undefined],
+        ["var e = '/*! x 1.2.3 */'", undefined],
+        ["/*! no version here */", undefined],
+    ])("%j → %s", (code, version) => {
+        expect(versionFromSource(code)).toBe(version);
     });
 });
 

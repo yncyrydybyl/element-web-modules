@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-user-account-widgets",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Element Web module: your own widgets (PDF viewer, participant panel, \u2026) in every room, without adding them to a room",
     "private": true,
     "type": "module",

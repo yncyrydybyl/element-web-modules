@@ -87,6 +87,17 @@
     font-weight: 600;
 }
 
+.drm-version {
+    margin-left: 8px;
+    padding: 0 6px;
+    border-radius: 4px;
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 12px;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+}
+
 .drm-source {
     overflow: hidden;
     color: var(--cpd-color-text-secondary, #656d77);
