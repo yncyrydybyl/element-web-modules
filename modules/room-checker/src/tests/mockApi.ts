@@ -15,7 +15,9 @@ export function mockApi(options: { config?: unknown; accountData?: Record<string
     const setAccountData = vi.fn(async (type: string, content: unknown) => {
         watchable(type).value = content;
     });
+    const addRoomHeaderButtonCallback = vi.fn();
     const api = {
+        extras: { addRoomHeaderButtonCallback },
         config: { get: (key?: string) => (key === "de.datanauten.room_checker" ? options.config : undefined) },
         i18n: {
             language: "en",
@@ -30,5 +32,5 @@ export function mockApi(options: { config?: unknown; accountData?: Record<string
         stores: { roomListStore: { getRooms: () => new Watchable([]) } },
         createRoot: (el: Element) => createRoot(el),
     };
-    return { api: api as unknown as Api, openRoom, toMatrixToLink, setAccountData, accountData: watchable };
+    return { api: api as unknown as Api, addRoomHeaderButtonCallback, openRoom, toMatrixToLink, setAccountData, accountData: watchable };
 }

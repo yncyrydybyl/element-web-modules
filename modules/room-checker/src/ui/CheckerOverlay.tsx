@@ -2,7 +2,8 @@ import { useEffect, useId, useMemo, useRef, useState, type JSX, type KeyboardEve
 
 import { version } from "../../package.json";
 import { P } from "../i18n";
-import { fetchHierarchy, readPolicies, spaceRooms, type HierarchyRoom, type SdkClient, type SpaceInfo } from "../space";
+import { lastVisit, type Snapshot } from "../history";
+import { effectiveRules, fetchHierarchy, readPolicies, spaceRooms, type HierarchyRoom, type RoomEntry, type SdkClient, type SpaceInfo } from "../space";
 import { PoliciesTab } from "./PoliciesTab";
 import { RoomsTab, type Filter } from "./RoomsTab";
 
@@ -24,6 +25,25 @@ export interface CheckerOverlayProps {
     onOpenRoom(roomId: string): void;
     onRoomSettings(roomId: string): void;
     onClose(): void;
+    /** Open on this room's details (from the room header). */
+    room?: string;
+    /** Your daily snapshots per space; missing: no history. */
+    history?: { get(spaceId: string): Snapshot[]; record(spaceId: string, snapshot: Snapshot): Promise<void> };
+}
+
+/** The snapshot is written once the checks have settled. */
+const SNAPSHOT_DELAY_MS = 1500;
+
+export function snapshotOf(entries: RoomEntry[], now = Date.now()): Snapshot {
+    const joined = entries.filter((e) => e.room);
+    return {
+        at: now,
+        joined: joined.length,
+        passing: joined.filter((e) => e.report && !e.report.errors && !e.report.warnings && !e.report.unknown).length,
+        errors: entries.filter((e) => e.report?.errors).length,
+        warnings: entries.filter((e) => e.report && !e.report.errors && e.report.warnings).length,
+        failing: entries.filter((e) => e.report && (e.report.errors || e.report.warnings)).map((e) => e.id),
+    };
 }
 
 export function CheckerOverlay(props: CheckerOverlayProps): JSX.Element {
@@ -33,8 +53,8 @@ export function CheckerOverlay(props: CheckerOverlayProps): JSX.Element {
     const [tab, setTab] = useState<Tab>("rooms");
     const [filter, setFilter] = useState<Filter>("all");
     const [query, setQuery] = useState("");
-    const [selected, setSelected] = useState<string | undefined>();
-    const [hierarchy, setHierarchy] = useState<Map<string, HierarchyRoom>>(new Map());
+    const [selected, setSelected] = useState<string | undefined>(props.room);
+    const [hierarchy, setHierarchy] = useState<{ space?: string; rooms: Map<string, HierarchyRoom> }>({ rooms: new Map() });
     const panelRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => panelRef.current?.focus(), []);
@@ -43,18 +63,40 @@ export function CheckerOverlay(props: CheckerOverlayProps): JSX.Element {
     useEffect(() => {
         if (!spaceId) return;
         let live = true;
-        setHierarchy(new Map());
-        void fetchHierarchy(client, spaceId).then((h) => live && setHierarchy(h));
+        setHierarchy({ rooms: new Map() });
+        void fetchHierarchy(client, spaceId).then((rooms) => live && setHierarchy({ space: spaceId, rooms }));
         return () => {
             live = false;
         };
     }, [client, spaceId]);
 
     const sp = useMemo(() => (spaceId ? readPolicies(client, spaceId) : undefined), [client, spaceId, props.revision]);
+    // A sub-space without policies of its own uses those of the nearest space above it.
+    const rules = useMemo(() => (spaceId ? effectiveRules(client, spaceId, spaces) : undefined), [client, spaceId, spaces, sp]);
     const entries = useMemo(
-        () => (spaceId && sp ? spaceRooms(client, spaceId, sp.policies, sp.exceptions, hierarchy) : []),
-        [client, spaceId, sp, hierarchy, props.revision],
+        () => (spaceId && rules ? spaceRooms(client, spaceId, rules, hierarchy.rooms) : []),
+        [client, spaceId, rules, hierarchy, props.revision],
     );
+    const history = useMemo(() => (spaceId ? (props.history?.get(spaceId) ?? []) : []), [props.history, spaceId, props.revision]);
+    const previous = useMemo(() => lastVisit(history), [history]);
+
+    // Today's snapshot: once the rooms you aren't in are known too, and again (with your fixes) when
+    // you leave the space or close the checker. Not on every change: on a busy account room state
+    // changes all the time, and there would never be a quiet moment to write it.
+    const ready = Boolean(spaceId) && hierarchy.space === spaceId;
+    // Per space: when the space changes, this render already has the next space's rooms.
+    const latest = useRef(new Map<string, RoomEntry[]>());
+    if (ready && spaceId) latest.current.set(spaceId, entries);
+    useEffect(() => {
+        if (!ready || !spaceId || !props.history) return;
+        const store = props.history;
+        const record = (): void => void store.record(spaceId, snapshotOf(latest.current.get(spaceId) ?? [])).catch(() => {});
+        const timer = setTimeout(record, SNAPSHOT_DELAY_MS);
+        return () => {
+            clearTimeout(timer);
+            record();
+        };
+    }, [ready, spaceId, props.history]);
 
     const chooseSpace = (id: string): void => {
         setSpaceId(id);
@@ -71,7 +113,7 @@ export function CheckerOverlay(props: CheckerOverlayProps): JSX.Element {
     };
 
     let body: ReactNode;
-    if (!spaceId || !sp) body = <div className="rc-empty">{t(`${P}no_spaces`)}</div>;
+    if (!spaceId || !sp || !rules) body = <div className="rc-empty">{t(`${P}no_spaces`)}</div>;
     else if (tab === "policies")
         body = (
             <PoliciesTab
@@ -79,6 +121,9 @@ export function CheckerOverlay(props: CheckerOverlayProps): JSX.Element {
                 client={client}
                 spaceId={spaceId}
                 space={sp}
+                rules={rules}
+                ownPolicies={[...new Set(entries.map((e) => e.policySpace))].filter((id) => id !== spaceId && id !== rules.source)}
+                spaceName={(id) => spaces.find((s) => s.id === id)?.name ?? client.getRoom(id)?.name ?? id}
                 roomName={(id) => entries.find((e) => e.id === id)?.name ?? client.getRoom(id)?.name ?? id}
                 revision={props.revision}
                 language={props.language}
@@ -92,14 +137,16 @@ export function CheckerOverlay(props: CheckerOverlayProps): JSX.Element {
                 spaceId={spaceId}
                 spacePolicies={sp}
                 entries={entries}
-                policies={sp.policies}
+                policies={rules.policies}
+                trend={history}
+                previous={previous}
                 filter={filter}
                 setFilter={setFilter}
                 query={query}
                 setQuery={setQuery}
                 selected={selected}
                 setSelected={setSelected}
-                spaceName={(id) => spaces.find((s) => s.id === id)?.name ?? client.getRoom(id)?.name ?? hierarchy.get(id)?.name ?? id}
+                spaceName={(id) => spaces.find((s) => s.id === id)?.name ?? client.getRoom(id)?.name ?? hierarchy.rooms.get(id)?.name ?? id}
             />
         );
 

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type JSX } from "react";
 
+import type { Snapshot } from "../history";
 import { P } from "../i18n";
 import { POLICY_IDS, type CheckResult, type Detail, type PolicyId, type PolicySet, type Severity } from "../policies";
 import {
@@ -9,6 +10,7 @@ import {
     FIX_EVENT,
     FIX_INPUT,
     fixValue,
+    readPolicies,
     saveException,
     topicOfRoom,
     type RoomEntry,
@@ -16,7 +18,7 @@ import {
 } from "../space";
 import { plural, relative, type CheckerOverlayProps, type ModuleTranslate } from "./CheckerOverlay";
 
-export type Filter = "all" | "failing" | "errors" | "warnings" | "unchecked" | PolicyId;
+export type Filter = "all" | "failing" | "errors" | "warnings" | "unchecked" | "new" | PolicyId;
 
 export interface RoomsTabProps extends CheckerOverlayProps {
     spaceId: string;
@@ -30,6 +32,10 @@ export interface RoomsTabProps extends CheckerOverlayProps {
     selected?: string;
     setSelected(id: string | undefined): void;
     spaceName(id: string): string;
+    /** Your daily snapshots of this space, oldest first. */
+    trend: Snapshot[];
+    /** The last one from before today. */
+    previous?: Snapshot;
 }
 
 const result = (e: RoomEntry, id: PolicyId): CheckResult | undefined => e.report?.results.get(id);
@@ -38,7 +44,11 @@ const passesAll = (e: RoomEntry): boolean => Boolean(e.report && !e.report.error
 
 export function RoomsTab(props: RoomsTabProps): JSX.Element {
     const { entries, policies, filter, t } = props;
-    const enabled = POLICY_IDS.filter((id) => policies[id].enabled);
+    // Sub-spaces with policies of their own may check more.
+    const enabled = POLICY_IDS.filter((id) => policies[id].enabled || entries.some((e) => e.policies[id].enabled));
+    const wasFailing = new Set(props.previous?.failing ?? []);
+    const isNew = (e: RoomEntry): boolean => Boolean(props.previous && e.report && (e.report.errors || e.report.warnings) && !wasFailing.has(e.id));
+    const newCount = entries.filter(isNew).length;
     const joined = entries.filter((e) => e.room);
     const passing = entries.filter(passesAll).length;
     const withErrors = entries.filter((e) => e.report?.errors).length;
@@ -56,6 +66,7 @@ export function RoomsTab(props: RoomsTabProps): JSX.Element {
             if (filter === "errors") return Boolean(e.report?.errors);
             if (filter === "warnings") return Boolean(e.report && !e.report.errors && e.report.warnings);
             if (filter === "unchecked") return !e.room;
+            if (filter === "new") return isNew(e);
             if (filter !== "all") return failsPolicy(e, filter);
             return true;
         })
@@ -96,6 +107,7 @@ export function RoomsTab(props: RoomsTabProps): JSX.Element {
                             </span>
                         </div>
                     )}
+                    {props.trend.length > 1 && <Trend trend={props.trend} language={props.language} t={t} />}
                     <div className="rc-section-title">{t(`${P}by_policy`)}</div>
                     <div className="rc-bars">
                         {enabled.map((id) => {
@@ -136,12 +148,25 @@ export function RoomsTab(props: RoomsTabProps): JSX.Element {
                                 {t(`${P}filter_${f}`)}
                             </button>
                         ))}
+                        {props.previous && (
+                            <button
+                                type="button"
+                                className="rc-chip"
+                                aria-pressed={filter === "new"}
+                                disabled={!newCount}
+                                title={t(`${P}since`, { when: relative(props.previous.at, props.language) })}
+                                onClick={() => props.setFilter(filter === "new" ? "all" : "new")}
+                            >
+                                {t(`${P}filter_new`, { count: String(newCount) })}
+                            </button>
+                        )}
                         {policyFilter && (
                             <button type="button" className="rc-chip" aria-pressed={true} onClick={() => props.setFilter("all")}>
                                 {t(`${P}filter_policy`, { policy: t(`${P}policy_${policyFilter}`) })} ×
                             </button>
                         )}
                     </div>
+                    <Report {...props} enabled={enabled} />
                 </div>
 
                 {policyFilter && <BulkFix key={policyFilter} {...props} id={policyFilter} failing={entries.filter((e) => failsPolicy(e, policyFilter))} />}
@@ -186,7 +211,7 @@ export function RoomsTab(props: RoomsTabProps): JSX.Element {
                                         </th>
                                         {enabled.map((id) => (
                                             <td key={id} className="rc-cell">
-                                                <Status result={result(e, id)} severity={policies[id].severity} t={t} />
+                                                <Status result={result(e, id)} severity={e.policies[id].severity} t={t} />
                                             </td>
                                         ))}
                                     </tr>
@@ -243,7 +268,8 @@ function detailText(detail: Detail | undefined, t: ModuleTranslate): string {
 }
 
 function RoomDetail(props: RoomsTabProps & { entry: RoomEntry; onBack(): void }): JSX.Element {
-    const { entry: e, policies, t } = props;
+    const { entry: e, t } = props;
+    const policies = e.policies;
     const enabled = POLICY_IDS.filter((id) => policies[id].enabled);
     // Failures first, then accepted ones, what couldn't be checked, and what passes.
     const order = { fail: 0, excepted: 1, unknown: 2, pass: 3 };
@@ -257,6 +283,7 @@ function RoomDetail(props: RoomsTabProps & { entry: RoomEntry; onBack(): void })
             <div className="rc-detail-name">{e.name}</div>
             <div className="rc-detail-id">{e.id}</div>
             {sub && <div className="rc-detail-id">{t(`${P}in_subspace`, { space: props.spaceName(sub) })}</div>}
+            {e.policySpace !== props.spaceId && <div className="rc-detail-id">{t(`${P}rules_from`, { space: props.spaceName(e.policySpace) })}</div>}
             <div className="rc-actions">
                 <button type="button" className="rc-button" onClick={() => props.onOpenRoom(e.id)}>
                     {e.room ? t(`${P}open_room`) : t(`${P}view_room`)}
@@ -300,6 +327,8 @@ function RoomDetail(props: RoomsTabProps & { entry: RoomEntry; onBack(): void })
 /** Accepting a failure for this room, with a reason, or taking that back. Only for whoever may change the policies. */
 function ExceptionControl(props: RoomsTabProps & { entry: RoomEntry; id: PolicyId; result: CheckResult }): JSX.Element | null {
     const { client, entry, id, result: r, t } = props;
+    // Exceptions live with the policies the room is checked against.
+    const canEdit = entry.policySpace === props.spaceId ? props.spacePolicies.canEdit : readPolicies(client, entry.policySpace).canEdit;
     const [reason, setReason] = useState<string | undefined>();
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState<string | undefined>();
@@ -312,7 +341,7 @@ function ExceptionControl(props: RoomsTabProps & { entry: RoomEntry; id: PolicyI
         setBusy(true);
         setError(undefined);
         try {
-            await saveException(client, props.spaceId, entry.id, id, value);
+            await saveException(client, entry.policySpace, entry.id, id, value);
         } catch (e) {
             setError(e instanceof Error ? e.message : String(e));
         } finally {
@@ -327,7 +356,7 @@ function ExceptionControl(props: RoomsTabProps & { entry: RoomEntry; id: PolicyI
             <div className="rc-exception">
                 <div className="rc-exception-reason">“{ex.reason}”</div>
                 <div className="rc-note">{t(`${P}excepted_by`, { user: ex.by, when: relative(ex.at, props.language) })}</div>
-                {props.spacePolicies.canEdit && (
+                {canEdit && (
                     <button type="button" className="rc-link" disabled={busy} onClick={() => void save(undefined)}>
                         {t(`${P}take_back`)}
                     </button>
@@ -336,7 +365,7 @@ function ExceptionControl(props: RoomsTabProps & { entry: RoomEntry; id: PolicyI
             </div>
         );
     }
-    if (!props.spacePolicies.canEdit) return null;
+    if (!canEdit) return null;
     if (reason === undefined)
         return (
             <button type="button" className="rc-link" onClick={() => setReason("")}>
@@ -368,10 +397,10 @@ function ExceptionControl(props: RoomsTabProps & { entry: RoomEntry; id: PolicyI
 type FixState = { step: "idle" } | { step: "edit"; value: string } | { step: "confirm" } | { step: "busy" } | { step: "done" } | { step: "failed"; error: string };
 
 function Fix(props: RoomsTabProps & { entry: RoomEntry; id: PolicyId }): JSX.Element | null {
-    const { client, entry, id, policies, t } = props;
+    const { client, entry, id, t } = props;
     const [state, setState] = useState<FixState>({ step: "idle" });
     const fileRef = useRef<HTMLInputElement>(null);
-    const config = policies[id];
+    const config = entry.policies[id];
     useEffect(() => setState({ step: "idle" }), [entry.id, id]);
 
     if (!FIX_EVENT[id]) return <div className="rc-note">{t(`${P}no_fix`)}</div>;
@@ -387,7 +416,7 @@ function Fix(props: RoomsTabProps & { entry: RoomEntry; id: PolicyId }): JSX.Ele
             setState({ step: "failed", error: e instanceof Error ? e.message : String(e) });
         }
     };
-    const label = fixLabel(id, props.policies, t);
+    const label = fixLabel(id, entry.policies, t);
     const input = FIX_INPUT[id];
 
     if (state.step === "busy") return <div className="rc-note">…</div>;
@@ -465,8 +494,9 @@ function Fix(props: RoomsTabProps & { entry: RoomEntry; id: PolicyId }): JSX.Ele
 }
 
 function fixLabel(id: PolicyId, policies: PolicySet, t: ModuleTranslate): string {
-    const value = fixValue(id, policies[id]);
-    return t(`${P}fix_${id}`, value ? { value: t(`${P}value_${value}`) } : undefined);
+    const c = policies[id];
+    const value = fixValue(id, c);
+    return t(`${P}fix_${id}`, { value: value ? t(`${P}value_${value}`) : "", level: String(c.level ?? ""), user: c.user ?? "" });
 }
 
 type BulkState =
@@ -498,7 +528,7 @@ function BulkFix(props: RoomsTabProps & { id: PolicyId; failing: RoomEntry[] }):
         for (let i = 0; i < rooms.length; i++) {
             setState({ step: "running", done: i });
             try {
-                await applyFix(client, rooms[i], id, policies[id]);
+                await applyFix(client, rooms[i], id, rooms[i].policies[id]);
             } catch (e) {
                 failed.push({ name: rooms[i].name, error: e instanceof Error ? e.message : String(e) });
             }
@@ -564,6 +594,99 @@ function BulkFix(props: RoomsTabProps & { id: PolicyId; failing: RoomEntry[] }):
     return (
         <div className="rc-bulk" data-testid="room-checker-bulk" aria-live="polite">
             {body}
+        </div>
+    );
+}
+
+/** The pass rate (of the rooms you're in) over your daily snapshots. */
+function Trend(props: { trend: Snapshot[]; language: string; t: ModuleTranslate }): JSX.Element {
+    const { trend, t } = props;
+    const rate = (s: Snapshot): number => (s.joined ? s.passing / s.joined : 0);
+    const W = 160;
+    const H = 28;
+    const points = trend.map((s, i) => `${((i / (trend.length - 1)) * W).toFixed(1)},${(H - 2 - rate(s) * (H - 4)).toFixed(1)}`).join(" ");
+    const first = Math.round(rate(trend[0]) * 100);
+    const last = Math.round(rate(trend[trend.length - 1]) * 100);
+    const label = t(`${P}trend`, { from: `${first} %`, to: `${last} %`, since: relative(trend[0].at, props.language) });
+    return (
+        <div className="rc-trend" title={label}>
+            <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} aria-hidden="true">
+                <polyline points={points} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+            </svg>
+            <span>{label}</span>
+        </div>
+    );
+}
+
+const CELL: Record<string, string> = { pass: "pass", fail: "fail", excepted: "accepted", unknown: "unknown" };
+
+/** The table as CSV: one row per room, one column per policy (pass, fail, accepted, unknown, or empty when off). */
+export function reportCsv(entries: RoomEntry[], enabled: PolicyId[], t: ModuleTranslate): string {
+    const quote = (v: string | number): string => (/[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
+    const head = [t(`${P}col_room`), "room_id", "joined", "errors", "warnings", ...enabled.map((id) => t(`${P}policy_${id}`))];
+    const rows = entries.map((e) => [
+        e.name,
+        e.id,
+        e.room ? "yes" : "no",
+        e.report?.errors ?? "",
+        e.report?.warnings ?? "",
+        ...enabled.map((id) => CELL[e.report?.results.get(id)?.status ?? ""] ?? ""),
+    ]);
+    return [head, ...rows].map((r) => r.map(quote).join(",")).join("\n") + "\n";
+}
+
+/** A short Markdown report: the numbers, then every failing room with what fails. */
+export function reportMarkdown(space: string, entries: RoomEntry[], t: ModuleTranslate, now = new Date()): string {
+    const failing = entries.filter((e) => e.report && (e.report.errors || e.report.warnings));
+    const lines = [
+        `## ${t(`${P}report_title`, { space, date: now.toISOString().slice(0, 10) })}`,
+        "",
+        `${t(`${P}stat_rooms`)}: ${entries.length} · ${t(`${P}stat_errors`)}: ${entries.filter((e) => e.report?.errors).length} · ${t(`${P}stat_warnings`)}: ${
+            entries.filter((e) => e.report && !e.report.errors && e.report.warnings).length
+        } · ${t(`${P}stat_unchecked`)}: ${entries.filter((e) => !e.room).length}`,
+        "",
+    ];
+    if (!failing.length) lines.push(t(`${P}report_all_pass`));
+    for (const e of failing) {
+        const fails = POLICY_IDS.filter((id) => e.report!.results.get(id)?.status === "fail").map(
+            (id) => `${t(`${P}policy_${id}`)} (${t(`${P}severity_${e.policies[id].severity}`)})`,
+        );
+        lines.push(`- **${e.name.replace(/[*_`[\]]/g, "\\$&")}**: ${fails.join(", ")}`);
+    }
+    return lines.join("\n") + "\n";
+}
+
+function Report(props: RoomsTabProps & { enabled: PolicyId[] }): JSX.Element {
+    const { t } = props;
+    const [copied, setCopied] = useState<"ok" | "failed" | undefined>();
+    const download = (): void => {
+        const blob = new Blob([reportCsv(props.entries, props.enabled, t)], { type: "text/csv;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `room-check-${props.spaceName(props.spaceId).replace(/[^\p{L}\p{N}_-]+/gu, "-")}-${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    };
+    const copy = async (): Promise<void> => {
+        try {
+            await navigator.clipboard.writeText(reportMarkdown(props.spaceName(props.spaceId), props.entries, t));
+            setCopied("ok");
+        } catch {
+            setCopied("failed");
+        }
+        setTimeout(() => setCopied(undefined), 2500);
+    };
+    return (
+        <div className="rc-report">
+            <button type="button" className="rc-button" onClick={download}>
+                {t(`${P}report_csv`)}
+            </button>
+            <button type="button" className="rc-button" onClick={() => void copy()}>
+                {copied === "ok" ? t(`${P}report_copied`) : copied === "failed" ? t(`${P}report_copy_failed`) : t(`${P}report_markdown`)}
+            </button>
         </div>
     );
 }

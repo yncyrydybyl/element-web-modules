@@ -16,6 +16,8 @@ export interface FakeRoom {
     state?: Record<string, Record<string, unknown>>;
     /** Event types you may not send here. */
     denied?: string[];
+    /** When the last message arrived. */
+    lastActive?: number;
     /** What the server's space hierarchy says about it (rooms you aren't in). */
     summary?: Partial<HierarchyRoom>;
 }
@@ -63,6 +65,7 @@ export function fakeClient(rooms: FakeRoom[]) {
             name: String(s.get("m.room.name|")?.name ?? r.name ?? ""),
             isSpaceRoom: () => Boolean(r.space),
             getMyMembership: () => "join",
+            getLastActiveTimestamp: () => r.lastActive ?? Date.now(),
             currentState: { getStateEvents, maySendStateEvent: (type: string) => !r.denied?.includes(type) },
         };
     };
@@ -79,6 +82,11 @@ export function fakeClient(rooms: FakeRoom[]) {
         getVisibleRooms: () => rooms.filter((r) => !r.left).map(sdkRoom),
         sendStateEvent,
         createAlias: vi.fn(async () => ({})),
+        invite: vi.fn(async (roomId: string, userId: string) => {
+            state.get(roomId)!.set(`m.room.member|${userId}`, { membership: "invite" });
+            emit("RoomState.events");
+            return {};
+        }),
         uploadContent: vi.fn(async () => ({ content_uri: "mxc://x/new" })),
         // The space and everything under it, three rooms per page.
         getRoomHierarchy: vi.fn(async (spaceId: string, _limit?: number, _depth?: number, _suggested?: boolean, from?: string) => {

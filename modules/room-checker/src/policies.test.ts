@@ -16,8 +16,8 @@ function without(...types: string[]) {
 }
 
 describe("policies", () => {
-    it("has ten, and a well-kept room passes every default", () => {
-        expect(POLICY_IDS).toHaveLength(10);
+    it("has fourteen, and a well-kept room passes every default", () => {
+        expect(POLICY_IDS).toHaveLength(14);
         const report = checkRoom(room(goodState(SPACE, "Team")), { ...DEFAULT_POLICIES, address: { ...DEFAULT_POLICIES.address, enabled: false } });
         expect([...report.results.values()].every((r) => r.status === "pass")).toBe(true);
         expect(report.errors + report.warnings).toBe(0);
@@ -57,6 +57,35 @@ describe("policies", () => {
         expect(creatorsOf("11", "@c:x", [])).toEqual([]);
         expect(creatorsOf("org.example.custom", "@c:x", [])).toEqual([]);
         expect(check("address", room({ ...s, "m.room.canonical_alias": { alias: "#t:x" } }), DEFAULT_POLICIES.address).status).toBe("pass");
+    });
+
+    it("checks room version, activity, invite power and a required member", () => {
+        const s = goodState(SPACE, "Team");
+        const r = { ...room(s), lastActive: Date.UTC(2026, 0, 1) };
+        const now = Date.UTC(2026, 6, 1);
+        expect(check("room_version", r, DEFAULT_POLICIES.room_version).status).toBe("fail");
+        s["m.room.create"] = { room_version: "11" };
+        expect(check("room_version", r, DEFAULT_POLICIES.room_version).status).toBe("pass");
+        s["m.room.create"] = { room_version: "org.example.custom" };
+        expect(check("room_version", r, DEFAULT_POLICIES.room_version).status).toBe("unknown");
+        expect(check("inactive", r, { ...DEFAULT_POLICIES.inactive, days: 180 }, now).detail).toEqual({ key: "inactive", vars: { days: "181" } });
+        expect(check("inactive", r, { ...DEFAULT_POLICIES.inactive, days: 200 }, now).status).toBe("pass");
+        expect(check("inactive", room(s), DEFAULT_POLICIES.inactive).status).toBe("unknown");
+        expect(check("invite_power", r, DEFAULT_POLICIES.invite_power).detail?.vars).toEqual({ level: "0", min: "50" });
+        s["m.room.power_levels"] = { ...s["m.room.power_levels"], invite: 50 };
+        expect(check("invite_power", r, DEFAULT_POLICIES.invite_power).status).toBe("pass");
+        const bot = { ...DEFAULT_POLICIES.required_member, user: "@bot:x" };
+        expect(check("required_member", r, DEFAULT_POLICIES.required_member).status).toBe("pass");
+        expect(check("required_member", r, bot).detail?.key).toBe("required_member");
+        s["m.room.member|@bot:x"] = { membership: "invite" };
+        expect(check("required_member", r, bot).detail?.key).toBe("required_member_invited");
+        s["m.room.member|@bot:x"] = { membership: "join" };
+        expect(check("required_member", r, bot).status).toBe("pass");
+        expect(sanitisePolicies({ policies: { required_member: { user: "nope" }, room_version: { minVersion: 0 }, inactive: { days: 30 } } })).toMatchObject({
+            required_member: { user: "" },
+            room_version: { minVersion: 10 },
+            inactive: { days: 30 },
+        });
     });
 
     it("reads both topic formats", () => {

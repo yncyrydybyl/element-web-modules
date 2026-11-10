@@ -35,6 +35,7 @@ export interface SdkRoom {
     name: string;
     isSpaceRoom(): boolean;
     getMyMembership(): string;
+    getLastActiveTimestamp?(): number;
     currentState: {
         getStateEvents(type: string): SdkEvent[];
         getStateEvents(type: string, stateKey: string): SdkEvent | null;
@@ -51,6 +52,7 @@ export interface SdkClient {
     sendStateEvent(roomId: string, type: string, content: Record<string, unknown>, stateKey?: string): Promise<unknown>;
     setRoomTopic?(roomId: string, topic: string): Promise<unknown>;
     createAlias(alias: string, roomId: string): Promise<unknown>;
+    invite?(roomId: string, userId: string): Promise<unknown>;
     uploadContent(file: File): Promise<{ content_uri: string }>;
     getRoomHierarchy?(roomId: string, limit?: number, maxDepth?: number, suggestedOnly?: boolean, fromToken?: string): Promise<{ rooms: HierarchyRoom[]; next_batch?: string }>;
     on?(event: string, listener: (...args: unknown[]) => void): unknown;
@@ -71,6 +73,8 @@ export interface SpaceInfo {
     name: string;
     /** 0 for a top-level space, 1 for its sub-spaces … */
     depth: number;
+    /** The space it's listed under here (top-level spaces have none). */
+    parent?: string;
 }
 
 /** The spaces you're in as a tree: top-level spaces by name, each followed by its sub-spaces. */
@@ -92,11 +96,11 @@ export function joinedSpaces(client: SdkClient): SpaceInfo[] {
     const byName = (a: string, b: string): number => name(a).localeCompare(name(b));
     const out: SpaceInfo[] = [];
     const seen = new Set<string>();
-    const walk = (id: string, depth: number): void => {
+    const walk = (id: string, depth: number, parent?: string): void => {
         if (seen.has(id)) return;
         seen.add(id);
-        out.push({ id, name: name(id), depth });
-        for (const k of [...(children.get(id) ?? [])].sort(byName)) walk(k, depth + 1);
+        out.push({ id, name: name(id), depth, parent });
+        for (const k of [...(children.get(id) ?? [])].sort(byName)) walk(k, depth + 1, id);
     };
     for (const id of [...ids].filter((id) => !isChild.has(id)).sort(byName)) walk(id, 0);
     // Spaces only reachable through a loop of sub-spaces.
@@ -132,6 +136,29 @@ export function readPolicies(client: SdkClient, spaceId: string): SpacePolicies 
 }
 
 /** Saves the policies, keeping the exceptions as they are in the space now. */
+/** The rules a space's rooms are checked against, and the space they come from. */
+export interface Rules {
+    /** The space whose state event holds them (its exceptions are saved there too). */
+    source: string;
+    policies: PolicySet;
+    exceptions: Exceptions;
+}
+
+/**
+ * A space's own policies when it has saved some, else those of the nearest space above it that
+ * has (as far as the spaces you're in show), else the defaults.
+ */
+export function effectiveRules(client: SdkClient, spaceId: string, spaces: SpaceInfo[]): Rules {
+    const seen = new Set<string>();
+    for (let id: string | undefined = spaceId; id && !seen.has(id); id = spaces.find((s) => s.id === id)?.parent) {
+        seen.add(id);
+        const p = readPolicies(client, id);
+        if (p.saved) return { source: id, policies: p.policies, exceptions: p.exceptions };
+    }
+    const own = readPolicies(client, spaceId);
+    return { source: spaceId, policies: own.policies, exceptions: own.exceptions };
+}
+
 export function savePolicies(client: SdkClient, spaceId: string, policies: PolicySet): Promise<unknown> {
     const current = readPolicies(client, spaceId);
     return client.sendStateEvent(spaceId, POLICY_TYPE, policyContent(policies, current.exceptions), "");
@@ -152,6 +179,9 @@ export interface RoomEntry {
     name: string;
     /** The (sub)space it's listed in. */
     parentSpace: string;
+    /** The space whose policies it's checked against: a sub-space with its own, or the chosen one. */
+    policySpace: string;
+    policies: PolicySet;
     /** Missing for rooms you aren't in: they're checked from the server's summary, as far as it goes. */
     room?: SdkRoom;
     /** Missing when there's nothing to check it with (not joined, and the server didn't describe it). */
@@ -180,18 +210,12 @@ export interface HierarchyRoom {
  * Every room in the space and its sub-spaces (the sub-spaces themselves aren't checked), each
  * checked against the space's policies. Rooms listed twice count once, under the first space.
  */
-export function spaceRooms(
-    client: SdkClient,
-    spaceId: string,
-    policies: PolicySet,
-    exceptions: Exceptions = {},
-    hierarchy: Map<string, HierarchyRoom> = new Map(),
-): RoomEntry[] {
+export function spaceRooms(client: SdkClient, spaceId: string, rules: Rules, hierarchy: Map<string, HierarchyRoom> = new Map()): RoomEntry[] {
     const out: RoomEntry[] = [];
     const seen = new Set<string>([spaceId]);
-    const queue = [spaceId];
+    const queue: Array<{ sid: string; rules: Rules }> = [{ sid: spaceId, rules }];
     while (queue.length) {
-        const sid = queue.shift()!;
+        const { sid, rules } = queue.shift()!;
         for (const id of childrenOf(client, sid, hierarchy)) {
             if (seen.has(id)) continue;
             seen.add(id);
@@ -200,12 +224,21 @@ export function spaceRooms(
             const summary = hierarchy.get(id);
             // Sub-spaces you aren't in too: the server lists their children.
             if (joined ? joined.isSpaceRoom() : summary?.room_type === "m.space") {
-                queue.push(id);
+                // A sub-space with policies of its own applies them below it; one you aren't in can't say.
+                const own = joined ? readPolicies(client, id) : undefined;
+                queue.push({ sid: id, rules: own?.saved ? { source: id, policies: own.policies, exceptions: own.exceptions } : rules });
                 continue;
             }
-            const entry: RoomEntry = { id, name: joined?.name || summary?.name || summary?.canonical_alias || id, parentSpace: sid, room: joined };
+            const entry: RoomEntry = {
+                id,
+                name: joined?.name || summary?.name || summary?.canonical_alias || id,
+                parentSpace: sid,
+                policySpace: rules.source,
+                policies: rules.policies,
+                room: joined,
+            };
             const checked = joined ? checkedRoom(joined, sid) : summary ? summaryRoom(summary, sid) : undefined;
-            if (checked) entry.report = checkRoom(checked, policies, exceptions);
+            if (checked) entry.report = checkRoom(checked, rules.policies, rules.exceptions);
             out.push(entry);
         }
     }
@@ -243,7 +276,7 @@ export async function fetchHierarchy(client: SdkClient, spaceId: string): Promis
 }
 
 /** Policies the server's summary can't answer: the power levels and the room's parents aren't in it. */
-const NOT_IN_SUMMARY = new Set<PolicyId>(["admins", "space_parent"]);
+const NOT_IN_SUMMARY = new Set<PolicyId>(["admins", "space_parent", "inactive", "invite_power", "required_member"]);
 const HISTORY_FOR_MEMBERS = ["joined", "invited", "shared"];
 
 /** A room you aren't in, checked from the server's summary of it. */
@@ -259,6 +292,7 @@ export function summaryRoom(r: HierarchyRoom, parentSpace: string): CheckedRoom 
         "m.room.join_rules": r.join_rule ? { join_rule: r.join_rule } : undefined,
         "m.room.encryption": encryption ? { algorithm: encryption } : undefined,
         "m.room.guest_access": { guest_access: r.guest_can_join ? "can_join" : "forbidden" },
+        "m.room.create": r.room_version ? { room_version: r.room_version } : undefined,
         // Not readable by anyone means members only, but not which of the three member settings.
         "m.room.history_visibility": { history_visibility: r.world_readable ? "world_readable" : "shared" },
     };
@@ -270,6 +304,7 @@ export function summaryRoom(r: HierarchyRoom, parentSpace: string): CheckedRoom 
             NOT_IN_SUMMARY.has(id) ||
             (id === "encryption" && !knowsEncryption) ||
             (id === "join_rule" && !r.join_rule) ||
+            (id === "room_version" && !r.room_version) ||
             // Members only: it passes when every members-only setting is allowed, else it depends on which.
             (id === "history_visibility" && !r.world_readable && !HISTORY_FOR_MEMBERS.every((v) => config.allowed?.includes(v))),
     };
@@ -282,6 +317,7 @@ export function checkedRoom(room: SdkRoom, parentSpace: string): CheckedRoom {
         id: room.roomId,
         parentSpace,
         creators: creatorsOf(content.room_version, create?.getSender?.(), content.additional_creators),
+        lastActive: room.getLastActiveTimestamp?.(),
         state: (type, stateKey = "") => {
             const content = room.currentState.getStateEvents(type, stateKey)?.getContent();
             return content && Object.keys(content).length ? content : undefined;
@@ -304,6 +340,8 @@ export const FIX_EVENT: Partial<Record<PolicyId, string>> = {
     guest_access: "m.room.guest_access",
     address: "m.room.canonical_alias",
     space_parent: "m.space.parent",
+    invite_power: "m.room.power_levels",
+    required_member: "m.room.member",
 };
 
 /** What the fix asks for: typed text, a picture, or nothing (one click). */
@@ -312,7 +350,24 @@ export const FIX_INPUT: Partial<Record<PolicyId, "text" | "file">> = { name: "te
 export function canFix(client: SdkClient, entry: RoomEntry, id: PolicyId): boolean {
     const type = FIX_EVENT[id];
     const me = client.getUserId();
-    return Boolean(type && me && entry.room?.currentState.maySendStateEvent(type, me));
+    if (!type || !me || !entry.room) return false;
+    // Inviting isn't a state event you send: it needs the room's invite level.
+    if (id === "required_member") return Boolean(client.invite) && myLevel(entry.room, me) >= Number(powerLevels(entry.room).invite ?? 0);
+    return entry.room.currentState.maySendStateEvent(type, me);
+}
+
+function powerLevels(room: SdkRoom): Record<string, unknown> {
+    return room.currentState.getStateEvents("m.room.power_levels", "")?.getContent() ?? {};
+}
+
+/** Your power level in a room; creators of room version 12+ outrank everyone. */
+function myLevel(room: SdkRoom, me: string): number {
+    const create = room.currentState.getStateEvents("m.room.create", "");
+    const c = create?.getContent() ?? {};
+    if (creatorsOf(c.room_version, create?.getSender?.(), c.additional_creators).includes(me)) return Infinity;
+    const pl = powerLevels(room);
+    const users = (pl.users ?? {}) as Record<string, unknown>;
+    return Number(users[me] ?? pl.users_default ?? 0);
 }
 
 /** The value a one-click fix sets (join rule, history visibility): the first allowed one. */
@@ -372,7 +427,16 @@ export async function applyFix(client: SdkClient, entry: RoomEntry, id: PolicyId
         case "space_parent":
             await send("m.space.parent", { via: [serverOf(entry.parentSpace)], canonical: true }, entry.parentSpace);
             return;
+        case "invite_power":
+            await send("m.room.power_levels", { ...(entry.room ? powerLevels(entry.room) : {}), invite: config.level ?? 50 });
+            return;
+        case "required_member":
+            if (!config.user || !client.invite) throw new Error("nobody to invite");
+            await client.invite(roomId, config.user);
+            return;
         case "admins":
+        case "room_version":
+        case "inactive":
             throw new Error("can't be fixed here");
     }
 }

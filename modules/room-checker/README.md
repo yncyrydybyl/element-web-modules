@@ -4,14 +4,18 @@ An [Element Web](https://github.com/element-hq/element-web) module: press <kbd>A
 
 - **Policies live in the space.** One state event in the space holds them, so everyone in the space sees the same rules. Whoever may change the space's settings can change them in the Policies tab; for everyone else they're read-only. A space without policies uses the defaults.
 - **They apply to every room in the space and its sub-spaces**, also sub-spaces you aren't in. The sub-spaces themselves aren't checked.
+- **A sub-space can have policies of its own.** Saved in the sub-space, they apply to the rooms below it instead of the parent's; a room's details say whose policies it's checked against. A sub-space without its own uses those of the nearest space above it, and its Policies tab says so.
 - **Rooms you aren't in are checked too**, as far as the server's public summary of them goes (see below).
 - **The Rooms tab** shows how many rooms pass everything, have errors, only warnings, or are rooms you aren't in. Bars show how many rooms fail each policy, and a table shows every room against every policy, worst rooms first. Click a number or a bar to see only those rooms, or search.
 - **Click a room** for its checks, and fix what fails right there where you have the power to: rename it, write a topic, upload a picture, turn on encryption (it asks first, because that can't be undone), set the join rule or history to the first allowed value, turn off guest access, add an address, link it to its space. Everything else has a button to the room's settings.
 - **Fix one policy in many rooms**: click a policy's bar, and the one-click fixes (encryption, who can join, history, guests, the space link) run in every failing room you may change, after showing which rooms will change. Each room's result is shown; one that fails doesn't stop the others.
 - **Exceptions**: a failure that's fine in one room (a lobby that is public on purpose) can be accepted for that room, with a reason, by whoever may change the policies. It then counts as passed, shows who accepted it, when and why, and can be taken back. The Policies tab lists all of them.
 - **Live:** when a room's state changes (a fix of yours or someone else's change), the checks run again.
+- **History:** each time you look at a space, a snapshot of it for that day goes into your account data (`de.datanauten.room_checker.history`, 90 days per space, only you see it). The Rooms tab shows the pass rate over time and a "New failures" filter: rooms failing now that didn't on your last visit before today.
+- **A badge in the room header** for admins: a room that fails the policies of a space it's in shows how many, in red (errors) or orange (warnings only), when you may change that space's policies. Clicking it opens the checker on that room. Everyone else, and rooms that pass, see nothing. The badge is worked out when Element draws the header, so it updates with the next room switch.
+- **Report:** "Download CSV" (one row per room, one column per policy) and "Copy as Markdown" (the numbers and every failing room with what fails, to paste into a room or a ticket).
 
-## The ten policies
+## The fourteen policies
 
 | Policy | Passes when | Default | Quick fix |
 | --- | --- | --- | --- |
@@ -25,6 +29,10 @@ An [Element Web](https://github.com/element-hq/element-web) module: press <kbd>A
 | Address | The room has a main address (`m.room.canonical_alias`). | off | Add an address on your server |
 | Admins | At least *n* joined members with power 100 (default 2). In room version 12 and later the creators count, though they aren't in the power levels. | warning | — |
 | Belongs to the space | The room names the space it's listed in as its parent (`m.space.parent`). | warning | Link it to the space |
+| Room version | The room version is at least *n* (default 10). Custom versions can't be compared. | off | — (upgrading a room is done in Element) |
+| Active | There's been a message within *n* days (default 180). | off | — |
+| Who can invite | Inviting needs at least power level *n* (default 50, moderators). | off | Set the invite level to *n* |
+| Required member | A given user (e.g. a moderation bot) is in the room. Invited but not joined still fails. | off | Invite them |
 
 Each policy can be turned off, and set to count as an error or a warning.
 
@@ -44,7 +52,7 @@ Missing or invalid values fall back to the defaults (malformed exceptions are dr
 
 The module reads Element's matrix-js-sdk client (`window.mxMatrixClientPeg`) because the module API has no room state. Without the client (logged out, a much changed Element) the shortcut does nothing.
 
-- **Rooms you aren't in** are checked from the server's space hierarchy, which anyone who may see the room gets: name, topic, picture, address, join rule, whether guests can join and whether anyone can read it. Synapse also sends the room version and encryption. That covers 8 of the 10 policies; "Admins" and "Belongs to the space" need the room's state and show as "can't be checked". History counts as known only when it's readable by anyone, or when every members-only setting is allowed. These rooms can't be fixed from here: join them first. The pass rate only counts rooms you're in.
+- **Rooms you aren't in** are checked from the server's space hierarchy, which anyone who may see the room gets: name, topic, picture, address, join rule, whether guests can join and whether anyone can read it. Synapse also sends the room version and encryption. That covers the name, topic, picture, encryption, join rule, history, guest, address and room version policies; the others need the room's state and show as "can't be checked". History counts as known only when it's readable by anyone, or when every members-only setting is allowed. These rooms can't be fixed from here: join them first. The pass rate only counts rooms you're in.
 - The hierarchy is read once when a space is chosen (up to 2,000 rooms); rooms you aren't in don't update live.
 - Whether you may fix something is matrix-js-sdk's `maySendStateEvent` for that event; the server has the last word, and a refusal is shown under the fix.
 - Room settings opens through Element's dispatcher (`window.mxDispatcher`, action `open_room_settings`). Without it, the room opens.
@@ -66,7 +74,12 @@ pnpm build          # lib/index.js
 pnpm test
 pnpm lint:types
 e2e/stack.sh up     # Synapse + Element with a space of good and bad rooms, alice / alice-pass on http://127.0.0.1:5807
+pnpm e2e            # build, a fresh stack (e2e/stack.sh reset), then e2e/run.mjs
 ```
+
+`e2e/run.mjs` drives Element with Playwright as alice and asks the homeserver after each step whether the change really happened: the overview of the seeded space, a room alice isn't in, writing a topic, one fix for many rooms, accepting a failure and taking it back, policies for the space and their own for a sub-space, inviting a required member, a space alice can't change, the history in account data, the CSV and Markdown reports, the room header badge, and no page errors. It needs a freshly reset stack, saves a few screenshots to `e2e/.run/results/` and exits with 1 when a check fails. Install the browser once with `npx playwright install chromium`.
+
+Element's image loads every module mounted under `/modules` by itself, so the stack's `config.json` doesn't list it again. When Element does get a module listed twice, the second copy does nothing.
 
 ## License
 

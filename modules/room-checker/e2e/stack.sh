@@ -5,7 +5,7 @@
 #     break policies, one where alice has no power, one she isn't in, and a sub-space "Teams";
 #     space "Camp" belongs to bob, so alice can't change its policies.
 #   - Element Web ${RC_ELEMENT:-v1.12.33} on http://127.0.0.1:${RC_EL_PORT:-5807}, lib/ mounted at /modules/room-checker
-# State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down
+# State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down | reset
 set -euo pipefail
 cd "$(dirname "$0")/.."
 HS_PORT=${RC_HS_PORT:-18477}
@@ -41,9 +41,9 @@ YAML
     cat > "$RUN/element-config.json" <<JSON
 { "default_server_config": { "m.homeserver": { "base_url": "http://127.0.0.1:$HS_PORT", "server_name": "rc.test" } },
   "disable_guests": true, "default_theme": "light", "bug_report_endpoint_url": "",
-  "setting_defaults": { "UIFeature.feedback": false },
-  "modules": ["/modules/room-checker/index.js"] }
+  "setting_defaults": { "UIFeature.feedback": false } }
 JSON
+    # No "modules" entry: the image loads everything mounted under /modules by itself.
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" -v "$PWD/lib:/modules/room-checker:ro,z" \
@@ -92,4 +92,6 @@ JSON
     fi
     echo "Synapse http://127.0.0.1:$HS_PORT  Element http://127.0.0.1:$EL_PORT  (alice / alice-pass)" ;;
   down) podman rm -f "$EL" "$HS" >/dev/null 2>&1 || true ;;
+  # A fresh server with the seed data, as e2e/run.mjs expects it.
+  reset) "$0" down; rm -rf "$RUN"; exec "$0" up ;;
 esac

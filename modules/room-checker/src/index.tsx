@@ -1,14 +1,19 @@
+import type { JSX } from "react";
 import type { Root } from "react-dom/client";
 import type { Api, Module, ModuleFactory } from "@element-hq/element-web-module-api";
 
-import { translations } from "./i18n";
-import { getSdkClient, joinedSpaces, type SdkClient } from "./space";
+import { HistoryStore } from "./history";
+import { P, translations } from "./i18n";
+import { checkRoom } from "./policies";
+import { checkedRoom, effectiveRules, getSdkClient, joinedSpaces, readPolicies, type SdkClient } from "./space";
 import { comboLabel, matchesCombo, parseCombo, type Combo } from "./trigger";
 import css from "./ui/checker.css?inline";
 import { CheckerOverlay, type ModuleTranslate } from "./ui/CheckerOverlay";
 
 export const CONFIG_KEY = "de.datanauten.room_checker";
 const STYLE_ID = "de-datanauten-room-checker-style";
+/** Set while one copy is loaded: Element may list the module twice (config plus the image's /modules). */
+const LOADED_KEY = "__deDatanautenRoomChecker";
 const SPACE_STORAGE_KEY = "de.datanauten.room_checker.space";
 /** Room state arrives in bursts while syncing: check again once it settles. */
 const RECHECK_MS = 300;
@@ -46,6 +51,9 @@ export class RoomCheckerModule implements Module {
     private revision = 0;
     private recheckTimer?: ReturnType<typeof setTimeout>;
     private restoreFocus?: HTMLElement | null;
+    private history?: HistoryStore;
+    /** What to open on: from the room header. */
+    private target?: { space: string; room: string };
 
     public constructor(private readonly api: Api) {}
 
@@ -58,23 +66,36 @@ export class RoomCheckerModule implements Module {
             throw new Error(`Errors in module configuration for the room checker module`);
         }
         this.trigger = parseCombo(config.trigger_key);
+        const w = window as unknown as Record<string, unknown>;
+        if (w[LOADED_KEY]) {
+            console.warn("[room-checker] Loaded twice; the second copy does nothing");
+            return;
+        }
+        w[LOADED_KEY] = this;
         this.api.i18n.register(translations);
         injectStyle();
+        this.history = new HistoryStore(this.api);
         window.addEventListener("keydown", this.onKeyDown, { capture: true });
+        // Alpha API: without it, there's just no room header badge.
+        this.api.extras?.addRoomHeaderButtonCallback?.((roomId) => this.headerBadge(roomId));
     }
 
     /** Removes all listeners. Element never unloads modules; this exists for tests and hot reload. */
     public dispose(): void {
         this.close();
         window.removeEventListener("keydown", this.onKeyDown, { capture: true });
+        const w = window as unknown as Record<string, unknown>;
+        if (w[LOADED_KEY] === this) delete w[LOADED_KEY];
     }
 
     public isOpen(): boolean {
         return Boolean(this.root);
     }
 
-    public open(): void {
+    /** `target`: open on that room's details, in that space. */
+    public open(target?: { space: string; room: string }): void {
         if (this.root) return;
+        this.target = target;
         const client = getSdkClient();
         // Without Element's client there's no room state to check: the module API has none.
         if (!client?.getUserId?.()) {
@@ -102,6 +123,7 @@ export class RoomCheckerModule implements Module {
         this.root = undefined;
         this.container = undefined;
         this.client = undefined;
+        this.target = undefined;
         this.restoreFocus?.focus?.();
         this.restoreFocus = undefined;
     }
@@ -113,7 +135,9 @@ export class RoomCheckerModule implements Module {
             <CheckerOverlay
                 client={client}
                 spaces={joinedSpaces(client)}
-                space={readStored(SPACE_STORAGE_KEY)}
+                space={this.target?.space ?? readStored(SPACE_STORAGE_KEY)}
+                room={this.target?.room}
+                history={this.history}
                 revision={this.revision}
                 language={this.api.i18n.language}
                 triggerLabel={comboLabel(this.trigger)}
@@ -134,6 +158,48 @@ export class RoomCheckerModule implements Module {
             this.render();
         }, RECHECK_MS);
     };
+
+    /**
+     * For admins only: a room that fails the policies of a space it's in (one you may change the
+     * policies of) shows how many in its header. Nothing for everyone else, nor for rooms that pass.
+     */
+    private headerBadge(roomId: string): JSX.Element | undefined {
+        try {
+            const client = getSdkClient();
+            const me = client?.getUserId?.();
+            const room = client?.getRoom(roomId);
+            if (!client || !me || !room || room.getMyMembership() !== "join" || room.isSpaceRoom()) return undefined;
+            const spaces = joinedSpaces(client);
+            for (const s of spaces) {
+                const space = client.getRoom(s.id);
+                const listed = space?.currentState.getStateEvents("m.space.child", roomId)?.getContent().via;
+                if (!Array.isArray(listed) || !listed.length) continue;
+                const rules = effectiveRules(client, s.id, spaces);
+                if (!readPolicies(client, rules.source).canEdit) continue;
+                const report = checkRoom(checkedRoom(room, s.id), rules.policies, rules.exceptions);
+                const count = report.errors + report.warnings;
+                if (!count) continue;
+                const label = this.t(`${P}badge`, { count: String(count), space: s.name });
+                return (
+                    <button
+                        type="button"
+                        className={`rc-badge rc-badge--${report.errors ? "error" : "warning"}`}
+                        aria-label={label}
+                        title={label}
+                        onClick={() => this.open({ space: s.id, room: roomId })}
+                    >
+                        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                            <path d="M8 1.5 2.5 3.5v4c0 3.3 2.3 6 5.5 7 3.2-1 5.5-3.7 5.5-7v-4z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                        </svg>
+                        <span>{count}</span>
+                    </button>
+                );
+            }
+        } catch (e) {
+            console.warn("[room-checker] Room header badge failed", e);
+        }
+        return undefined;
+    }
 
     private onKeyDown = (ev: KeyboardEvent): void => {
         if (ev.isComposing || ev.defaultPrevented || !matchesCombo(ev, this.trigger)) return;

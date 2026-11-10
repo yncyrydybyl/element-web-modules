@@ -19,6 +19,10 @@ export const POLICY_IDS = [
     "address",
     "admins",
     "space_parent",
+    "room_version",
+    "inactive",
+    "invite_power",
+    "required_member",
 ] as const;
 export type PolicyId = (typeof POLICY_IDS)[number];
 
@@ -35,6 +39,14 @@ export interface PolicyConfig {
     allowed?: string[];
     /** admins: how many joined admins a room needs at least. */
     min?: number;
+    /** room_version: the oldest room version that passes. */
+    minVersion?: number;
+    /** inactive: days without a message after which a room fails. */
+    days?: number;
+    /** invite_power: the lowest power level that may set who can invite (0: everyone). */
+    level?: number;
+    /** required_member: who must be in every room, e.g. a moderation bot ("" for nobody). */
+    user?: string;
 }
 
 export type PolicySet = Record<PolicyId, PolicyConfig>;
@@ -56,6 +68,10 @@ export const DEFAULT_POLICIES: PolicySet = {
     address: { enabled: false, severity: "warning" },
     admins: { enabled: true, severity: "warning", min: 2 },
     space_parent: { enabled: true, severity: "warning" },
+    room_version: { enabled: false, severity: "warning", minVersion: 10 },
+    inactive: { enabled: false, severity: "warning", days: 180 },
+    invite_power: { enabled: false, severity: "warning", level: 50 },
+    required_member: { enabled: false, severity: "error", user: "" },
 };
 
 /** The policies from a space's state event: unknown fields dropped, missing ones from the defaults. */
@@ -73,6 +89,10 @@ export function sanitisePolicies(value: unknown): PolicySet {
         if (def.pattern !== undefined) p.pattern = typeof c.pattern === "string" && validPattern(c.pattern) ? c.pattern : def.pattern;
         if (def.minLength !== undefined) p.minLength = wholeNumber(c.minLength, 0, 1000) ?? def.minLength;
         if (def.min !== undefined) p.min = wholeNumber(c.min, 0, 100) ?? def.min;
+        if (def.minVersion !== undefined) p.minVersion = wholeNumber(c.minVersion, 1, 1000) ?? def.minVersion;
+        if (def.days !== undefined) p.days = wholeNumber(c.days, 1, 3650) ?? def.days;
+        if (def.level !== undefined) p.level = wholeNumber(c.level, 0, 100) ?? def.level;
+        if (def.user !== undefined) p.user = typeof c.user === "string" && (c.user === "" || validUserId(c.user)) ? c.user : def.user;
         if (def.allowed !== undefined) {
             const options = ALLOWED_OPTIONS[id] ?? [];
             const allowed = Array.isArray(c.allowed) ? options.filter((o) => (c.allowed as unknown[]).includes(o)) : undefined;
@@ -124,6 +144,10 @@ export function withException(exceptions: Exceptions, roomId: string, id: Policy
     return out;
 }
 
+export function validUserId(id: string): boolean {
+    return /^@[^:\s]+:[^\s]+$/.test(id);
+}
+
 export function validPattern(pattern: string): boolean {
     try {
         new RegExp(pattern, "u");
@@ -146,6 +170,8 @@ export interface CheckedRoom {
     parentSpace: string;
     /** Room version 12 and later: the creators, who have unlimited power and aren't in the power levels. */
     creators?: string[];
+    /** When the last message arrived (rooms you're in). */
+    lastActive?: number;
     /** Rooms you aren't in are checked from the server's summary: some policies can't be decided from it. */
     unknown?(id: PolicyId, config: PolicyConfig): boolean;
 }
@@ -170,7 +196,7 @@ const PASS: CheckResult = { status: "pass" };
 const PL_ADMIN = 100;
 
 /** Runs one policy against a room. */
-export function check(id: PolicyId, room: CheckedRoom, config: PolicyConfig): CheckResult {
+export function check(id: PolicyId, room: CheckedRoom, config: PolicyConfig, now = Date.now()): CheckResult {
     const fail = (key: string, vars?: Record<string, string>): CheckResult => ({ status: "fail", detail: { key, vars } });
     switch (id) {
         case "name": {
@@ -211,6 +237,28 @@ export function check(id: PolicyId, room: CheckedRoom, config: PolicyConfig): Ch
             // A parent event without `via` counts as removed (spec, m.space.parent).
             const via = room.state("m.space.parent", room.parentSpace)?.via;
             return Array.isArray(via) && via.length ? PASS : fail("space_parent");
+        }
+        case "room_version": {
+            const version = String(room.state("m.room.create")?.room_version ?? "1");
+            const min = config.minVersion ?? 1;
+            // Custom versions (org.example.v11) can't be compared.
+            if (!/^\d+$/.test(version)) return { status: "unknown" };
+            return Number(version) >= min ? PASS : fail("room_version", { version, min: String(min) });
+        }
+        case "inactive": {
+            if (room.lastActive === undefined) return { status: "unknown" };
+            const days = Math.floor((now - room.lastActive) / 86_400_000);
+            return days <= (config.days ?? 180) ? PASS : fail("inactive", { days: String(days) });
+        }
+        case "invite_power": {
+            const level = Number(room.state("m.room.power_levels")?.invite ?? 0);
+            return level >= (config.level ?? 0) ? PASS : fail("invite_power", { level: String(level), min: String(config.level ?? 0) });
+        }
+        case "required_member": {
+            if (!config.user) return PASS;
+            const membership = room.state("m.room.member", config.user)?.membership;
+            if (membership === "join") return PASS;
+            return fail(membership === "invite" ? "required_member_invited" : "required_member", { user: config.user });
         }
     }
 }
@@ -253,7 +301,7 @@ export function checkRoom(room: CheckedRoom, policies: PolicySet, exceptions: Ex
     for (const id of POLICY_IDS) {
         const config = policies[id];
         if (!config.enabled) continue;
-        let r = room.unknown?.(id, config) ? { status: "unknown" as const } : check(id, room, config);
+        let r: CheckResult = room.unknown?.(id, config) ? { status: "unknown" } : check(id, room, config);
         const exception = exceptions[room.id]?.[id];
         if (r.status === "fail" && exception) r = { ...r, status: "excepted", exception };
         results.set(id, r);

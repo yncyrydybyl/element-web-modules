@@ -1,9 +1,12 @@
+import type { JSX } from "react";
 import { act, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import ModuleDefault, { parseConfig, RoomCheckerModule } from "./index";
-import { POLICY_TYPE } from "./policies";
+import { HISTORY_TYPE } from "./history";
+import { DEFAULT_POLICIES, POLICY_TYPE } from "./policies";
+import { reportCsv, reportMarkdown } from "./ui/RoomsTab";
 import { fakeClient, goodState, type FakeRoom } from "./tests/fakeClient";
 import { mockApi } from "./tests/mockApi";
 import { version } from "../package.json";
@@ -27,10 +30,10 @@ function rooms(): FakeRoom[] {
     ];
 }
 
-async function setup(list: FakeRoom[] = rooms()) {
+async function setup(list: FakeRoom[] = rooms(), accountData: Record<string, unknown> = {}) {
     const fake = fakeClient(list);
     (window as { mxMatrixClientPeg?: unknown }).mxMatrixClientPeg = { get: () => fake.client };
-    const mock = mockApi();
+    const mock = mockApi({ accountData });
     const module = new RoomCheckerModule(mock.api);
     await module.load();
     modules.push(module);
@@ -254,6 +257,105 @@ describe("RoomCheckerModule", () => {
         // Fixes that need input per room aren't offered in bulk.
         await user.click(screen.getByRole("button", { name: /^Picture/ }));
         expect(within(screen.getByTestId("room-checker-bulk")).getByText("This one is fixed room by room: click a room.")).toBeTruthy();
+    });
+
+    it("lets a sub-space with policies of its own check its rooms", async () => {
+        const user = userEvent.setup();
+        const list = rooms();
+        // Backend doesn't care about the space link.
+        list[1].state = { [POLICY_TYPE]: { version: 1, policies: { space_parent: { enabled: false } } } };
+        await setup(list);
+        expect(row("Deep").textContent).toContain("Passes every policy");
+        await user.click(row("Deep"));
+        expect(within(screen.getByTestId("room-checker-detail")).getByText("Checked against the policies of Backend")).toBeTruthy();
+        await user.click(screen.getByRole("tab", { name: "Policies" }));
+        expect(screen.getByText(/These sub-spaces have policies of their own.*Backend/)).toBeTruthy();
+    });
+
+    it("uses the parent's policies for a sub-space without its own", async () => {
+        const user = userEvent.setup();
+        const list = rooms();
+        list[0].state = { [POLICY_TYPE]: { version: 1, policies: { topic: { enabled: false } } } };
+        await setup(list);
+        await user.selectOptions(screen.getByRole("combobox", { name: "Space" }), "!sub:x");
+        await user.click(screen.getByRole("tab", { name: "Policies" }));
+        expect(screen.getByText(/has no policies of its own, so its rooms use those of Engineering/)).toBeTruthy();
+        expect((screen.getByRole("switch", { name: "Topic" }) as HTMLInputElement).checked).toBe(false);
+    });
+
+    it("keeps a daily snapshot and shows what's newly failing", async () => {
+        const user = userEvent.setup();
+        const yesterday = Date.now() - 86_400_000;
+        const previous = { at: yesterday, joined: 3, passing: 2, errors: 1, warnings: 0, failing: ["!bad:x"] };
+        const { setAccountData } = await setup(rooms(), { [HISTORY_TYPE]: { version: 1, spaces: { "!eng:x": [{ ...previous, at: yesterday - 86_400_000 }, previous] } } });
+        await waitFor(() => expect(setAccountData).toHaveBeenCalledWith(HISTORY_TYPE, expect.anything()), { timeout: 3000 });
+        const saved = setAccountData.mock.calls.find((c) => c[0] === HISTORY_TYPE)![1] as { spaces: Record<string, Array<{ failing: string[] }>> };
+        expect(saved.spaces["!eng:x"]).toHaveLength(3);
+        expect(saved.spaces["!eng:x"][2].failing.sort()).toEqual(["!bad:x", "!deep:x", "!left:x"]);
+        expect(screen.getByText(/Pass rate 67 % → 67 %|Pass rate 67 % → 33 %/)).toBeTruthy();
+        // Random failed yesterday already; Deep and Archive are new.
+        await user.click(screen.getByRole("button", { name: "New failures (2)" }));
+        expect(rowNames()).toEqual(["Archive", "Deep"]);
+    });
+
+    it("shows admins a badge in the header of a room that fails", async () => {
+        const { addRoomHeaderButtonCallback, module } = await setup();
+        act(() => module.close());
+        const badge = addRoomHeaderButtonCallback.mock.calls[0][0] as (roomId: string) => JSX.Element | undefined;
+        expect(badge("!good:x")).toBeUndefined();
+        const el = badge("!bad:x")!;
+        expect(el.props["aria-label"]).toBe("3 room policy failures (Engineering): open the room checker");
+        act(() => el.props.onClick());
+        expect(module.isOpen()).toBe(true);
+        await screen.findByText("Archive");
+        expect(within(screen.getByTestId("room-checker-detail")).getByText("Not encrypted")).toBeTruthy();
+    });
+
+    it("shows no badge to people who can't change the policies", async () => {
+        const list = rooms();
+        list[0].denied = [POLICY_TYPE];
+        const { addRoomHeaderButtonCallback } = await setup(list);
+        expect((addRoomHeaderButtonCallback.mock.calls[0][0] as (id: string) => unknown)("!bad:x")).toBeUndefined();
+    });
+
+    it("invites a required member", async () => {
+        const user = userEvent.setup();
+        const list = rooms();
+        list[0].state = { [POLICY_TYPE]: { version: 1, policies: { required_member: { enabled: true, user: "@bot:x" } } } };
+        const { client } = await setup(list);
+        await user.click(row("General"));
+        const detail = screen.getByTestId("room-checker-detail");
+        await user.click(within(detail).getByRole("button", { name: "Invite @bot:x" }));
+        expect(client.invite).toHaveBeenCalledWith("!good:x", "@bot:x");
+        await waitFor(() => expect(within(screen.getByTestId("room-checker-detail")).getByText("@bot:x is invited, but hasn't joined yet")).toBeTruthy());
+    });
+
+    it("exports a report", async () => {
+        const { module } = await setup();
+        expect(screen.getByRole("button", { name: "Download CSV" })).toBeTruthy();
+        const t = (k: string, v?: Record<string, string>) => `${k.replace(/^.*_room_checker_/, "")}${v ? JSON.stringify(v) : ""}`;
+        const entries = [
+            { id: "!a:x", name: 'Say "hi", all', parentSpace: "!s:x", policySpace: "!s:x", policies: DEFAULT_POLICIES, room: {} as never, report: { results: new Map([["topic", { status: "fail" as const }]]), errors: 0, warnings: 1, unknown: 0 } },
+            { id: "!b:x", name: "Far", parentSpace: "!s:x", policySpace: "!s:x", policies: DEFAULT_POLICIES },
+        ];
+        expect(reportCsv(entries as never, ["topic"], t)).toBe('col_room,room_id,joined,errors,warnings,policy_topic\n"Say ""hi"", all",!a:x,yes,0,1,fail\nFar,!b:x,no,,,\n');
+        expect(reportMarkdown("S", entries as never, t, new Date("2026-11-08"))).toContain('- **Say "hi", all**: policy_topic (severity_warning)');
+        act(() => module.close());
+    });
+
+    it("runs once when Element lists it twice", async () => {
+        const { addRoomHeaderButtonCallback, module } = await setup();
+        vi.spyOn(console, "warn").mockImplementation(() => {});
+        const second = mockApi();
+        const twin = new RoomCheckerModule(second.api);
+        await twin.load();
+        modules.push(twin);
+        expect(second.addRoomHeaderButtonCallback).not.toHaveBeenCalled();
+        expect(addRoomHeaderButtonCallback).toHaveBeenCalledTimes(1);
+        act(() => module.close());
+        press("r", { altKey: true, code: "KeyR" });
+        expect(module.isOpen()).toBe(true);
+        expect(twin.isOpen()).toBe(false);
     });
 
     it("does nothing without Element's client", async () => {

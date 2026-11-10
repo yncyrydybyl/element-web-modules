@@ -938,3 +938,65 @@ button.rc-stat:hover {
 .rc-exception-list .rc-link {
     margin: 0;
 }
+
+.rc-chip:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+
+/* Pass rate over your daily snapshots. */
+.rc-trend {
+    display: flex;
+    grid-column: 1;
+    align-items: center;
+    gap: 10px;
+    color: var(--rc-muted);
+    font-size: 12px;
+}
+
+.rc-trend svg {
+    flex: none;
+    color: var(--rc-pass);
+}
+
+.rc-report {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+}
+
+/*
+ * In Element's room header, outside the checker: its own colours, as the checker's variables
+ * aren't set there. Only admins see it, and only for rooms that fail.
+ */
+.rc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    height: 32px;
+    padding: 0 8px;
+    border: none;
+    border-radius: 16px;
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.rc-badge--error {
+    color: var(--cpd-color-icon-critical-primary, #d51928);
+}
+
+.rc-badge--warning {
+    color: var(--cpd-color-orange-900, #bc4500);
+}
+
+.rc-badge:hover {
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+}
+
+.rc-badge:focus-visible {
+    outline: 2px solid var(--cpd-color-border-focused, #0467dd);
+    outline-offset: 1px;
+}
