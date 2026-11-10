@@ -10,6 +10,8 @@ export const translations = {
         en: "Listed in this Element's config.json and loaded at startup. You can turn them off for your account; that takes effect when Element reloads, on each of your devices.",
         de: "In der config.json dieses Elements eingetragen und beim Start geladen. Du kannst sie für dein Konto ausschalten; das wirkt ab dem nächsten Neuladen, auf jedem deiner Geräte.",
     },
+    [`${P}how_to_use`]: { en: "How to use", de: "Bedienung" },
+    [`${P}read_more`]: { en: "Read more", de: "Mehr dazu" },
     [`${P}turn_off`]: { en: "Turn off", de: "Ausschalten" },
     [`${P}turn_off_label`]: { en: "Turn off %(name)s", de: "%(name)s ausschalten" },
     [`${P}turn_on`]: { en: "Turn on", de: "Einschalten" },

@@ -4,15 +4,30 @@ import { P, translations } from "./i18n";
 import { fetchSource, getSdkClient, runModule, type Importer, type ModuleStatus } from "./loader";
 import { SettingsInjector } from "./settingsInjector";
 import { readLocalDisabledServer, RemoteModuleStore, serverModuleKey } from "./store";
-import { RemoteModulesSection, type ModuleTranslate, type SectionController, type ServerModule } from "./ui/RemoteModulesSection";
+import { nameFromSource, RemoteModulesSection, type ModuleTranslate, type SectionController, type ServerModule } from "./ui/RemoteModulesSection";
 import css from "./ui/section.css?inline";
 
 export const CONFIG_KEY = "de.datanauten.remote_modules";
 const STYLE_ID = "de-datanauten-remote-modules-style";
 
+/** A text in one language, or by language code (`en`, `de`, …). */
+export type Localised<T> = T | Record<string, T>;
+
+/** What the tab says about one of the server's modules. */
+export interface ModuleAboutConfig {
+    /** One or two sentences: what it does. */
+    description?: Localised<string>;
+    /** How to use it, one line each (e.g. "Ctrl+I: open the map"). */
+    usage?: Localised<string[]>;
+    /** Where to read more, e.g. its README. */
+    link?: string;
+}
+
 export interface RemoteModulesConfig {
     /** Matrix IDs that may add and run remote modules. Everyone else can only turn the server's modules off. */
     allowed_users: string[];
+    /** By module name: the directory of its `index.js` (`space-room-map` for `/element-modules/space-room-map/index.js`). */
+    about: Record<string, ModuleAboutConfig>;
 }
 
 declare module "@element-hq/element-web-module-api" {
@@ -22,14 +37,28 @@ declare module "@element-hq/element-web-module-api" {
 }
 
 export function parseConfig(value: unknown): RemoteModulesConfig {
-    const raw = (value ?? {}) as { allowed_users?: unknown };
+    const raw = (value ?? {}) as { allowed_users?: unknown; about?: unknown };
     if (typeof raw !== "object") throw new Error("expected an object");
     const users = raw.allowed_users ?? [];
     if (!Array.isArray(users) || !users.every((u) => typeof u === "string" && /^@[^:]+:.+$/.test(u))) {
         throw new Error("allowed_users must be a list of Matrix IDs like @alice:example.org");
     }
-    return { allowed_users: users };
+    const about = raw.about ?? {};
+    if (typeof about !== "object" || Array.isArray(about)) throw new Error("about must be an object, by module name");
+    return { allowed_users: users, about: about as Record<string, ModuleAboutConfig> };
 }
+
+/** Picks the user's language from a {@link Localised} value: `de-AT`, then `de`, then `en`, then any. */
+export function localise<T>(value: Localised<T> | undefined, language: string, isValue: (v: unknown) => v is T): T | undefined {
+    if (value === undefined || isValue(value)) return value;
+    if (typeof value !== "object" || value === null) return undefined;
+    const byLang = value as Record<string, unknown>;
+    const found = [language, language.split("-")[0], "en", ...Object.keys(byLang)].map((l) => byLang[l]).find(isValue);
+    return found;
+}
+
+const isString = (v: unknown): v is string => typeof v === "string";
+const isStrings = (v: unknown): v is string[] => Array.isArray(v) && v.every(isString);
 
 /** `?remote_modules=off` (before or after the #) starts Element without remote modules. */
 export function isSafeMode(location: Pick<Location, "search" | "hash"> = window.location): boolean {
@@ -176,7 +205,15 @@ export class RemoteModulesModule implements Module {
         const disabled = this.store!.getDisabledServer();
         return this.serverModules.map((src, i) => {
             const key = serverModuleKey(src);
-            return { src, key, enabled: !disabled.includes(key), running: !this.skipped.has(key), locked: i <= this.ownIndex || this.ownIndex < 0 };
+            const about = this.config.about[nameFromSource(src)];
+            const language = this.api.i18n.language;
+            return {
+                src,
+                key,
+                description: localise(about?.description, language, isString),
+                usage: localise(about?.usage, language, isStrings) ?? [],
+                link: about?.link && /^https:\/\//.test(about.link) ? about.link : undefined,
+                enabled: !disabled.includes(key), running: !this.skipped.has(key), locked: i <= this.ownIndex || this.ownIndex < 0 };
         });
     }
 
