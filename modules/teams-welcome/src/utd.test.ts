@@ -1,14 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { SdkClient, SdkEvent } from "./client";
-import { DECRYPTED_EVENT, UtdWatcher } from "./utd";
+import { DECRYPTED_EVENT, RECENT_MS, UtdWatcher } from "./utd";
 
-function event(id: string, failing: { v: boolean }, reason = "HISTORICAL_MESSAGE_BACKUP_UNCONFIGURED"): SdkEvent {
+function event(id: string, failing: { v: boolean }, reason = "HISTORICAL_MESSAGE_BACKUP_UNCONFIGURED", ts = Date.now(), roomId = "!r"): SdkEvent {
     return {
         getId: () => id,
-        getRoomId: () => "!r",
+        getRoomId: () => roomId,
         getType: () => "m.room.message",
-        getTs: () => 0,
+        getTs: () => ts,
         isDecryptionFailure: () => failing.v,
         decryptionFailureReason: reason,
     };
@@ -93,6 +93,47 @@ describe("UtdWatcher", () => {
         vi.advanceTimersByTime(100);
         c.emit(event("$2", { v: true }));
         vi.advanceTimersByTime(100);
+        expect(onFailure).not.toHaveBeenCalled();
+    });
+
+    it("leaves old messages alone, so one that never got its key doesn't come back on every start", () => {
+        const onFailure = vi.fn();
+        const w = new UtdWatcher(onFailure, 10);
+        const old = event("$old", { v: true }, undefined, Date.now() - RECENT_MS - 1);
+        const c = fakeClient([old]);
+        w.attach(c);
+        c.emit(old);
+        vi.advanceTimersByTime(100);
+        expect(onFailure).not.toHaveBeenCalled();
+    });
+
+    it("waits until the message's room is open", () => {
+        const onFailure = vi.fn();
+        let open = "!other";
+        const w = new UtdWatcher(onFailure, 10, (ev) => ev.getRoomId() === open);
+        const c = fakeClient();
+        w.attach(c);
+        const ev = event("$1", { v: true });
+        c.emit(ev);
+        vi.advanceTimersByTime(100);
+        expect(onFailure).not.toHaveBeenCalled();
+        open = "!r";
+        w.recheck();
+        expect(onFailure).toHaveBeenCalledWith(ev);
+    });
+
+    it("forgets a waiting failure once its key arrives", () => {
+        const onFailure = vi.fn();
+        let open = "!other";
+        const w = new UtdWatcher(onFailure, 10, (ev) => ev.getRoomId() === open);
+        const c = fakeClient();
+        w.attach(c);
+        const failing = { v: true };
+        c.emit(event("$1", failing));
+        vi.advanceTimersByTime(100);
+        failing.v = false;
+        open = "!r";
+        w.recheck();
         expect(onFailure).not.toHaveBeenCalled();
     });
 });

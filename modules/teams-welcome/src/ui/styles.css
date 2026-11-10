@@ -531,6 +531,32 @@
     margin: 0 0 var(--cpd-space-3x);
 }
 
+.twl-utd-message {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--cpd-space-1x) var(--cpd-space-2x);
+    margin: 0 0 var(--cpd-space-2x);
+    padding: var(--cpd-space-2x) var(--cpd-space-3x);
+    border-radius: var(--cpd-space-2x);
+    background: var(--cpd-color-bg-subtle-secondary);
+    font: var(--cpd-font-body-sm-regular);
+}
+
+.twl-utd-from {
+    font: var(--cpd-font-body-sm-semibold);
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.twl-utd-message time {
+    color: var(--cpd-color-text-secondary);
+}
+
+.twl-utd-message .twl-link {
+    margin-left: auto;
+}
+
 /* The entry in Element's user menu: a copy of Element's own menu item, marked. */
 [data-teams-welcome-menu] svg.twl-menu-icon {
     flex: none;

@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-teams-welcome",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Element Web module: a first-run \"Coming from Teams?\" guide — recovery key setup, a Teams-to-Element cheat sheet, profile, notifications and the team's spaces",
     "private": true,
     "type": "module",
