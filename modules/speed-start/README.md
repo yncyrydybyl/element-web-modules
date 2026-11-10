@@ -4,6 +4,8 @@ Element shows a spinner on every start until it has rebuilt all your rooms from 
 
 Click a room in the snapshot and Element opens that room as soon as it's ready.
 
+Behind the card, the snapshot is greyed out and glitches now and then, like a glitch in the Matrix: scanlines, a green band sweeping down, short jolts, torn-out slices and a red/cyan split. Only `transform`, `opacity` and `clip-path` are animated, so the snapshot isn't repainted while Element starts. With reduced motion, it's only greyed out.
+
 On top of it, a card says in plain words what Element is doing, step by step: signing you back in, opening the copy on this device, unlocking your encryption keys, setting up your rooms ("96 of 143 rooms", counted against last time) or, on a first start, fetching everything from your server. Each step has its own small animation, every request to your server sends a dot down the line, and underneath, facts about your account rotate ("You share rooms with 312 people", "Your rooms reach 9 servers", "You were last here 3 hours ago"), mixed with short explanations of Matrix and Element. The wording, the order of the facts, the accent colour and how the rooms appear change from start to start. Without a snapshot (first start, another Element build), the card shows on its own over Element's spinner. Right after a login it covers the "Signing in…" wait for the first sync, which is the longest of all.
 
 | | |

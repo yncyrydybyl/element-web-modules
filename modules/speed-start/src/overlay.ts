@@ -166,8 +166,64 @@ export const css = `
     opacity: 1;
     transition: opacity ${FADE_MS}ms ease-out;
 }
-.${HOST_CLASS} > .mx_MatrixChat_wrapper { height: 100%; }
 .${HOST_CLASS} > .mx_MatrixChat_wrapper * { animation: none !important; }
+
+/*
+ * The snapshot is the backdrop for the progress card: greyed out, with scanlines, a tear band that
+ * sweeps down and short glitches now and then ("a glitch in the Matrix"). Only transform, opacity
+ * and clip-path change per frame, so the browser doesn't repaint the snapshot while Element starts.
+ */
+.${HOST_CLASS} > .mx_MatrixChat_wrapper {
+    height: 100%;
+    filter: grayscale(0.75) contrast(0.92);
+    opacity: 0.55;
+    animation: ${HOST_CLASS}-glitch 5.3s steps(1, end) infinite;
+}
+.${HOST_CLASS}::before,
+.${HOST_CLASS}::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+/* Scanlines, drifting slowly. */
+.${HOST_CLASS}::before {
+    bottom: -6px;
+    background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 0 1px, transparent 1px 3px);
+    animation: ${HOST_CLASS}-scan 0.9s linear infinite;
+}
+/* A greenish tear band that sweeps down, and flickers. */
+.${HOST_CLASS}::after {
+    bottom: auto;
+    height: 14vh;
+    background: linear-gradient(to bottom, transparent, rgba(13, 188, 121, 0.09) 45%, rgba(13, 188, 121, 0.16) 50%, rgba(13, 188, 121, 0.09) 55%, transparent);
+    animation: ${HOST_CLASS}-tear 7.1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+@keyframes ${HOST_CLASS}-glitch {
+    0% { transform: none; clip-path: none; }
+    86% { transform: translate(-6px, 0) skewX(-2deg); }
+    /* Thin bands torn out of the picture. */
+    87% { transform: translate(4px, 1px); clip-path: polygon(0 0, 100% 0, 100% 31%, 0 31%, 0 35%, 100% 35%, 100% 100%, 0 100%); }
+    88% { transform: translate(-2px, -1px); clip-path: polygon(0 0, 100% 0, 100% 63%, 0 63%, 0 65.5%, 100% 65.5%, 100% 100%, 0 100%); }
+    89% { transform: none; clip-path: none; }
+    94% { transform: translate(3px, 0) scaleY(1.01); filter: grayscale(0.75) contrast(0.92) drop-shadow(3px 0 rgba(255, 0, 80, 0.35)) drop-shadow(-3px 0 rgba(0, 220, 255, 0.35)); }
+    95% { transform: none; filter: grayscale(0.75) contrast(0.92); }
+}
+@keyframes ${HOST_CLASS}-scan { to { transform: translateY(3px); } }
+@keyframes ${HOST_CLASS}-tear {
+    0% { transform: translateY(-15vh); opacity: 0; }
+    10% { opacity: 1; }
+    48% { opacity: 1; }
+    50% { opacity: 0.2; }
+    52% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .${HOST_CLASS} > .mx_MatrixChat_wrapper, .${HOST_CLASS}::before { animation: none; }
+    .${HOST_CLASS}::after { display: none; }
+}
 .${HOST_CLASS}_out { opacity: 0; pointer-events: none; }
 .${HOST_CLASS}_picked { background: var(--cpd-color-bg-action-secondary-pressed, rgba(0, 0, 0, 0.08)) !important; }
 `;
