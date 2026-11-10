@@ -25,10 +25,17 @@ on:
           - people-map
           - room-checker
           - remote-modules
+          - speed-start
           - text-reactions
           - marcade
           - multi-tab
           - user-account-widgets
+          - teamwork
+          - activity
+          - tag-mentions
+          - profile-status
+          - files-hub
+          - teams-welcome
 
 permissions:
   contents: write
