@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-profile-status",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Element Web module: Teams-style status message, availability, out of office, automatic \"In a call\" and a profile card, stored in Matrix profile fields (MSC4133, MSC4426)",
     "private": true,
     "type": "module",
