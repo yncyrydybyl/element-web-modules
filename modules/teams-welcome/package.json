@@ -1,0 +1,38 @@
+{
+    "name": "@datanauten/element-web-module-teams-welcome",
+    "version": "0.1.0",
+    "description": "Element Web module: a first-run \"Coming from Teams?\" guide — recovery key setup, a Teams-to-Element cheat sheet, profile, notifications and the team's spaces",
+    "private": true,
+    "type": "module",
+    "main": "lib/index.js",
+    "license": "AGPL-3.0-only",
+    "packageManager": "pnpm@10.29.3",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite build --watch",
+        "lint:types": "tsc --noEmit",
+        "test": "vitest run",
+        "test:watch": "vitest"
+    },
+    "devDependencies": {
+        "@element-hq/element-web-module-api": "^2.3.0",
+        "@testing-library/dom": "^10.4.2",
+        "@testing-library/react": "^16.3.3",
+        "@testing-library/user-event": "^14.6.8",
+        "@types/node": "^24.19.2",
+        "@types/react": "^19.3.0",
+        "@types/react-dom": "^19.3.0",
+        "@vitejs/plugin-react": "^6.1.2",
+        "jsdom": "^27.4.0",
+        "react": "^19.3.1",
+        "react-dom": "^19.3.1",
+        "rollup": "^4.66.0",
+        "rollup-plugin-external-globals": "^0.13.0",
+        "typescript": "^5.9.3",
+        "vite": "^8.3.5",
+        "vitest": "^4.1.12"
+    }
+}
