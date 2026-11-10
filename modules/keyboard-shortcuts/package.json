@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-keyboard-shortcuts",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Element Web module: Gmail-style keyboard shortcut overlay (press ?) with per-user custom shortcuts",
     "private": true,
     "type": "module",
