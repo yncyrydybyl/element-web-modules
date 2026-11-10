@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-activity",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Element Web module: a Teams-style activity feed of mentions, replies, reactions and thread replies across all rooms, encrypted ones included",
     "private": true,
     "type": "module",
