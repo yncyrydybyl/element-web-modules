@@ -1,0 +1,6 @@
+node_modules/
+lib/
+coverage/
+*.log
+.playwright-mcp/
+e2e/.run/
