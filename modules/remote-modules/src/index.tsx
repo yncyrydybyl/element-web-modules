@@ -6,6 +6,7 @@ import { SettingsInjector } from "./settingsInjector";
 import { readLocalDisabledServer, RemoteModuleStore, serverModuleKey } from "./store";
 import { nameFromSource, RemoteModulesSection, type ModuleTranslate, type SectionController, type ServerModule } from "./ui/RemoteModulesSection";
 import css from "./ui/section.css?inline";
+import { fetchServerVersion, versionFromSource } from "./version";
 
 export const CONFIG_KEY = "de.datanauten.remote_modules";
 const STYLE_ID = "de-datanauten-remote-modules-style";
@@ -109,6 +110,8 @@ export class RemoteModulesModule implements Module {
     /** Server modules not loaded in this page. */
     private readonly skipped: ReadonlySet<string>;
     private allowed = false;
+    /** Versions of the server's modules, read when the tab first opens (undefined: none in the build). */
+    private serverVersions?: Map<string, string | undefined>;
 
     public constructor(
         private readonly api: Api,
@@ -166,11 +169,11 @@ export class RemoteModulesModule implements Module {
         const pending: Array<Promise<void>> = [];
         for (const m of store.getAll()) {
             const status = this.statuses.get(m.id);
-            const apiVersion = status && "apiVersion" in status ? status.apiVersion : undefined;
+            const versions = status && "apiVersion" in status ? { apiVersion: status.apiVersion, version: status.version } : {};
             if (!m.enabled) {
-                this.setStatus(m.id, this.active.has(m.id) ? { state: "reload", apiVersion } : { state: "disabled" });
+                this.setStatus(m.id, this.active.has(m.id) ? { state: "reload", ...versions } : { state: "disabled" });
             } else if (this.active.has(m.id)) {
-                if (status?.state === "reload") this.setStatus(m.id, { state: "loaded", apiVersion });
+                if (status?.state === "reload") this.setStatus(m.id, { state: "loaded", ...versions });
             } else if (!this.safeMode && status?.state !== "loading" && status?.state !== "failed") {
                 pending.push(this.loadOne(m.id));
             }
@@ -186,7 +189,7 @@ export class RemoteModulesModule implements Module {
             const code = await fetchSource(entry.source, getSdkClient());
             const { apiVersion } = await runModule(code, this.api, this.importer);
             this.active.add(id);
-            this.setStatus(id, { state: "loaded", apiVersion });
+            this.setStatus(id, { state: "loaded", apiVersion, version: versionFromSource(code) });
             console.info(`[remote-modules] Loaded ${entry.name} from ${entry.source}`);
         } catch (e) {
             const error = e instanceof Error ? e.message : String(e);
@@ -210,6 +213,7 @@ export class RemoteModulesModule implements Module {
             return {
                 src,
                 key,
+                version: this.serverVersions?.get(src),
                 description: localise(about?.description, language, isString),
                 usage: localise(about?.usage, language, isStrings) ?? [],
                 link: about?.link && /^https:\/\//.test(about.link) ? about.link : undefined,
@@ -263,7 +267,24 @@ export class RemoteModulesModule implements Module {
 
     private t: ModuleTranslate = (key, variables) => this.api.i18n.translate(key, variables);
 
+    /** Reads the server modules' versions once, when the tab is first shown, not at start-up. */
+    private loadServerVersions(): void {
+        if (this.serverVersions) return;
+        const versions = new Map<string, string | undefined>();
+        this.serverVersions = versions;
+        void Promise.all(
+            this.serverModules.map(async (src) => {
+                const version = await fetchServerVersion(src);
+                if (!version) return;
+                versions.set(src, version);
+                this.version++;
+                for (const l of this.listeners) l();
+            }),
+        );
+    }
+
     private mountSection(container: HTMLElement): () => void {
+        this.loadServerVersions();
         const root = this.api.createRoot(container);
         root.render(<RemoteModulesSection controller={this.controller} t={this.t} />);
         return () => root.unmount();

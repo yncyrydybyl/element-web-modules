@@ -35,11 +35,11 @@ export function getSdkClient(): SdkClient | undefined {
 
 export type ModuleStatus =
     | { state: "loading" }
-    | { state: "loaded"; apiVersion?: string }
+    | { state: "loaded"; apiVersion?: string; version?: string }
     | { state: "failed"; error: string }
     | { state: "disabled" }
     /** Turned off or removed after it was loaded: only a reload unloads it. */
-    | { state: "reload"; apiVersion?: string };
+    | { state: "reload"; apiVersion?: string; version?: string };
 
 export type Importer = (url: string) => Promise<{ default?: unknown }>;
 

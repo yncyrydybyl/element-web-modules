@@ -18,6 +18,8 @@ Loading modules is meant for developing and trying them out. Every module added 
 
 Both lists are stored in the user's account data (`de.datanauten.remote_modules`), so they follow them to every device. Each module shows its status: loaded (with its module API version), loading, failed (with the error), not loaded.
 
+Next to each name is the module's own version, when its build says it: the modules in this repository start with a banner like `/*! @datanauten/element-web-module-speed-start 0.2.0 */`; other builds are recognised if their first comment names a version the same way, or with `@version 1.2.3`. For your own modules it's read from the code that was loaded. For the server's it's read when the tab first opens, from the browser's cache of the file Element loaded at start-up (so normally no request); if the server's file changed since, that's the newer version. Builds without a banner (including releases of this repository's modules from before November 2026) show no version.
+
 **Safe mode:** open Element with `?remote_modules=off` (e.g. `https://element.example/?remote_modules=off` or `…/#/home?remote_modules=off`) to start without any remote modules, for example when one breaks Element.
 
 ## How it works
@@ -75,7 +77,7 @@ pnpm dev                                  # vite build --watch → lib/index.js
 npx http-server lib -p 5173 --cors -c-1   # serves it with CORS, no caching
 ```
 
-Add `http://localhost:5173/index.js` in the tab. After a rebuild, click **Reload Element**. Only the developer's browser can reach their localhost, so other devices show the module as failed.
+Add `http://localhost:5173/index.js` in the tab. To show a version, start the build with a comment like `/*! my-module 1.2.0 */` (rollup's `output.banner`, as in this repository's `vite.config.ts` files). After a rebuild, click **Reload Element**. Only the developer's browser can reach their localhost, so other devices show the module as failed.
 
 ## Limitations
 

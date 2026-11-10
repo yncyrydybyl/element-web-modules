@@ -11,6 +11,7 @@ export const translations = {
         de: "In der config.json dieses Elements eingetragen und beim Start geladen. Du kannst sie für dein Konto ausschalten; das wirkt ab dem nächsten Neuladen, auf jedem deiner Geräte.",
     },
     [`${P}how_to_use`]: { en: "How to use", de: "Bedienung" },
+    [`${P}version_label`]: { en: "Version %(version)s", de: "Version %(version)s" },
     [`${P}read_more`]: { en: "Read more", de: "Mehr dazu" },
     [`${P}turn_off`]: { en: "Turn off", de: "Ausschalten" },
     [`${P}turn_off_label`]: { en: "Turn off %(name)s", de: "%(name)s ausschalten" },
