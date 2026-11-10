@@ -3,13 +3,17 @@ import type { Api, Module, ModuleFactory, Watchable } from "@element-hq/element-
 import { version } from "../package.json";
 import {
     canOpenSettings,
+    currentRoomId,
+    describeMessage,
     getSdkClient,
     getSecureStatus,
     joinSpace,
     membershipOf,
     openSettings,
     runSecureAction,
+    showMessage,
     type SdkClient,
+    type SdkEvent,
     type SecureAction,
 } from "./client";
 import { CONFIG_KEY, parseConfig, type StepId, type WelcomeConfig } from "./config";
@@ -54,7 +58,11 @@ export class TeamsWelcomeModule implements Module {
 
     public constructor(private readonly api: Api) {
         this.menu = new UserMenuInjector({ label: () => this.t(`${P}menu_item`), onSelect: () => this.openPanel() });
-        this.utd = new UtdWatcher(() => this.showUtdHint());
+        this.utd = new UtdWatcher(
+            (ev) => this.showUtdHint(ev),
+            undefined,
+            (ev) => ev.getRoomId() === currentRoomId(getSdkClient()),
+        );
     }
 
     public async load(): Promise<void> {
@@ -66,6 +74,7 @@ export class TeamsWelcomeModule implements Module {
         registerInSuite("teams-welcome", version);
 
         this.menu.start();
+        window.addEventListener("hashchange", this.onHashChange);
         const navigation = this.api.navigation as Partial<Api["navigation"]> | undefined;
         navigation?.registerLocationRenderer?.(PAGE_PATH, () => (
             <div className="twl-page-scroll">
@@ -84,6 +93,7 @@ export class TeamsWelcomeModule implements Module {
     public dispose(): void {
         this.menu.stop();
         this.utd.detach();
+        window.removeEventListener("hashchange", this.onHashChange);
         if (this.startTimer) clearInterval(this.startTimer);
         this.stateWatch?.unwatch(this.onStateChange);
         this.panelRoot?.unmount?.();
@@ -126,6 +136,9 @@ export class TeamsWelcomeModule implements Module {
         this.closePanel(false);
         this.hideUtdHint();
     }
+
+    /** Element puts the open room in the URL: a failure waiting for its room may show now. */
+    private onHashChange = (): void => this.utd.recheck();
 
     private onStateChange = (): void => {
         if (this.state().utd_hint_off) {
@@ -176,17 +189,27 @@ export class TeamsWelcomeModule implements Module {
         if (remember && !this.state().dismissed) void this.saveState({ dismissed: true, dismissed_at: Date.now() });
     }
 
-    private showUtdHint(): void {
+    private showUtdHint(ev: SdkEvent): void {
         const client = getSdkClient();
         // The open guide already explains it; try again with the next failure.
         if (!client || this.panelOpen || this.state().utd_hint_off) {
             this.utd.rearm();
             return;
         }
+        const message = describeMessage(client, ev);
         this.utdRoot ??= this.api.createRoot(mountPoint("teams-welcome-utd-root")) as Root;
         this.utdRoot.render(
             <UtdHint
                 t={this.t}
+                message={message}
+                language={this.api.i18n.language}
+                show={
+                    message &&
+                    (() => {
+                        this.hideUtdHint();
+                        showMessage(message);
+                    })
+                }
                 loadStatus={() => getSecureStatus(client)}
                 canAct={canOpenSettings()}
                 act={(action: SecureAction) => {

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { getSecureStatus, isSecure, joinSpace, nextSecureAction, openSettings, runSecureAction, type SdkClient } from "./client";
+import { currentRoomId, describeMessage, getSecureStatus, isSecure, joinSpace, nextSecureAction, openSettings, runSecureAction, type SdkClient, type SdkEvent } from "./client";
 
 afterEach(() => {
     delete (window as { mxDispatcher?: unknown }).mxDispatcher;
@@ -107,5 +107,29 @@ describe("joinSpace", () => {
         await expect(joinSpace(client(undefined, { joinRoom: () => Promise.reject(new Error("forbidden")) }), "#s:x", true)).rejects.toThrow(
             "forbidden",
         );
+    });
+});
+
+describe("currentRoomId and describeMessage", () => {
+    const room = {
+        roomId: "!r:x",
+        name: "Ops",
+        getCanonicalAlias: () => "#ops:x",
+        getAltAliases: () => ["#old-ops:x"],
+        getMember: (id: string) => (id === "@bob:x" ? { name: "Bob" } : null),
+    };
+    const client = { getRooms: () => [room], getRoom: (id: string | undefined) => (id === "!r:x" ? room : null) } as unknown as SdkClient;
+
+    it("reads the open room from Element's URL, by ID or alias", () => {
+        expect(currentRoomId(client, "#/room/!r:x")).toBe("!r:x");
+        expect(currentRoomId(client, "#/room/!r:x/$event")).toBe("!r:x");
+        expect(currentRoomId(client, "#/room/%23ops:x")).toBe("!r:x");
+        expect(currentRoomId(client, "#/room/#old-ops:x")).toBe("!r:x");
+        expect(currentRoomId(client, "#/home")).toBeUndefined();
+    });
+
+    it("names the room and the sender", () => {
+        const ev = { getId: () => "$e", getRoomId: () => "!r:x", getSender: () => "@bob:x", getTs: () => 5 } as unknown as SdkEvent;
+        expect(describeMessage(client, ev)).toEqual({ roomId: "!r:x", eventId: "$e", room: "Ops", sender: "Bob", ts: 5 });
     });
 });

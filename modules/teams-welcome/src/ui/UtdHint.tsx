@@ -1,4 +1,4 @@
-import { nextSecureAction, type SecureAction, type SecureStatus } from "../client";
+import { nextSecureAction, type MessageInfo, type SecureAction, type SecureStatus } from "../client";
 import { P, type ModuleTranslate } from "../i18n";
 import { usePoll } from "./Guide";
 import { CloseIcon, LockIcon } from "./icons";
@@ -9,6 +9,11 @@ export interface UtdHintProps {
     loadStatus(): Promise<SecureStatus>;
     pollMs?: number;
     canAct: boolean;
+    /** The message that couldn't be decrypted. */
+    message?: MessageInfo;
+    language?: string;
+    /** Jumps to {@link message}. */
+    show?(): void;
     act(action: SecureAction): void;
     learnMore(): void;
     dismiss(): void;
@@ -23,7 +28,7 @@ const BUTTON: Record<SecureAction, string> = {
 };
 
 /** A small card that explains an "Unable to decrypt" message and offers the matching fix. */
-export function UtdHint({ t, loadStatus, pollMs = 2000, canAct, act, learnMore, dismiss, never }: UtdHintProps): React.JSX.Element {
+export function UtdHint({ t, loadStatus, pollMs = 2000, canAct, message, language, show, act, learnMore, dismiss, never }: UtdHintProps): React.JSX.Element {
     const [status] = usePoll(loadStatus, pollMs);
     const action = status ? nextSecureAction(status) : null;
     const body = action === "verify" || action === "fix_recovery" ? "utd_unverified" : action ? "utd_no_recovery" : "utd_ok";
@@ -36,6 +41,17 @@ export function UtdHint({ t, loadStatus, pollMs = 2000, canAct, act, learnMore, 
                     <CloseIcon />
                 </button>
             </header>
+            {message && (
+                <div className="twl-utd-message" data-testid="teams-welcome-utd-message">
+                    <span className="twl-utd-from">{t(`${P}utd_from`, { sender: message.sender, room: message.room })}</span>
+                    <time dateTime={new Date(message.ts).toISOString()}>{formatTime(message.ts, language)}</time>
+                    {show && (
+                        <button type="button" className="twl-link" onClick={show}>
+                            {t(`${P}utd_show`)}
+                        </button>
+                    )}
+                </div>
+            )}
             <p>{t(`${P}${body}`)}</p>
             <div className="twl-actions">
                 {action && canAct && (
@@ -52,4 +68,15 @@ export function UtdHint({ t, loadStatus, pollMs = 2000, canAct, act, learnMore, 
             </div>
         </aside>
     );
+}
+
+/** "14:32" today, "3 Nov, 14:32" before. */
+export function formatTime(ts: number, language?: string, now: number = Date.now()): string {
+    const d = new Date(ts);
+    const today = new Date(now).toDateString() === d.toDateString();
+    try {
+        return new Intl.DateTimeFormat(language, today ? { timeStyle: "short" } : { dateStyle: "medium", timeStyle: "short" }).format(d);
+    } catch {
+        return d.toLocaleString();
+    }
 }

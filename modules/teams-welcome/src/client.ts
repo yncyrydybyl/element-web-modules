@@ -10,6 +10,7 @@ export interface SdkEvent {
     getRoomId(): string | undefined;
     getType(): string;
     getTs(): number;
+    getSender?(): string | undefined;
     isDecryptionFailure(): boolean;
     /** js-sdk's DecryptionFailureCode, e.g. "HISTORICAL_MESSAGE_USER_NOT_JOINED". */
     decryptionFailureReason?: string | null;
@@ -20,6 +21,9 @@ export interface SdkRoom {
     name: string;
     getMyMembership?(): string;
     getLiveTimeline?(): { getEvents(): SdkEvent[] };
+    getCanonicalAlias?(): string | null;
+    getAltAliases?(): string[];
+    getMember?(userId: string): { name: string } | null;
 }
 
 export interface SdkCrypto {
@@ -170,4 +174,41 @@ export async function joinSpace(client: SdkClient, alias: string, withSuggested:
         }
     }
     return space.roomId;
+}
+
+/** The room Element shows now, from its URL (`#/room/!id…` or `#/room/#alias…`). */
+export function currentRoomId(client: SdkClient | undefined, hash: string = window.location.hash): string | undefined {
+    const match = /^#\/room\/([^/?]+)/.exec(hash);
+    if (!match) return undefined;
+    let target: string;
+    try {
+        target = decodeURIComponent(match[1]);
+    } catch {
+        return undefined;
+    }
+    if (target.startsWith("!")) return target;
+    return client?.getRooms?.().find((r) => r.getCanonicalAlias?.() === target || r.getAltAliases?.().includes(target))?.roomId;
+}
+
+/** Where a message is, for the "couldn't be decrypted" hint. */
+export interface MessageInfo {
+    roomId: string;
+    eventId: string;
+    room: string;
+    sender: string;
+    ts: number;
+}
+
+export function describeMessage(client: SdkClient | undefined, ev: SdkEvent): MessageInfo | undefined {
+    const roomId = ev.getRoomId();
+    const eventId = ev.getId();
+    if (!roomId || !eventId) return undefined;
+    const room = client?.getRoom(roomId);
+    const senderId = ev.getSender?.() ?? "";
+    return { roomId, eventId, room: room?.name || roomId, sender: room?.getMember?.(senderId)?.name || senderId, ts: ev.getTs() };
+}
+
+/** Opens the room at that message, highlighted, as a permalink in Element does. */
+export function showMessage(info: Pick<MessageInfo, "roomId" | "eventId">): void {
+    window.location.hash = `#/room/${info.roomId}/${info.eventId}`;
 }
