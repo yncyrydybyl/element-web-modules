@@ -11,6 +11,10 @@ export type ModuleTranslate = (key: string, variables?: Record<string, string>) 
 export interface ServerModule {
     src: string;
     key: string;
+    /** From the `about` config, in the user's language. */
+    description?: string;
+    usage: string[];
+    link?: string;
     /** Not turned off by the user. */
     enabled: boolean;
     /** Loaded in this page. */
@@ -199,11 +203,29 @@ function ServerRow(props: {
           : ["disabled", "status_off"];
     const label = m.enabled ? "turn_off" : "turn_on";
     return (
-        <li className="drm-row">
+        <li className="drm-row drm-row--server">
             <div className="drm-row-text">
                 <span className="drm-name">{name}</span>
-                <code className="drm-source">{m.src}</code>
+                {m.description && <p className="drm-description">{m.description}</p>}
                 <span className={`drm-status drm-status--${state}`}>{t(`${P}${status}`)}</span>
+                <code className="drm-source">{m.src}</code>
+                {(m.usage.length > 0 || m.link) && (
+                    <details className="drm-usage">
+                        <summary>{t(`${P}how_to_use`)}</summary>
+                        {m.usage.length > 0 && (
+                            <ul>
+                                {m.usage.map((line) => (
+                                    <li key={line}>{line}</li>
+                                ))}
+                            </ul>
+                        )}
+                        {m.link && (
+                            <a href={m.link} target="_blank" rel="noreferrer noopener">
+                                {t(`${P}read_more`)}
+                            </a>
+                        )}
+                    </details>
+                )}
             </div>
             {m.locked ? (
                 <span className="drm-locked" title={t(`${P}locked_hint`)}>

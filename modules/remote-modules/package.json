@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-remote-modules",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "description": "Element Web module: load your own Element modules from the media repo or a URL, managed in their own Settings tab",
     "private": true,
     "type": "module",

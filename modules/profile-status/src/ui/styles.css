@@ -1,0 +1,419 @@
+/* Colours are Element's Compound tokens, so everything follows the theme. The availability colours
+   follow Teams (green, red, yellow, purple) using Compound's own palette where it has one. */
+
+.ps-dot {
+    display: inline-block;
+    flex: none;
+    box-sizing: border-box;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+    background: var(--cpd-color-icon-tertiary, #8d97a5);
+}
+
+.ps-dot--available {
+    background: var(--cpd-color-icon-success-primary, #0b6b3f);
+}
+
+.ps-dot--busy,
+.ps-dot--in_call {
+    background: var(--cpd-color-icon-critical-primary, #d51928);
+}
+
+.ps-dot--dnd {
+    background:
+        linear-gradient(var(--cpd-color-bg-canvas-default, #fff), var(--cpd-color-bg-canvas-default, #fff)) center / 6px 2px no-repeat,
+        var(--cpd-color-icon-critical-primary, #d51928);
+}
+
+.ps-dot--brb,
+.ps-dot--away {
+    background: #e5a500;
+}
+
+.ps-dot--ooo {
+    background: #8f5bd4;
+}
+
+.ps-dot--none {
+    border: 1.5px solid var(--cpd-color-icon-tertiary, #8d97a5);
+    background: transparent;
+}
+
+.ps-emoji {
+    font-size: 0.95em;
+    line-height: 1;
+}
+
+/* Next to names in the timeline and member list */
+.ps-inline {
+    display: inline-flex;
+    align-items: center;
+    margin-inline: 4px;
+    cursor: default;
+}
+
+/* On the user menu's avatar */
+.ps-trigger-badge {
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    display: flex;
+    padding: 2px;
+    border-radius: 50%;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.mx_UserMenu button > div:has(> .ps-trigger-badge) {
+    position: relative;
+}
+
+.ps-menu-icon {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.ps-menu-item--status [role="img"],
+.ps-menu-item--status .ps-dot {
+    width: 12px;
+    height: 12px;
+}
+
+/* A full status line */
+.ps-status {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    min-width: 0;
+    max-width: 100%;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.ps-status-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.ps-status-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 6px;
+    align-items: baseline;
+    min-width: 0;
+}
+
+.ps-status-headline {
+    font-weight: 600;
+}
+
+.ps-status-message {
+    overflow-wrap: anywhere;
+}
+
+.ps-status-message::before {
+    content: "· ";
+    color: var(--cpd-color-text-secondary, #656d77);
+}
+
+.ps-status-detail {
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 12px;
+}
+
+.ps-status--compact .ps-status-main {
+    flex-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ps-status--compact .ps-status-message {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Room header (DMs) */
+.ps-header-chip {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 1;
+    min-width: 0;
+    max-width: 200px;
+    margin-inline-end: 4px;
+    padding: 4px 10px;
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da);
+    border-radius: 999px;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    cursor: pointer;
+    font: inherit;
+}
+
+.ps-header-chip:hover {
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+}
+
+.ps-header-chip .ps-status {
+    font-size: 13px;
+}
+
+.ps-header-chip--ooo {
+    border-color: #8f5bd4;
+}
+
+/* User info panel */
+.ps-userinfo {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.ps-person {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+}
+
+.ps-person .ps-status-main {
+    justify-content: center;
+}
+
+.ps-card {
+    text-align: start;
+}
+
+.ps-card {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--cpd-color-bg-subtle-secondary, #f0f2f5);
+    font-size: 13px;
+}
+
+.ps-card-row {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 12px;
+}
+
+.ps-card dt {
+    color: var(--cpd-color-text-secondary, #656d77);
+}
+
+.ps-card dd {
+    margin: 0;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    overflow-wrap: anywhere;
+}
+
+.ps-card a {
+    color: var(--cpd-color-text-link-external, #0467dd);
+}
+
+.ps-person-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    justify-content: center;
+}
+
+/* Dialogs */
+.ps-dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: min(480px, 86vw);
+}
+
+.ps-dialog .ps-person {
+    align-items: flex-start;
+    text-align: start;
+}
+
+.ps-dialog .ps-person .ps-status-main {
+    justify-content: flex-start;
+}
+
+.ps-label {
+    padding: 0;
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.ps-locked {
+    font-weight: 400;
+}
+
+.ps-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ps-fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.ps-availabilities {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.ps-availability {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: inherit;
+    font-size: 14px;
+    text-align: start;
+    cursor: pointer;
+}
+
+.ps-availability[aria-checked="true"] {
+    border-color: var(--cpd-color-border-interactive-primary, #1b1d22);
+    box-shadow: inset 0 0 0 1px var(--cpd-color-border-interactive-primary, #1b1d22);
+    font-weight: 600;
+}
+
+.ps-input {
+    padding: 8px 12px;
+    border: 1px solid var(--cpd-color-border-interactive-primary, #8d97a5);
+    border-radius: 8px;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: inherit;
+    font-size: 15px;
+}
+
+.ps-input:disabled {
+    border-color: var(--cpd-color-border-disabled, #e1e6ec);
+    color: var(--cpd-color-text-secondary, #656d77);
+}
+
+.ps-input[aria-invalid="true"] {
+    border-color: var(--cpd-color-border-critical-primary, #d51928);
+}
+
+.ps-textarea {
+    min-height: 60px;
+    resize: vertical;
+}
+
+.ps-segmented {
+    display: flex;
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.ps-segment {
+    flex: 1;
+    padding: 8px 6px;
+    border: 0;
+    border-right: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da);
+    background: transparent;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ps-segment:last-child {
+    border-right: 0;
+}
+
+.ps-segment[aria-checked="true"] {
+    background: var(--cpd-color-bg-action-primary-rest, #1b1d22);
+    color: var(--cpd-color-text-on-solid-primary, #fff);
+    font-weight: 600;
+}
+
+.ps-check {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font-size: 14px;
+}
+
+.ps-check input {
+    margin-top: 3px;
+}
+
+.ps-check small {
+    display: block;
+}
+
+.ps-hint {
+    margin: 0;
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 12px;
+}
+
+.ps-error {
+    margin: 0;
+    color: var(--cpd-color-text-critical-primary, #d51928);
+    font-size: 13px;
+}
+
+.ps-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.ps-spacer {
+    flex: 1;
+}
+
+.ps-button {
+    padding: 7px 16px;
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.ps-button--primary {
+    border-color: var(--cpd-color-bg-action-primary-rest, #1b1d22);
+    background: var(--cpd-color-bg-action-primary-rest, #1b1d22);
+    color: var(--cpd-color-text-on-solid-primary, #fff);
+}
+
+.ps-button--link {
+    padding: 4px 0;
+    border: 0;
+    color: var(--cpd-color-text-action-accent, #0b6b3f);
+}
+
+.ps-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}

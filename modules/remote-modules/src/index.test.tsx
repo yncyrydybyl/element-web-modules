@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createRoot } from "react-dom/client";
 import { Watchable, type Api } from "@element-hq/element-web-module-api";
 
-import ModuleDefault, { isSafeMode, parseConfig, RemoteModulesModule, skipDisabledServerModules } from "./index";
+import ModuleDefault, { isSafeMode, localise, parseConfig, RemoteModulesModule, skipDisabledServerModules } from "./index";
 import { fetchSource, runModule, type SdkClient } from "./loader";
 import { isValidSource } from "./store";
 import { nameFromSource } from "./ui/RemoteModulesSection";
@@ -189,6 +189,29 @@ describe("RemoteModulesModule", () => {
         expect(again.getByText(/Changes take effect/)).toBeTruthy();
     });
 
+    it("shows what the config says about each server module, in the user's language", async () => {
+        await start({
+            config: {
+                about: {
+                    "space-room-map": {
+                        description: { en: "A map of your spaces.", de: "Eine Karte deiner Spaces." },
+                        usage: { de: ["Strg+I: Karte öffnen"], en: ["Ctrl+I: open the map", "Esc: close it"] },
+                        link: "https://example.org/space-room-map#readme",
+                    },
+                    "speed-start": { description: "Your room list at once.", link: "javascript:alert(1)" },
+                },
+            },
+        });
+        settingsDialog();
+        const server = within(await screen.findByTestId("remote-modules-server"));
+        expect(server.getByText("A map of your spaces.")).toBeTruthy();
+        expect(server.getByText("Your room list at once.")).toBeTruthy();
+        expect(server.getAllByText("How to use")).toHaveLength(1);
+        await userEvent.click(server.getByText("How to use"));
+        expect(server.getByText("Esc: close it")).toBeTruthy();
+        expect(server.getByRole("link", { name: "Read more" }).getAttribute("href")).toBe("https://example.org/space-room-map#readme");
+    });
+
     it("ignores another user's turned-off modules", async () => {
         localStorage.setItem(
             "de.datanauten.remote_modules.list",
@@ -301,6 +324,15 @@ describe("loader", () => {
 });
 
 describe("helpers", () => {
+    it("localises config texts", () => {
+        const isString = (v: unknown): v is string => typeof v === "string";
+        expect(localise("plain", "de", isString)).toBe("plain");
+        expect(localise({ en: "Hi", de: "Hallo" }, "de-AT", isString)).toBe("Hallo");
+        expect(localise({ en: "Hi", de: "Hallo" }, "fr", isString)).toBe("Hi");
+        expect(localise({ fr: "Salut" }, "de", isString)).toBe("Salut");
+        expect(localise(42 as never, "de", isString)).toBeUndefined();
+    });
+
     it("skips only turned-off modules listed after its own", () => {
         const list = ["/a/index.js?v=1", "/own/index.js?v=2", "/b/index.js?v=3", "/c/index.js"];
         const skipped = skipDisabledServerModules(list, `${window.location.origin}/own/index.js?v=9`, ["/a/index.js", "/c/index.js"]);
@@ -311,7 +343,8 @@ describe("helpers", () => {
     });
 
     it("config, safe mode, sources and names", () => {
-        expect(parseConfig(undefined)).toEqual({ allowed_users: [] });
+        expect(parseConfig(undefined)).toEqual({ allowed_users: [], about: {} });
+        expect(() => parseConfig({ about: [] })).toThrow();
         expect(() => parseConfig({ allowed_users: ["yan"] })).toThrow();
         expect(isSafeMode({ search: "?remote_modules=off", hash: "" })).toBe(true);
         expect(isSafeMode({ search: "", hash: "#/home?remote_modules=off" })).toBe(true);

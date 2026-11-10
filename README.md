@@ -13,9 +13,15 @@ Runtime modules for [Element Web](https://github.com/element-hq/element-web) and
 | [text-reactions](modules/text-reactions) | React to messages with any text ("+1", "same"), from an **Aa** button in the message action bar. | AGPL-3.0-only |
 | [multi-tab](modules/multi-tab) | Keep several Element tabs open at once: the first one syncs and holds the encryption keys, the others mirror it and take over when it closes. | AGPL-3.0-only |
 | [user-account-widgets](modules/user-account-widgets) | Your own widgets (a PDF viewer, a participant panel …) in every room, from a **My apps** button in the room header. They live in your account, not in the room: nothing is published, and they act in whichever room you open them in. | AGPL-3.0-only |
+| [teamwork](modules/teamwork) | Send later (delayed events, end-to-end encrypted), important/urgent messages with reminders and mentions that reach every client, saved messages and praise cards: four Teams favourites, built the Matrix way. Part of the [Teams suite](suite). | AGPL-3.0-only |
+| [activity](modules/activity) | A Teams-style Activity feed: mentions, replies, reactions and thread replies from all rooms in one list, from the space panel or the room header. Part of the [Teams suite](suite). | AGPL-3.0-only |
+| [tag-mentions](modules/tag-mentions) | `@oncall`, `@team` and `@channel`: tags kept in room or space state that expand into individual mentions, so every Matrix client notifies the right people. Part of the [Teams suite](suite). | AGPL-3.0-only |
+| [profile-status](modules/profile-status) | Status message and availability (MSC4426), out of office with optional auto-reply, automatic "In a call", and a profile card with job title, department and phone. Part of the [Teams suite](suite). | AGPL-3.0-only |
+| [files-hub](modules/files-hub) | Every file shared in your rooms in one view, encrypted ones included: filters, previews, download, jump to the message, plus cards for SharePoint and OneDrive links. Part of the [Teams suite](suite). | AGPL-3.0-only |
+| [teams-welcome](modules/teams-welcome) | A first-run guide for people coming from Teams: the recovery key in plain words, a Teams-to-Element cheat sheet, profile and notifications, and the organisation's spaces to join. Part of the [Teams suite](suite). | AGPL-3.0-only |
 | [marcade](modules/marcade) | An **Apps** button in every room header that opens (or adds) the [Marcade Store](https://marcade.store) widget. | Apache-2.0 |
 
-Each module is a standalone package with its own README, build, tests and license. There is no shared workspace: `cd modules/<name>` and use that module's package manager (pnpm for keyboard-shortcuts, space-room-map, people-map, room-checker, remote-modules, speed-start, text-reactions, multi-tab and user-account-widgets, npm for marcade).
+Each module is a standalone package with its own README, build, tests and license. There is no shared workspace: `cd modules/<name>` and use that module's package manager (pnpm for keyboard-shortcuts, space-room-map, people-map, room-checker, remote-modules, speed-start, text-reactions, multi-tab, user-account-widgets, teamwork, activity, tag-mentions, profile-status, files-hub and teams-welcome, npm for marcade).
 
 ## Using a module
 

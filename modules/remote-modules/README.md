@@ -2,7 +2,7 @@
 
 Load your own Element Web modules without a deploy, and turn off the server's. Every user gets a **Modules** tab of its own in Element's settings, after Help & About. It lists every module this Element runs, in two parts:
 
-- **Provided by the server:** the `modules` from `config.json`. Any user can turn them off (and on again) for their account; that takes effect when Element reloads, on each of their devices.
+- **Provided by the server:** the `modules` from `config.json`, each with a short overview and "How to use" when the admin wrote one (`about`, below). Any user can turn them off (and on again) for their account; that takes effect when Element reloads, on each of their devices.
 - **Loaded dynamically**, for allowlisted users only: their own. Here they add a module build, either uploaded to the homeserver's media repository or as a URL (e.g. their local dev server), and Element runs it like a module listed in `config.json`.
 
 Loading modules is meant for developing and trying them out. Every module added here runs with full access to the user's account, so only allowlisted users get that part.
@@ -50,7 +50,14 @@ This is a server-wide change: it relaxes the policy for every user, not just the
 {
     "modules": ["/element-modules/remote-modules/index.js?v=<hash>"],
     "de.datanauten.remote_modules": {
-        "allowed_users": ["@alice:example.org"]
+        "allowed_users": ["@alice:example.org"],
+        "about": {
+            "space-room-map": {
+                "description": { "en": "A zoomable map of your spaces and rooms.", "de": "Eine zoombare Karte deiner Spaces und Räume." },
+                "usage": { "en": ["Ctrl+I: open or close the map."], "de": ["Strg+I: Karte öffnen oder schließen."] },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/space-room-map#readme"
+            }
+        }
     }
 }
 ```
@@ -58,6 +65,7 @@ This is a server-wide change: it relaxes the policy for every user, not just the
 | Option | Default | Meaning |
 | --- | --- | --- |
 | `allowed_users` | `[]` | Matrix IDs that may load their own modules. Everyone else only gets the server part of the tab. |
+| `about` | `{}` | A short overview per server module, shown in its row: `description` (a sentence), `usage` (one line each, under "How to use") and `link` (https only, "Read more"). Keyed by the module's name, the directory of its `index.js`. Texts are a string or an object by language code; the user's language is picked, then English. |
 
 ## Developing a module against it
 

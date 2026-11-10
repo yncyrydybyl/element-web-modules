@@ -187,3 +187,33 @@
     font: var(--cpd-font-body-sm-regular);
     white-space: nowrap;
 }
+
+/* Long rows (a description, an open "How to use"): keep the button by the name. */
+.drm-row--server {
+    align-items: flex-start;
+}
+
+.drm-description {
+    margin: 2px 0;
+    font: var(--cpd-font-body-md-regular);
+}
+
+.drm-usage {
+    margin-top: 4px;
+    font: var(--cpd-font-body-sm-regular);
+}
+
+.drm-usage summary {
+    cursor: pointer;
+    color: var(--cpd-color-text-action-accent, #007a62);
+    width: fit-content;
+}
+
+.drm-usage ul {
+    margin: 4px 0;
+    padding-left: 20px;
+}
+
+.drm-usage a {
+    color: var(--cpd-color-text-link-external, #0467dd);
+}
