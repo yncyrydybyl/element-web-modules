@@ -1,6 +1,6 @@
 {
   "name": "marcade-element-module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Element Web module: a Marcade \"Apps\" button in the room header that opens (or adds and opens) the Marcade Store widget",
   "license": "Apache-2.0",
