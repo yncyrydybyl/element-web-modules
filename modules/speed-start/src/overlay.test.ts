@@ -104,3 +104,24 @@ describe("SnapshotOverlay", () => {
         expect(overlay.shown).toBe(false);
     });
 });
+
+describe("SnapshotOverlay without a snapshot", () => {
+    it("covers the splash, decorates the overlay and cleans up when Element is ready", async () => {
+        const cleanup = vi.fn();
+        const decorate = vi.fn((host: HTMLElement) => {
+            host.appendChild(document.createElement("aside"));
+            return cleanup;
+        });
+        root().innerHTML = `<div class="mx_MatrixChat_splash"></div>`;
+        const overlay = new SnapshotOverlay(null, { decorate });
+        overlay.show();
+        const host = document.querySelector(".speed-start-snapshot")!;
+        expect(host.querySelector(".mx_MatrixChat_wrapper")).toBeNull();
+        expect(host.querySelector("aside")).not.toBeNull();
+        root().innerHTML = `<div class="mx_MatrixChat"><nav class="mx_RoomListPanel"><div class="mx_RoomListItemView"></div></nav></div>`;
+        await flush();
+        vi.advanceTimersByTime(400);
+        expect(cleanup).toHaveBeenCalledOnce();
+        expect(overlay.shown).toBe(false);
+    });
+});
