@@ -1,0 +1,300 @@
+/* Colours are Element's Compound tokens, so everything follows the theme. */
+
+.act-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--cpd-color-text-primary, #1b1d22);
+}
+
+.act-feed--dialog {
+    width: min(560px, 80vw);
+}
+
+.act-feed--page {
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    max-width: 760px;
+    padding: 24px 32px;
+    overflow-y: auto;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+}
+
+.act-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.act-head h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.act-unread {
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 14px;
+}
+
+.act-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.act-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.act-chip {
+    padding: 5px 12px;
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da);
+    border-radius: 16px;
+    background: var(--cpd-color-bg-canvas-default, #fff);
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.act-chip[aria-checked="true"] {
+    border-color: var(--cpd-color-border-accent, #0b8a5f);
+    background: var(--cpd-color-bg-accent-rest, #0b8a5f);
+    color: var(--cpd-color-text-on-solid-primary, #fff);
+}
+
+.act-link {
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--cpd-color-text-secondary, #656d77);
+    font: inherit;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.act-link:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.act-empty {
+    margin: 12px 0;
+    color: var(--cpd-color-text-secondary, #656d77);
+    text-align: center;
+}
+
+.act-footnote {
+    margin: 0;
+    padding-top: 4px;
+    border-top: 1px solid var(--cpd-color-border-interactive-secondary, #e1e6ec);
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.act-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.act-action {
+    height: 36px;
+    padding: 0 18px;
+    border: 1px solid var(--cpd-color-border-interactive-secondary, #cdd3da);
+    border-radius: 18px;
+    background: transparent;
+    color: var(--cpd-color-text-primary, #1b1d22);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.act-action--primary {
+    border-color: transparent;
+    background: var(--cpd-color-bg-action-primary-rest, #1b1d22);
+    color: var(--cpd-color-text-on-solid-primary, #fff);
+}
+
+.act-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.act-feed--dialog .act-list {
+    max-height: 55vh;
+    overflow-y: auto;
+}
+
+.act-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    gap: 12px;
+    align-items: start;
+    width: 100%;
+    padding: 10px 28px 10px 8px;
+    border: 0;
+    border-bottom: 1px solid var(--cpd-color-border-interactive-secondary, #e1e6ec);
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.act-item:hover {
+    background: var(--cpd-color-bg-subtle-secondary, #f7f8fa);
+}
+
+.act-item--unread {
+    background: var(--cpd-color-bg-subtle-secondary, #f4f6f8);
+}
+
+.act-item--unread .act-line strong {
+    font-weight: 700;
+}
+
+.act-icon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--cpd-color-bg-subtle-primary, #e1e6ec);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.act-icon--mention { background: #e0eaff; color: #2a55c6; }
+.act-icon--reply { background: #def5ea; color: #0b6e4c; }
+.act-icon--reaction { background: #fff4d6; }
+.act-icon--thread { background: #efe6ff; }
+
+.act-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.act-line {
+    font-size: 14px;
+}
+
+.act-room {
+    margin-left: 6px;
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 13px;
+}
+
+.act-room::before {
+    content: "· # ";
+    opacity: 0.6;
+}
+
+.act-text {
+    overflow: hidden;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.act-text--quote {
+    padding-left: 8px;
+    border-left: 3px solid var(--cpd-color-border-interactive-secondary, #cdd3da);
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 13px;
+}
+
+.act-when {
+    color: var(--cpd-color-text-secondary, #656d77);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.act-dot {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    margin-top: -4px;
+    border-radius: 50%;
+    background: var(--cpd-color-bg-accent-rest, #0b8a5f);
+}
+
+/* The bell: room header button and space panel item */
+
+.act-header-button {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--cpd-color-icon-secondary, #656d77);
+    cursor: pointer;
+}
+
+.act-header-button:hover {
+    background: var(--cpd-color-bg-subtle-primary, #e1e6ec);
+    color: var(--cpd-color-icon-primary, #1b1d22);
+}
+
+.act-bell {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+}
+
+.act-count {
+    position: absolute;
+    top: -7px;
+    right: -11px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 8px;
+    background: var(--cpd-color-bg-accent-rest, #0b8a5f);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.act-space-item .act-bell {
+    color: var(--cpd-color-icon-secondary, #656d77);
+}
+
+.act-space-item.mx_SpaceButton_active .act-bell,
+.act-space-item:hover .act-bell {
+    color: var(--cpd-color-icon-primary, #1b1d22);
+}
+
+.act-space-item .act-count {
+    top: -12px;
+    right: -14px;
+}
+
+:is(.act-chip, .act-link, .act-item, .act-action, .act-header-button):focus-visible {
+    outline: 2px solid var(--cpd-color-border-focused, #0467dd);
+    outline-offset: 1px;
+}
