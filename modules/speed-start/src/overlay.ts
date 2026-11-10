@@ -29,26 +29,37 @@ export interface OverlayOptions {
     timeoutMs?: number;
     /** How long to wait, once Element's room list is there, for its rows to render. */
     rowsGraceMs?: number;
+    /**
+     * While this returns true, a page other than the splash doesn't take the overlay away. After a
+     * login Element keeps its login page up until the first sync is done; the overlay covers that.
+     */
+    hold?: () => boolean;
+    /** Adds to the overlay once it's on the page (the progress card); returns its clean-up. */
+    decorate?: (host: HTMLElement) => () => void;
 }
 
 const HOST_CLASS = "speed-start-snapshot";
 const FADE_MS = 160;
+const HOLD_CHECK_MS = 250;
 
 /**
- * Draws a snapshot on top of Element while it starts, and takes it away as soon as Element shows
- * its own room list, or anything else (a login page, an error, a verification prompt).
+ * Draws a snapshot (or, without one, a plain background) on top of Element while it starts, and
+ * takes it away as soon as Element shows its own room list, or anything else (a login page, an
+ * error, a verification prompt).
  */
 export class SnapshotOverlay {
     private host?: HTMLElement;
     private observer?: MutationObserver;
     private timers: number[] = [];
+    private intervals: number[] = [];
     private pendingRoom: string | null = null;
     private readyAt?: number;
     private done = false;
+    private undecorate?: () => void;
     private readonly doc: Document;
 
     public constructor(
-        private readonly snapshot: Snapshot,
+        private readonly snapshot: Snapshot | null,
         private readonly opts: OverlayOptions = {},
     ) {
         this.doc = opts.doc ?? document;
@@ -62,24 +73,27 @@ export class SnapshotOverlay {
         const doc = this.doc;
         const host = doc.createElement("div");
         host.className = HOST_CLASS;
-        host.setAttribute("aria-hidden", "true");
         host.setAttribute("data-testid", "speed-start-snapshot");
-        const wrapper = doc.createElement("div");
-        wrapper.className = "mx_MatrixChat_wrapper";
-        // The HTML was sanitised when it was captured, and Element's CSP (no 'unsafe-inline' in
-        // script-src) keeps inline handlers from running even if storage were tampered with.
-        wrapper.innerHTML = this.snapshot.html;
-        const bar = doc.createElement("div");
-        bar.className = `${HOST_CLASS}_bar`;
-        host.append(wrapper, bar);
+        if (this.snapshot) {
+            const wrapper = doc.createElement("div");
+            wrapper.className = "mx_MatrixChat_wrapper";
+            wrapper.setAttribute("aria-hidden", "true");
+            // The HTML was sanitised when it was captured, and Element's CSP (no 'unsafe-inline' in
+            // script-src) keeps inline handlers from running even if storage were tampered with.
+            wrapper.innerHTML = this.snapshot.html;
+            host.appendChild(wrapper);
+        }
         host.addEventListener("click", this.onClick, true);
         doc.body.appendChild(host);
         this.host = host;
+        this.undecorate = this.opts.decorate?.(host);
 
         this.observer = new MutationObserver(() => this.check());
         const root = doc.getElementById("matrixchat");
         if (root) this.observer.observe(root, { childList: true, subtree: true });
         this.timers.push(window.setTimeout(() => this.remove(false), this.opts.timeoutMs ?? 60_000));
+        // What `hold` waits for doesn't change the DOM, so look again now and then.
+        if (this.opts.hold) this.intervals.push(window.setInterval(() => this.check(), HOLD_CHECK_MS));
         this.check();
     }
 
@@ -89,6 +103,8 @@ export class SnapshotOverlay {
         this.done = true;
         this.observer?.disconnect();
         for (const t of this.timers) clearTimeout(t);
+        for (const t of this.intervals) clearInterval(t);
+        this.undecorate?.();
         const host = this.host;
         if (host) {
             host.removeEventListener("click", this.onClick, true);
@@ -109,7 +125,9 @@ export class SnapshotOverlay {
             case "loading":
                 return;
             case "other":
-                this.remove(false);
+                if (this.opts.hold?.()) return;
+                // Fades when it was holding: Element has just finished the sync it waited for.
+                this.remove(!!this.opts.hold);
                 return;
             case "ready": {
                 const rows = this.doc.querySelector("#matrixchat .mx_RoomListItemView");
@@ -149,23 +167,7 @@ export const css = `
     transition: opacity ${FADE_MS}ms ease-out;
 }
 .${HOST_CLASS} > .mx_MatrixChat_wrapper { height: 100%; }
-.${HOST_CLASS} * { animation: none !important; }
+.${HOST_CLASS} > .mx_MatrixChat_wrapper * { animation: none !important; }
 .${HOST_CLASS}_out { opacity: 0; pointer-events: none; }
 .${HOST_CLASS}_picked { background: var(--cpd-color-bg-action-secondary-pressed, rgba(0, 0, 0, 0.08)) !important; }
-.${HOST_CLASS}_bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 2px;
-    width: 30%;
-    background: var(--cpd-color-bg-accent-rest, #0b7a52);
-    animation: speed-start-bar 1.1s ease-in-out infinite !important;
-}
-@keyframes speed-start-bar {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(340%); }
-}
-@media (prefers-reduced-motion: reduce) {
-    .${HOST_CLASS}_bar { animation: none !important; width: 100%; opacity: 0.4; }
-}
 `;

@@ -1,7 +1,7 @@
 {
     "name": "@datanauten/element-web-module-speed-start",
-    "version": "0.1.0",
-    "description": "Element Web module: draws your last room list instantly on start, while Element loads",
+    "version": "0.2.0",
+    "description": "Element Web module: draws your last room list instantly on start, and says in plain words what Element is doing while it loads",
     "private": true,
     "type": "module",
     "main": "lib/index.js",
