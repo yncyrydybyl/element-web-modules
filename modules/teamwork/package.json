@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-teamwork",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Element Web module: schedule send, important/urgent delivery, saved messages and praise, built on Matrix (delayed events, push rules, account data)",
     "private": true,
     "type": "module",
