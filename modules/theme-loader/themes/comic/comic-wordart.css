@@ -531,3 +531,10 @@ html[data-tl-theme="comic-wordart"] .mx_Field label,
 html[data-tl-theme="comic-wordart"] .mx_Dialog .mx_SettingsFlag_microcopy,
 html[data-tl-theme="comic-wordart"] .mx_Dialog p { color: #222222; }
 html[data-tl-theme="comic-wordart"] .mx_Field label { background-color: #c0c0c0; }
+
+/* quick switcher: the highlighted row uses --cpd-color-bg-action-tertiary-hovered (Win95 navy selection), so its
+   text needs the matching white selection text (was black/navy on navy, 1.31:1, THM-02). */
+html[data-tl-theme="comic-wordart"] .tl-ui .tl-quick-item-sel,
+html[data-tl-theme="comic-wordart"] .tl-ui .tl-quick-item-sel * {
+  color: #ffffff;
+}

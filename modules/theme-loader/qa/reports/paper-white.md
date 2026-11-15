@@ -1,9 +1,9 @@
 # Edge check: Paper · White
 
 - id: `paper-white` · stage: `level-1`
-- base: http://localhost:5400 · 2026-11-15T03:51:53.940Z
+- base: http://localhost:5400 · 2026-11-15T15:12:51.320Z
 - loader: html[data-tl-theme] = `paper-white`
-- result: **pass** — axe serious/critical nodes 26 (contrast 4), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 5
+- result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -57,9 +57,7 @@ axe: no violations
 
 ## login
 
-| axe rule | impact | nodes | example |
-|---|---|---|---|
-| color-contrast | serious | 4 | `a[href$="blog"]` |
+axe: no violations
 
 
 ## Console errors
@@ -72,4 +70,3 @@ axe: no violations
 - `Error encountered in useMap Error: MapStyleUrlNotConfigured
     at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)
     at http://localhost:5400/bundles/15abcc1153d692ae1ae9/51`
-- `Failed to display image https://matrix.datanauten.de/_matrix/media/v3/download/datanauten.de/2026-11-15_ovBkqmyaSoMtZKRV?allow_redirect=true Event`

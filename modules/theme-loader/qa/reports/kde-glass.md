@@ -1,9 +1,9 @@
 # Edge check: Breeze · Glass
 
 - id: `kde-glass` · stage: `exciting`
-- base: http://localhost:5400 · 2026-11-15T04:09:21.593Z
+- base: http://localhost:5400 · 2026-11-15T15:12:33.498Z
 - loader: html[data-tl-theme] = `kde-glass`
-- result: **pass** — axe serious/critical nodes 17 (contrast 2), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 22 (contrast 2), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -25,7 +25,7 @@
 |---|---|---|---|
 | color-contrast | serious | 1 | `.mx_Pill_text` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\31 5 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
@@ -40,8 +40,9 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
+| aria-prohibited-attr | serious | 4 | `span[title="@themes-mira:datanauten.de"][data-color="3"][aria-label="P` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 3 | `#\31 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 4 | `#\33 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings

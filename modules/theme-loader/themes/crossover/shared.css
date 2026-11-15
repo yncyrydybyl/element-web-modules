@@ -45,3 +45,8 @@ html[data-tl-theme="x-teams-sketch"].twl-docked .mx_RoomHeader .mx_RoomHeader_in
   html[data-tl-theme="x-kde-e16"] .mx_RoomHeader { padding-right: 16px; }
   html[data-tl-theme="x-teams-sketch"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after { display: none; }
 }
+
+/* tooltips: floating-ui places them at left 0 and shifts them 5 px in from the edge, so a tooltip as wide as the
+   viewport (this family's larger tooltip font, e.g. the composer's "not end-to-end encrypted") overflowed the page
+   by 5 px at 320 px (VP-04). Cap the width to the viewport minus that padding. */
+html[data-tl-family="crossover"] [class*="_tooltip_"] { box-sizing: border-box; max-width: min(580px, calc(100vw - 10px)) !important; }

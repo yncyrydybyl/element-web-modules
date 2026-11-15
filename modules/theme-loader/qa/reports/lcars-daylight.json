@@ -5,26 +5,10 @@
   "stage": "pure",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T04:36:06.448Z",
+  "started": "2026-11-15T15:00:59.324Z",
   "views": {
     "home": {
       "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 2,
-          "samples": [
-            {
-              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "div[title=\"Jonas Brandt\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
         {
           "id": "nested-interactive",
           "impact": "serious",
@@ -56,30 +40,6 @@
     "timeline": {
       "axe": [
         {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 14,
-          "samples": [
-            {
-              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "div[title=\"Jonas Brandt\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "div[title=\"Theme Lab · Sandbox\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "button[data-lc-code=\"82-4641\"] > ._container_vaz9j_49._flex_4dswl_9 > ._content_vaz9j_86._flex_4dswl_9 > ._ellipsis_vaz9j_95 > ._roomName_vaz9j_96[data-testid=\"room-name\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
-        {
           "id": "nested-interactive",
           "impact": "serious",
           "help": "Interactive controls must not be nested",
@@ -110,30 +70,6 @@
     "bubble": {
       "axe": [
         {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 14,
-          "samples": [
-            {
-              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "div[title=\"Jonas Brandt\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "div[title=\"Theme Lab · Sandbox\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "button[data-lc-code=\"82-4641\"] > ._container_vaz9j_49._flex_4dswl_9 > ._content_vaz9j_86._flex_4dswl_9 > ._ellipsis_vaz9j_95 > ._roomName_vaz9j_96[data-testid=\"room-name\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
-        {
           "id": "nested-interactive",
           "impact": "serious",
           "help": "Interactive controls must not be nested",
@@ -156,11 +92,11 @@
           "count": 2,
           "samples": [
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -179,30 +115,6 @@
     },
     "irc": {
       "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 14,
-          "samples": [
-            {
-              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "div[title=\"Jonas Brandt\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "div[title=\"Theme Lab · Sandbox\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": "button[data-lc-code=\"82-4641\"] > ._container_vaz9j_49._flex_4dswl_9 > ._content_vaz9j_86._flex_4dswl_9 > ._ellipsis_vaz9j_95 > ._roomName_vaz9j_96[data-testid=\"room-name\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
         {
           "id": "nested-interactive",
           "impact": "serious",
@@ -234,26 +146,26 @@
     "thread": {
       "axe": [
         {
-          "id": "color-contrast",
+          "id": "aria-prohibited-attr",
           "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 8,
+          "help": "Elements must only use permitted ARIA attributes",
+          "count": 4,
           "samples": [
             {
-              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+              "target": "span[title=\"@themes-mira:datanauten.de\"][data-color=\"3\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             },
             {
-              "target": "div[title=\"Jonas Brandt\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "target": "span[title=\"@themes-jonas:datanauten.de\"][data-color=\"3\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             },
             {
-              "target": "div[title=\"Theme Lab · Sandbox\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "target": "span[title=\"@themes-lena:datanauten.de\"][data-color=\"6\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             },
             {
-              "target": "button[data-lc-code=\"82-4641\"] > ._container_vaz9j_49._flex_4dswl_9 > ._content_vaz9j_86._flex_4dswl_9 > ._ellipsis_vaz9j_95 > ._roomName_vaz9j_96[data-testid=\"room-name\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "target": ".mx_GenericEventListSummary_avatars > span[title=\"@themes-theo:datanauten.de\"][data-color=\"4\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             }
           ]
         },
@@ -277,18 +189,22 @@
           "id": "scrollable-region-focusable",
           "impact": "serious",
           "help": "Scrollable region must have keyboard access",
-          "count": 3,
+          "count": 4,
           "samples": [
             {
-              "target": "#\\31 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\32 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\33 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\33 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\31 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -354,8 +270,8 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
   ],
   "summary": {
-    "axeSerious": 67,
-    "contrastNodes": 52,
+    "axeSerious": 20,
+    "contrastNodes": 0,
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
@@ -365,8 +281,8 @@
   },
   "themeStatus": {
     "tlTheme": "lcars-daylight",
-    "tlPhase": "night",
+    "tlPhase": "day",
     "wanted": "lcars-daylight"
   },
-  "finished": "2026-11-15T04:37:33.879Z"
+  "finished": "2026-11-15T15:01:51.919Z"
 }

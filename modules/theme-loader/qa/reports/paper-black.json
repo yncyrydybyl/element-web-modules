@@ -5,30 +5,10 @@
   "stage": "level-1",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T03:58:39.403Z",
+  "started": "2026-11-15T15:13:08.921Z",
   "views": {
     "home": {
       "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 3,
-          "samples": [
-            {
-              "target": ".mx_HomePage_button_sendDm",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.14 (foreground color: #ffffff, background color: #6cb6ff, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".mx_HomePage_button_explore",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.14 (foreground color: #ffffff, background color: #6cb6ff, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".mx_HomePage_button_createGroup",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.14 (foreground color: #ffffff, background color: #6cb6ff, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
         {
           "id": "nested-interactive",
           "impact": "serious",
@@ -82,7 +62,7 @@
           "count": 1,
           "samples": [
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 5 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -124,11 +104,11 @@
           "count": 2,
           "samples": [
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 5 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -170,7 +150,7 @@
           "count": 1,
           "samples": [
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 5 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -189,6 +169,30 @@
     },
     "thread": {
       "axe": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "help": "Elements must only use permitted ARIA attributes",
+          "count": 4,
+          "samples": [
+            {
+              "target": "span[title=\"@themes-mira:datanauten.de\"][data-color=\"3\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
+            },
+            {
+              "target": "span[title=\"@themes-jonas:datanauten.de\"][data-color=\"3\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
+            },
+            {
+              "target": "span[title=\"@themes-lena:datanauten.de\"][data-color=\"6\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
+            },
+            {
+              "target": ".mx_GenericEventListSummary_avatars > span[title=\"@themes-theo:datanauten.de\"][data-color=\"4\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
+            }
+          ]
+        },
         {
           "id": "nested-interactive",
           "impact": "serious",
@@ -209,18 +213,22 @@
           "id": "scrollable-region-focusable",
           "impact": "serious",
           "help": "Scrollable region must have keyboard access",
-          "count": 3,
+          "count": 4,
           "samples": [
             {
-              "target": "#\\31 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\33 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\34 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\34 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\31 5 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -246,7 +254,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -284,8 +292,8 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
   ],
   "summary": {
-    "axeSerious": 20,
-    "contrastNodes": 3,
+    "axeSerious": 22,
+    "contrastNodes": 0,
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
@@ -298,5 +306,5 @@
     "tlPhase": null,
     "wanted": "paper-black"
   },
-  "finished": "2026-11-15T04:02:17.639Z"
+  "finished": "2026-11-15T15:13:52.568Z"
 }

@@ -5,7 +5,7 @@
   "stage": "crossover",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T04:39:31.781Z",
+  "started": "2026-11-15T15:14:55.423Z",
   "views": {
     "home": {
       "axe": [
@@ -39,18 +39,6 @@
     },
     "timeline": {
       "axe": [
-        {
-          "id": "aria-command-name",
-          "impact": "serious",
-          "help": "ARIA commands must have an accessible name",
-          "count": 1,
-          "samples": [
-            {
-              "target": ".mx_MStickerBody_wrapper",
-              "summary": "Fix any of the following:   Element does not have text that is visible to screen readers"
-            }
-          ]
-        },
         {
           "id": "nested-interactive",
           "impact": "serious",
@@ -304,7 +292,7 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
   ],
   "summary": {
-    "axeSerious": 23,
+    "axeSerious": 22,
     "contrastNodes": 0,
     "overflowViews": 0,
     "missing": 0,
@@ -318,5 +306,5 @@
     "tlPhase": null,
     "wanted": "x-teams-sketch"
   },
-  "finished": "2026-11-15T04:41:21.725Z"
+  "finished": "2026-11-15T15:15:37.949Z"
 }

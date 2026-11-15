@@ -1,9 +1,9 @@
 # Edge check: Teams · Night City
 
 - id: `teams-cyberpunk` · stage: `cyberpunk`
-- base: http://localhost:5400 · 2026-11-15T04:08:39.315Z
+- base: http://localhost:5400 · 2026-11-15T15:07:21.170Z
 - loader: html[data-tl-theme] = `teams-cyberpunk`
-- result: **pass** — axe serious/critical nodes 23 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 23 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 
 ## home
 
@@ -48,6 +48,7 @@
 
 axe: no violations
 
+- no visible focus on 1/11 Tab stops: `div[aria-label="Send an unencrypted message…"]`
 
 ## modal
 

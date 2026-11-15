@@ -1,9 +1,9 @@
 # Edge check: Crossover · Teams, sketched by the PM
 
 - id: `x-teams-sketch` · stage: `crossover`
-- base: http://localhost:5400 · 2026-11-15T04:41:21.725Z
+- base: http://localhost:5400 · 2026-11-15T15:15:37.949Z
 - loader: html[data-tl-theme] = `x-teams-sketch`
-- result: **pass** — axe serious/critical nodes 23 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -16,7 +16,6 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| aria-command-name | serious | 1 | `.mx_MStickerBody_wrapper` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 | scrollable-region-focusable | serious | 1 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
 

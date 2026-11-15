@@ -5,7 +5,7 @@
   "stage": "level-1",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T04:55:38.976Z",
+  "started": "2026-11-15T14:56:49.568Z",
   "views": {
     "home": {
       "axe": [
@@ -254,5 +254,5 @@
     "tlPhase": null,
     "wanted": "comic-casual-friday"
   },
-  "finished": "2026-11-15T04:56:11.999Z"
+  "finished": "2026-11-15T14:57:24.279Z"
 }

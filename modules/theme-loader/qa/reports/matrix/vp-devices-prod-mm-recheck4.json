@@ -1,0 +1,732 @@
+{
+ "run": "vp-devices-prod-mm-recheck4",
+ "base": "https://element.datanauten.de",
+ "started": "2026-11-15T15:07:45.077Z",
+ "mobileDist": "e969d749976a",
+ "mode": "devices",
+ "mobileModule": true,
+ "themes": 2,
+ "finished": "2026-11-15T15:09:45.997Z",
+ "results": [
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"win311-default\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "tl=win311-default mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "room 378px, back → 11 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm-recheck4/win311-default--iphone15.png"
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "{\"mobile\":\"coarse\",\"pointer\":\"coarse\",\"orient\":\"landscape\",\"compact\":true,\"tl\":\"win311-default\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "tl=win311-default mt=coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"win311-default\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "tl=win311-default mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "9 targets ≥ 44px",
+   "shot": null
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "room 832px, back → 6 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm-recheck4/win311-default--iphone15-land.png"
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "room 308px, back → 8 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm-recheck4/win311-default--se.png"
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "390x504: composer 452-474 inVp true, 0 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm-recheck4/win311-default--iphone15.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "10 targets ≥ 44px",
+   "shot": null
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm-recheck4/win311-default--iphone15-rotated.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "9 targets ≥ 44px",
+   "shot": null
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "844x190: composer 138-160 inVp true, 0 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm-recheck4/win311-default--iphone15-land.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "panel 367/390px (layout innerWidth 390), close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm-recheck4/win311-default--iphone15.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "374px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "320x228: composer 167-207 inVp true, 0 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm-recheck4/win311-default--se.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm-recheck4/win311-default--iphone15-land-rotated.png"
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "panel 347px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm-recheck4/win311-default--iphone15.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm-recheck4/win311-default--iphone15.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm-recheck4/win311-default--se-rotated.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "panel 821/844px (layout innerWidth 844), close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm-recheck4/win311-default--iphone15-land.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "panel 297/320px (layout innerWidth 320), close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm-recheck4/win311-default--se.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "{\"inVp\":true,\"w\":828,\"close\":false}",
+   "shot": "recordings/tests/MOB-06/vp-devices-prod-mm-recheck4/win311-default--iphone15-land.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "304px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "panel 801px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm-recheck4/win311-default--iphone15-land.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm-recheck4/win311-default--iphone15-land.png"
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "panel 277px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm-recheck4/win311-default--se.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm-recheck4/win311-default--se.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"lcars-tng\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "tl=lcars-tng mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"lcars-tng\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "tl=lcars-tng mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "room 390px, back → 11 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm-recheck4/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "{\"mobile\":\"coarse\",\"pointer\":\"coarse\",\"orient\":\"landscape\",\"compact\":true,\"tl\":\"lcars-tng\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "tl=lcars-tng mt=coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "exception: locator.tap: Timeout 6000ms exceeded.",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm-recheck4/lcars-tng--se.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "9 targets ≥ 44px",
+   "shot": null
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "room 844px, back → 5 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm-recheck4/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "9 targets ≥ 44px",
+   "shot": null
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "390x504: composer 426-468 inVp true, 0 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm-recheck4/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "10 targets ≥ 44px",
+   "shot": null
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "exception: locator.tap: Timeout 6000ms exceeded.",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm-recheck4/lcars-tng--se.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm-recheck4/lcars-tng--iphone15-rotated.png"
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "844x190: composer 115-139 inVp true, 0 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm-recheck4/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "{\"room\":true,\"draft\":\"\"}",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm-recheck4/lcars-tng--se-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "panel 386/390px (layout innerWidth 390), close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm-recheck4/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm-recheck4/lcars-tng--iphone15-land-rotated.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "374px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "panel 344px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm-recheck4/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "panel 838/844px (layout innerWidth 844), close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm-recheck4/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm-recheck4/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "828px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "panel 798px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm-recheck4/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm-recheck4/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "panel 316/320px (layout innerWidth 320), close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm-recheck4/lcars-tng--se.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "{\"inVp\":true,\"w\":304,\"close\":false}",
+   "shot": "recordings/tests/MOB-06/vp-devices-prod-mm-recheck4/lcars-tng--se.png"
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "panel 274px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm-recheck4/lcars-tng--se.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm-recheck4/lcars-tng--se.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  }
+ ]
+}

@@ -1,9 +1,9 @@
 # Edge check: Windows 3.11 · Usable
 
 - id: `win311-usable` · stage: `usable`
-- base: http://localhost:5400 · 2026-11-15T04:14:11.012Z
+- base: http://localhost:5400 · 2026-11-15T15:16:56.276Z
 - loader: html[data-tl-theme] = `win311-usable`
-- result: **pass** — axe serious/critical nodes 15 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 10 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -24,7 +24,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\31 5 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
@@ -36,11 +36,7 @@
 
 ## thread
 
-| axe rule | impact | nodes | example |
-|---|---|---|---|
-| nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 3 | `#\31 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
-
+Could not check: locator.waitFor: Timeout 20000ms exceeded.
 
 ## settings
 

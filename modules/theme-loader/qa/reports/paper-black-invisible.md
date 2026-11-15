@@ -1,15 +1,14 @@
 # Edge check: Paper · Black Invisible
 
 - id: `paper-black-invisible` · stage: `level-5` · **report-only** (unreadable by design)
-- base: http://localhost:5400 · 2026-11-15T04:23:37.235Z
+- base: http://localhost:5400 · 2026-11-15T15:14:33.047Z
 - loader: html[data-tl-theme] = `paper-black-invisible`
-- result: **pass** — axe serious/critical nodes 25 (contrast 3), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 3 | `.mx_HomePage_button_sendDm` |
 | nested-interactive | serious | 2 | `.mx_SpaceButton_active` |
 
 
@@ -17,9 +16,8 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| aria-command-name | serious | 1 | `.mx_MStickerBody_wrapper` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 1 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
+| scrollable-region-focusable | serious | 1 | `#\31 5 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## bubble
@@ -27,7 +25,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
+| scrollable-region-focusable | serious | 2 | `#\31 5 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
@@ -35,7 +33,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 1 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
+| scrollable-region-focusable | serious | 1 | `#\31 5 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## thread
@@ -44,7 +42,7 @@
 |---|---|---|---|
 | aria-prohibited-attr | serious | 4 | `span[title="@themes-mira:datanauten.de"][data-color="3"][aria-label="P` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 3 | `#\32 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 3 | `#\33 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings

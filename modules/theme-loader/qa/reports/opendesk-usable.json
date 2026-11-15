@@ -5,7 +5,7 @@
   "stage": "usable",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T10:51:58.900Z",
+  "started": "2026-11-15T15:02:33.300Z",
   "views": {
     "home": {
       "axe": [
@@ -295,5 +295,5 @@
     "tlPhase": null,
     "wanted": "opendesk-usable"
   },
-  "finished": "2026-11-15T10:52:43.804Z"
+  "finished": "2026-11-15T15:03:11.176Z"
 }

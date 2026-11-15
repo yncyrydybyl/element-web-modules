@@ -5,7 +5,7 @@
   "stage": "exciting",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T05:08:58.103Z",
+  "started": "2026-11-15T15:08:00.873Z",
   "views": {
     "home": {
       "axe": [
@@ -282,5 +282,5 @@
     "tlPhase": null,
     "wanted": "e-aurora"
   },
-  "finished": "2026-11-15T05:09:38.244Z"
+  "finished": "2026-11-15T15:08:46.888Z"
 }

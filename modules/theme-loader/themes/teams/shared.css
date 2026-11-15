@@ -973,6 +973,9 @@ html[data-tl-family="teams"] .mx_MessageComposer_sendMessage {
 html[data-tl-family="teams"] .mx_MessageComposer_row {
   padding-inline-start: 20px;
   position: relative;
+  /* Element gives the row width: 100%; the start padding (34 px in cyberpunk) must not push the actions past the
+     wrapper's right edge (VP-10: "More options" half off-screen at <= 768 px) */
+  box-sizing: border-box;
 }
 html[data-tl-family="teams"] .mx_MessageComposer_e2eIconWrapper {
   position: absolute;

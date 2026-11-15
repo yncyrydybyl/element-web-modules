@@ -582,6 +582,7 @@ html[data-tl-family="win311"] .mx_MessageComposer {
   border-top: 1px solid var(--w-frame);
   padding: 6px 8px !important;
   margin: 0 !important;
+  box-sizing: border-box;   /* Element sizes it at width 100%: the padding must not push "More options" off the edge */
   & .mx_MessageComposer_wrapper { padding: 0 !important; margin: 0; }
   & .mx_MessageComposer_row { gap: 6px; align-items: center; }
   & .mx_SendMessageComposer, & .mx_WysiwygComposer_Editor, & .mx_BasicMessageComposer {
@@ -929,6 +930,8 @@ html[data-tl-family="win311"] {
     border-radius: 0 !important; background: var(--w-window) !important; color: var(--w-text) !important;
     border: 1px solid var(--w-frame) !important; box-shadow: none !important;
     font: 400 var(--w-size)/18px var(--w-font) !important; padding: 1px 4px !important;
+    /* floating-ui shifts tooltips 5 px in from the edge: never wider than the viewport minus that (VP-04 at 320) */
+    box-sizing: border-box; max-width: min(580px, calc(100vw - 10px)) !important;
     & * { color: var(--w-text) !important; }
     & svg[class*="_arrow_"], & [class*="_arrow_"] { display: none !important; }
   }
@@ -1161,4 +1164,34 @@ html[data-tl-family="win311"] {
   }
   & .speed-start-card_meter { border-radius: 0 !important; background: var(--w-window) !important; border: 1px solid var(--w-frame); }
   & .speed-start-card_fill { background: var(--w-hilight) !important; }
+}
+
+/* ===================================== Phones (mobile-themes module) ================================== */
+/* With the mobile-themes module (it sets html[data-mt-mobile]) the room view is a single maximized MDI child.
+   Win 3.1 merges a maximized child's title into the application title ("Element – [Room]", kept) and drops its
+   frame; the menu bar (its items are all reachable elsewhere: header palette button / Alt+Shift+T, the control
+   box's "Switch To…", room info) goes too. Before, the 20 px menu bar plus the child's 18 px title-bar strip sat
+   on top of the module's 56 px room header and covered its back button and the room name (VP-03/05/10). */
+html[data-tl-family="win311"][data-mt-mobile] {
+  & .mx_MatrixChat_wrapper { padding: 0; }
+  & .mx_MatrixChat { box-shadow: none !important; padding-top: calc(var(--w-title-h) + 1px) !important; }
+  & .mx_MatrixChat::after { display: none; }
+  & #tl-overlay-root .w311-menubar { display: none; }
+  & .mx_MatrixChat > [data-group] { padding: 0; }
+  & #left-panel > .mx_LeftPanel_panel,
+  & [data-group] > [data-panel]:not(#left-panel) > .mx_LeftPanel_panel:not(:has(.mx_MainSplit)),
+  & .mx_MainSplit > .mx_RoomView_body,
+  & .mx_RightPanel {
+    margin: 0 !important; border: 0; box-shadow: none !important;
+  }
+  & .mx_RightPanel_ResizeWrapper { padding: 0; }
+  /* child title-bar decorations (control-menu box, ▼▲) on the module's toolbar-style header: gone. The module
+     reuses .mx_RoomHeader::after as a flex row break for its "⋯" row, so only neutralise our absolute box. */
+  & .mx_RoomHeader::before { display: none; }
+  /* the room avatar is an invisible 18 px control-menu box at the header's top-left corner on desktop; the module
+     sizes it to a 44 px target, so it became an invisible 44 px box on top of the module's back button. There is no
+     control box on the toolbar, so drop it and leave the width to the room name. */
+  & .mx_RoomHeader > .mx_BaseAvatar { display: none !important; }
+  & .mx_RoomHeader::after { position: static; width: auto; height: 0; background: none; }
+  &:not([data-mt-header-more]) .mx_RoomHeader::after { content: none; }
 }

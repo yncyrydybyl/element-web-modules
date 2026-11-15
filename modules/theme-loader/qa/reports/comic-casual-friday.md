@@ -1,7 +1,7 @@
 # Edge check: Comic Sans · Casual Friday
 
 - id: `comic-casual-friday` · stage: `level-1`
-- base: http://localhost:5400 · 2026-11-15T04:56:11.999Z
+- base: http://localhost:5400 · 2026-11-15T14:57:24.279Z
 - loader: html[data-tl-theme] = `comic-casual-friday`
 - result: **pass** — axe serious/critical nodes 15 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 

@@ -1,7 +1,7 @@
 # Edge check: openDesk · Barrierefrei
 
 - id: `opendesk-usable` · stage: `usable`
-- base: http://localhost:5400 · 2026-11-15T10:52:43.804Z
+- base: http://localhost:5400 · 2026-11-15T15:03:11.176Z
 - loader: html[data-tl-theme] = `opendesk-usable`
 - result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 

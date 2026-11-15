@@ -5,7 +5,7 @@
   "stage": "crossover",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T04:32:52.891Z",
+  "started": "2026-11-15T15:14:33.391Z",
   "views": {
     "home": {
       "axe": [
@@ -294,5 +294,5 @@
     "tlPhase": null,
     "wanted": "x-win311-lcars"
   },
-  "finished": "2026-11-15T04:34:25.709Z"
+  "finished": "2026-11-15T15:15:14.770Z"
 }

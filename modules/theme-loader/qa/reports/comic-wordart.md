@@ -1,7 +1,7 @@
 # Edge check: Comic Sans · WordArt 97
 
 - id: `comic-wordart` · stage: `level-3`
-- base: http://localhost:5400 · 2026-11-15T04:57:30.567Z
+- base: http://localhost:5400 · 2026-11-15T14:57:38.376Z
 - loader: html[data-tl-theme] = `comic-wordart`
 - result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
@@ -24,7 +24,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\31 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
 
 
 ## irc
@@ -32,7 +32,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 1 | `#\31 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 1 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
 
 
 ## thread

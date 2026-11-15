@@ -5,7 +5,7 @@
   "stage": "exciting",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T04:47:57.314Z",
+  "started": "2026-11-15T15:00:21.773Z",
   "views": {
     "home": {
       "axe": [
@@ -92,11 +92,11 @@
           "count": 2,
           "samples": [
             {
-              "target": "#\\38  > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\39  > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -204,7 +204,7 @@
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\38  > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -230,8 +230,10 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 12,
-        "invisible": []
+        "stops": 11,
+        "invisible": [
+          "div[aria-label=\"Send an unencrypted message…\"]"
+        ]
       }
     },
     "modal": {
@@ -273,7 +275,7 @@
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
-    "focusInvisible": 0,
+    "focusInvisible": 1,
     "consoleErrors": 4,
     "fail": false
   },
@@ -282,5 +284,5 @@
     "tlPhase": null,
     "wanted": "lcars-red-alert"
   },
-  "finished": "2026-11-15T04:48:41.575Z"
+  "finished": "2026-11-15T15:00:59.090Z"
 }

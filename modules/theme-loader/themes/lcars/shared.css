@@ -903,6 +903,9 @@ html[data-tl-family="lcars"] .mx_RoomView_myReadMarker { background: var(--lc-ac
 /* ---------- 8. COMPOSER = bottom bar ------------------------------------- */
 html[data-tl-family="lcars"] .mx_MessageComposer {
   position: relative;
+  /* Element sizes the composer at width 100%; with the bottom-bar padding below a content-box composer ran
+     ~25 px past the right edge (MORE pill half off-screen, VP-10; emoji picker anchored off-screen, CMP-05) */
+  box-sizing: border-box;
   padding: 6px calc(var(--lc-bbar) / 2 + var(--lc-gap) + 4px) calc(var(--lc-bbar) + 10px) var(--lc-gap) !important;
   border: 0 !important;
   background:
@@ -1376,7 +1379,9 @@ html[data-tl-family="lcars"] .mx_RightPanel .mx_MessageComposer_actions > * {
 html[data-tl-family="lcars"] .mx_RightPanel .mx_MessageComposer_sendMessage::after { content: "TX"; }
 
 @media (max-width: 800px) {
-  html[data-tl-family="lcars"] {
+  /* [data-tl-theme]: beat the variants' own frame sizes (lower-decks 120 px arm, picard 92, usable 76 left no
+     message column at 320 px) */
+  html[data-tl-family="lcars"][data-tl-theme] {
     --lc-arm: 52px;
     --lc-band: 60px;
     --lc-bar: 12px;

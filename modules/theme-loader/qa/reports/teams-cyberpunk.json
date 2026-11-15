@@ -5,7 +5,7 @@
   "stage": "cyberpunk",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T04:07:19.549Z",
+  "started": "2026-11-15T15:06:42.211Z",
   "views": {
     "home": {
       "axe": [
@@ -246,8 +246,10 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 12,
-        "invisible": []
+        "stops": 11,
+        "invisible": [
+          "div[aria-label=\"Send an unencrypted message…\"]"
+        ]
       }
     },
     "modal": {
@@ -289,7 +291,7 @@
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
-    "focusInvisible": 0,
+    "focusInvisible": 1,
     "consoleErrors": 4,
     "fail": false
   },
@@ -298,5 +300,5 @@
     "tlPhase": null,
     "wanted": "teams-cyberpunk"
   },
-  "finished": "2026-11-15T04:08:39.315Z"
+  "finished": "2026-11-15T15:07:21.170Z"
 }

@@ -639,3 +639,9 @@ html[data-tl-theme="x-win311-lcars"] {
   html[data-tl-theme="x-win311-lcars"] .mx_SpacePanel .mx_SpaceButton::after { content: counter(xl-space, decimal-leading-zero); }
   html[data-tl-theme="x-win311-lcars"] .mx_RoomView_body::before { content: "ROOM  EDIT  VIEW"; }
 }
+/* phones: the MDI frame margins plus Element's 18 px list padding left a < 40 px message column at 320 px
+   (no readable message, VP-02/VP-12) */
+@media (max-width: 400px) {
+  html[data-tl-theme="x-win311-lcars"] .mx_MainSplit > .mx_RoomView_body { margin-right: 4px; }
+  html[data-tl-theme="x-win311-lcars"] .mx_RoomView_MessageList { padding-left: 4px; padding-right: 4px; }
+}

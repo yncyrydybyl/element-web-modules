@@ -5,7 +5,7 @@
   "stage": "usable",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T04:11:48.382Z",
+  "started": "2026-11-15T15:15:57.859Z",
   "views": {
     "home": {
       "axe": [
@@ -92,11 +92,11 @@
           "count": 2,
           "samples": [
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 5 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -144,54 +144,7 @@
       }
     },
     "thread": {
-      "axe": [
-        {
-          "id": "nested-interactive",
-          "impact": "serious",
-          "help": "Interactive controls must not be nested",
-          "count": 2,
-          "samples": [
-            {
-              "target": "div[aria-label=\"Home\"]",
-              "summary": "Fix any of the following:   Element has focusable descendants"
-            },
-            {
-              "target": ".mx_SpaceButton_active",
-              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
-            }
-          ]
-        },
-        {
-          "id": "scrollable-region-focusable",
-          "impact": "serious",
-          "help": "Scrollable region must have keyboard access",
-          "count": 3,
-          "samples": [
-            {
-              "target": "#\\31 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
-              "summary": "Fix any of the following:   Element should have focusable content"
-            },
-            {
-              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
-              "summary": "Fix any of the following:   Element should have focusable content"
-            },
-            {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
-              "summary": "Fix any of the following:   Element should have focusable content"
-            }
-          ]
-        }
-      ],
-      "overflow": {
-        "page": false,
-        "offenders": []
-      },
-      "missing": [],
-      "clipped": [],
-      "focus": {
-        "stops": 11,
-        "invisible": []
-      }
+      "error": "locator.waitFor: Timeout 20000ms exceeded."
     },
     "settings": {
       "axe": [],
@@ -240,7 +193,7 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
   ],
   "summary": {
-    "axeSerious": 15,
+    "axeSerious": 10,
     "contrastNodes": 0,
     "overflowViews": 0,
     "missing": 0,
@@ -254,5 +207,5 @@
     "tlPhase": null,
     "wanted": "win311-usable"
   },
-  "finished": "2026-11-15T04:14:11.012Z"
+  "finished": "2026-11-15T15:16:56.276Z"
 }

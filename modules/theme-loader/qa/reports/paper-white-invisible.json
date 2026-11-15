@@ -5,7 +5,7 @@
   "stage": "level-5",
   "reportOnly": true,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T04:17:28.725Z",
+  "started": "2026-11-15T15:12:51.601Z",
   "views": {
     "home": {
       "axe": [
@@ -33,7 +33,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -75,7 +75,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -121,7 +121,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -163,7 +163,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -237,7 +237,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -250,7 +250,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -263,7 +263,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -302,5 +302,5 @@
     "tlPhase": null,
     "wanted": "paper-white-invisible"
   },
-  "finished": "2026-11-15T04:20:22.542Z"
+  "finished": "2026-11-15T15:13:32.698Z"
 }

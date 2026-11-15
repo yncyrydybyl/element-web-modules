@@ -5,7 +5,7 @@
   "stage": "past",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T03:58:15.696Z",
+  "started": "2026-11-15T14:59:11.865Z",
   "views": {
     "home": {
       "axe": [
@@ -284,5 +284,5 @@
     "tlPhase": null,
     "wanted": "lcars-voyager"
   },
-  "finished": "2026-11-15T03:59:45.172Z"
+  "finished": "2026-11-15T14:59:52.148Z"
 }

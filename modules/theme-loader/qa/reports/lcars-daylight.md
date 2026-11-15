@@ -1,15 +1,14 @@
 # Edge check: LCARS · Ship's Clock
 
 - id: `lcars-daylight` · stage: `pure`
-- base: http://localhost:5400 · 2026-11-15T04:37:33.879Z
+- base: http://localhost:5400 · 2026-11-15T15:01:51.919Z
 - loader: html[data-tl-theme] = `lcars-daylight`
-- result: **pass** — axe serious/critical nodes 67 (contrast 52), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
+- result: **pass** — axe serious/critical nodes 20 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 
 ## home
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 2 | `div[title="Theo Nakamura-Whitfield"]` |
 | nested-interactive | serious | 2 | `.mx_SpaceButton_active` |
 
 
@@ -17,7 +16,6 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 14 | `div[title="Theo Nakamura-Whitfield"]` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
 
@@ -25,16 +23,14 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 14 | `div[title="Theo Nakamura-Whitfield"]` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\31 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 14 | `div[title="Theo Nakamura-Whitfield"]` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
 
@@ -42,9 +38,9 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 8 | `div[title="Theo Nakamura-Whitfield"]` |
+| aria-prohibited-attr | serious | 4 | `span[title="@themes-mira:datanauten.de"][data-color="3"][aria-label="P` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 3 | `#\31 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 4 | `#\32 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings

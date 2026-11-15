@@ -1348,3 +1348,8 @@ html[data-tl-theme="paper-white-invisible"] #tl-overlay-root .tl-paper-strip:hov
 html[data-tl-theme="paper-black-invisible"] #tl-overlay-root .tl-paper-strip:hover::after { color: var(--p-ink); }
 html[data-tl-theme="paper-white-invisible"][data-tl-reveal] #tl-overlay-root .tl-paper-strip,
 html[data-tl-theme="paper-black-invisible"][data-tl-reveal] #tl-overlay-root .tl-paper-strip { display: none; }
+
+/* tooltips: floating-ui places them at left 0 and shifts them 5 px in from the edge, so a tooltip as wide as the
+   viewport (this family's larger tooltip font, e.g. the composer's "not end-to-end encrypted") overflowed the page
+   by 5 px at 320 px (VP-04). Cap the width to the viewport minus that padding. */
+html[data-tl-family="paper"] [class*="_tooltip_"] { box-sizing: border-box; max-width: min(580px, calc(100vw - 10px)) !important; }

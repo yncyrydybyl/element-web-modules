@@ -485,6 +485,11 @@ html[data-tl-theme="comic-geocities"] [class*="_unread-counter_"] {
   outline: 1px solid #800000;
 }
 html[data-tl-theme="comic-geocities"] .mx_RoomListPanel button[class*="_header_"] { background: rgba(232, 221, 232, 0.94); }
+/* 1999 pages don't have sticky headers: section headers scroll with the list. A sticky header (plus Element's
+   absolute sticky copy) sits on top of the first row whenever the list is scrolled (the 88x31 badge strip makes it
+   scroll as soon as the selected room is near the bottom) and hid/blocked that row (SHELL-04). */
+html[data-tl-theme="comic-geocities"] .mx_RoomListPanel [class*="_stickyRow_"] { position: static; }
+html[data-tl-theme="comic-geocities"] .mx_RoomListPanel [class*="_stickyHeader_"] { display: none; }
 
 @media (max-width: 700px) {
   html[data-tl-theme="comic-geocities"] .mx_MatrixChat { padding: 3px; gap: 3px; }

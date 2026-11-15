@@ -1,9 +1,9 @@
 # Edge check: LCARS · Picard
 
 - id: `lcars-picard` · stage: `future`
-- base: http://localhost:5400 · 2026-11-15T04:01:30.521Z
+- base: http://localhost:5400 · 2026-11-15T15:00:21.333Z
 - loader: html[data-tl-theme] = `lcars-picard`
-- result: **pass** — axe serious/critical nodes 25 (contrast 10), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 26 (contrast 6), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 
 ## home
 
@@ -16,7 +16,7 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 3 | `.language-rust` |
+| color-contrast | serious | 2 | `.language-rust` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
 
@@ -24,16 +24,16 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 3 | `.language-rust` |
+| color-contrast | serious | 2 | `.language-rust` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
 
 
 ## irc
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 3 | `.language-rust` |
+| color-contrast | serious | 2 | `.language-rust` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
 
@@ -41,14 +41,16 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
+| aria-prohibited-attr | serious | 4 | `span[title="@themes-mira:datanauten.de"][data-color="3"][aria-label="P` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 3 | `#\31 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 4 | `#\32 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings
 
 axe: no violations
 
+- no visible focus on 1/11 Tab stops: `div[aria-label="Send an unencrypted message…"]`
 
 ## modal
 
@@ -57,9 +59,7 @@ axe: no violations
 
 ## login
 
-| axe rule | impact | nodes | example |
-|---|---|---|---|
-| color-contrast | serious | 1 | `.lc-audio` |
+axe: no violations
 
 
 ## Console errors

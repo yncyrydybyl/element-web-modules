@@ -5,7 +5,7 @@
   "stage": "exciting",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T04:17:44.183Z",
+  "started": "2026-11-15T15:16:24.161Z",
   "views": {
     "home": {
       "axe": [
@@ -61,13 +61,7 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "button._avatar_va14e_8.mx_BaseAvatar[aria-label=\"Open room settings\"]",
-          "text": "S",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -98,11 +92,11 @@
           "count": 2,
           "samples": [
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\38  > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\39  > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -113,13 +107,7 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "button._avatar_va14e_8.mx_BaseAvatar[aria-label=\"Open room settings\"]",
-          "text": "S",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -149,13 +137,7 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "button._avatar_va14e_8.mx_BaseAvatar[aria-label=\"Open room settings\"]",
-          "text": "S",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -210,19 +192,19 @@
           "count": 4,
           "samples": [
             {
-              "target": "#\\34 2 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\32 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\33 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\33 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\38  > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -233,13 +215,7 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "button._avatar_va14e_8.mx_BaseAvatar[aria-label=\"Open room settings\"]",
-          "text": "S",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -252,13 +228,7 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "button._avatar_va14e_8.mx_BaseAvatar[aria-label=\"Open room settings\"]",
-          "text": "S",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -296,41 +266,14 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "button._avatar_va14e_8.mx_BaseAvatar[aria-label=\"Open room settings\"]",
-          "text": "S",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
       }
     },
     "login": {
-      "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 4,
-          "samples": [
-            {
-              "target": "a[href$=\"blog\"]",
-              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.03 (foreground color: #ffffb8, background color: #ffff00, font size: 9.4pt (12.5px), font weight: normal). Expected contrast ra"
-            },
-            {
-              "target": "a:nth-child(2)",
-              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.03 (foreground color: #ffffb8, background color: #ffff00, font size: 9.4pt (12.5px), font weight: normal). Expected contrast ra"
-            },
-            {
-              "target": "a:nth-child(3)",
-              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.03 (foreground color: #ffffb8, background color: #ffff00, font size: 9.4pt (12.5px), font weight: normal). Expected contrast ra"
-            }
-          ]
-        }
-      ],
+      "axe": [],
       "overflow": {
         "page": false,
         "offenders": []
@@ -350,11 +293,11 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
   ],
   "summary": {
-    "axeSerious": 33,
-    "contrastNodes": 13,
+    "axeSerious": 29,
+    "contrastNodes": 9,
     "overflowViews": 0,
     "missing": 0,
-    "clipped": 6,
+    "clipped": 0,
     "focusInvisible": 0,
     "consoleErrors": 4,
     "fail": false
@@ -364,5 +307,5 @@
     "tlPhase": null,
     "wanted": "win311-hotdog"
   },
-  "finished": "2026-11-15T04:21:17.642Z"
+  "finished": "2026-11-15T15:17:08.586Z"
 }

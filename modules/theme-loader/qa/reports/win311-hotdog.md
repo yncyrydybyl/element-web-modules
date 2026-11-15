@@ -1,9 +1,9 @@
 # Edge check: Windows 3.11 · Hot Dog Stand
 
 - id: `win311-hotdog` · stage: `exciting`
-- base: http://localhost:5400 · 2026-11-15T04:21:17.642Z
+- base: http://localhost:5400 · 2026-11-15T15:17:08.586Z
 - loader: html[data-tl-theme] = `win311-hotdog`
-- result: **pass** — axe serious/critical nodes 33 (contrast 13), views with overflow 0, missing/zero-size essentials 0, clipped texts 6, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 29 (contrast 9), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -18,16 +18,14 @@
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
-- clipped (vertical): `button._avatar_va14e_8.mx_BaseAvatar[aria-label="Open room settings"]` “S”
 
 ## bubble
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
 
-- clipped (vertical): `button._avatar_va14e_8.mx_BaseAvatar[aria-label="Open room settings"]` “S”
 
 ## irc
 
@@ -35,7 +33,6 @@
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
-- clipped (vertical): `button._avatar_va14e_8.mx_BaseAvatar[aria-label="Open room settings"]` “S”
 
 ## thread
 
@@ -43,15 +40,13 @@
 |---|---|---|---|
 | aria-prohibited-attr | serious | 4 | `span[title="@themes-mira:datanauten.de"][data-color="3"][aria-label="P` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 4 | `#\34 2 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 4 | `#\32 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
-- clipped (vertical): `button._avatar_va14e_8.mx_BaseAvatar[aria-label="Open room settings"]` “S”
 
 ## settings
 
 axe: no violations
 
-- clipped (vertical): `button._avatar_va14e_8.mx_BaseAvatar[aria-label="Open room settings"]` “S”
 
 ## modal
 
@@ -59,13 +54,10 @@ axe: no violations
 |---|---|---|---|
 | color-contrast | serious | 9 | `#mx_Field_2` |
 
-- clipped (vertical): `button._avatar_va14e_8.mx_BaseAvatar[aria-label="Open room settings"]` “S”
 
 ## login
 
-| axe rule | impact | nodes | example |
-|---|---|---|---|
-| color-contrast | serious | 4 | `a[href$="blog"]` |
+axe: no violations
 
 
 ## Console errors

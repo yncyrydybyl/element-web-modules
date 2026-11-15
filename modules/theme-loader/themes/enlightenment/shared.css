@@ -839,3 +839,10 @@ html[data-tl-family="enlightenment"].twl-docked .mx_RoomHeader { padding-right: 
   html[data-tl-family="enlightenment"] .mx_RoomHeader::after { display: none; }
   html[data-tl-family="enlightenment"] .mx_RoomHeader { padding-right: var(--cpd-space-4x, 16px); }
 }
+
+/* phones: the desktop gaps between the "windows" plus Element's 18 px list padding left the message column
+   < 40 px wide at 320–360 px (e-aurora showed no readable message, VP-02/VP-12). Tighten them. */
+@media (max-width: 480px) {
+  html[data-tl-family="enlightenment"][data-tl-theme] { --e-gap: 2px; }
+  html[data-tl-family="enlightenment"] .mx_RoomView_MessageList { padding-left: 6px; padding-right: 6px; }
+}

@@ -192,6 +192,13 @@ html[data-tl-family="comic"] .ewt-klammi-balloon button {
 html[data-tl-family="comic"] .ewt-klammi-balloon button:active { box-shadow: var(--w95-in); }
 html[data-tl-family="comic"] .ewt-klammi-balloon button:focus-visible { outline: 2px dotted #000000; outline-offset: -5px; }
 html[data-tl-family="comic"] .ewt-klammi img { width: 64px; height: 96px; display: block; }
+/* Klammi lives in the fixed overlay (z 3000) above Element. It ducks away while the user works with a message
+   (hover action bar / context menu: the newest tile's bar sits right under it, TL-22/23) and while any dialog is
+   open (the quick switcher / Themes tab are .tl-ui and must never be covered, VP-09). */
+html[data-tl-family="comic"]:has(.mx_MessageActionBar, .mx_ContextualMenu, .mx_Dialog) .ewt-klammi {
+  visibility: hidden;
+  pointer-events: none;
+}
 @keyframes ewt-klammi-in {
   from { transform: translateY(140px); opacity: 0; }
   to { transform: none; opacity: 1; }

@@ -1094,3 +1094,8 @@ html[data-tl-theme="kde-glass"] :is(.twl-guide-panel, .speed-start-card, .ks-pan
   border: 1px solid rgb(255 255 255 / .12) !important; border-radius: 12px !important;
 }
 html[data-tl-theme="kde-glass"] :is(.ks-backdrop, .srm-backdrop, .pm-backdrop, .rc-backdrop) { background: rgb(0 0 0 / .45) !important; }
+
+/* tooltips: floating-ui places them at left 0 and shifts them 5 px in from the edge, so a tooltip as wide as the
+   viewport (this family's larger tooltip font, e.g. the composer's "not end-to-end encrypted") overflowed the page
+   by 5 px at 320 px (VP-04). Cap the width to the viewport minus that padding. */
+html[data-tl-family="kde"] [class*="_tooltip_"] { box-sizing: border-box; max-width: min(580px, calc(100vw - 10px)) !important; }

@@ -627,6 +627,16 @@ html[data-tl-family="opendesk"] .mx_Dialog {
 }
 html[data-tl-family="opendesk"] .mx_Dialog_border { background: transparent !important; padding: 0 !important; border: 0 !important; box-shadow: none !important; backdrop-filter: none !important; }
 html[data-tl-family="opendesk"] .mx_Dialog_title { font: var(--od-heading-weight) 20px/1.3 var(--od-heading-font); color: var(--od-heading); text-transform: var(--od-heading-transform); }
+/* The suite top bar lives in #tl-overlay-root (z 3000), which paints above Element's dialog/menu containers
+   (they are `isolation: isolate`, z auto). Like the app itself, dialogs open below the bar, never under it
+   (VP-06: the × sat under the bar at <= 414 px), and scroll when taller than the space left. */
+html[data-tl-family="opendesk"][data-od-topbar] .mx_Dialog_wrapper { top: var(--od-bar-h); bottom: 0; height: auto; }
+html[data-tl-family="opendesk"][data-od-topbar] .mx_Dialog { max-height: calc(100dvh - var(--od-bar-h) - 16px); }
+/* phones: fixed-width dialogs (create room = 450 px) shrink to the screen instead of scrolling sideways */
+@media (max-width: 520px) {
+  html[data-tl-family="opendesk"] .mx_Dialog { padding: 24px 16px; }
+  html[data-tl-family="opendesk"] .mx_Dialog .mx_Dialog_fixedWidth { max-width: calc(100vw - 32px); }
+}
 html[data-tl-family="opendesk"] .mx_CompoundDialog,
 html[data-tl-family="opendesk"] [role="dialog"][class*="_dialog_"] { background: var(--od-surface); border-radius: var(--od-radius-dialog); }
 
@@ -719,6 +729,12 @@ html[data-tl-family="opendesk"] .mx_CallView { border-radius: var(--od-radius-ti
 html[data-tl-family="opendesk"] .tl-ui { color: var(--od-text); }
 
 /* ------------------------------------------------------------------ other datanauten modules (production) */
+/* teams-welcome (prod) docks its guide at top: 16px; with the suite top bar it starts below the bar (MOD-02:
+   the bar covered the guide's header and close button). Phones (<= 600 px) anchor it at the bottom: cap its height. */
+html[data-tl-family="opendesk"][data-od-topbar] #teams-welcome-root .twl-panel-frame { top: calc(var(--od-bar-h) + var(--cpd-space-4x)); }
+@media (max-width: 600px) {
+  html[data-tl-family="opendesk"][data-od-topbar] #teams-welcome-root .twl-panel-frame { top: auto; max-height: calc(100dvh - var(--od-bar-h) - 2 * var(--cpd-space-2x)); }
+}
 html[data-tl-family="opendesk"] :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
   border-radius: var(--od-radius-dialog) !important; box-shadow: var(--od-shadow-dialog) !important;
 }
@@ -731,3 +747,8 @@ html[data-tl-family="opendesk"] :is(.act-chip, .fh-chip, .pm-chip, .rc-chip) { b
   html[data-tl-family="opendesk"] *::before,
   html[data-tl-family="opendesk"] *::after { transition: none !important; animation: none !important; }
 }
+
+/* tooltips: floating-ui places them at left 0 and shifts them 5 px in from the edge, so a tooltip as wide as the
+   viewport (this family's larger tooltip font, e.g. the composer's "not end-to-end encrypted") overflowed the page
+   by 5 px at 320 px (VP-04). Cap the width to the viewport minus that padding. */
+html[data-tl-family="opendesk"] [class*="_tooltip_"] { box-sizing: border-box; max-width: min(580px, calc(100vw - 10px)) !important; }
