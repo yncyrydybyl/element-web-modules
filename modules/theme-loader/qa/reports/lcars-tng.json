@@ -5,7 +5,7 @@
   "stage": "pure",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T03:46:02.723Z",
+  "started": "2026-11-15T04:03:12.694Z",
   "views": {
     "home": {
       "axe": [
@@ -202,10 +202,8 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
-        "invisible": [
-          "div[aria-label=\"Send an unencrypted message…\"]"
-        ]
+        "stops": 12,
+        "invisible": []
       }
     },
     "modal": {
@@ -222,28 +220,7 @@
       }
     },
     "login": {
-      "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 4,
-          "samples": [
-            {
-              "target": "a[href$=\"blog\"]",
-              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6e6e93, background color: #000000, font size: 11.3pt (15px), font weight: normal). Expected contrast rat"
-            },
-            {
-              "target": "a:nth-child(2)",
-              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6e6e93, background color: #000000, font size: 11.3pt (15px), font weight: normal). Expected contrast rat"
-            },
-            {
-              "target": "a:nth-child(3)",
-              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6e6e93, background color: #000000, font size: 11.3pt (15px), font weight: normal). Expected contrast rat"
-            }
-          ]
-        }
-      ],
+      "axe": [],
       "overflow": {
         "page": false,
         "offenders": []
@@ -263,12 +240,12 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
   ],
   "summary": {
-    "axeSerious": 19,
-    "contrastNodes": 4,
+    "axeSerious": 15,
+    "contrastNodes": 0,
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
-    "focusInvisible": 1,
+    "focusInvisible": 0,
     "consoleErrors": 4,
     "fail": false
   },
@@ -277,5 +254,5 @@
     "tlPhase": null,
     "wanted": "lcars-tng"
   },
-  "finished": "2026-11-15T03:47:01.906Z"
+  "finished": "2026-11-15T04:06:34.017Z"
 }

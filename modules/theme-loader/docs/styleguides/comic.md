@@ -252,7 +252,7 @@ exports for every GIF.
 | Hashed shared-component classes (event tile states, separators, room list) | `[class*="_local_"]` substring selectors checked against v1.12.33 |
 | GIF animation ignores CSS `animation: none` | swap to static PNG under reduced motion |
 | Whole-app `filter` animation is costly | level 5 only. Measure in phase B and fall back to a `mix-blend-mode: hue` overlay if it janks |
-| Theme switching from inside a theme (PANIC) | needs a loader API, `ctx.api.switchTheme(id)` (requested) |
+| Theme switching from inside a theme (PANIC) | `ctx.switchTheme(id)` / `ctx.previousTheme()` from the loader (CONTRACT §5) |
 
 ## 11. Enhancer plan (`themes/comic/enhance.ts`, one file with per-variant feature flags)
 

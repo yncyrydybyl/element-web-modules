@@ -24,7 +24,10 @@
         }
       ],
       "enhance": true,
-      "schedule": null
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
     },
     {
       "id": "lcars-voyager",
@@ -48,7 +51,10 @@
         }
       ],
       "enhance": true,
-      "schedule": null
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
     },
     {
       "id": "lcars-picard",
@@ -72,7 +78,10 @@
         }
       ],
       "enhance": true,
-      "schedule": null
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
     },
     {
       "id": "lcars-usable",
@@ -95,8 +104,11 @@
           "style": "normal"
         }
       ],
-      "enhance": false,
-      "schedule": null
+      "enhance": true,
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Inter\", \"Antonio\", \"Arial Narrow\", sans-serif"
+      }
     },
     {
       "id": "lcars-red-alert",
@@ -120,7 +132,10 @@
         }
       ],
       "enhance": true,
-      "schedule": null
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
     },
     {
       "id": "lcars-lower-decks",
@@ -144,7 +159,10 @@
         }
       ],
       "enhance": true,
-      "schedule": null
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
     },
     {
       "id": "lcars-daylight",
@@ -184,7 +202,10 @@
           "phase": "night",
           "base": "dark"
         }
-      ]
+      ],
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
     }
   ]
 }

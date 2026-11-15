@@ -1,0 +1,372 @@
+{
+  "theme": "lcars-daylight",
+  "phase": null,
+  "name": "LCARS · Ship's Clock",
+  "stage": "pure",
+  "reportOnly": false,
+  "base": "http://localhost:5400",
+  "started": "2026-11-15T04:36:06.448Z",
+  "views": {
+    "home": {
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 2,
+          "samples": [
+            {
+              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "div[title=\"Jonas Brandt\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": "div[data-rbd-drag-handle-context-id=\"0\"]",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "timeline": {
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 14,
+          "samples": [
+            {
+              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "div[title=\"Jonas Brandt\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "div[title=\"Theme Lab · Sandbox\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "button[data-lc-code=\"82-4641\"] > ._container_vaz9j_49._flex_4dswl_9 > ._content_vaz9j_86._flex_4dswl_9 > ._ellipsis_vaz9j_95 > ._roomName_vaz9j_96[data-testid=\"room-name\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": "div[aria-label=\"Home\"]",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "bubble": {
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 14,
+          "samples": [
+            {
+              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "div[title=\"Jonas Brandt\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "div[title=\"Theme Lab · Sandbox\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "button[data-lc-code=\"82-4641\"] > ._container_vaz9j_49._flex_4dswl_9 > ._content_vaz9j_86._flex_4dswl_9 > ._ellipsis_vaz9j_95 > ._roomName_vaz9j_96[data-testid=\"room-name\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": "div[aria-label=\"Home\"]",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "help": "Scrollable region must have keyboard access",
+          "count": 2,
+          "samples": [
+            {
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "irc": {
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 14,
+          "samples": [
+            {
+              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "div[title=\"Jonas Brandt\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "div[title=\"Theme Lab · Sandbox\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "button[data-lc-code=\"82-4641\"] > ._container_vaz9j_49._flex_4dswl_9 > ._content_vaz9j_86._flex_4dswl_9 > ._ellipsis_vaz9j_95 > ._roomName_vaz9j_96[data-testid=\"room-name\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": "div[aria-label=\"Home\"]",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "thread": {
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 8,
+          "samples": [
+            {
+              "target": "div[title=\"Theo Nakamura-Whitfield\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "div[title=\"Jonas Brandt\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.57 (foreground color: #000000, background color: #8a5a2a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "div[title=\"Theme Lab · Sandbox\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "button[data-lc-code=\"82-4641\"] > ._container_vaz9j_49._flex_4dswl_9 > ._content_vaz9j_86._flex_4dswl_9 > ._ellipsis_vaz9j_95 > ._roomName_vaz9j_96[data-testid=\"room-name\"]",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.33 (foreground color: #000000, background color: #a0641a, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": "div[aria-label=\"Home\"]",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "help": "Scrollable region must have keyboard access",
+          "count": 3,
+          "samples": [
+            {
+              "target": "#\\31 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "settings": {
+      "axe": [],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 11,
+        "invisible": [
+          "div[aria-label=\"Send an unencrypted message…\"]"
+        ]
+      }
+    },
+    "modal": {
+      "axe": [],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "login": {
+      "axe": [],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 0,
+        "invisible": []
+      }
+    }
+  },
+  "consoleErrors": [
+    "Warning! Not using an encryption key for rust crypto store.",
+    "'map_style_url' missing from homeserver .well-known area, and missing from from config.json.",
+    "Failed to render map Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/bundles/",
+    "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
+  ],
+  "summary": {
+    "axeSerious": 67,
+    "contrastNodes": 52,
+    "overflowViews": 0,
+    "missing": 0,
+    "clipped": 0,
+    "focusInvisible": 1,
+    "consoleErrors": 4,
+    "fail": false
+  },
+  "themeStatus": {
+    "tlTheme": "lcars-daylight",
+    "tlPhase": "night",
+    "wanted": "lcars-daylight"
+  },
+  "finished": "2026-11-15T04:37:33.879Z"
+}

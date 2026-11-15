@@ -1,0 +1,123 @@
+/* LCARS · Usable: slim frame, readable content (Inter), icons kept, no decorative motion. */
+html[data-tl-theme="lcars-usable"] {
+  --lc-c1: #ff9900; --lc-c2: #ffcc99; --lc-c3: #cc99cc; --lc-c4: #9999cc;
+  --lc-c5: #cc6666; --lc-c6: #ffcc66; --lc-c7: #9999ff; --lc-c8: #ff9966;
+  --lc-text: #f2ede4;
+  --lc-muted: #b4b4d6;
+  --lc-accent: #ff9900;
+  --lc-crit: #ff6666;
+  --lc-panel: #14141c;
+  --lc-line: #3a3a52;
+
+  --lc-arm: 76px;
+  --lc-band: 58px;
+  --lc-bar: 12px;
+  --lc-bbar: 12px;
+  --lc-gap: 4px;
+  --lc-ro: 36px;
+  --lc-ri: 14px;
+  --lc-pill-h: 44px;
+  --lc-body-font: "Inter", "Twemoji", sans-serif;
+  --lc-body-size: 15px;
+  --lc-body-track: 0;
+  --lc-blink: none;
+}
+/* space stack: keep icons/avatars, no number labels */
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_SpaceButton { min-height: 48px; align-items: center; justify-content: center; padding: 4px !important; }
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_SpaceButton::after,
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_ThreadsActivityCentre_container::after,
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_QuickSettingsButton::after { content: none; }
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_SpaceButton [class*="_avatar_"],
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_SpaceButton_icon,
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_SpaceButton_avatarPlaceholder { width: 32px !important; height: 32px !important; border-radius: 4px !important; }
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_ThreadsActivityCentre_container { height: 48px; bottom: calc(64px + var(--lc-gap)); justify-content: center; align-items: center; }
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_ThreadsActivityCentreButton { margin: 0 !important; }
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel .mx_QuickSettingsButton { height: 64px !important; justify-content: center; align-items: flex-start; padding: 12px 0 0 0 !important; }
+html[data-tl-theme="lcars-usable"] .mx_SpacePanel { padding-bottom: calc(112px + 2 * var(--lc-gap)) !important; }
+
+/* room list: Element rows with a coloured left cap, avatar + preview kept, mixed case */
+html[data-tl-theme="lcars-usable"] .mx_RoomListItemView {
+  background: transparent !important;
+  color: var(--lc-text) !important;
+  border-radius: 0 999px 999px 0 !important;
+  box-shadow: inset 8px 0 0 var(--lc-pill, var(--lc-c2));
+  padding-left: 16px !important;
+  & [class*="_container_"] { align-items: center !important; padding-bottom: 0; }
+  & [class*="_avatar_"], & .mx_RoomAvatarView { display: flex; }
+  & [class*="_avatar_"] { border-radius: 4px !important; }
+  & [class*="_ellipsis_"] { text-align: left; }
+  & [class*="_roomName_"] {
+    color: var(--lc-text) !important;
+    font: 500 15px/1.3 "Inter", sans-serif !important;
+    text-transform: none;
+    letter-spacing: 0;
+    text-align: left;
+  }
+  & [class*="_hoverMenu_"] { order: 0; }
+  & [class*="_notificationDecoration_"] { order: 0; }
+  & [class*="_hoverMenu_"] button, & [class*="_hoverMenu_"] svg, & [class*="_notificationDecoration_"] svg { color: var(--lc-muted) !important; }
+  &:hover { background: var(--lc-panel) !important; filter: none; }
+}
+html[data-tl-theme="lcars-usable"] .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"] { font-weight: 700 !important; }
+html[data-tl-theme="lcars-usable"] .mx_RoomListItemView.mx_RoomListItemView_selected {
+  background: #1e1a14 !important;
+  box-shadow: inset 8px 0 0 var(--lc-accent), inset 0 0 0 1px var(--lc-accent);
+  &::after { display: none; }
+}
+html[data-tl-theme="lcars-usable"] .mx_RoomListItemView [class*="_notificationDecoration_"] [class*="_unread-counter_"] {
+  background: var(--lc-accent) !important; color: #000 !important; border-radius: 999px !important; font-family: "Inter", sans-serif !important; font-size: 12px !important;
+}
+html[data-tl-theme="lcars-usable"] .mx_RoomListPanel > [role="search"] > button { font-family: "Inter", sans-serif !important; font-size: 14px !important; text-transform: none; letter-spacing: 0; }
+html[data-tl-theme="lcars-usable"] .mx_RoomListPanel > header h1 { font-size: 22px !important; }
+
+/* header: icons kept */
+html[data-tl-theme="lcars-usable"] .mx_RoomHeader {
+  & > button[aria-label]::after { content: none !important; }
+  & > button[aria-label] svg { display: block !important; }
+  & > button:not([class*="_avatar_"]):not(.mx_RoomHeader_infoWrapper), & > div > button {
+    background: transparent !important; color: var(--lc-text) !important; padding: 0 !important; align-items: center !important; justify-content: center;
+    width: 32px !important; height: 32px !important;
+  }
+  & > button svg, & > div > button svg { color: var(--lc-muted) !important; width: 22px; height: 22px; }
+  & > button:hover:not(.mx_RoomHeader_infoWrapper) { background: var(--lc-panel) !important; }
+  & .mx_RoomHeader_heading { font-size: 26px !important; }
+  & .mx_RoomHeader_infoWrapper { justify-content: flex-start; text-align: left; }
+  & .mx_RoomHeader_info { justify-content: flex-start; }
+  & .mx_RoomHeader_heading { justify-content: flex-start; text-align: left; }
+}
+/* timeline: Element layout, Inter; run bar only for own messages */
+html[data-tl-theme="lcars-usable"] .mx_EventTile:not([class*="_stateOwnEvent_"]) { --lc-runbar: transparent; }
+html[data-tl-theme="lcars-usable"] .mx_EventTile .mx_DisambiguatedProfile_displayName { font-size: 16px; }
+html[data-tl-theme="lcars-usable"] .mx_EventTile [class*="_slotAvatar_"] [class*="_avatar_"] { outline: 0; border-radius: 4px !important; }
+html[data-tl-theme="lcars-usable"] .mx_EventTile .mx_MessageTimestamp { font-family: "Inter", sans-serif !important; font-size: 12px !important; letter-spacing: 0; }
+html[data-tl-theme="lcars-usable"] .mx_TimelineSeparator, html[data-tl-theme="lcars-usable"] [class*="_dateSeparator_"] { font-size: 14px; }
+
+/* composer: bordered slot, icons kept, SEND pill */
+html[data-tl-theme="lcars-usable"] .mx_MessageComposer {
+  & .mx_SendMessageComposer { border: 1px solid #5a5a7a; border-left: 6px solid var(--lc-c4); border-radius: 8px 0 0 8px; }
+  & .mx_SendMessageComposer:focus-within { border-color: var(--lc-accent); }
+  & .mx_BasicMessageComposer_input [data-placeholder]::before,
+  & .mx_BasicMessageComposer_inputEmpty > :first-child::before { text-transform: none; font-family: "Inter", sans-serif; letter-spacing: 0; }
+  & .mx_MessageComposer_actions > * {
+    background: transparent !important; padding: 0 !important; width: 40px !important; height: 40px !important;
+    align-items: center !important; justify-content: center !important; border-radius: 8px !important;
+  }
+  & .mx_MessageComposer_actions > *::after { content: none !important; }
+  & .mx_MessageComposer_actions > * svg { display: block !important; color: var(--lc-muted) !important; }
+  & .mx_MessageComposer_actions > *:hover { background: var(--lc-panel) !important; }
+  & .mx_MessageComposer_sendMessage::after { content: "SEND"; }
+}
+html[data-tl-theme="lcars-usable"] .mx_RightPanel .mx_MessageComposer_sendMessage::after { content: "SEND"; }
+/* menus/tooltips: mixed case for readability */
+html[data-tl-theme="lcars-usable"] [role="menuitem"], html[data-tl-theme="lcars-usable"] .mx_IconizedContextMenu_item,
+html[data-tl-theme="lcars-usable"] [role="tooltip"] {
+  font-family: "Inter", sans-serif !important; text-transform: none; letter-spacing: 0;
+}
+html[data-tl-theme="lcars-usable"] .mx_Dialog { font-family: "Inter", sans-serif; }
+html[data-tl-theme="lcars-usable"] .mx_TabbedView_tabLabel { font-family: "Inter", sans-serif !important; text-transform: none; letter-spacing: 0; font-size: 14px; }
+html[data-tl-theme="lcars-usable"] .mx_Field label, html[data-tl-theme="lcars-usable"] [class*="_label_"] { font-family: "Inter", sans-serif; text-transform: none; letter-spacing: 0; }
+html[data-tl-theme="lcars-usable"] .mx_RightPanel { font-family: "Inter", sans-serif; }
+html[data-tl-theme="lcars-usable"] .mx_RoomHeader > button[aria-label] svg,
+html[data-tl-theme="lcars-usable"] .mx_MainSplit:has(.mx_RightPanel) .mx_RoomHeader > button[aria-label] svg,
+html[data-tl-theme="lcars-usable"] .mx_MessageComposer_actions > * svg,
+html[data-tl-theme="lcars-usable"] .mx_RightPanel .mx_MessageComposer_actions > * svg { color: var(--lc-muted) !important; fill: var(--lc-muted) !important; }
