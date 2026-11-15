@@ -1,0 +1,29 @@
+/* Variant CSS: scoped to the variant id; phases via data-tl-phase. */
+html[data-tl-theme="demo-night-owl"] .mx_LeftPanel_outerWrapper {
+  background-image: url("assets/owl.svg");
+  background-repeat: no-repeat;
+  background-position: right 8px bottom 8px;
+}
+
+/* The day phase is light: override the dark tokens. */
+html[data-tl-theme="demo-night-owl"][data-tl-phase="day"],
+html[data-tl-theme="demo-night-owl"][data-tl-phase="day"] body,
+html[data-tl-theme="demo-night-owl"][data-tl-phase="day"] [class*="cpd-theme-"] {
+  --cpd-color-bg-canvas-default: #fff8ee;
+  --cpd-color-bg-subtle-secondary: #fbead2;
+  --cpd-color-bg-subtle-primary: #f6dcb6;
+  --cpd-color-text-primary: #2b1d05;
+  --cpd-color-text-secondary: #6d5530;
+  --cpd-color-text-action-accent: #b35c00;
+}
+
+html[data-tl-theme="demo-night-owl"][data-tl-phase="dawn"] {
+  --cpd-color-bg-canvas-default: #2a1d3a;
+}
+
+/* Beats Element's layered `body { font: … !important }` only via the tl-important layer. */
+@layer tl-important {
+  html[data-tl-theme="demo-night-owl"] .mx_EventTile_body {
+    letter-spacing: 0.01em !important;
+  }
+}

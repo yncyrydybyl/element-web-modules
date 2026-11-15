@@ -1,0 +1,9 @@
+{
+  "name": "theme-lab-harness",
+  "private": true,
+  "type": "module",
+  "description": "Screenshot / walkthrough / edge-check harness for element-web-themes. Playwright is taken from NODE_PATH (see README).",
+  "dependencies": {
+    "axe-core": "4.10.2"
+  }
+}

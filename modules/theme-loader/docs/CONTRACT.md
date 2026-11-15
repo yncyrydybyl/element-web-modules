@@ -64,9 +64,21 @@ docs/styleguides/<family>.md   the style guide (design intent, per-variant mappi
 - **Assets** referenced as `url("assets/<file>")`. The build flattens them to `<family>--<file>` next to the module
   (the prod deploy only supports one flat directory) and rewrites the URLs. Fonts must be self-hosted (CSP font-src
   `'self' data:`). No external CSS/fonts. External images are allowed by CSP but avoid them.
+- **ADDED: cross-family assets.** Theme CSS and manifest `fonts[].file` may reference another family's assets as
+  `url("@<family>/assets/<file>")` / `"@<family>/assets/<file>"` (e.g. a crossover reusing win311/lcars fonts). The build
+  resolves it to the flattened `<family>--<file>`; the dev server resolves it live to `themes/<family>/assets/<file>`.
+  The referenced file must exist (validated). Only `assets/…` and `@<family>/assets/…` are allowed in `url()` (no `..`).
+- **ADDED: `!important` against Element's layered `!important`.** Theme CSS is unlayered, except for blocks
+  `@layer tl-important { html[data-tl-theme="x"] … { prop: value !important } }` (same scoping rule inside). The loader
+  declares that layer first in `<head>`, so its `!important` beats Element's (e.g. `body { font: … !important }`).
+  Any other `@layer` and any `@import` fail validation.
+- **ADDED: build validation.** `cd loader && npm run check [family]` validates manifests, files and the scoping rule
+  (every selector must start with `html[data-tl-theme="<id of this family>"]` or `html[data-tl-family="<family>"]`;
+  `@keyframes`/`@font-face` exempt, nested rules inside a scoped rule are fine). The production build fails on any error.
 - **Fonts:** only files with a licence allowing redistribution go in `assets/`. Proprietary brand fonts (Segoe UI,
   Comic Sans MS, MS Sans Serif) are referenced via `local()` first with a free fallback bundled.
   Real logos/brand icons are allowed (internal project, user decision).
+  ADDED: a font entry may carry `"local": ["Segoe UI", …]` (tried before `file`), `"display"` and `"unicodeRange"`.
 
 ## 4. Required coverage (the "region map")
 
@@ -91,6 +103,19 @@ export default {
 
 Enhancers add overlays (title bars, LCARS frames, marquees, sound) into `ctx.root`, may add attributes/classes to
 existing nodes via a MutationObserver, and must fully clean up in `unmount()`. They never throw into Element.
+
+ADDED (full type: `loader/src/types.ts`):
+- `ctx.switchTheme(id: string | null): void` — switch to another variant (`null` = Element default); saved like a
+  picker choice. Runs after the current call returns (your `unmount()` will be called).
+- `ctx.previousTheme(): string | null` — the last theme applied before the current one (persisted across reloads), for
+  "take me back" / PANIC buttons.
+- `ctx.asset(path)` — URL for a family asset (`"assets/beep.mp3"` or `"@other/assets/x.png"`) that works in dev and prod
+  (prod files are flattened and versioned). Never hard-code `/element-modules/…` paths.
+- `ctx.reducedMotion` (boolean), `ctx.log(...)` (prefixed `[theme-loader] [<family>]`).
+- `ctx.root` is `#tl-overlay-root`: `position: fixed; inset: 0; pointer-events: none; z-index: var(--tl-overlay-z, 3000)`
+  — give interactive children `pointer-events: auto`. One enhancer instance per page; `mount` is called again when the
+  user switches between variants of the same family. In dev, enhance.ts is bundled per family on each page load
+  (a compile error only disables that family's enhancer, see the browser console).
 
 ## 6. Daylight variants (local clock)
 
@@ -117,3 +142,11 @@ CSS targets `html[data-tl-theme="x"][data-tl-phase="night"]`. Transitions betwee
   overrides for testing/recording (not persisted).
 - Picker: User Settings → "Themes" tab with gallery, plus a quick switcher button.
 - "Element default" (no loader theme) is always available.
+- ADDED: **`.tl-ui` must stay usable.** All loader UI carries the root class `tl-ui` (plus `tl-picker` for the Themes tab
+  panel/gallery, `tl-switcher` for the quick switcher, `tl-tab-label` for the tab label, `tl-header-button` for the room
+  header button). Every theme must keep `.tl-ui` readable and clickable, and the dialog that contains it
+  (`.mx_Dialog:has(.tl-ui)`), so users can always switch back. Deliberately unreadable variants (sketch-unreadable,
+  comic-unreadable, paper-*-invisible, …) must exempt them from their effects, e.g. `… :not(.tl-ui *)` or by
+  resetting inside `html[data-tl-theme="x"] .tl-ui`. Quick switcher: room-header palette button and **Alt+Shift+T**.
+- ADDED: the html attribute `data-tl-phase-fading` is present for ~2 s after a phase change (the loader's built-in
+  fade); `?tl_theme=none` forces Element default for one page load.
