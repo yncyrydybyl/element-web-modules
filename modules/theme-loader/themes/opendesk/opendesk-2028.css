@@ -1,0 +1,93 @@
+/* openDesk · 2028 — speculative: the opendesk.eu marketing language moved into the product. Space Grotesk
+   headings over Open Sans, floating 16px panels on a lavender → sky → mint canvas, frosted suite bar,
+   violet → sky gradient actions, pill chips, mint presence/success. */
+html[data-tl-theme="opendesk-2028"] {
+  --od-canvas: transparent;
+  --od-sidebar: rgb(255 255 255 / .78);
+  --od-rail: transparent;
+  --od-rail-border: transparent;
+  --od-bar: rgb(255 255 255 / .62);
+  --od-bar-border: rgb(87 30 250 / .10);
+  --od-text: #121f3c;               /* secondary-1000 */
+  --od-heading: #210c5c;            /* primary-1000 */
+  --od-muted: #4d5b79;
+  --od-subtle: #5d6a85;
+  --od-tint: #ece7fe;
+  --od-tint-soft: #f7f5ff;
+  --od-own: #f1edff;
+  --od-sel-bg: linear-gradient(100deg, #571efa 0%, #4a52f0 60%, #2f7fe0 100%);
+  --od-success: #0b7d6c;
+  --od-mention: #e6fbf7;
+  --od-mention-bar: #00e6cc;        /* accent-300 */
+  --od-radius: 10px;
+  --od-radius-tile: 14px;
+  --od-radius-dialog: 22px;
+  --od-heading-font: "Space Grotesk", "Open Sans", sans-serif;
+  --od-heading-weight: 600;
+  --od-gradient: linear-gradient(100deg, #571efa 0%, #4a52f0 55%, #2f7fe0 100%);
+  --od-panel-shadow: 0 1px 2px rgb(33 12 92 / .05), 0 12px 32px rgb(33 12 92 / .08), 0 0 0 1px rgb(87 30 250 / .07);
+  --od-hue-4: #00e6cc;
+}
+html[data-tl-theme="opendesk-2028"] body {
+  background: radial-gradient(1200px 700px at 8% 0%, #ece7fe 0%, transparent 60%),
+    radial-gradient(900px 700px at 100% 30%, #e3f4ff 0%, transparent 60%),
+    radial-gradient(800px 600px at 40% 110%, #dffaf4 0%, transparent 60%), #f7f5ff;
+}
+html[data-tl-theme="opendesk-2028"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="opendesk-2028"] .mx_MatrixChat { background: transparent; }
+html[data-tl-theme="opendesk-2028"] #tl-overlay-root .od-topbar { backdrop-filter: blur(18px) saturate(1.4); }
+html[data-tl-theme="opendesk-2028"] #tl-overlay-root .od-topbar__app { font-family: var(--od-heading-font); font-size: 17px; }
+/* floating panels */
+html[data-tl-theme="opendesk-2028"] .mx_SpacePanel { background: transparent; border: 0; }
+html[data-tl-theme="opendesk-2028"] .mx_LeftPanel,
+html[data-tl-theme="opendesk-2028"] .mx_LeftPanel_outerWrapper,
+html[data-tl-theme="opendesk-2028"] .mx_LeftPanel_wrapper { background: transparent; }
+html[data-tl-theme="opendesk-2028"] .mx_RoomListPanel {
+  margin: 10px 0; height: calc(100% - 20px); border-radius: 18px; overflow: hidden; border: 0;
+  background: var(--od-sidebar); box-shadow: var(--od-panel-shadow); backdrop-filter: blur(14px);
+}
+html[data-tl-theme="opendesk-2028"] .mx_RoomListPanel > [role="search"] { border-bottom: 0; }
+html[data-tl-theme="opendesk-2028"] .mx_RoomListPanel button[class*="_header_"],
+html[data-tl-theme="opendesk-2028"] .mx_RoomListPanel [class*="_stickyBackground_"] { background: transparent; }
+html[data-tl-theme="opendesk-2028"] .mx_Separator,
+html[data-tl-theme="opendesk-2028"] [class*="_separator_"][role="separator"][aria-label] { background: transparent; width: 10px; }
+html[data-tl-theme="opendesk-2028"] .mx_RoomView,
+html[data-tl-theme="opendesk-2028"] .mx_HomePage {
+  margin: 10px 10px 10px 0; height: calc(100% - 20px); border-radius: 18px; overflow: hidden;
+  box-shadow: var(--od-panel-shadow); background: #fff;
+}
+html[data-tl-theme="opendesk-2028"] .mx_RightPanel { border-left: 1px solid #eeeaff; }
+html[data-tl-theme="opendesk-2028"] .mx_RoomHeader { border-bottom-color: #f0edfb; }
+/* pills everywhere */
+html[data-tl-theme="opendesk-2028"] [class*="_chat-filter_"] { border-radius: 999px; padding: 6px 12px; }
+html[data-tl-theme="opendesk-2028"] [class*="_chat-filter_"][aria-selected="true"] { background: var(--od-gradient); border-color: transparent; color: #fff; }
+html[data-tl-theme="opendesk-2028"] .mx_RoomListItemView > [class*="_container_"] { border-radius: 12px; }
+html[data-tl-theme="opendesk-2028"] .mx_RoomListItemView:is(.mx_RoomListItemView_selected, [aria-selected="true"]) > [class*="_container_"] {
+  box-shadow: 0 6px 18px rgb(87 30 250 / .28);
+}
+/* gradient primary actions */
+html[data-tl-theme="opendesk-2028"] [class*="_button_"][data-kind="primary"]:not([class*="_destructive_"]):not([class*="_icon-button_"]),
+html[data-tl-theme="opendesk-2028"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="opendesk-2028"] .mx_Dialog_buttons .mx_Dialog_primary,
+html[data-tl-theme="opendesk-2028"] .mx_MessageComposer_sendMessage {
+  background: var(--od-gradient) !important; border-color: transparent !important; border-radius: 999px !important;
+}
+html[data-tl-theme="opendesk-2028"] [class*="_button_"][data-kind]:not([class*="_icon-button_"]),
+html[data-tl-theme="opendesk-2028"] .mx_AccessibleButton_hasKind:not([class*="kind_link"]):not([class*="kind_icon"]) { border-radius: 999px !important; }
+/* composer: a floating capsule with a gradient hairline when focused */
+html[data-tl-theme="opendesk-2028"] .mx_MessageComposer_row { border-radius: 999px; border-color: #dcd2fe; padding-inline: 8px 6px; }
+html[data-tl-theme="opendesk-2028"] .mx_MessageComposer_row:focus-within {
+  border-color: transparent; box-shadow: none;
+  background: linear-gradient(#fff, #fff) padding-box, var(--od-gradient) border-box; border: 1.5px solid transparent;
+}
+html[data-tl-theme="opendesk-2028"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) .mx_EventTile_line { border-radius: 14px; }
+html[data-tl-theme="opendesk-2028"] [class*="_timelineSeparator_"] h2 { font-family: var(--od-heading-font); background: #f7f5ff; border-color: #ece7fe; }
+html[data-tl-theme="opendesk-2028"] .mx_Dialog { box-shadow: 0 30px 80px rgb(33 12 92 / .25), 0 0 0 1px rgb(87 30 250 / .08); }
+html[data-tl-theme="opendesk-2028"] .mx_Dialog_background { background-color: rgb(33 12 92 / .25); backdrop-filter: blur(6px); }
+html[data-tl-theme="opendesk-2028"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper { background: #fff; box-shadow: var(--od-panel-shadow); }
+html[data-tl-theme="opendesk-2028"] .mx_SpacePanel .mx_SpaceItem:has(> .mx_SpaceButton_active)::before { background: var(--od-gradient); }
+html[data-tl-theme="opendesk-2028"] [class*="_unread-counter_"]:not([data-kind="critical"]) { background: var(--od-gradient) !important; }
+html[data-tl-theme="opendesk-2028"] .mx_AuthPage_modal { backdrop-filter: blur(16px); background: rgb(255 255 255 / .9); }
+@supports not (backdrop-filter: blur(1px)) {
+  html[data-tl-theme="opendesk-2028"] { --od-sidebar: #ffffff; --od-bar: #ffffff; }
+}

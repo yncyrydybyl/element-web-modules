@@ -1,0 +1,158 @@
+/* openDesk · Hyperdesk — exciting/hype take: the login screen's isometric app-tile field as a neon night
+   wallpaper, violet glow, mint #00ffcd signal colour, Space Grotesk all-caps headings, glowing selection and a
+   slowly breathing suite bar. Animation stops under prefers-reduced-motion (shared.css). */
+html[data-tl-theme="opendesk-hyperdesk"] {
+  --od-canvas: #0c0820;
+  --od-surface: rgb(19 12 46 / .86);
+  --od-surface-alt: rgb(40 26 92 / .5);
+  --od-sidebar: rgb(14 9 36 / .6);
+  --od-rail: rgb(8 5 22 / .72);
+  --od-rail-border: rgb(142 117 250 / .25);
+  --od-rail-text: #e9e4ff;
+  --od-bar: rgb(8 5 22 / .82);
+  --od-bar-text: #f3f0ff;
+  --od-bar-border: rgb(0 255 205 / .35);
+  --od-wordmark: url("assets/od-wordmark-inverted.svg");
+  --od-text: #f3f0ff;
+  --od-heading: #ffffff;
+  --od-muted: #c3b9f2;
+  --od-subtle: #a99ce6;
+  --od-primary: #6a3dff;
+  --od-primary-hover: #7f58ff;
+  --od-primary-pressed: #9373ff;
+  --od-on-primary: #ffffff;
+  --od-accent-text: #00ffcd;        /* secondaryGreen as signal colour */
+  --od-tint: rgb(106 61 255 / .30);
+  --od-tint-strong: rgb(142 117 250 / .55);
+  --od-tint-soft: rgb(106 61 255 / .16);
+  --od-hover: rgb(0 255 205 / .08);
+  --od-sel-bg: linear-gradient(100deg, #571efa, #8e3dff 60%, #ff529e);
+  --od-sel-text: #ffffff;
+  --od-border: rgb(142 117 250 / .35);
+  --od-border-strong: #8e75fa;
+  --od-separator: rgb(142 117 250 / .22);
+  --od-own: rgb(106 61 255 / .18);
+  --od-mention: rgb(255 199 0 / .14);
+  --od-mention-bar: #ffc700;
+  --od-critical: #e0245e;
+  --od-critical-text: #ff7aa8;
+  --od-success: #00ffcd;
+  --od-warning: #ffc700;
+  --od-info: #52c1ff;
+  --od-code-bg: rgb(5 3 15 / .7);
+  --od-tooltip: #00ffcd;
+  --od-tooltip-text: #0c0820;
+  --od-scroll: rgb(0 255 205 / .35);
+  --od-focus: #00ffcd;
+  --od-backdrop: rgb(5 3 15 / .7);
+  --od-radius: 6px;
+  --od-radius-tile: 10px;
+  --od-radius-dialog: 14px;
+  --od-heading-font: "Space Grotesk", "Open Sans", sans-serif;
+  --od-heading-weight: 700;
+  --od-heading-transform: uppercase;
+  --od-glow: 0 0 0 1px rgb(142 117 250 / .45), 0 0 24px rgb(106 61 255 / .45);
+  --od-shadow-tile: 0 0 0 1px rgb(142 117 250 / .4);
+  --od-shadow-popup: 0 0 0 1px rgb(0 255 205 / .35), 0 12px 40px rgb(0 0 0 / .6), 0 0 30px rgb(106 61 255 / .35);
+  --od-shadow-dialog: 0 0 0 1px rgb(0 255 205 / .4), 0 30px 90px rgb(0 0 0 / .7), 0 0 60px rgb(106 61 255 / .4);
+  --od-name-1: #b9a6ff; --od-name-2: #52c1ff; --od-name-3: #ff8ec2;
+  --od-name-4: #00ffcd; --od-name-5: #ffc700; --od-name-6: #c3b9f2;
+  --od-avatar-tint: 45%;
+  --od-avatar-base: #150d34;
+  --od-hl-keyword: #b9a6ff; --od-hl-func: #52c1ff; --od-hl-string: #ff8ec2; --od-hl-number: #ffc700;
+  --od-hl-comment: #a99ce6; --od-hl-type: #00ffcd; --od-hl-attr: #d6ccff;
+  --od-auth-bg: linear-gradient(rgb(12 8 32 / .72), rgb(12 8 32 / .9)), url("assets/od-login-background.webp") center / cover no-repeat, #0c0820;
+  color-scheme: dark;
+}
+/* wallpaper: the login tile field, inverted into a violet night, plus a perspective grid glow */
+html[data-tl-theme="opendesk-hyperdesk"] body {
+  background:
+    radial-gradient(900px 500px at 15% 0%, rgb(106 61 255 / .45), transparent 65%),
+    radial-gradient(700px 500px at 100% 100%, rgb(0 255 205 / .16), transparent 60%),
+    linear-gradient(rgb(12 8 32 / .55), rgb(12 8 32 / .82)),
+    url("assets/od-login-background.webp") center / cover no-repeat,
+    #0c0820;
+  background-blend-mode: normal, normal, normal, luminosity, normal;
+}
+html[data-tl-theme="opendesk-hyperdesk"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_MatrixChat,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_LeftPanel,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_LeftPanel_outerWrapper,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_LeftPanel_wrapper { background: transparent; }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomListPanel,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_SpacePanel { backdrop-filter: blur(10px); }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomView,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomView_body,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomView_timeline,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_MainSplit,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomHeader,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_MessageComposer,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomView_statusArea { background: transparent; }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomView {
+  background:
+    linear-gradient(rgb(14 9 36 / .62), rgb(14 9 36 / .78)),
+    repeating-linear-gradient(0deg, rgb(142 117 250 / .07) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, rgb(142 117 250 / .07) 0 1px, transparent 1px 56px);
+}
+html[data-tl-theme="opendesk-hyperdesk"] .mx_EventTile_pre_container { backdrop-filter: none; }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RightPanel,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_BaseCard { background: rgb(14 9 36 / .9); }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_Dialog,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_ContextualMenu,
+html[data-tl-theme="opendesk-hyperdesk"] [role="menu"][class*="_menu_"],
+html[data-tl-theme="opendesk-hyperdesk"] [data-radix-popper-content-wrapper] > [role="menu"],
+html[data-tl-theme="opendesk-hyperdesk"] .mx_MessageActionBar,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_Autocomplete,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_AuthPage_modal,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_AuthPage_modalContent,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_AuthBody,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_Toast_toast,
+html[data-tl-theme="opendesk-hyperdesk"] #tl-overlay-root .od-apps { background: #150d34 !important; }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_Field label { background: #150d34 !important; }
+/* the breathing suite bar: gradient underline drifts */
+html[data-tl-theme="opendesk-hyperdesk"] #tl-overlay-root .od-topbar {
+  backdrop-filter: blur(14px); border-bottom: 0;
+  box-shadow: 0 1px 0 rgb(0 255 205 / .35), 0 8px 30px rgb(106 61 255 / .25);
+}
+html[data-tl-theme="opendesk-hyperdesk"] #tl-overlay-root .od-topbar::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffcd, #8e75fa, #ff529e, transparent);
+  background-size: 200% 100%; animation: od-hyper-drift 9s ease-in-out infinite alternate;
+}
+@keyframes od-hyper-drift { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+html[data-tl-theme="opendesk-hyperdesk"] #tl-overlay-root .od-topbar__app { color: #00ffcd; border-left-color: rgb(0 255 205 / .4); letter-spacing: .12em; text-transform: uppercase; font-family: var(--od-heading-font); }
+html[data-tl-theme="opendesk-hyperdesk"] #tl-overlay-root .od-topbar__clock { color: #00ffcd; font-family: var(--od-heading-font); letter-spacing: .08em; }
+html[data-tl-theme="opendesk-hyperdesk"] #tl-overlay-root .od-apps__icon { box-shadow: var(--od-glow); }
+html[data-tl-theme="opendesk-hyperdesk"] #tl-overlay-root .od-apps__item:hover { background: rgb(0 255 205 / .08); }
+/* glow selection + neon space tiles */
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomListItemView:is(.mx_RoomListItemView_selected, [aria-selected="true"]) > [class*="_container_"] {
+  box-shadow: 0 0 18px rgb(142 61 255 / .55);
+}
+html[data-tl-theme="opendesk-hyperdesk"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper { box-shadow: var(--od-glow); }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_SpacePanel .mx_SpaceItem:has(> .mx_SpaceButton_active)::before { background: #00ffcd; box-shadow: 0 0 10px #00ffcd; }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_SpacePanel .mx_SpaceButton[aria-label="Startseite"] .mx_SpaceButton_icon { box-shadow: var(--od-glow); }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomListPanel header[class*="_header_"] h1,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomHeader .mx_RoomHeader_heading { letter-spacing: .06em; }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_RoomHeader { border-bottom: 1px solid rgb(0 255 205 / .25); }
+html[data-tl-theme="opendesk-hyperdesk"] [class*="_chat-filter_"] { background: transparent; text-transform: uppercase; letter-spacing: .06em; font-size: 11px; }
+html[data-tl-theme="opendesk-hyperdesk"] [class*="_chat-filter_"][aria-selected="true"] { background: rgb(0 255 205 / .14); border-color: #00ffcd; color: #00ffcd; box-shadow: 0 0 12px rgb(0 255 205 / .35); }
+html[data-tl-theme="opendesk-hyperdesk"] [class*="_button_"][data-kind="primary"]:not([class*="_destructive_"]):not([class*="_icon-button_"]),
+html[data-tl-theme="opendesk-hyperdesk"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_Dialog_buttons .mx_Dialog_primary,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_MessageComposer_sendMessage {
+  background: linear-gradient(100deg, #571efa, #8e3dff) !important; box-shadow: 0 0 18px rgb(106 61 255 / .6);
+  text-transform: uppercase; letter-spacing: .06em;
+}
+html[data-tl-theme="opendesk-hyperdesk"] .mx_MessageComposer_row { background: rgb(5 3 15 / .55); border-color: rgb(142 117 250 / .5); }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_MessageComposer_row:focus-within { border-color: #00ffcd; box-shadow: 0 0 0 1px #00ffcd, 0 0 22px rgb(0 255 205 / .3); }
+html[data-tl-theme="opendesk-hyperdesk"] [class*="_unread-counter_"]:not([data-kind="critical"]) { background: #00ffcd !important; color: #0c0820 !important; box-shadow: 0 0 10px rgb(0 255 205 / .6); }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_Pill { background: rgb(0 255 205 / .14) !important; color: #00ffcd !important; }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_Pill.mx_UserPill_me,
+html[data-tl-theme="opendesk-hyperdesk"] .mx_Pill.mx_AtRoomPill { background: #ff529e !important; color: #0c0820 !important; }
+html[data-tl-theme="opendesk-hyperdesk"] [class*="_timelineSeparator_"] h2 { background: #150d34; color: #00ffcd; border-color: rgb(0 255 205 / .4); text-transform: uppercase; letter-spacing: .1em; font-family: var(--od-heading-font); }
+html[data-tl-theme="opendesk-hyperdesk"] .mx_AuthHeaderLogo img { filter: brightness(0) invert(1) drop-shadow(0 0 12px rgb(142 117 250 / .9)); }
+html[data-tl-theme="opendesk-hyperdesk"] body > div:not(#matrixchat) > nav:has(> a > img) {
+  backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgb(0 255 205 / .35), 0 8px 30px rgb(106 61 255 / .25);
+}
+html[data-tl-theme="opendesk-hyperdesk"] .tl-ui { color: #f3f0ff; }

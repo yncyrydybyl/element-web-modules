@@ -1,0 +1,60 @@
+/* (also loaded by opendesk-daylight for its night phase)
+   openDesk · Dark — openDesk's "openDesk Dark" Element theme (primary #571EFA, primary65 #9673e9) on the
+   navy darks of the openDesk palette (opendesk.eu neutral-800…1000). */
+html[data-tl-theme="opendesk-dark"],
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="night"] {
+  --od-canvas: #0f1a2a;
+  --od-surface: #131f30;            /* neutral-900 */
+  --od-surface-alt: #1a2638;
+  --od-sidebar: #0f1a2a;
+  --od-rail: #0a121e;               /* neutral-1000 */
+  --od-rail-border: #283242;        /* neutral-800 */
+  --od-bar: #0a121e;
+  --od-bar-text: #f0f1f3;
+  --od-bar-border: #283242;
+  --od-wordmark: url("assets/od-wordmark-inverted.svg");
+  --od-text: #f0f1f3;
+  --od-heading: #ffffff;
+  --od-muted: #b7bbc2;
+  --od-subtle: #a2a8b3;
+  --od-primary: #6a45fb;
+  --od-primary-hover: #7a5cfb;
+  --od-primary-pressed: #8e75fa;
+  --od-on-primary: #ffffff;
+  --od-accent-text: #aa98fb;        /* primary-400; openDesk Dark uses primary65 #9673e9 */
+  --od-tint: #2a2160;
+  --od-tint-strong: #3d3090;
+  --od-tint-soft: #1d1a45;
+  --od-hover: rgb(170 152 251 / .10);
+  --od-sel-bg: #571efa;
+  --od-sel-text: #ffffff;
+  --od-border: #364768;
+  --od-border-strong: #637089;
+  --od-separator: #283242;
+  --od-own: #1b1a40;
+  --od-mention: #3a3214;
+  --od-mention-bar: #ffc700;
+  --od-critical: #d63b3b;
+  --od-critical-text: #ff8a8a;
+  --od-success: #3ac3a5;
+  --od-warning: #ffd34d;
+  --od-info: #52c1ff;
+  --od-code-bg: #0d1726;
+  --od-tooltip: #f0f1f3;
+  --od-tooltip-text: #131f30;
+  --od-scroll: rgb(240 241 243 / .28);
+  --od-focus: #aa98fb;
+  --od-backdrop: rgb(0 0 0 / .6);
+  --od-shadow-tile: 0 0 0 1px #283242;
+  --od-shadow-popup: 0 6px 24px rgb(0 0 0 / .5), 0 0 0 1px #283242;
+  --od-shadow-dialog: 0 18px 60px rgb(0 0 0 / .6), 0 0 0 1px #283242;
+  --od-name-1: #aa98fb; --od-name-2: #52c1ff; --od-name-3: #ff8ec2;
+  --od-name-4: #3ddbb8; --od-name-5: #ffd34d; --od-name-6: #b7bbc2;
+  --od-avatar-tint: 32%;
+  --od-hl-keyword: #aa98fb; --od-hl-func: #52c1ff; --od-hl-string: #ff8ec2; --od-hl-number: #ffd34d;
+  --od-hl-comment: #8f959f; --od-hl-type: #3ddbb8; --od-hl-attr: #c8b9fd;
+  --od-auth-bg: linear-gradient(rgb(10 18 30 / .84), rgb(10 18 30 / .84)), url("assets/od-login-background.webp") center / cover no-repeat, #0a121e;
+  color-scheme: dark;
+}
+html[data-tl-theme="opendesk-dark"] .mx_AuthHeaderLogo img,
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="night"] .mx_AuthHeaderLogo img { filter: brightness(0) invert(1); }

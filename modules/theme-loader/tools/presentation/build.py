@@ -7,7 +7,7 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-ORDER = ["teams", "win311", "kde", "comic", "sketch", "lcars", "enlightenment", "paper", "crossover"]
+ORDER = ["teams", "win311", "kde", "comic", "sketch", "lcars", "enlightenment", "paper", "opendesk", "crossover"]
 
 
 def main() -> None:

@@ -1,4 +1,4 @@
-# Theme catalogue (65 variants)
+# Theme catalogue (72 variants)
 
 Axes per family: **pure** (faithful translation) → **usable** (adapted for chat usability) and → **exciting/hype**
 (comic, cyberpunk, future). Time axis: **past** / **future**. Mode axis: light / dark / **daylight** (follows the
@@ -106,7 +106,19 @@ local clock, see CONTRACT §6). `S` = seriousness 0–10, `H` = hype 0–10.
 | paper-black-invisible | level-5 | dark | 10 | 0 | almost invisible, dark |
 | paper-daylight | level-1 | daylight | 10 | 1 | warm paper morning → white noon → sepia dusk → black night |
 
-## 9. Crossovers — `crossover` (3)
+## 9. openDesk — `opendesk` (7)
+
+| id | stage | mode | S | H | idea |
+|---|---|---|---|---|---|
+| opendesk-light | pure | light | 9 | 3 | Element as an openDesk suite app: white suite bar with app grid + wordmark, #f5f5f5 portal canvas, navy #203257, violet #571EFA, Open Sans, filled-violet selected room (Nextcloud) |
+| opendesk-dark | pure | dark | 9 | 3 | openDesk Dark on the navy neutral ramp (#131f30/#0a121e), lavender accent text, white wordmark |
+| opendesk-daylight | pure | daylight | 9 | 4 | office clock: lavender dawn, portal day, navy "Feierabend" bar at dusk, openDesk Dark at night |
+| opendesk-usable | usable | light | 10 | 2 | "Barrierefrei": BITV 2.0 / WCAG 2.2 AA+, 3px #0c3ff3 focus with white gap, underlined links, 15px text, unread bars |
+| opendesk-classic | past | light | 8 | 4 | Souveräner Arbeitsplatz 2023: violet #5e27dd banner with the 2023 white wordmark, secondary-palette chips, flatter panels |
+| opendesk-2028 | future | light | 7 | 7 | opendesk.eu language in-product: Space Grotesk, floating 18px panels, violet→blue gradients, frosted bar |
+| opendesk-hyperdesk | exciting | dark | 4 | 9 | neon night: login app-tile field as wallpaper, violet glow, mint #00ffcd signal, all-caps Space Grotesk |
+
+## 10. Crossovers — `crossover` (3)
 
 | id | stage | mode | S | H | idea |
 |---|---|---|---|---|---|
@@ -114,4 +126,4 @@ local clock, see CONTRACT §6). `S` = seriousness 0–10, `H` = hype 0–10.
 | x-teams-sketch | crossover | light | 5 | 6 | Teams as a Balsamiq mockup the PM drew |
 | x-kde-e16 | crossover | dark | 5 | 7 | Breeze widgets wearing E16 brushed metal |
 
-Total: 10 + 7 + 7 + 6 + 10 + 7 + 8 + 7 + 3 = **65**.
+Total: 10 + 7 + 7 + 6 + 10 + 7 + 8 + 7 + 7 + 3 = **72**.
