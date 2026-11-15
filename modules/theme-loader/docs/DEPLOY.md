@@ -22,14 +22,26 @@ python3 tools/deploy/update_vars.py        # see below; or edit by hand
 # 4. Deploy (≈10 min) and restart the Element container
 cd $R && . venv/bin/activate
 ansible-playbook -i inventory/hosts matrix-docker-ansible-deploy/setup.yml --tags=setup-aux,setup-client-element
-ssh matrix.datanauten.de sudo systemctl restart matrix-client-element
+ssh matrix.datanauten.de 'sudo systemctl daemon-reload && sudo systemctl restart matrix-client-element'
 
 # 5. Verify
 curl -s https://element.datanauten.de/config.json | jq '.modules'          # theme-loader/index.js?v=<new hash>
 curl -sI https://element.datanauten.de/element-modules/theme-loader/index.js
 ```
 
-Expect a ~20 s window of 404s while the container restarts.
+Expect a ~20 s window of 404s while the container restarts. Right after the restart Element can show
+"Your Element is misconfigured" for a moment; reload after ~1 min before judging.
+
+`daemon-reload` matters whenever the container's mounts change (e.g. the mobile_guide mount): without it the restart
+uses the old unit (`systemctl show matrix-client-element -p NeedDaemonReload` says `yes`).
+
+## mobile-themes
+
+Same deploy repo: entry `mobile-themes` in `datanauten_element_modules` (files from `mobile/dist`: `index.js`,
+`index.js.map` → `files/element-modules/mobile-themes/`), and the replacement guide page
+`mobile/server/mobile_guide/index.html` → `files/element-mobile-guide/index.html`, mounted over
+`/app/mobile_guide/index.html`. Check: `node mobile/test/live-guide.mjs --base-url https://element.datanauten.de`.
+openDesk: `bin/theme-loader-deploy` in the openDesk repo builds and ships both (runbook §11 there).
 
 ## Notes
 

@@ -56,7 +56,7 @@ win311-default, lcars-tng and paper-white; theme tweaks worth doing are listed i
 
 URL override for one page load: `?mt_mobile=1` / `?mt_mobile=0`.
 
-## Mobile guide redirect: proposal (MOB-01, MOB-02) — not deployed
+## Mobile guide redirect (MOB-01, MOB-02) — deployed 2026-11-15 on element.datanauten.de and chat.od.blackpony.club
 
 **Problem.** `vector/index.ts` sends every iOS/Android browser to `/mobile_guide/` unless the URL has a fragment
 (deep link) or `sessionStorage.skip_mobile_redirect === "true"`. The flag is per tab, so every new tab, every cold
@@ -195,3 +195,13 @@ build/            esbuild setup + production build
 dev/server.mjs    dev server (:5410)
 test/             smoke, shell (before/after), desktop (regression), webkit, audit (research), run (ad-hoc), mtlib
 ```
+
+### Live check
+
+`node test/live-guide.mjs --base-url https://element.datanauten.de` (and `https://chat.od.blackpony.club`): logged out,
+no interception. iPhone/Pixel → our guide → "Continue in the browser" → Element in mobile mode, new tab skips the
+guide, `?mobile_web=0` shows it again; desktop gets no mobile mode. Screenshots + result.json in `recordings/mobile/live/<host>/`.
+
+On openDesk the files are served by the theme-loader nginx (Ingress paths `/modules/mobile-themes`, `/mobile_guide`);
+see the openDesk repo's runbook §11. On datanauten: `mobile-themes` entry in `datanauten_element_modules` plus the
+mobile_guide mount (vars.yml).
