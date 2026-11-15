@@ -3,7 +3,7 @@
 Six variants from "Comic Sans on a Friday" up to "readability is not a goal". The design intent is in
 `docs/styleguides/comic.md` and the data in `docs/styleguides/comic.json`.
 
-Status: phase A. `themes.json` lists `shared.css` and `<variant>.css`, but those files are written in phase B.
+Status: phase B, all six variants are implemented (see "Implementation status" below).
 
 ## Font strategy
 
@@ -76,7 +76,65 @@ python3 -m venv /tmp/v && /tmp/v/bin/pip install pillow numpy
 The Element and Matrix names on the 88×31 buttons are text references only. No official logo artwork is
 embedded: the Element mark is a stylised circle drawn from scratch.
 
-## Notes for phase B
+## Implementation status (phase B)
+
+| Variant | Status | What is there |
+|---|---|---|
+| comic-casual-friday | done | Comic tokens only, 12px radii, rainbow date separator, sticky-note mentions, bubble tails. No enhancer. |
+| comic-geocities | done | Clouds shell, navy space rail, marble room list with web-ring selection and NEW! starbursts, rainbow section rules, 88×31 buttons, white page tables, hit counter (enhancer, per-room in localStorage), topic marquee (enhancer puts the room topic in `data-ewt-topic`), Times-italic timestamps, animated rainbow hr, guestbook placeholder, "Submit Query" send button, Win95 menus, yellow tooltips, navy dialog title bars. |
+| comic-wordart | done | Teal desktop, Win95 windows with title bars (Rooms / Untitled - Message / Properties), "Element 97" start band, Explorer list, WordArt header (style by room hash), Word 97 page with ruler, gold WordArt date and dialog titles, 6 per-sender WordArt names, property-sheet settings, Klammi helper. |
+| comic-poster | done | Purple confetti shell, black outlines + 6px hard shadows, sticker room list coloured by avatar colour, Anton WordArt header with FREE ENTRY starburst, marquee, tilted message stickers, Luckiest Guy buttons, rainbow composer border with flames, blinking starburst badges, hazard-stripe dialogs, rainbow cursor, Klammi. |
+| comic-unreadable | done (report-only) | Loads `comic-poster.css` and overrides it: psychedelic tile, whole-app hue rotation (20 s), rocking stickers (the sticker pseudo-element rocks, the content stays clickable), spinning avatars, marquee room names, rainbow-extruded body text, blinking timestamps, WARNING overlay (skipped for `navigator.webdriver` unless `?ewt_warning=1`), PANIC + MIDI buttons, sparkle trail, endless hit counter. The settings dialog (it contains the `.tl-ui` Themes tab) is reset to readable black-on-white. |
+| comic-after-midnight | done | Two drifting starfield layers (pseudo-elements, transform-animated), translucent panels, neon Chewy room name with flicker on room change, glowing own messages/buttons/avatars, neon grid floor under the room list, neon hljs, sparkle trail. |
+
+### hue-rotate measurement (comic-unreadable)
+
+Measured with the harness browser (headless Chrome, software compositing, machine shared with other agents),
+1440×900, Showcase room, 4 s rAF windows: with hue-rotate 18 fps (p50 50 ms, p95 100 ms, 7 long tasks / 440 ms),
+without hue-rotate 20.6 fps (p95 83 ms, 4 / 261 ms), with all animations off 17 fps. Under these conditions the
+filter costs about 10-15%; the rest is the GIF tiles, the marquees and the machine load. Scrolling with hue-rotate
+ran at 8.6 fps. Safeguard: the enhancer measures the frame rate 3 s after mount and adds `ewt-no-hue` (filter off)
+below 30 fps; it logs the value and sets `html[data-ewt-fps]`. In the harness run it measured 35 fps and kept it.
+On a GPU-composited desktop the filter is expected to be cheap; it never applies to `.tl-ui` (dialogs are portalled
+outside `.mx_MatrixChat`).
+
+### Edge-case results
+
+Harness runs on 2026-11-15 (Element 1.12.33 dev server, 1440×900 and 390×844). `edgecheck` = axe + overflow +
+clipping + focus walk; remaining axe nodes in all variants are Element's own `nested-interactive` (space buttons) and
+`scrollable-region-focusable` (code blocks), which Element default has too.
+
+| Check | casual-friday | geocities | wordart | poster | unreadable | after-midnight |
+|---|---|---|---|---|---|---|
+| shoot (23 regions, desktop) | 23/23 | 23/23 | 23/23 | 23/23 | 23/23 | 23/23 |
+| shoot --mobile | 20/23 ¹ | 20/23 ¹ | 20/23 ¹ | 20/23 ¹ | 20/23 ¹ | 20/23 ¹ |
+| edgecheck result | pass | pass | pass | pass | pass (report-only) | pass |
+| axe contrast nodes | 0 | 0 | 0 | 2 ² | 15 (by design) | 0 |
+| clipped texts / overflow | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 |
+| focus stops without visible focus | 0 | 0 | 0 | 0 | 0 | 0 |
+| walkthrough video | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| modals / menus / settings / login | ✓ | ✓ (Win95 menus, navy title bar) | ✓ (Win95 windows) | ✓ (sticker, hazard header) | ✓ (settings dialog reset to readable for `.tl-ui`) | ✓ |
+| threads, code, polls, E2EE shields, badges | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| long names / RTL | ✓ truncates | ✓ | ✓ | ✓ (intro heading wraps) | ✓ | ✓ |
+
+¹ 01/07/08 fail identically for every variant incl. casual-friday (harness clicks into Element's narrow layout).
+² Pill/reply text on the hot-pink mention sticker (large bold label, ≥ 3:1).
+
+
+### Known gaps
+
+- Mobile (390 px): the harness's 07/08 room-info clicks time out for every comic variant including casual-friday
+  (Element's own narrow layout), and 01 fails the same way; not theme-specific.
+- The topic marquee needs the enhancer (falls back to a fixed text without it); the topic text comes from the
+  internal `mxMatrixClientPeg` global and is absent if that ever disappears.
+- Klammi pops up on the first composer focus of a session, and Element focuses the composer on room open, so in
+  practice it appears once on the first room view. It never covers the composer and closes after 20 s.
+- comic-unreadable: Playwright-style "wait until stable" clicks on moving room-list names/avatars can time out;
+  message tiles were made stable (only their sticker background rocks) so thread/menu flows work.
+- Element's own hljs palette is kept in casual-friday; axe flags a few hljs tokens (Element default colours).
+- Calls/widgets: only the frame is themed (iframes stay light, dark for after-midnight).
+
+## Implementation notes
 
 - Selectors checked against v1.12.33: date separator = `[class*="_timelineSeparator_"] > hr` (shared-components,
   hashed), unread badge = `[class*="_notificationBadge_"]` (forced `cpd-theme-light`, so set tokens on
@@ -86,5 +144,9 @@ embedded: the Element mark is a stylised circle drawn from scratch.
   `--placeholder: "Sign my guestbook!" !important` on `.mx_BasicMessageComposer_input`.
 - Reduced motion: GIF backgrounds have to be swapped for the static PNG/first frame by CSS under
   `prefers-reduced-motion: reduce`. A CSS animation kill switch does not stop GIFs.
-- comic-unreadable needs a loader call to switch themes (PANIC button, warning dialog "take me back"). Ask the
-  loader agent for `ctx.api.switchTheme(id)` or similar.
+- comic-unreadable uses `ctx.switchTheme()` / `ctx.previousTheme()` for PANIC and "Take me back" (Escape also works
+  while the warning is open).
+- The family sets `#matrixchat { position: fixed; inset: 0 }`: without it `scrollIntoView()` on a timeline tile
+  scrolled the whole document (seen in harness shot 03 with the Comic metrics); the KDE family does the same.
+- Hit counters and Klammi's "don't show again" live in localStorage (`ewt.comic.*`), the warning acceptance in
+  `ewt.comic.unreadable.accepted`.

@@ -1,9 +1,9 @@
 # Edge check: Comic Sans · Unreadable
 
 - id: `comic-unreadable` · stage: `level-5` · **report-only** (unreadable by design)
-- base: http://localhost:5400 · 2026-11-15T03:56:12.764Z
+- base: http://localhost:5400 · 2026-11-15T04:48:33.328Z
 - loader: html[data-tl-theme] = `comic-unreadable`
-- result: **pass** — axe serious/critical nodes 26 (contrast 15), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 32 (contrast 15), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -15,32 +15,34 @@
 
 ## timeline
 
-axe: no violations
+| axe rule | impact | nodes | example |
+|---|---|---|---|
+| nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
 
 ## bubble
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| nested-interactive | serious | 1 | `.mx_SpaceButton_active` |
-| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| nested-interactive | serious | 1 | `div[aria-label="Home"]` |
+| scrollable-region-focusable | serious | 2 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
 
 
 ## irc
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| nested-interactive | serious | 1 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 1 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 1 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
 
 
 ## thread
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
+| aria-prohibited-attr | serious | 4 | `span[title="@themes-mira:datanauten.de"][data-color="3"][aria-label="P` |
 | color-contrast | serious | 3 | `._repliesAmount_60abi_66` |
 | nested-interactive | serious | 1 | `.mx_SpaceButton_active` |
-| scrollable-region-focusable | serious | 3 | `#\31 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 4 | `#\32 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings

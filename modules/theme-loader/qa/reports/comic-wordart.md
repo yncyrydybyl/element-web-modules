@@ -1,9 +1,9 @@
 # Edge check: Comic Sans · WordArt 97
 
 - id: `comic-wordart` · stage: `level-3`
-- base: http://localhost:5400 · 2026-11-15T03:45:34.994Z
+- base: http://localhost:5400 · 2026-11-15T04:57:30.567Z
 - loader: html[data-tl-theme] = `comic-wordart`
-- result: **pass** — axe serious/critical nodes 39 (contrast 23), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -16,7 +16,6 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 7 | `.mx_Pill_text` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
 
@@ -24,26 +23,25 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 7 | `.mx_Pill_text` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\31 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 7 | `.mx_Pill_text` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 1 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 1 | `#\31 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## thread
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
+| aria-prohibited-attr | serious | 4 | `span[title="@themes-mira:datanauten.de"][data-color="3"][aria-label="P` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 3 | `#\31 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 4 | `#\32 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings
@@ -53,9 +51,7 @@ axe: no violations
 
 ## modal
 
-| axe rule | impact | nodes | example |
-|---|---|---|---|
-| color-contrast | serious | 2 | `label[for="mx_Field_3"]` |
+axe: no violations
 
 
 ## login

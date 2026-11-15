@@ -20,25 +20,37 @@
           "family": "Comic Relief",
           "file": "assets/comic-relief-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Relief",
           "file": "assets/comic-relief-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {},
@@ -63,43 +75,66 @@
           "family": "Comic Relief",
           "file": "assets/comic-relief-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Relief",
           "file": "assets/comic-relief-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "VT323",
           "file": "assets/vt323-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Tinos",
           "file": "assets/tinos-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Times New Roman",
+            "TimesNewRomanPSMT"
+          ],
+          "display": "swap"
         },
         {
           "family": "Tinos",
           "file": "assets/tinos-400-italic.woff2",
           "weight": "400",
-          "style": "italic"
+          "style": "italic",
+          "local": [
+            "Times New Roman Italic",
+            "TimesNewRomanPS-ItalicMT"
+          ],
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -140,43 +175,69 @@
           "family": "Comic Relief",
           "file": "assets/comic-relief-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Relief",
           "file": "assets/comic-relief-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Anton",
           "file": "assets/anton-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Impact"
+          ],
+          "display": "swap"
         },
         {
           "family": "Tinos",
           "file": "assets/tinos-700-italic.woff2",
           "weight": "700",
-          "style": "italic"
+          "style": "italic",
+          "local": [
+            "Times New Roman Bold Italic",
+            "TimesNewRomanPS-BoldItalicMT"
+          ],
+          "display": "swap"
         },
         {
           "family": "Tinos",
           "file": "assets/tinos-400-italic.woff2",
           "weight": "400",
-          "style": "italic"
+          "style": "italic",
+          "local": [
+            "Times New Roman Italic",
+            "TimesNewRomanPS-ItalicMT"
+          ],
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -216,49 +277,68 @@
           "family": "Comic Relief",
           "file": "assets/comic-relief-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Relief",
           "file": "assets/comic-relief-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Anton",
           "file": "assets/anton-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Impact"
+          ],
+          "display": "swap"
         },
         {
           "family": "Luckiest Guy",
           "file": "assets/luckiest-guy-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Chewy",
           "file": "assets/chewy-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "VT323",
           "file": "assets/vt323-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -291,6 +371,7 @@
       "description": "Level 5, READABILITY IS NOT A GOAL: magenta on cyan on an animated rainbow checkerboard, slow whole-app hue rotation, wobbling tiles, spinning avatars, marquees everywhere, sparkle cursor. Shows a motion/seizure warning first and keeps a PANIC button; reduced motion stops all movement. Joke variant.",
       "css": [
         "shared.css",
+        "comic-poster.css",
         "comic-unreadable.css"
       ],
       "fonts": [
@@ -298,49 +379,68 @@
           "family": "Comic Relief",
           "file": "assets/comic-relief-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Relief",
           "file": "assets/comic-relief-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Anton",
           "file": "assets/anton-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Impact"
+          ],
+          "display": "swap"
         },
         {
           "family": "Luckiest Guy",
           "file": "assets/luckiest-guy-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Chewy",
           "file": "assets/chewy-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "VT323",
           "file": "assets/vt323-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -380,31 +480,44 @@
           "family": "Comic Relief",
           "file": "assets/comic-relief-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Relief",
           "file": "assets/comic-relief-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Comic Mono",
           "file": "assets/comic-mono-700.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Chewy",
           "file": "assets/chewy-400.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {

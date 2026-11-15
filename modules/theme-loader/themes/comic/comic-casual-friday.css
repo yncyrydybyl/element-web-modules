@@ -1,0 +1,89 @@
+/* comic-casual-friday: level 1. Element light + Comic Sans, rounder corners, one rainbow, sticky-note mentions. */
+
+html[data-tl-theme="comic-casual-friday"],
+html[data-tl-theme="comic-casual-friday"] body,
+html[data-tl-theme="comic-casual-friday"] [class*="cpd-theme-"] {
+  --cpd-color-text-action-accent: #007a61;
+  --cpd-color-text-link-external: #0467dd;
+  --cpd-color-border-focused: #007a61;
+  --MBody-border-radius: 12px;
+  --ewt-sticky: #fff6a8;
+}
+
+/* rounder everything */
+html[data-tl-theme="comic-casual-friday"] .mx_MessageComposer_wrapper,
+html[data-tl-theme="comic-casual-friday"] .mx_Dialog,
+html[data-tl-theme="comic-casual-friday"] .mx_ContextualMenu,
+html[data-tl-theme="comic-casual-friday"] .mx_EventTile_pre_container,
+html[data-tl-theme="comic-casual-friday"] .mx_EventTile_body pre {
+  border-radius: 12px;
+}
+html[data-tl-theme="comic-casual-friday"] .mx_SpaceButton .mx_BaseAvatar[data-type="square"] {
+  --cpd-avatar-radius: 12px;
+}
+
+/* headings a touch bigger, Comic bold */
+html[data-tl-theme="comic-casual-friday"] .mx_RoomHeader_heading {
+  font-weight: 700;
+  font-size: 1.15em;
+}
+html[data-tl-theme="comic-casual-friday"] .mx_Dialog_title,
+html[data-tl-theme="comic-casual-friday"] .mx_SettingsTab_heading {
+  font-weight: 700;
+}
+
+/* the one rainbow: date separators */
+html[data-tl-theme="comic-casual-friday"] .mx_TimelineSeparator > hr {
+  height: 3px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--ewt-rainbow);
+  opacity: 0.85;
+}
+
+/* mentions = sticky note */
+html[data-tl-theme="comic-casual-friday"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line,
+html[data-tl-theme="comic-casual-friday"] .mx_EventTile_highlight > .mx_EventTile_line {
+  background: var(--ewt-sticky);
+  border-radius: 2px 12px 2px 2px;
+  box-shadow: 2px 3px 0 rgba(120, 100, 0, 0.18);
+  transform: rotate(-0.4deg);
+  animation: ewt-wiggle 0.3s ease-in-out 1;
+}
+html[data-tl-theme="comic-casual-friday"] .mx_EventTile[class*="_stateHighlighted_"] {
+  --EventTile-box-shadow-offset-x: 0;
+  --EventTile-box-shadow-spread-radius: 0;
+}
+
+/* bubble layout: speech-balloon tails on the first tile of a group */
+html[data-tl-theme="comic-casual-friday"] .mx_EventTile[class*="_layoutBubble_"]:not([class*="_stateContinuation_"]) .mx_EventTile_line {
+  position: relative;
+  border-radius: 16px;
+}
+html[data-tl-theme="comic-casual-friday"] .mx_EventTile[class*="_layoutBubble_"]:not([class*="_stateContinuation_"]):not([class*="_stateInfo_"]) .mx_EventTile_line::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  background: inherit;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+html[data-tl-theme="comic-casual-friday"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"]:not([class*="_stateContinuation_"]) .mx_EventTile_line::after {
+  left: auto;
+  right: -7px;
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+/* home page */
+html[data-tl-theme="comic-casual-friday"] .mx_HomePage_default h1::after {
+  content: " · Happy Friday!";
+  color: var(--cpd-color-text-action-accent);
+}
+
+html[data-tl-theme="comic-casual-friday"] .mx_BasicMessageComposer_input:focus-visible {
+  outline: 2px solid #007a61;
+  outline-offset: 4px;
+  border-radius: 8px;
+}

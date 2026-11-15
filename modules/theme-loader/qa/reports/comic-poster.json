@@ -5,7 +5,7 @@
   "stage": "level-4",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T03:53:31.752Z",
+  "started": "2026-11-15T04:57:31.016Z",
   "views": {
     "home": {
       "axe": [
@@ -13,8 +13,12 @@
           "id": "nested-interactive",
           "impact": "serious",
           "help": "Interactive controls must not be nested",
-          "count": 1,
+          "count": 2,
           "samples": [
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
             {
               "target": "div[data-rbd-drag-handle-context-id=\"0\"]",
               "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
@@ -27,81 +31,20 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Theo Nakamura-Whitfield",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Lena Sørensen",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
       }
     },
     "timeline": {
-      "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 2,
-          "samples": [
-            {
-              "target": ".mx_Pill_text",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.72 (foreground color: #ffff00, background color: #ff0000, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-variable",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.31 (foreground color: #986801, background color: #000000, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
-        {
-          "id": "nested-interactive",
-          "impact": "serious",
-          "help": "Interactive controls must not be nested",
-          "count": 1,
-          "samples": [
-            {
-              "target": ".mx_SpaceButton_active",
-              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
-            }
-          ]
-        }
-      ],
+      "axe": [],
       "overflow": {
         "page": false,
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Theo Nakamura-Whitfield",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Lena Sørensen",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Coffee ☕",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Release Train 🚂",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -110,45 +53,17 @@
     "bubble": {
       "axe": [
         {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 2,
-          "samples": [
-            {
-              "target": ".mx_Pill_text",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.72 (foreground color: #ffff00, background color: #ff0000, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-variable",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.31 (foreground color: #986801, background color: #000000, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
-        {
-          "id": "nested-interactive",
-          "impact": "serious",
-          "help": "Interactive controls must not be nested",
-          "count": 1,
-          "samples": [
-            {
-              "target": "div[aria-label=\"Home\"]",
-              "summary": "Fix any of the following:   Element has focusable descendants"
-            }
-          ]
-        },
-        {
           "id": "scrollable-region-focusable",
           "impact": "serious",
           "help": "Scrollable region must have keyboard access",
           "count": 2,
           "samples": [
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25.mx_EventTile_content > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25.mx_EventTile_content > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -159,28 +74,7 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Theo Nakamura-Whitfield",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Lena Sørensen",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Coffee ☕",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Release Train 🚂",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -189,22 +83,6 @@
     "irc": {
       "axe": [
         {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 2,
-          "samples": [
-            {
-              "target": ".mx_Pill_text",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.72 (foreground color: #ffff00, background color: #ff0000, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-variable",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.31 (foreground color: #986801, background color: #000000, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
-        {
           "id": "nested-interactive",
           "impact": "serious",
           "help": "Interactive controls must not be nested",
@@ -226,68 +104,51 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Theo Nakamura-Whitfield",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Lena Sørensen",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Coffee ☕",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Release Train 🚂",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
     "thread": {
       "axe": [
         {
-          "id": "color-contrast",
+          "id": "aria-prohibited-attr",
           "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 6,
+          "help": "Elements must only use permitted ARIA attributes",
+          "count": 4,
           "samples": [
             {
-              "target": "._body_1bd6h_63[data-testid=\"reply-tile-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > bdi:nth-child(1) > .mx_UserPill_me.mx_UserPill.mx_Pill > .mx_Pill_text",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.72 (foreground color: #ffff00, background color: #ff0000, font size: 11.3pt (15px), font weight: bold). Expected contrast ratio of 4.5:1"
+              "target": "span[title=\"@themes-mira:datanauten.de\"][data-color=\"3\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             },
             {
-              "target": "._body_1bd6h_63[data-testid=\"reply-tile-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > bdi:nth-child(2) > .mx_UserPill.mx_Pill > .mx_Pill_text",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.59 (foreground color: #ffff00, background color: #ff0066, font size: 11.3pt (15px), font weight: bold). Expected contrast ratio of 4.5:1"
+              "target": "span[title=\"@themes-jonas:datanauten.de\"][data-color=\"3\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             },
             {
-              "target": "span > .mx_UserPill.mx_Pill > .mx_Pill_text",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.59 (foreground color: #ffff00, background color: #ff0066, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "target": "span[title=\"@themes-lena:datanauten.de\"][data-color=\"6\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             },
             {
-              "target": "._repliesAmount_60abi_66",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.49 (foreground color: #5c0099, background color: #ff00ff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "target": ".mx_GenericEventListSummary_avatars > span[title=\"@themes-theo:datanauten.de\"][data-color=\"4\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             }
           ]
         },
         {
-          "id": "nested-interactive",
+          "id": "color-contrast",
           "impact": "serious",
-          "help": "Interactive controls must not be nested",
-          "count": 1,
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 2,
           "samples": [
             {
-              "target": ".mx_SpaceButton_active",
-              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+              "target": "._sender_60abi_47",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.49 (foreground color: #5c0099, background color: #ff00ff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "._content_60abi_9",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.49 (foreground color: #5c0099, background color: #ff00ff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
             }
           ]
         },
@@ -295,18 +156,22 @@
           "id": "scrollable-region-focusable",
           "impact": "serious",
           "help": "Scrollable region must have keyboard access",
-          "count": 3,
+          "count": 4,
           "samples": [
             {
-              "target": "#\\31 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\32 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\33 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\33 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\31 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -317,28 +182,7 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Theo Nakamura-Whitfield",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Lena Sørensen",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Coffee ☕",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Release Train 🚂",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -351,28 +195,7 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Theo Nakamura-Whitfield",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Lena Sørensen",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Coffee ☕",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Release Train 🚂",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -385,28 +208,7 @@
         "offenders": []
       },
       "missing": [],
-      "clipped": [
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Theo Nakamura-Whitfield",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Lena Sørensen",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Coffee ☕",
-          "how": "vertical"
-        },
-        {
-          "el": "div._roomName_vaz9j_96",
-          "text": "Release Train 🚂",
-          "how": "vertical"
-        }
-      ],
+      "clipped": [],
       "focus": {
         "stops": 12,
         "invisible": []
@@ -433,11 +235,11 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
   ],
   "summary": {
-    "axeSerious": 23,
-    "contrastNodes": 12,
+    "axeSerious": 16,
+    "contrastNodes": 2,
     "overflowViews": 0,
     "missing": 0,
-    "clipped": 26,
+    "clipped": 0,
     "focusInvisible": 0,
     "consoleErrors": 4,
     "fail": false
@@ -447,5 +249,5 @@
     "tlPhase": null,
     "wanted": "comic-poster"
   },
-  "finished": "2026-11-15T03:54:51.730Z"
+  "finished": "2026-11-15T04:58:12.450Z"
 }

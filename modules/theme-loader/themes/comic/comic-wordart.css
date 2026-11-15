@@ -1,0 +1,533 @@
+/* comic-wordart: level 3. Office 97 desktop: teal desktop, Win95 windows, WordArt, Word 97 page, Klammi. */
+
+html[data-tl-theme="comic-wordart"],
+html[data-tl-theme="comic-wordart"] body,
+html[data-tl-theme="comic-wordart"] [class*="cpd-theme-"] {
+  --cpd-color-bg-canvas-default: #ffffff;
+  --cpd-color-bg-canvas-default-level-1: #ffffff;
+  --cpd-color-bg-subtle-secondary: #c0c0c0;
+  --cpd-color-bg-subtle-primary: #dfdfdf;
+  --cpd-color-text-primary: #000000;
+  --cpd-color-text-secondary: #404040;
+  --cpd-color-text-action-accent: #000080;
+  --cpd-color-text-link-external: #0000ee;
+  --cpd-color-text-action-primary: #000000;
+  --cpd-color-icon-primary: #000000;
+  --cpd-color-icon-secondary: #000000;
+  --cpd-color-icon-tertiary: #404040;
+  --cpd-color-icon-accent-primary: #000080;
+  --cpd-color-border-interactive-primary: #808080;
+  --cpd-color-border-interactive-secondary: #808080;
+  --cpd-color-border-focused: #000080;
+  --cpd-color-separator-primary: #808080;
+  --cpd-color-bg-action-primary-rest: #000080;
+  --cpd-color-bg-action-primary-hovered: #1084d0;
+  --cpd-color-bg-accent-rest: #000080;
+  --cpd-color-bg-accent-hovered: #1084d0;
+  --cpd-color-bg-action-tertiary-hovered: #000080;
+  --cpd-color-bg-action-tertiary-selected: #000080;
+  --cpd-color-bg-critical-primary: #cc0000;
+  --cpd-color-text-critical-primary: #cc0000;
+  --cpd-color-bg-decorative-1: #ff8080;
+  --cpd-color-bg-decorative-2: #ffd700;
+  --cpd-color-bg-decorative-3: #c0c0c0;
+  --cpd-color-bg-decorative-4: #80a8ff;
+  --cpd-color-bg-decorative-5: #e080ff;
+  --cpd-color-bg-decorative-6: #80e080;
+  --cpd-color-text-decorative-1: #000000;
+  --cpd-color-text-decorative-2: #000000;
+  --cpd-color-text-decorative-3: #000000;
+  --cpd-color-text-decorative-4: #000000;
+  --cpd-color-text-decorative-5: #000000;
+  --cpd-color-text-decorative-6: #000000;
+  --cpd-avatar-radius: 0;
+  --MBody-border-radius: 0;
+  scrollbar-color: #c0c0c0 #dfdfdf;
+}
+
+/* ------------------------------------------------------------------ desktop + windows */
+html[data-tl-theme="comic-wordart"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="comic-wordart"] .mx_MatrixChat {
+  background: #008080;
+}
+html[data-tl-theme="comic-wordart"] .mx_MatrixChat {
+  padding: 6px;
+  gap: 6px;
+  box-sizing: border-box;
+}
+html[data-tl-theme="comic-wordart"] .mx_SpacePanel,
+html[data-tl-theme="comic-wordart"] .mx_LeftPanel_outerWrapper,
+html[data-tl-theme="comic-wordart"] .mx_RoomView_body,
+html[data-tl-theme="comic-wordart"] .mx_RightPanel {
+  background: #c0c0c0;
+  box-shadow: var(--w95-out);
+  padding: 3px;
+  box-sizing: border-box;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomView,
+html[data-tl-theme="comic-wordart"] .mx_RoomView_wrapper,
+html[data-tl-theme="comic-wordart"] .mx_MainSplit,
+html[data-tl-theme="comic-wordart"] .mx_LeftPanel,
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel {
+  background: transparent;
+}
+html[data-tl-theme="comic-wordart"] .mx_RightPanel { margin-left: 6px; }
+
+/* "Start menu" space strip with the vertical Element 97 band */
+html[data-tl-theme="comic-wordart"] .mx_SpacePanel {
+  padding-left: 24px;
+  box-sizing: content-box;
+  position: relative;
+}
+html[data-tl-theme="comic-wordart"] .mx_SpacePanel::before {
+  content: "Element 97";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  bottom: 3px;
+  width: 20px;
+  background: linear-gradient(0deg, #000080, #1084d0);
+  color: #c0c0c0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  padding-top: 8px;
+  box-sizing: border-box;
+  text-align: start;
+}
+html[data-tl-theme="comic-wordart"] .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: #000080;
+  border-radius: 0;
+}
+html[data-tl-theme="comic-wordart"] .mx_SpaceButton .mx_SpaceButton_selectionWrapper { border-radius: 0; }
+
+/* ------------------------------------------------------------------ title bars */
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel::before,
+html[data-tl-theme="comic-wordart"] .mx_MessageComposer::before,
+html[data-tl-theme="comic-wordart"] .mx_RightPanel::before {
+  display: block;
+  flex: 0 0 auto;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 4px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13px;
+  background: var(--w95-title);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel::before { content: "\1F4C1  Rooms - Element Explorer"; margin-bottom: 4px; }
+html[data-tl-theme="comic-wordart"] .mx_MessageComposer::before { content: "Untitled - Message"; margin: 0 0 4px; }
+html[data-tl-theme="comic-wordart"] .mx_RightPanel::before { content: "Properties"; }
+html[data-tl-theme="comic-wordart"] .mx_RightPanel { display: flex; flex-direction: column; }
+html[data-tl-theme="comic-wordart"] .mx_RightPanel > * { flex: 1 1 auto; min-height: 0; }
+
+/* room list: Explorer list well */
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel > [class*="_list_"] {
+  background: #ffffff;
+  box-shadow: var(--w95-field);
+  margin: 4px;
+  padding: 2px;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomListItemView { border-radius: 0; }
+html[data-tl-theme="comic-wordart"] .mx_RoomListItemView:hover { background: #dfdfdf; }
+html[data-tl-theme="comic-wordart"] .mx_RoomListItemView_selected,
+html[data-tl-theme="comic-wordart"] .mx_RoomListItemView[aria-selected="true"] {
+  background: #000080;
+  --cpd-color-text-primary: #ffffff;
+  --cpd-color-text-secondary: #ffffff;
+  --cpd-color-icon-secondary: #ffffff;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomListItemView_selected [class*="_roomName_"] { color: #ffffff; }
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel [role="search"] button {
+  background: #ffffff;
+  border-radius: 0;
+  box-shadow: var(--w95-field);
+  border: 0;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel [role="listbox"][aria-label] > button[role="option"] {
+  border-radius: 0;
+  background: #c0c0c0;
+  box-shadow: var(--w95-out);
+  border: 0;
+  color: #000000;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel [role="listbox"][aria-label] > button[role="option"][aria-selected="true"] {
+  box-shadow: var(--w95-in);
+  background: #dfdfdf;
+}
+
+/* ------------------------------------------------------------------ header: title bar with WordArt */
+html[data-tl-theme="comic-wordart"] .mx_RoomHeader {
+  background: var(--w95-title);
+  border-bottom: 0;
+  margin-bottom: 3px;
+  min-height: 56px;
+  --cpd-color-icon-secondary: #ffffff;
+  --cpd-color-icon-primary: #ffffff;
+  --cpd-color-text-primary: #ffffff;
+  --cpd-color-text-secondary: #ffffff;
+  --cpd-color-bg-subtle-primary: #1084d0;
+  --cpd-color-bg-action-secondary-hovered: rgba(255, 255, 255, 0.2);
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomHeader_heading {
+  font-size: 1.9em;
+  font-family: var(--ewt-impact);
+  letter-spacing: 0.03em;
+  transform: perspective(300px) rotateX(10deg) skewX(-6deg);
+  transform-origin: left center;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomHeader::after {
+  content: "_";
+  order: 99;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 14px;
+  margin-left: 6px;
+  font: 700 11px/10px var(--ewt-comic);
+  color: #000000;
+  text-align: center;
+  background: #c0c0c0;
+  box-shadow: var(--w95-out), 18px 0 0 0 #c0c0c0, 38px 0 0 0 #c0c0c0;
+  margin-right: 40px;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomHeader::before {
+  content: "\25A1  \2715";
+  order: 100;
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  margin-top: -7px;
+  font: 700 10px/14px var(--ewt-comic);
+  color: #000000;
+  letter-spacing: 3px;
+  pointer-events: none;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomHeader { position: relative; }
+html[data-tl-theme="comic-wordart"].ewt-roomchange .mx_RoomHeader_heading .mx_RoomHeader_truncated {
+  animation: ewt-shimmer 1.2s ease-out 1;
+}
+
+/* ------------------------------------------------------------------ timeline: Word 97 page */
+html[data-tl-theme="comic-wordart"] .mx_RoomView_timeline {
+  background: #808080;
+  box-shadow: var(--w95-field);
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomView_timeline::before {
+  content: "";
+  flex: 0 0 auto;
+  height: 18px;
+  margin: 2px 2px 0;
+  background:
+    repeating-linear-gradient(90deg, #000 0 1px, transparent 1px 48px) 32px 100% / 100% 9px no-repeat,
+    repeating-linear-gradient(90deg, #000 0 1px, transparent 1px 12px) 32px 100% / 100% 4px no-repeat,
+    linear-gradient(90deg, #808080 0 32px, #ffffff 32px calc(100% - 32px), #808080 calc(100% - 32px)) 0 0 / 100% 100%;
+  border-bottom: 1px solid #404040;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomView_MessageList {
+  background: #ffffff;
+  margin: 12px 28px 16px;
+  border: 1px solid #000000;
+  box-shadow: 5px 5px 0 #404040;
+  width: auto;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomView_messagePanel { scrollbar-color: #c0c0c0 #dfdfdf; }
+html[data-tl-theme="comic-wordart"] .mx_EventTile[class*="_stateOwnEvent_"] > .mx_EventTile_line {
+  background: #ffffe1;
+  outline: 1px solid #000000;
+  outline-offset: -1px;
+}
+html[data-tl-theme="comic-wordart"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  background: #ffff00;
+}
+html[data-tl-theme="comic-wordart"] .mx_EventTile[class*="_stateSelected_"] > .mx_EventTile_line,
+html[data-tl-theme="comic-wordart"] .mx_EventTile:hover > .mx_EventTile_line {
+  background-color: #e8e8ff;
+}
+html[data-tl-theme="comic-wordart"] .mx_EventTile .mx_BaseAvatar { box-shadow: 1px 1px 0 #000; }
+html[data-tl-theme="comic-wordart"] .mx_TimelineSeparator > hr {
+  height: 2px;
+  border: 0;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
+}
+html[data-tl-theme="comic-wordart"] .mx_TimelineSeparator h2 {
+  font-family: var(--ewt-times);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.3em;
+  background: linear-gradient(180deg, #fff7aa 0%, #ffd700 45%, #b8860b 55%, #ffeb80 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 0.7px #7a4e00;
+  filter: drop-shadow(2px 2px 0 #000);
+  padding: 0 4px;
+}
+html[data-tl-theme="comic-wordart"] .mx_EventTile_body pre,
+html[data-tl-theme="comic-wordart"] .mx_EventTile_pre_container {
+  background: #ffffff;
+  box-shadow: var(--w95-field);
+  border-radius: 0;
+  border: 0;
+}
+html[data-tl-theme="comic-wordart"] .mx_EventTile_body code { background: #dfdfdf; border-radius: 0; }
+html[data-tl-theme="comic-wordart"] .hljs-keyword { color: #000080; font-weight: 700; }
+html[data-tl-theme="comic-wordart"] .hljs-string { color: #008000; }
+html[data-tl-theme="comic-wordart"] .hljs-number,
+html[data-tl-theme="comic-wordart"] .hljs-literal { color: #800080; }
+html[data-tl-theme="comic-wordart"] .hljs-comment { color: #808000; font-style: italic; }
+html[data-tl-theme="comic-wordart"] .hljs-title,
+html[data-tl-theme="comic-wordart"] .hljs-function { color: #800000; }
+
+/* bubble layout: yellow tooltip callouts */
+html[data-tl-theme="comic-wordart"] .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line {
+  background: #ffffe1;
+  border: 1px solid #000000;
+  border-radius: 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* NewRoomIntro: Klammi says hi (static, the animated helper is the enhancer's) */
+html[data-tl-theme="comic-wordart"] .mx_NewRoomIntro > h2 {
+  font-family: var(--ewt-impact);
+  font-weight: 400;
+  font-size: 2.2em;
+  letter-spacing: 0.04em;
+  background: var(--ewt-rainbow);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 1px #000;
+  filter: drop-shadow(3px 3px 0 #808080);
+}
+
+/* ------------------------------------------------------------------ composer window */
+html[data-tl-theme="comic-wordart"] .mx_MessageComposer {
+  background: #c0c0c0;
+  box-shadow: var(--w95-out);
+  padding: 3px;
+  margin-top: 3px;
+}
+html[data-tl-theme="comic-wordart"] .mx_MessageComposer_wrapper {
+  border-top: 0;
+  background: transparent;
+}
+html[data-tl-theme="comic-wordart"] .mx_SendMessageComposer {
+  background: #ffffff;
+  box-shadow: var(--w95-field);
+  padding: 4px 6px;
+}
+html[data-tl-theme="comic-wordart"] .mx_MessageComposer_sendMessage {
+  border-radius: 0;
+  background: #c0c0c0;
+  box-shadow: var(--w95-out);
+  --cpd-color-icon-on-solid-primary: #000000;
+}
+html[data-tl-theme="comic-wordart"] .mx_MessageComposer_sendMessage:active { box-shadow: var(--w95-in); }
+
+/* ------------------------------------------------------------------ buttons + inputs */
+html[data-tl-theme="comic-wordart"] button[class*="_button_"][data-kind],
+html[data-tl-theme="comic-wordart"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="comic-wordart"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-theme="comic-wordart"] .mx_AccessibleButton_kind_secondary,
+html[data-tl-theme="comic-wordart"] .mx_AccessibleButton_kind_danger,
+html[data-tl-theme="comic-wordart"] .mx_Dialog_buttons button {
+  background: #c0c0c0;
+  color: #000000;
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--w95-out);
+  --cpd-color-icon-on-solid-primary: #000000;
+  --cpd-color-text-on-solid-primary: #000000;
+}
+html[data-tl-theme="comic-wordart"] button[class*="_button_"][data-kind="primary"],
+html[data-tl-theme="comic-wordart"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="comic-wordart"] .mx_Dialog_primary {
+  outline: 1px solid #000000;
+  outline-offset: 0;
+  font-weight: 700;
+}
+html[data-tl-theme="comic-wordart"] button[class*="_button_"][data-kind="primary"][class*="_destructive_"],
+html[data-tl-theme="comic-wordart"] .mx_AccessibleButton_kind_danger { color: #cc0000; }
+html[data-tl-theme="comic-wordart"] button[class*="_button_"][data-kind]:active,
+html[data-tl-theme="comic-wordart"] .mx_AccessibleButton_kind_primary:active,
+html[data-tl-theme="comic-wordart"] .mx_Dialog_buttons button:active {
+  box-shadow: var(--w95-in);
+}
+html[data-tl-theme="comic-wordart"] .mx_Field,
+html[data-tl-theme="comic-wordart"] input[class*="_control_"],
+html[data-tl-theme="comic-wordart"] textarea[class*="_control_"] {
+  border-radius: 0;
+  background: #ffffff;
+  border-color: transparent;
+  box-shadow: var(--w95-field);
+}
+
+/* ------------------------------------------------------------------ dialogs */
+html[data-tl-theme="comic-wordart"] .mx_Dialog {
+  background: #c0c0c0;
+  border-radius: 0;
+  box-shadow: var(--w95-out), 4px 4px 0 rgba(0, 0, 0, 0.4);
+  border: 0;
+  padding-top: 0;
+  --cpd-color-bg-canvas-default: #c0c0c0;
+  --cpd-color-gray-900: #3a3a3a;
+  --cpd-color-gray-800: #454545;
+  --cpd-color-text-secondary: #333333;
+}
+html[data-tl-theme="comic-wordart"] .mx_Dialog_header {
+  background: var(--w95-title);
+  margin: 3px -21px 16px;
+  padding: 4px 8px;
+  min-height: 26px;
+}
+html[data-tl-theme="comic-wordart"] .mx_Dialog_title {
+  font-family: var(--ewt-times);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.5em;
+  background: linear-gradient(180deg, #fff7aa 0%, #ffd700 45%, #b8860b 55%, #ffeb80 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 0.6px #7a4e00;
+  filter: drop-shadow(2px 2px 0 #000);
+}
+html[data-tl-theme="comic-wordart"] .mx_Dialog_cancelButton,
+html[data-tl-theme="comic-wordart"] .mx_Dialog_header [class*="_close_"] {
+  background-color: #c0c0c0;
+  border-radius: 0;
+  box-shadow: var(--w95-out);
+}
+html[data-tl-theme="comic-wordart"] .mx_Dialog:has(.tl-ui) .mx_Dialog_title,
+html[data-tl-theme="comic-wordart"] .mx_UserSettingsDialog .mx_Dialog_title {
+  font-family: var(--ewt-comic);
+  font-style: normal;
+  font-size: 1.2em;
+  background: none;
+  color: #ffffff;
+  -webkit-text-stroke: 0;
+  filter: none;
+}
+
+/* ------------------------------------------------------------------ menus + tooltips */
+html[data-tl-theme="comic-wordart"] .mx_ContextualMenu,
+html[data-tl-theme="comic-wordart"] [role="menu"] {
+  background: #c0c0c0;
+  border-radius: 0;
+  border: 0;
+  box-shadow: var(--w95-out), 3px 3px 0 rgba(0, 0, 0, 0.35);
+}
+html[data-tl-theme="comic-wordart"] [role="menu"] [role^="menuitem"]:hover,
+html[data-tl-theme="comic-wordart"] [role="menu"] [role^="menuitem"]:focus-visible,
+html[data-tl-theme="comic-wordart"] .mx_IconizedContextMenu_item:hover {
+  background: #000080;
+  color: #ffffff;
+  --cpd-color-text-primary: #ffffff;
+  --cpd-color-text-secondary: #ffffff;
+  --cpd-color-icon-primary: #ffffff;
+  --cpd-color-icon-secondary: #ffffff;
+}
+html[data-tl-theme="comic-wordart"] [role="tooltip"] {
+  background: #ffffe1;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+  --cpd-color-text-primary: #000000;
+  --cpd-color-text-on-solid-primary: #000000;
+  --cpd-color-text-secondary: #404040;
+}
+
+/* ------------------------------------------------------------------ settings: property sheet */
+html[data-tl-theme="comic-wordart"] .mx_TabbedView_tabLabel {
+  border-radius: 0;
+  background: #c0c0c0;
+  box-shadow: inset 1px 1px #ffffff, inset -1px 0 #0a0a0a, inset -2px 0 #808080;
+  margin-bottom: 2px;
+  color: #000000;
+}
+html[data-tl-theme="comic-wordart"] .mx_TabbedView_tabLabel_active {
+  background: #dfdfdf;
+  font-weight: 700;
+  transform: translateX(3px);
+  color: #000000;
+}
+html[data-tl-theme="comic-wordart"] .mx_SettingsSection,
+html[data-tl-theme="comic-wordart"] .mx_SettingsSubsection {
+  border: 2px groove #ffffff;
+  padding: 10px 12px;
+}
+
+/* ------------------------------------------------------------------ badges, auth, iframes, focus */
+html[data-tl-theme="comic-wordart"] [class*="_notificationBadge_"],
+html[data-tl-theme="comic-wordart"] .mx_NotificationBadge_count {
+  background: #000080;
+  color: #ffffff;
+  border-radius: 0;
+}
+html[data-tl-theme="comic-wordart"] .mx_AuthPage { background: #008080 !important; }
+html[data-tl-theme="comic-wordart"] .mx_AuthPage_modal {
+  background: #c0c0c0;
+  border-radius: 0;
+  box-shadow: var(--w95-out), 6px 6px 0 rgba(0, 0, 0, 0.35);
+}
+html[data-tl-theme="comic-wordart"] .mx_AuthPage_modal::before {
+  content: "Welcome to Element 97";
+  display: block;
+  height: 22px;
+  line-height: 22px;
+  padding: 0 6px;
+  margin: 3px;
+  color: #ffffff;
+  font-weight: 700;
+  background: var(--w95-title);
+}
+html[data-tl-theme="comic-wordart"] .mx_AuthBody { background: #c0c0c0; }
+html[data-tl-theme="comic-wordart"] .mx_AuthBody h1 {
+  font-family: var(--ewt-impact);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  background: var(--ewt-rainbow);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 1px #000;
+  filter: drop-shadow(3px 3px 0 #808080);
+}
+html[data-tl-theme="comic-wordart"] .mx_AppTile,
+html[data-tl-theme="comic-wordart"] .mx_CallView {
+  background: #c0c0c0;
+  border-radius: 0;
+  box-shadow: var(--w95-out);
+  padding: 3px;
+}
+html[data-tl-theme="comic-wordart"] :focus-visible {
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+  box-shadow: 0 0 0 2px #000080;
+}
+
+/* WordArt sender names: bigger so the gradients read */
+html[data-tl-theme="comic-wordart"] .mx_EventTile .mx_DisambiguatedProfile { font-size: 1.15em; }
+html[data-tl-theme="comic-wordart"] :is(.mx_DisambiguatedProfile_displayName, .mx_DisambiguatedProfile > span:first-child)[class*="mx_Username_color"] {
+  -webkit-text-stroke-width: 0.35px;
+}
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel [class*="_stickyRow_"],
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel button[class*="_header_"] { background: #ffffff; }
+html[data-tl-theme="comic-wordart"] .mx_RoomListPanel button[class*="_header_"] { font-weight: 700; }
+html[data-tl-theme="comic-wordart"] [class*="_unread-counter_"] { background: #000080; color: #ffffff; border-radius: 0; }
+
+/* ------------------------------------------------------------------ narrow screens */
+@media (max-width: 700px) {
+  html[data-tl-theme="comic-wordart"] .mx_MatrixChat { padding: 2px; gap: 2px; }
+  html[data-tl-theme="comic-wordart"] .mx_SpacePanel { padding-left: 3px; }
+  html[data-tl-theme="comic-wordart"] .mx_SpacePanel::before { display: none; }
+  html[data-tl-theme="comic-wordart"] .mx_RoomView_MessageList { margin: 6px 4px 8px; box-shadow: 2px 2px 0 #404040; }
+  html[data-tl-theme="comic-wordart"] .mx_RoomView_timeline::before { display: none; }
+  html[data-tl-theme="comic-wordart"] .mx_RoomHeader_heading { font-size: 1.3em; }
+  html[data-tl-theme="comic-wordart"] .mx_RoomHeader::after,
+  html[data-tl-theme="comic-wordart"] .mx_RoomHeader::before { display: none; }
+}
+html[data-tl-theme="comic-wordart"] .mx_EventTile_body pre code { background: transparent; }
+html[data-tl-theme="comic-wordart"] .mx_Field label,
+html[data-tl-theme="comic-wordart"] .mx_Dialog .mx_SettingsFlag_microcopy,
+html[data-tl-theme="comic-wordart"] .mx_Dialog p { color: #222222; }
+html[data-tl-theme="comic-wordart"] .mx_Field label { background-color: #c0c0c0; }

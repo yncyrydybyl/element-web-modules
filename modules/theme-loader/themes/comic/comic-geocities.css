@@ -1,0 +1,492 @@
+/* comic-geocities: level 2. "Welcome to my homepage!" Sky tile, white page tables, web ring, hit counter,
+   rainbow hr, under construction, guestbook composer. */
+
+html[data-tl-theme="comic-geocities"],
+html[data-tl-theme="comic-geocities"] body,
+html[data-tl-theme="comic-geocities"] [class*="cpd-theme-"] {
+  --cpd-color-bg-canvas-default: #ffffff;
+  --cpd-color-bg-canvas-default-level-1: #ffffff;
+  --cpd-color-bg-subtle-secondary: #e8dde8;
+  --cpd-color-bg-subtle-primary: #ffffcc;
+  --cpd-color-text-primary: #000000;
+  --cpd-color-text-secondary: #555555;
+  --cpd-color-text-action-accent: #0000ee;
+  --cpd-color-text-link-external: #0000ee;
+  --cpd-color-text-action-primary: #000000;
+  --cpd-color-icon-primary: #000080;
+  --cpd-color-icon-secondary: #000080;
+  --cpd-color-icon-tertiary: #404080;
+  --cpd-color-icon-accent-primary: #0000ee;
+  --cpd-color-border-interactive-primary: #808080;
+  --cpd-color-border-interactive-secondary: #808080;
+  --cpd-color-border-focused: #0000ee;
+  --cpd-color-bg-action-primary-rest: #000080;
+  --cpd-color-bg-action-primary-hovered: #0000ee;
+  --cpd-color-bg-action-primary-pressed: #000060;
+  --cpd-color-bg-accent-rest: #000080;
+  --cpd-color-bg-accent-hovered: #0000ee;
+  --cpd-color-bg-action-tertiary-hovered: #ffffcc;
+  --cpd-color-bg-action-tertiary-selected: #ffffcc;
+  --cpd-color-bg-critical-primary: #cc0000;
+  --cpd-color-text-critical-primary: #cc0000;
+  --cpd-color-text-decorative-1: #800000;
+  --cpd-color-text-decorative-2: #008000;
+  --cpd-color-text-decorative-3: #000080;
+  --cpd-color-text-decorative-4: #800080;
+  --cpd-color-text-decorative-5: #008080;
+  --cpd-color-text-decorative-6: #cc0000;
+  --cpd-color-bg-decorative-1: #ffcccc;
+  --cpd-color-bg-decorative-2: #ccffcc;
+  --cpd-color-bg-decorative-3: #ccccff;
+  --cpd-color-bg-decorative-4: #ffccff;
+  --cpd-color-bg-decorative-5: #ccffff;
+  --cpd-color-bg-decorative-6: #ffffcc;
+  --cpd-avatar-radius: 0;
+  --MBody-border-radius: 0;
+  scrollbar-color: #c0c0c0 #dfdfdf;
+}
+
+/* ------------------------------------------------------------------ shell: the sky */
+html[data-tl-theme="comic-geocities"] .mx_MatrixChat {
+  background: #6ea6f0 url("assets/tile-clouds.png") repeat;
+  padding: 8px;
+  gap: 8px;
+  box-sizing: border-box;
+}
+html[data-tl-theme="comic-geocities"] .mx_MatrixChat_wrapper { background: #6ea6f0; }
+
+/* ------------------------------------------------------------------ spaces: navy frame */
+html[data-tl-theme="comic-geocities"] .mx_SpacePanel {
+  background: #000080;
+  border: 3px outset #c0c0c0;
+  --cpd-color-icon-secondary: #ffff00;
+  --cpd-color-icon-primary: #ffff00;
+  --cpd-color-text-primary: #ffff00;
+  --cpd-color-text-secondary: #ffffcc;
+}
+html[data-tl-theme="comic-geocities"] .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper,
+html[data-tl-theme="comic-geocities"] .mx_SpaceButton:hover .mx_SpaceButton_selectionWrapper {
+  background: #0000ee;
+}
+
+/* ------------------------------------------------------------------ room list: marble + web ring */
+html[data-tl-theme="comic-geocities"] .mx_LeftPanel_outerWrapper,
+html[data-tl-theme="comic-geocities"] .mx_LeftPanel {
+  background: #e8dde8 url("assets/tile-marble.png") repeat;
+}
+html[data-tl-theme="comic-geocities"] .mx_LeftPanel_outerWrapper {
+  border: 3px outset #c0c0c0;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomListPanel { background: transparent; }
+html[data-tl-theme="comic-geocities"] .mx_RoomListPanel header h1 {
+  font-weight: 700;
+  color: #800080;
+  text-shadow: 1px 1px 0 #ffffff;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView {
+  background: transparent;
+  border-radius: 0;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView:hover {
+  background: rgba(255, 255, 204, 0.85);
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView [class*="_roomName_"] {
+  color: #000080;
+  text-decoration: underline;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView_selected,
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView[aria-selected="true"] {
+  background: #ffffcc;
+  box-shadow: var(--w95-field);
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView_selected [class*="_roomName_"] {
+  color: #551a8b;
+  font-weight: 700;
+  text-decoration: none;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView_selected [class*="_roomName_"]::before { content: "<< "; color: #ff0000; }
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView_selected [class*="_roomName_"]::after { content: " >>"; color: #ff0000; }
+/* unread room: NEW! */
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"]::after,
+html[data-tl-theme="comic-geocities"] .mx_RoomListItemView [class*="_roomName_"][class*="_bold_"]::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  margin: -8px 0 -8px 4px;
+  background: url("assets/new-burst.gif") center / 28px 28px no-repeat;
+}
+/* 88x31 buttons under the room list */
+html[data-tl-theme="comic-geocities"] .mx_LeftPanel_roomListContainer {
+  display: flex;
+  flex-direction: column;
+}
+html[data-tl-theme="comic-geocities"] .mx_LeftPanel_roomListContainer::after {
+  content: "";
+  flex: 0 0 auto;
+  height: 70px;
+  margin: 6px 8px 8px;
+  background:
+    url("assets/btn-element-now.png") 0 0 no-repeat,
+    url("assets/btn-matrix-powered.png") 96px 0 no-repeat,
+    url("assets/btn-notepad.png") 0 39px no-repeat,
+    url("assets/btn-comic-sans.png") 96px 39px no-repeat;
+  image-rendering: pixelated;
+}
+
+/* ------------------------------------------------------------------ room view: page tables in the sky */
+html[data-tl-theme="comic-geocities"] .mx_RoomView,
+html[data-tl-theme="comic-geocities"] .mx_RoomView_wrapper,
+html[data-tl-theme="comic-geocities"] .mx_MainSplit,
+html[data-tl-theme="comic-geocities"] .mx_RoomView_body {
+  background: transparent;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomView_body { gap: 6px; }
+html[data-tl-theme="comic-geocities"] .mx_RoomHeader {
+  order: -2;
+  background: #ffffff;
+  border: 3px outset #c0c0c0;
+  border-bottom: 3px outset #c0c0c0;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomHeader_heading {
+  font-weight: 700;
+  font-size: 1.3em;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomHeader_heading .mx_RoomHeader_truncated {
+  background: linear-gradient(90deg, #0000ee, #8b00ff 60%, #cc0077);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 2px;
+}
+/* hit counter */
+html[data-tl-theme="comic-geocities"] .mx_RoomHeader::after {
+  content: "VISITORS: 004711";
+  flex: 0 0 auto;
+  order: 99;
+  font: 18px/1 "VT323", monospace;
+  letter-spacing: 1px;
+  color: #00ff00;
+  background: #000000 url("assets/email-spin.gif") 4px center no-repeat;
+  padding: 4px 8px 4px 40px;
+  border: 2px inset #808080;
+  white-space: nowrap;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomHeader[data-ewt-count]::after {
+  content: "VISITORS: " attr(data-ewt-count);
+}
+/* marquee strip under the header */
+html[data-tl-theme="comic-geocities"] .mx_RoomView_body::before {
+  content: "\2605  Welcome to my homepage!  \2605  Sign my guestbook!  \2605  Best viewed with Element at 800x600  \2605  This page is under construction  \2605  Welcome to my homepage!  \2605  Sign my guestbook!  \2605  Best viewed with Element at 800x600  \2605  This page is under construction  \2605";
+  order: -1;
+  display: block;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  color: #ff0000;
+  background: #ffff99;
+  border: 2px inset #c0c0c0;
+  padding-left: 0;
+  animation: ewt-geo-marquee 28s linear infinite;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomView_body[data-ewt-topic]::before {
+  content: "\2605  " attr(data-ewt-topic) "  \2605  Sign my guestbook!  \2605  " attr(data-ewt-topic) "  \2605";
+}
+@keyframes ewt-geo-marquee {
+  from { text-indent: 100%; }
+  to { text-indent: -200%; }
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomView_timeline {
+  background: #ffffff;
+  border: 3px outset #c0c0c0;
+}
+html[data-tl-theme="comic-geocities"] .mx_AuxPanel:empty { display: none; }
+
+/* timeline content */
+html[data-tl-theme="comic-geocities"] .mx_MessageTimestamp {
+  font-family: var(--ewt-times);
+  font-style: italic;
+  color: #555555;
+}
+html[data-tl-theme="comic-geocities"] .mx_EventTile_body a,
+html[data-tl-theme="comic-geocities"] .mx_EventTile_body a:link {
+  color: #0000ee;
+  text-decoration: underline;
+}
+html[data-tl-theme="comic-geocities"] .mx_EventTile_body a:visited { color: #551a8b; }
+html[data-tl-theme="comic-geocities"] .mx_TimelineSeparator > hr {
+  height: 8px;
+  border: 0;
+  background: url("assets/hr-rainbow.gif") repeat-x center / auto 8px;
+}
+html[data-tl-theme="comic-geocities"] .mx_TimelineSeparator h2 {
+  font-weight: 700;
+  color: #800080;
+}
+html[data-tl-theme="comic-geocities"] .mx_EventTile[class*="_stateOwnEvent_"] > .mx_EventTile_line {
+  background: #ffffcc;
+}
+html[data-tl-theme="comic-geocities"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  background: #ffff66;
+  outline: 2px dashed #ff0000;
+  outline-offset: -2px;
+}
+html[data-tl-theme="comic-geocities"] .mx_DisambiguatedProfile { font-weight: 700; }
+html[data-tl-theme="comic-geocities"] .mx_EventTile .mx_BaseAvatar {
+  outline: 2px outset #c0c0c0;
+}
+html[data-tl-theme="comic-geocities"] .mx_EventTile_body pre,
+html[data-tl-theme="comic-geocities"] .mx_EventTile_pre_container {
+  background: #ffffcc;
+  border: 1px dashed #808080;
+  border-radius: 0;
+}
+html[data-tl-theme="comic-geocities"] .mx_EventTile_body code {
+  background: #ffffcc;
+  border-radius: 0;
+}
+html[data-tl-theme="comic-geocities"] .mx_EventTile_body blockquote {
+  border-left: 4px ridge #c0c0c0;
+}
+/* under construction in empty/intro states */
+html[data-tl-theme="comic-geocities"] .mx_NewRoomIntro::before,
+html[data-tl-theme="comic-geocities"] .mx_HomePage_default::before {
+  content: "";
+  display: block;
+  width: 96px;
+  height: 84px;
+  margin: 8px auto;
+  background: url("assets/under-construction.gif") no-repeat;
+}
+
+/* bubble layout: guestbook entries */
+html[data-tl-theme="comic-geocities"] .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line {
+  border: 2px outset #c0c0c0;
+  border-radius: 0;
+}
+
+/* ------------------------------------------------------------------ composer: guestbook */
+html[data-tl-theme="comic-geocities"] .mx_MessageComposer {
+  background: #ffffcc;
+  border: 3px outset #c0c0c0;
+}
+html[data-tl-theme="comic-geocities"] .mx_MessageComposer_wrapper { background: transparent; }
+html[data-tl-theme="comic-geocities"] .mx_BasicMessageComposer_input {
+  --placeholder: "Sign my guestbook!" !important;
+}
+html[data-tl-theme="comic-geocities"] .mx_SendMessageComposer,
+html[data-tl-theme="comic-geocities"] .mx_MessageComposer_row .mx_BasicMessageComposer {
+  background: #ffffff;
+  box-shadow: var(--w95-field);
+  border-radius: 0;
+  padding: 2px 6px;
+}
+html[data-tl-theme="comic-geocities"] .mx_MessageComposer_sendMessage {
+  width: auto;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 0;
+  background: #c0c0c0;
+  box-shadow: var(--w95-out);
+  color: #000000;
+}
+html[data-tl-theme="comic-geocities"] .mx_MessageComposer_sendMessage::before {
+  content: "Submit Query";
+  position: static;
+  mask: none;
+  -webkit-mask: none;
+  background: none;
+  width: auto;
+  height: auto;
+  font-size: 13px;
+  color: #000000;
+  white-space: nowrap;
+}
+html[data-tl-theme="comic-geocities"] .mx_MessageComposer_sendMessage svg { display: none; }
+
+/* ------------------------------------------------------------------ buttons, inputs */
+html[data-tl-theme="comic-geocities"] button[class*="_button_"][data-kind="primary"],
+html[data-tl-theme="comic-geocities"] button[class*="_button_"][data-kind="secondary"],
+html[data-tl-theme="comic-geocities"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="comic-geocities"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-theme="comic-geocities"] .mx_AccessibleButton_kind_secondary {
+  background: #c0c0c0;
+  color: #000000;
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--w95-out);
+}
+html[data-tl-theme="comic-geocities"] button[class*="_button_"][data-kind]:active,
+html[data-tl-theme="comic-geocities"] .mx_AccessibleButton_kind_primary:active {
+  box-shadow: var(--w95-in);
+}
+html[data-tl-theme="comic-geocities"] .mx_AccessibleButton_kind_link,
+html[data-tl-theme="comic-geocities"] .mx_AccessibleButton_kind_link_inline {
+  color: #0000ee;
+  text-decoration: underline;
+}
+html[data-tl-theme="comic-geocities"] .mx_Field,
+html[data-tl-theme="comic-geocities"] input[class*="_control_"],
+html[data-tl-theme="comic-geocities"] textarea[class*="_control_"] {
+  border-radius: 0;
+}
+html[data-tl-theme="comic-geocities"] .mx_Field {
+  border: 2px inset #c0c0c0;
+}
+
+/* ------------------------------------------------------------------ right panel */
+html[data-tl-theme="comic-geocities"] .mx_RightPanel {
+  background: #e8dde8 url("assets/tile-marble.png") repeat;
+  border: 3px outset #c0c0c0;
+  margin-left: 6px;
+}
+html[data-tl-theme="comic-geocities"] .mx_RightPanel .mx_BaseCard { background: rgba(255, 255, 255, 0.92); }
+html[data-tl-theme="comic-geocities"] .mx_RightPanel h1,
+html[data-tl-theme="comic-geocities"] .mx_RightPanel h2,
+html[data-tl-theme="comic-geocities"] .mx_RightPanel h3 {
+  color: #800080;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ dialogs, menus, tooltips */
+html[data-tl-theme="comic-geocities"] .mx_Dialog {
+  border-radius: 0;
+  border: 3px outset #c0c0c0;
+  box-shadow: 6px 6px 0 rgba(0, 0, 64, 0.45);
+}
+html[data-tl-theme="comic-geocities"] .mx_Dialog_header {
+  background: #000080;
+  margin: -1px -1px 12px;
+  padding: 6px 10px;
+  border-bottom: 6px solid transparent;
+  border-image: var(--ewt-rainbow) 1;
+}
+html[data-tl-theme="comic-geocities"] .mx_Dialog_title {
+  color: #ffff00;
+  font-weight: 700;
+}
+html[data-tl-theme="comic-geocities"] .mx_Dialog_header .mx_Dialog_cancelButton,
+html[data-tl-theme="comic-geocities"] .mx_Dialog_header [class*="_close_"] {
+  background-color: #ffff00;
+}
+html[data-tl-theme="comic-geocities"] .mx_ContextualMenu,
+html[data-tl-theme="comic-geocities"] [role="menu"] {
+  background: #c0c0c0;
+  border-radius: 0;
+  box-shadow: var(--w95-out), 3px 3px 0 rgba(0, 0, 0, 0.35);
+  border: 0;
+  --cpd-color-bg-action-tertiary-hovered: #000080;
+}
+html[data-tl-theme="comic-geocities"] [role="menu"] [role^="menuitem"]:hover,
+html[data-tl-theme="comic-geocities"] [role="menu"] [role^="menuitem"]:focus-visible,
+html[data-tl-theme="comic-geocities"] .mx_IconizedContextMenu_item:hover {
+  background: #000080;
+  color: #ffffff;
+  --cpd-color-text-primary: #ffffff;
+  --cpd-color-icon-primary: #ffffff;
+  --cpd-color-icon-secondary: #ffffff;
+}
+html[data-tl-theme="comic-geocities"] [role="tooltip"] {
+  background: #ffffe1;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 0;
+  --cpd-color-text-primary: #000000;
+  --cpd-color-text-on-solid-primary: #000000;
+  --cpd-color-bg-action-primary-rest: #ffffe1;
+}
+
+/* ------------------------------------------------------------------ settings */
+html[data-tl-theme="comic-geocities"] .mx_TabbedView_tabLabel {
+  border-radius: 0;
+  color: #0000ee;
+  text-decoration: underline;
+}
+html[data-tl-theme="comic-geocities"] .mx_TabbedView_tabLabel_active {
+  background: #ffffcc;
+  color: #551a8b;
+  box-shadow: var(--w95-field);
+}
+
+/* ------------------------------------------------------------------ badges */
+html[data-tl-theme="comic-geocities"] [class*="_notificationBadge_"],
+html[data-tl-theme="comic-geocities"] .mx_NotificationBadge_count {
+  background: #ff0000;
+  color: #ffff00;
+  font-weight: 700;
+  border-radius: 0;
+  outline: 1px solid #800000;
+}
+
+/* ------------------------------------------------------------------ auth / welcome */
+html[data-tl-theme="comic-geocities"] .mx_AuthPage {
+  background: #6ea6f0 url("assets/tile-clouds.png") repeat !important;
+}
+html[data-tl-theme="comic-geocities"] .mx_AuthPage_modal {
+  border: 3px outset #c0c0c0;
+  border-radius: 0;
+  box-shadow: 8px 8px 0 rgba(0, 0, 64, 0.4);
+}
+html[data-tl-theme="comic-geocities"] .mx_AuthBody h1,
+html[data-tl-theme="comic-geocities"] .mx_AuthBody h2 {
+  color: #800080;
+  font-weight: 700;
+  padding-bottom: 6px;
+  border-bottom: 6px solid transparent;
+  border-image: var(--ewt-rainbow) 1;
+}
+
+/* ------------------------------------------------------------------ iframes / focus */
+html[data-tl-theme="comic-geocities"] .mx_AppTile,
+html[data-tl-theme="comic-geocities"] .mx_CallView {
+  border: 3px outset #c0c0c0;
+  border-radius: 0;
+}
+html[data-tl-theme="comic-geocities"] :focus-visible {
+  outline: 2px dotted #000000;
+  outline-offset: 1px;
+  box-shadow: 0 0 0 4px #0000ee;
+}
+
+/* ------------------------------------------------------------------ reduced motion: static stand-ins */
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="comic-geocities"] .mx_TimelineSeparator > hr { background-image: url("assets/hr-rainbow-static.png"); }
+  html[data-tl-theme="comic-geocities"] .mx_NewRoomIntro::before,
+  html[data-tl-theme="comic-geocities"] .mx_HomePage_default::before { background-image: url("assets/under-construction-static.png"); }
+  html[data-tl-theme="comic-geocities"] .mx_RoomHeader::after { background-image: url("assets/email-spin-static.png"); }
+  html[data-tl-theme="comic-geocities"] .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"]::after,
+  html[data-tl-theme="comic-geocities"] .mx_RoomListItemView [class*="_roomName_"][class*="_bold_"]::after { background-image: url("assets/new-burst-static.png"); }
+  html[data-tl-theme="comic-geocities"] .mx_RoomView_body::before { padding-left: 8px; text-overflow: ellipsis; }
+}
+
+/* ------------------------------------------------------------------ room list sections + counters */
+html[data-tl-theme="comic-geocities"] .mx_RoomListPanel [class*="_stickyRow_"],
+html[data-tl-theme="comic-geocities"] .mx_RoomListPanel button[class*="_header_"] {
+  background: transparent;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomListPanel button[class*="_header_"] {
+  color: #800080;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-shadow: 1px 1px 0 #ffffff;
+  border-bottom: 4px solid transparent;
+  border-image: var(--ewt-rainbow) 1;
+}
+html[data-tl-theme="comic-geocities"] [class*="_unread-counter_"] {
+  background: #ff0000;
+  color: #ffff00;
+  font-weight: 700;
+  border-radius: 0;
+  outline: 1px solid #800000;
+}
+html[data-tl-theme="comic-geocities"] .mx_RoomListPanel button[class*="_header_"] { background: rgba(232, 221, 232, 0.94); }
+
+@media (max-width: 700px) {
+  html[data-tl-theme="comic-geocities"] .mx_MatrixChat { padding: 3px; gap: 3px; }
+  html[data-tl-theme="comic-geocities"] .mx_RoomHeader::after { display: none; }
+}

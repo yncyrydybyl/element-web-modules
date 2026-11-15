@@ -1,0 +1,564 @@
+/* comic-poster: level 4 (also loaded by comic-unreadable, which overrides on top). Evil 90s party poster: clashing colours, black outlines, hard shadows, stickers,
+   per-sender WordArt (shared.css kit), marquee, blink, rainbow composer, flames. Body text stays black on light. */
+
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]),
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) body,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) [class*="cpd-theme-"] {
+  --cpd-color-bg-canvas-default: #ffffff;
+  --cpd-color-bg-canvas-default-level-1: #ffffff;
+  --cpd-color-bg-subtle-secondary: #ff00ff;
+  --cpd-color-bg-subtle-primary: #00ffff;
+  --cpd-color-text-primary: #000000;
+  --cpd-color-text-secondary: #5c0099;
+  --cpd-color-text-action-accent: #cc0052;
+  --cpd-color-text-link-external: #0000ee;
+  --cpd-color-text-action-primary: #000000;
+  --cpd-color-text-on-solid-primary: #ffff00;
+  --cpd-color-icon-primary: #000000;
+  --cpd-color-icon-secondary: #000000;
+  --cpd-color-icon-tertiary: #000000;
+  --cpd-color-icon-accent-primary: #ff0066;
+  --cpd-color-icon-on-solid-primary: #ffff00;
+  --cpd-color-border-interactive-primary: #000000;
+  --cpd-color-border-interactive-secondary: #000000;
+  --cpd-color-border-focused: #000000;
+  --cpd-color-separator-primary: #000000;
+  --cpd-color-bg-action-primary-rest: #ff0066;
+  --cpd-color-bg-action-primary-hovered: #ff3385;
+  --cpd-color-bg-action-primary-pressed: #cc0052;
+  --cpd-color-bg-accent-rest: #ff0066;
+  --cpd-color-bg-accent-hovered: #ff3385;
+  --cpd-color-bg-action-tertiary-hovered: #ffff00;
+  --cpd-color-bg-action-tertiary-selected: #ffff00;
+  --cpd-color-bg-critical-primary: #cc0000;
+  --cpd-color-bg-decorative-1: #ff6600;
+  --cpd-color-bg-decorative-2: #ffff00;
+  --cpd-color-bg-decorative-3: #00ffff;
+  --cpd-color-bg-decorative-4: #33cc33;
+  --cpd-color-bg-decorative-5: #ff00ff;
+  --cpd-color-bg-decorative-6: #9900ff;
+  --cpd-color-text-decorative-1: #000000;
+  --cpd-color-text-decorative-2: #000000;
+  --cpd-color-text-decorative-3: #000000;
+  --cpd-color-text-decorative-4: #000000;
+  --cpd-color-text-decorative-5: #000000;
+  --cpd-color-text-decorative-6: #ffffff;
+  --MBody-border-radius: 0;
+  --ewt-hard: 6px 6px 0 #000000;
+  --ewt-hard-s: 4px 4px 0 #000000;
+  scrollbar-color: #ff00ff #ffff00;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) body {
+  cursor: url("assets/cursor-rainbow.png") 1 1, auto;
+}
+
+/* ------------------------------------------------------------------ shell */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MatrixChat_wrapper,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MatrixChat {
+  background: #9900ff url("assets/tile-confetti.png") repeat;
+  background-blend-mode: multiply;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MatrixChat {
+  padding: 10px 16px 16px 10px;
+  gap: 12px;
+  box-sizing: border-box;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_SpacePanel,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_LeftPanel_outerWrapper,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView_body,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RightPanel {
+  border: 3px solid #000000;
+  box-shadow: var(--ewt-hard);
+  box-sizing: border-box;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView_wrapper,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MainSplit {
+  background: transparent;
+  overflow: visible;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RightPanel { margin-left: 12px; background: #00ffff; }
+
+/* ------------------------------------------------------------------ spaces */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_SpacePanel {
+  background: #ffff00;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_SpaceButton .mx_BaseAvatar,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_SpaceButton_avatarPlaceholder {
+  outline: 3px solid #000000;
+  box-shadow: var(--ewt-hard-s);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: #ff0066;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_SpaceButton:hover .mx_BaseAvatar { transform: rotate(-8deg) scale(1.08); }
+
+/* ------------------------------------------------------------------ room list: stickers on magenta marble */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_LeftPanel_outerWrapper,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_LeftPanel {
+  background: #ff00ff url("assets/tile-marble.png") repeat;
+  background-blend-mode: multiply;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListPanel { background: transparent; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListPanel header h1 {
+  font-family: "Luckiest Guy", var(--ewt-impact);
+  font-weight: 400;
+  font-size: 1.6em;
+  letter-spacing: 0.04em;
+  color: #ffff00;
+  -webkit-text-stroke: 1.5px #000000;
+  text-shadow: 3px 3px 0 #000000;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListPanel [role="search"] button,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListPanel [role="listbox"][aria-label] > button[role="option"] {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 0;
+  box-shadow: 3px 3px 0 #000000;
+  color: #000000;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListPanel [role="listbox"][aria-label] > button[role="option"][aria-selected="true"] {
+  background: #ffff00;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView {
+  margin: 4px 10px 8px 6px;
+  width: calc(100% - 16px);
+  border: 2px solid #000000;
+  border-radius: 0;
+  box-shadow: var(--ewt-hard-s);
+  background: #00ffff;
+  transform: rotate(-0.6deg);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView:has([data-color="1"]),
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView:has([data-color="4"]) { background: #ffff00; transform: rotate(0.7deg); }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView:has([data-color="2"]),
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView:has([data-color="5"]) { background: #ff9933; transform: rotate(-0.4deg); }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView:has([data-color="3"]),
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView:has([data-color="6"]) { background: #99ff66; transform: rotate(0.5deg); }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView:hover { transform: rotate(0deg) scale(1.03); }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView [class*="_roomName_"] { font-weight: 700; color: #000000; line-height: 1.45; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView_selected,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView.mx_RoomListItemView_selected {
+  background: #ff0066;
+  transform: rotate(-1.2deg) scale(1.04);
+  --cpd-color-text-primary: #ffff00;
+  --cpd-color-icon-secondary: #ffff00;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView_selected [class*="_roomName_"] {
+  color: #ffff00;
+  -webkit-text-stroke: 0.5px #000000;
+  text-shadow: 2px 2px 0 #000000;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"]::after,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView [class*="_roomName_"][class*="_bold_"]::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin: -8px 0 -6px 4px;
+  background: url("assets/new-burst.gif") center / 24px 24px no-repeat;
+}
+
+/* ------------------------------------------------------------------ room view */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView_body {
+  background: #ffffff url("assets/tile-confetti.png") repeat;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomHeader {
+  order: -2;
+  background: #ffff00;
+  border-bottom: 3px solid #000000;
+  min-height: 72px;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomHeader_heading {
+  font-family: var(--ewt-impact);
+  font-size: 2.2em;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transform: rotate(-2deg);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]):not([data-ewt-wordart]) .mx_RoomHeader_heading .mx_RoomHeader_truncated,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"])[data-ewt-wordart="1"] .mx_RoomHeader_heading .mx_RoomHeader_truncated {
+  background: linear-gradient(180deg, #fff200 0%, #ff9900 50%, #ff0000 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 2px #000000;
+  filter: drop-shadow(2px 2px 0 #000) drop-shadow(2px 2px 0 #000) drop-shadow(2px 2px 0 #000);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomHeader::after {
+  content: "FREE ENTRY!!!";
+  order: 99;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 70px;
+  margin: -6px 0;
+  padding: 0 18px;
+  box-sizing: border-box;
+  font: 400 11px/1.05 "Luckiest Guy", var(--ewt-impact);
+  color: #ffff00;
+  text-align: center;
+  background: #ff0000;
+  clip-path: polygon(50% 0%, 61% 18%, 82% 7%, 79% 30%, 100% 33%, 85% 50%, 100% 67%, 79% 70%, 82% 93%, 61% 82%, 50% 100%, 39% 82%, 18% 93%, 21% 70%, 0% 67%, 15% 50%, 0% 33%, 21% 30%, 18% 7%, 39% 18%);
+  animation: ewt-spin 8s linear infinite;
+}
+/* marquee strip */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView_body::before {
+  content: "\2605\2605\2605  PARTY!!!  \2605  FREE ENTRY!!!  \2605  BRING A FRIEND!!!  \2605  DJ COMIC SANS  \2605  ALL NIGHT LONG  \2605\2605\2605  PARTY!!!  \2605  FREE ENTRY!!!  \2605  BRING A FRIEND!!!  \2605  DJ COMIC SANS  \2605  ALL NIGHT LONG  \2605\2605\2605";
+  order: -1;
+  display: block;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  font: 400 18px/30px "Luckiest Guy", var(--ewt-impact);
+  letter-spacing: 0.06em;
+  color: #ffff00;
+  background: #ff0066;
+  border-bottom: 3px solid #000000;
+  -webkit-text-stroke: 1px #000000;
+  padding-left: 0;
+  animation: ewt-poster-marquee 22s linear infinite;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView_body[data-ewt-topic]::before {
+  content: "\2605\2605\2605  " attr(data-ewt-topic) "  \2605  PARTY!!!  \2605  " attr(data-ewt-topic) "  \2605\2605\2605";
+}
+@keyframes ewt-poster-marquee {
+  from { text-indent: 100%; }
+  to { text-indent: -200%; }
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView_timeline { background: transparent; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_AuxPanel:empty { display: none; }
+
+/* stickers */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile:not([class*="_stateInfo_"]):not(.mx_GenericEventListSummary) > .mx_EventTile_line {
+  background: #00ffff;
+  border: 3px solid #000000;
+  box-shadow: var(--ewt-hard-s);
+  margin-block: 4px 8px;
+  margin-inline-end: 12px;
+  border-radius: 0;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView_MessageList > li:nth-child(odd) > .mx_EventTile_line { transform: rotate(-0.8deg); }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView_MessageList > li:nth-child(even) > .mx_EventTile_line { transform: rotate(0.7deg); }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile[class*="_stateOwnEvent_"] > .mx_EventTile_line {
+  background: #ffff00;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  background: #ff0066;
+  --cpd-color-text-primary: #ffff00;
+  color: #ffff00;
+  font-weight: 700;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line .mx_EventTile_body a { color: #ffffff; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body a { color: #0000ee; text-decoration: underline; font-weight: 700; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile .mx_BaseAvatar {
+  outline: 3px solid #000000;
+  box-shadow: 3px 3px 0 #000000;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MessageTimestamp {
+  font-family: "Chewy", var(--ewt-comic);
+  color: #5c0099;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile .mx_DisambiguatedProfile {
+  font-size: 1.12em;
+  margin-bottom: 2px;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_TimelineSeparator > hr {
+  height: 12px;
+  border: 0;
+  background: url("assets/hr-wave.svg") repeat-x center / auto 12px;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_TimelineSeparator h2 {
+  font: 400 1.4em "Luckiest Guy", var(--ewt-impact);
+  color: #ffff00;
+  -webkit-text-stroke: 1.5px #000000;
+  text-shadow: 3px 3px 0 #000000;
+  background: #ff0066;
+  border: 3px solid #000000;
+  padding: 2px 12px;
+  transform: rotate(-3deg);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_pre_container {
+  background: #000000;
+  color: #00ff00;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0 #ff00ff;
+  border-radius: 0;
+  --cpd-color-text-primary: #00ff00;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre code,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre .hljs { color: #00ff00; background: transparent; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre .hljs-keyword { color: #ffff00; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre .hljs-string { color: #00ffff; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre .hljs-number,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre .hljs-literal { color: #ff66ff; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre .hljs-comment { color: #aaaaaa; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body :is(p, li, td, h1, h2, h3, blockquote) > code {
+  background: #ffff00;
+  border: 1px solid #000000;
+  border-radius: 0;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_NewRoomIntro > h2 {
+  font-family: var(--ewt-impact);
+  font-weight: 400;
+  font-size: 2em;
+  line-height: 1.15;
+  padding: 4px 6px 6px 0;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #fff200, #ff9900 50%, #ff0000);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 2px #000;
+  filter: drop-shadow(3px 3px 0 #000);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_NewRoomIntro::before {
+  content: "";
+  display: block;
+  width: 96px;
+  height: 84px;
+  margin: 8px 0;
+  background: url("assets/under-construction.gif") no-repeat;
+}
+/* bubble layout */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line {
+  border-radius: 18px 18px 18px 0;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] .mx_EventTile_line {
+  border-radius: 18px 18px 0 18px;
+}
+
+/* ------------------------------------------------------------------ composer */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MessageComposer {
+  background: #00ffff;
+  border-top: 3px solid #000000;
+  padding-bottom: 0;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MessageComposer_wrapper {
+  border-top: 0;
+  margin: 8px 12px 4px;
+  border: 6px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    repeating-linear-gradient(90deg, #ff0000 0 57px, #ff7f00 57px 114px, #ffff00 114px 171px, #00ff00 171px 228px, #0000ff 228px 285px, #8b00ff 285px 342px, #ff00ff 342px 400px) 0 0 / 400px 100% border-box;
+  box-shadow: var(--ewt-hard-s);
+  animation: ewt-rainbow-slide 6s linear infinite;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MessageComposer::after {
+  content: "";
+  display: block;
+  height: 24px;
+  background: url("assets/bar-flames.gif") repeat-x bottom left / auto 24px;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_BasicMessageComposer_input {
+  --placeholder: "TYPE SOMETHING FUN!!!" !important;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MessageComposer_sendMessage {
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
+  background: #ff0000;
+  clip-path: polygon(50% 0%, 61% 18%, 82% 7%, 79% 30%, 100% 33%, 85% 50%, 100% 67%, 79% 70%, 82% 93%, 61% 82%, 50% 100%, 39% 82%, 18% 93%, 21% 70%, 0% 67%, 15% 50%, 0% 33%, 21% 30%, 18% 7%, 39% 18%);
+  --cpd-color-icon-on-solid-primary: #ffff00;
+}
+
+/* ------------------------------------------------------------------ buttons, inputs */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) button[class*="_button_"][data-kind="primary"],
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_AccessibleButton_kind_primary,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_Dialog_primary {
+  font-family: "Luckiest Guy", var(--ewt-impact);
+  font-weight: 400;
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #ff0066;
+  color: #ffff00;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: var(--ewt-hard-s);
+  -webkit-text-stroke: 0.5px #000;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) button[class*="_button_"][data-kind="secondary"],
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_AccessibleButton_kind_secondary {
+  font-family: "Luckiest Guy", var(--ewt-impact);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #ffffff;
+  color: #000000;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: var(--ewt-hard-s);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) button[class*="_button_"][data-kind]:active,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_AccessibleButton_kind_primary:active {
+  box-shadow: none;
+  transform: translate(4px, 4px);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_Field,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) input[class*="_control_"],
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) textarea[class*="_control_"] {
+  border: 3px solid #000000;
+  border-radius: 0;
+  background: #ffffff;
+}
+
+/* ------------------------------------------------------------------ dialogs, menus, tooltips */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_Dialog {
+  background: #ffff00;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: 10px 10px 0 #000000;
+  transform: rotate(-1deg);
+  --cpd-color-bg-canvas-default: #ffff00;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_Dialog:has(.tl-ui),
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_Dialog:has(.mx_UserSettingsDialog),
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_UserSettingsDialog {
+  transform: none;
+  background: #ffffff;
+  --cpd-color-bg-canvas-default: #ffffff;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_Dialog_header {
+  margin: -1px -1px 16px;
+  padding: 10px 12px 18px;
+  background: #ffff00 url("assets/tile-hazard.png") repeat-x bottom / 16px 10px;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_Dialog_title {
+  font-family: var(--ewt-impact);
+  font-weight: 400;
+  font-size: 1.7em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ff0066;
+  -webkit-text-stroke: 1px #000000;
+  text-shadow: 3px 3px 0 #000000;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_ContextualMenu,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) [role="menu"] {
+  background: #00ffff;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: var(--ewt-hard-s);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) [role="menu"] [role^="menuitem"]:hover,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) [role="menu"] [role^="menuitem"]:focus-visible,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_IconizedContextMenu_item:hover {
+  background: #ff00ff;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) [role="tooltip"] {
+  background: #ffff00;
+  color: #000000;
+  border: 2px solid #000000;
+  border-radius: 14px;
+  box-shadow: 3px 3px 0 #000000;
+  font-weight: 700;
+  --cpd-color-text-primary: #000000;
+  --cpd-color-text-on-solid-primary: #000000;
+  --cpd-color-text-secondary: #333333;
+}
+
+/* ------------------------------------------------------------------ settings */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_TabbedView_tabLabel {
+  border-radius: 0;
+  border: 2px solid transparent;
+  font-weight: 700;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_TabbedView_tabLabel_active {
+  background: #ff00ff;
+  border-color: #000000;
+  box-shadow: 3px 3px 0 #000000;
+  color: #000000;
+  transform: rotate(-1deg);
+}
+
+/* ------------------------------------------------------------------ badges */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) [class*="_notificationBadge_"],
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_NotificationBadge_count {
+  background: #ff0000;
+  color: #ffff00;
+  font-weight: 700;
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 63% 20%, 85% 15%, 80% 37%, 100% 50%, 80% 63%, 85% 85%, 63% 80%, 50% 100%, 37% 80%, 15% 85%, 20% 63%, 0% 50%, 20% 37%, 15% 15%, 37% 20%);
+  min-width: 26px;
+  min-height: 26px;
+  animation: ewt-blink 1s steps(1) infinite;
+}
+
+/* ------------------------------------------------------------------ auth */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_AuthPage {
+  background: #9900ff url("assets/tile-confetti.png") repeat !important;
+  background-blend-mode: multiply !important;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_AuthPage_modal {
+  background: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: 10px 10px 0 #000000;
+  transform: rotate(-1deg);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_AuthBody h1 {
+  font-family: var(--ewt-impact);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 2.2em;
+  background: linear-gradient(180deg, #fff200, #ff9900 50%, #ff0000);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 1.5px #000;
+  filter: drop-shadow(3px 3px 0 #000);
+}
+
+/* ------------------------------------------------------------------ iframes, focus */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_AppTile,
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_CallView {
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: var(--ewt-hard);
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) :focus-visible {
+  outline: 4px solid #000000;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 10px #ffff00;
+}
+
+/* ------------------------------------------------------------------ reduced motion: static stand-ins */
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MessageComposer::after { background-image: url("assets/bar-flames-static.png"); }
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_NewRoomIntro::before { background-image: url("assets/under-construction-static.png"); }
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"]::after,
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListItemView [class*="_roomName_"][class*="_bold_"]::after { background-image: url("assets/new-burst-static.png"); }
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomView_body::before { padding-left: 12px; text-overflow: ellipsis; }
+}
+
+/* ------------------------------------------------------------------ room list sections + counters */
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListPanel [class*="_stickyRow_"] { background: transparent; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomListPanel button[class*="_header_"] {
+  background: #000000;
+  color: #ffff00;
+  font-family: "Luckiest Guy", var(--ewt-impact);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  --cpd-color-icon-secondary: #ffff00;
+  --cpd-color-text-primary: #ffff00;
+  --cpd-color-text-secondary: #ffff00;
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) [class*="_unread-counter_"] {
+  background: #ff0000;
+  color: #ffff00;
+  font-weight: 700;
+  border: 2px solid #000000;
+}
+
+/* ------------------------------------------------------------------ narrow screens */
+@media (max-width: 700px) {
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_MatrixChat { padding: 4px 8px 8px 4px; gap: 6px; }
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomHeader_heading { font-size: 1.4em; }
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_RoomHeader::after { display: none; }
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile:not([class*="_stateInfo_"]):not(.mx_GenericEventListSummary) > .mx_EventTile_line { margin-inline-end: 4px; }
+  html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_NewRoomIntro > h2 { font-size: 1.4em; }
+}
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre :is(.hljs-variable, .hljs-attr, .hljs-template-variable) { color: #ffcc66; }
+html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) [class*="_repliesAmount_"] { color: #000000; font-weight: 700; }

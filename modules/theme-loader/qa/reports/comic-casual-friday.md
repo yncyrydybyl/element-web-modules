@@ -1,9 +1,9 @@
 # Edge check: Comic Sans · Casual Friday
 
 - id: `comic-casual-friday` · stage: `level-1`
-- base: http://localhost:5400 · 2026-11-15T03:43:38.765Z
+- base: http://localhost:5400 · 2026-11-15T04:56:11.999Z
 - loader: html[data-tl-theme] = `comic-casual-friday`
-- result: **pass** — axe serious/critical nodes 40 (contrast 25), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 15 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -16,7 +16,6 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 9 | `.hljs-title.function_:nth-child(2)` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
 
@@ -24,7 +23,6 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 7 | `.hljs-variable` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 | scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
@@ -33,7 +31,6 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 9 | `.hljs-title.function_:nth-child(2)` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 
 

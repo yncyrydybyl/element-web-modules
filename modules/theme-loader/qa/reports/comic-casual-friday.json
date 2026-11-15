@@ -5,7 +5,7 @@
   "stage": "level-1",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T03:43:03.387Z",
+  "started": "2026-11-15T04:55:38.976Z",
   "views": {
     "home": {
       "axe": [
@@ -40,30 +40,6 @@
     "timeline": {
       "axe": [
         {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 9,
-          "samples": [
-            {
-              "target": ".hljs-title.function_:nth-child(2)",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.22 (foreground color: #4078f2, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-variable",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.87 (foreground color: #986801, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-string:nth-child(5)",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.55 (foreground color: #50a14f, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-string:nth-child(6)",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.55 (foreground color: #50a14f, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
-        {
           "id": "nested-interactive",
           "impact": "serious",
           "help": "Interactive controls must not be nested",
@@ -93,30 +69,6 @@
     },
     "bubble": {
       "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 7,
-          "samples": [
-            {
-              "target": ".hljs-variable",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.87 (foreground color: #986801, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-string:nth-child(5)",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.55 (foreground color: #50a14f, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-string:nth-child(6)",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.55 (foreground color: #50a14f, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-string:nth-child(7)",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.55 (foreground color: #50a14f, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
         {
           "id": "nested-interactive",
           "impact": "serious",
@@ -163,30 +115,6 @@
     },
     "irc": {
       "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 9,
-          "samples": [
-            {
-              "target": ".hljs-title.function_:nth-child(2)",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.22 (foreground color: #4078f2, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-variable",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.87 (foreground color: #986801, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-string:nth-child(5)",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.55 (foreground color: #50a14f, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            },
-            {
-              "target": ".hljs-string:nth-child(6)",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 2.55 (foreground color: #50a14f, background color: #e1e6ec, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
         {
           "id": "nested-interactive",
           "impact": "serious",
@@ -312,8 +240,8 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
   ],
   "summary": {
-    "axeSerious": 40,
-    "contrastNodes": 25,
+    "axeSerious": 15,
+    "contrastNodes": 0,
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
@@ -326,5 +254,5 @@
     "tlPhase": null,
     "wanted": "comic-casual-friday"
   },
-  "finished": "2026-11-15T03:43:38.765Z"
+  "finished": "2026-11-15T04:56:11.999Z"
 }
