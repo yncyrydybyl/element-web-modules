@@ -1,0 +1,275 @@
+/* sketch-chalkboard — level 4 dark: chalk on a green slate in a wooden frame.
+   Also used by sketch-daylight in its night phase. */
+
+/* tokens for daylight-night (chalkboard itself gets them from the manifest) */
+html[data-tl-theme="sketch-daylight"][data-tl-phase="night"],
+html[data-tl-theme="sketch-daylight"][data-tl-phase="night"] body,
+html[data-tl-theme="sketch-daylight"][data-tl-phase="night"] [class*="cpd-theme-"] {
+    --cpd-color-theme-bg: #2e3b32;
+    --cpd-color-bg-canvas-default: #2e3b32;
+    --cpd-color-bg-subtle-secondary: #27332b;
+    --cpd-color-bg-subtle-primary: #6b4f32;
+    --cpd-color-bg-action-primary-rest: #f2f2ea;
+    --cpd-color-bg-accent-rest: #f7e37a;
+    --cpd-color-bg-critical-primary: #f4a6b8;
+    --cpd-color-text-primary: #f2f2ea;
+    --cpd-color-text-secondary: #b9c2b5;
+    --cpd-color-text-action-accent: #f7e37a;
+    --cpd-color-text-link-external: #f7e37a;
+    --cpd-color-text-on-solid-primary: #2e3b32;
+    --cpd-color-text-critical-primary: #f4a6b8;
+    --cpd-color-text-success-primary: #b8e6a1;
+    --cpd-color-icon-primary: #f2f2ea;
+    --cpd-color-icon-secondary: #b9c2b5;
+    --cpd-color-icon-accent-primary: #f7e37a;
+    --cpd-color-border-interactive-primary: #e8e8de;
+    --cpd-color-border-focused: #f7e37a;
+    --cpd-color-text-decorative-1: #f2f2ea;
+    --cpd-color-bg-decorative-1: #46584c;
+    --cpd-color-text-decorative-2: #f7e37a;
+    --cpd-color-bg-decorative-2: #57563a;
+    --cpd-color-text-decorative-3: #f4a6b8;
+    --cpd-color-bg-decorative-3: #5a4650;
+    --cpd-color-text-decorative-4: #a9d6f5;
+    --cpd-color-bg-decorative-4: #3e5463;
+    --cpd-color-text-decorative-5: #b8e6a1;
+    --cpd-color-bg-decorative-5: #46593f;
+    --cpd-color-text-decorative-6: #f9c38b;
+    --cpd-color-bg-decorative-6: #5b4c3a;
+    --cpd-font-family-sans: "Gaegu", "Patrick Hand", cursive !important;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]),
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) body,
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) [class*="cpd-theme-"] {
+    --cpd-color-bg-canvas-default-level-1: #34443a;
+    --cpd-color-bg-subtle-tertiary: #34443a;
+    --cpd-color-bg-action-primary-hovered: #ffffff;
+    --cpd-color-bg-action-secondary-rest: transparent;
+    --cpd-color-bg-action-secondary-hovered: rgba(242, 242, 234, 0.1);
+    --cpd-color-bg-action-tertiary-hovered: rgba(242, 242, 234, 0.08);
+    --cpd-color-bg-action-tertiary-selected: rgba(247, 227, 122, 0.14);
+    --cpd-color-bg-accent-hovered: #fff0a0;
+    --cpd-color-bg-critical-subtle: #4a3a40;
+    --cpd-color-bg-success-subtle: #3a4c38;
+    --cpd-color-bg-info-subtle: #34485a;
+    --cpd-color-text-info-primary: #a9d6f5;
+    --cpd-color-icon-tertiary: #9aa597;
+    --cpd-color-icon-quaternary: #7f8a7c;
+    --cpd-color-border-interactive-secondary: rgba(232, 232, 222, 0.45);
+    --cpd-color-separator-primary: rgba(232, 232, 222, 0.22);
+    --cpd-color-separator-secondary: rgba(232, 232, 222, 0.14);
+    --cpd-color-gray-400: #4a5a4f;
+    --cpd-color-gray-300: #3d4c42;
+    --cpd-color-alpha-gray-300: rgba(242, 242, 234, 0.1);
+    --cpd-color-bg-badge-default: #46584c;
+    --cpd-color-green-900: #f7e37a;
+    --cpd-color-green-800: #f7e37a;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) {
+    --sk-ink: #f2f2ea;
+    --sk-line: rgba(242, 242, 234, 0.72);
+    --sk-accent: #f7e37a;
+    --sk-focus: #f7e37a;
+    --sk-paper: #2e3b32;
+    --sk-display: "Cabin Sketch", "Gaegu", cursive;
+    --sk-content: "Gaegu", "Patrick Hand", cursive;
+    --sk-frame-1: url("assets/frame-s1.svg");
+    --sk-frame-2: url("assets/frame-s2.svg");
+    --sk-frame-3: url("assets/frame-s3.svg");
+    --sk-pill: url("assets/frame-s3.svg");
+    --sk-circle: url("assets/circle-2.svg");
+    --sk-underline: url("assets/underline-1.svg");
+    --sk-highlight: rgba(247, 227, 122, 0.35);
+    --sk-sel-line: #f7e37a;
+    --sk-avatar-line: rgba(242, 242, 234, 0.6);
+    --sk-btn-line: rgba(242, 242, 234, 0.8);
+    --sk-wood: linear-gradient(90deg, #5a3e24, #7a5a3a 20%, #6b4f32 45%, #84633f 70%, #5d4127);
+
+    --sk-et-bubble-self-background: #3a4c41;
+    --sk-et-bubble-other-background: #34443a;
+    --sk-et-state-hover-background: rgba(242, 242, 234, 0.06);
+    --sk-et-state-highlight-background: rgba(247, 227, 122, 0.12);
+    --sk-et-state-marker-color: #f7e37a;
+    color-scheme: dark;
+}
+
+/* chalk hand reads small: generous size */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.mx_EventTile_body, .mx_RoomListItemView, .mx_BasicMessageComposer_input) {
+    font-size: 1.18em;
+    letter-spacing: 0.01em;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.mx_RoomHeader_heading, .mx_Dialog_title, .mx_SettingsTab_heading) {
+    font-size: 1.6em;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    filter: url(#sk-chalk);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_DisambiguatedProfile {
+    font-weight: 700;
+}
+
+/* --- shell: wooden frame + slate + chalk dust ------------------------------ */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_MatrixChat {
+    box-sizing: border-box;
+    border: 12px solid #6b4f32;
+    border-image: linear-gradient(135deg, #7a5a3a, #5a3e24 25%, #8a6a44 50%, #5d4127 75%, #7a5a3a) 1;
+    background:
+        radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.05), transparent 60%),
+        radial-gradient(ellipse at 80% 90%, rgba(0, 0, 0, 0.18), transparent 60%),
+        #2e3b32;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_MatrixChat::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    background: url("assets/chalk-dust.svg") 0 0 / 400px 400px;
+    mix-blend-mode: screen;
+    opacity: 0.28;
+}
+
+@keyframes sk-dust {
+    from { opacity: 0; }
+    to { opacity: 0.28; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_MatrixChat::after {
+        animation: sk-dust 1.2s ease-out;
+    }
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.mx_LeftPanel, .mx_RoomListPanel, .mx_RoomView, .mx_RoomView_body, .mx_RoomHeader, .mx_MessageComposer, .mx_RightPanel) {
+    background: transparent;
+}
+
+/* space panel: the wooden rail */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_SpacePanel {
+    background: var(--sk-wood);
+    box-shadow: inset -3px 0 4px rgba(0, 0, 0, 0.35);
+}
+
+/* eraser swipes behind the room list */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_LeftPanel {
+    background:
+        radial-gradient(ellipse 160px 60px at 40% 30%, rgba(242, 242, 234, 0.05), transparent 70%),
+        radial-gradient(ellipse 200px 70px at 60% 70%, rgba(242, 242, 234, 0.04), transparent 70%);
+    border-right: 2px dashed rgba(242, 242, 234, 0.25);
+}
+
+/* --- room list ----------------------------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"]) {
+    background: rgba(247, 227, 122, 0.08);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"])::after {
+    -webkit-mask: url("assets/underline-3.svg") 50% 92% / 70% 12px no-repeat;
+    mask: url("assets/underline-3.svg") 50% 92% / 70% 12px no-repeat;
+}
+
+/* --- header -------------------------------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_RoomHeader {
+    border-bottom: 2px dashed rgba(242, 242, 234, 0.3);
+}
+
+/* --- composer on a chalk tray ---------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_MessageComposer {
+    position: relative;
+    border-top: none;
+    padding-bottom: 22px;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_MessageComposer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 14px;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, transparent 62%, #f2f2ea 62% 66%, transparent 66% 68%, #f7e37a 68% 71%, transparent 71% 73%, #f4a6b8 73% 75.5%, transparent 75.5% 82%, #3c3c3c 82% 90%, transparent 90%) 0 0 / 100% 6px no-repeat,
+        linear-gradient(180deg, #8a6a44, #5a3e24);
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_MessageComposer_wrapper {
+    background: rgba(242, 242, 234, 0.04);
+    border-radius: 6px;
+}
+
+/* --- dialogs + menus: small slates with wooden border ------------------------ */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_Dialog {
+    background: #2e3b32;
+    border: 8px solid #6b4f32;
+    border-image: linear-gradient(135deg, #7a5a3a, #5a3e24 40%, #8a6a44 70%, #5d4127) 1;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_Dialog::after {
+    inset: 6px;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.mx_ContextualMenu, [role="menu"]) {
+    background: #34443a;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) [role="tooltip"] {
+    background: #f2f2ea;
+    color: #2e3b32;
+}
+
+/* --- code: darker slate ---------------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) {
+    background: #232e27;
+    border-color: transparent;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_EventTile_body code:not(pre code) {
+    background: rgba(242, 242, 234, 0.1);
+    color: #f9c38b;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .hljs {
+    color: #f2f2ea;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.hljs-keyword, .hljs-built_in, .hljs-selector-tag) { color: #f7e37a; }
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.hljs-string, .hljs-attr) { color: #b8e6a1; }
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.hljs-comment, .hljs-quote) { color: #9aa597; font-style: italic; }
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.hljs-number, .hljs-literal, .hljs-title) { color: #a9d6f5; }
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.hljs-type, .hljs-function, .hljs-name) { color: #f4a6b8; }
+
+/* --- badges: yellow chalk ---------------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) [class*="_notificationBadge_"] {
+    --cpd-color-bg-critical-primary: #f4a6b8;
+}
+
+/* --- auth ------------------------------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_AuthPage {
+    background: #2e3b32;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_AuthPage_modal {
+    background: #34443a;
+    border: 8px solid #6b4f32;
+}
+
+/* narrow screens: thinner wooden frame */
+@media (max-width: 600px) {
+    html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_MatrixChat {
+        border-width: 5px;
+    }
+}
+
+/* unread counts on yellow chalk: dark slate text */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) [class*="_notificationBadge_"] {
+    color: #2e3b32;
+}

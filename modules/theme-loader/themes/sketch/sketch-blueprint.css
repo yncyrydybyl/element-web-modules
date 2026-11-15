@@ -1,0 +1,350 @@
+/* sketch-blueprint — level 5 dark: cyanotype engineering drawing. Grid paper, hairlines, zero radius,
+   title-block header, dimension lines (enhancer writes data-sk-w / data-sk-sheet), stencil caps. */
+
+html[data-tl-theme="sketch-blueprint"],
+html[data-tl-theme="sketch-blueprint"] body,
+html[data-tl-theme="sketch-blueprint"] [class*="cpd-theme-"] {
+    --cpd-color-bg-canvas-default-level-1: #164a85;
+    --cpd-color-bg-subtle-tertiary: #164a85;
+    --cpd-color-bg-action-primary-hovered: #ffdd8a;
+    --cpd-color-bg-action-primary-pressed: #f0c050;
+    --cpd-color-bg-action-secondary-rest: transparent;
+    --cpd-color-bg-action-secondary-hovered: rgba(232, 241, 255, 0.1);
+    --cpd-color-bg-action-tertiary-hovered: rgba(232, 241, 255, 0.08);
+    --cpd-color-bg-action-tertiary-selected: rgba(255, 209, 102, 0.15);
+    --cpd-color-bg-accent-hovered: #ffdd8a;
+    --cpd-color-bg-critical-subtle: #3a3a6a;
+    --cpd-color-bg-success-subtle: #1d5a6e;
+    --cpd-color-bg-info-subtle: #1a5596;
+    --cpd-color-text-info-primary: #bfe0ff;
+    --cpd-color-text-action-primary: #eaf2ff;
+    --cpd-color-icon-tertiary: #8fb0d8;
+    --cpd-color-icon-quaternary: #6d90bd;
+    --cpd-color-border-interactive-secondary: rgba(232, 241, 255, 0.5);
+    --cpd-color-separator-primary: rgba(232, 241, 255, 0.35);
+    --cpd-color-separator-secondary: rgba(232, 241, 255, 0.2);
+    --cpd-color-gray-400: #2c5f99;
+    --cpd-color-gray-800: #a9c1e0;
+    --cpd-color-gray-900: #b4cae6;
+    --cpd-color-gray-1000: #c3d5ec;
+    --cpd-color-gray-1100: #d3e1f2;
+    --cpd-color-text-placeholder: #a9c1e0;
+    --cpd-color-gray-300: #1f548f;
+    --cpd-color-alpha-gray-300: rgba(232, 241, 255, 0.1);
+    --cpd-color-bg-badge-default: #24578f;
+    --cpd-color-green-900: #ffd166;
+    --cpd-color-green-800: #ffd166;
+}
+
+html[data-tl-theme="sketch-blueprint"] {
+    --sk-ink: #eaf2ff;
+    --sk-line: transparent;
+    --sk-hair: rgba(232, 241, 255, 0.85);
+    --sk-accent: #ffd166;
+    --sk-focus: #ffd166;
+    --sk-display: "Architects Daughter", cursive;
+    --sk-content: "Architects Daughter", cursive;
+    --sk-highlight: rgba(255, 209, 102, 0.35);
+    --sk-btn-line: transparent;
+    --sk-sel-line: transparent;
+    --sk-avatar-line: rgba(232, 241, 255, 0.8);
+    --sk-circle: url("assets/circle-1.svg");
+    --sk-underline: url("assets/underline-1.svg");
+    --sk-grid:
+        linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    --sk-grid-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+
+    --sk-et-bubble-self-background: #164a85;
+    --sk-et-bubble-other-background: #133f72;
+    --sk-et-bubble-corner-radius: 0;
+    --sk-et-state-hover-background: rgba(232, 241, 255, 0.06);
+    --sk-et-state-highlight-background: rgba(255, 209, 102, 0.12);
+    --sk-et-state-marker-color: #ffd166;
+    color-scheme: dark;
+}
+
+/* labels in tracked caps, body stays mixed case for reading */
+html[data-tl-theme="sketch-blueprint"] :is(.mx_RoomHeader_heading, .mx_Dialog_title, .mx_SettingsTab_heading, .mx_DisambiguatedProfile, .mx_RoomListPanel header h1, .mx_TabbedView_tabLabel_text, .mx_BaseCard_header) {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+html[data-tl-theme="sketch-blueprint"] :is(.mx_EventTile_body, .mx_RoomListItemView, .mx_BasicMessageComposer_input) {
+    font-size: 1.04em;
+}
+
+/* --- shell: grid paper ------------------------------------------------------- */
+html[data-tl-theme="sketch-blueprint"] .mx_MatrixChat {
+    background-color: #123f73;
+    background-image: var(--sk-grid);
+    background-size: var(--sk-grid-size);
+}
+
+html[data-tl-theme="sketch-blueprint"] :is(.mx_LeftPanel, .mx_RoomListPanel, .mx_RoomView, .mx_RoomView_body, .mx_RoomHeader, .mx_MessageComposer, .mx_RightPanel, .mx_SpacePanel) {
+    background-color: transparent;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_RoomView_messagePanel {
+    background-image: var(--sk-grid);
+    background-size: var(--sk-grid-size);
+    background-attachment: local;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_SpacePanel {
+    background-color: rgba(11, 43, 80, 0.85);
+    border-right: 1.5px solid var(--sk-hair);
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_LeftPanel {
+    position: relative;
+    background-color: rgba(15, 53, 97, 0.7);
+    border-right: 1.5px solid var(--sk-hair);
+}
+
+/* dimension line above the room list: |<-- 320 -->| */
+html[data-tl-theme="sketch-blueprint"] .mx_LeftPanel[data-sk-w]::after {
+    content: attr(data-sk-w);
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: 4px;
+    height: 12px;
+    font: 10px/12px "Architects Daughter", cursive;
+    letter-spacing: 0.1em;
+    color: rgba(232, 241, 255, 0.7);
+    text-align: center;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(232, 241, 255, 0.6), rgba(232, 241, 255, 0.6)) 0 50% / calc(50% - 22px) 1px no-repeat,
+        linear-gradient(rgba(232, 241, 255, 0.6), rgba(232, 241, 255, 0.6)) 100% 50% / calc(50% - 22px) 1px no-repeat,
+        linear-gradient(rgba(232, 241, 255, 0.6), rgba(232, 241, 255, 0.6)) 0 0 / 1px 100% no-repeat,
+        linear-gradient(rgba(232, 241, 255, 0.6), rgba(232, 241, 255, 0.6)) 100% 0 / 1px 100% no-repeat;
+}
+
+/* --- room list: parts list with row numbers ------------------------------------ */
+html[data-tl-theme="sketch-blueprint"] [class*="_roomList_"][role="listbox"] {
+    counter-reset: sk-part;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_RoomListItemView {
+    counter-increment: sk-part;
+    border-bottom: 1px solid rgba(232, 241, 255, 0.22);
+    border-radius: 0;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_RoomListItemView::before {
+    content: counter(sk-part, decimal-leading-zero);
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    translate: 0 -50%;
+    font: 9px "Architects Daughter", cursive;
+    color: rgba(232, 241, 255, 0.55);
+    pointer-events: none;
+}
+
+html[data-tl-theme="sketch-blueprint"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"]) {
+    background: rgba(255, 209, 102, 0.1);
+    outline: 1.5px solid #ffd166;
+    outline-offset: -2px;
+}
+
+/* --- header: engineering title block ----------------------------------------------- */
+html[data-tl-theme="sketch-blueprint"] .mx_RoomHeader {
+    border-bottom: 3px double var(--sk-hair);
+    background-color: rgba(11, 43, 80, 0.55);
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_RoomHeader_infoWrapper {
+    border-left: 1.5px solid var(--sk-hair);
+    border-right: 1.5px solid var(--sk-hair);
+    padding: 0 12px;
+    align-self: stretch;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_RoomHeader_info::before {
+    content: "TITLE";
+    display: block;
+    font: 9px/1 "Architects Daughter", cursive;
+    letter-spacing: 0.2em;
+    color: rgba(232, 241, 255, 0.6);
+    margin-bottom: 2px;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_RoomHeader_info {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_RoomHeader_heading .mx_RoomHeader_truncated {
+    background: none;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_RoomHeader[data-sk-sheet]::after {
+    content: "SCALE 1:1 \A" attr(data-sk-sheet);
+    white-space: pre;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-left: 1.5px solid var(--sk-hair);
+    font: 10px/1.4 "Architects Daughter", cursive;
+    letter-spacing: 0.14em;
+    color: rgba(232, 241, 255, 0.8);
+}
+
+/* avatars as section circles with a centre cross */
+html[data-tl-theme="sketch-blueprint"] :is(span[class*="_avatar_"], button[class*="_avatar_"]):not(:has(img)) {
+    background:
+        linear-gradient(rgba(232, 241, 255, 0.35), rgba(232, 241, 255, 0.35)) 50% 50% / 1px 100% no-repeat,
+        linear-gradient(rgba(232, 241, 255, 0.35), rgba(232, 241, 255, 0.35)) 50% 50% / 100% 1px no-repeat,
+        #123f73 !important;
+    color: #eaf2ff !important;
+    box-shadow: inset 0 0 0 1.5px rgba(232, 241, 255, 0.85);
+}
+
+/* images: cyanotype */
+html[data-tl-theme="sketch-blueprint"] :is(.mx_EventTile img, .mx_EventTile video, [class*="_avatar_"] img, .mx_MImageBody canvas) {
+    filter: grayscale(1) sepia(1) hue-rotate(170deg) saturate(2.6) brightness(0.92);
+}
+
+/* --- timeline: hairline frames ------------------------------------------------------- */
+html[data-tl-theme="sketch-blueprint"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"]) {
+    border: 1.5px solid var(--sk-hair);
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] [class*="_line_"]:not([class*="_lineMedia_"]) {
+    border-style: solid;
+    border-color: #ffd166;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_ReplyChain {
+    border-left: 1.5px dashed var(--sk-hair) !important;
+}
+
+html[data-tl-theme="sketch-blueprint"] :is(.mx_TimelineSeparator, .mx_DateSeparator) {
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+html[data-tl-theme="sketch-blueprint"] :is(.mx_TimelineSeparator, .mx_DateSeparator) > hr {
+    border: 0;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--sk-hair) 0 14px, transparent 14px 18px, var(--sk-hair) 18px 20px, transparent 20px 24px);
+}
+
+/* --- composer: dimensioned input box ------------------------------------------- */
+html[data-tl-theme="sketch-blueprint"] .mx_MessageComposer {
+    border-top: 1.5px solid var(--sk-hair);
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_MessageComposer_wrapper {
+    background: rgba(11, 43, 80, 0.6);
+    border: 1.5px solid var(--sk-hair) !important;
+    border-radius: 0;
+}
+
+/* --- zero radius + hairline buttons --------------------------------------------- */
+html[data-tl-theme="sketch-blueprint"] :is(button[class*="_button_"][data-kind], .mx_AccessibleButton_kind_primary, .mx_AccessibleButton_kind_secondary, .mx_AccessibleButton_kind_primary_outline, .mx_AccessibleButton_kind_danger, .mx_Dialog_buttons button):not(.tl-ui *) {
+    border-radius: 0 !important;
+    border: 1.5px solid var(--sk-hair) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+html[data-tl-theme="sketch-blueprint"] :is(button[class*="_button_"][data-kind="primary"], .mx_AccessibleButton_kind_primary):not(.tl-ui *) {
+    border-color: #ffd166 !important;
+}
+
+html[data-tl-theme="sketch-blueprint"] :is(button:disabled, .mx_AccessibleButton_disabled):not(.tl-ui *) {
+    border-style: dashed !important;
+}
+
+html[data-tl-theme="sketch-blueprint"] :is(.mx_Field input, .mx_Field textarea, .mx_Field select, input[class*="_control_"]) {
+    border-radius: 0;
+}
+
+/* --- dialogs: drawing sheet with crop marks -------------------------------------- */
+html[data-tl-theme="sketch-blueprint"] .mx_Dialog {
+    background-color: #123f73;
+    background-image:
+        linear-gradient(#e8f1ff, #e8f1ff), linear-gradient(#e8f1ff, #e8f1ff),
+        linear-gradient(#e8f1ff, #e8f1ff), linear-gradient(#e8f1ff, #e8f1ff),
+        linear-gradient(#e8f1ff, #e8f1ff), linear-gradient(#e8f1ff, #e8f1ff),
+        linear-gradient(#e8f1ff, #e8f1ff), linear-gradient(#e8f1ff, #e8f1ff),
+        var(--sk-grid);
+    background-size: 16px 2px, 2px 16px, 16px 2px, 2px 16px, 16px 2px, 2px 16px, 16px 2px, 2px 16px, var(--sk-grid-size);
+    background-position: 4px 4px, 4px 4px, calc(100% - 4px) 4px, calc(100% - 4px) 4px, 4px calc(100% - 4px), 4px calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), 0 0;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+    border: 1.5px solid var(--sk-hair) !important;
+    border-radius: 0;
+    box-shadow: 0 0 0 6px rgba(18, 63, 115, 0.9), 0 0 0 7.5px rgba(232, 241, 255, 0.5), 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_Dialog_background {
+    background: rgba(8, 30, 56, 0.8);
+}
+
+html[data-tl-theme="sketch-blueprint"] :is(.mx_ContextualMenu, [role="menu"]) {
+    background: #0f3561;
+    border: 1.5px solid var(--sk-hair) !important;
+    border-radius: 0;
+}
+
+html[data-tl-theme="sketch-blueprint"] [role="tooltip"] {
+    background: #eaf2ff;
+    color: #0b2b50;
+    border-radius: 0;
+}
+
+/* --- code: mono on grid in a hairline frame ------------------------------------------- */
+html[data-tl-theme="sketch-blueprint"] :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) {
+    background: rgba(11, 43, 80, 0.75);
+    border: 1px solid var(--sk-hair);
+    border-radius: 0;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_EventTile_body code:not(pre code) {
+    background: rgba(232, 241, 255, 0.12);
+    color: #ffd166;
+}
+
+html[data-tl-theme="sketch-blueprint"] .hljs { color: #eaf2ff; }
+html[data-tl-theme="sketch-blueprint"] :is(.hljs-keyword, .hljs-built_in, .hljs-selector-tag) { color: #ffd166; }
+html[data-tl-theme="sketch-blueprint"] :is(.hljs-string, .hljs-attr) { color: #9be8c4; }
+html[data-tl-theme="sketch-blueprint"] :is(.hljs-comment, .hljs-quote) { color: #8fb0d8; font-style: italic; }
+html[data-tl-theme="sketch-blueprint"] :is(.hljs-number, .hljs-literal, .hljs-title) { color: #bfe0ff; }
+html[data-tl-theme="sketch-blueprint"] :is(.hljs-type, .hljs-function, .hljs-name) { color: #ffb4a8; }
+
+/* badges: revision triangle feel — yellow on navy */
+html[data-tl-theme="sketch-blueprint"] [class*="_notificationBadge_"] {
+    --cpd-color-bg-critical-primary: #ffd166;
+    --cpd-color-text-on-solid-primary: #0b2b50;
+    border-radius: 0 !important;
+}
+
+/* icons: white hairline */
+html[data-tl-theme="sketch-blueprint"] :is(.mx_RoomHeader, .mx_SpacePanel, .mx_MessageComposer_actions) svg {
+    color: #eaf2ff;
+}
+
+/* auth: cover sheet */
+html[data-tl-theme="sketch-blueprint"] .mx_AuthPage {
+    background-color: #123f73;
+    background-image: var(--sk-grid);
+    background-size: var(--sk-grid-size);
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_AuthPage_modal {
+    background: #0f3561;
+    border: 1.5px solid var(--sk-hair);
+    border-radius: 0;
+}
+
+html[data-tl-theme="sketch-blueprint"] .mx_AuthPage_modal img {
+    filter: grayscale(1) brightness(3);
+}

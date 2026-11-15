@@ -118,7 +118,7 @@ V.append(dict(
     enhancer="Injects filter defs; places hint annotations + arrows anchored to empty states/composer; optional circled latest mention.",
     css=["shared.css", "sketch-designed.css"], fontkeys=["assistant", "excalifont", "mono"],
     tokens=tokens(p, "'Assistant', 'Excalifont', system-ui, sans-serif", accent_text="#5b57d1", success_text="#2b7a3b",
-                  deco=[("#e03131", "#ffc9c9"), ("#2f9e44", "#b2f2bb"), ("#1971c2", "#a5d8ff"), ("#f08c00", "#ffec99"), ("#9c36b5", "#eebefa"), ("#0c8599", "#99e9f2")],
+                  deco=[("#e03131", "#ffc9c9"), ("#2b7a3b", "#b2f2bb"), ("#1971c2", "#a5d8ff"), ("#b35c00", "#ffec99"), ("#9c36b5", "#eebefa"), ("#0b7285", "#99e9f2")],
                   extra={"--cpd-color-bg-action-primary-rest": "#6965db", "--cpd-color-bg-action-primary-hovered": "#5b57d1", "--cpd-color-bg-action-tertiary-selected": "#e3e2fe"}),
     enhance=True))
 
@@ -208,7 +208,7 @@ V.append(dict(
     enhancer="Filter defs; page-flip class on room change; Caveat hint notes in empty rooms.",
     css=["shared.css", "sketch-notebook.css"], fontkeys=["patrick", "caveat", "mono"],
     tokens=tokens(p, "'Patrick Hand', 'Kalam', cursive",
-                  deco=[("#22336b", "#dfe6fb"), ("#c62828", "#fbdada"), ("#2e7d32", "#dcefdc"), ("#6a3d9a", "#ece2f6"), ("#b26a00", "#fbecd2"), ("#00796b", "#d6efec")]),
+                  deco=[("#22336b", "#dfe6fb"), ("#c62828", "#fbdada"), ("#2e7d32", "#dcefdc"), ("#6a3d9a", "#ece2f6"), ("#9a5b00", "#fbecd2"), ("#00796b", "#d6efec")]),
     enhance=True))
 
 # ---------------------------------------------------------------- whiteboard
@@ -347,7 +347,7 @@ V.append(dict(
     enhance=True))
 
 # ---------------------------------------------------------------- napkin
-p = P("#f3ece0", "#f8f3ea", "#ebe2d1", "#c8a97e", "#22408c", "#5d6380", "#22408c", "#ffffff", "#22408c", "#e9e4f2", "#f8f3ea", "#b3261e", "#3d7a3a")
+p = P("#f3ece0", "#f8f3ea", "#ebe2d1", "#c8a97e", "#22408c", "#5d6380", "#22408c", "#ffffff", "#22408c", "#e9e4f2", "#f8f3ea", "#b3261e", "#33682f")
 V.append(dict(
     id="sketch-napkin", name="Sketch · Napkin", stage="level-6", mode="light", base="light", seriousness=4, hype=7,
     tagline="Drawn on the back of a café napkin.",
@@ -387,11 +387,11 @@ V.append(dict(
     enhancer="Filter defs only.",
     css=["shared.css", "sketch-napkin.css"], fontkeys=["gochi", "shadows", "mono"],
     tokens=tokens(p, "'Gochi Hand', 'Patrick Hand', cursive",
-                  deco=[("#22408c", "#dfe3f2"), ("#b3261e", "#f4dcd8"), ("#3d7a3a", "#dde9d8"), ("#6f4e37", "#ece0d4"), ("#5a2d82", "#e8dcf0"), ("#0f6e75", "#d5ebec")]),
+                  deco=[("#22408c", "#dfe3f2"), ("#b3261e", "#f4dcd8"), ("#33682f", "#dde9d8"), ("#6f4e37", "#ece0d4"), ("#5a2d82", "#e8dcf0"), ("#0f6e75", "#d5ebec")]),
     enhance=True))
 
 # ---------------------------------------------------------------- scribble
-p = P("#fffdf8", "#ffffff", "#f5f1e8", "#ebe5d6", "#2b2b2b", "#6b6b6b", "#b83d0b", "#ffffff", "#2b2b2b", "#fff1e0", "#ffffff", "#c92a2a", "#2b8a3e")
+p = P("#fffdf8", "#ffffff", "#f5f1e8", "#ebe5d6", "#2b2b2b", "#6b6b6b", "#b83d0b", "#ffffff", "#2b2b2b", "#fff1e0", "#ffffff", "#c92a2a", "#237032")
 V.append(dict(
     id="sketch-scribble", name="Sketch · Scribble", stage="level-7", mode="light", base="light", seriousness=2, hype=8,
     tagline="Squigglevision: boiling lines, crooked everything.",
@@ -428,7 +428,7 @@ V.append(dict(
     enhancer="Filter defs incl. boil-0..2; assigns data-sk-boil to ≤10 chrome nodes; pauses when hidden or reduced motion.",
     css=["shared.css", "sketch-scribble.css"], fontkeys=["shantell", "rocksalt", "mono"],
     tokens=tokens(p, "'Shantell Sans', 'Gochi Hand', cursive",
-                  deco=[("#c92a2a", "#ffe3e3"), ("#1864ab", "#d0ebff"), ("#2b8a3e", "#d3f9d8"), ("#b35c00", "#ffe8cc"), ("#862e9c", "#f3d9fa"), ("#0b7285", "#c5f6fa")]),
+                  deco=[("#c92a2a", "#ffe3e3"), ("#1864ab", "#d0ebff"), ("#237032", "#d3f9d8"), ("#b35c00", "#ffe8cc"), ("#862e9c", "#f3d9fa"), ("#0b7285", "#c5f6fa")]),
     enhance=True))
 
 # ---------------------------------------------------------------- unreadable

@@ -5,7 +5,59 @@ Style guide: `docs/styleguides/sketch.md` (+ `sketch.json`). Manifest: `themes.j
 `tools/gen-rough-assets.js <outdir>` regenerates the rough.js SVGs. It needs `npm i roughjs@4.6.6` somewhere on the
 module path, and the outputs are deterministic because the seeds are fixed.
 
-Phase-B files still to create: `shared.css`, `sketch-<variant>.css` (10), `sketch-daylight.css`, `enhance.ts`.
+## Implementation (phase B)
+
+Files: `shared.css` (primitives every variant consumes via `--sk-*` variables), one CSS per variant,
+`enhance.ts`. `sketch-notebook.css` and `sketch-chalkboard.css` use the prefix
+`html[data-tl-family="sketch"]:is([data-tl-theme="…"], [data-tl-theme="sketch-daylight"][data-tl-phase…])`, so the
+daylight variant reuses them for its day and night phases. `sketch-daylight.css` only adds dawn, dusk and the fade.
+
+Shared mechanics:
+* **Drawn outlines** are `::after` overlays with `mask: url(frame-*.svg)`, using pre-rendered rough.js SVGs with
+  non-scaling strokes. They sit on dialogs, composer, menus, toasts, code blocks and buttons (pill mask), and on bubbles
+  in bubble layout (per-variant files, nth-child seeds). Avatar circles sit on the avatar *slot*, because the avatar
+  clips its children.
+* **Element tile variables** are defined on the tile root, so variants set `--sk-et-*` and `shared.css` maps them to
+  `--event-tile-*` on `.mx_EventTile`, with Element's defaults as fallback.
+* **Composer focus**: the drawn frame turns accent (`:focus-within`), plus a 2 px dashed 60 % outline on the input.
+* **Send button**: Element colours it with `--cpd-color-icon-accent-tertiary`. Here it follows `--sk-accent`.
+* **Enhancer**: injects the SVG filter defs (`sk-rough-*`, `sk-boil-*`, `sk-chalk`). Shows a hint annotation with a
+  hand-drawn arrow above the composer (designed, notebook, daylight), only when the timeline is not scrollable and
+  ≥130 px are free. Writes `data-sk-w`/`data-sk-sheet` for blueprint. Adds `html.sk-flip` (page flip) on room change
+  for notebook and daylight-day. Adds `html.sk-boil` for scribble and unreadable, only when the tab is visible and
+  motion isn't reduced.
+* **Escape hatch** (unreadable): `.tl-ui`, `.tl-switcher`, `.tl-header-button` and `.mx_Dialog:has(.tl-ui)` are
+  reset to Excalifont/Assistant: straight, unfiltered, dark on white.
+
+### Status per variant
+
+| variant | status | notes |
+|---|---|---|
+| sketch-designed | done | Excalidraw islands, Assistant chrome + Excalifont content, hachure + selection box with handles on the selected room, d-grade outlines on bubbles/code/composer, clean dialogs/menus |
+| sketch-wireframe | done | Balsamiq Sans, greyscale media, X-avatars, panel strokes, light-blue selection with blue drawn frame, hatched code, yellow note tooltips/toasts |
+| sketch-notebook | done | ruled paper with double red margin (`background-attachment: local`), spiral binding, index-tab room list, Caveat names, sticky-note composer, taped dialogs, graph-paper code |
+| sketch-whiteboard | done | aluminium frame, ghost smudges, marker tray, sticky-note menus/tooltips/threads, magnet dialogs, own bubbles in blue marker |
+| sketch-chalkboard | done | wooden frame, chalk dust overlay (screen), Cabin Sketch chalk headings (`sk-chalk` filter on headings only), chalk tray, slate dialogs, chalk hljs palette |
+| sketch-blueprint | done | grid paper, title-block header (TITLE / SCALE / SHEET n OF m), panel-width dimension line, numbered parts list, crop-mark dialogs, cyanotype images, zero radius |
+| sketch-napkin | done | quilted napkin + fibre, coffee rings as a multiply overlay, rotated tiles/panels, x-grade outlines, ink bleed |
+| sketch-scribble | done | crooked layout, boiling outlines/icons (8 fps, only ~10 chrome elements), L-shaped cross-hatch shadows, Shantell Sans INFM/BNCE |
+| sketch-unreadable | done (unreadable by design) | three illegible scripts per tile, displacement filter on text, crayon outlines, stick-figure avatars, boil; theme picker stays readable |
+| sketch-daylight | done | dawn (peach sun streak), day (= notebook), dusk (desk-lamp vignette), night (= chalkboard, tokens re-set incl. font) |
+
+### Mask-outline performance (long timeline)
+
+Measured on the dev server in a pooled harness session (`tests/harness/lib.mjs` launch, no new devices). Showcase in
+bubble layout, cloned to ~600 tiles (every tile has a masked `::after` outline), scrolled 45 px per frame for
+200 frames. 6 interleaved on/off rounds, medians. The machine was loaded by other agents' browsers, so the absolute
+numbers are noisy.
+
+| variant | outlines on | outlines off | verdict |
+|---|---|---|---|
+| sketch-designed | 26.8 ms avg / 53 ms p95 | 20.2 ms avg / 33 ms p95 | masks cost about 6–7 ms per frame at 600 tiles. Acceptable: Element virtualises the real timeline to far fewer tiles |
+| sketch-scribble | 66 ms / 135 ms | 87 ms / 157 ms | noise dominates: crooked transforms and the boil cost more than the masks |
+
+Conclusion: masks are cheaper than SVG filters and are kept on bubbles. The level-1–4 variants put no filters on
+tiles. If a weaker device stutters, the first thing to drop is the bubble-tile `::after` (one rule per variant).
 
 ## Fonts in `assets/` (all redistributable; licence texts in `licenses/`)
 
@@ -65,3 +117,30 @@ pages, so do not redistribute them.
 * Mask frames on many tiles: measure FPS, and fall back to the irregular `border-radius` for group-layout tiles.
 * The wireframe palette is an approximation (Balsamiq publishes no hex values).
 * The unreadable escape hatch depends on the loader exposing a stable class or attribute on the theme picker. Coordinate with the loader.
+
+## Edge-case results (phase B, 2026-11-15)
+
+`tests/reports/sketch-<id>.md`: every variant **passes** edgecheck (no overflow, no missing essentials, no page
+errors). The 4 console errors are Element's own (`map_style_url` missing, rust crypto store warning), the same for every theme.
+
+| check | result |
+|---|---|
+| contrast (usable variants) | Fixed after the first run: decorative username colours (designed, notebook, napkin, scribble darkened to ≥4.5:1), chalkboard badge text, whiteboard sticky-note names, blueprint/napkin grey ramps, home-page CTA text. Left: Element's own `nested-interactive` / `scrollable-region-focusable` axe findings (not theme-related). sketch-unreadable fails contrast by design (report-only). |
+| focus | Visible on every stop. The composer gets a dashed accent outline plus an accent frame (the first run flagged the composer as invisible: fixed). |
+| modals, menus, tooltips | Themed per variant (taped page, sticky notes, slate, drawing sheet, napkin, crayon). Checked in 11/12/16/17. |
+| settings + Themes tab | Readable in all variants. In sketch-unreadable the `.tl-ui` dialog is reset (escape hatch, see 15-settings-themes). |
+| login | The box is themed. The full-page background image comes from Element config and stays. |
+| mobile 390 px | Fine. Whiteboard/chalkboard frames shrink to 4–5 px below 600 px. |
+| threads, code, polls, E2EE shields, unread badges | Fine. Code keeps Comic Shanns Mono and gets per-variant blocks (graph paper, slate, grid, hatch). Badges follow the accent with on-solid text. |
+| very long names / RTL | Truncation intact (20-long-names-rtl). Mixed RTL bodies render in the handwriting fonts (system fallback for Hebrew/Arabic glyphs). |
+| reduced motion | Boil, jitter, page flip, dust fade and wobble are all off under `prefers-reduced-motion: reduce` (shared kill switch, plus the enhancer never sets `sk-boil`). |
+| daylight | All 4 phases shot (`recordings/screens/sketch-daylight--<phase>/`). Night re-sets the chalk tokens including the font token. |
+
+Known gaps:
+* Element's light/dark iframes (calls, widgets) are not themed (only the frame around them).
+* Sender names in group layout are not physically moved into the notebook margin (layout risk). They are styled as
+  Caveat margin notes in place.
+* Harness note: `03-timeline-content` scrolls with `block: 'start'`, which can scroll Element's overflow-hidden app
+  root by ~70 px when the target tile is near the bottom. This is a harness artefact and happens in every theme.
+* Scribble/unreadable tiles overlap by design. The hovered or focused tile is raised (`z-index`), so reactions and
+  thread summaries stay clickable.

@@ -1,0 +1,256 @@
+/* sketch-whiteboard — level 4: enamel board in an aluminium frame, dry-erase markers,
+   ghost smudges, sticky-note menus, marker tray under the composer. */
+
+html[data-tl-theme="sketch-whiteboard"] {
+    --sk-ink: #1b1b1b;
+    --sk-line: #1b1b1b;
+    --sk-accent: #1f5bd6;
+    --sk-focus: #1f5bd6;
+    --sk-display: "Permanent Marker", "Kalam", cursive;
+    --sk-content: "Kalam", "Patrick Hand", cursive;
+    --sk-frame-1: url("assets/frame-s1.svg");
+    --sk-frame-2: url("assets/frame-s2.svg");
+    --sk-frame-3: url("assets/frame-s3.svg");
+    --sk-pill: url("assets/pill-s2.svg");
+    --sk-circle: url("assets/circle-2.svg");
+    --sk-underline: url("assets/underline-3.svg");
+    --sk-highlight: rgba(255, 236, 80, 0.75);
+    --sk-sel-line: #1f5bd6;
+    --sk-avatar-line: #1b1b1b;
+    --sk-btn-line: #1b1b1b;
+    --sk-alu: linear-gradient(180deg, #e9ecef, #b9bfc7 40%, #d6dae0 60%, #a7adb6);
+
+    --sk-et-bubble-self-background: #e8f0ff;
+    --sk-et-bubble-other-background: #ffffff;
+    --sk-et-state-hover-background: rgba(31, 91, 214, 0.05);
+    --cpd-color-bg-subtle-tertiary: #eef0f2;
+    --cpd-color-bg-action-tertiary-hovered: rgba(31, 91, 214, 0.08);
+    --cpd-color-bg-action-secondary-hovered: rgba(31, 91, 214, 0.08);
+    --cpd-color-separator-primary: rgba(27, 27, 27, 0.18);
+    --cpd-color-border-interactive-secondary: rgba(27, 27, 27, 0.4);
+    --cpd-color-green-900: #1f5bd6;
+    --cpd-color-green-800: #1a4fbb;
+}
+
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_EventTile_body, .mx_RoomListItemView, .mx_BasicMessageComposer_input) {
+    font-size: 1.06em;
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_DisambiguatedProfile {
+    font-weight: 700;
+}
+
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_RoomHeader_heading, .mx_Dialog_title, .mx_SettingsTab_heading) {
+    font-size: 1.3em;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+}
+
+/* --- shell: aluminium frame + enamel board + ghost smudges -------------------- */
+html[data-tl-theme="sketch-whiteboard"] .mx_MatrixChat {
+    box-sizing: border-box;
+    border: 10px solid #c9ced6;
+    border-image: linear-gradient(135deg, #eef1f4, #a9b0b9 30%, #dde1e6 55%, #9aa1ab 80%, #d3d7dd) 1;
+    background:
+        url("assets/whiteboard-ghost.svg") 30% 40% / 900px 600px no-repeat,
+        linear-gradient(115deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.7) 45%, rgba(255, 255, 255, 0) 60%),
+        #f7f7f5;
+}
+
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_LeftPanel, .mx_RoomListPanel, .mx_RoomView, .mx_RoomView_body, .mx_RoomHeader, .mx_RightPanel) {
+    background: transparent;
+}
+
+/* space panel = aluminium rail with magnets */
+html[data-tl-theme="sketch-whiteboard"] .mx_SpacePanel {
+    background: var(--sk-alu);
+    border-right: 1px solid #8f96a0;
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+    background: radial-gradient(circle at 35% 30%, #ff6b6b, #c92a2a 70%);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_LeftPanel {
+    border-right: 3px solid rgba(27, 27, 27, 0.75);
+}
+
+/* --- room list: marker list, selected circled in blue ------------------------ */
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"]) {
+    background: transparent;
+}
+
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"])::after {
+    -webkit-mask-image: url("assets/circle-2.svg");
+    mask-image: url("assets/circle-2.svg");
+    inset: -4px 2px;
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_RoomListItemView:hover {
+    background: rgba(31, 91, 214, 0.05);
+}
+
+/* --- header: Permanent Marker + scribble underline ----------------------------- */
+html[data-tl-theme="sketch-whiteboard"] .mx_RoomHeader {
+    border-bottom: none;
+    background: url("assets/underline-1.svg") 0 100% / 100% 6px no-repeat;
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_RoomHeader_heading .mx_RoomHeader_truncated {
+    background-image: url("assets/underline-3.svg");
+    background-size: 100% 8px;
+    padding-bottom: 5px;
+}
+
+/* --- timeline: marker frames in sender colour (bubbles) ------------------------- */
+html[data-tl-theme="sketch-whiteboard"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"]) {
+    position: relative;
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    pointer-events: none;
+    background: #1b1b1b;
+    -webkit-mask: url("assets/frame-s1.svg") 0 0 / 100% 100% no-repeat;
+    mask: url("assets/frame-s1.svg") 0 0 / 100% 100% no-repeat;
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    background: #1f5bd6;
+    -webkit-mask-image: url("assets/frame-s2.svg");
+    mask-image: url("assets/frame-s2.svg");
+}
+
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_TimelineSeparator, .mx_DateSeparator) {
+    font-family: "Permanent Marker", cursive;
+    color: #d62828;
+}
+
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_TimelineSeparator, .mx_DateSeparator) > hr {
+    border: 0;
+    height: 8px;
+    background: url("assets/underline-1.svg") center / 100% 8px no-repeat;
+    opacity: 0.4;
+}
+
+/* --- composer on the marker tray ---------------------------------------------- */
+html[data-tl-theme="sketch-whiteboard"] .mx_MessageComposer {
+    position: relative;
+    border-top: none;
+    padding-bottom: 26px;
+    background: transparent;
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_MessageComposer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 18px;
+    pointer-events: none;
+    background:
+        /* four markers lying in the tray */
+        linear-gradient(90deg, transparent 58%, #1b1b1b 58% 64%, #e9ecef 64% 66%, transparent 66% 67%, #1f5bd6 67% 73%, #e9ecef 73% 75%, transparent 75% 76%, #d62828 76% 82%, #e9ecef 82% 84%, transparent 84% 85%, #127a5c 85% 91%, #e9ecef 91% 93%, transparent 93%) 0 1px / 100% 7px no-repeat,
+        linear-gradient(180deg, #dfe3e8, #aab1ba 60%, #8f96a0);
+    border-top: 1px solid #ffffff;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.18);
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_MessageComposer_wrapper {
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+/* --- sticky notes: menus, tooltips, thread panel ---------------------------- */
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_ContextualMenu, [role="menu"]) {
+    background: #fff176;
+    border-radius: 1px;
+    transform: rotate(-0.6deg);
+    box-shadow: 0 10px 12px -8px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.1);
+    --cpd-color-bg-action-tertiary-hovered: rgba(0, 0, 0, 0.07);
+}
+
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_ContextualMenu, [role="menu"])::after {
+    opacity: 0;
+}
+
+html[data-tl-theme="sketch-whiteboard"] [role="tooltip"] {
+    background: #a5e3ff;
+    color: #1b1b1b;
+    border-radius: 1px;
+    box-shadow: 0 6px 8px -5px rgba(0, 0, 0, 0.35);
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_ThreadPanel .mx_EventTile {
+    background: #ffb3c7;
+    margin: 6px 8px;
+    box-shadow: 0 8px 10px -7px rgba(0, 0, 0, 0.3);
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_ThreadPanel .mx_EventTile:nth-child(even) {
+    background: #fff176;
+    transform: rotate(0.5deg);
+}
+
+/* --- dialogs: white sheet pinned with red magnets ------------------------------ */
+html[data-tl-theme="sketch-whiteboard"] .mx_Dialog {
+    background:
+        radial-gradient(circle at 18px 14px, #ff6b6b 0 6px, #c92a2a 6.5px 8px, transparent 8.5px),
+        radial-gradient(circle at calc(100% - 18px) 14px, #ff6b6b 0 6px, #c92a2a 6.5px 8px, transparent 8.5px),
+        #ffffff;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+html[data-tl-theme="sketch-whiteboard"] .mx_Dialog_background {
+    background: rgba(200, 205, 212, 0.75);
+}
+
+/* --- code on a white card --------------------------------------------------------- */
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) {
+    background: #ffffff;
+    border-color: transparent;
+}
+
+/* badges: red marker dot */
+html[data-tl-theme="sketch-whiteboard"] [class*="_notificationBadge_"] {
+    --cpd-color-bg-critical-primary: #d62828;
+}
+
+/* icons: marker black with a tiny wobble (chrome only, ~30 nodes) */
+html[data-tl-theme="sketch-whiteboard"] :is(.mx_RoomHeader, .mx_MessageComposer_actions) svg {
+    filter: url(#sk-rough-1);
+}
+
+/* auth */
+html[data-tl-theme="sketch-whiteboard"] .mx_AuthPage {
+    background: #f7f7f5;
+}
+
+/* hover: marker draw-in sweep on buttons */
+@keyframes sk-drawin {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html[data-tl-theme="sketch-whiteboard"] :is(button[class*="_button_"][data-kind], .mx_AccessibleButton_kind_primary, .mx_AccessibleButton_kind_secondary):hover::after {
+        animation: sk-drawin 0.25s ease-out;
+    }
+}
+
+/* narrow screens: thinner frame */
+@media (max-width: 600px) {
+    html[data-tl-theme="sketch-whiteboard"] .mx_MatrixChat {
+        border-width: 4px;
+    }
+}
+
+/* sender names on sticky notes: marker black for contrast */
+html[data-tl-theme="sketch-whiteboard"] .mx_ThreadPanel .mx_EventTile .mx_DisambiguatedProfile,
+html[data-tl-theme="sketch-whiteboard"] .mx_ThreadPanel .mx_EventTile .mx_DisambiguatedProfile * {
+    color: #1b1b1b;
+}

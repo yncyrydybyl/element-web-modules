@@ -1,0 +1,328 @@
+/* ==========================================================================
+   sketch family — shared primitives (docs/styleguides/sketch.md §3)
+   Every variant sets the --sk-* variables in its own file; this file only
+   consumes them. Nothing here animates or filters timeline tiles.
+   ========================================================================== */
+
+html[data-tl-family="sketch"] {
+    /* defaults, overridden per variant */
+    --sk-ink: var(--cpd-color-text-primary);
+    --sk-line: var(--sk-ink);              /* colour of drawn outlines */
+    --sk-accent: var(--cpd-color-text-action-accent);
+    --sk-paper: var(--cpd-color-bg-canvas-default);
+    --sk-panel: var(--cpd-color-bg-subtle-secondary);
+    --sk-rail: var(--cpd-color-bg-subtle-primary);
+    --sk-display: var(--cpd-font-family-sans);
+    --sk-content: var(--cpd-font-family-sans);
+    --sk-frame-1: url("assets/frame-s1.svg");
+    --sk-frame-2: url("assets/frame-s2.svg");
+    --sk-frame-3: url("assets/frame-s3.svg");
+    --sk-pill: url("assets/pill-s1.svg");  /* buttons are pills in Compound */
+    --sk-circle: url("assets/circle-1.svg");
+    --sk-underline: url("assets/underline-1.svg");
+    --sk-frame-inset: -2px;
+    --sk-focus: var(--sk-accent);
+    --sk-highlight: rgba(255, 241, 118, 0.85);
+    --sk-hover: color-mix(in srgb, var(--sk-ink) 6%, transparent);
+    --sk-selected: color-mix(in srgb, var(--sk-accent) 14%, transparent);
+    --sk-tilt: 0deg;
+
+}
+
+/* Element defines its tile variables on the tile root itself, so html-level values don't inherit:
+   variants set --sk-et-* and they are mapped here (defaults = Element 1.12.33 values). */
+html[data-tl-family="sketch"] .mx_EventTile {
+    --event-tile-bubble-corner-radius: var(--sk-et-bubble-corner-radius, 14px);
+    --event-tile-bubble-line-height: var(--sk-et-bubble-line-height, 1.125rem);
+    --event-tile-group-line-height: var(--sk-et-group-line-height, 1.375rem);
+    --event-tile-bubble-other-background: var(--sk-et-bubble-other-background, var(--cpd-color-gray-300));
+    --event-tile-bubble-self-background: var(--sk-et-bubble-self-background, var(--cpd-color-green-300));
+    --event-tile-state-hover-background: var(--sk-et-state-hover-background, var(--cpd-color-bg-subtle-secondary));
+    --event-tile-state-highlight-background: var(--sk-et-state-highlight-background, color-mix(in srgb, var(--sk-highlight) 40%, transparent));
+    --event-tile-state-selected-background: var(--sk-et-state-selected-background, var(--cpd-color-bg-subtle-secondary));
+    --event-tile-state-marker-color: var(--sk-et-state-marker-color, var(--sk-accent));
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] :is(
+        .mx_RoomHeader_heading,
+        .mx_Dialog_title,
+        .mx_CompoundDialog_title,
+        .mx_SettingsTab_heading,
+        .mx_SettingsSection_header,
+        .mx_RoomSummaryCard .mx_BaseCard_header,
+        .mx_BaseCard_header_title,
+        .mx_AuthBody h1,
+        .mx_AuthBody h2,
+        .mx_HomePage h1,
+        .mx_NewRoomIntro h2,
+        .mx_RoomListPanel header h1,
+        [class*="_header_"] > [class*="_container_"] h1
+    ) {
+    font-family: var(--sk-display);
+}
+
+html[data-tl-family="sketch"] :is(
+        .mx_EventTile_body,
+        .mx_EventTile_content,
+        .mx_DisambiguatedProfile,
+        .mx_RoomListItemView,
+        .mx_RoomHeader_heading,
+        .mx_BasicMessageComposer_input,
+        .mx_ReplyTile,
+        .mx_ThreadSummary
+    ) {
+    font-family: var(--sk-content);
+}
+
+/* inner typography spans carry their own Compound font: make them follow their container */
+html[data-tl-family="sketch"] :is(.mx_DisambiguatedProfile, .mx_RoomListItemView, .mx_RoomHeader_heading) :not(svg, svg *) {
+    font-family: inherit;
+}
+
+/* code stays monospace (alignment matters) */
+html[data-tl-family="sketch"] :is(pre, code, kbd, samp, .mx_EventTile_pre_container, .hljs, .mx_DevtoolsDialog_wrapper) {
+    font-family: var(--cpd-font-family-mono);
+}
+
+/* --------------------------------------------------------------------------
+   Drawn outlines: a ::after overlay masked by a pre-rendered rough.js SVG.
+   Host must be positioned. The mask is stretched (non-scaling stroke).
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] :is(
+        .mx_Dialog,
+        .mx_MessageComposer_wrapper,
+        .mx_ContextualMenu,
+        [role="menu"],
+        .mx_EventTile_pre_container,
+        .mx_BaseCard,
+        .mx_Toast_toast,
+        .mx_UserSettingsDialog .mx_SettingsSection
+    ) {
+    position: relative;
+}
+
+html[data-tl-family="sketch"] :is(
+        .mx_Dialog,
+        .mx_MessageComposer_wrapper,
+        .mx_ContextualMenu,
+        [role="menu"],
+        .mx_EventTile_pre_container,
+        .mx_Toast_toast
+    )::after {
+    content: "";
+    position: absolute;
+    inset: var(--sk-frame-inset);
+    pointer-events: none;
+    background: var(--sk-line);
+    -webkit-mask: var(--sk-frame-1) 0 0 / 100% 100% no-repeat;
+    mask: var(--sk-frame-1) 0 0 / 100% 100% no-repeat;
+    z-index: 1;
+}
+
+html[data-tl-family="sketch"] :is(.mx_ContextualMenu, [role="menu"], .mx_Toast_toast)::after {
+    -webkit-mask-image: var(--sk-frame-2);
+    mask-image: var(--sk-frame-2);
+}
+
+html[data-tl-family="sketch"] .mx_EventTile_pre_container::after {
+    -webkit-mask-image: var(--sk-frame-3);
+    mask-image: var(--sk-frame-3);
+}
+
+/* the real borders go away where a drawn outline replaces them */
+html[data-tl-family="sketch"] :is(.mx_Dialog, .mx_ContextualMenu, [role="menu"], .mx_MessageComposer_wrapper, .mx_Toast_toast) {
+    border-color: transparent;
+}
+
+/* Buttons: Compound buttons + legacy AccessibleButton kinds get a drawn pill */
+html[data-tl-family="sketch"] :is(
+        button[class*="_button_"][data-kind="primary"],
+        button[class*="_button_"][data-kind="secondary"],
+        button[class*="_button_"][data-kind="destructive"],
+        .mx_AccessibleButton_kind_primary,
+        .mx_AccessibleButton_kind_primary_outline,
+        .mx_AccessibleButton_kind_secondary,
+        .mx_AccessibleButton_kind_danger,
+        .mx_AccessibleButton_kind_danger_outline,
+        .mx_Dialog_primary,
+        .mx_Dialog_buttons button
+    ):not(.tl-ui *) {
+    position: relative;
+    border-color: transparent !important;
+    box-shadow: none;
+}
+
+html[data-tl-family="sketch"] :is(
+        button[class*="_button_"][data-kind="primary"],
+        button[class*="_button_"][data-kind="secondary"],
+        button[class*="_button_"][data-kind="destructive"],
+        .mx_AccessibleButton_kind_primary,
+        .mx_AccessibleButton_kind_primary_outline,
+        .mx_AccessibleButton_kind_secondary,
+        .mx_AccessibleButton_kind_danger,
+        .mx_AccessibleButton_kind_danger_outline,
+        .mx_Dialog_primary,
+        .mx_Dialog_buttons button
+    ):not(.tl-ui *)::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    pointer-events: none;
+    background: var(--sk-btn-line, var(--sk-line));
+    -webkit-mask: var(--sk-pill) 0 0 / 100% 100% no-repeat;
+    mask: var(--sk-pill) 0 0 / 100% 100% no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Highlighter (mentions, search hits, selection)
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] ::selection {
+    background: var(--sk-highlight);
+    color: inherit;
+}
+
+html[data-tl-family="sketch"] .mx_EventTile_searchHighlight {
+    background: linear-gradient(100deg, transparent 2%, var(--sk-highlight) 5% 93%, transparent 97%) 0 65% / 100% 72% no-repeat;
+    color: inherit;
+}
+
+/* Links: scribble underline instead of a straight one */
+html[data-tl-family="sketch"] .mx_EventTile_body a:not(.mx_Pill):not([class*="_pill_"]) {
+    text-decoration: none;
+    background: var(--sk-underline) 0 100% / 100% 0.42em no-repeat;
+    padding-bottom: 0.12em;
+}
+
+/* --------------------------------------------------------------------------
+   Room header: room name gets a scribble underline
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] .mx_RoomHeader_heading .mx_RoomHeader_truncated {
+    padding-bottom: 3px;
+    background: var(--sk-underline) 0 100% / 100% 7px no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Selected room / space: drawn circle-ish outline
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] .mx_RoomListItemView {
+    position: relative;
+}
+
+html[data-tl-family="sketch"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"])::after {
+    content: "";
+    position: absolute;
+    inset: 1px 4px;
+    pointer-events: none;
+    background: var(--sk-sel-line, var(--sk-accent));
+    -webkit-mask: var(--sk-frame-2) 0 0 / 100% 100% no-repeat;
+    mask: var(--sk-frame-2) 0 0 / 100% 100% no-repeat;
+}
+
+html[data-tl-family="sketch"] .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+    position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   Avatars: drawn circle around the round avatar
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] .mx_EventTile [class*="_slotAvatar_"]:has(> .mx_BaseAvatar) {
+    position: relative;
+}
+
+/* the avatar itself clips (overflow hidden), so the drawn circle lives on the slot, sized to the avatar */
+html[data-tl-family="sketch"] .mx_EventTile [class*="_slotAvatar_"]:has(> .mx_BaseAvatar)::after {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    width: calc(var(--sk-avatar-size, 30px) + 10px);
+    height: calc(var(--sk-avatar-size, 30px) + 10px);
+    translate: 0 -50%;
+    pointer-events: none;
+    background: var(--sk-avatar-line, var(--sk-line));
+    -webkit-mask: var(--sk-circle) center / 100% 100% no-repeat;
+    mask: var(--sk-circle) center / 100% 100% no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   Unread badges: count inside a drawn circle
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] [class*="_notificationBadge_"] {
+    position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   Focus: real outline always kept (decoration only adds)
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] :focus-visible {
+    outline: 3px solid var(--sk-focus) !important;
+    outline-offset: 2px;
+}
+
+/* the composer is focused most of the time: its drawn frame turns accent instead of a hard ring */
+html[data-tl-family="sketch"] .mx_BasicMessageComposer_input:focus-visible {
+    outline: 2px dashed color-mix(in srgb, var(--sk-focus) 60%, transparent) !important;
+    outline-offset: 3px;
+}
+
+html[data-tl-family="sketch"] .mx_MessageComposer_wrapper:focus-within::after {
+    background: var(--sk-focus);
+}
+
+/* --------------------------------------------------------------------------
+   Scrollbars
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] * {
+    scrollbar-color: color-mix(in srgb, var(--sk-ink) 45%, transparent) transparent;
+}
+
+/* --------------------------------------------------------------------------
+   Loader UI (.tl-ui) stays plain and usable in every variant
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] .tl-ui {
+    transform: none;
+    filter: none;
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility guards
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    html[data-tl-family="sketch"] *,
+    html[data-tl-family="sketch"] *::before,
+    html[data-tl-family="sketch"] *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media (forced-colors: active) {
+    html[data-tl-family="sketch"] *,
+    html[data-tl-family="sketch"] *::before,
+    html[data-tl-family="sketch"] *::after {
+        background-image: none !important;
+        filter: none !important;
+        text-shadow: none !important;
+    }
+    html[data-tl-family="sketch"] {
+        --sk-line: transparent;
+        --sk-btn-line: transparent;
+        --sk-sel-line: transparent;
+        --sk-avatar-line: transparent;
+    }
+}
+
+/* send button follows the variant's accent (Element uses --cpd-color-icon-accent-tertiary) */
+html[data-tl-family="sketch"] .mx_MessageComposer_sendMessage {
+    background-color: var(--sk-accent);
+    --cpd-color-icon-on-solid-primary: var(--cpd-color-text-on-solid-primary);
+    color: var(--cpd-color-text-on-solid-primary);
+}
+
+/* home page call-to-action buttons sit on the accent: use the on-solid text colour */
+html[data-tl-family="sketch"] .mx_HomePage_default_buttons .mx_AccessibleButton {
+    color: var(--cpd-color-text-on-solid-primary);
+}
