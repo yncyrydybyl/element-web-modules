@@ -5,7 +5,7 @@
   "stage": "usable",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:57:11.939Z",
+  "started": "2026-11-15T10:21:11.649Z",
   "views": {
     "home": {
       "axe": [
@@ -238,7 +238,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 12,
+        "stops": 11,
         "invisible": []
       }
     },
@@ -251,7 +251,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 12,
+        "stops": 11,
         "invisible": []
       }
     },
@@ -290,5 +290,5 @@
     "tlPhase": null,
     "wanted": "teams-usable-light"
   },
-  "finished": "2026-11-15T07:58:34.230Z"
+  "finished": "2026-11-15T10:22:07.757Z"
 }

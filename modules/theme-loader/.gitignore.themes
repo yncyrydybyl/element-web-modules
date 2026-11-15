@@ -9,3 +9,4 @@ recordings/walkthroughs/*.webm
 !recordings/screens/*/thumb.webp
 recordings/timelapse/*.webm
 recordings/showcase/work/
+recordings/prod-qa/

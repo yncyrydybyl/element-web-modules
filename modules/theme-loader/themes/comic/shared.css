@@ -239,3 +239,10 @@ html[data-tl-family="comic"]:is([data-tl-theme="comic-casual-friday"], [data-tl-
 html[data-tl-family="comic"]:is([data-tl-theme="comic-casual-friday"], [data-tl-theme="comic-geocities"], [data-tl-theme="comic-wordart"]) :is(.hljs-variable, .hljs-template-variable, .hljs-attr) { color: #7a4a00; }
 html[data-tl-family="comic"]:is([data-tl-theme="comic-casual-friday"], [data-tl-theme="comic-geocities"], [data-tl-theme="comic-wordart"]) :is(.hljs-number, .hljs-literal, .hljs-built_in) { color: #8a3b00; }
 html[data-tl-family="comic"]:is([data-tl-theme="comic-casual-friday"], [data-tl-theme="comic-geocities"], [data-tl-theme="comic-wordart"]) .hljs-comment { color: #5a6270; font-style: italic; }
+
+/* ---- Other datanauten modules (production) ----------------------------------------------------------------
+   teams-welcome docks a 460px guide on the right (html.twl-docked, ≥1100px) and shifts #matrixchat; the
+   paper-clip assistant lives in the fixed overlay and would sit on top of the guide, so it moves along. */
+@media (min-width: 1100px) {
+  html[data-tl-family="comic"].twl-docked .ewt-klammi { right: calc(460px + 2 * var(--cpd-space-4x) + 24px); }
+}

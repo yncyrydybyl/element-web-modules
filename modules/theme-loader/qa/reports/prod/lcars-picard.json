@@ -5,7 +5,7 @@
   "stage": "future",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:24:34.581Z",
+  "started": "2026-11-15T09:47:00.577Z",
   "views": {
     "home": {
       "axe": [
@@ -324,5 +324,5 @@
     "tlPhase": null,
     "wanted": "lcars-picard"
   },
-  "finished": "2026-11-15T07:25:38.585Z"
+  "finished": "2026-11-15T09:47:54.833Z"
 }

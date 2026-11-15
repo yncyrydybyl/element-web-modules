@@ -5,7 +5,7 @@
   "stage": "level-3",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:49:59.265Z",
+  "started": "2026-11-15T10:12:34.979Z",
   "views": {
     "home": {
       "axe": [
@@ -287,8 +287,8 @@
   },
   "themeStatus": {
     "tlTheme": "sketch-daylight",
-    "tlPhase": "dawn",
+    "tlPhase": "day",
     "wanted": "sketch-daylight"
   },
-  "finished": "2026-11-15T07:51:36.820Z"
+  "finished": "2026-11-15T10:13:41.404Z"
 }

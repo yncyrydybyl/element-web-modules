@@ -1,9 +1,9 @@
 # Edge check: Teams 2024 · New Teams 2.0
 
 - id: `teams-2024` · stage: `past`
-- base: https://element.datanauten.de · 2026-11-15T07:55:07.168Z
+- base: https://element.datanauten.de · 2026-11-15T10:18:42.212Z
 - loader: html[data-tl-theme] = `teams-2024`
-- result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
+- result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -48,7 +48,6 @@
 
 axe: no violations
 
-- no visible focus on 1/11 Tab stops: `div[aria-label="Send an unencrypted message…"]`
 
 ## modal
 

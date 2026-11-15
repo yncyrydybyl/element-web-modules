@@ -96,14 +96,9 @@ html[data-tl-theme="kde-breeze-daylight"] body::after {
   background: #ffb366; mix-blend-mode: multiply; opacity: var(--kde-nightcolor);
   transition: opacity 2s ease;
 }
-/* phase crossfade (the loader marks the ~2 s fade window) */
-html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] body,
-html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] .mx_RoomListPanel,
-html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] .mx_RoomHeader,
-html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] .mx_SpacePanel,
-html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] .mx_RoomView_body {
-  transition: background-color 2s ease, color 2s ease;
-}
+/* phase change: no colour crossfade. Fading only some containers (body, panels) while their descendants switched
+   instantly made room names vanish and code blocks flash light for ~2 s at dusk→night. The Night Color layer
+   above still eases in, which is the visible "transition". */
 @media (prefers-reduced-motion: reduce) {
   html[data-tl-theme="kde-breeze-daylight"] body::after { transition: none; }
 }

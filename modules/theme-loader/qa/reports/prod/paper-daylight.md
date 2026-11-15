@@ -1,15 +1,14 @@
 # Edge check: Paper · Daylight
 
 - id: `paper-daylight` · stage: `level-1`
-- base: https://element.datanauten.de · 2026-11-15T07:38:25.239Z
+- base: https://element.datanauten.de · 2026-11-15T10:00:37.743Z
 - loader: html[data-tl-theme] = `paper-daylight`
-- result: **pass** — axe serious/critical nodes 24 (contrast 2), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 1 | `.mx_HomePage_default_wrapper > h2` |
 | nested-interactive | serious | 2 | `.mx_SpaceButton_active` |
 
 
@@ -52,9 +51,7 @@ axe: no violations
 
 ## modal
 
-| axe rule | impact | nodes | example |
-|---|---|---|---|
-| color-contrast | serious | 1 | `div:nth-child(3) > p` |
+axe: no violations
 
 
 ## login

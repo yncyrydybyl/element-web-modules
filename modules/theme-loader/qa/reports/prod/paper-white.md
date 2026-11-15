@@ -1,7 +1,7 @@
 # Edge check: Paper · White
 
 - id: `paper-white` · stage: `level-1`
-- base: https://element.datanauten.de · 2026-11-15T07:31:59.136Z
+- base: https://element.datanauten.de · 2026-11-15T09:53:44.678Z
 - loader: html[data-tl-theme] = `paper-white`
 - result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
@@ -17,7 +17,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## bubble
@@ -25,7 +25,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
@@ -33,7 +33,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## thread
@@ -41,7 +41,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 6 | `#\32 3 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 6 | `#\33 7 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings
@@ -56,7 +56,8 @@ axe: no violations
 
 ## login
 
-Could not check: locator.waitFor: Timeout 60000ms exceeded.
+axe: no violations
+
 
 ## Console errors
 

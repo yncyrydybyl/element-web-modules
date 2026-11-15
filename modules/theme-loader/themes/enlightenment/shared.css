@@ -814,3 +814,28 @@ html[data-tl-family="enlightenment"] .mx_AuthFooter a:visited {
   color: var(--cpd-color-text-primary);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
+
+/* ------------------------------------------------------------------ other datanauten modules (production)
+   On element.datanauten.de ~8 module buttons join the room header (Apps, room-checker badge, Saved, Activity,
+   Tags, Files, My apps, Themes). In a narrow room view (e.g. teams-welcome guide docked) the row became wider
+   than the header and its last buttons slid under the drawn min/max/close glyphs. Tighten when narrow. */
+/* the header itself is the query container (not its parent: containment there re-anchors absolutely
+   positioned frame parts); so only its children change, its own gap is compensated with negative margins */
+html[data-tl-family="enlightenment"] .mx_RoomHeader { container: tl-room-header / inline-size; }
+@container tl-room-header (max-width: 760px) {
+  html[data-tl-family="enlightenment"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -6px !important; }
+  html[data-tl-family="enlightenment"] .mx_RoomHeader .mx_FacePile { display: none !important; }
+  html[data-tl-family="enlightenment"] .mx_RoomHeader > button[class*="_icon-button_"],
+  html[data-tl-family="enlightenment"] .mx_RoomHeader > div > button[class*="_icon-button_"],
+  html[data-tl-family="enlightenment"] .mx_RoomHeader > :is(.mcm-apps, .rc-badge, .tw-header-button, .act-header-button, .tm-header-button, .fh-header-button, .uaw-header-button, .tl-header-button) {
+    width: 28px !important; min-width: 28px; padding-inline: 0 !important;
+  }
+}
+/* the drawn min/max/close glyphs are the header's own ::after (a container query can't reach it): drop them, and
+   the room they reserve, whenever the room view is known to be narrow (teams-welcome guide docked, small window) */
+html[data-tl-family="enlightenment"].twl-docked .mx_RoomHeader::after { display: none; }
+html[data-tl-family="enlightenment"].twl-docked .mx_RoomHeader { padding-right: var(--cpd-space-4x, 16px); }
+@media (max-width: 1100px) {
+  html[data-tl-family="enlightenment"] .mx_RoomHeader::after { display: none; }
+  html[data-tl-family="enlightenment"] .mx_RoomHeader { padding-right: var(--cpd-space-4x, 16px); }
+}

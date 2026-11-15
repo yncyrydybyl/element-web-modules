@@ -1,7 +1,7 @@
 # Edge check: Paper · Black Invisible
 
 - id: `paper-black-invisible` · stage: `level-5` · **report-only** (unreadable by design)
-- base: https://element.datanauten.de · 2026-11-15T07:39:04.843Z
+- base: https://element.datanauten.de · 2026-11-15T10:01:44.315Z
 - loader: html[data-tl-theme] = `paper-black-invisible`
 - result: **pass** — axe serious/critical nodes 17 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
@@ -17,7 +17,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 1 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 1 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## bubble
@@ -25,7 +25,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
@@ -33,7 +33,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 1 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 1 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## thread
@@ -41,7 +41,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 3 | `#\33 7 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 3 | `#\32 3 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings

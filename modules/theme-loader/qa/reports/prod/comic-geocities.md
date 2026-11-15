@@ -1,7 +1,7 @@
 # Edge check: Comic Sans · GeoCities
 
 - id: `comic-geocities` · stage: `level-2`
-- base: https://element.datanauten.de · 2026-11-15T06:58:33.919Z
+- base: https://element.datanauten.de · 2026-11-15T09:16:14.253Z
 - loader: html[data-tl-theme] = `comic-geocities`
 - result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
@@ -56,7 +56,8 @@ axe: no violations
 
 ## login
 
-Could not check: locator.waitFor: Timeout 60000ms exceeded.
+axe: no violations
+
 
 ## Console errors
 

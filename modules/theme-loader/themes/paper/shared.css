@@ -1303,3 +1303,48 @@ html[data-tl-family="paper"] .mx_HomePage_default_buttons .mx_AccessibleButton::
 html[data-tl-family="paper"] .mx_HomePage_default_buttons .mx_AccessibleButton:hover {
   background-color: var(--p-wash);
 }
+
+/* ---- Other datanauten modules (production) -----------------------------------------------------------------
+   teams-welcome guide, speed-start card and the full-screen overlays (room-checker, keyboard-shortcuts,
+   space-room-map, people-map) were floating cards with 16px radius and a heavy drop shadow — the one glossy
+   object on the page. Here they are sheets of the same paper with a hairline edge, like dialogs. */
+html[data-tl-family="paper"] :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+  background: var(--p-paper) !important;
+  color: var(--p-ink);
+  border: 1px solid color-mix(in srgb, var(--p-ink) 20%, var(--p-paper)) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+html[data-tl-family="paper"] :is(.ks-backdrop, .srm-backdrop, .pm-backdrop, .rc-backdrop) {
+  background: color-mix(in srgb, var(--p-paper) 85%, transparent) !important;
+}
+html[data-tl-family="paper"] :is(.twl-success, .twl-glossary, .twl-card, .twl-addon) { border-radius: 2px !important; }
+/* Room header with ~8 extra module buttons on production: last buttons clipped in a narrow room view.
+   Hide the face pile and tighten the row (header = query container). */
+html[data-tl-family="paper"] .mx_RoomHeader { container: tl-room-header / inline-size; }
+@container tl-room-header (max-width: 620px) {
+  html[data-tl-family="paper"] .mx_RoomHeader .mx_FacePile { display: none !important; }
+  html[data-tl-family="paper"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -4px !important; }
+}
+
+/* ---- L5 invisible: a discoverable way back to the navigation ----------------------------------------------
+   The space rail + room list (and with them the user menu → settings) live off-canvas; the only mouse route was
+   an invisible 8px edge strip. Draw a hairline on the left edge and a small paper tab "›" in the middle; hovering
+   or clicking it reveals the navigation (enhancer), keyboard: Tab into it or Alt+Shift+P. Hidden while revealed. */
+html[data-tl-theme="paper-white-invisible"] #tl-overlay-root .tl-paper-strip::before,
+html[data-tl-theme="paper-black-invisible"] #tl-overlay-root .tl-paper-strip::before {
+  content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; width: 2px;
+  background: color-mix(in srgb, var(--p-ink) 14%, transparent);
+}
+html[data-tl-theme="paper-white-invisible"] #tl-overlay-root .tl-paper-strip::after,
+html[data-tl-theme="paper-black-invisible"] #tl-overlay-root .tl-paper-strip::after {
+  content: "›"; position: absolute; inset-inline-start: 0; top: 50%; translate: 0 -50%;
+  width: 16px; height: 48px; display: grid; place-items: center; cursor: pointer;
+  font: 400 18px/1 var(--cpd-font-family-sans); color: var(--p-muted);
+  background: var(--p-paper); border: 1px solid color-mix(in srgb, var(--p-ink) 18%, var(--p-paper)); border-inline-start: 0;
+  border-radius: 0 6px 6px 0;
+}
+html[data-tl-theme="paper-white-invisible"] #tl-overlay-root .tl-paper-strip:hover::after,
+html[data-tl-theme="paper-black-invisible"] #tl-overlay-root .tl-paper-strip:hover::after { color: var(--p-ink); }
+html[data-tl-theme="paper-white-invisible"][data-tl-reveal] #tl-overlay-root .tl-paper-strip,
+html[data-tl-theme="paper-black-invisible"][data-tl-reveal] #tl-overlay-root .tl-paper-strip { display: none; }

@@ -5,7 +5,7 @@
   "stage": "exciting",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:11:20.879Z",
+  "started": "2026-11-15T09:30:09.193Z",
   "views": {
     "home": {
       "axe": [
@@ -238,8 +238,10 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 12,
-        "invisible": []
+        "stops": 11,
+        "invisible": [
+          "div[aria-label=\"Send an unencrypted message…\"]"
+        ]
       }
     },
     "modal": {
@@ -256,7 +258,17 @@
       }
     },
     "login": {
-      "error": "locator.waitFor: Timeout 60000ms exceeded."
+      "axe": [],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 0,
+        "invisible": []
+      }
     }
   },
   "consoleErrors": [
@@ -271,7 +283,7 @@
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
-    "focusInvisible": 0,
+    "focusInvisible": 1,
     "consoleErrors": 4,
     "fail": false
   },
@@ -280,5 +292,5 @@
     "tlPhase": null,
     "wanted": "e-ember"
   },
-  "finished": "2026-11-15T07:13:13.451Z"
+  "finished": "2026-11-15T09:31:05.175Z"
 }

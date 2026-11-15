@@ -1,7 +1,7 @@
 # Edge check: Sketch · Napkin
 
 - id: `sketch-napkin` · stage: `level-6` · **report-only** (unreadable by design)
-- base: https://element.datanauten.de · 2026-11-15T07:48:28.483Z
+- base: https://element.datanauten.de · 2026-11-15T10:09:45.293Z
 - loader: html[data-tl-theme] = `sketch-napkin`
 - result: **pass** — axe serious/critical nodes 23 (contrast 1), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
@@ -18,7 +18,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## bubble
@@ -26,7 +26,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
@@ -34,7 +34,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## thread
@@ -42,7 +42,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 6 | `#\32 3 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 6 | `#\31 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings

@@ -5,7 +5,7 @@
   "stage": "pure",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:15:05.887Z",
+  "started": "2026-11-15T09:33:34.311Z",
   "views": {
     "home": {
       "axe": [
@@ -178,6 +178,30 @@
     "thread": {
       "axe": [
         {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 5,
+          "samples": [
+            {
+              "target": "._stateOwnEvent_t6spj_912._shapeThread_t6spj_1173._stateLastInSection_t6spj_1005:nth-child(8) > ._senderDetails_t6spj_85 > ._slotSender_t6spj_112[data-testid=\"event-tile-slot-sender\"] > .mx_DisambiguatedProfile._disambiguatedProfile_1q5ax_8[data-event-layout=\"group\"] > .mx_Username_color3._disambiguatedProfile_displayName_1q5ax_18.mx_DisambiguatedProfile_displayName",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.2 (foreground color: #357017, background color: #d3d8de, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "._shapeThread_t6spj_1173._stateLastInSection_t6spj_1005._root_t6spj_9:nth-child(9) > ._senderDetails_t6spj_85 > ._slotSender_t6spj_112[data-testid=\"event-tile-slot-sender\"] > .mx_DisambiguatedProfile._disambiguatedProfile_1q5ax_8[data-event-layout=\"group\"] > .mx_Username_color3._disambiguatedProfile_displayName_1q5ax_18.mx_DisambiguatedProfile_displayName",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.2 (foreground color: #357017, background color: #d3d8de, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "._shapeThread_t6spj_1173._stateLastInSection_t6spj_1005._root_t6spj_9:nth-child(10) > ._senderDetails_t6spj_85 > ._slotSender_t6spj_112[data-testid=\"event-tile-slot-sender\"] > .mx_DisambiguatedProfile._disambiguatedProfile_1q5ax_8[data-event-layout=\"group\"] > .mx_Username_color6._disambiguatedProfile_displayName_1q5ax_18.mx_DisambiguatedProfile_displayName",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.17 (foreground color: #17705d, background color: #d3d8de, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "._shapeThread_t6spj_1173._stateLastInSection_t6spj_1005._root_t6spj_9:nth-child(13) > ._senderDetails_t6spj_85 > ._slotSender_t6spj_112[data-testid=\"event-tile-slot-sender\"] > .mx_DisambiguatedProfile._disambiguatedProfile_1q5ax_8[data-event-layout=\"group\"] > .mx_Username_color3._disambiguatedProfile_displayName_1q5ax_18.mx_DisambiguatedProfile_displayName",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.2 (foreground color: #357017, background color: #d3d8de, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
           "id": "nested-interactive",
           "impact": "serious",
           "help": "Interactive controls must not be nested",
@@ -278,8 +302,8 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/6312.js:2:1619319)\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:3370\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:1303\n    at Jl (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/9578.js:2:781144)\n  "
   ],
   "summary": {
-    "axeSerious": 22,
-    "contrastNodes": 0,
+    "axeSerious": 27,
+    "contrastNodes": 5,
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
@@ -289,8 +313,8 @@
   },
   "themeStatus": {
     "tlTheme": "e-daylight",
-    "tlPhase": "dawn",
+    "tlPhase": "day",
     "wanted": "e-daylight"
   },
-  "finished": "2026-11-15T07:16:38.550Z"
+  "finished": "2026-11-15T09:34:32.489Z"
 }

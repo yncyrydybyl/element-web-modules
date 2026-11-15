@@ -5,7 +5,7 @@
   "stage": "past",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:24:11.355Z",
+  "started": "2026-11-15T09:45:49.327Z",
   "views": {
     "home": {
       "axe": [
@@ -292,5 +292,5 @@
     "tlPhase": null,
     "wanted": "lcars-voyager"
   },
-  "finished": "2026-11-15T07:25:18.588Z"
+  "finished": "2026-11-15T09:46:59.464Z"
 }

@@ -5,22 +5,10 @@
   "stage": "level-1",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:36:42.890Z",
+  "started": "2026-11-15T09:59:50.749Z",
   "views": {
     "home": {
       "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 1,
-          "samples": [
-            {
-              "target": ".mx_HomePage_default_wrapper > h2",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.44 (foreground color: #61708b, background color: #f7f1e3, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
         {
           "id": "nested-interactive",
           "impact": "serious",
@@ -255,20 +243,7 @@
       }
     },
     "modal": {
-      "axe": [
-        {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 1,
-          "samples": [
-            {
-              "target": "div:nth-child(3) > p",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.44 (foreground color: #61708b, background color: #f7f1e3, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        }
-      ],
+      "axe": [],
       "overflow": {
         "page": false,
         "offenders": []
@@ -301,8 +276,8 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/6312.js:2:1619319)\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:3370\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:1303\n    at Jl (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/9578.js:2:781144)\n  "
   ],
   "summary": {
-    "axeSerious": 24,
-    "contrastNodes": 2,
+    "axeSerious": 22,
+    "contrastNodes": 0,
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
@@ -312,8 +287,8 @@
   },
   "themeStatus": {
     "tlTheme": "paper-daylight",
-    "tlPhase": "dawn",
+    "tlPhase": "day",
     "wanted": "paper-daylight"
   },
-  "finished": "2026-11-15T07:38:25.239Z"
+  "finished": "2026-11-15T10:00:37.743Z"
 }

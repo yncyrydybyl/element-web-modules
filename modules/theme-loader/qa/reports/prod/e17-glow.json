@@ -5,7 +5,7 @@
   "stage": "pure",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:08:05.972Z",
+  "started": "2026-11-15T09:26:25.150Z",
   "views": {
     "home": {
       "axe": [
@@ -238,10 +238,8 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
-        "invisible": [
-          "div[aria-label=\"Send an unencrypted message…\"]"
-        ]
+        "stops": 12,
+        "invisible": []
       }
     },
     "modal": {
@@ -283,7 +281,7 @@
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
-    "focusInvisible": 1,
+    "focusInvisible": 0,
     "consoleErrors": 4,
     "fail": false
   },
@@ -292,5 +290,5 @@
     "tlPhase": null,
     "wanted": "e17-glow"
   },
-  "finished": "2026-11-15T07:09:39.454Z"
+  "finished": "2026-11-15T09:27:14.355Z"
 }

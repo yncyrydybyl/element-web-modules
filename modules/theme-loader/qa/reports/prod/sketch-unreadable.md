@@ -1,7 +1,7 @@
 # Edge check: Sketch · Unreadable
 
 - id: `sketch-unreadable` · stage: `level-8` · **report-only** (unreadable by design)
-- base: https://element.datanauten.de · 2026-11-15T07:49:15.678Z
+- base: https://element.datanauten.de · 2026-11-15T10:11:49.238Z
 - loader: html[data-tl-theme] = `sketch-unreadable`
 - result: **pass** — axe serious/critical nodes 110 (contrast 88), views with overflow 0, missing/zero-size essentials 0, clipped texts 3, focus stops without visible focus 0, console errors 4
 
@@ -19,7 +19,7 @@
 |---|---|---|---|
 | color-contrast | serious | 17 | `._chat-filter_5qdp0_8[role="option"][aria-hidden="false"]:nth-child(1)` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 - clipped (vertical): `div.mx_EventTile_body.mx_MLocationBody` “Unable to load map: This account provider has not ”
 
@@ -29,7 +29,7 @@
 |---|---|---|---|
 | color-contrast | serious | 17 | `._chat-filter_5qdp0_8[role="option"][aria-hidden="false"]:nth-child(1)` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 - clipped (vertical): `div.mx_EventTile_body.mx_MLocationBody` “Unable to load map: This account provider has not ”
 
@@ -39,7 +39,7 @@
 |---|---|---|---|
 | color-contrast | serious | 18 | `._chat-filter_5qdp0_8[role="option"][aria-hidden="false"]:nth-child(1)` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 - clipped (vertical): `div.mx_EventTile_body.mx_MLocationBody` “Unable to load map: This account provider has not ”
 
@@ -49,7 +49,7 @@
 |---|---|---|---|
 | color-contrast | serious | 20 | `._chat-filter_5qdp0_8[role="option"][aria-hidden="false"]:nth-child(1)` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 6 | `#\33 7 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 6 | `#\32 3 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings

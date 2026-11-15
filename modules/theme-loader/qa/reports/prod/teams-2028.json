@@ -5,7 +5,7 @@
   "stage": "future",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:56:46.502Z",
+  "started": "2026-11-15T10:20:05.257Z",
   "views": {
     "home": {
       "axe": [
@@ -239,7 +239,9 @@
       "clipped": [],
       "focus": {
         "stops": 12,
-        "invisible": []
+        "invisible": [
+          "div[aria-label=\"Send an unencrypted message…\"]"
+        ]
       }
     },
     "modal": {
@@ -281,7 +283,7 @@
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
-    "focusInvisible": 0,
+    "focusInvisible": 1,
     "consoleErrors": 4,
     "fail": false
   },
@@ -290,5 +292,5 @@
     "tlPhase": null,
     "wanted": "teams-2028"
   },
-  "finished": "2026-11-15T07:58:03.682Z"
+  "finished": "2026-11-15T10:21:01.986Z"
 }

@@ -1,7 +1,7 @@
 # Edge check: Teams Usable · Light
 
 - id: `teams-usable-light` · stage: `usable`
-- base: https://element.datanauten.de · 2026-11-15T07:58:34.230Z
+- base: https://element.datanauten.de · 2026-11-15T10:22:07.757Z
 - loader: html[data-tl-theme] = `teams-usable-light`
 - result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 

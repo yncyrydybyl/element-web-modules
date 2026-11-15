@@ -1425,3 +1425,59 @@ html[data-tl-family="lcars"] .mx_AccessibleButton:active { animation: lc-press 1
     transition: none !important;
   }
 }
+
+/* ---------- Other datanauten modules (production) -------------------------
+   teams-welcome guide, speed-start card and the full-screen overlays (room-checker, keyboard-shortcuts,
+   space-room-map, people-map) use Compound tokens (colours follow), but were plain rounded cards. They get the
+   same mini-frame as dialogs (§11) and LCARS headings. */
+html[data-tl-family="lcars"] {
+  & :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+    background: var(--lc-bg) !important;
+    border: 0 !important;
+    border-left: 22px solid var(--lc-dlg, var(--lc-c3)) !important;
+    border-top: 16px solid var(--lc-dlg, var(--lc-c3)) !important;
+    border-bottom: 10px solid var(--lc-dlg2, var(--lc-c4)) !important;
+    border-radius: 48px 0 0 32px !important;
+    box-shadow: none !important;
+  }
+  & :is(.ks-backdrop, .srm-backdrop, .pm-backdrop, .rc-backdrop) { background: rgb(0 0 0 / .85) !important; }
+  & :is(.twl-title, .speed-start-card_title) {
+    font: 500 24px/1.1 var(--lc-font) !important; color: var(--lc-accent) !important;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  & :is(.twl-button, .drm-button, .ks-button, .rc-button, .pm-button, .fh-button) {
+    border-radius: 999px !important; font-family: var(--lc-font) !important; text-transform: uppercase; letter-spacing: .04em;
+  }
+  & .speed-start-card_fill { background: var(--lc-accent) !important; }
+}
+
+/* Room header on production: ~8 module buttons join Element's labelled pills (VISUAL, COMM, THREADS, INFO) and
+   the row overflowed (labels drawn over neighbouring pills, last buttons cut off). Narrow header → icon pills,
+   like the compact contexts in §14b. */
+/* the header itself is the query container (not its parent: containment there re-anchors absolutely
+   positioned frame parts); so only its children change, its own gap is compensated with negative margins */
+html[data-tl-family="lcars"] .mx_RoomHeader { container: tl-room-header / inline-size; }
+@container tl-room-header (max-width: 1050px) {
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label]::after { content: none !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label] svg { display: block !important; color: var(--lc-on) !important; fill: var(--lc-on) !important; opacity: 1 !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label],
+  html[data-tl-family="lcars"] .mx_RoomHeader > div > button {
+    padding: 0 6px !important; align-items: center !important; justify-content: center !important; min-width: 30px;
+  }
+  html[data-tl-family="lcars"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -6px !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader .mx_FacePile { display: none !important; }
+}
+@container tl-room-header (max-width: 700px) {
+  html[data-tl-family="lcars"] .mx_RoomHeader .mx_RoomHeader_heading { font-size: 24px !important; }
+}
+@container tl-room-header (max-width: 560px) {
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label]:not(.mx_RoomHeader_infoWrapper),
+  html[data-tl-family="lcars"] .mx_RoomHeader > div > button { padding: 0 3px !important; min-width: 26px !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -8px !important; }
+}
+/* lcars-picard draws header buttons as outlines on black: their icons (incl. the module buttons) must use the text
+   colour, also in the compact header above (whose --lc-on icon colour is meant for filled pills) */
+html[data-tl-family="lcars"][data-tl-theme="lcars-picard"] .mx_RoomHeader > button[aria-label] svg,
+html[data-tl-family="lcars"][data-tl-theme="lcars-picard"] .mx_RoomHeader > div > button[aria-label] svg {
+  color: var(--lc-text) !important; fill: currentColor !important;
+}

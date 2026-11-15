@@ -5,7 +5,7 @@
   "stage": "level-6",
   "reportOnly": true,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:46:57.059Z",
+  "started": "2026-11-15T10:08:11.388Z",
   "views": {
     "home": {
       "axe": [
@@ -74,11 +74,11 @@
           "count": 2,
           "samples": [
             {
-              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\32 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -120,11 +120,11 @@
           "count": 2,
           "samples": [
             {
-              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\32 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -166,11 +166,11 @@
           "count": 2,
           "samples": [
             {
-              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\32 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -212,15 +212,15 @@
           "count": 6,
           "samples": [
             {
-              "target": "#\\32 3 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\31 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\32 4 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\33 5 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > fieldset",
+              "target": "#\\33 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > fieldset",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
@@ -302,5 +302,5 @@
     "tlPhase": null,
     "wanted": "sketch-napkin"
   },
-  "finished": "2026-11-15T07:48:28.483Z"
+  "finished": "2026-11-15T10:09:45.293Z"
 }

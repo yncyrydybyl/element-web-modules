@@ -1,7 +1,7 @@
 # Edge check: Sketch · Designed
 
 - id: `sketch-designed` · stage: `level-1`
-- base: https://element.datanauten.de · 2026-11-15T07:41:40.321Z
+- base: https://element.datanauten.de · 2026-11-15T10:00:59.379Z
 - loader: html[data-tl-theme] = `sketch-designed`
 - result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
@@ -56,7 +56,8 @@ axe: no violations
 
 ## login
 
-Could not check: locator.waitFor: Timeout 60000ms exceeded.
+axe: no violations
+
 
 ## Console errors
 

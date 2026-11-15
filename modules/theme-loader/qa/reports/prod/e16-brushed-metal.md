@@ -1,9 +1,9 @@
 # Edge check: E16 · BrushedMetal-Tigert
 
 - id: `e16-brushed-metal` · stage: `past`
-- base: https://element.datanauten.de · 2026-11-15T07:09:26.865Z
+- base: https://element.datanauten.de · 2026-11-15T09:27:14.625Z
 - loader: html[data-tl-theme] = `e16-brushed-metal`
-- result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
+- result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -17,7 +17,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## bubble
@@ -25,7 +25,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
@@ -33,7 +33,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\32 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\33 4 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## thread
@@ -41,14 +41,13 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 6 | `#\32 3 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 6 | `#\33 7 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings
 
 axe: no violations
 
-- no visible focus on 1/11 Tab stops: `div[aria-label="Send an unencrypted message…"]`
 
 ## modal
 
@@ -57,7 +56,8 @@ axe: no violations
 
 ## login
 
-Could not check: locator.waitFor: Timeout 60000ms exceeded.
+axe: no violations
+
 
 ## Console errors
 

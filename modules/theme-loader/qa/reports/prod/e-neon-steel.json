@@ -5,7 +5,7 @@
   "stage": "exciting",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:12:40.414Z",
+  "started": "2026-11-15T09:31:06.213Z",
   "views": {
     "home": {
       "axe": [
@@ -292,5 +292,5 @@
     "tlPhase": null,
     "wanted": "e-neon-steel"
   },
-  "finished": "2026-11-15T07:14:11.432Z"
+  "finished": "2026-11-15T09:31:57.401Z"
 }

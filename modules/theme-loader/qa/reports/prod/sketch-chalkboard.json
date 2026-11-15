@@ -5,7 +5,7 @@
   "stage": "level-4",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:43:43.744Z",
+  "started": "2026-11-15T10:06:50.184Z",
   "views": {
     "home": {
       "axe": [
@@ -290,5 +290,5 @@
     "tlPhase": null,
     "wanted": "sketch-chalkboard"
   },
-  "finished": "2026-11-15T07:45:16.405Z"
+  "finished": "2026-11-15T10:07:35.908Z"
 }

@@ -562,3 +562,8 @@ html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="
 }
 html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) .mx_EventTile_body pre :is(.hljs-variable, .hljs-attr, .hljs-template-variable) { color: #ffcc66; }
 html[data-tl-family="comic"]:is([data-tl-theme="comic-poster"], [data-tl-theme="comic-unreadable"]) [class*="_repliesAmount_"] { color: #000000; font-weight: 700; }
+
+/* poster: the stickers' 12px vertical margins + rotation pushed the last rooms below the fold at 900px height;
+   tighter stacking for poster only (comic-unreadable keeps the overflowing pile on purpose) */
+html[data-tl-family="comic"][data-tl-theme="comic-poster"] .mx_RoomListItemView { margin: 2px 10px 3px 6px; }
+html[data-tl-family="comic"][data-tl-theme="comic-poster"] .mx_RoomListItemView [class*="_roomName_"] { line-height: 1.25; }

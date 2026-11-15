@@ -5,7 +5,7 @@
   "stage": "level-5",
   "reportOnly": true,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:32:53.412Z",
+  "started": "2026-11-15T09:56:58.579Z",
   "views": {
     "home": {
       "axe": [
@@ -33,7 +33,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -75,7 +75,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -121,7 +121,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -163,7 +163,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -213,7 +213,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -226,7 +226,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -239,7 +239,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -278,5 +278,5 @@
     "tlPhase": null,
     "wanted": "paper-white-invisible"
   },
-  "finished": "2026-11-15T07:34:33.077Z"
+  "finished": "2026-11-15T09:57:43.270Z"
 }

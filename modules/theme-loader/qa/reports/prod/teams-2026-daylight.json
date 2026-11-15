@@ -5,7 +5,7 @@
   "stage": "pure",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:53:23.058Z",
+  "started": "2026-11-15T10:16:11.475Z",
   "views": {
     "home": {
       "axe": [
@@ -258,7 +258,17 @@
       }
     },
     "login": {
-      "error": "locator.waitFor: Timeout 60000ms exceeded."
+      "axe": [],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 0,
+        "invisible": []
+      }
     }
   },
   "consoleErrors": [
@@ -279,8 +289,8 @@
   },
   "themeStatus": {
     "tlTheme": "teams-2026-daylight",
-    "tlPhase": "dawn",
+    "tlPhase": "day",
     "wanted": "teams-2026-daylight"
   },
-  "finished": "2026-11-15T07:54:56.426Z"
+  "finished": "2026-11-15T10:17:02.822Z"
 }

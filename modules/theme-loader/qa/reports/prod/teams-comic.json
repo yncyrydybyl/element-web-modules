@@ -5,7 +5,7 @@
   "stage": "comic",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:59:37.677Z",
+  "started": "2026-11-15T10:23:30.234Z",
   "views": {
     "home": {
       "axe": [
@@ -292,5 +292,5 @@
     "tlPhase": null,
     "wanted": "teams-comic"
   },
-  "finished": "2026-11-15T08:00:52.117Z"
+  "finished": "2026-11-15T10:24:31.839Z"
 }

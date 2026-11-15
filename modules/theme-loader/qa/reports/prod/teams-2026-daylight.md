@@ -1,7 +1,7 @@
 # Edge check: Teams 2026 · Daylight
 
 - id: `teams-2026-daylight` · stage: `pure`
-- base: https://element.datanauten.de · 2026-11-15T07:54:56.426Z
+- base: https://element.datanauten.de · 2026-11-15T10:17:02.822Z
 - loader: html[data-tl-theme] = `teams-2026-daylight`
 - result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 
@@ -57,7 +57,8 @@ axe: no violations
 
 ## login
 
-Could not check: locator.waitFor: Timeout 60000ms exceeded.
+axe: no violations
+
 
 ## Console errors
 

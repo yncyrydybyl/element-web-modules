@@ -5,27 +5,10 @@
   "stage": "level-4",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:00:16.742Z",
+  "started": "2026-11-15T09:19:04.191Z",
   "views": {
     "home": {
-      "axe": [
-        {
-          "id": "nested-interactive",
-          "impact": "serious",
-          "help": "Interactive controls must not be nested",
-          "count": 2,
-          "samples": [
-            {
-              "target": ".mx_SpaceButton_active",
-              "summary": "Fix any of the following:   Element has focusable descendants"
-            },
-            {
-              "target": "div[data-rbd-drag-handle-context-id=\"0\"]",
-              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
-            }
-          ]
-        }
-      ],
+      "axe": [],
       "overflow": {
         "page": false,
         "offenders": []
@@ -63,7 +46,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -158,22 +141,6 @@
     "thread": {
       "axe": [
         {
-          "id": "nested-interactive",
-          "impact": "serious",
-          "help": "Interactive controls must not be nested",
-          "count": 2,
-          "samples": [
-            {
-              "target": "div[aria-label=\"Home\"]",
-              "summary": "Fix any of the following:   Element has focusable descendants"
-            },
-            {
-              "target": ".mx_SpaceButton_active",
-              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
-            }
-          ]
-        },
-        {
           "id": "scrollable-region-focusable",
           "impact": "serious",
           "help": "Scrollable region must have keyboard access",
@@ -218,7 +185,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 12,
+        "stops": 11,
         "invisible": []
       }
     },
@@ -256,7 +223,7 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/6312.js:2:1619319)\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:3370\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:1303\n    at Jl (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/9578.js:2:781144)\n  "
   ],
   "summary": {
-    "axeSerious": 18,
+    "axeSerious": 14,
     "contrastNodes": 0,
     "overflowViews": 0,
     "missing": 0,
@@ -270,5 +237,5 @@
     "tlPhase": null,
     "wanted": "comic-poster"
   },
-  "finished": "2026-11-15T07:01:33.612Z"
+  "finished": "2026-11-15T09:20:04.993Z"
 }

@@ -5,7 +5,7 @@
   "stage": "future",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:21:14.899Z",
+  "started": "2026-11-15T09:41:45.818Z",
   "views": {
     "home": {
       "axe": [
@@ -286,5 +286,5 @@
     "tlPhase": null,
     "wanted": "kde-ocean"
   },
-  "finished": "2026-11-15T07:22:26.564Z"
+  "finished": "2026-11-15T09:42:52.498Z"
 }

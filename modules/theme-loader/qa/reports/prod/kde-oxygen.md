@@ -1,7 +1,7 @@
 # Edge check: Oxygen · KDE 4
 
 - id: `kde-oxygen` · stage: `past`
-- base: https://element.datanauten.de · 2026-11-15T07:20:40.823Z
+- base: https://element.datanauten.de · 2026-11-15T09:39:41.412Z
 - loader: html[data-tl-theme] = `kde-oxygen`
 - result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 

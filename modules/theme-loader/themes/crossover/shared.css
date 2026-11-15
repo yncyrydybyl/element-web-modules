@@ -33,3 +33,15 @@ html[data-tl-family="crossover"] .tl-ui * {
     text-shadow: none !important;
   }
 }
+
+/* Other datanauten modules (production): ~8 module buttons join the room header. When the room view is narrow
+   (teams-welcome guide docked, small window) drop the decorative header extras that need room: the E16 gems of
+   x-kde-e16 (they covered the last buttons) and the sketched "Chat Shared +" tab strip of x-teams-sketch. */
+html[data-tl-theme="x-kde-e16"].twl-docked .mx_RoomHeader::after { display: none; }
+html[data-tl-theme="x-kde-e16"].twl-docked .mx_RoomHeader { padding-right: 16px; }
+html[data-tl-theme="x-teams-sketch"].twl-docked .mx_RoomHeader .mx_RoomHeader_infoWrapper::after { display: none; }
+@media (max-width: 1100px) {
+  html[data-tl-theme="x-kde-e16"] .mx_RoomHeader::after { display: none; }
+  html[data-tl-theme="x-kde-e16"] .mx_RoomHeader { padding-right: 16px; }
+  html[data-tl-theme="x-teams-sketch"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after { display: none; }
+}

@@ -5,7 +5,7 @@
   "stage": "crossover",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:03:23.823Z",
+  "started": "2026-11-15T09:22:40.111Z",
   "views": {
     "home": {
       "axe": [
@@ -258,7 +258,17 @@
       }
     },
     "login": {
-      "error": "locator.waitFor: Timeout 60000ms exceeded."
+      "axe": [],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 0,
+        "invisible": []
+      }
     }
   },
   "consoleErrors": [
@@ -282,5 +292,5 @@
     "tlPhase": null,
     "wanted": "x-win311-lcars"
   },
-  "finished": "2026-11-15T07:05:28.947Z"
+  "finished": "2026-11-15T09:23:52.274Z"
 }

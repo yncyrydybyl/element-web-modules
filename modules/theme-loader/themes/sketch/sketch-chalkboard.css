@@ -273,3 +273,8 @@ html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-t
 html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) [class*="_notificationBadge_"] {
     color: #2e3b32;
 }
+
+/* code readability at night (also sketch-daylight night): plain/unhighlighted code and the line-number gutter were
+   faint chalk; give them full chalk / 70 % chalk */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) :is(pre, code) { color: #f2f2ea; }
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-chalkboard"], [data-tl-theme="sketch-daylight"][data-tl-phase="night"]) .mx_EventTile_lineNumbers { color: rgba(242, 242, 234, 0.7); }

@@ -5,7 +5,7 @@
   "stage": "exciting",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T08:03:48.013Z",
+  "started": "2026-11-15T10:28:09.045Z",
   "views": {
     "home": {
       "axe": [
@@ -239,9 +239,7 @@
       "clipped": [],
       "focus": {
         "stops": 12,
-        "invisible": [
-          "div[aria-label=\"Send an unencrypted message…\"]"
-        ]
+        "invisible": []
       }
     },
     "modal": {
@@ -278,7 +276,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -308,7 +306,7 @@
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
-    "focusInvisible": 1,
+    "focusInvisible": 0,
     "consoleErrors": 4,
     "fail": false
   },
@@ -317,5 +315,5 @@
     "tlPhase": null,
     "wanted": "win311-hotdog"
   },
-  "finished": "2026-11-15T08:05:17.347Z"
+  "finished": "2026-11-15T10:29:25.422Z"
 }

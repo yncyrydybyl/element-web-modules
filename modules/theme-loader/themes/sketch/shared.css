@@ -326,3 +326,34 @@ html[data-tl-family="sketch"] .mx_MessageComposer_sendMessage {
 html[data-tl-family="sketch"] .mx_HomePage_default_buttons .mx_AccessibleButton {
     color: var(--cpd-color-text-on-solid-primary);
 }
+
+/* --------------------------------------------------------------------------
+   Other datanauten modules (production): teams-welcome guide, speed-start card and the
+   full-screen overlays (room-checker, keyboard-shortcuts, space-room-map, people-map) get
+   the same drawn outline as dialogs instead of a clean rounded card with a soft shadow.
+   (overflow: hidden on these panels → outline drawn inside, inset 2px)
+   -------------------------------------------------------------------------- */
+html[data-tl-family="sketch"] :is(.twl-guide-panel, .ks-panel, .srm-panel, .pm-panel, .rc-panel) { position: relative; }
+html[data-tl-family="sketch"] :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+    border-color: transparent !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+}
+html[data-tl-family="sketch"] :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel)::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    pointer-events: none;
+    background: var(--sk-line);
+    -webkit-mask: var(--sk-frame-1) 0 0 / 100% 100% no-repeat;
+    mask: var(--sk-frame-1) 0 0 / 100% 100% no-repeat;
+    z-index: 3;
+}
+
+/* Room header with ~8 extra module buttons on production: when the room view is narrow the last buttons were
+   clipped at the right edge. Hide the face pile and tighten the row (header = query container). */
+html[data-tl-family="sketch"] .mx_RoomHeader { container: tl-room-header / inline-size; }
+@container tl-room-header (max-width: 620px) {
+    html[data-tl-family="sketch"] .mx_RoomHeader .mx_FacePile { display: none !important; }
+    html[data-tl-family="sketch"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -4px !important; }
+}

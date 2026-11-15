@@ -1,7 +1,7 @@
 # Edge check: LCARS · Picard
 
 - id: `lcars-picard` · stage: `future`
-- base: https://element.datanauten.de · 2026-11-15T07:25:38.585Z
+- base: https://element.datanauten.de · 2026-11-15T09:47:54.833Z
 - loader: html[data-tl-theme] = `lcars-picard`
 - result: **pass** — axe serious/critical nodes 26 (contrast 4), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 

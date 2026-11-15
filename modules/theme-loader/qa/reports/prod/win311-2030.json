@@ -5,7 +5,7 @@
   "stage": "future",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T08:07:02.192Z",
+  "started": "2026-11-15T10:32:14.319Z",
   "views": {
     "home": {
       "axe": [
@@ -292,5 +292,5 @@
     "tlPhase": null,
     "wanted": "win311-2030"
   },
-  "finished": "2026-11-15T08:08:25.808Z"
+  "finished": "2026-11-15T10:33:20.663Z"
 }

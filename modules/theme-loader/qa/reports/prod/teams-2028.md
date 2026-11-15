@@ -1,9 +1,9 @@
 # Edge check: Teams 2028 · Copilot Glass
 
 - id: `teams-2028` · stage: `future`
-- base: https://element.datanauten.de · 2026-11-15T07:58:03.682Z
+- base: https://element.datanauten.de · 2026-11-15T10:21:01.986Z
 - loader: html[data-tl-theme] = `teams-2028`
-- result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 
 ## home
 
@@ -48,6 +48,7 @@
 
 axe: no violations
 
+- no visible focus on 1/12 Tab stops: `div[aria-label="Send an unencrypted message…"]`
 
 ## modal
 

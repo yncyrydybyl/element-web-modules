@@ -1,9 +1,9 @@
 # Edge check: E17 · Dark Glow
 
 - id: `e17-glow` · stage: `pure`
-- base: https://element.datanauten.de · 2026-11-15T07:09:39.454Z
+- base: https://element.datanauten.de · 2026-11-15T09:27:14.355Z
 - loader: html[data-tl-theme] = `e17-glow`
-- result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
+- result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -48,7 +48,6 @@
 
 axe: no violations
 
-- no visible focus on 1/11 Tab stops: `div[aria-label="Send an unencrypted message…"]`
 
 ## modal
 

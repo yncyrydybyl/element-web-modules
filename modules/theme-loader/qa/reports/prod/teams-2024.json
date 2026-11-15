@@ -5,7 +5,7 @@
   "stage": "past",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T07:53:31.772Z",
+  "started": "2026-11-15T10:17:48.931Z",
   "views": {
     "home": {
       "axe": [
@@ -238,10 +238,8 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
-        "invisible": [
-          "div[aria-label=\"Send an unencrypted message…\"]"
-        ]
+        "stops": 12,
+        "invisible": []
       }
     },
     "modal": {
@@ -253,7 +251,7 @@
       "missing": [],
       "clipped": [],
       "focus": {
-        "stops": 11,
+        "stops": 12,
         "invisible": []
       }
     },
@@ -283,7 +281,7 @@
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
-    "focusInvisible": 1,
+    "focusInvisible": 0,
     "consoleErrors": 4,
     "fail": false
   },
@@ -292,5 +290,5 @@
     "tlPhase": null,
     "wanted": "teams-2024"
   },
-  "finished": "2026-11-15T07:55:07.168Z"
+  "finished": "2026-11-15T10:18:42.212Z"
 }

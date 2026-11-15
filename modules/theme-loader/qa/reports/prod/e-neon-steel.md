@@ -1,7 +1,7 @@
 # Edge check: Ganymede Neon Steel
 
 - id: `e-neon-steel` · stage: `exciting`
-- base: https://element.datanauten.de · 2026-11-15T07:14:11.432Z
+- base: https://element.datanauten.de · 2026-11-15T09:31:57.401Z
 - loader: html[data-tl-theme] = `e-neon-steel`
 - result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 

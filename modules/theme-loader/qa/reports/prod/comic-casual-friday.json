@@ -5,7 +5,7 @@
   "stage": "level-1",
   "reportOnly": false,
   "base": "https://element.datanauten.de",
-  "started": "2026-11-15T06:56:38.571Z",
+  "started": "2026-11-15T09:15:20.797Z",
   "views": {
     "home": {
       "axe": [
@@ -256,7 +256,17 @@
       }
     },
     "login": {
-      "error": "locator.waitFor: Timeout 60000ms exceeded."
+      "axe": [],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 0,
+        "invisible": []
+      }
     }
   },
   "consoleErrors": [
@@ -280,5 +290,5 @@
     "tlPhase": null,
     "wanted": "comic-casual-friday"
   },
-  "finished": "2026-11-15T06:58:16.827Z"
+  "finished": "2026-11-15T09:16:10.237Z"
 }

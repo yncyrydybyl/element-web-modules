@@ -1,7 +1,7 @@
 # Edge check: Sketch · Scribble
 
 - id: `sketch-scribble` · stage: `level-7` · **report-only** (unreadable by design)
-- base: https://element.datanauten.de · 2026-11-15T07:48:47.239Z
+- base: https://element.datanauten.de · 2026-11-15T10:11:41.969Z
 - loader: html[data-tl-theme] = `sketch-scribble`
 - result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 

@@ -1311,3 +1311,26 @@ html[data-tl-family="teams"] .mx_RoomHeader > [class*="_avatar_"] {
   line-height: 32px;
   --cpd-avatar-size: 32px;
 }
+
+/* ===== Other datanauten modules (production) ===============================================================
+   teams-welcome guide, speed-start card and the full-screen overlays (room-checker, keyboard-shortcuts,
+   space-room-map, people-map) follow the Compound tokens; give them Fluent geometry (per-variant radius ramp,
+   flyout shadow) and Teams buttons, so they read as Teams flyouts rather than Element cards. */
+html[data-tl-family="teams"] :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+  border-radius: var(--tm-radius-l) !important;
+  box-shadow: var(--tm-shadow28) !important;
+}
+html[data-tl-family="teams"] :is(.twl-button, .drm-button, .ks-button, .rc-button, .pm-button, .fh-button) {
+  border-radius: var(--tm-radius-btn) !important;
+}
+/* Room header with ~8 extra module buttons (Apps, room-checker badge, Saved, Activity, Tags, Files, My apps, Themes):
+   in a narrow room view the room name shrank to nothing and the decorative "Chat" tab (infoWrapper::after, flex:none)
+   was drawn over the first module buttons. Drop the decorations and tighten when narrow. */
+/* the header itself is the query container (not its parent: containment there re-anchors absolutely
+   positioned frame parts); so only its children change, its own gap is compensated with negative margins */
+html[data-tl-family="teams"] .mx_RoomHeader { container: tl-room-header / inline-size; }
+@container tl-room-header (max-width: 820px) {
+  html[data-tl-family="teams"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after { content: none !important; display: none !important; }
+  html[data-tl-family="teams"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -6px !important; }
+  html[data-tl-family="teams"] .mx_RoomHeader .mx_FacePile { display: none !important; }
+}

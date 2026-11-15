@@ -1,7 +1,7 @@
 # Edge check: Windows 3.11 · Black Leather Jacket
 
 - id: `win311-leather` · stage: `pure`
-- base: https://element.datanauten.de · 2026-11-15T08:05:58.910Z
+- base: https://element.datanauten.de · 2026-11-15T10:29:54.357Z
 - loader: html[data-tl-theme] = `win311-leather`
 - result: **pass** — axe serious/critical nodes 21 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 

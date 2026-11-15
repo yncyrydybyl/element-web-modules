@@ -1,9 +1,9 @@
 # Edge check: Windows 3.11 · Hot Dog Stand
 
 - id: `win311-hotdog` · stage: `exciting`
-- base: https://element.datanauten.de · 2026-11-15T08:05:17.347Z
+- base: https://element.datanauten.de · 2026-11-15T10:29:25.422Z
 - loader: html[data-tl-theme] = `win311-hotdog`
-- result: **pass** — axe serious/critical nodes 30 (contrast 9), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
+- result: **pass** — axe serious/critical nodes 30 (contrast 9), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -48,7 +48,6 @@
 
 axe: no violations
 
-- no visible focus on 1/12 Tab stops: `div[aria-label="Send an unencrypted message…"]`
 
 ## modal
 

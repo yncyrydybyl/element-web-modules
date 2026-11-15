@@ -1,7 +1,7 @@
 # Edge check: Paper · White Invisible
 
 - id: `paper-white-invisible` · stage: `level-5` · **report-only** (unreadable by design)
-- base: https://element.datanauten.de · 2026-11-15T07:34:33.077Z
+- base: https://element.datanauten.de · 2026-11-15T09:57:43.270Z
 - loader: html[data-tl-theme] = `paper-white-invisible`
 - result: **pass** — axe serious/critical nodes 17 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 

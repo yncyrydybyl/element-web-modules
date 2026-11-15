@@ -64,6 +64,7 @@ const enhancer: Enhancer = {
         ctx.root.appendChild(strip);
         const onEnter = (): void => setReveal(true);
         strip.addEventListener("mouseenter", onEnter);
+        strip.addEventListener("click", onEnter);   // touch / click on the visible "›" tab
 
         // hide again once the pointer leaves the revealed navigation (space rail 68px + room list 320px)
         const onMove = (e: MouseEvent): void => {
@@ -93,6 +94,7 @@ const enhancer: Enhancer = {
 
         cleanups.push(() => {
             strip?.removeEventListener("mouseenter", onEnter);
+            strip?.removeEventListener("click", onEnter);
             document.removeEventListener("mousemove", onMove);
             document.removeEventListener("keydown", onKey, true);
         });

@@ -1,9 +1,9 @@
 # Edge check: Enlightenment · Aurora Cycle
 
 - id: `e-daylight` · stage: `pure`
-- base: https://element.datanauten.de · 2026-11-15T07:16:38.550Z
+- base: https://element.datanauten.de · 2026-11-15T09:34:32.489Z
 - loader: html[data-tl-theme] = `e-daylight`
-- result: **pass** — axe serious/critical nodes 22 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
+- result: **pass** — axe serious/critical nodes 27 (contrast 5), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 
 ## home
 
@@ -40,6 +40,7 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
+| color-contrast | serious | 5 | `._stateOwnEvent_t6spj_912._shapeThread_t6spj_1173._stateLastInSection_` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
 | scrollable-region-focusable | serious | 6 | `#\33 7 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 

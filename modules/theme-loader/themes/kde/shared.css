@@ -1079,3 +1079,18 @@ html[data-tl-family="kde"] .mx_AuthBody h2,
 html[data-tl-family="kde"] .mx_AuthBody .mx_ServerPicker h2,
 html[data-tl-family="kde"] .mx_ServerPicker_desc { color: var(--kde-muted) !important; }
 html[data-tl-family="kde"] .mx_AuthPage_modal.mx_AuthPage_modal_withBlur .mx_AuthPage_modalContent { background: var(--kde-window); }
+
+/* ===== Other datanauten modules (production) ===============================================================
+   teams-welcome guide, speed-start card and the full-screen overlays of room-checker, keyboard-shortcuts,
+   space-room-map and people-map use Compound tokens; they only need Breeze geometry (small radii, Plasma dialog
+   shadow) — and opaque/blurred sheets in Glass, whose canvas token is translucent (text behind bled through). */
+html[data-tl-family="kde"] :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+  border-radius: calc(var(--kde-radius-card) * 2) !important;
+  box-shadow: var(--kde-shadow-dialog) !important;
+}
+html[data-tl-family="kde"] :is(.twl-button, .drm-button, .ks-button, .rc-button, .pm-button, .fh-button) { border-radius: var(--kde-radius) !important; }
+html[data-tl-theme="kde-glass"] :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+  background: rgb(32 35 38 / .9) !important; backdrop-filter: blur(40px) saturate(1.4);
+  border: 1px solid rgb(255 255 255 / .12) !important; border-radius: 12px !important;
+}
+html[data-tl-theme="kde-glass"] :is(.ks-backdrop, .srm-backdrop, .pm-backdrop, .rc-backdrop) { background: rgb(0 0 0 / .45) !important; }

@@ -668,6 +668,9 @@ html[data-tl-family="win311"] .mx_SpacePanel {
   & .mx_BaseAvatar, & .mx_SpaceButton_avatarWrapper, & .mx_SpaceButton_icon { border-radius: 0 !important; }
   & .mx_SpaceButton_icon { background: var(--w-face) !important; box-shadow: var(--w-bevel); border: 1px solid var(--w-frame); }
   & .mx_SpaceButton_icon::before { background-color: var(--w-btntext) !important; }
+  /* inline-SVG icons (Home since 1.12.x, activity / files-hub module items) draw with currentColor */
+  & .mx_SpaceButton_icon { color: var(--w-btntext) !important; }
+  & .mx_SpaceButton_icon svg { color: var(--w-btntext) !important; fill: currentColor; }
   & .mx_SpaceButton_name { color: var(--w-text); font: var(--cpd-font-body-md-regular); }
   & .mx_SpaceButton_active .mx_SpaceButton_name { background: var(--w-sel); color: var(--w-seltext); }
   & .mx_SpacePanel_toggleCollapse { display: none; }
@@ -698,6 +701,7 @@ html[data-tl-family="win311"]:not([data-tl-theme="win311-usable"]) {
       display: flex !important; flex-direction: row !important; flex: 1 1 auto;
       overflow-x: auto !important; overflow-y: hidden !important; padding: 0 !important; margin: 0 !important; gap: 4px;
       height: 100%; mask-image: none !important;
+      max-width: none !important;   /* Element caps the tree at 250px = 3 group icons; module items (Activity, Files) were cut off */
     }
     & .mx_SpaceItem { flex: 0 0 auto; margin: 0 !important; padding: 0 !important; width: 84px; }
     & .mx_SpaceItem .mx_SpaceTreeLevel { display: none !important; }   /* nested spaces collapsed */
@@ -1108,4 +1112,53 @@ html[data-tl-family="win311"] .mx_MessageComposer {
 }
 html[data-tl-family="win311"] .mx_MessageComposer .mx_MessageComposer_sendMessageWrapper {
   width: auto !important; min-width: 0 !important; height: auto !important; overflow: visible !important; flex: 0 0 auto; margin: 0 0 0 3px !important;
+}
+
+/* ===================================== Other datanauten modules (production) ===========================
+   element.datanauten.de also loads teams-welcome, speed-start, room-checker, keyboard-shortcuts, space-room-map,
+   people-map, activity, files-hub, … They use Compound tokens (so colours follow) but draw modern rounded cards
+   and pills. Here they become Win 3.1 windows and push buttons, keyed on the modules' stable class prefixes. */
+html[data-tl-family="win311"] {
+  /* floating module windows: welcome guide (docked right), startup card, full-screen overlays */
+  & :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+    border-radius: 0 !important;
+    background: var(--w-window) !important;
+    color: var(--w-text);
+    border: 1px solid var(--w-frame) !important;
+    box-shadow: 0 0 0 var(--w-band) var(--w-border), 0 0 0 calc(var(--w-band) + 1px) var(--w-frame) !important;
+  }
+  & #teams-welcome-root .twl-panel-frame { top: 8px; right: 8px; bottom: 8px; }
+  & :is(.ks-backdrop, .srm-backdrop, .pm-backdrop, .rc-backdrop) { background: transparent !important; }
+  /* the guide's header becomes an active title bar */
+  & .twl-guide-panel .twl-header {
+    background: var(--w-title); color: var(--w-titletext);
+    padding: 3px 6px 4px 10px; border-bottom: 1px solid var(--w-frame);
+    & .twl-title { font: 700 var(--w-size)/var(--w-title-h) var(--w-font-sys) !important; color: var(--w-titletext); }
+    & .twl-subtitle { color: var(--w-titletext); opacity: .85; }
+  }
+  & .twl-guide-panel .twl-intro { padding-top: 8px; }
+  & :is(.twl-icon-button, .ks-close, .srm-close, .pm-close, .rc-close, .fh-close) {
+    border-radius: 0 !important; background: var(--w-face) !important; color: var(--w-btntext) !important;
+    border: 1px solid var(--w-frame) !important; box-shadow: var(--w-bevel) !important;
+  }
+  & .twl-steps { border-bottom: 1px solid var(--w-frame) !important; }
+  & .twl-step-tab { border-radius: 0 !important; }
+  & .twl-step-tab.twl-active { background: var(--w-sel) !important; color: var(--w-seltext) !important;
+    & * { color: var(--w-seltext) !important; } }
+  & :is(.twl-glossary, .twl-success, .twl-card, .twl-addon, .twl-note) { border-radius: 0 !important; }
+  & .twl-glossary { background: var(--w-face) !important; color: var(--w-btntext); box-shadow: var(--w-sunken); }
+  /* module push buttons and filter chips → Win 3.1 push buttons */
+  & :is(.twl-button, .drm-button, .ks-button, .rc-button, .pm-button, .fh-button,
+        .act-chip, .fh-chip, .pm-chip, .rc-chip, .srm-tab, .rc-tab) {
+    border-radius: 3px !important; border: 1px solid var(--w-frame) !important;
+    background: var(--w-face) !important; color: var(--w-btntext) !important; box-shadow: var(--w-bevel) !important;
+    font-family: var(--w-font) !important;
+    &:is(.twl-primary, [class$="--primary"]) { border-width: 2px !important; }
+    &:is([aria-pressed="true"], [aria-selected="true"], [aria-checked="true"]) {
+      background: var(--w-sel) !important; color: var(--w-seltext) !important; box-shadow: var(--w-bevel-pressed) !important; }
+    &:disabled { color: var(--w-graytext) !important; }
+    &:active:not(:disabled) { box-shadow: var(--w-bevel-pressed) !important; }
+  }
+  & .speed-start-card_meter { border-radius: 0 !important; background: var(--w-window) !important; border: 1px solid var(--w-frame); }
+  & .speed-start-card_fill { background: var(--w-hilight) !important; }
 }
