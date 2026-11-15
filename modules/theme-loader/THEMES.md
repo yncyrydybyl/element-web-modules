@@ -14,6 +14,7 @@ cyberpunk) and modes (light / dark / daylight following the local clock).
 | `docs/CATALOG.md` | All variants with stage, mode, seriousness/hype |
 | `docs/styleguides/` | Style guide per family (md + json) |
 | `loader/` | The theme-loader module, build, dev server |
+| `mobile/` | mobile-themes module (skeleton) + mobile audit; issues in `docs/MOBILE-ISSUES.md`, research `research/05-mobile.md` |
 | `themes/<family>/` | Manifests, CSS, enhancers, assets |
 | `tests/` | Fixtures, screenshot/walkthrough/edge-case harness |
 | `recordings/` | Screenshots, walkthroughs, comparison grids |

@@ -1,0 +1,17 @@
+/*
+ * mobile-themes: the one scoped stylesheet (injected as <style id="mt-mobile-style">).
+ *
+ * Rules:
+ *  - every selector starts with html[data-mt-mobile] (absent on desktop, so nothing here can affect desktop)
+ *  - unlayered: beats Element's @layer CSS without !important (research/01 §0); use the tl-important trick only when
+ *    Element itself uses a layered !important
+ *  - hashed shared-components classes only via [class*="_localName_"] substrings, never the hash
+ *
+ * Skeleton: deliberately (almost) empty. The fix order is in docs/MOBILE-ISSUES.md §4. Each fix that lands here must
+ * name its issue id (MOB-xx) in a comment.
+ */
+
+/* Marker so tests can see the sheet is live (and a hook for future fixes). */
+html[data-mt-mobile] {
+    --mt-active: 1;
+}

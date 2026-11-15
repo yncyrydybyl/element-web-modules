@@ -10,3 +10,4 @@ recordings/walkthroughs/*.webm
 recordings/timelapse/*.webm
 recordings/showcase/work/
 recordings/prod-qa/
+mobile/dist/
