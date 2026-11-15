@@ -1,0 +1,125 @@
+/* win311-2030 — "Windows 3.11 if it never died" (style guide §4.6): the same grammar (centred titles, ▼▲ and no ✕,
+   asymmetric bevels, square shapes, program groups) at high DPI, with frosted title bars, soft shadows and a dock. */
+html[data-tl-theme="win311-2030"] {
+  --w-desktop: #14146e;
+  --w-desktop-text: #ffffff;
+  --w-desktop-image: radial-gradient(1200px 700px at 78% 18%, rgb(0 160 170 / 0.45), transparent 60%),
+                     radial-gradient(900px 600px at 12% 90%, rgb(43 43 230 / 0.55), transparent 65%);
+  --w-workspace: #eceef6;
+  --w-window: #ffffff;
+  --w-text: #0a0a1e;
+  --w-menu: #ffffff;
+  --w-menutext: #0a0a1e;
+  --w-title: #2b2be6;
+  --w-title-inactive: #dfe2f0;
+  --w-titletext: #ffffff;
+  --w-titletext-inactive: #0a0a1e;
+  --w-border: #c4c8de;
+  --w-border-inactive: #d8dbea;
+  --w-frame: #0a0a1e;
+  --w-scrollbar: #eceef6;
+  --w-face: #e6e8f2;
+  --w-shadow: #8a8ea8;
+  --w-hi: #ffffff;
+  --w-btntext: #0a0a1e;
+  --w-graytext: #8a8ea8;
+  --w-hilight: #2b2be6;
+  --w-hilighttext: #ffffff;
+  --w-muted: #55576e;
+  --w-accent-text: #2b2be6;
+  --w-link: #1a1ab8;
+  --w-critical: #d4002a;
+  --w-critical-bg: #d4002a;
+  --w-success: #00875a;
+  --w-own: #e3e6ff;
+  --w-own-name: #2b2be6;
+  --w-mention-bg: #e3e6ff;
+  --w-mention-text: #0a0a1e;
+  --w-code-bg: #f4f5fa;
+  --w-hl-keyword: #2b2be6; --w-hl-string: #b0005a; --w-hl-comment: #6e7090; --w-hl-number: #007a7a; --w-hl-delete: #d4002a;
+  --w-dec-1: #c0003a; --w-dec-2: #00875a; --w-dec-3: #8a6a00; --w-dec-4: #2b2be6; --w-dec-5: #8a00c0; --w-dec-6: #007a8a;
+  --w-sel: #2b2be6;
+  --w-seltext: #ffffff;
+  --w-font: "Pixelify Sans", "W95FA", sans-serif;
+  --w-font-sys: "Pixelify Sans", "W95FA", sans-serif;
+  --w-size: 15px;
+  --w-line: 20px;
+  --w-title-h: 24px;
+  --w-band: 2px;
+  --w-gap: 10px;
+  --w-strip-h: 96px;
+  --w-hover: #eef0fb;
+  --w-soft: 0 14px 34px rgb(20 20 110 / 0.22), 0 2px 6px rgb(20 20 110 / 0.12);
+}
+
+html[data-tl-theme="win311-2030"] {
+  & .mx_MatrixChat_wrapper { padding: 16px; }
+  & .mx_MatrixChat {
+    box-shadow: 0 0 0 2px var(--w-border), 0 0 0 3px var(--w-frame), 0 30px 80px rgb(0 0 40 / 0.55) !important;
+    padding-top: calc(var(--w-title-h) + 1px + 24px + 1px);
+    &::before {
+      background:
+        url("assets/ctl-app.svg") 3px 3px / 18px 18px no-repeat,
+        url("assets/btn-max.svg") right 3px top 3px / 19px 18px no-repeat,
+        url("assets/btn-min.svg") right 23px top 3px / 19px 18px no-repeat,
+        linear-gradient(90deg, rgb(43 43 230 / 0.92), rgb(20 20 110 / 0.92));
+      backdrop-filter: blur(16px);
+      letter-spacing: 0.04em;
+    }
+    &::after { height: 24px; line-height: 24px; top: calc(var(--w-title-h) + 1px); }
+  }
+  & #tl-overlay-root .w311-menubar { height: 24px; }
+  & #tl-overlay-root .w311-menubar-item { line-height: 24px; }
+  & #tl-overlay-root .w311-ctlbox { margin: 3px; }
+  /* MDI windows float with soft shadows */
+  & #left-panel > .mx_LeftPanel_panel,
+  & [data-group] > [data-panel]:not(#left-panel) > .mx_LeftPanel_panel:not(:has(.mx_MainSplit)),
+  & .mx_MainSplit > .mx_RoomView_body,
+  & .mx_RightPanel {
+    box-shadow: 0 0 0 var(--w-band) var(--w-border-inactive), 0 0 0 calc(var(--w-band) + 1px) var(--w-frame), var(--w-soft) !important;
+  }
+  /* frosted gradient title bars, scaled pixel caption buttons */
+  & .mx_RoomListPanel > header[class*="_header_"],
+  & .mx_RoomHeader,
+  & .mx_RightPanel .mx_BaseCard_header {
+    padding: 0 48px 0 28px !important;
+    backdrop-filter: blur(16px);
+    &::before { width: 24px; height: 24px; background-size: 24px 24px; image-rendering: pixelated; }
+    &::after { width: 50px; height: 24px; background-size: 25px 24px, 25px 24px; background-position: 0 0, 25px 0; image-rendering: pixelated; }
+  }
+  & #left-panel:focus-within .mx_RoomListPanel > header[class*="_header_"],
+  & .mx_RightPanel:focus-within .mx_BaseCard_header,
+  & [data-group]:not(:has(#left-panel :focus, .mx_RightPanel :focus)) .mx_RoomHeader {
+    background: linear-gradient(90deg, #2b2be6, #14146e) !important;
+  }
+  & .mx_RoomHeader > button, & .mx_RoomHeader > .mx_AccessibleButton { height: 22px !important; width: 26px !important; }
+  /* rows */
+  & .mx_RoomListItemView { min-height: 40px;
+    & [class*="_avatar_"] { width: 28px !important; height: 28px !important; }
+    &[class*="_selected_"], &.mx_RoomListItemView_selected { background: var(--w-sel) !important;
+      & [class*="_roomName_"], & [class*="_messagePreview_"] { color: var(--w-seltext) !important; background: transparent !important; }
+    }
+    &:hover { background: var(--w-hover) !important; }
+  }
+  & .mx_EventTile[class*="_stateOwnEvent_"] .mx_EventTile_line { background: var(--w-own) !important; }
+  /* dialogs float over a blurred desktop */
+  & .mx_Dialog_background { background: rgb(20 20 110 / 0.25) !important; backdrop-filter: blur(6px); }
+  & .mx_Dialog { box-shadow: 0 0 0 4px var(--w-title), 0 0 0 5px var(--w-frame), var(--w-soft) !important; animation: w311-restore 160ms ease-out; }
+  & .mx_Dialog_header { background: linear-gradient(90deg, #2b2be6, #14146e) !important; height: var(--w-title-h); }
+  & .mx_ContextualMenu, & [role="menu"] { box-shadow: 0 8px 20px rgb(20 20 110 / 0.22) !important; animation: w311-restore 120ms ease-out; }
+  & #tl-overlay-root .w311-menu { box-shadow: 0 8px 20px rgb(20 20 110 / 0.22); }
+  /* dock of program groups */
+  & .mx_MatrixChat > [data-group] > .mx_SpacePanel {
+    background: rgb(255 255 255 / 0.55) !important; backdrop-filter: blur(14px);
+    border-top: 1px solid var(--w-border) !important; bottom: 4px !important;
+    & .mx_SpaceItem, & .mx_SpaceButton { width: 96px !important; }
+    & .mx_SpaceButton { height: 88px !important; transition: transform 120ms ease-out; }
+    & .mx_SpaceButton:hover { transform: translateY(-2px); }
+    & .mx_SpaceButton_selectionWrapper, & .mx_SpaceButton_avatarWrapper, & .mx_SpaceButton_icon {
+      width: 48px !important; height: 48px !important; background-size: 48px 48px !important; image-rendering: pixelated;
+    }
+    & .mx_SpaceButton_avatarWrapper [class*="_avatar_"] { left: 9px; top: 18px; width: 30px !important; height: 20px !important; }
+  }
+  & .mx_Field:focus-within, & :focus-visible { outline: 2px solid #2b2be6 !important; outline-offset: 1px; }
+}
+@keyframes w311-restore { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }

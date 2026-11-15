@@ -1,0 +1,48 @@
+/* win311-usable — Windows Default look tuned for all-day chat (style guide §4.2):
+   16px type, comfortable rows, CTL3D inputs, hover dither, AA contrast, standard vertical space panel. */
+html[data-tl-theme="win311-usable"] {
+  --w-muted: #595959;
+  --w-own: #c0c0c0;
+  --w-size: 16px;
+  --w-line: 20px;
+  --w-sunken-field: inset 1px 1px 0 var(--w-shadow), inset 2px 2px 0 var(--w-frame), inset -1px -1px 0 var(--w-hi), inset -2px -2px 0 var(--w-face);
+}
+
+/* hover rows: the era's 50% dither (background shorthand with an image, so not via tokens) */
+html[data-tl-theme="win311-usable"] {
+  & .mx_RoomListItemView:hover, & .mx_MemberTileView:hover, & .mx_EntityTile:hover,
+  & .mx_EventTile:hover .mx_EventTile_line, & [role="menuitem"]:hover:not([data-highlighted]) {
+    background: url("assets/dither-grey.svg") 0 0 / 2px 2px repeat !important;
+  }
+  /* comfortable room rows: 24px avatar + full-row selection */
+  & .mx_RoomListItemView {
+    min-height: 36px;
+    & [class*="_avatar_"] { width: 24px !important; height: 24px !important; font-size: 13px !important; }
+    &[class*="_selected_"], &.mx_RoomListItemView_selected { background: var(--w-sel) !important;
+      & [class*="_roomName_"], & [class*="_messagePreview_"] { color: var(--w-seltext) !important; background: transparent !important; }
+    }
+  }
+  /* CTL3D sunken edit fields */
+  & .mx_MessageComposer .mx_BasicMessageComposer, & .mx_MessageComposer .mx_WysiwygComposer_Editor,
+  & .mx_Field, & [class*="_control_"]:is(input, textarea) {
+    border: 0 !important; box-shadow: var(--w-sunken-field) !important; padding: 2px !important;
+  }
+  & .mx_RoomListPanel > [role="search"] button[class*="_search_"] { border: 0 !important; box-shadow: var(--w-sunken-field) !important; }
+  /* own messages on a button-face panel */
+  & .mx_EventTile[class*="_stateOwnEvent_"] .mx_EventTile_line { background: var(--w-own) !important; }
+  /* timestamps always visible */
+  & .mx_EventTile .mx_MessageTimestamp { visibility: visible !important; opacity: 1 !important; }
+  /* focus: dotted + navy offset ring, visible on any background */
+  & :focus-visible { outline: 2px dotted var(--w-text) !important; outline-offset: 1px; box-shadow: 0 0 0 4px var(--w-window), 0 0 0 5px var(--w-hilight) !important; }
+  /* slimmer scrollbars */
+  & ::-webkit-scrollbar { width: 15px; height: 15px; }
+  & ::-webkit-scrollbar-button { width: 15px; height: 15px; background-size: 15px 15px; }
+  /* thinner application frame */
+  & .mx_MatrixChat_wrapper { padding: 3px; }
+  & .mx_MatrixChat { --w-band: 2px; }
+  /* spaces: standard vertical panel as a grey toolbar of group icons */
+  & .mx_SpacePanel { background: var(--w-face) !important; border-right: 1px solid var(--w-frame); box-shadow: inset -1px 0 0 var(--w-shadow); }
+  & .mx_SpacePanel .mx_SpaceButton_avatarWrapper [class*="_avatar_"], & .mx_SpacePanel .mx_SpaceButton_icon { outline: 1px solid var(--w-frame); }
+  & .mx_SpacePanel .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper { box-shadow: var(--w-bevel-pressed) !important; background: var(--w-window) !important; }
+}
+html[data-tl-theme="win311-usable"] .mx_RoomListItemView [class*="_avatar_"] img { width: 100% !important; height: 100% !important; }
