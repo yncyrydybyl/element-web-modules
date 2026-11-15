@@ -23,7 +23,17 @@ node tests/harness/shoot.mjs      --theme lcars-tng --mobile        # whole set 
 node tests/harness/walkthrough.mjs --theme lcars-tng                # → recordings/walkthroughs/<id>.webm (45 s, 1440x900) + .json
 node tests/harness/edgecheck.mjs  --theme lcars-tng                 # → tests/reports/<id>.md + .json (exit 1 = FAIL)
 tests/harness/grid.sh recordings/grids/lcars.mp4 lcars-tng lcars-voyager lcars-picard lcars-usable   # 2–9 tiles
+node tests/harness/shoot.mjs      --theme lcars-tng --hero          # → recordings/screens/<id>/hero.png + thumb.webp
+node tests/harness/timelapse.mjs  --theme e-daylight                # → recordings/timelapse/<id>.webm (phases cycle live)
+node tests/harness/film.mjs       --clip loader                     # extra takes for the showcase film (loader|rtl|code|modal)
+tests/harness/grids.sh                                              # all grids in recordings/grids/
+python3 tests/harness/contact.py                                    # recordings/contact/*.png
 ```
+
+Every run hides Element toasts (CSS from first paint, write-free; `TL_SHOW_TOASTS=1` to see them) and scrolls only
+inside the timeline/thread panels (never the app root). `walkthrough.mjs` also writes `<id>.mp4` (H.264, ≤ ~3 MB) and
+records per-step lateness in `<id>.json`; `--name` overrides the output basename (daylight: `--phase day --name <id>`).
+The sync marker is a full-frame magenta flash detected by chroma, so themes with magenta UI don't confuse trimming.
 
 Common flags: `--base-url URL` (default `http://localhost:5400`), `--user themes-mira`, `--phase <p>` (adds
 `tl_phase=`), `--width/--height` (shoot only). `element-default` as theme id = no `tl_theme` param.

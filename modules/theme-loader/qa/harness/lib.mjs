@@ -175,6 +175,10 @@ export async function launch({ user = null, base, slot = null, viewport = { widt
     ignoreDefaultArgs: ['--hide-scrollbars'],
     recordVideo: video ? { dir: path.join(runDir, 'video'), size: viewport } : undefined,
   });
+  // Element toasts ("New login. Was this you?", "Verify this session", notifications, key backup …) are per-device
+  // and transient, so they would land in random screenshots/recordings. Hide them with CSS from the first paint:
+  // deterministic and write-free (clicking their buttons could write settings). TL_SHOW_TOASTS=1 disables this.
+  if (!process.env.TL_SHOW_TOASTS) await ctx.addInitScript(HIDE_TOASTS);
   const page = ctx.pages()[0] || await ctx.newPage();
   page.setDefaultTimeout(20000);
   const consoleErrors = [];
@@ -187,6 +191,43 @@ export async function launch({ user = null, base, slot = null, viewport = { widt
   };
   return { ctx, page, runDir, consoleErrors, cleanup, slot: lock?.slot ?? null };
 }
+
+export const HIDE_TOASTS_CSS = '.mx_ToastContainer, .mx_Toast_toast { display: none !important; }';
+function HIDE_TOASTS() {
+  const add = () => {
+    if (document.getElementById('tl-harness-hide-toasts')) return;
+    const s = document.createElement('style');
+    s.id = 'tl-harness-hide-toasts';
+    s.textContent = '.mx_ToastContainer, .mx_Toast_toast { display: none !important; }';
+    (document.head || document.documentElement).appendChild(s);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', add); else add();
+}
+
+// fake cursor (headless Chrome renders none) + click ripple, injected before Element loads
+export const CURSOR = () => {
+  const install = () => {
+    if (document.getElementById('tl-cursor')) return;
+    const c = document.createElement('div');
+    c.id = 'tl-cursor';
+    c.style.cssText = 'position:fixed;left:0;top:0;width:22px;height:22px;z-index:2147483647;pointer-events:none;'
+      + 'transform:translate(-100px,-100px);transition:none;';
+    c.innerHTML = '<svg width="22" height="22" viewBox="0 0 22 22"><path d="M3 2 L3 18 L7.5 13.8 L10.6 20.5 L13.4 19.3 L10.4 12.7 L16.5 12.5 Z" '
+      + 'fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+    document.documentElement.appendChild(c);
+    addEventListener('mousemove', (e) => { c.style.transform = `translate(${e.clientX - 3}px,${e.clientY - 2}px)`; }, true);
+    addEventListener('mousedown', (e) => {
+      const r = document.createElement('div');
+      r.style.cssText = `position:fixed;left:${e.clientX - 18}px;top:${e.clientY - 18}px;width:36px;height:36px;border-radius:50%;`
+        + 'border:3px solid rgba(255,80,40,.85);z-index:2147483646;pointer-events:none;transition:transform .45s ease-out,opacity .45s;';
+      document.documentElement.appendChild(r);
+      requestAnimationFrame(() => { r.style.transform = 'scale(1.8)'; r.style.opacity = '0'; });
+      setTimeout(() => r.remove(), 600);
+    }, true);
+  };
+  if (document.readyState === 'loading') addEventListener('DOMContentLoaded', install); else install();
+};
+
 
 // ------------------------------------------------------------------ Element helpers
 export function themeUrl(base, { theme, phase, hash = '' } = {}) {
@@ -217,8 +258,14 @@ export async function waitForApp(page, { timeout = 90000 } = {}) {
   await page.waitForTimeout(800);
 }
 
-/** Close toasts/onboarding nags that would otherwise land in every screenshot (off camera). */
+/** Close toasts/onboarding nags that would otherwise land in every screenshot (off camera). Toasts are hidden by
+ *  CSS anyway (see launch); this also catches release-announcement popovers and other nag buttons. */
 export async function dismissNags(page) {
+  await page.evaluate((css) => {
+    if (!document.getElementById('tl-harness-hide-toasts')) {
+      const s = document.createElement('style'); s.id = 'tl-harness-hide-toasts'; s.textContent = css; document.head.appendChild(s);
+    }
+  }, HIDE_TOASTS_CSS).catch(() => {});
   const NAG = /^(Dismiss|Not now|Later|No thanks|Close|Skip|Got it|OK|Ok|Ignore|Maybe later|Don't ask again)$/;
   for (let i = 0; i < 8; i++) {
     const btn = page.locator('.mx_Toast_toast, [class*="_toast_"], [data-radix-popper-content-wrapper], [role="dialog"]:not(.mx_Dialog)')
@@ -253,6 +300,32 @@ export async function gotoRoom(page, roomId, { wait = true } = {}) {
     }, roomId, { timeout: 30000 }).catch(() => {});
     await page.waitForTimeout(1200);
   }
+}
+
+/**
+ * Scroll a timeline/thread event into view *inside its scroll panel only*. Element.scrollIntoView() also scrolls every
+ * scrollable ancestor (incl. the app root, which then shifts the whole UI up); this computes the offset by hand and
+ * resets any ancestor that moved anyway.
+ */
+export async function scrollInPanel(locator, block = 'center', { smooth = false } = {}) {
+  await locator.evaluate((el, [b, sm]) => {
+    const panel = el.closest('.mx_RoomView_messagePanel, .mx_ThreadView .mx_ScrollPanel, .mx_ScrollPanel, .mx_AutoHideScrollbar');
+    if (!panel) { el.scrollIntoView({ block: b }); return; }
+    const er = el.getBoundingClientRect(), pr = panel.getBoundingClientRect();
+    let delta = er.top - pr.top - 8;
+    if (b === 'center') delta = er.top - pr.top - Math.max(0, (pr.height - er.height) / 2);
+    else if (b === 'end') delta = er.bottom - pr.bottom + 8;
+    panel.scrollTo({ top: Math.max(0, panel.scrollTop + delta), behavior: sm ? 'smooth' : 'auto' });
+  }, [block, smooth]);
+  await resetRootScroll(locator.page());
+}
+/** Undo accidental scrolling of the document / app root (everything above the scroll panels must sit at 0). */
+export async function resetRootScroll(page) {
+  await page.evaluate(() => {
+    const roots = [document.scrollingElement, document.body, document.getElementById('matrixchat'),
+      ...document.querySelectorAll('.mx_MatrixChat_wrapper, .mx_MatrixChat, .mx_RoomView, .mx_RoomView_body, .mx_MainSplit')];
+    for (const r of roots) if (r && (r.scrollTop || r.scrollLeft)) { r.scrollTop = 0; r.scrollLeft = 0; }
+  }).catch(() => {});
 }
 
 export async function setDeviceSetting(page, name, value) {

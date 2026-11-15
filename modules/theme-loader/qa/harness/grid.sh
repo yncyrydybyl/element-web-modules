@@ -27,8 +27,9 @@ i=0
 for id in "$@"; do
   f="$WT/$id.webm"
   [ -f "$f" ] || { echo "missing $f (run walkthrough.mjs --theme ${id%%--*})" >&2; exit 1; }
-  name=$(python3 -c "import json,sys;print(json.load(open(sys.argv[1])).get('name') or sys.argv[2])" "$WT/$id.json" "$id" 2>/dev/null || echo "$id")
-  [[ "$id" == *--* ]] && name="$name · ${id##*--}"
+  # caption: theme name (+ " · <phase>" when the clip was recorded with a forced phase, e.g. --phase day --name <id>)
+  name=$(python3 -c "import json,sys;j=json.load(open(sys.argv[1]));print((j.get('name') or sys.argv[2])+(' · '+j['phase'] if j.get('phase') else ''))" "$WT/$id.json" "$id" 2>/dev/null || echo "$id")
+  [[ "$id" == *--* && "$name" != *" · ${id##*--}" ]] && name="$name · ${id##*--}"
   printf '%s' "$name" > "$TMP/cap$i.txt"     # textfile= avoids drawtext escaping issues
   inputs+=(-i "$f")
   filters+="[$i:v]setpts=PTS-STARTPTS,fps=25,scale=${TW}:${TH}:flags=lanczos,pad=${TW}:$((TH + CAP)):0:${CAP}:color=0x111318,"

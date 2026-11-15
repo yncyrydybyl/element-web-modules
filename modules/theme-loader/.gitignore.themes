@@ -6,3 +6,6 @@ recordings/screens/**
 !recordings/screens/*/
 !recordings/screens/*/hero.png
 recordings/walkthroughs/*.webm
+!recordings/screens/*/thumb.webp
+recordings/timelapse/*.webm
+recordings/showcase/work/

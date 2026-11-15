@@ -1,24 +1,29 @@
 #!/usr/bin/env node
 // Standard screenshot set for one theme.
 //   node tests/harness/shoot.mjs --theme <id> [--phase <p>] [--base-url URL] [--user themes-mira]
-//        [--width 1440 --height 900] [--mobile] [--only 02,05] [--out DIR]
+//        [--width 1440 --height 900] [--mobile] [--only 02,05] [--out DIR] [--hero]
 // Output: recordings/screens/<id>[--<phase>]/<NN-region>.png (+ manifest.json). --mobile: 390x844 into .../mobile/.
+// --hero: only the hero shot (Showcase main timeline, modern layout, scrolled to the bottom) →
+//         recordings/screens/<id>/hero.png + thumb.webp (640 px). With --phase the hero still goes to <id>/ (daylight
+//         heroes are shot with --phase day so they don't depend on the clock).
 // Safe to run concurrently: each run works on its own copy of the user's master profile; layout changes are
 // device-level settings inside that copy only (restored anyway), nothing is written to account data.
 import fs from 'node:fs';
 import path from 'node:path';
 import {
   ROOT, launch, parseArgs, resolveBase, fixtures, themeUrl, waitForApp, dismissNags, closeOverlays, gotoRoom,
-  setDeviceSetting, themeStatus, selectSpace, ensureDir, log, sleep,
+  setDeviceSetting, themeStatus, selectSpace, ensureDir, log, sleep, scrollInPanel, resetRootScroll,
 } from './lib.mjs';
+import { execFileSync } from 'node:child_process';
 
 const a = parseArgs(process.argv.slice(2), { user: 'themes-mira', width: 1440, height: 900 });
 if (!a.theme) { console.error('usage: shoot.mjs --theme <id> [--phase p] [--base-url URL] [--mobile]'); process.exit(2); }
 const base = await resolveBase(a.baseUrl);
 const mobile = !!a.mobile;
 const viewport = mobile ? { width: 390, height: 844 } : { width: +a.width, height: +a.height };
-const outDir = ensureDir(a.out || path.join(ROOT, 'recordings/screens', a.theme + (a.phase ? `--${a.phase}` : ''), mobile ? 'mobile' : ''));
-const only = a.only ? String(a.only).split(',') : null;
+const hero = !!a.hero;
+const outDir = ensureDir(a.out || path.join(ROOT, 'recordings/screens', a.theme + (a.phase && !hero ? `--${a.phase}` : ''), mobile ? 'mobile' : ''));
+const only = hero ? ['hero'] : a.only ? String(a.only).split(',') : null;
 const F = fixtures();
 const R = F.rooms;
 const manifest = { theme: a.theme, phase: a.phase || null, base, user: a.user, viewport, started: new Date().toISOString(), shots: [], warnings: [] };
@@ -39,6 +44,8 @@ async function snap(name, fn, { fullPage = false } = {}) {
     await page.mouse.move(viewport.width - 5, viewport.height - 5).catch(() => {});
     await fn();
     await page.evaluate(() => document.fonts.ready).catch(() => {});
+    await dismissNags(page);
+    await resetRootScroll(page);
     await sleep(500);
     await page.screenshot({ path: path.join(outDir, name + '.png'), fullPage, animations: 'disabled', caret: 'hide' });
     manifest.shots.push({ name, ok: true, ms: Date.now() - t0 });
@@ -55,7 +62,11 @@ const tile = (text) => page.locator('.mx_EventTile').filter({ hasText: text }).l
 async function scrollTo(text, block = 'center') {
   for (let i = 0; i < 25; i++) {
     const t = tile(text);
-    if (await t.count()) { await t.evaluate((el, b) => el.scrollIntoView({ block: b }), block); await sleep(700); return t; }
+    if (await t.count()) {
+      await scrollInPanel(t, block); await sleep(700);
+      await scrollInPanel(t, block); await sleep(300);   // again: images/previews above may have grown meanwhile
+      return t;
+    }
     await page.evaluate(() => { const p = document.querySelector('.mx_RoomView_messagePanel'); if (p) p.scrollTop = 0; });
     await sleep(900);
   }
@@ -78,7 +89,7 @@ async function closeRightPanel() {
   await sleep(300);
 }
 
-try {
+try { main: {
   await page.goto(themeUrl(base, { theme: a.theme, phase: a.phase, hash: '/home' }), { waitUntil: 'domcontentloaded' });
   await waitForApp(page);
   await dismissNags(page);
@@ -101,6 +112,13 @@ try {
   await gotoRoom(page, R.showcase);
   await closeRightPanel();
   await snap('02-timeline-modern', scrollBottom);
+  if (hero) {
+    await snap('hero', async () => { await scrollBottom(); await page.mouse.move(viewport.width - 5, viewport.height - 5); await sleep(1500); await scrollBottom(); });
+    execFileSync('magick', [path.join(outDir, 'hero.png'), '-resize', '640x', '-quality', '80', path.join(outDir, 'thumb.webp')]);
+    log('✓ thumb.webp');
+    await page.evaluate((v) => window.mxSettingsStore.setValue('layout', null, 'device', v ?? null), origLayout).catch(() => {});
+    break main;
+  }
   await snap('03-timeline-content', () => scrollTo('Markdown check', 'start'));
   await snap('04-timeline-bubble', async () => { await setDeviceSetting(page, 'layout', 'bubble'); await sleep(800); await scrollTo('On it — the elbow', 'center'); });
   await snap('05-timeline-irc', async () => { await setDeviceSetting(page, 'layout', 'irc'); await sleep(800); await scrollTo('On it — the elbow', 'center'); });
@@ -209,7 +227,7 @@ try {
     await snap('23-mobile-timeline', scrollBottom);
     if (!mobile) await page.setViewportSize(viewport);
   }
-} finally {
+} } finally {
   manifest.consoleErrors = [...new Set(consoleErrors)].slice(0, 50);
   await cleanup();
 }
@@ -229,7 +247,7 @@ if (!only || only.some((o) => '21-login'.startsWith(o))) {
 }
 manifest.finished = new Date().toISOString();
 manifest.shots.sort((x, y) => x.name.localeCompare(y.name));
-fs.writeFileSync(path.join(outDir, 'manifest.json'), JSON.stringify(manifest, null, 2));
+fs.writeFileSync(path.join(outDir, hero ? 'hero-manifest.json' : 'manifest.json'), JSON.stringify(manifest, null, 2));
 const bad = manifest.shots.filter((s) => !s.ok);
 log(`${manifest.shots.length - bad.length}/${manifest.shots.length} shots ok → ${path.relative(ROOT, outDir)}`);
 process.exit(bad.length ? 1 : 0);

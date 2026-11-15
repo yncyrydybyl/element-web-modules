@@ -1,0 +1,296 @@
+{
+  "theme": "sketch-whiteboard",
+  "phase": null,
+  "name": "Sketch · Whiteboard",
+  "stage": "level-4",
+  "reportOnly": false,
+  "base": "https://element.datanauten.de",
+  "started": "2026-11-15T07:43:18.303Z",
+  "views": {
+    "home": {
+      "axe": [
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": "div[data-rbd-drag-handle-context-id=\"0\"]",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "timeline": {
+      "axe": [
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": "div[aria-label=\"Home\"]",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "help": "Scrollable region must have keyboard access",
+          "count": 2,
+          "samples": [
+            {
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "bubble": {
+      "axe": [
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": "div[aria-label=\"Home\"]",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "help": "Scrollable region must have keyboard access",
+          "count": 2,
+          "samples": [
+            {
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "irc": {
+      "axe": [
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": "div[aria-label=\"Home\"]",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "help": "Scrollable region must have keyboard access",
+          "count": 2,
+          "samples": [
+            {
+              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "thread": {
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "count": 1,
+          "samples": [
+            {
+              "target": "#\\33 6 > ._slotTimestamp_t6spj_114[data-testid=\"event-tile-slot-timestamp\"] > .mx_MessageTimestamp._content_1jaux_8",
+              "summary": "Fix any of the following:   Element has insufficient color contrast of 3.6 (foreground color: #5f6368, background color: #ffb3c7, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "count": 2,
+          "samples": [
+            {
+              "target": "div[aria-label=\"Home\"]",
+              "summary": "Fix any of the following:   Element has focusable descendants"
+            },
+            {
+              "target": ".mx_SpaceButton_active",
+              "summary": "Fix any of the following:   Using a negative tabindex on an element inside an interactive control does not prevent assistive technologies from focusing the element (even with aria-hidden=\"true\")"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "help": "Scrollable region must have keyboard access",
+          "count": 6,
+          "samples": [
+            {
+              "target": "#\\31 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\33 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > fieldset",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": ".mx_MLocationBody",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "settings": {
+      "axe": [],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 11,
+        "invisible": []
+      }
+    },
+    "modal": {
+      "axe": [],
+      "overflow": {
+        "page": false,
+        "offenders": []
+      },
+      "missing": [],
+      "clipped": [],
+      "focus": {
+        "stops": 12,
+        "invisible": []
+      }
+    },
+    "login": {
+      "error": "locator.waitFor: Timeout 60000ms exceeded."
+    }
+  },
+  "consoleErrors": [
+    "Warning! Not using an encryption key for rust crypto store.",
+    "'map_style_url' missing from homeserver .well-known area, and missing from from config.json.",
+    "Failed to render map Error: MapStyleUrlNotConfigured\n    at a (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/6312.js:2:1619319)\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:3370\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:1303\n    at Jl (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/9578.js:2:781144)\n    at Fu",
+    "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/6312.js:2:1619319)\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:3370\n    at https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/5195.js:1:1303\n    at Jl (https://element.datanauten.de/bundles/6f6746b5cdf6799c54d9/9578.js:2:781144)\n  "
+  ],
+  "summary": {
+    "axeSerious": 23,
+    "contrastNodes": 1,
+    "overflowViews": 0,
+    "missing": 0,
+    "clipped": 0,
+    "focusInvisible": 0,
+    "consoleErrors": 4,
+    "fail": false
+  },
+  "themeStatus": {
+    "tlTheme": "sketch-whiteboard",
+    "tlPhase": null,
+    "wanted": "sketch-whiteboard"
+  },
+  "finished": "2026-11-15T07:45:14.677Z"
+}
