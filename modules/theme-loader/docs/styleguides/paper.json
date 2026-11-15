@@ -1,0 +1,632 @@
+{
+  "family": "paper",
+  "name": "Low-UI Paper",
+  "concept": "The UI recedes until only text remains — white paper and black paper, after iA Writer, e-ink readers, Swiss typography and Calm Technology. One typeface (iA Writer Quattro), one accent, no panel tints, no shadows. The stage axis is a gradient of visibility: level-1 is calm but every control is visible, level-3 'quiet' removes all lines and moves chrome into the periphery (hover/focus reveal), level-5 'invisible' is a blank sheet where chrome sits at ~3% contrast — but text stays ≥4.5:1 and the focus ring is always drawn.",
+  "sources": [
+    {
+      "title": "iA Writer fonts (Quattro, Mono) — OFL 1.1, iA asks for credit",
+      "url": "https://github.com/iaolo/iA-Fonts"
+    },
+    {
+      "title": "iA — A typographic christmas (Mono/Duo/Quattro background)",
+      "url": "https://ia.net/topics/a-typographic-christmas"
+    },
+    {
+      "title": "iA — Web design is 95% typography",
+      "url": "https://ia.net/topics/the-web-is-all-about-typography-period"
+    },
+    {
+      "title": "iA Writer focus mode (product page, reference screenshots)",
+      "url": "https://ia.net/writer"
+    },
+    {
+      "title": "Calm Technology principles (Amber Case)",
+      "url": "https://calmtech.com/"
+    },
+    {
+      "title": "Dieter Rams — ten principles for good design",
+      "url": "https://www.vitsoe.com/us/about/good-design"
+    },
+    {
+      "title": "reMarkable paper tablet (e-ink UI reference)",
+      "url": "https://remarkable.com/"
+    },
+    {
+      "title": "Butterick's Practical Typography (line length, body size)",
+      "url": "https://practicaltypography.com/"
+    },
+    {
+      "title": "WCAG 2.2 (1.4.3 contrast, 1.4.11 non-text contrast, 2.4.7/2.4.11 focus, 2.5.8 target size)",
+      "url": "https://www.w3.org/TR/WCAG22/"
+    },
+    {
+      "title": "Dossier: research/04-styles-artistic.md §4",
+      "url": "research/04-styles-artistic.md"
+    }
+  ],
+  "limits": [
+    "Element Call and widget iframes only know light/dark; their content stays Element-styled, we only strip their frame.",
+    "Hashed CSS-module classes (event tile states, highlight, new room list, badges) need [class*=\"_local_\"] selectors and a version shim.",
+    "Notification badges force cpd-theme-light; tokens must be set on [class*=\"cpd-theme-\"] too, else pills reappear coloured.",
+    "Default avatar colours from Avatar.ts (favicon/notifications) are hard-coded and cannot be made grayscale.",
+    "iA focus dimming via :nth-last-child is unreliable in Element's scroll-anchored timeline (date separators, read markers, hidden events count as children) — enhancer marker preferred.",
+    "Off-canvas left panel (level-5) must not move React nodes: done with transform/grid on .mx_LeftPanel_outerWrapper, so the resize separator needs to be hidden too.",
+    "Invisible stage deliberately fails WCAG 1.4.11 (non-text contrast) for resting component boundaries and weakens discoverability; text contrast and focus visibility are kept.",
+    "iA's licence note asks not to clone iA products: the variants are named 'Paper', not 'iA Writer', and the fonts are credited in the README and settings gallery."
+  ],
+  "variants": [
+    {
+      "id": "paper-white",
+      "name": "Paper · White",
+      "stage": "level-1",
+      "mode": "light",
+      "seriousness": 10,
+      "hype": 0,
+      "tagline": "White paper, one typeface, nothing that isn't needed — still fully usable.",
+      "palette": {
+        "bg": "#FBFBF8",
+        "surface": "#FBFBF8",
+        "sidebar": "#FBFBF8",
+        "rail": "#FBFBF8",
+        "text": "#1A1A1A",
+        "muted": "#6B6B6B",
+        "accent": "#0B6BCB",
+        "onAccent": "#FFFFFF",
+        "border": "#E6E4DF",
+        "own": "#F4F3EE",
+        "other": "#FBFBF8",
+        "critical": "#B3261E",
+        "success": "#2E7D32"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "iA Writer Quattro S (bundled, OFL, credit iA) → system-ui",
+        "display": "iA Writer Quattro S Bold",
+        "mono": "iA Writer Mono S (bundled, OFL, credit iA) → ui-monospace"
+      },
+      "shape": {
+        "radius": "2px",
+        "border": "hairline",
+        "shadow": "none",
+        "density": "airy"
+      },
+      "texture": "none",
+      "motion": "150ms opacity fades only; no transforms; reduced-motion disables them",
+      "signature": [
+        "warm #FBFBF8 sheet with no panel tinting — sidebar, header and timeline are the same paper",
+        "iA Writer Quattro everywhere, 17px/1.6 body in a 68ch column",
+        "iA-blue block caret (#1AA3FF) in the composer",
+        "unread = bold + • glyph, mentions = '@' + underline; no coloured pills",
+        "grayscale avatars and ink-only usernames"
+      ],
+      "regions": {
+        "shell": "one flat sheet: canvas = panels = header, no panel tints, no shadows; 1px hairline only between left column and timeline",
+        "spaces": "narrow text-ish rail, space avatars grayscale at 85% opacity, selected = 2px ink bar left; no backgrounds",
+        "roomlist": "plain text list 15px, no avatars/icons in rows, selected = weight 600 + 2px left rule, unread = bold + • glyph, sections as small caps",
+        "header": "room name 22px/600 flush-left, topic one line in muted, icon buttons muted until hover; hairline bottom",
+        "timeline": "book column max 68ch, 17px/1.6, IRC/modern layout, sender in small caps above group, continuation = paragraphs; whitespace instead of rules",
+        "names-avatars": "names in ink small caps (no rainbow: all decorative text tokens → ink/muted), avatars grayscale round 24px",
+        "composer": "borderless field on a single top hairline, iA-blue caret #1AA3FF, placeholder muted, send button visible but muted",
+        "rightpanel": "same sheet colour, hairline left border, cards as text sections with small caps headings",
+        "buttons": "primary = ink text with 1px ink border, no fill (accent fill only for the one destructive/confirm action); secondary = text link style",
+        "inputs": "1px hairline bottom border only; on focus 2px accent bottom + focus ring",
+        "dialogs": "white sheet, 1px ink border at 20%, 2px radius, no shadow, backdrop = canvas at 85% opacity",
+        "menus": "canvas bg, 1px hairline border, no shadow, hover = wash #F2F1EC / #181818; tooltips inverted ink-on-paper",
+        "settings": "tabbed view as text list, active tab = weight 600 + 2px rule, toggles rendered as text-coloured outline switches",
+        "auth": "centered 68ch column on bare paper, no background art, wordmark replaced by room-name typography",
+        "scrollbars": "thin 6px, thumb = border colour, no track",
+        "focus": "2px solid accent outline, offset 3px (≥3:1 against paper)",
+        "badges": "no pills: unread counts as tabular-nums muted digits; mentions = '@' + underline; critical only for mentions/highlights",
+        "code": "iA Writer Mono, background = hover wash, hljs reduced to 3 inks (keyword weight 700, string muted, comment italic muted)",
+        "iframes": "Element Call / widgets stay Element light; only the .mx_AppTile frame is restyled (no border, ink title in small caps)",
+        "icons": "Compound icons kept, recoloured to muted (icon tokens → text-secondary), 20px",
+        "motion": "opacity fades 150ms only; reduced-motion: none"
+      },
+      "difficulty": "medium",
+      "enhancer": null
+    },
+    {
+      "id": "paper-white-quiet",
+      "name": "Paper · White Quiet",
+      "stage": "level-3",
+      "mode": "light",
+      "seriousness": 10,
+      "hype": 0,
+      "tagline": "Fewer lines: controls rest in the periphery and come forward on hover or focus.",
+      "palette": {
+        "bg": "#FCFCFA",
+        "surface": "#FCFCFA",
+        "sidebar": "#FCFCFA",
+        "rail": "#FCFCFA",
+        "text": "#1A1A1A",
+        "muted": "#6B6B6B",
+        "accent": "#0B6BCB",
+        "onAccent": "#FFFFFF",
+        "border": "#EDEDEA",
+        "own": "#FCFCFA",
+        "other": "#FCFCFA",
+        "critical": "#B3261E",
+        "success": "#2E7D32"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "iA Writer Quattro S (bundled, OFL, credit iA) → system-ui",
+        "display": "iA Writer Quattro S Bold",
+        "mono": "iA Writer Mono S (bundled, OFL, credit iA) → ui-monospace"
+      },
+      "shape": {
+        "radius": "0px",
+        "border": "none",
+        "shadow": "none",
+        "density": "airy"
+      },
+      "texture": "none",
+      "motion": "200ms opacity reveals for hover/focus chrome and iA focus dimming; instant under reduced motion",
+      "signature": [
+        "iA focus mode: older messages dim to 35%, the last four stay at full ink",
+        "no lines anywhere — structure by whitespace only",
+        "room list and space rail fade to 40% until you reach for them",
+        "header shows the room name and nothing else at rest",
+        "composer is just a caret until focused"
+      ],
+      "regions": {
+        "shell": "single sheet, no lines at all, structure by whitespace (24px gutters)",
+        "spaces": "space rail at 40% opacity until hover/focus-within; selected = ink dot",
+        "roomlist": "text column fading to 40% opacity until hover/focus-within, selected = weight 600, unread = weight 600 + •",
+        "header": "room name only (topic, facepile, call buttons opacity 0 until hover/focus-within)",
+        "timeline": "iA focus mode: tiles at 35% opacity except the last 4, hovered and focused ones; timestamps + action bar hidden until hover/focus; avatars hidden, names in small caps",
+        "names-avatars": "avatars hidden in timeline (kept in member list), names small caps muted, no colour",
+        "composer": "no visible boundary until focused; caret only; send button opacity 0 but focusable (Enter sends)",
+        "rightpanel": "no border, opens as an extra column separated by whitespace",
+        "buttons": "text-only buttons, underline on hover/focus; destructive = critical text",
+        "inputs": "no border at rest, 1px muted bottom line on hover, accent bottom on focus",
+        "dialogs": "paper sheet with 1px border at 12%, 0 radius, no shadow",
+        "menus": "paper, 1px border at 12%, hover = weight 600 instead of fill",
+        "settings": "as level 1 but with lines removed",
+        "auth": "same as paper-white/black: bare column",
+        "scrollbars": "hidden until the scroller is hovered (scrollbar-width thin, thumb transparent → border colour)",
+        "focus": "2px solid currentColor (ink) outline, offset 3px; focus also reveals all hover-hidden chrome",
+        "badges": "counts hidden; unread = weight; mentions = '@' glyph + underline",
+        "code": "iA Writer Mono, no background, 1px left rule at border colour",
+        "iframes": "Element Call / widgets stay Element light; only the .mx_AppTile frame is restyled (no border, ink title in small caps)",
+        "icons": "icons muted, hidden in room list, revealed with their row on hover/focus",
+        "motion": "opacity 200ms ease for reveals; reduced-motion: instant"
+      },
+      "difficulty": "medium",
+      "enhancer": "optional: marks the last 4 timeline tiles with data-tl-recent (CSS :nth-last-child is unreliable with the virtualised/scroll-anchored list)"
+    },
+    {
+      "id": "paper-white-invisible",
+      "name": "Paper · White Invisible",
+      "stage": "level-5",
+      "mode": "light",
+      "seriousness": 10,
+      "hype": 0,
+      "tagline": "A blank sheet with text. The UI is still there — you just can't see it until you reach for it.",
+      "palette": {
+        "bg": "#FFFFFF",
+        "surface": "#FFFFFF",
+        "sidebar": "#FFFFFF",
+        "rail": "#FFFFFF",
+        "text": "#222222",
+        "muted": "#767676",
+        "accent": "#505050",
+        "onAccent": "#FFFFFF",
+        "border": "#F7F7F7",
+        "own": "#FFFFFF",
+        "other": "#FFFFFF",
+        "critical": "#B3261E",
+        "success": "#2E7D32"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "iA Writer Quattro S (bundled, OFL, credit iA) → system-ui",
+        "display": "iA Writer Quattro S",
+        "mono": "iA Writer Mono S (bundled, OFL, credit iA) → ui-monospace"
+      },
+      "shape": {
+        "radius": "0px",
+        "border": "none",
+        "shadow": "none",
+        "density": "airy"
+      },
+      "texture": "none",
+      "motion": "none — reveals are instant",
+      "signature": [
+        "pure #FFFFFF, chrome boundaries at ~1.07:1 ('3% contrast')",
+        "left panel and space rail off-canvas, revealed by an 8px edge strip, keyboard focus or Ctrl+K",
+        "metadata exactly at the 4.5:1 floor (#767676)",
+        "no avatars, no icons, no badges — only weight and glyphs carry state",
+        "the focus ring is the only thing that is ever drawn on purpose"
+      ],
+      "regions": {
+        "shell": "blank sheet; the only chrome is text; 'lines' at ~1.07:1 (deliberately below 3:1)",
+        "spaces": "space rail off-canvas: 8px hover strip at the left edge reveals it, Ctrl+Shift+S / focus also reveals",
+        "roomlist": "left panel off-canvas, revealed by 8px left-edge strip hover, Ctrl+K (room search) or keyboard focus; text only",
+        "header": "room name in muted at 13px small caps, nothing else visible until hover/focus-within",
+        "timeline": "single 68ch column, metadata at the 4.5:1 floor, no separators, no avatars, date separators as muted small caps",
+        "names-avatars": "sender names in muted small caps, avatars display:none in timeline (member list keeps them at 50% grayscale)",
+        "composer": "no boundary, no placeholder text beyond muted 'Write…', caret only; send/attach/emoji hidden but focusable",
+        "rightpanel": "opens as an unbounded column, headings in small caps",
+        "buttons": "text only, ink, underline on hover/focus; boundaries only appear on focus",
+        "inputs": "invisible boundary at rest (border = canvas), ink 1px bottom on focus",
+        "dialogs": "sheet indistinguishable from canvas except a 1px border at 3% and the dimmed backdrop (canvas 92%)",
+        "menus": "canvas bg, border at 3%, items text-only, active = underline",
+        "settings": "plain text, toggles drawn as '[on]/[off]'-weight switches with 1px borders shown only on hover/focus",
+        "auth": "blank page with centered form, fields boundaryless until focus",
+        "scrollbars": "scrollbar-width: none in the timeline (keyboard/scroll still work), thin in dialogs",
+        "focus": "ALWAYS visible: 2px solid currentColor outline, offset 3px — the only element allowed to break the blank sheet",
+        "badges": "none; unread only by weight, mentions by '@' glyph",
+        "code": "mono, no background, no highlighting except weight",
+        "iframes": "Element Call / widgets stay Element light; only the .mx_AppTile frame is restyled (no border, ink title in small caps)",
+        "icons": "all icons opacity 0 at rest, shown on hover/focus of their button; hit targets stay ≥24px",
+        "motion": "none (instant reveals)"
+      },
+      "difficulty": "hard",
+      "enhancer": "adds the 8px left-edge reveal strip (aria-hidden overlay in ctx.root) and toggles html[data-tl-reveal] on hover/keyboard shortcut; marks last 4 tiles"
+    },
+    {
+      "id": "paper-black",
+      "name": "Paper · Black",
+      "stage": "level-1",
+      "mode": "dark",
+      "seriousness": 10,
+      "hype": 0,
+      "tagline": "Black paper, warm off-white ink, calm and fully usable.",
+      "palette": {
+        "bg": "#0E0E0E",
+        "surface": "#0E0E0E",
+        "sidebar": "#0E0E0E",
+        "rail": "#0E0E0E",
+        "text": "#E8E6E1",
+        "muted": "#9A9893",
+        "accent": "#6CB6FF",
+        "onAccent": "#0E0E0E",
+        "border": "#242424",
+        "own": "#151515",
+        "other": "#0E0E0E",
+        "critical": "#FF7B72",
+        "success": "#5FD08A"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "iA Writer Quattro S (bundled, OFL, credit iA) → system-ui",
+        "display": "iA Writer Quattro S Bold",
+        "mono": "iA Writer Mono S (bundled, OFL, credit iA) → ui-monospace"
+      },
+      "shape": {
+        "radius": "2px",
+        "border": "hairline",
+        "shadow": "none",
+        "density": "airy"
+      },
+      "texture": "none",
+      "motion": "150ms opacity fades only; reduced-motion disables them",
+      "signature": [
+        "#0E0E0E sheet (never pure black — avoids halation), ink #E8E6E1 (never pure white)",
+        "one typeface, 68ch column, small caps sender names",
+        "soft-blue #6CB6FF as the single accent (links, focus, caret)",
+        "unread = bold + •, mentions = '@' on a #3A3320 wash",
+        "grayscale avatars, ink-only names"
+      ],
+      "regions": {
+        "shell": "one flat sheet: canvas = panels = header, no panel tints, no shadows; 1px hairline only between left column and timeline",
+        "spaces": "narrow text-ish rail, space avatars grayscale at 85% opacity, selected = 2px ink bar left; no backgrounds",
+        "roomlist": "plain text list 15px, no avatars/icons in rows, selected = weight 600 + 2px left rule, unread = bold + • glyph, sections as small caps",
+        "header": "room name 22px/600 flush-left, topic one line in muted, icon buttons muted until hover; hairline bottom",
+        "timeline": "book column max 68ch, 17px/1.6, IRC/modern layout, sender in small caps above group, continuation = paragraphs; whitespace instead of rules",
+        "names-avatars": "names in ink small caps (no rainbow: all decorative text tokens → ink/muted), avatars grayscale round 24px",
+        "composer": "borderless field on a single top hairline, iA-blue caret #1AA3FF, placeholder muted, send button visible but muted",
+        "rightpanel": "same sheet colour, hairline left border, cards as text sections with small caps headings",
+        "buttons": "primary = ink text with 1px ink border, no fill (accent fill only for the one destructive/confirm action); secondary = text link style",
+        "inputs": "1px hairline bottom border only; on focus 2px accent bottom + focus ring",
+        "dialogs": "white sheet, 1px ink border at 20%, 2px radius, no shadow, backdrop = canvas at 85% opacity",
+        "menus": "canvas bg, 1px hairline border, no shadow, hover = wash #F2F1EC / #181818; tooltips inverted ink-on-paper",
+        "settings": "tabbed view as text list, active tab = weight 600 + 2px rule, toggles rendered as text-coloured outline switches",
+        "auth": "centered 68ch column on bare paper, no background art, wordmark replaced by room-name typography",
+        "scrollbars": "thin 6px, thumb = border colour, no track",
+        "focus": "2px solid accent outline, offset 3px (≥3:1 against paper)",
+        "badges": "no pills: unread counts as tabular-nums muted digits; mentions = '@' + underline; critical only for mentions/highlights",
+        "code": "iA Writer Mono, background = hover wash, hljs reduced to 3 inks (keyword weight 700, string muted, comment italic muted)",
+        "iframes": "Element Call / widgets stay Element dark; only the .mx_AppTile frame is restyled (no border, chalk-white ink title in small caps)",
+        "icons": "Compound icons kept, recoloured to muted (icon tokens → text-secondary), 20px",
+        "motion": "opacity fades 150ms only; reduced-motion: none"
+      },
+      "difficulty": "medium",
+      "enhancer": null
+    },
+    {
+      "id": "paper-black-quiet",
+      "name": "Paper · Black Quiet",
+      "stage": "level-3",
+      "mode": "dark",
+      "seriousness": 10,
+      "hype": 0,
+      "tagline": "Black paper with the chrome pushed into the periphery.",
+      "palette": {
+        "bg": "#0C0C0C",
+        "surface": "#0C0C0C",
+        "sidebar": "#0C0C0C",
+        "rail": "#0C0C0C",
+        "text": "#E8E6E1",
+        "muted": "#9A9893",
+        "accent": "#6CB6FF",
+        "onAccent": "#0C0C0C",
+        "border": "#1A1A1A",
+        "own": "#0C0C0C",
+        "other": "#0C0C0C",
+        "critical": "#FF7B72",
+        "success": "#5FD08A"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "iA Writer Quattro S (bundled, OFL, credit iA) → system-ui",
+        "display": "iA Writer Quattro S Bold",
+        "mono": "iA Writer Mono S (bundled, OFL, credit iA) → ui-monospace"
+      },
+      "shape": {
+        "radius": "0px",
+        "border": "none",
+        "shadow": "none",
+        "density": "airy"
+      },
+      "texture": "none",
+      "motion": "200ms opacity reveals and focus dimming; instant under reduced motion",
+      "signature": [
+        "iA focus dimming on black",
+        "no lines, whitespace only",
+        "periphery fades to 40% until hover/focus",
+        "room name only in the header",
+        "caret-only composer"
+      ],
+      "regions": {
+        "shell": "single sheet, no lines at all, structure by whitespace (24px gutters)",
+        "spaces": "space rail at 40% opacity until hover/focus-within; selected = ink dot",
+        "roomlist": "text column fading to 40% opacity until hover/focus-within, selected = weight 600, unread = weight 600 + •",
+        "header": "room name only (topic, facepile, call buttons opacity 0 until hover/focus-within)",
+        "timeline": "iA focus mode: tiles at 35% opacity except the last 4, hovered and focused ones; timestamps + action bar hidden until hover/focus; avatars hidden, names in small caps",
+        "names-avatars": "avatars hidden in timeline (kept in member list), names small caps muted, no colour",
+        "composer": "no visible boundary until focused; caret only; send button opacity 0 but focusable (Enter sends)",
+        "rightpanel": "no border, opens as an extra column separated by whitespace",
+        "buttons": "text-only buttons, underline on hover/focus; destructive = critical text",
+        "inputs": "no border at rest, 1px muted bottom line on hover, accent bottom on focus",
+        "dialogs": "paper sheet with 1px border at 12%, 0 radius, no shadow",
+        "menus": "paper, 1px border at 12%, hover = weight 600 instead of fill",
+        "settings": "as level 1 but with lines removed",
+        "auth": "same as paper-white/black: bare column",
+        "scrollbars": "hidden until the scroller is hovered (scrollbar-width thin, thumb transparent → border colour)",
+        "focus": "2px solid currentColor (ink) outline, offset 3px; focus also reveals all hover-hidden chrome",
+        "badges": "counts hidden; unread = weight; mentions = '@' glyph + underline",
+        "code": "iA Writer Mono, no background, 1px left rule at border colour",
+        "iframes": "Element Call / widgets stay Element dark; only the .mx_AppTile frame is restyled (no border, chalk-white ink title in small caps)",
+        "icons": "icons muted, hidden in room list, revealed with their row on hover/focus",
+        "motion": "opacity 200ms ease for reveals; reduced-motion: instant"
+      },
+      "difficulty": "medium",
+      "enhancer": "same optional data-tl-recent marker as paper-white-quiet"
+    },
+    {
+      "id": "paper-black-invisible",
+      "name": "Paper · Black Invisible",
+      "stage": "level-5",
+      "mode": "dark",
+      "seriousness": 10,
+      "hype": 0,
+      "tagline": "Text floating on black; everything else appears only when you reach for it.",
+      "palette": {
+        "bg": "#0A0A0A",
+        "surface": "#0A0A0A",
+        "sidebar": "#0A0A0A",
+        "rail": "#0A0A0A",
+        "text": "#D6D4CF",
+        "muted": "#7E7E7E",
+        "accent": "#BDBDBD",
+        "onAccent": "#0A0A0A",
+        "border": "#121212",
+        "own": "#0A0A0A",
+        "other": "#0A0A0A",
+        "critical": "#FF7B72",
+        "success": "#5FD08A"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "iA Writer Quattro S (bundled, OFL, credit iA) → system-ui",
+        "display": "iA Writer Quattro S",
+        "mono": "iA Writer Mono S (bundled, OFL, credit iA) → ui-monospace"
+      },
+      "shape": {
+        "radius": "0px",
+        "border": "none",
+        "shadow": "none",
+        "density": "airy"
+      },
+      "texture": "none",
+      "motion": "none — reveals are instant",
+      "signature": [
+        "#0A0A0A sheet, boundaries at ~1.06:1",
+        "metadata at the floor (#7E7E7E, 4.9:1)",
+        "off-canvas navigation with edge-strip reveal",
+        "no avatars/icons/badges",
+        "focus ring is the only drawn element"
+      ],
+      "regions": {
+        "shell": "blank sheet; the only chrome is text; 'lines' at ~1.07:1 (deliberately below 3:1)",
+        "spaces": "space rail off-canvas: 8px hover strip at the left edge reveals it, Ctrl+Shift+S / focus also reveals",
+        "roomlist": "left panel off-canvas, revealed by 8px left-edge strip hover, Ctrl+K (room search) or keyboard focus; text only",
+        "header": "room name in muted at 13px small caps, nothing else visible until hover/focus-within",
+        "timeline": "single 68ch column, metadata at the 4.5:1 floor, no separators, no avatars, date separators as muted small caps",
+        "names-avatars": "sender names in muted small caps, avatars display:none in timeline (member list keeps them at 50% grayscale)",
+        "composer": "no boundary, no placeholder text beyond muted 'Write…', caret only; send/attach/emoji hidden but focusable",
+        "rightpanel": "opens as an unbounded column, headings in small caps",
+        "buttons": "text only, ink, underline on hover/focus; boundaries only appear on focus",
+        "inputs": "invisible boundary at rest (border = canvas), ink 1px bottom on focus",
+        "dialogs": "sheet indistinguishable from canvas except a 1px border at 3% and the dimmed backdrop (canvas 92%)",
+        "menus": "canvas bg, border at 3%, items text-only, active = underline",
+        "settings": "plain text, toggles drawn as '[on]/[off]'-weight switches with 1px borders shown only on hover/focus",
+        "auth": "blank page with centered form, fields boundaryless until focus",
+        "scrollbars": "scrollbar-width: none in the timeline (keyboard/scroll still work), thin in dialogs",
+        "focus": "ALWAYS visible: 2px solid currentColor outline, offset 3px — the only element allowed to break the blank sheet",
+        "badges": "none; unread only by weight, mentions by '@' glyph",
+        "code": "mono, no background, no highlighting except weight",
+        "iframes": "Element Call / widgets stay Element dark; only the .mx_AppTile frame is restyled (no border, chalk-white ink title in small caps)",
+        "icons": "all icons opacity 0 at rest, shown on hover/focus of their button; hit targets stay ≥24px",
+        "motion": "none (instant reveals)"
+      },
+      "difficulty": "hard",
+      "enhancer": "same as paper-white-invisible (edge strip, reveal shortcut, recent-tile marker)"
+    },
+    {
+      "id": "paper-daylight",
+      "name": "Paper · Daylight",
+      "stage": "level-1",
+      "mode": "daylight",
+      "seriousness": 10,
+      "hype": 1,
+      "tagline": "The sheet follows the sun: warm morning paper, white noon, sepia dusk, black night.",
+      "palette": {
+        "bg": "#FFFFFF",
+        "surface": "#FFFFFF",
+        "sidebar": "#FFFFFF",
+        "rail": "#FFFFFF",
+        "text": "#1A1A1A",
+        "muted": "#6B6B6B",
+        "accent": "#0B6BCB",
+        "onAccent": "#FFFFFF",
+        "border": "#E8E8E4",
+        "own": "#F5F5F2",
+        "other": "#FFFFFF",
+        "critical": "#B3261E",
+        "success": "#2E7D32"
+      },
+      "phases": {
+        "dawn": {
+          "bg": "#F7F1E3",
+          "surface": "#F7F1E3",
+          "sidebar": "#F7F1E3",
+          "rail": "#F7F1E3",
+          "text": "#2A2620",
+          "muted": "#6A6256",
+          "accent": "#0A5FB4",
+          "onAccent": "#FFFFFF",
+          "border": "#E8DFCC",
+          "own": "#F0E8D6",
+          "other": "#F7F1E3",
+          "critical": "#A8321E",
+          "success": "#2E6B2E"
+        },
+        "day": {
+          "bg": "#FFFFFF",
+          "surface": "#FFFFFF",
+          "sidebar": "#FFFFFF",
+          "rail": "#FFFFFF",
+          "text": "#1A1A1A",
+          "muted": "#6B6B6B",
+          "accent": "#0B6BCB",
+          "onAccent": "#FFFFFF",
+          "border": "#E8E8E4",
+          "own": "#F5F5F2",
+          "other": "#FFFFFF",
+          "critical": "#B3261E",
+          "success": "#2E7D32"
+        },
+        "dusk": {
+          "bg": "#F1E7D0",
+          "surface": "#F1E7D0",
+          "sidebar": "#F1E7D0",
+          "rail": "#F1E7D0",
+          "text": "#3B2F22",
+          "muted": "#6E5E49",
+          "accent": "#8A4B12",
+          "onAccent": "#FFFFFF",
+          "border": "#E2D5B9",
+          "own": "#EADFC4",
+          "other": "#F1E7D0",
+          "critical": "#9E2A1C",
+          "success": "#3D6328"
+        },
+        "night": {
+          "bg": "#0E0E0E",
+          "surface": "#0E0E0E",
+          "sidebar": "#0E0E0E",
+          "rail": "#0E0E0E",
+          "text": "#E8E6E1",
+          "muted": "#9A9893",
+          "accent": "#6CB6FF",
+          "onAccent": "#0E0E0E",
+          "border": "#242424",
+          "own": "#151515",
+          "other": "#0E0E0E",
+          "critical": "#FF7B72",
+          "success": "#5FD08A"
+        }
+      },
+      "schedule": [
+        {
+          "from": "06:00",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "10:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "17:00",
+          "phase": "dusk",
+          "base": "light"
+        },
+        {
+          "from": "21:00",
+          "phase": "night",
+          "base": "dark"
+        }
+      ],
+      "fonts": {
+        "ui": "iA Writer Quattro S (bundled, OFL, credit iA) → system-ui",
+        "display": "iA Writer Quattro S Bold",
+        "mono": "iA Writer Mono S (bundled, OFL, credit iA) → ui-monospace"
+      },
+      "shape": {
+        "radius": "2px",
+        "border": "hairline",
+        "shadow": "none",
+        "density": "airy"
+      },
+      "texture": "none",
+      "motion": "2s background/colour cross-fade at phase boundaries (CONTRACT §6); otherwise level-1 fades; all off under reduced motion",
+      "signature": [
+        "four papers keyed to the local clock (06/10/17/21h)",
+        "accent shifts with the light: blue by day, burnt sienna #8A4B12 at dusk",
+        "level-1 calm rules in every phase",
+        "night phase is exactly paper-black",
+        "the slow 2s ink-and-paper cross-fade"
+      ],
+      "regions": {
+        "shell": "level-1 sheet; colour follows data-tl-phase (dawn #F7F1E3, day #FFFFFF, dusk #F1E7D0, night #0E0E0E)",
+        "spaces": "narrow text-ish rail, space avatars grayscale at 85% opacity, selected = 2px ink bar left; no backgrounds",
+        "roomlist": "plain text list 15px, no avatars/icons in rows, selected = weight 600 + 2px left rule, unread = bold + • glyph, sections as small caps",
+        "header": "room name 22px/600 flush-left, topic one line in muted, icon buttons muted until hover; hairline bottom",
+        "timeline": "book column max 68ch, 17px/1.6, IRC/modern layout, sender in small caps above group, continuation = paragraphs; whitespace instead of rules",
+        "names-avatars": "names in ink small caps (no rainbow: all decorative text tokens → ink/muted), avatars grayscale round 24px",
+        "composer": "borderless field on a single top hairline, iA-blue caret #1AA3FF, placeholder muted, send button visible but muted",
+        "rightpanel": "same sheet colour, hairline left border, cards as text sections with small caps headings",
+        "buttons": "primary = ink text with 1px ink border, no fill (accent fill only for the one destructive/confirm action); secondary = text link style",
+        "inputs": "1px hairline bottom border only; on focus 2px accent bottom + focus ring",
+        "dialogs": "white sheet, 1px ink border at 20%, 2px radius, no shadow, backdrop = canvas at 85% opacity",
+        "menus": "canvas bg, 1px hairline border, no shadow, hover = wash #F2F1EC / #181818; tooltips inverted ink-on-paper",
+        "settings": "tabbed view as text list, active tab = weight 600 + 2px rule, toggles rendered as text-coloured outline switches",
+        "auth": "centered 68ch column on bare paper, no background art, wordmark replaced by room-name typography",
+        "scrollbars": "thin 6px, thumb = border colour, no track",
+        "focus": "2px solid accent outline, offset 3px (≥3:1 against paper)",
+        "badges": "no pills: unread counts as tabular-nums muted digits; mentions = '@' + underline; critical only for mentions/highlights",
+        "code": "iA Writer Mono, background = hover wash, hljs reduced to 3 inks (keyword weight 700, string muted, comment italic muted)",
+        "iframes": "Element Call/widgets follow the phase base: light for dawn/day/dusk, dark at night",
+        "icons": "Compound icons kept, recoloured to muted (icon tokens → text-secondary), 20px",
+        "motion": "opacity fades 150ms only; reduced-motion: none"
+      },
+      "difficulty": "medium",
+      "enhancer": null
+    }
+  ]
+}

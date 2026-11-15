@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+  <defs>
+    
+    <clipPath id="a">
+      <path fill="#fff" d="M0 0h24v24H0z"/>
+    </clipPath>
+  <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text { color: #232629; }
+    </style>
+  </defs>
+  <g clip-path="url(#a)">
+    <path d="M19.778 5.636a2 2 0 0 1 0 2.828l-5.657 5.657 2.121 2.121a1 1 0 0 1-1.414 1.415l-3.535-3.536-4.95 4.95a1 1 0 0 1-1.414-1.414l4.95-4.95L6.342 9.17a1 1 0 1 1 1.414-1.414L9.878 9.88l5.657-5.657a2 2 0 0 1 2.829 0z" style="fill:currentColor" class="ColorScheme-Text"/>
+  </g>
+  
+</svg>

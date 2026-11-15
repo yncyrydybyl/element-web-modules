@@ -1,0 +1,859 @@
+{
+  "family": "teams",
+  "name": "Microsoft Teams",
+  "variants": [
+    {
+      "id": "teams-2026-light",
+      "name": "Teams 2026 · Light",
+      "stage": "pure",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 9,
+      "hype": 3,
+      "description": "Microsoft Teams as shipped in November 2026: Fluent 2, brand #5B5FC7, app-bar rail, chat list with sections, bubble messages, Copilot chips.",
+      "css": [
+        "shared.css",
+        "teams-2026-light.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#f5f5f5",
+        "--cpd-color-bg-subtle-primary": "#ebebeb",
+        "--cpd-color-text-primary": "#242424",
+        "--cpd-color-text-secondary": "#616161",
+        "--cpd-color-bg-action-primary-rest": "#5b5fc7",
+        "--cpd-color-bg-accent-rest": "#5b5fc7",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-border-interactive-secondary": "#e0e0e0",
+        "--cpd-color-bg-critical-primary": "#c4314b",
+        "--cpd-color-text-critical-primary": "#c4314b",
+        "--cpd-color-text-success-primary": "#107c10"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "teams-2026-dark",
+      "name": "Teams 2026 · Dark",
+      "stage": "pure",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 9,
+      "hype": 3,
+      "description": "Teams 2026 dark theme: #141414 rail, #242424 canvas, brand70 #4F52B2 buttons, brand100 #7F85F5 accents.",
+      "css": [
+        "shared.css",
+        "teams-2026-dark.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#242424",
+        "--cpd-color-bg-subtle-secondary": "#1f1f1f",
+        "--cpd-color-bg-subtle-primary": "#141414",
+        "--cpd-color-text-primary": "#ffffff",
+        "--cpd-color-text-secondary": "#adadad",
+        "--cpd-color-bg-action-primary-rest": "#4f52b2",
+        "--cpd-color-bg-accent-rest": "#4f52b2",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-border-interactive-secondary": "#525252",
+        "--cpd-color-bg-critical-primary": "#dc626d",
+        "--cpd-color-text-critical-primary": "#dc626d",
+        "--cpd-color-text-success-primary": "#54b054"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "teams-2026-daylight",
+      "name": "Teams 2026 · Daylight",
+      "stage": "pure",
+      "mode": "daylight",
+      "base": "light",
+      "seriousness": 9,
+      "hype": 4,
+      "description": "Teams 2026 following the local clock: cool dawn, light day, amber dusk, Teams dark at night.",
+      "css": [
+        "shared.css",
+        "teams-2026-light.css",
+        "teams-2026-dark.css",
+        "teams-2026-daylight.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#f5f5f5",
+        "--cpd-color-bg-subtle-primary": "#ebebeb",
+        "--cpd-color-text-primary": "#242424",
+        "--cpd-color-text-secondary": "#616161",
+        "--cpd-color-bg-action-primary-rest": "#5b5fc7",
+        "--cpd-color-bg-accent-rest": "#5b5fc7",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-border-interactive-secondary": "#e0e0e0",
+        "--cpd-color-bg-critical-primary": "#c4314b",
+        "--cpd-color-text-critical-primary": "#c4314b",
+        "--cpd-color-text-success-primary": "#107c10"
+      },
+      "enhance": true,
+      "schedule": [
+        {
+          "from": "06:00",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "09:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "18:00",
+          "phase": "dusk",
+          "base": "light"
+        },
+        {
+          "from": "21:00",
+          "phase": "night",
+          "base": "dark"
+        }
+      ]
+    },
+    {
+      "id": "teams-2024",
+      "name": "Teams 2024 · New Teams 2.0",
+      "stage": "past",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 9,
+      "hype": 2,
+      "description": "'New Teams' 2.0 (2023–24): first Fluent 2 client, restrained #5B5FC7, 4px radii, 2019 logo, no Copilot.",
+      "css": [
+        "shared.css",
+        "teams-2024.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#f5f5f5",
+        "--cpd-color-bg-subtle-primary": "#ebebeb",
+        "--cpd-color-text-primary": "#242424",
+        "--cpd-color-text-secondary": "#616161",
+        "--cpd-color-bg-action-primary-rest": "#5b5fc7",
+        "--cpd-color-bg-accent-rest": "#5b5fc7",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-border-interactive-secondary": "#e0e0e0",
+        "--cpd-color-bg-critical-primary": "#c4314b",
+        "--cpd-color-text-critical-primary": "#c4314b",
+        "--cpd-color-text-success-primary": "#107c10"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "teams-classic-2020",
+      "name": "Teams Classic 2020",
+      "stage": "past",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 8,
+      "hype": 2,
+      "description": "Classic Teams (2020): #464775 top bar, #33344A rail, brand #6264A7, grey canvas with white cards, dense.",
+      "css": [
+        "shared.css",
+        "teams-classic-2020.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#f3f2f1",
+        "--cpd-color-bg-subtle-secondary": "#f3f2f1",
+        "--cpd-color-bg-subtle-primary": "#33344a",
+        "--cpd-color-text-primary": "#252423",
+        "--cpd-color-text-secondary": "#605e5c",
+        "--cpd-color-bg-action-primary-rest": "#6264a7",
+        "--cpd-color-bg-accent-rest": "#6264a7",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-border-interactive-secondary": "#e1dfdd",
+        "--cpd-color-bg-critical-primary": "#c4314b",
+        "--cpd-color-text-critical-primary": "#c4314b",
+        "--cpd-color-text-success-primary": "#237b4b"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "teams-2028",
+      "name": "Teams 2028 · Copilot Glass",
+      "stage": "future",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 7,
+      "hype": 7,
+      "description": "Speculative Teams 2028: V21 violet #654CF5, floating glass panes over an aurora wallpaper, Copilot pane.",
+      "css": [
+        "shared.css",
+        "teams-2028.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#f7f6fd",
+        "--cpd-color-bg-subtle-primary": "#efedfb",
+        "--cpd-color-text-primary": "#1f1d2e",
+        "--cpd-color-text-secondary": "#5c5a70",
+        "--cpd-color-bg-action-primary-rest": "#654cf5",
+        "--cpd-color-bg-accent-rest": "#654cf5",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-border-interactive-secondary": "#dcdbff",
+        "--cpd-color-bg-critical-primary": "#c4314b",
+        "--cpd-color-text-critical-primary": "#c4314b",
+        "--cpd-color-text-success-primary": "#107c10"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "teams-usable-light",
+      "name": "Teams Usable · Light",
+      "stage": "usable",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 9,
+      "hype": 2,
+      "description": "Teams look with Element affordances kept: threads, shields, receipts, 40px targets, high-contrast text.",
+      "css": [
+        "shared.css",
+        "teams-usable-light.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#f5f5f5",
+        "--cpd-color-bg-subtle-primary": "#ebebeb",
+        "--cpd-color-text-primary": "#242424",
+        "--cpd-color-text-secondary": "#424242",
+        "--cpd-color-bg-action-primary-rest": "#5b5fc7",
+        "--cpd-color-bg-accent-rest": "#5b5fc7",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-border-interactive-secondary": "#d1d1d1",
+        "--cpd-color-bg-critical-primary": "#b10e1c",
+        "--cpd-color-text-critical-primary": "#b10e1c",
+        "--cpd-color-text-success-primary": "#0e700e"
+      },
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "teams-usable-dark",
+      "name": "Teams Usable · Dark",
+      "stage": "usable",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 9,
+      "hype": 2,
+      "description": "Usable Teams in dark with brighter text and visible strokes.",
+      "css": [
+        "shared.css",
+        "teams-usable-dark.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#242424",
+        "--cpd-color-bg-subtle-secondary": "#1f1f1f",
+        "--cpd-color-bg-subtle-primary": "#141414",
+        "--cpd-color-text-primary": "#ffffff",
+        "--cpd-color-text-secondary": "#d6d6d6",
+        "--cpd-color-bg-action-primary-rest": "#5b5fc7",
+        "--cpd-color-bg-accent-rest": "#5b5fc7",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-border-interactive-secondary": "#666666",
+        "--cpd-color-bg-critical-primary": "#f1707b",
+        "--cpd-color-text-critical-primary": "#f1707b",
+        "--cpd-color-text-success-primary": "#54b054"
+      },
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "teams-comic",
+      "name": "Teams · Comic",
+      "stage": "comic",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 3,
+      "hype": 8,
+      "description": "Teams as a comic strip: ink outlines, halftone, speech-bubble messages, Bangers lettering, PING! bursts.",
+      "css": [
+        "shared.css",
+        "teams-comic.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Neue",
+          "file": "assets/comic-neue-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Neue",
+          "file": "assets/comic-neue-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Bangers",
+          "file": "assets/bangers-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#fff8e7",
+        "--cpd-color-bg-subtle-secondary": "#fdefc3",
+        "--cpd-color-bg-subtle-primary": "#5b5fc7",
+        "--cpd-color-text-primary": "#111111",
+        "--cpd-color-text-secondary": "#4a4a4a",
+        "--cpd-color-bg-action-primary-rest": "#5b5fc7",
+        "--cpd-color-bg-accent-rest": "#5b5fc7",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-border-interactive-secondary": "#111111",
+        "--cpd-color-bg-critical-primary": "#e8222e",
+        "--cpd-color-text-critical-primary": "#e8222e",
+        "--cpd-color-text-success-primary": "#1e9e4a"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "teams-cyberpunk",
+      "name": "Teams · Night City",
+      "stage": "cyberpunk",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 3,
+      "hype": 10,
+      "description": "Teams in Night City: neon violet/cyan/pink, chamfered panels, scanlines, glitching titles. Heavy effects; reduced motion respected.",
+      "css": [
+        "shared.css",
+        "teams-cyberpunk.css"
+      ],
+      "fonts": [
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semilight.woff2",
+          "weight": "350",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Selawik",
+          "file": "assets/selawik-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Orbitron",
+          "file": "assets/orbitron-vf.woff2",
+          "weight": "400 900",
+          "style": "normal"
+        },
+        {
+          "family": "Share Tech Mono",
+          "file": "assets/share-tech-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-semibold.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Cascadia Mono",
+          "file": "assets/cascadia-mono-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#0b0614",
+        "--cpd-color-bg-subtle-secondary": "#0f0a1c",
+        "--cpd-color-bg-subtle-primary": "#07040d",
+        "--cpd-color-text-primary": "#e9e4ff",
+        "--cpd-color-text-secondary": "#a59ad0",
+        "--cpd-color-bg-action-primary-rest": "#a66bff",
+        "--cpd-color-bg-accent-rest": "#a66bff",
+        "--cpd-color-text-on-solid-primary": "#0b0614",
+        "--cpd-color-border-interactive-secondary": "#3a2a66",
+        "--cpd-color-bg-critical-primary": "#ff3b5c",
+        "--cpd-color-text-critical-primary": "#ff3b5c",
+        "--cpd-color-text-success-primary": "#2dff9a"
+      },
+      "enhance": true,
+      "schedule": null
+    }
+  ]
+}

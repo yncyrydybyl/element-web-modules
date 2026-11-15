@@ -1,0 +1,258 @@
+{
+  "family": "crossover",
+  "name": "Crossovers",
+  "concept": "Mashups of two other families, each a joke that has to work as a daily chat client: the visual grammar of one system rendered with the materials of another. Stage is always 'crossover'; implementation reuses the parent families' fonts, icons and enhancer pieces instead of bundling its own. x-win311-lcars (Win 3.1 windows in LCARS colours), x-teams-sketch (Teams 2026 anatomy as a Balsamiq wireframe), x-kde-e16 (Breeze Dark widgets in E16 brushed-metal frames).",
+  "sources": [
+    {
+      "title": "Dossier: research/03-styles-platform.md §1 Teams, §2 Windows 3.11, §3 KDE Breeze, §4 LCARS",
+      "url": "research/03-styles-platform.md"
+    },
+    {
+      "title": "Dossier: research/04-styles-artistic.md §2 Sketch, §3 Enlightenment",
+      "url": "research/04-styles-artistic.md"
+    },
+    {
+      "title": "Microsoft KB 102976 — Windows colour schemes (Win 3.x values)",
+      "url": "https://ftp.zx.net.nz/pub/Patches/ftp.microsoft.com/MISC/KB/en-us/102/976.HTM"
+    },
+    {
+      "title": "trekcolors LCARS palettes",
+      "url": "https://leonawicz.github.io/trekcolors/reference/lcars_colors.html"
+    },
+    {
+      "title": "Fluent 2 brand tokens (brandTeamsV21)",
+      "url": "https://github.com/microsoft/fluentui/tree/master/packages/tokens"
+    },
+    {
+      "title": "Balsamiq Sans",
+      "url": "https://balsamiq.com/givingback/opensource/font/"
+    },
+    {
+      "title": "Breeze colour schemes (BreezeDark.colors)",
+      "url": "https://invent.kde.org/plasma/breeze/-/raw/master/colors/BreezeDark.colors"
+    },
+    {
+      "title": "E16 themes (BrushedMetal-Tigert, BlueSteel)",
+      "url": "https://git.enlightenment.org/e16/e16-themes"
+    }
+  ],
+  "limits": [
+    "Depends on the parent families' assets and enhancer modules; the build flattens assets to <family>--<file>, so cross-family references need either build support or copies.",
+    "Iframes (Element Call, widgets) stay light/dark; only their frames get the mashup chrome.",
+    "LCARS is © CBS/Paramount and Teams/Windows are Microsoft trademarks — fine for this internal project, not for public shipping.",
+    "Hashed CSS-module classes (event tiles, room list, badges) need substring selectors; the Teams card layout and the LCARS frame both restructure with CSS grid only, no DOM moves.",
+    "Bitmap-style fonts (W95FA) only look right at 16px multiples; body size is therefore fixed at 16px in x-win311-lcars."
+  ],
+  "variants": [
+    {
+      "id": "x-win311-lcars",
+      "name": "Crossover · Starfleet runs Windows 3.11",
+      "stage": "crossover",
+      "mode": "dark",
+      "seriousness": 3,
+      "hype": 9,
+      "tagline": "Program Manager on the bridge: Win 3.1 windows, title bars and ▼▲ buttons, rendered in LCARS colours on black.",
+      "palette": {
+        "bg": "#000000",
+        "surface": "#000000",
+        "sidebar": "#000000",
+        "rail": "#FF9900",
+        "text": "#FFCC99",
+        "muted": "#9999CC",
+        "accent": "#FF9900",
+        "onAccent": "#000000",
+        "border": "#9999CC",
+        "own": "#1A1208",
+        "other": "#000000",
+        "critical": "#CC6666",
+        "success": "#99CC99"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "W95FA (from win311 assets, OFL) 16px → Pixelated MS Sans Serif",
+        "display": "Antonio (from lcars assets, OFL), ALL CAPS, right-aligned",
+        "mono": "VT323 (from win311 assets, OFL) / Fixedsys Excelsior"
+      },
+      "shape": {
+        "radius": "elbow outer 64px / inner 32px on the frame; 2px (Win 3.1 corner-pixel knock-out) on buttons; 0 on windows",
+        "border": "bevel",
+        "shadow": "none",
+        "density": "normal"
+      },
+      "texture": "none (flat LCARS colour blocks; optional 2×2 dither on inactive title bars)",
+      "motion": "Win 3.1 wireframe 'zoom rectangle' when dialogs open (120ms, outline only), LCARS button press = brightness 1.15; opt-in synthesised two-tone chirp; all off under reduced motion",
+      "signature": [
+        "flat Win 3.1 title bars in atomic tangerine #FF9900 (active) / blue-bell #9999CC (inactive) with centered bold black caps",
+        "control-menu 'bar' box at the left and ▼ ▲ triangle buttons at the right — still no ✕, on a starship",
+        "the whole app inside one LCARS frame: left block stack = Program Manager groups (spaces), top/bottom elbows",
+        "push buttons are lilac pills with a 1px black outline and Win 3.1 2px bevel (#FFE6FF / #996699)",
+        "menu bar under the room header: ROOM  EDIT  VIEW  CALL  HELP with underlined mnemonics, numbers like 47-1138 everywhere"
+      ],
+      "regions": {
+        "shell": "black field inside a single LCARS frame (left vertical arm + top and bottom elbows, segmented bars with black 6px gaps); Element content sits in a Win 3.1 MDI workspace",
+        "spaces": "LCARS block stack as Program Manager group icons: each space = coloured block, black right-aligned caps label + number (01-HOME); active = #FF9900",
+        "roomlist": "MDI child window 'ROOMS' with a Win 3.1 title bar; rows are list-box lines in W95FA, selected inverted (#FF9900 bg, black text), unread as '(3)' after the name",
+        "header": "the room's MDI title bar: flat #FF9900, centered bold caps '#ROOM — DECK 7', control-menu box left, ▼▲ right; menu bar below with call buttons as menu items",
+        "timeline": "black client area, IRC-style '<ALICE> hello', sender in LCARS colour per user (decorative tokens → 8 LCARS colours), timestamps as [stardate] numerals",
+        "names-avatars": "square avatars with a 2px palette border, posterised (16-colour filter from win311); names in Antonio caps",
+        "composer": "bottom elbow bar holding a Win 3.1 single-line edit (black slot, #FFCC99 text, 1px #9999CC outline) + a default push button 'TRANSMIT' with thick outline",
+        "rightpanel": "second MDI child window ('MEMBERS', 'THREADS') with title bar and bevel frame inside the LCARS frame",
+        "buttons": "lilac/blue-bell/tanoi pills, black Antonio caps label bottom-right, 1px black outline + 2px bevel; pressed shifts 1px; default = 2px outline",
+        "inputs": "Win 3.1 flat edit: black field, 1px #9999CC outline, #FFCC99 text, block caret #FF9900",
+        "dialogs": "Win 3.1 modal (double frame, title bar with control-menu box only) coloured LCARS; buttons ACKNOWLEDGE / CANCEL as pills, destructive = #CC6666",
+        "menus": "Win 3.1 drop-down: black with 1px #9999CC border, no shadow, selection inverted #FF9900; tooltips as small tanoi blocks",
+        "settings": "settings dialog = Control Panel window: tabs as a vertical LCARS block stack, panes as Win 3.1 group boxes",
+        "auth": "full LCARS frame with 'LCARS ACCESS 40274 — LOG ON' Win 3.1 dialog in the middle",
+        "scrollbars": "Win 3.1 17px scrollbar recoloured: 1px black outline, track #333 (dithered), fixed-size square thumb in #9999CC, triangle arrow buttons",
+        "focus": "Win 3.1 dotted rectangle in #FFCC99 around the label PLUS a 2px solid #FFCC99 outline (offset 2px) so it stays ≥3:1",
+        "badges": "black numerals on a small #FF9900 block at the left end of the row; mentions = #CC6666 block",
+        "code": "VT323 on black, LCARS-tinted hljs (keywords #FF9900, strings #99CCFF, comments #9999CC)",
+        "iframes": "calls/widgets run dark; framed as an MDI child window with title bar",
+        "icons": "Compound icons hidden in primary chrome and replaced by Antonio caps labels (LCARS has no icons); kept (recoloured) inside menus for recognition",
+        "motion": "zoom rectangle on dialog open, brightness on press, optional chirp; no data-cascade animation in the timeline"
+      },
+      "difficulty": "hard",
+      "enhancer": "reuses the lcars frame overlay (elbows, block stack, numbers, stardate) and the win311 title-bar decoration (control-menu box, ▼▲, menu bar); adds opt-in WebAudio chirps"
+    },
+    {
+      "id": "x-teams-sketch",
+      "name": "Crossover · Teams, sketched by the PM",
+      "stage": "crossover",
+      "mode": "light",
+      "seriousness": 5,
+      "hype": 6,
+      "tagline": "Microsoft Teams 2026 as the Balsamiq wireframe the product manager drew on a Friday — with a purple marker.",
+      "palette": {
+        "bg": "#FDFDFB",
+        "surface": "#FFFFFF",
+        "sidebar": "#F2F2F2",
+        "rail": "#E6E6E6",
+        "text": "#222222",
+        "muted": "#5E5E5E",
+        "accent": "#654CF5",
+        "onAccent": "#FFFFFF",
+        "border": "#222222",
+        "own": "#E8E8FF",
+        "other": "#FFFFFF",
+        "critical": "#D62828",
+        "success": "#147A5C"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Balsamiq Sans (from sketch assets, OFL)",
+        "display": "Balsamiq Sans Bold (headings), Architects Daughter for sticky-note annotations (from sketch assets, OFL)",
+        "mono": "sketch family mono (JetBrains Mono / Victor Mono, OFL)"
+      },
+      "shape": {
+        "radius": "irregular hand-drawn: 255px 15px 225px 15px / 15px 225px 15px 255px (rotating 3 variants)",
+        "border": "sketch",
+        "shadow": "4px 4px 0 rgba(0,0,0,.12) on dialogs only",
+        "density": "normal"
+      },
+      "texture": "plain wireframe paper; hatching (repeating-linear-gradient −41°) for selected rows and placeholders",
+      "motion": "none at rest; hover = 1px wobble translate on buttons (once, 120ms); off under reduced motion",
+      "signature": [
+        "the Teams 2026 anatomy — 68px app bar with icon+label, chat list, header with Chat | Shared | + tabs, message cards — but every box is a 2px hand-drawn #222 stroke",
+        "Teams purple #654CF5 used only like a PM's marker: selection pill on the app bar, scribbled tab underline, primary buttons, own-message tint #E8E8FF",
+        "own messages as right-aligned cards, others as white cards on grey — drawn, not rendered",
+        "hatched selected rows and Balsamiq 'X box' image placeholders while media loads",
+        "yellow sticky-note annotations in empty states ('v2: presence dots?', 'TODO ask legal')"
+      ],
+      "regions": {
+        "shell": "grey #F2F2F2 'canvas' behind white wireframe panels, each panel outlined with a 2px irregular stroke, Teams top bar sketched with a search box",
+        "spaces": "Teams app bar: 68px column, icon + Balsamiq label under it (Activity/Chat/Teams…), selected = purple marker pill on the left edge + hatched tile",
+        "roomlist": "Teams chat list: avatar circle, name, preview, time; selected row = hatching + 2px stroke; unread = bold + hand-drawn purple circle around the count",
+        "header": "Teams chat header: avatar, name, tabs Chat | Shared | + with scribbled purple underline on the active tab, call buttons as sketched pill",
+        "timeline": "Teams cards: others white cards with irregular stroke on the grey canvas, own right-aligned on #E8E8FF; bubble layout forced visually even in modern layout",
+        "names-avatars": "names in Balsamiq Sans bold #222, avatars grayscale inside a wobbly pencil circle, presence dot as a hand-drawn ring",
+        "composer": "Teams rounded compose box drawn with 2px stroke, formatting toolbar as sketched icons, purple send arrow",
+        "rightpanel": "white panel with irregular stroke; member list as Teams roster (sketched)",
+        "buttons": "primary = purple fill with #222 hand-drawn stroke and white label; secondary = white with stroke; hover wobble 1px",
+        "inputs": "irregular 2px stroke, focus = purple stroke + focus ring",
+        "dialogs": "Teams dialog as a wireframe sheet, irregular stroke, flat offset shadow, slight −0.4° tilt",
+        "menus": "white sheet with 2px stroke, hover = hatching",
+        "settings": "Teams-like settings list in wireframe, toggles drawn as pill outlines with purple knob when on",
+        "auth": "login drawn as a Balsamiq mockup screen with a sticky note 'use SSO here'",
+        "scrollbars": "8px, thumb = #222 outline pill with white fill",
+        "focus": "2px solid #654CF5 outline offset 2px plus the element's own stroke turning purple",
+        "badges": "count inside a hand-drawn circle (irregular radius) in purple, mentions in critical red",
+        "code": "graph-paper background, JetBrains Mono, monochrome hljs with purple keywords",
+        "iframes": "light; framed with a sketched window stroke",
+        "icons": "Compound icons kept but thickened (stroke via drop-shadow) and #222; optional Balsamiq-like replacements later",
+        "motion": "only the hover wobble; no boiling filters"
+      },
+      "difficulty": "medium",
+      "enhancer": "reuses teams layout enhancer (app-bar labels, header tabs) if any; adds sticky-note annotations (aria-hidden) into empty states"
+    },
+    {
+      "id": "x-kde-e16",
+      "name": "Crossover · Breeze in brushed metal",
+      "stage": "crossover",
+      "mode": "dark",
+      "seriousness": 5,
+      "hype": 7,
+      "tagline": "Plasma 6 Breeze Dark widgets inside 1999 E16 BrushedMetal-Tigert window frames.",
+      "palette": {
+        "bg": "#141618",
+        "surface": "#1D1F22",
+        "sidebar": "#202326",
+        "rail": "#8E9398",
+        "text": "#FCFCFC",
+        "muted": "#A1A9B1",
+        "accent": "#3DAEE9",
+        "onAccent": "#141618",
+        "border": "#3B3F44",
+        "own": "#1E5774",
+        "other": "#1D1F22",
+        "critical": "#ED6A76",
+        "success": "#27AE60"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Noto Sans (from kde assets, OFL) 13px",
+        "display": "Silkscreen (from enlightenment assets, OFL) caps on metal title bars",
+        "mono": "Hack (from kde assets, MIT/Bitstream Vera)"
+      },
+      "shape": {
+        "radius": "5px (Breeze) on widgets, 0 on metal frames",
+        "border": "bevel",
+        "shadow": "Breeze 0 4px 14px rgba(0,0,0,.25) on menus; metal frames use 1px #3B3F44 outline + inset highlight",
+        "density": "normal"
+      },
+      "texture": "brushed-metal (horizontal streaks, CSS repeating gradients over #B4B8BC → #8E9398) on frames only",
+      "motion": "Breeze 150ms ease on hover outlines; E16 'window shade' roll-up of dialogs on close (100ms); off under reduced motion",
+      "signature": [
+        "horizontally brushed grey metal title bars (#D9DCDE → #B4B8BC → #9EA3A8) with black Silkscreen caption and 1px emboss",
+        "chunky 14px bevelled E16 window-button trio on dialogs and the room header (decorative, aria-hidden)",
+        "Breeze Dark content: View #141618 timeline, Window #202326 room list, radius 5 widgets",
+        "Plasma blue #3DAEE9 focus = 1px outline + 3px translucent glow, hover outlines turn blue",
+        "space panel as an E16 iconbox/pager strip in metal, room list in Breeze"
+      ],
+      "regions": {
+        "shell": "Breeze Dark Window colour app background, metal frame around the whole app (4px brushed border with 1px #3B3F44 outline)",
+        "spaces": "E16 iconbox: vertical brushed-metal strip, space avatars in recessed dark wells, active well with blue glow",
+        "roomlist": "Breeze Dark Window #202326 list, NeoChat rows (32px avatar, name, accent unread pill), selected = accent 25% fill + accent outline, radius 5",
+        "header": "brushed-metal title bar: room name in black Noto Sans bold centered with emboss, E16 bevel button trio right, Breeze flat tool buttons (black icons on metal)",
+        "timeline": "Breeze View #141618, flat NeoChat compact messages, optional radius-5 bubbles in #1D1F22, own tinted #1E5774",
+        "names-avatars": "round Breeze avatars, Breeze-friendly username colours (decorative tokens → Breeze palette), Noto Sans 600 names",
+        "composer": "brushed-metal shelf frame (E16 dock look) holding a Breeze Dark line edit (radius 5, blue focus border + glow) and a send tool button",
+        "rightpanel": "Breeze Dark card panel with a thin metal title bar strip per card",
+        "buttons": "Breeze buttons: #292C30 fill, 1px outline, hover outline #3DAEE9, default = accent outline; inside metal bars they become E16 bevel buttons",
+        "inputs": "Breeze line edit: #141618, 1px #3B3F44, radius 5, focus accent border + glow",
+        "dialogs": "Breeze Dark dialog body with a brushed-metal title bar, Silkscreen caption, E16 button trio; KDE button order (Help left, OK/Cancel right)",
+        "menus": "Breeze menus (#1D1F22, radius 5, soft shadow), selected item accent 25% + outline; tooltips Breeze",
+        "settings": "settings dialog with metal title bar; tab list as Kirigami sidebar in Breeze Dark",
+        "auth": "a single E16 metal window on a dark gradient desktop, Breeze form inside",
+        "scrollbars": "Breeze thin pill (8 → 14px on hover) recoloured as metal #8E9398 with bevel",
+        "focus": "1px #3DAEE9 outline + 0 0 0 3px rgba(61,174,233,.3) glow; on metal backgrounds an additional 2px #141618 inner ring for ≥3:1",
+        "badges": "Breeze accent pill #3DAEE9 with #141618 text; mentions #BF3343 fill (Breeze negative darkened for 4.5:1) with white text",
+        "code": "Hack on #1D1F22, Breeze Dark (KSyntaxHighlighting-like) hljs colours",
+        "iframes": "dark; framed by a metal title bar",
+        "icons": "Compound icons recoloured: light on Breeze surfaces, black on metal; optional Breeze icon swap via the kde family",
+        "motion": "150ms Breeze hover, window-shade close; no animated textures"
+      },
+      "difficulty": "medium",
+      "enhancer": "adds the decorative E16 bevel button trio to the header and dialog title bars (aria-hidden), reusing the enlightenment family's enhancer pieces"
+    }
+  ]
+}

@@ -8,12 +8,12 @@ local clock, see CONTRACT §6). `S` = seriousness 0–10, `H` = hype 0–10.
 
 | id | stage | mode | S | H | idea |
 |---|---|---|---|---|---|
-| teams-2026-light | pure | light | 9 | 3 | Teams as of late 2026: Fluent 2, new brand ramp, left app bar, chat list, tabbed header, card-like messages |
+| teams-2026-light | pure | light | 9 | 3 | Teams as of late 2026: Fluent 2, brandTeams #5B5FC7 (verified; V21 ramp not shipped), chat sections, Copilot chips, left app bar, chat list, tabbed header, card-like messages |
 | teams-2026-dark | pure | dark | 9 | 3 | same, Teams dark |
 | teams-2026-daylight | pure | daylight | 9 | 4 | light by day, dark at night, warm tint in the evening |
 | teams-2024 | past | light | 9 | 2 | "new Teams" 2.0 of two years ago, #5B5FC7 |
 | teams-classic-2020 | past | light | 8 | 2 | classic purple Teams (#6264A7), Fluent 1, dense |
-| teams-2028 | future | light | 7 | 7 | speculative: Copilot-first, glass, floating panels, AI chips everywhere |
+| teams-2028 | future | light | 7 | 7 | speculative: Copilot-first, staged V21 violet #654CF5, glass, floating panels, AI chips everywhere |
 | teams-usable-light | usable | light | 9 | 2 | Teams look, Element affordances kept (threads, E2EE shields, bigger hit areas, better contrast) |
 | teams-usable-dark | usable | dark | 9 | 2 | same, dark |
 | teams-comic | comic | light | 3 | 8 | Teams drawn as a comic strip: ink outlines, halftone, speech-bubble messages, "PING!" |

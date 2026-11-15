@@ -1,0 +1,601 @@
+{
+  "family": "paper",
+  "name": "Low-UI Paper",
+  "variants": [
+    {
+      "id": "paper-white",
+      "name": "Paper · White",
+      "stage": "level-1",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 10,
+      "hype": 0,
+      "description": "Low-UI white paper (level 1): one typeface (iA Writer Quattro, credit iA), no panel tints, grayscale avatars, ink-only names; subtle but fully usable.",
+      "css": [
+        "shared.css",
+        "paper-white.css"
+      ],
+      "fonts": [
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#FBFBF8",
+        "--cpd-color-bg-subtle-secondary": "#FBFBF8",
+        "--cpd-color-bg-subtle-primary": "#F4F3EE",
+        "--cpd-color-text-primary": "#1A1A1A",
+        "--cpd-color-text-secondary": "#6B6B6B",
+        "--cpd-color-text-action-accent": "#0B6BCB",
+        "--cpd-color-text-link-external": "#0B6BCB",
+        "--cpd-color-border-interactive-secondary": "#E6E4DF",
+        "--cpd-color-border-focused": "#0B6BCB",
+        "--cpd-color-icon-primary": "#1A1A1A",
+        "--cpd-color-icon-secondary": "#6B6B6B",
+        "--cpd-color-icon-tertiary": "#6B6B6B",
+        "--cpd-color-text-critical-primary": "#B3261E",
+        "--cpd-color-text-success-primary": "#2E7D32"
+      },
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "paper-white-quiet",
+      "name": "Paper · White Quiet",
+      "stage": "level-3",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 10,
+      "hype": 0,
+      "description": "Low-UI white paper (level 3): no lines, iA-style focus dimming, chrome appears on hover/focus.",
+      "css": [
+        "shared.css",
+        "paper-white-quiet.css"
+      ],
+      "fonts": [
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#FCFCFA",
+        "--cpd-color-bg-subtle-secondary": "#FCFCFA",
+        "--cpd-color-bg-subtle-primary": "#FCFCFA",
+        "--cpd-color-text-primary": "#1A1A1A",
+        "--cpd-color-text-secondary": "#6B6B6B",
+        "--cpd-color-text-action-accent": "#0B6BCB",
+        "--cpd-color-text-link-external": "#0B6BCB",
+        "--cpd-color-border-interactive-secondary": "#EDEDEA",
+        "--cpd-color-border-focused": "#0B6BCB",
+        "--cpd-color-icon-primary": "#1A1A1A",
+        "--cpd-color-icon-secondary": "#6B6B6B",
+        "--cpd-color-icon-tertiary": "#6B6B6B",
+        "--cpd-color-text-critical-primary": "#B3261E",
+        "--cpd-color-text-success-primary": "#2E7D32"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "paper-white-invisible",
+      "name": "Paper · White Invisible",
+      "stage": "level-5",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 10,
+      "hype": 0,
+      "description": "Low-UI white paper (level 5, invisible by design): chrome at ~3% contrast, navigation off-canvas; text ≥4.5:1 and focus always visible, but resting controls are hard to discover (fails WCAG 1.4.11 on purpose).",
+      "css": [
+        "shared.css",
+        "paper-white-invisible.css"
+      ],
+      "fonts": [
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#FFFFFF",
+        "--cpd-color-bg-subtle-secondary": "#FFFFFF",
+        "--cpd-color-bg-subtle-primary": "#FFFFFF",
+        "--cpd-color-text-primary": "#222222",
+        "--cpd-color-text-secondary": "#767676",
+        "--cpd-color-text-action-accent": "#505050",
+        "--cpd-color-text-link-external": "#505050",
+        "--cpd-color-border-interactive-secondary": "#F7F7F7",
+        "--cpd-color-border-focused": "#222222",
+        "--cpd-color-icon-primary": "#222222",
+        "--cpd-color-icon-secondary": "#767676",
+        "--cpd-color-icon-tertiary": "#767676",
+        "--cpd-color-text-critical-primary": "#B3261E",
+        "--cpd-color-text-success-primary": "#2E7D32"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "paper-black",
+      "name": "Paper · Black",
+      "stage": "level-1",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 10,
+      "hype": 0,
+      "description": "Low-UI black paper (level 1): #0E0E0E sheet, warm off-white ink, one accent; subtle but fully usable.",
+      "css": [
+        "shared.css",
+        "paper-black.css"
+      ],
+      "fonts": [
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#0E0E0E",
+        "--cpd-color-bg-subtle-secondary": "#0E0E0E",
+        "--cpd-color-bg-subtle-primary": "#151515",
+        "--cpd-color-text-primary": "#E8E6E1",
+        "--cpd-color-text-secondary": "#9A9893",
+        "--cpd-color-text-action-accent": "#6CB6FF",
+        "--cpd-color-text-link-external": "#6CB6FF",
+        "--cpd-color-border-interactive-secondary": "#242424",
+        "--cpd-color-border-focused": "#6CB6FF",
+        "--cpd-color-icon-primary": "#E8E6E1",
+        "--cpd-color-icon-secondary": "#9A9893",
+        "--cpd-color-icon-tertiary": "#9A9893",
+        "--cpd-color-text-critical-primary": "#FF7B72",
+        "--cpd-color-text-success-primary": "#5FD08A"
+      },
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "paper-black-quiet",
+      "name": "Paper · Black Quiet",
+      "stage": "level-3",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 10,
+      "hype": 0,
+      "description": "Low-UI black paper (level 3): no lines, focus dimming, chrome on hover/focus.",
+      "css": [
+        "shared.css",
+        "paper-black-quiet.css"
+      ],
+      "fonts": [
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#0C0C0C",
+        "--cpd-color-bg-subtle-secondary": "#0C0C0C",
+        "--cpd-color-bg-subtle-primary": "#0C0C0C",
+        "--cpd-color-text-primary": "#E8E6E1",
+        "--cpd-color-text-secondary": "#9A9893",
+        "--cpd-color-text-action-accent": "#6CB6FF",
+        "--cpd-color-text-link-external": "#6CB6FF",
+        "--cpd-color-border-interactive-secondary": "#1A1A1A",
+        "--cpd-color-border-focused": "#6CB6FF",
+        "--cpd-color-icon-primary": "#E8E6E1",
+        "--cpd-color-icon-secondary": "#9A9893",
+        "--cpd-color-icon-tertiary": "#9A9893",
+        "--cpd-color-text-critical-primary": "#FF7B72",
+        "--cpd-color-text-success-primary": "#5FD08A"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "paper-black-invisible",
+      "name": "Paper · Black Invisible",
+      "stage": "level-5",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 10,
+      "hype": 0,
+      "description": "Low-UI black paper (level 5, invisible by design): text on black, chrome at ~3% contrast; text ≥4.5:1 and focus always visible, resting controls hard to discover.",
+      "css": [
+        "shared.css",
+        "paper-black-invisible.css"
+      ],
+      "fonts": [
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#0A0A0A",
+        "--cpd-color-bg-subtle-secondary": "#0A0A0A",
+        "--cpd-color-bg-subtle-primary": "#0A0A0A",
+        "--cpd-color-text-primary": "#D6D4CF",
+        "--cpd-color-text-secondary": "#7E7E7E",
+        "--cpd-color-text-action-accent": "#BDBDBD",
+        "--cpd-color-text-link-external": "#BDBDBD",
+        "--cpd-color-border-interactive-secondary": "#121212",
+        "--cpd-color-border-focused": "#D6D4CF",
+        "--cpd-color-icon-primary": "#D6D4CF",
+        "--cpd-color-icon-secondary": "#7E7E7E",
+        "--cpd-color-icon-tertiary": "#7E7E7E",
+        "--cpd-color-text-critical-primary": "#FF7B72",
+        "--cpd-color-text-success-primary": "#5FD08A"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "paper-daylight",
+      "name": "Paper · Daylight",
+      "stage": "level-1",
+      "mode": "daylight",
+      "base": "light",
+      "seriousness": 10,
+      "hype": 1,
+      "description": "Low-UI paper that follows the local clock: warm paper at dawn, white at noon, sepia at dusk, black at night.",
+      "css": [
+        "shared.css",
+        "paper-daylight.css"
+      ],
+      "fonts": [
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Quattro S",
+          "file": "assets/ia-writer-quattro-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-Bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "iA Writer Mono S",
+          "file": "assets/ia-writer-mono-BoldItalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#FFFFFF",
+        "--cpd-color-bg-subtle-secondary": "#FFFFFF",
+        "--cpd-color-bg-subtle-primary": "#F5F5F2",
+        "--cpd-color-text-primary": "#1A1A1A",
+        "--cpd-color-text-secondary": "#6B6B6B",
+        "--cpd-color-text-action-accent": "#0B6BCB",
+        "--cpd-color-text-link-external": "#0B6BCB",
+        "--cpd-color-border-interactive-secondary": "#E8E8E4",
+        "--cpd-color-border-focused": "#0B6BCB",
+        "--cpd-color-icon-primary": "#1A1A1A",
+        "--cpd-color-icon-secondary": "#6B6B6B",
+        "--cpd-color-icon-tertiary": "#6B6B6B",
+        "--cpd-color-text-critical-primary": "#B3261E",
+        "--cpd-color-text-success-primary": "#2E7D32"
+      },
+      "enhance": false,
+      "schedule": [
+        {
+          "from": "06:00",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "10:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "17:00",
+          "phase": "dusk",
+          "base": "light"
+        },
+        {
+          "from": "21:00",
+          "phase": "night",
+          "base": "dark"
+        }
+      ]
+    }
+  ]
+}

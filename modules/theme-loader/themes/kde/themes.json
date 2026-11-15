@@ -1,0 +1,466 @@
+{
+  "family": "kde",
+  "name": "KDE Plasma / Qt",
+  "variants": [
+    {
+      "id": "kde-breeze-light",
+      "name": "Breeze · Light",
+      "stage": "pure",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 9,
+      "hype": 3,
+      "description": "Plasma 6 Breeze Light as a native KDE app (NeoChat layout): unified #dee0e2 header band with chevron window buttons, white cards on the #eff0f1 Window canvas, Plasma-blue #3daee9 30% selection, exact Breeze buttons/check boxes, Noto Sans + Hack, Breeze icons.",
+      "css": [
+        "shared.css",
+        "kde-breeze-light.css"
+      ],
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-var.woff2",
+          "weight": "400 700",
+          "style": "normal"
+        },
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-italic-var.woff2",
+          "weight": "400 700",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bolditalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#eff0f1",
+        "--cpd-color-bg-canvas-default-level-1": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#eff0f1",
+        "--cpd-color-text-primary": "#232629",
+        "--cpd-color-text-secondary": "#5c6670",
+        "--cpd-color-bg-accent-rest": "#3daee9",
+        "--cpd-color-border-focused": "#3daee9",
+        "--cpd-color-border-interactive-primary": "#c6c8c9",
+        "--cpd-color-text-critical-primary": "#da4453",
+        "--cpd-color-text-success-primary": "#27ae60"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "kde-breeze-dark",
+      "name": "Breeze · Dark",
+      "stage": "pure",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 9,
+      "hype": 3,
+      "description": "Breeze Dark: #202326 Window, #141618 View, #292c30 header band, Plasma blue, Noto Sans + Hack, Breeze icons.",
+      "css": [
+        "shared.css",
+        "kde-breeze-dark.css"
+      ],
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-var.woff2",
+          "weight": "400 700",
+          "style": "normal"
+        },
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-italic-var.woff2",
+          "weight": "400 700",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bolditalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#202326",
+        "--cpd-color-bg-canvas-default-level-1": "#141618",
+        "--cpd-color-bg-subtle-secondary": "#202326",
+        "--cpd-color-text-primary": "#fcfcfc",
+        "--cpd-color-text-secondary": "#a1a9b1",
+        "--cpd-color-bg-accent-rest": "#3daee9",
+        "--cpd-color-border-focused": "#3daee9",
+        "--cpd-color-border-interactive-primary": "#4c4e51",
+        "--cpd-color-text-critical-primary": "#da4453",
+        "--cpd-color-text-success-primary": "#27ae60"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "kde-breeze-daylight",
+      "name": "Breeze · Daylight",
+      "stage": "pure",
+      "mode": "daylight",
+      "base": "light",
+      "seriousness": 9,
+      "hype": 4,
+      "description": "Breeze by the clock: Light at dawn/day, Breeze Classic (dark #475057 titlebar) at dusk, Breeze Dark at night, with a KWin Night Color warm overlay.",
+      "css": [
+        "shared.css",
+        "kde-breeze-daylight.css"
+      ],
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-var.woff2",
+          "weight": "400 700",
+          "style": "normal"
+        },
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-italic-var.woff2",
+          "weight": "400 700",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bolditalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {},
+      "enhance": true,
+      "schedule": [
+        {
+          "from": "05:30",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "08:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "17:30",
+          "phase": "dusk",
+          "base": "light"
+        },
+        {
+          "from": "21:30",
+          "phase": "night",
+          "base": "dark"
+        }
+      ]
+    },
+    {
+      "id": "kde-oxygen",
+      "name": "Oxygen · KDE 4",
+      "stage": "past",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 7,
+      "hype": 5,
+      "description": "KDE 4 Oxygen (2008–2014): radial-lit #d6d2d0 window, glossy jelly buttons, #6ed6ff glow, dark glass Plasma panel, Oxygen font and colourful Oxygen icons.",
+      "css": [
+        "shared.css",
+        "kde-oxygen.css"
+      ],
+      "fonts": [
+        {
+          "family": "Oxygen",
+          "file": "assets/oxygen-light.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Oxygen",
+          "file": "assets/oxygen-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Oxygen",
+          "file": "assets/oxygen-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Oxygen Mono",
+          "file": "assets/oxygen-mono.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#d6d2d0",
+        "--cpd-color-bg-canvas-default-level-1": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#ffffff",
+        "--cpd-color-text-primary": "#221f1e",
+        "--cpd-color-text-secondary": "#5e5a57",
+        "--cpd-color-bg-accent-rest": "#43ace8",
+        "--cpd-color-border-focused": "#43ace8",
+        "--cpd-color-border-interactive-primary": "#b3aeaa",
+        "--cpd-color-text-critical-primary": "#bf0303",
+        "--cpd-color-text-success-primary": "#006e28"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "kde-ocean",
+      "name": "Ocean · Plasma Next",
+      "stage": "future",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 8,
+      "hype": 6,
+      "description": "Speculative Plasma Next from the VDG's Ocean design system tokens: Inter, #2058C3 tonal ramp, #dae2ff pill selection, filled #4172de CTAs, 6/8/16px radii, left traffic-light titlebar, Ocean icons.",
+      "css": [
+        "shared.css",
+        "kde-ocean.css"
+      ],
+      "fonts": [
+        {
+          "family": "Inter",
+          "file": "assets/inter-var.woff2",
+          "weight": "100 900",
+          "style": "normal"
+        },
+        {
+          "family": "Inter",
+          "file": "assets/inter-italic-var.woff2",
+          "weight": "100 900",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bolditalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#fbfcfe",
+        "--cpd-color-bg-canvas-default-level-1": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#f5f3f7",
+        "--cpd-color-text-primary": "#1b1b1f",
+        "--cpd-color-text-secondary": "#5e5e62",
+        "--cpd-color-bg-accent-rest": "#2058c3",
+        "--cpd-color-border-focused": "#2058c3",
+        "--cpd-color-border-interactive-primary": "#c5c6d0",
+        "--cpd-color-text-critical-primary": "#b7211e",
+        "--cpd-color-text-success-primary": "#4c6d0e"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "kde-usable",
+      "name": "Breeze · Usable",
+      "stage": "usable",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 10,
+      "hype": 2,
+      "description": "Breeze Light tuned for long chat sessions: no titlebar, compact zebra rows, AA-contrast text, 3px focus rings, strong mention rows, permanent scrollbars.",
+      "css": [
+        "shared.css",
+        "kde-usable.css"
+      ],
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-var.woff2",
+          "weight": "400 700",
+          "style": "normal"
+        },
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-italic-var.woff2",
+          "weight": "400 700",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bolditalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#ffffff",
+        "--cpd-color-bg-canvas-default-level-1": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#eff0f1",
+        "--cpd-color-text-primary": "#232629",
+        "--cpd-color-text-secondary": "#5c6670",
+        "--cpd-color-bg-accent-rest": "#1e6fa5",
+        "--cpd-color-border-focused": "#1e6fa5",
+        "--cpd-color-border-interactive-primary": "#9aa0a6",
+        "--cpd-color-text-critical-primary": "#b0303e",
+        "--cpd-color-text-success-primary": "#1d7a45"
+      },
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "kde-glass",
+      "name": "Breeze · Glass",
+      "stage": "exciting",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 5,
+      "hype": 8,
+      "description": "Translucent Breeze Dark over the Plasma 'Hanabi' wallpaper with KWin-style blur, a floating Plasma panel and an accent-from-wallpaper violet glow.",
+      "css": [
+        "shared.css",
+        "kde-glass.css"
+      ],
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-var.woff2",
+          "weight": "400 700",
+          "style": "normal"
+        },
+        {
+          "family": "Noto Sans",
+          "file": "assets/noto-sans-italic-var.woff2",
+          "weight": "400 700",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "assets/hack-bolditalic.woff2",
+          "weight": "700",
+          "style": "italic"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#141618",
+        "--cpd-color-bg-canvas-default-level-1": "#202326",
+        "--cpd-color-bg-subtle-secondary": "#202326",
+        "--cpd-color-text-primary": "#fcfcfc",
+        "--cpd-color-text-secondary": "#b4bbc2",
+        "--cpd-color-bg-accent-rest": "#7f6df2",
+        "--cpd-color-border-focused": "#7f6df2",
+        "--cpd-color-border-interactive-primary": "#4c4e51",
+        "--cpd-color-text-critical-primary": "#ff5c6c",
+        "--cpd-color-text-success-primary": "#3ddc84"
+      },
+      "enhance": true,
+      "schedule": null
+    }
+  ]
+}

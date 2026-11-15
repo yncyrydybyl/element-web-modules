@@ -1,0 +1,599 @@
+{
+  "family": "enlightenment",
+  "name": "Enlightenment",
+  "variants": [
+    {
+      "id": "e16-brushed-metal",
+      "name": "E16 · BrushedMetal-Tigert",
+      "stage": "past",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 6,
+      "hype": 6,
+      "description": "E16 BrushedMetal-Tigert (Tigert/Rasterman, the DR16 default): light brushed-aluminium frames, bevelled bronze gem buttons and turquoise desktop/Edoc backgrounds; chrome in black on metal, timeline in white on teal.",
+      "css": [
+        "shared.css",
+        "e16-brushed-metal.css"
+      ],
+      "fonts": [
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Silkscreen",
+          "file": "assets/silkscreen-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#1F4746",
+        "--cpd-color-bg-subtle-secondary": "#1F4746",
+        "--cpd-color-bg-subtle-primary": "#A7A7A6",
+        "--cpd-color-text-primary": "#FFFFFF",
+        "--cpd-color-text-secondary": "#B4D4D2",
+        "--cpd-color-text-action-accent": "#88DDDD",
+        "--cpd-color-bg-action-primary-rest": "#88DDDD",
+        "--cpd-color-text-on-solid-primary": "#0E2A2A",
+        "--cpd-color-border-focused": "#88DDDD",
+        "--cpd-color-text-critical-primary": "#FF8A7A",
+        "--cpd-color-text-success-primary": "#9BE36B"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "e17-glow",
+      "name": "E17 · Dark Glow",
+      "stage": "pure",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 7,
+      "hype": 7,
+      "description": "E17 (0.17) default dark theme: vgrad_med_dark #303030→#111111 bars, glossy shine strips, black recessed selection wells and the #3399FF glow on focus, selection and sliders.",
+      "css": [
+        "shared.css",
+        "e17-glow.css"
+      ],
+      "fonts": [
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#262626",
+        "--cpd-color-bg-subtle-secondary": "#202020",
+        "--cpd-color-bg-subtle-primary": "#161616",
+        "--cpd-color-text-primary": "#E6E6E6",
+        "--cpd-color-text-secondary": "#A0A0A0",
+        "--cpd-color-text-action-accent": "#3399FF",
+        "--cpd-color-bg-action-primary-rest": "#3399FF",
+        "--cpd-color-text-on-solid-primary": "#06192C",
+        "--cpd-color-border-focused": "#3399FF",
+        "--cpd-color-text-critical-primary": "#FF5A4F",
+        "--cpd-color-text-success-primary": "#66DD55"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "e-current",
+      "name": "Enlightenment · Current",
+      "stage": "pure",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 8,
+      "hype": 5,
+      "description": "Current Enlightenment (0.25–0.27, EFL elementary theme): flat greys straight from colorclasses.edc (:bg #404040, :bg-dim #303030, :bg-dark #202020), thin #3399FF selection lines, orange #FF9933 as second accent.",
+      "css": [
+        "shared.css",
+        "e-current.css"
+      ],
+      "fonts": [
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#303030",
+        "--cpd-color-bg-subtle-secondary": "#383838",
+        "--cpd-color-bg-subtle-primary": "#202020",
+        "--cpd-color-text-primary": "#DCDCDC",
+        "--cpd-color-text-secondary": "#A8A8A8",
+        "--cpd-color-text-action-accent": "#3399FF",
+        "--cpd-color-bg-action-primary-rest": "#3399FF",
+        "--cpd-color-text-on-solid-primary": "#101010",
+        "--cpd-color-border-focused": "#3399FF",
+        "--cpd-color-text-critical-primary": "#FF6B6B",
+        "--cpd-color-text-success-primary": "#33FF33"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "e-aurora",
+      "name": "Edje Aurora",
+      "stage": "exciting",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 6,
+      "hype": 8,
+      "description": "Mashup: E17 glossy structure with an aurora gradient (teal #2EE6C5 → cyan #33A1FF → violet #9B6BFF → magenta #FF5FC8) drifting behind glass shelves; cyan focus glow, magenta mentions.",
+      "css": [
+        "shared.css",
+        "e-aurora.css"
+      ],
+      "fonts": [
+        {
+          "family": "Titillium Web",
+          "file": "assets/titillium-web-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Titillium Web",
+          "file": "assets/titillium-web-600.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Titillium Web",
+          "file": "assets/titillium-web-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#121418",
+        "--cpd-color-bg-subtle-secondary": "#1A1D23",
+        "--cpd-color-bg-subtle-primary": "#0E1014",
+        "--cpd-color-text-primary": "#DDE3EA",
+        "--cpd-color-text-secondary": "#8B95A5",
+        "--cpd-color-text-action-accent": "#33A1FF",
+        "--cpd-color-bg-action-primary-rest": "#33A1FF",
+        "--cpd-color-text-on-solid-primary": "#06121F",
+        "--cpd-color-border-focused": "#33A1FF",
+        "--cpd-color-text-critical-primary": "#FF5FC8",
+        "--cpd-color-text-success-primary": "#2EE6C5"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "e-ember",
+      "name": "Moksha Ember",
+      "stage": "exciting",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 6,
+      "hype": 8,
+      "description": "Mashup: warm charcoal (#16120F) Moksha-style E17 structure, E16 brushed-copper title bars with Tigert's bronze gem buttons, E's own second accent #FF9933 as ember glow, amber pulse on unread, crimson highlights.",
+      "css": [
+        "shared.css",
+        "e-ember.css"
+      ],
+      "fonts": [
+        {
+          "family": "Saira Semi Condensed",
+          "file": "assets/saira-semi-condensed-500.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "family": "Saira Semi Condensed",
+          "file": "assets/saira-semi-condensed-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#16120F",
+        "--cpd-color-bg-subtle-secondary": "#211B17",
+        "--cpd-color-bg-subtle-primary": "#110E0C",
+        "--cpd-color-text-primary": "#EEE4D8",
+        "--cpd-color-text-secondary": "#A8978A",
+        "--cpd-color-text-action-accent": "#FF9933",
+        "--cpd-color-bg-action-primary-rest": "#FF9933",
+        "--cpd-color-text-on-solid-primary": "#1A0D04",
+        "--cpd-color-border-focused": "#FF9933",
+        "--cpd-color-text-critical-primary": "#F0506A",
+        "--cpd-color-text-success-primary": "#B5D86A"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "e-neon-steel",
+      "name": "Ganymede Neon Steel",
+      "stage": "exciting",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 5,
+      "hype": 9,
+      "description": "Mashup: E16 BlueSteel slate (#2D3243/#41475A) and Ganymede cobalt bevels (#3263E5) as brushed steel, lit by neon cyan #33E0FF and E magenta #FF3399, lime #99FF33 presence, Terminology-style scanlines in code blocks.",
+      "css": [
+        "shared.css",
+        "e-neon-steel.css"
+      ],
+      "fonts": [
+        {
+          "family": "Exo 2",
+          "file": "assets/exo-2-500.woff2",
+          "weight": "500",
+          "style": "normal"
+        },
+        {
+          "family": "Exo 2",
+          "file": "assets/exo-2-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "IBM Plex Sans",
+          "file": "assets/ibm-plex-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "IBM Plex Sans",
+          "file": "assets/ibm-plex-sans-600.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Share Tech Mono",
+          "file": "assets/share-tech-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#0D111C",
+        "--cpd-color-bg-subtle-secondary": "#161C2B",
+        "--cpd-color-bg-subtle-primary": "#0A0D16",
+        "--cpd-color-text-primary": "#D6E2F5",
+        "--cpd-color-text-secondary": "#8C99BA",
+        "--cpd-color-text-action-accent": "#33E0FF",
+        "--cpd-color-bg-action-primary-rest": "#33E0FF",
+        "--cpd-color-text-on-solid-primary": "#03141A",
+        "--cpd-color-border-focused": "#33E0FF",
+        "--cpd-color-text-critical-primary": "#FF3399",
+        "--cpd-color-text-success-primary": "#99FF33"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "e-usable",
+      "name": "Enlightenment · Usable",
+      "stage": "usable",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 9,
+      "hype": 4,
+      "description": "E17/E-current look tuned for daily chat: brighter text (#EDEDED on #2C2C2C), visible 1px borders, solid 2px focus rings with only a subtle glow, no text glow, no gloss on content, bigger hit areas, Element affordances kept.",
+      "css": [
+        "shared.css",
+        "e-usable.css"
+      ],
+      "fonts": [
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#2C2C2C",
+        "--cpd-color-bg-subtle-secondary": "#333333",
+        "--cpd-color-bg-subtle-primary": "#1C1C1C",
+        "--cpd-color-text-primary": "#EDEDED",
+        "--cpd-color-text-secondary": "#B4B4B4",
+        "--cpd-color-text-action-accent": "#4DA6FF",
+        "--cpd-color-bg-action-primary-rest": "#4DA6FF",
+        "--cpd-color-text-on-solid-primary": "#0A0A0A",
+        "--cpd-color-border-focused": "#4DA6FF",
+        "--cpd-color-text-critical-primary": "#FF6B5E",
+        "--cpd-color-text-success-primary": "#5EE65E"
+      },
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "e-daylight",
+      "name": "Enlightenment · Aurora Cycle",
+      "stage": "pure",
+      "mode": "daylight",
+      "base": "light",
+      "seriousness": 7,
+      "hype": 7,
+      "description": "Daylight cycle by local clock: dawn (soft lilac/rose light, violet accent), day (light brushed steel, E-blue #1A5DB3), dusk (ember charcoal, #FF9933), night (deep blue-black with the E17 #3399FF glow). 2 s cross-fades unless reduced motion.",
+      "css": [
+        "shared.css",
+        "e-daylight.css"
+      ],
+      "fonts": [
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "DejaVu Sans",
+          "file": "assets/dejavu-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "DejaVu Sans Mono",
+          "file": "assets/dejavu-sans-mono-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Titillium Web",
+          "file": "assets/titillium-web-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Titillium Web",
+          "file": "assets/titillium-web-600.woff2",
+          "weight": "600",
+          "style": "normal"
+        },
+        {
+          "family": "Titillium Web",
+          "file": "assets/titillium-web-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-bg-canvas-default": "#E3E6EA",
+        "--cpd-color-bg-subtle-secondary": "#C6CCD3",
+        "--cpd-color-bg-subtle-primary": "#A9B1BB",
+        "--cpd-color-text-primary": "#15191E",
+        "--cpd-color-text-secondary": "#4A5360",
+        "--cpd-color-text-action-accent": "#1A5DB3",
+        "--cpd-color-bg-action-primary-rest": "#1A5DB3",
+        "--cpd-color-text-on-solid-primary": "#FFFFFF",
+        "--cpd-color-border-focused": "#1A5DB3",
+        "--cpd-color-text-critical-primary": "#B42318",
+        "--cpd-color-text-success-primary": "#1A6E2E"
+      },
+      "enhance": true,
+      "schedule": [
+        {
+          "from": "05:30",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "09:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "18:00",
+          "phase": "dusk",
+          "base": "dark"
+        },
+        {
+          "from": "21:30",
+          "phase": "night",
+          "base": "dark"
+        }
+      ]
+    }
+  ]
+}
