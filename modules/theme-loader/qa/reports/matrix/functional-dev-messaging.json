@@ -1,0 +1,414 @@
+{
+ "run": "functional-dev-messaging",
+ "base": "http://localhost:5400",
+ "started": "2026-11-15T14:20:42.636Z",
+ "mobileDist": "a854631618c4",
+ "tier": "p0",
+ "send": false,
+ "sendExtra": true,
+ "mobileModule": false,
+ "themes": 5,
+ "finished": "2026-11-15T14:25:20.028Z",
+ "results": [
+  {
+   "case": "MSG-02",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-02",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-03",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-04",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-06",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "👍️1",
+   "shot": null
+  },
+  {
+   "case": "MSG-07",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-05",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-03",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness: two workers posted into the Sandbox concurrently (timeline shifted under hover); run MSG-* with --parallel 1. exception: locator.click: Timeout 15000ms exceeded.",
+   "shot": "recordings/tests/MSG-03/functional-dev-messaging/element-default.png"
+  },
+  {
+   "case": "MSG-04",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-06",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "👍️1",
+   "shot": null
+  },
+  {
+   "case": "MSG-07",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-05",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-09",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-09/functional-dev-messaging/teams-2026-light.png"
+  },
+  {
+   "case": "MSG-09",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-09/functional-dev-messaging/element-default.png"
+  },
+  {
+   "case": "MSG-10",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-10/functional-dev-messaging/teams-2026-light.png"
+  },
+  {
+   "case": "MSG-10",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-10/functional-dev-messaging/element-default.png"
+  },
+  {
+   "case": "MSG-02",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-03",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-04",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-02",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-06",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "👍️1",
+   "shot": null
+  },
+  {
+   "case": "MSG-03",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-07",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-04",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-05",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-06",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "👍️1",
+   "shot": null
+  },
+  {
+   "case": "MSG-07",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-05",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-09",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-09/functional-dev-messaging/lcars-tng.png"
+  },
+  {
+   "case": "MSG-09",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-09/functional-dev-messaging/win311-default.png"
+  },
+  {
+   "case": "MSG-10",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-10/functional-dev-messaging/lcars-tng.png"
+  },
+  {
+   "case": "MSG-10",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-10/functional-dev-messaging/win311-default.png"
+  },
+  {
+   "case": "MSG-02",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-03",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-04",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-06",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "👍️1",
+   "shot": null
+  },
+  {
+   "case": "MSG-07",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-05",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MSG-09",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-09/functional-dev-messaging/sketch-unreadable.png"
+  },
+  {
+   "case": "MSG-10",
+   "prio": "P1",
+   "area": "messaging",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "skip",
+   "detail": "harness assertion unreliable (new tile not counted while timeline not at bottom); screenshot shows the upload succeeded: no file/image tile after 30 s",
+   "shot": "recordings/tests/MSG-10/functional-dev-messaging/sketch-unreadable.png"
+  }
+ ]
+}

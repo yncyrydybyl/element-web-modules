@@ -142,3 +142,32 @@ are **report-only** (never fail). `--views timeline,irc` limits the run.
 - No backdated history (all events are "today"), no calls/widgets, no live location, no LaTeX, no decryption-failure
   tile on purpose.
 - URL previews depend on Synapse fetching element.io / spec.matrix.org at render time.
+
+## Test matrix (`functional.mjs`, `viewports.mjs`)
+
+Case catalogue: `docs/TESTCASES.md`, generated from `tests/catalogue.py` (ids, priorities, sample, viewport lists →
+`tests/catalogue.json`). Every result is keyed by case id; reports go to `tests/reports/matrix/<run>.json`, screenshots
+to `recordings/tests/<case-id>/<run>/<theme>[--<viewport>].png`, and `matrix-summary.mjs` merges all reports into
+`tests/reports/matrix/SUMMARY.md`.
+
+```sh
+node tests/harness/functional.mjs --themes all --tier p1 --send --parallel 5          # T0 P0 + P1 UI cases, all 72 + default
+node tests/harness/functional.mjs --themes sample --send-extra                          # MSG-02..10 in the Sandbox
+node tests/harness/functional.mjs --base-url https://element.datanauten.de --themes sample --tier p1 --modules --parallel 1
+node tests/harness/viewports.mjs  --mode matrix  --themes sample [--mobile-module]      # 12 widths × 7 heights per theme
+node tests/harness/viewports.mjs  --mode login   --themes sample                        # logged-out, every width × 568/900
+node tests/harness/viewports.mjs  --mode devices --themes sample --mobile-module        # DPR/touch/UA devices, MOB-*, MOD-06/07
+node tests/harness/matrix-summary.mjs
+```
+
+- Sessions come from the pool (`acquireSlot`); the slot profile is used in place, so `mx_local_settings` (layout,
+  RoomList collapse that Element writes at narrow widths) is snapshotted on load and restored on close (and before each
+  height row of the viewport matrix, which runs wide → narrow).
+- `--mobile-module` serves `mobile/dist` via request interception (config.json `modules` + `/element-modules/mobile-themes/*`),
+  snapshotted in memory per context; the report records the dist sha1.
+- Writes: `--send` one message per theme to Theme Lab · Sandbox; `--send-extra` markdown/reply/edit/redact/reaction/
+  thread/file/image there. Theme choice is never written (THM-03 checks the account data is unchanged after preview+Esc).
+- Readability checks are report-only (`report`) for deliberately unreadable variants; the way back (THM-02/03/04,
+  VP-09) is never report-only.
+- Contrast = WCAG ratio of computed text colour (incl. opacity) against the first opaque ancestor background; text on a
+  background image is flagged and never hard-fails.

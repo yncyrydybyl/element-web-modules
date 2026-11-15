@@ -11,3 +11,4 @@ recordings/timelapse/*.webm
 recordings/showcase/work/
 recordings/prod-qa/
 mobile/dist/
+recordings/tests/

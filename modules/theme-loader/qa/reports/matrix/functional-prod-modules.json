@@ -1,0 +1,495 @@
+{
+ "run": "functional-prod-modules",
+ "base": "https://element.datanauten.de",
+ "started": "2026-11-15T13:46:38.789Z",
+ "mobileDist": "c53052f05219",
+ "tier": "p0",
+ "send": false,
+ "sendExtra": false,
+ "mobileModule": false,
+ "themes": 12,
+ "finished": "2026-11-15T13:51:43.032Z",
+ "results": [
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "17 modules in config, no module errors",
+   "shot": null
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "guide 460px, text median 5.24, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/element-default.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "fail",
+   "detail": "1/13: 4 members: covered by header teams-welcome-root",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/element-default.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "element-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "17 modules in config, no module errors",
+   "shot": null
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "guide 460px, text median 6.19, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/teams-2026-light.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "12 header buttons hittable (guide docked)",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/teams-2026-light.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "teams-cyberpunk",
+   "viewport": null,
+   "status": "pass",
+   "detail": "17 modules in config, no module errors",
+   "shot": null
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "teams-cyberpunk",
+   "viewport": null,
+   "status": "pass",
+   "detail": "guide 460px, text median 7.74, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/teams-cyberpunk.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "teams-cyberpunk",
+   "viewport": null,
+   "status": "pass",
+   "detail": "12 header buttons hittable (guide docked)",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/teams-cyberpunk.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "teams-cyberpunk",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "17 modules in config, no module errors",
+   "shot": null
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "guide 460px, text median 7.78, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/lcars-tng.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "12 header buttons hittable (guide docked)",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/lcars-tng.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "17 modules in config, no module errors",
+   "shot": null
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "guide 460px, text median 11.48, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/win311-default.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 header buttons hittable (guide docked)",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/win311-default.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "win311-default",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "kde-breeze-dark",
+   "viewport": null,
+   "status": "skip",
+   "detail": "environment: homeserver rate limit (429) during the parallel test load, not a module error. 17 modules; pageerror: MatrixError: [429] Too Many Requests (https://matrix.datanauten.de/_matrix/client/v3/profile/%40themes-mira%3Adatanauten.de)",
+   "shot": "recordings/tests/MOD-01/functional-prod-modules/kde-breeze-dark.png"
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "kde-breeze-dark",
+   "viewport": null,
+   "status": "pass",
+   "detail": "guide 460px, text median 6.64, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/kde-breeze-dark.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "kde-breeze-dark",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 header buttons hittable (guide docked)",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/kde-breeze-dark.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "kde-breeze-dark",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "e-aurora",
+   "viewport": null,
+   "status": "skip",
+   "detail": "environment: homeserver rate limit (429) during the parallel test load, not a module error. 17 modules; pageerror: MatrixError: [429] Too Many Requests (https://matrix.datanauten.de/_matrix/client/v3/profile/%40themes-mira%3Adatanauten.de)",
+   "shot": "recordings/tests/MOD-01/functional-prod-modules/e-aurora.png"
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "e-aurora",
+   "viewport": null,
+   "status": "pass",
+   "detail": "guide 460px, text median 6.09, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/e-aurora.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "e-aurora",
+   "viewport": null,
+   "status": "pass",
+   "detail": "12 header buttons hittable (guide docked)",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/e-aurora.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "e-aurora",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "opendesk-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "17 modules in config, no module errors",
+   "shot": null
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "opendesk-light",
+   "viewport": null,
+   "status": "fail",
+   "detail": "guide close covered by div tl-overlay-root",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/opendesk-light.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "opendesk-light",
+   "viewport": null,
+   "status": "fail",
+   "detail": "1/13: 4 members: covered by p teams-welcome-root",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/opendesk-light.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "opendesk-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "17 modules in config, no module errors",
+   "shot": null
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "guide 460px, text median 4.54, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/paper-white-invisible.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "12 header buttons hittable (guide docked)",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/paper-white-invisible.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "17 modules in config, no module errors",
+   "shot": null
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "report",
+   "detail": "guide 460px, text median 2.1, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/sketch-unreadable.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "12 header buttons hittable (guide docked)",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/sketch-unreadable.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "sketch-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "comic-unreadable",
+   "viewport": null,
+   "status": "skip",
+   "detail": "environment: homeserver rate limit (429) during the parallel test load, not a module error. 17 modules; pageerror: MatrixError: [429] Too Many Requests (https://matrix.datanauten.de/_matrix/client/v3/profile/%40themes-mira%3Adatanauten.de)",
+   "shot": "recordings/tests/MOD-01/functional-prod-modules/comic-unreadable.png"
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "comic-unreadable",
+   "viewport": null,
+   "status": "report",
+   "detail": "guide 460px, text median 2.34, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/comic-unreadable.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "comic-unreadable",
+   "viewport": null,
+   "status": "report",
+   "detail": "1/13: 4 members: covered by h2 teams-welcome-root",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/comic-unreadable.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "comic-unreadable",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  },
+  {
+   "case": "MOD-01",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "17 modules in config, no module errors",
+   "shot": null
+  },
+  {
+   "case": "MOD-02",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "guide 460px, text median 7.78, close hittable",
+   "shot": "recordings/tests/MOD-02/functional-prod-modules/x-win311-lcars.png"
+  },
+  {
+   "case": "HDR-06",
+   "prio": "P1",
+   "area": "header",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 header buttons hittable (guide docked)",
+   "shot": "recordings/tests/HDR-06/functional-prod-modules/x-win311-lcars.png"
+  },
+  {
+   "case": "MOD-05",
+   "prio": "P1",
+   "area": "modules",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "Themes + Modules tabs, theme-loader listed",
+   "shot": null
+  }
+ ],
+ "supersedes": "functional-prod-sample"
+}

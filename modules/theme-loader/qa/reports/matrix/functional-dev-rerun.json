@@ -1,0 +1,6605 @@
+{
+ "run": "functional-dev-rerun",
+ "base": "http://localhost:5400",
+ "started": "2026-11-15T13:35:45.100Z",
+ "mobileDist": "73a3e17886b4",
+ "tier": "p1",
+ "send": false,
+ "sendExtra": false,
+ "mobileModule": false,
+ "themes": 14,
+ "finished": "2026-11-15T13:40:55.221Z",
+ "results": [
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"comic-geocities\",\"f\":\"comic\",\"b\":\"light\"}",
+   "shot": null
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"comic-poster\",\"f\":\"comic\",\"b\":\"light\"}",
+   "shot": null
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"x-teams-sketch\",\"f\":\"crossover\",\"b\":\"light\"}",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"comic-wordart\",\"f\":\"comic\",\"b\":\"light\"}",
+   "shot": null
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 12.15 min 3.72 (n=14, 10 on bg image)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/comic-geocities--home.png",
+   "data": {
+    "n": 14,
+    "min": 3.72,
+    "median": 12.15,
+    "image": 10
+   }
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 3.72",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"x-win311-lcars\",\"f\":\"crossover\",\"b\":\"dark\"}",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "fail",
+   "detail": "roomItem: covered by div left-panel",
+   "shot": "recordings/tests/SHELL-04/functional-dev-rerun/comic-geocities.png"
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 16.85 min 3.72 (n=14)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/comic-poster--home.png",
+   "data": {
+    "n": 14,
+    "min": 3.72,
+    "median": 16.85,
+    "image": 0
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 3.72",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 15.91 min 5.38 (n=14, 14 on bg image)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/x-teams-sketch--home.png",
+   "data": {
+    "n": 14,
+    "min": 5.38,
+    "median": 15.91,
+    "image": 14
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 5.38",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"Theme Lab · Sandbox\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 390, contrast 1",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 16.01 min 9.03 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 16.01 min 10.37 (n=14)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/comic-wordart--home.png",
+   "data": {
+    "n": 14,
+    "min": 10.37,
+    "median": 16.01,
+    "image": 0
+   }
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 14.35 min 14.08 (n=14)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/x-win311-lcars--home.png",
+   "data": {
+    "n": 14,
+    "min": 14.08,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 16.01",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 14.08",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"THEME LAB · SANDBOX\"",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 468, contrast 1",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 19.56 min 16.75 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"Theme Lab · Sandbox\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 180, contrast 15.91",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 15.91 min 6.48 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 21 (rgb(0,0,0) on rgb(255,255,255))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Sign my guestbook!\"",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 16.75 (rgb(0,0,0) on rgb(0,255,255))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"TYPE SOMETHING FUN!!!\"",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"Theme Lab · Sandbox\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 503, contrast 1",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 5.7 min 1.82 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"THEME LAB · SANDBOX\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 732, contrast 9.81",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "4 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 9.81 min 9 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 15.91 (rgb(34,34,34) on rgb(255,255,255))",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 21 (rgb(0,0,0) on rgb(255,255,255))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 bodies; text contrast median 15.37 min 3.84 (n=14)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/comic-geocities.png",
+   "data": {
+    "n": 14,
+    "min": 3.84,
+    "median": 15.37,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "4 bodies; text contrast median 15.3 min 5.32 (n=9)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/comic-poster.png",
+   "data": {
+    "n": 9,
+    "min": 5.32,
+    "median": 15.3,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 14.35 (rgb(255,204,153) on rgb(0,0,0))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "fail",
+   "detail": "action bar covered by button tl-overlay-root",
+   "shot": "recordings/tests/TL-22/functional-dev-rerun/comic-poster.png"
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 11.54 min 3.24 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 3.24,
+    "median": 11.54,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 bodies; text contrast median 13.2 min 3.82 (n=13, 6 on bg image)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/x-teams-sketch.png",
+   "data": {
+    "n": 13,
+    "min": 3.82,
+    "median": 13.2,
+    "image": 6
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 bodies; text contrast median 15.8 min 3.95 (n=14)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/comic-wordart.png",
+   "data": {
+    "n": 14,
+    "min": 3.95,
+    "median": 15.8,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "fail",
+   "detail": "action bar covered by div tl-overlay-root",
+   "shot": "recordings/tests/TL-22/functional-dev-rerun/comic-wordart.png"
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 bodies; text contrast median 7.78 min 5.32 (n=13)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/x-win311-lcars.png",
+   "data": {
+    "n": 13,
+    "min": 5.32,
+    "median": 7.78,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 15.91 min 5.01 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.01,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 19.89 min 18.79 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 18.79,
+    "median": 19.89,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 14.35 min 5.66 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.66,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "fail",
+   "detail": "exception: locator.click: Timeout 5000ms exceeded.",
+   "shot": "recordings/tests/TL-23/functional-dev-rerun/comic-poster.png"
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 15.07 min 14.24 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 14.24,
+    "median": 15.07,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "fail",
+   "detail": "exception: locator.click: Timeout 5000ms exceeded.",
+   "shot": "recordings/tests/TL-23/functional-dev-rerun/comic-wordart.png"
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 19.89 min 18.79 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 18.79,
+    "median": 19.89,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 11.89 min 11.26 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 11.26,
+    "median": 11.89,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 9 bodies median 21 min 20.43 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/comic-geocities.png",
+   "data": {
+    "n": 9,
+    "min": 20.43,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 19.89 min 18.79 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 18.79,
+    "median": 19.89,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 8 bodies median 15.91 min 13.2 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/x-teams-sketch.png",
+   "data": {
+    "n": 9,
+    "min": 13.2,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 21 min 7.46 (n=8, 1 on bg image)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/comic-geocities.png",
+   "data": {
+    "n": 8,
+    "min": 7.46,
+    "median": 21,
+    "image": 1
+   }
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 7 bodies median 16.75 min 16.75 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/comic-poster.png",
+   "data": {
+    "n": 9,
+    "min": 16.75,
+    "median": 16.75,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 15.91 min 6.48 (n=8, 1 on bg image)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/x-teams-sketch.png",
+   "data": {
+    "n": 8,
+    "min": 6.48,
+    "median": 15.91,
+    "image": 1
+   }
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 20.56 min 7.3 (n=5, 5 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 7.3,
+    "median": 20.56,
+    "image": 5
+   }
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 8 bodies median 14.35 min 14.35 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/x-win311-lcars.png",
+   "data": {
+    "n": 9,
+    "min": 14.35,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 8 bodies median 21 min 20.64 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/comic-wordart.png",
+   "data": {
+    "n": 9,
+    "min": 20.64,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 15.91 min 6.48 (n=5, 5 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 6.48,
+    "median": 15.91,
+    "image": 5
+   }
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 21 min 10.97 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/comic-poster.png",
+   "data": {
+    "n": 8,
+    "min": 10.97,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 14.35 min 7.78 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/x-win311-lcars.png",
+   "data": {
+    "n": 8,
+    "min": 7.78,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 16.75 min 8.75 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 8.75,
+    "median": 16.75,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 21 min 10.37 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/comic-wordart.png",
+   "data": {
+    "n": 8,
+    "min": 10.37,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 14.35 min 7.78 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 7.78,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 11.54 min 5.7 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.7,
+    "median": 11.54,
+    "image": 0
+   }
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 21",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 15.91",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 8 bodies median 15.37 min 3.84 (n=15)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/comic-geocities.png",
+   "data": {
+    "n": 15,
+    "min": 3.84,
+    "median": 15.37,
+    "image": 0
+   }
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 11 bodies median 15.37 min 3.84 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/comic-geocities.png",
+   "data": {
+    "n": 15,
+    "min": 3.84,
+    "median": 15.37,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 8 bodies median 13.25 min 3.82 (n=15, 5 on bg image)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/x-teams-sketch.png",
+   "data": {
+    "n": 15,
+    "min": 3.82,
+    "median": 13.25,
+    "image": 5
+   }
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 10 bodies median 13.25 min 3.82 (n=15, 7 on bg image)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/x-teams-sketch.png",
+   "data": {
+    "n": 15,
+    "min": 3.82,
+    "median": 13.25,
+    "image": 7
+   }
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 14.91 min 14.91 (n=1)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 14.91,
+    "median": 14.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13, 4 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 4
+   }
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 19.56",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 15.91 min 15.91 (n=1, 1 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 15.91,
+    "median": 15.91,
+    "image": 1
+   }
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 21, border 2px inset, label median 9.4",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 11.54",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 14.35",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 16.01 (rgb(255,255,255) on rgb(0,0,128))",
+   "shot": null
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 15.91, border 2px solid, label median 5.38",
+   "shot": null
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 21",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 5.38 (rgb(255,255,255) on rgb(101,76,245))",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 9.4 min 9.4 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 9.4,
+    "median": 9.4,
+    "image": 0
+   }
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 15.91",
+   "shot": null
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 21; names median 21 min 21",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/comic-geocities.png"
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 6.48 min 5.38 (n=13, 13 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 5.38,
+    "median": 6.48,
+    "image": 13
+   }
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 21 min 20.43",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/comic-geocities.png"
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 15.91; names median 15.91 min 15.91",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/x-teams-sketch.png"
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 15.91 min 14.47",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/x-teams-sketch.png"
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 6 bodies median 15.3 min 5.32 (n=12)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/comic-poster.png",
+   "data": {
+    "n": 12,
+    "min": 5.32,
+    "median": 15.3,
+    "image": 0
+   }
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 7 bodies median 15.8 min 3.95 (n=14)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/comic-wordart.png",
+   "data": {
+    "n": 14,
+    "min": 3.95,
+    "median": 15.8,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "comic-geocities → comic-wordart → comic-poster → Esc → comic-geocities",
+   "shot": null
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 10 bodies median 15.3 min 5.32 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/comic-poster.png",
+   "data": {
+    "n": 15,
+    "min": 5.32,
+    "median": 15.3,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 6 bodies median 6.86 min 5.32 (n=13)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/x-win311-lcars.png",
+   "data": {
+    "n": 13,
+    "min": 5.32,
+    "median": 6.86,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 10 bodies median 15.8 min 3.95 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/comic-wordart.png",
+   "data": {
+    "n": 15,
+    "min": 3.95,
+    "median": 15.8,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "x-teams-sketch → x-kde-e16 → e16-brushed-metal → Esc → x-teams-sketch",
+   "shot": null
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 10 bodies median 14.35 min 5.32 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/x-win311-lcars.png",
+   "data": {
+    "n": 15,
+    "min": 5.32,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 3.59 min 3.59 (n=1, 1 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 3.59,
+    "median": 3.59,
+    "image": 1
+   }
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "comic-geocities",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 11.54; page text median 9.42",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/comic-geocities.png"
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "report",
+   "detail": "dialog title contrast median 1 min 1 (n=1, 1 on bg image)",
+   "shot": "recordings/tests/DLG-01/functional-dev-rerun/comic-wordart.png",
+   "data": {
+    "n": 1,
+    "min": 1,
+    "median": 1,
+    "image": 1
+   }
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 19.56, border 3px solid, label median 8.98",
+   "shot": null
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 9.81 min 9.81 (n=1)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 9.81,
+    "median": 9.81,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "x-teams-sketch",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 5.38; page text median 6.48",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/x-teams-sketch.png"
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 3.59 (rgb(255,255,0) on rgb(255,0,102))",
+   "shot": null
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 11.54, border 1px solid, label median 8.74",
+   "shot": null
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 11.54 (rgb(0,0,0) on rgb(192,192,192))",
+   "shot": null
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 21",
+   "shot": null
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 14.35, border 1px solid, label median 7.78",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 10.97 min 6.7 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 6.7,
+    "median": 10.97,
+    "image": 0
+   }
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 9.81 (rgb(0,0,0) on rgb(255,153,0))",
+   "shot": null
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 21",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 11.54 min 11.54 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 11.54,
+    "median": 11.54,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 21; names median 21 min 21",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/comic-poster.png"
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 14.35",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 7.78 min 7.78 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 7.78,
+    "median": 7.78,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 11.54; names median 11.54 min 11.54",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/comic-wordart.png"
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 21 min 19.56",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/comic-poster.png"
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "fail",
+   "detail": "75 items; name contrast median 11.54 min 1.31",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/comic-wordart.png"
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 14.35; names median 14.35 min 14.35",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/x-win311-lcars.png"
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 14.35 min 11.71",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/x-win311-lcars.png"
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"e-neon-steel\",\"f\":\"enlightenment\",\"b\":\"dark\"}",
+   "shot": null
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "comic-poster → comic-unreadable → comic-after-midnight → Esc → comic-poster",
+   "shot": null
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "comic-wordart → comic-poster → comic-unreadable → Esc → comic-wordart",
+   "shot": null
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 13.69 min 11.84 (n=14, 10 on bg image)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/e-neon-steel--home.png",
+   "data": {
+    "n": 14,
+    "min": 11.84,
+    "median": 13.69,
+    "image": 10
+   }
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 11.84",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"e-daylight\",\"f\":\"enlightenment\",\"b\":\"light\"}",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"THEME LAB · SANDBOX\"",
+   "shot": null
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "x-win311-lcars → x-teams-sketch → x-kde-e16 → Esc → x-win311-lcars",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 475, contrast 16.73",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 6.76 min 5.21 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 12.31 min 6.44 (n=14)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/e-daylight--home.png",
+   "data": {
+    "n": 14,
+    "min": 6.44,
+    "median": 12.31,
+    "image": 0
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 6.44",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 14.84 (rgb(214,226,245) on rgb(10,13,22))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"Theme Lab · Sandbox\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 513, contrast 14.1",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 6.22 min 4.43 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "comic-poster",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 3.59; page text median 5.05",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/comic-poster.png"
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 17.65 (rgb(21,25,30) on rgb(255,255,255))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "comic-wordart",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 11.54; page text median 5.7",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/comic-wordart.png"
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 bodies; text contrast median 14.7 min 5.1 (n=15, 14 on bg image)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/e-neon-steel.png",
+   "data": {
+    "n": 15,
+    "min": 5.1,
+    "median": 14.7,
+    "image": 14
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "x-win311-lcars",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 9.81; page text median 7.78",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/x-win311-lcars.png"
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 bodies; text contrast median 14.1 min 3.48 (n=15)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/e-daylight.png",
+   "data": {
+    "n": 15,
+    "min": 3.48,
+    "median": 14.1,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 13 min 5.01 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.01,
+    "median": 13,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 16.18 min 6.03 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 6.03,
+    "median": 16.18,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 9.13 min 6.24 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 6.24,
+    "median": 9.13,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 9.77 min 8.69 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 8.69,
+    "median": 9.77,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"lcars-tng\",\"f\":\"lcars\",\"b\":\"dark\"}",
+   "shot": null
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 9 bodies median 13.67 min 13.67 (n=9, 9 on bg image)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/e-neon-steel.png",
+   "data": {
+    "n": 9,
+    "min": 13.67,
+    "median": 13.67,
+    "image": 9
+   }
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"e17-glow\",\"f\":\"enlightenment\",\"b\":\"dark\"}",
+   "shot": null
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 9 bodies median 12.31 min 12.31 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/e-daylight.png",
+   "data": {
+    "n": 9,
+    "min": 12.31,
+    "median": 12.31,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"lcars-picard\",\"f\":\"lcars\",\"b\":\"dark\"}",
+   "shot": null
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 9 min 7.78 (n=14)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/lcars-tng--home.png",
+   "data": {
+    "n": 14,
+    "min": 7.78,
+    "median": 9,
+    "image": 0
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 9",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 9.74 min 4.48 (n=8, 1 on bg image)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/e-neon-steel.png",
+   "data": {
+    "n": 8,
+    "min": 4.48,
+    "median": 9.74,
+    "image": 1
+   }
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 15.44 min 6.04 (n=14, 10 on bg image)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/e17-glow--home.png",
+   "data": {
+    "n": 14,
+    "min": 6.04,
+    "median": 15.44,
+    "image": 10
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 6.04",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 16.18 min 7.14 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/e-daylight.png",
+   "data": {
+    "n": 8,
+    "min": 7.14,
+    "median": 16.18,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 13.67 min 6.28 (n=5, 5 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 6.28,
+    "median": 13.67,
+    "image": 5
+   }
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 12.31 min 5.43 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.43,
+    "median": 12.31,
+    "image": 0
+   }
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 14.32 min 5.26 (n=14, 10 on bg image)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/lcars-picard--home.png",
+   "data": {
+    "n": 14,
+    "min": 5.26,
+    "median": 14.32,
+    "image": 10
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 5.26",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"THEME LAB · SANDBOX\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 601, contrast 9.81",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "5 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 9 min 8.35 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"Theme Lab · Sandbox\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 509, contrast 19.74",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 7.55 min 6.02 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 14.35 (rgb(255,204,153) on rgb(0,0,0))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 14.5 (rgb(230,230,230) on rgb(22,22,22))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"THEME LAB · SANDBOX\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 639, contrast 7.54",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "5 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 14.32 min 14.32 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 13",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 14.32 (rgb(210,213,223) on rgb(0,0,0))",
+   "shot": null
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 bodies; text contrast median 14.5 min 4.58 (n=15, 9 on bg image)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/e17-glow.png",
+   "data": {
+    "n": 15,
+    "min": 4.58,
+    "median": 14.5,
+    "image": 9
+   }
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 bodies; text contrast median 14.35 min 4.97 (n=14)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/lcars-tng.png",
+   "data": {
+    "n": 14,
+    "min": 4.97,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 14.35 min 5.82 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.82,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 14.35 min 5.66 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.66,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 bodies; text contrast median 14.32 min 3.47 (n=15)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/lcars-picard.png",
+   "data": {
+    "n": 15,
+    "min": 3.47,
+    "median": 14.32,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 7.21 min 7.14 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 7.14,
+    "median": 7.21,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 14.32 min 5.26 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.26,
+    "median": 14.32,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 11.89 min 11.26 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 11.26,
+    "median": 11.89,
+    "image": 0
+   }
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 8 bodies median 11.47 min 5.1 (n=15, 5 on bg image)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/e-neon-steel.png",
+   "data": {
+    "n": 15,
+    "min": 5.1,
+    "median": 11.47,
+    "image": 5
+   }
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 9 bodies median 15.01 min 15.01 (n=9, 9 on bg image)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/e17-glow.png",
+   "data": {
+    "n": 9,
+    "min": 15.01,
+    "median": 15.01,
+    "image": 9
+   }
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 11.87 min 11.24 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 11.24,
+    "median": 11.87,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 11 bodies median 14.7 min 5.1 (n=15, 14 on bg image)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/e-neon-steel.png",
+   "data": {
+    "n": 15,
+    "min": 5.1,
+    "median": 14.7,
+    "image": 14
+   }
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 8 bodies median 14.35 min 14.35 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/lcars-tng.png",
+   "data": {
+    "n": 9,
+    "min": 14.35,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 10.12 min 4.83 (n=8, 1 on bg image)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/e17-glow.png",
+   "data": {
+    "n": 8,
+    "min": 4.83,
+    "median": 10.12,
+    "image": 1
+   }
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 16.18",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 15.01 min 7.16 (n=5, 5 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 7.16,
+    "median": 15.01,
+    "image": 5
+   }
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 14.35 min 14.35 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/lcars-tng.png",
+   "data": {
+    "n": 8,
+    "min": 14.35,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 9 bodies median 14.32 min 14.32 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/lcars-picard.png",
+   "data": {
+    "n": 9,
+    "min": 14.32,
+    "median": 14.32,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 14.79 min 14.79 (n=1, 1 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 14.79,
+    "median": 14.79,
+    "image": 1
+   }
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 14.35 min 7.78 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 7.78,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 14.32 min 14.32 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/lcars-picard.png",
+   "data": {
+    "n": 8,
+    "min": 14.32,
+    "median": 14.32,
+    "image": 0
+   }
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 14.84, border 1px solid, label median 6.82",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 11.84 (rgb(3,20,26) on rgb(51,224,255))",
+   "shot": null
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 14.32 min 8.54 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 8.54,
+    "median": 14.32,
+    "image": 0
+   }
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 9.74",
+   "shot": null
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "fail",
+   "detail": "results 24, inViewport false",
+   "shot": "recordings/tests/CMP-05/functional-dev-rerun/lcars-tng.png"
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 5.98 min 5.98 (n=13, 1 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 5.98,
+    "median": 5.98,
+    "image": 1
+   }
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 8 bodies median 13.7 min 3.48 (n=15)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/e-daylight.png",
+   "data": {
+    "n": 15,
+    "min": 3.48,
+    "median": 13.7,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 14.41; names median 14.41 min 14.41",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/e-neon-steel.png"
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 13 min 13",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/e-neon-steel.png"
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 11 bodies median 14.1 min 3.48 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/e-daylight.png",
+   "data": {
+    "n": 15,
+    "min": 3.48,
+    "median": 14.1,
+    "image": 0
+   }
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 14.35",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 14.32",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 16.18 min 16.18 (n=1, 1 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 16.18,
+    "median": 16.18,
+    "image": 1
+   }
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "e-neon-steel → e-usable → e-daylight → Esc → e-neon-steel",
+   "shot": null
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 17.65, border 1px solid, label median 7.79",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 13.49",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 1.09 (rgb(255,255,255) on rgb(244,245,247))",
+   "shot": null
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 16.18",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 7.14 min 7.14 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 7.14,
+    "median": 7.14,
+    "image": 0
+   }
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 14.1; names median 14.1 min 14.1",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/e-daylight.png"
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "e-neon-steel",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 11.84; page text median 6.22",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/e-neon-steel.png"
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 8 bodies median 12.49 min 4.97 (n=15)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/lcars-tng.png",
+   "data": {
+    "n": 15,
+    "min": 4.97,
+    "median": 12.49,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 16.18 min 16.18",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/e-daylight.png"
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 8 bodies median 12.46 min 3.15 (n=15)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/lcars-picard.png",
+   "data": {
+    "n": 15,
+    "min": 3.15,
+    "median": 12.46,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 11 bodies median 14.35 min 4.97 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/lcars-tng.png",
+   "data": {
+    "n": 15,
+    "min": 4.97,
+    "median": 14.35,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 8 bodies median 14.5 min 4.58 (n=15, 9 on bg image)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/e17-glow.png",
+   "data": {
+    "n": 15,
+    "min": 4.58,
+    "median": 14.5,
+    "image": 9
+   }
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 11 bodies median 14.32 min 3.47 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/lcars-picard.png",
+   "data": {
+    "n": 15,
+    "min": 3.47,
+    "median": 14.32,
+    "image": 0
+   }
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "e-daylight → kde-breeze-light → kde-breeze-dark → Esc → e-daylight",
+   "shot": null
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 11 bodies median 14.5 min 4.58 (n=15, 9 on bg image)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/e17-glow.png",
+   "data": {
+    "n": 15,
+    "min": 4.58,
+    "median": 14.5,
+    "image": 9
+   }
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"lcars-lower-decks\",\"f\":\"lcars\",\"b\":\"dark\"}",
+   "shot": null
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 9.81 min 9.81 (n=1)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 9.81,
+    "median": 9.81,
+    "image": 0
+   }
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 9.73 min 6.92 (n=14)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/lcars-lower-decks--home.png",
+   "data": {
+    "n": 14,
+    "min": 6.92,
+    "median": 9.73,
+    "image": 0
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 9.73",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 16.84 min 16.84 (n=1, 1 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 16.84,
+    "median": 16.84,
+    "image": 1
+   }
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 7.54 min 7.54 (n=1)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 7.54,
+    "median": 7.54,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 14.35, border 2px solid, label median 7.78",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "e-daylight",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 1.09; page text median 7.14",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/e-daylight.png"
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 14.5, border 1px solid, label median 6.92",
+   "shot": null
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 9.81 (rgb(0,0,0) on rgb(255,153,0))",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 16.84 (rgb(255,255,255) on rgb(25,29,37))",
+   "shot": null
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 14.32, border 2px solid, label median 8.54",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"THEME LAB · SANDBOX\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 581, contrast 8.61",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "5 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "icon contrast median 8.61 min 5.39 (n=6)",
+   "shot": null
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 7.54 (rgb(0,0,0) on rgb(55,166,209))",
+   "shot": null
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 10.12",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 6.44 min 6.44 (n=13, 1 on bg image)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 6.44,
+    "median": 6.44,
+    "image": 1
+   }
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 14.35",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 13.74 (rgb(255,238,204) on rgb(26,33,64))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 9.81 min 7.78 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 7.78,
+    "median": 9.81,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 12.13; names median 12.13 min 12.13",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/e17-glow.png"
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 13.49 min 13.49",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/e17-glow.png"
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 14.32",
+   "shot": null
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 14.35; names median 14.35 min 14.35",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/lcars-tng.png"
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"paper-white-quiet\",\"f\":\"paper\",\"b\":\"light\"}",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 14.32 min 7.54 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 7.54,
+    "median": 14.32,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 bodies; text contrast median 12.24 min 3.98 (n=14)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/lcars-lower-decks.png",
+   "data": {
+    "n": 14,
+    "min": 3.98,
+    "median": 12.24,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 14.35 min 14.35",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/lcars-tng.png"
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 14.32; names median 14.32 min 14.32",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/lcars-picard.png"
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 5.19 min 5.19 (n=14)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/paper-white-quiet--home.png",
+   "data": {
+    "n": 14,
+    "min": 5.19,
+    "median": 5.19,
+    "image": 0
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 5.19",
+   "shot": null
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 16.1 min 5.33 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.33,
+    "median": 16.1,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "e17-glow → e-current → e-aurora → Esc → e17-glow",
+   "shot": null
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 14.32 min 14.32",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/lcars-picard.png"
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"Theme Lab · Sandbox\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 658, contrast 16.94",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "5 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "lcars-tng → lcars-voyager → lcars-picard → Esc → lcars-tng",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "report",
+   "detail": "no svg icons found (theme draws icons differently; verify visually)",
+   "shot": "recordings/tests/ICO-01/functional-dev-rerun/paper-white-quiet.png"
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 15.21 min 14.41 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 14.41,
+    "median": 15.21,
+    "image": 0
+   }
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 16.94 (rgb(26,26,26) on rgb(252,252,250))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "lcars-picard → lcars-usable → lcars-red-alert → Esc → lcars-picard",
+   "shot": null
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "e17-glow",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 16.7; page text median 6.95",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/e17-glow.png"
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 bodies; text contrast median 5.19 min 3.84 (n=13)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/paper-white-quiet.png",
+   "data": {
+    "n": 13,
+    "min": 3.84,
+    "median": 5.19,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 8 bodies median 16.1 min 16.1 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/lcars-lower-decks.png",
+   "data": {
+    "n": 9,
+    "min": 16.1,
+    "median": 16.1,
+    "image": 0
+   }
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "lcars-tng",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 9.81; page text median 9.81",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/lcars-tng.png"
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 16.94 min 6.36 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 6.36,
+    "median": 16.94,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 16.1 min 16.1 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/lcars-lower-decks.png",
+   "data": {
+    "n": 8,
+    "min": 16.1,
+    "median": 16.1,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 5.19 min 4.84 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 4.84,
+    "median": 5.19,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 16.1 min 9.58 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 9.58,
+    "median": 16.1,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"teams-2026-light\",\"f\":\"teams\",\"b\":\"light\"}",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "lcars-picard",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 7.54; page text median 7.54",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/lcars-picard.png"
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 7 bodies median 5.19 min 5.19 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/paper-white-quiet.png",
+   "data": {
+    "n": 9,
+    "min": 5.19,
+    "median": 5.19,
+    "image": 0
+   }
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "11 rooms; name contrast median 14.24 min 5.38 (n=14)",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/teams-2026-light--home.png",
+   "data": {
+    "n": 14,
+    "min": 5.38,
+    "median": 14.24,
+    "image": 0
+   }
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 badges, count contrast median 5.38",
+   "shot": null
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "SHELL-01",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-01",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "{\"t\":\"paper-white-invisible\",\"f\":\"paper\",\"b\":\"light\"}",
+   "shot": null
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "fail",
+   "detail": "results 24, inViewport false",
+   "shot": "recordings/tests/CMP-05/functional-dev-rerun/lcars-lower-decks.png"
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 16.94 min 5.19 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/paper-white-quiet.png",
+   "data": {
+    "n": 8,
+    "min": 5.19,
+    "median": 16.94,
+    "image": 0
+   }
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "header \"Theme Lab · Sandbox\"",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 177, contrast 15.52",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "report",
+   "detail": "svg icons transparent (icon drawn via CSS mask/background; verify visually)",
+   "shot": "recordings/tests/ICO-01/functional-dev-rerun/teams-2026-light.png"
+  },
+  {
+   "case": "RL-01",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "report",
+   "detail": "11 rooms; name contrast: no visible text",
+   "shot": "recordings/tests/RL-01/functional-dev-rerun/paper-white-invisible--home.png"
+  },
+  {
+   "case": "BDG-01",
+   "prio": "P1",
+   "area": "badges",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "report",
+   "detail": "no visible unread badges (seed.py unread?)",
+   "shot": "recordings/tests/BDG-01/functional-dev-rerun/paper-white-invisible.png"
+  },
+  {
+   "case": "SHELL-04",
+   "prio": "P0",
+   "area": "shell",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "report",
+   "detail": "roomItem: not visible; userMenu: not visible; space: not visible",
+   "shot": "recordings/tests/SHELL-04/functional-dev-rerun/paper-white-invisible.png"
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 16.94 min 5.19 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 5.19,
+    "median": 16.94,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 15.52 (rgb(36,36,36) on rgb(255,255,255))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 16.1",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 bodies; text contrast median 14.24 min 3.62 (n=14)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/teams-2026-light.png",
+   "data": {
+    "n": 14,
+    "min": 3.62,
+    "median": 14.24,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 16.94",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 15.52 min 7.12 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 7.12,
+    "median": 15.52,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 10.05 min 10.05 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 10.05,
+    "median": 10.05,
+    "image": 0
+   }
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "RL-02",
+   "prio": "P0",
+   "area": "roomlist",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "report",
+   "detail": "exception: locator.click: Timeout 8000ms exceeded.",
+   "shot": "recordings/tests/RL-02/functional-dev-rerun/paper-white-invisible.png"
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "HDR-01",
+   "prio": "P1",
+   "area": "header",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "width 1098, contrast 4.54",
+   "shot": null
+  },
+  {
+   "case": "HDR-02",
+   "prio": "P1",
+   "area": "header",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "5 buttons hittable",
+   "shot": null
+  },
+  {
+   "case": "ICO-01",
+   "prio": "P1",
+   "area": "icons",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "report",
+   "detail": "no svg icons found (theme draws icons differently; verify visually)",
+   "shot": "recordings/tests/ICO-01/functional-dev-rerun/paper-white-invisible.png"
+  },
+  {
+   "case": "THM-06",
+   "prio": "P1",
+   "area": "theme",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 10 bodies median 15.52 min 15.52 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/teams-2026-light.png",
+   "data": {
+    "n": 9,
+    "min": 15.52,
+    "median": 15.52,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 8 bodies median 15.97 min 3.98 (n=15)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/lcars-lower-decks.png",
+   "data": {
+    "n": 15,
+    "min": 3.98,
+    "median": 15.97,
+    "image": 0
+   }
+  },
+  {
+   "case": "CMP-01",
+   "prio": "P0",
+   "area": "composer",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "typed text contrast 15.91 (rgb(34,34,34) on rgb(255,255,255))",
+   "shot": null
+  },
+  {
+   "case": "CMP-03",
+   "prio": "P2",
+   "area": "composer",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "placeholder \"Send an unencrypted message…\"",
+   "shot": null
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 15.52 min 6.19 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/teams-2026-light.png",
+   "data": {
+    "n": 8,
+    "min": 6.19,
+    "median": 15.52,
+    "image": 0
+   }
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 11 bodies median 16.1 min 3.98 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/lcars-lower-decks.png",
+   "data": {
+    "n": 15,
+    "min": 3.98,
+    "median": 16.1,
+    "image": 0
+   }
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 15.52 min 6.19 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 6.19,
+    "median": 15.52,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 6 bodies median 5.19 min 3.84 (n=13)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/paper-white-quiet.png",
+   "data": {
+    "n": 13,
+    "min": 3.84,
+    "median": 5.19,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-01",
+   "prio": "P0",
+   "area": "timeline",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "6 bodies; text contrast median 15.91 min 3.95 (n=13)",
+   "shot": "recordings/tests/TL-01/functional-dev-rerun/paper-white-invisible.png",
+   "data": {
+    "n": 13,
+    "min": 3.95,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "SHELL-02",
+   "prio": "P1",
+   "area": "shell",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-22",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 10 bodies median 5.19 min 3.84 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/paper-white-quiet.png",
+   "data": {
+    "n": 15,
+    "min": 3.84,
+    "median": 5.19,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-23",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "menu item contrast median 15.91 min 6.54 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 6.54,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 8.61 min 8.61 (n=1)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 8.61,
+    "median": 8.61,
+    "image": 0
+   }
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-10",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "8 pills; count contrast median 15.91 min 15.24 (n=16)",
+   "shot": null,
+   "data": {
+    "n": 16,
+    "min": 15.24,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 16.94 min 16.94 (n=1)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 16.94,
+    "median": 16.94,
+    "image": 0
+   }
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 16.1, border 2px solid, label median 9.58",
+   "shot": null
+  },
+  {
+   "case": "TL-11",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 8.61 (rgb(14,19,38) on rgb(255,153,17))",
+   "shot": null
+  },
+  {
+   "case": "RP-01",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "thread 7 bodies median 15.91 min 15.91 (n=9)",
+   "shot": "recordings/tests/RP-01/functional-dev-rerun/paper-white-invisible.png",
+   "data": {
+    "n": 9,
+    "min": 15.91,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 16.94, border 0px none, label median 5.19",
+   "shot": null
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 16.1",
+   "shot": null
+  },
+  {
+   "case": "RP-02",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "room info contrast median 15.91 min 4.54 (n=8)",
+   "shot": "recordings/tests/RP-02/functional-dev-rerun/paper-white-invisible.png",
+   "data": {
+    "n": 8,
+    "min": 4.54,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 8.61 min 4.27 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 4.27,
+    "median": 8.61,
+    "image": 0
+   }
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 16.94 (rgb(252,252,250) on rgb(26,26,26))",
+   "shot": null
+  },
+  {
+   "case": "RP-03",
+   "prio": "P1",
+   "area": "rightpanel",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "28 members median 4.54 min 4.54 (n=5)",
+   "shot": null,
+   "data": {
+    "n": 5,
+    "min": 4.54,
+    "median": 4.54,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 16.1; names median 16.1 min 16.1",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/lcars-lower-decks.png"
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 16.94",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 5.19 min 5.19 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 5.19,
+    "median": 5.19,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 16.1 min 16.1",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/lcars-lower-decks.png"
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 16.94; names median 16.94 min 16.94",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/paper-white-quiet.png"
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 16.94 min 16.94",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/paper-white-quiet.png"
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "lcars-lower-decks → lcars-daylight → opendesk-light → Esc → lcars-lower-decks",
+   "shot": null
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 15.52",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "paper-white-quiet → paper-white-invisible → paper-black → Esc → paper-white-quiet",
+   "shot": null
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "lcars-lower-decks",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 8.61; page text median 8.61",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/lcars-lower-decks.png"
+  },
+  {
+   "case": "CMP-05",
+   "prio": "P1",
+   "area": "composer",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "24 results",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "paper-white-quiet",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 16.94; page text median 5.19",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/paper-white-quiet.png"
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 8 bodies median 13.08 min 3.62 (n=15)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/teams-2026-light.png",
+   "data": {
+    "n": 15,
+    "min": 3.62,
+    "median": 13.08,
+    "image": 0
+   }
+  },
+  {
+   "case": "NAV-01",
+   "prio": "P1",
+   "area": "navigation",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "spotlight contrast median 15.91",
+   "shot": null
+  },
+  {
+   "case": "INP-05",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "via NAV-01",
+   "shot": null
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 11 bodies median 14.49 min 3.62 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/teams-2026-light.png",
+   "data": {
+    "n": 15,
+    "min": 3.62,
+    "median": 14.49,
+    "image": 0
+   }
+  },
+  {
+   "case": "E2E-01",
+   "prio": "P1",
+   "area": "e2ee",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "7 decrypted bodies",
+   "shot": null
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 15.52 min 15.52 (n=1)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 15.52,
+    "median": 15.52,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 15.52, border 1px solid, label median 6.6",
+   "shot": null
+  },
+  {
+   "case": "SCR-02",
+   "prio": "P1",
+   "area": "scrollbars",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 5.38 (rgb(255,255,255) on rgb(91,95,199))",
+   "shot": null
+  },
+  {
+   "case": "TL-03",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "bubble: 6 bodies median 15.91 min 3.95 (n=13)",
+   "shot": "recordings/tests/TL-03/functional-dev-rerun/paper-white-invisible.png",
+   "data": {
+    "n": 13,
+    "min": 3.95,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "All settings contrast 15.52",
+   "shot": null
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 10.05 min 10.05 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 10.05,
+    "median": 10.05,
+    "image": 0
+   }
+  },
+  {
+   "case": "TL-04",
+   "prio": "P1",
+   "area": "timeline",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "irc: 10 bodies median 15.91 min 3.95 (n=15)",
+   "shot": "recordings/tests/TL-04/functional-dev-rerun/paper-white-invisible.png",
+   "data": {
+    "n": 15,
+    "min": 3.95,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 15.52; names median 15.52 min 15.52",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/teams-2026-light.png"
+  },
+  {
+   "case": "MOT-01",
+   "prio": "P1",
+   "area": "motion",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 15.52 min 15.52",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/teams-2026-light.png"
+  },
+  {
+   "case": "A11Y-04",
+   "prio": "P2",
+   "area": "a11y",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "forced-colors body contrast median 21 min 21 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 21,
+    "median": 21,
+    "image": 0
+   }
+  },
+  {
+   "case": "DLG-01",
+   "prio": "P0",
+   "area": "dialogs",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "dialog title contrast median 15.91 min 15.91 (n=1)",
+   "shot": null,
+   "data": {
+    "n": 1,
+    "min": 15.91,
+    "median": 15.91,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "teams-2026-light → teams-2026-dark → teams-2026-daylight → Esc → teams-2026-light",
+   "shot": null
+  },
+  {
+   "case": "DLG-02",
+   "prio": "P1",
+   "area": "dialogs",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "INP-01",
+   "prio": "P1",
+   "area": "inputs",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "input text contrast 15.91, border 0px none, label median 4.54",
+   "shot": null
+  },
+  {
+   "case": "BTN-01",
+   "prio": "P1",
+   "area": "buttons",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "primary label contrast 15.91 (rgb(255,255,255) on rgb(34,34,34))",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "teams-2026-light",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 5.38; page text median 6.19",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/teams-2026-light.png"
+  },
+  {
+   "case": "MENU-01",
+   "prio": "P0",
+   "area": "menus",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "fail",
+   "detail": "exception: locator.click: Timeout 6000ms exceeded.",
+   "shot": "recordings/tests/MENU-01/functional-dev-rerun/paper-white-invisible.png"
+  },
+  {
+   "case": "SET-01",
+   "prio": "P1",
+   "area": "settings",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "13 tabs median 4.54 min 4.54 (n=13)",
+   "shot": null,
+   "data": {
+    "n": 13,
+    "min": 4.54,
+    "median": 4.54,
+    "image": 0
+   }
+  },
+  {
+   "case": "THM-04",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 cards; default card contrast 15.91; names median 15.91 min 15.91",
+   "shot": "recordings/tests/THM-04/functional-dev-rerun/paper-white-invisible.png"
+  },
+  {
+   "case": "THM-02",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "75 items; name contrast median 15.91 min 15.91",
+   "shot": "recordings/tests/THM-02/functional-dev-rerun/paper-white-invisible.png"
+  },
+  {
+   "case": "THM-03",
+   "prio": "P0",
+   "area": "theme",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "paper-white-invisible → paper-black → paper-black-quiet → Esc → paper-white-invisible",
+   "shot": null
+  },
+  {
+   "case": "AUTH-01",
+   "prio": "P0",
+   "area": "auth",
+   "theme": "paper-white-invisible",
+   "viewport": null,
+   "status": "pass",
+   "detail": "button label contrast 15.91; page text median 4.54",
+   "shot": "recordings/tests/AUTH-01/functional-dev-rerun/paper-white-invisible.png"
+  }
+ ],
+ "supersedes": "functional-dev-all"
+}
