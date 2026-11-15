@@ -5,7 +5,7 @@
   "stage": "past",
   "reportOnly": false,
   "base": "http://localhost:5400",
-  "started": "2026-11-15T03:55:42.371Z",
+  "started": "2026-11-15T04:46:44.350Z",
   "views": {
     "home": {
       "axe": [
@@ -70,18 +70,6 @@
     "bubble": {
       "axe": [
         {
-          "id": "color-contrast",
-          "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 1,
-          "samples": [
-            {
-              "target": ".mx_MNoticeBody > .translate.mx_EventTile_body[dir=\"auto\"]",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 4.22 (foreground color: #b4d4d2, background color: #2c6563, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          ]
-        },
-        {
           "id": "nested-interactive",
           "impact": "serious",
           "help": "Interactive controls must not be nested",
@@ -104,11 +92,11 @@
           "count": 2,
           "samples": [
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\38  > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 7 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\39  > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -158,26 +146,26 @@
     "thread": {
       "axe": [
         {
-          "id": "color-contrast",
+          "id": "aria-prohibited-attr",
           "impact": "serious",
-          "help": "Elements must meet minimum color contrast ratio thresholds",
-          "count": 5,
+          "help": "Elements must only use permitted ARIA attributes",
+          "count": 4,
           "samples": [
             {
-              "target": "._repliesAmount_60abi_66",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 1.06 (foreground color: #b4d4d2, background color: #c8c8c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "target": "span[title=\"@themes-mira:datanauten.de\"][data-color=\"3\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             },
             {
-              "target": "._sender_60abi_47",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 1.06 (foreground color: #b4d4d2, background color: #c8c8c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "target": "span[title=\"@themes-jonas:datanauten.de\"][data-color=\"3\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             },
             {
-              "target": "._content_60abi_9",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 1.06 (foreground color: #b4d4d2, background color: #c8c8c6, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "target": "span[title=\"@themes-lena:datanauten.de\"][data-color=\"6\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             },
             {
-              "target": "#\\32 7 > ._slotTimestamp_t6spj_114[data-testid=\"event-tile-slot-timestamp\"] > .mx_MessageTimestamp._content_1jaux_8",
-              "summary": "Fix any of the following:   Element has insufficient color contrast of 1.06 (foreground color: #b4d4d2, background color: #c8c8c6, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "target": ".mx_GenericEventListSummary_avatars > span[title=\"@themes-theo:datanauten.de\"][data-color=\"4\"][aria-label=\"Profile picture\"]",
+              "summary": "Fix all of the following:   aria-label attribute cannot be used on a span with no valid role attribute."
             }
           ]
         },
@@ -201,18 +189,22 @@
           "id": "scrollable-region-focusable",
           "impact": "serious",
           "help": "Scrollable region must have keyboard access",
-          "count": 3,
+          "count": 4,
           "samples": [
             {
-              "target": "#\\31 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\32 9 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\32 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\33 0 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             },
             {
-              "target": "#\\31 6 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "target": "#\\33 1 > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
+              "summary": "Fix any of the following:   Element should have focusable content"
+            },
+            {
+              "target": "#\\38  > ._slotBody_t6spj_104[data-testid=\"event-tile-slot-body\"] > .mx_MTextBody._text_1bcfk_25._root_1bcfk_8 > .markdown-body.translate.mx_EventTile_body > .mx_EventTile_pre_container > pre",
               "summary": "Fix any of the following:   Element should have focusable content"
             }
           ]
@@ -276,8 +268,8 @@
     "Error encountered in useMap Error: MapStyleUrlNotConfigured\n    at a (http://localhost:5400/bundles/15abcc1153d692ae1ae9/6312.js:2:1619320)\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:3370\n    at http://localhost:5400/bundles/15abcc1153d692ae1ae9/5195.js:1:1303\n    at Jl (http://localhost:5400/bundles/15abcc1153d692ae1ae9/9578.js:2:781144)\n    at Fu (http://localhost:5400/b"
   ],
   "summary": {
-    "axeSerious": 21,
-    "contrastNodes": 6,
+    "axeSerious": 20,
+    "contrastNodes": 0,
     "overflowViews": 0,
     "missing": 0,
     "clipped": 0,
@@ -290,5 +282,5 @@
     "tlPhase": null,
     "wanted": "e16-brushed-metal"
   },
-  "finished": "2026-11-15T03:57:30.914Z"
+  "finished": "2026-11-15T04:47:36.959Z"
 }

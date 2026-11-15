@@ -1,0 +1,337 @@
+/* e-daylight — "Aurora Cycle": one E desktop re-lit by the local clock.
+ * dawn (light, pastel aurora, violet) · day (light brushed steel, E-blue #1A5DB3)
+ * dusk (dark, Moksha Ember copper, #FF9933) · night (dark, E17 deep-blue glow #3399FF)
+ * Phase token sets live in e-daylight-phases.css (generated).
+ */
+html[data-tl-theme="e-daylight"] {
+  --e-gap: 5px;
+  --e-win-radius: 4px;
+  --e-bar-font: "Titillium Web", "DejaVu Sans", sans-serif;
+  --e-bar-weight: 700;
+  --e-row-radius: 4px;
+  --e-well-radius: 4px;
+  --e-btn-radius: 4px;
+  --e-menu-radius: 4px;
+  --e-sel-bar-w: 3px;
+  --e-dialog-anim: e-zoom-in 150ms ease-out;
+}
+html[data-tl-theme="e-daylight"] .mx_RoomHeader {
+  --e-glyphs-w: 64px;
+}
+html[data-tl-theme="e-daylight"] .mx_RoomHeader::after {
+  background: var(--e-glyph-color);
+  -webkit-mask: url("assets/e-glyph-min.svg") 0 0 / 16px 16px no-repeat, url("assets/e-glyph-max.svg") 24px 0 / 16px 16px no-repeat, url("assets/e-glyph-close.svg") 48px 0 / 16px 16px no-repeat;
+  mask: url("assets/e-glyph-min.svg") 0 0 / 16px 16px no-repeat, url("assets/e-glyph-max.svg") 24px 0 / 16px 16px no-repeat, url("assets/e-glyph-close.svg") 48px 0 / 16px 16px no-repeat;
+}
+html[data-tl-theme="e-daylight"] .mx_RoomHeader_heading {
+  font-size: 16px;
+}
+html[data-tl-theme="e-daylight"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: transparent;
+  box-shadow: 0 0 0 2px var(--e-sel-bar), var(--e-sel-glow);
+  border-radius: 8px;
+}
+
+/* phase fades (CONTRACT §6) */
+html[data-tl-theme="e-daylight"][data-tl-phase-fading] body,
+html[data-tl-theme="e-daylight"][data-tl-phase-fading] .mx_MatrixChat,
+html[data-tl-theme="e-daylight"][data-tl-phase-fading] .mx_LeftPanel,
+html[data-tl-theme="e-daylight"][data-tl-phase-fading] .mx_RoomView_body,
+html[data-tl-theme="e-daylight"][data-tl-phase-fading] .mx_RoomHeader,
+html[data-tl-theme="e-daylight"][data-tl-phase-fading] .mx_MessageComposer {
+  transition: background-color 2s, color 2s;
+}
+
+/* light phases: darkened E syntax colours, light code wells */
+html[data-tl-theme="e-daylight"][data-tl-phase="dawn"],
+html[data-tl-theme="e-daylight"][data-tl-phase="day"] {
+  --e-hl-keyword: #A3262A;
+  --e-hl-string: #1B7340;
+  --e-hl-comment: #2E6E6E;
+  --e-hl-number: #7A6A00;
+  --e-hl-class: #2A5A8A;
+  --e-hl-function: #6A2DBF;
+  --e-hl-tag: #A04E00;
+  --e-hl-attr: #8A5A00;
+  --e-win-border: 0 0 0 1px rgba(40, 50, 60, 0.35);
+  --e-win-shadow: 0 2px 8px rgba(30, 40, 50, 0.18);
+  --e-bar-line: rgba(40, 50, 60, 0.3);
+  --e-menu-border: rgba(40, 50, 60, 0.35);
+  --e-menu-shadow: 0 6px 18px rgba(30, 40, 50, 0.25);
+  --e-tip-border: rgba(40, 50, 60, 0.35);
+  --e-backdrop: rgba(30, 30, 40, 0.4);
+  --e-clock-face: radial-gradient(circle at 50% 35%, #FFFFFF, #D6DBE1 75%);
+  --e-clock-rim: #8A94A0;
+  --e-clock-tick: #4A5360;
+  --e-clock-hand: #15191E;
+  --e-clock-glow: none;
+  --e-clock-fg: #15191E;
+}
+
+/* ---------------- dawn: pastel aurora over lilac light */
+html[data-tl-theme="e-daylight"][data-tl-phase="dawn"] {
+  --e-wall:
+    radial-gradient(ellipse 60% 50% at 10% 0%, rgba(255, 170, 190, 0.55), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 55% 0%, rgba(190, 160, 255, 0.5), transparent 70%),
+    radial-gradient(ellipse 50% 50% at 95% 10%, rgba(140, 230, 210, 0.5), transparent 70%),
+    linear-gradient(180deg, #E9DCEB 0%, #F4ECEE 60%, #EFE4E8 100%);
+  --e-bar-bg: linear-gradient(90deg, rgba(255, 196, 210, 0.55), rgba(205, 187, 240, 0.55) 50%, rgba(170, 235, 220, 0.55)), #FBF7F8;
+  --e-bar-fg: #261E2B;
+  --e-glyph-color: #5F5368;
+  --e-shelf-bg: #E3D6E2;
+  --e-list-bg: #EFE4EE;
+  --e-list-fg: #261E2B;
+  --e-list-sep: rgba(142, 124, 147, 0.18);
+  --e-hover-bg: #F7EEF5;
+  --e-sel-bg: #FBF7F8;
+  --e-sel-fg: #261E2B;
+  --e-sel-bar: #7A3FD0;
+  --e-sel-glow: 0 1px 3px rgba(122, 63, 208, 0.18);
+  --e-well-bg: #FFFFFF;
+  --e-well-border: #8E7C93;
+  --e-btn-bg: #FBF7F8;
+  --e-btn-bg-hover: #F2E8F0;
+  --e-btn-bg-active: #E8DCE6;
+  --e-btn-fg: #261E2B;
+  --e-btn-border: 1px solid #8E7C93;
+  --e-pri-bg: #7A3FD0;
+  --e-pri-bg-hover: #6A32BD;
+  --e-pri-fg: #FFFFFF;
+  --e-focus: #7A3FD0;
+  --e-focus-glow: 0 0 0 3px rgba(122, 63, 208, 0.2);
+  --e-menu-bg: #FBF7F8;
+  --e-menu-sel: rgba(122, 63, 208, 0.12);
+  --e-menu-sel-fg: #261E2B;
+  --e-tip-bg: #261E2B;
+  --e-tip-fg: #FBF7F8;
+  --e-scroll-thumb: #CDBBD0;
+  --e-scroll-thumb-hover: #7A3FD0;
+  --e-bubble-own: #EADFF5;
+  --e-bubble-other: #FFFFFF;
+  --e-highlight-bar: #B3261E;
+  --e-readmarker: #7A3FD0;
+  --e-code-bg: #F7F0F6;
+  --e-code-fg: #261E2B;
+  --e-code-border: rgba(142, 124, 147, 0.35);
+  --e-badge-bg: #CDBBD0;
+  --e-badge-fg: #261E2B;
+  --e-badge-hl-bg: #B3261E;
+  --e-badge-hl-fg: #FFFFFF;
+  --e-dialog-bg: #FBF7F8;
+  --e-clock-sec: #7A3FD0;
+}
+
+/* ---------------- day: light brushed steel, E-blue */
+html[data-tl-theme="e-daylight"][data-tl-phase="day"] {
+  --d-steel: linear-gradient(rgba(204, 210, 217, 0.6), rgba(198, 204, 211, 0.6)), url("assets/brush-overlay.png") 0 0 / 256px 128px, linear-gradient(180deg, #D9DEE4 0%, #C6CCD3 55%, #B9C0C8 100%);
+  --e-wall: linear-gradient(180deg, #CDD3DA 0%, #E3E6EA 60%, #D6DBE0 100%);
+  --e-bar-bg: var(--d-steel);
+  --e-bar-fg: #15191E;
+  --e-bar-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --e-glyph-color: #2A3038;
+  --e-shelf-bg: var(--d-steel);
+  --e-list-bg: #D3D8DE;
+  --e-list-fg: #15191E;
+  --e-list-sep: rgba(107, 116, 128, 0.2);
+  --e-hover-bg: #E0E4E9;
+  --e-sel-bg: #F4F5F7;
+  --e-sel-fg: #15191E;
+  --e-sel-bar: #1A5DB3;
+  --e-sel-glow: 0 1px 2px rgba(20, 30, 40, 0.2);
+  --e-well-bg: #FFFFFF;
+  --e-well-border: #6B7480;
+  --e-well-shadow: inset 0 1px 2px rgba(20, 30, 40, 0.15);
+  --e-btn-bg: linear-gradient(180deg, #FAFBFC 0%, #E6E9ED 50%, #DADEE3 51%, #CED3D9 100%);
+  --e-btn-bg-hover: linear-gradient(180deg, #FFFFFF 0%, #EEF0F3 50%, #E3E6EA 51%, #D8DCE1 100%);
+  --e-btn-bg-active: linear-gradient(180deg, #CED3D9, #E6E9ED);
+  --e-btn-fg: #15191E;
+  --e-btn-border: 1px solid #6B7480;
+  --e-btn-shadow: inset 0 1px 0 #FFFFFF;
+  --e-pri-bg: linear-gradient(180deg, #3D7FD6 0%, #1F66C2 50%, #1A5DB3 51%, #134C96 100%);
+  --e-pri-bg-hover: linear-gradient(180deg, #4F8CDD 0%, #2A70CA 50%, #2366BC 51%, #18559F 100%);
+  --e-pri-fg: #FFFFFF;
+  --e-focus: #1A5DB3;
+  --e-focus-glow: 0 0 0 3px rgba(26, 93, 179, 0.22);
+  --e-menu-bg: #F4F5F7;
+  --e-menu-sel: rgba(26, 93, 179, 0.12);
+  --e-menu-sel-fg: #15191E;
+  --e-tip-bg: #15191E;
+  --e-tip-fg: #F4F5F7;
+  --e-scroll-thumb: #A9B1BB;
+  --e-scroll-thumb-hover: #1A5DB3;
+  --e-bubble-own: #D6E4F7;
+  --e-bubble-other: #F4F5F7;
+  --e-highlight-bar: #B42318;
+  --e-readmarker: #1A5DB3;
+  --e-code-bg: #EEF1F4;
+  --e-code-fg: #15191E;
+  --e-code-border: rgba(107, 116, 128, 0.35);
+  --e-badge-bg: #A9B1BB;
+  --e-badge-fg: #15191E;
+  --e-badge-hl-bg: #B42318;
+  --e-badge-hl-fg: #FFFFFF;
+  --e-dialog-bg: #F4F5F7;
+  --e-clock-sec: #1A5DB3;
+}
+
+/* ---------------- dusk: Moksha Ember */
+html[data-tl-theme="e-daylight"][data-tl-phase="dusk"] {
+  --e-wall:
+    radial-gradient(ellipse 70% 60% at 0% 100%, rgba(255, 122, 26, 0.25), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(224, 52, 74, 0.14), transparent 70%),
+    #1C1512;
+  --e-win-border: 0 0 0 1px #0A0806;
+  --e-win-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  --e-bar-bg: linear-gradient(180deg, rgba(160, 103, 63, 0.55) 0%, rgba(122, 75, 46, 0.5) 45%, rgba(90, 52, 32, 0.55) 55%, rgba(59, 36, 22, 0.6) 100%), url("assets/brush-overlay.png") 0 0 / 256px 128px, linear-gradient(180deg, #A0673F 0%, #7A4B2E 45%, #5A3420 55%, #3B2416 100%);
+  --e-bar-fg: #FFF1E0;
+  --e-bar-line: #0A0806;
+  --e-bar-shadow: inset 0 1px 0 rgba(255, 220, 160, 0.35);
+  --e-bar-text-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+  --e-glyph-color: #FFE7CC;
+  --e-shelf-bg: #140F0D;
+  --e-list-bg: #251D19;
+  --e-list-fg: #F0E6DA;
+  --e-list-sep: rgba(255, 220, 160, 0.04);
+  --e-hover-bg: #2E241F;
+  --e-sel-bg: #33281F;
+  --e-sel-fg: #FFF1E0;
+  --e-sel-bar: #FF9933;
+  --e-sel-bar-glow: 0 0 8px rgba(255, 122, 26, 0.7);
+  --e-sel-glow: none;
+  --e-well-bg: #140F0D;
+  --e-well-border: #4A3A2F;
+  --e-well-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+  --e-btn-bg: linear-gradient(180deg, #9A6038 0%, #7A4B2E 50%, #643C24 51%, #5A3420 100%);
+  --e-btn-bg-hover: linear-gradient(180deg, #B0703F 0%, #8A5533 50%, #70442A 51%, #643A24 100%);
+  --e-btn-bg-active: linear-gradient(180deg, #4A2C1A, #6A4028);
+  --e-btn-fg: #FFF1E0;
+  --e-btn-border: 1px solid #0A0806;
+  --e-btn-shadow: inset 0 1px 0 rgba(255, 220, 160, 0.3);
+  --e-pri-bg: linear-gradient(180deg, #FFB866 0%, #FF9933 50%, #F08420 51%, #E0741A 100%);
+  --e-pri-bg-hover: linear-gradient(180deg, #FFC680 0%, #FFA447 50%, #F8902C 51%, #EA8024 100%);
+  --e-pri-fg: #1A0D04;
+  --e-pri-shadow: 0 0 10px rgba(255, 122, 26, 0.45);
+  --e-focus: #FF9933;
+  --e-focus-glow: 0 0 8px rgba(255, 122, 26, 0.55);
+  --e-menu-bg: #2E2520;
+  --e-menu-border: #0A0806;
+  --e-menu-sel: rgba(255, 122, 26, 0.18);
+  --e-menu-sel-fg: #FFF1E0;
+  --e-menu-shadow: 0 6px 22px rgba(0, 0, 0, 0.7);
+  --e-tip-bg: #140F0D;
+  --e-tip-fg: #F0E6DA;
+  --e-tip-border: #FFB547;
+  --e-scroll-thumb: #5A3420;
+  --e-scroll-thumb-hover: #9A6038;
+  --e-bubble-own: #3A2617;
+  --e-bubble-other: #2A211C;
+  --e-highlight-bar: #F0506A;
+  --e-readmarker: #FFB547;
+  --e-code-bg: #140F0D;
+  --e-code-fg: #F0E6DA;
+  --e-code-border: #2E2520;
+  --e-hl-keyword: #FF9933;
+  --e-hl-string: #B5D86A;
+  --e-hl-comment: #8A7A6E;
+  --e-hl-number: #FFB547;
+  --e-hl-class: #E8C39E;
+  --e-hl-function: #F0A27A;
+  --e-hl-tag: #F0506A;
+  --e-hl-attr: #FFB547;
+  --e-badge-bg: #3A2E27;
+  --e-badge-fg: #F0E6DA;
+  --e-badge-hl-bg: #F0506A;
+  --e-badge-hl-fg: #1C1512;
+  --e-dialog-bg: #2E2520;
+  --e-backdrop: rgba(10, 8, 6, 0.65);
+  --e-clock-face: radial-gradient(circle at 50% 35%, #3A2E27, #110E0C 70%);
+  --e-clock-rim: #0A0806;
+  --e-clock-hand: #FFE7CC;
+  --e-clock-sec: #FF9933;
+  --e-clock-glow: drop-shadow(0 0 2px rgba(255, 122, 26, 0.9));
+}
+html[data-tl-theme="e-daylight"][data-tl-phase="dusk"] .mx_RoomHeader [class*="_icon-button_"] {
+  --cpd-color-icon-secondary: #FFE7CC;
+  --cpd-color-icon-tertiary: #FFE7CC;
+}
+
+/* ---------------- night: E17 deep-blue glow */
+html[data-tl-theme="e-daylight"][data-tl-phase="night"] {
+  --e-wall:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(51, 153, 255, 0.18), transparent 70%),
+    radial-gradient(ellipse at 50% 40%, #152038 0%, #0A0F1E 60%, #05070F 100%);
+  --e-win-border: 0 0 0 1px #000;
+  --e-win-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+  --e-bar-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, #1F2D4C 0%, #152038 50%, #0F172B 51%, #0A0F1E 100%);
+  --e-bar-fg: #FFFFFF;
+  --e-bar-line: #03060D;
+  --e-bar-text-shadow: 0 0 6px rgba(51, 153, 255, 0.6);
+  --e-glyph-color: #9FCBFF;
+  --e-shelf-bg: linear-gradient(90deg, #0F172B, #070B16);
+  --e-list-bg: #0F172B;
+  --e-list-fg: #DCE6F5;
+  --e-list-sep: rgba(141, 155, 184, 0.06);
+  --e-hover-bg: #142039;
+  --e-sel-bg: linear-gradient(180deg, #03060D 0%, #0A1224 60%, #1A2A48 100%);
+  --e-sel-fg: #FFFFFF;
+  --e-sel-bar: #3399FF;
+  --e-sel-bar-glow: 0 0 6px 1px rgba(51, 153, 255, 0.9), 0 0 14px 3px rgba(51, 153, 255, 0.45);
+  --e-sel-glow: inset 0 1px 3px rgba(0, 0, 0, 0.9);
+  --e-sel-text-shadow: 0 0 6px rgba(102, 184, 255, 0.85);
+  --e-well-bg: #070B16;
+  --e-well-border: #03060D;
+  --e-well-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.05);
+  --e-btn-bg: linear-gradient(180deg, #2A3A5C 0%, #1F2D4C 50%, #172440 51%, #121C33 100%);
+  --e-btn-bg-hover: linear-gradient(180deg, #34476E 0%, #273860 50%, #1D2D50 51%, #172442 100%);
+  --e-btn-bg-active: linear-gradient(180deg, #0A0F1E, #152038);
+  --e-btn-fg: #DCE6F5;
+  --e-btn-border: 1px solid #000;
+  --e-btn-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --e-pri-bg: linear-gradient(180deg, #8CCBFF 0%, #4AA3F5 48%, #1E78DA 52%, #0D5BB0 100%);
+  --e-pri-bg-hover: linear-gradient(180deg, #A3D6FF 0%, #5CB0FA 48%, #2A86E8 52%, #1266C2 100%);
+  --e-pri-fg: #03101F;
+  --e-pri-shadow: 0 0 8px rgba(51, 153, 255, 0.55);
+  --e-focus: #3399FF;
+  --e-focus-glow: 0 0 6px 1px rgba(51, 153, 255, 0.85), 0 0 16px 3px rgba(51, 153, 255, 0.35);
+  --e-menu-bg: rgba(15, 23, 43, 0.97);
+  --e-menu-border: #000;
+  --e-menu-sel: linear-gradient(180deg, #03060D 0%, #0A1224 55%, #1A2A48 100%);
+  --e-menu-sel-fg: #FFFFFF;
+  --e-menu-shadow: 0 6px 22px rgba(0, 0, 0, 0.75);
+  --e-tip-bg: #070B16;
+  --e-tip-fg: #DCE6F5;
+  --e-tip-border: #3399FF;
+  --e-scroll-thumb: #22324F;
+  --e-scroll-thumb-hover: #3399FF;
+  --e-bubble-own: #13264A;
+  --e-bubble-other: #111A30;
+  --e-highlight-bar: #3399FF;
+  --e-readmarker: #3399FF;
+  --e-code-bg: #070B16;
+  --e-code-fg: #DCE6F5;
+  --e-code-border: #000;
+  --e-badge-bg: radial-gradient(circle at 50% 25%, #3A4A6A, #152038 75%);
+  --e-badge-fg: #FFFFFF;
+  --e-badge-hl-bg: radial-gradient(circle at 50% 25%, #9FD0FF, #3399FF 55%, #0A4D99 100%);
+  --e-badge-hl-fg: #03101F;
+  --e-icon-hover-filter: drop-shadow(0 0 3px rgba(51, 153, 255, 0.95));
+  --e-dialog-bg: #152038;
+  --e-backdrop: rgba(0, 0, 0, 0.6);
+  --e-clock-face: radial-gradient(circle at 50% 35%, #1F2D4C, #070B16 70%);
+  --e-clock-rim: #000;
+  --e-clock-hand: #DCE6F5;
+  --e-clock-sec: #3399FF;
+}
+html[data-tl-theme="e-daylight"][data-tl-phase="night"] .mx_RoomHeader::after {
+  filter: drop-shadow(0 0 3px rgba(51, 153, 255, 0.9));
+}
+html[data-tl-theme="e-daylight"][data-tl-phase="night"] [class*="_notificationBadge_"][class*="_highlighted_"],
+html[data-tl-theme="e-daylight"][data-tl-phase="night"] .mx_NotificationBadge_level_highlight {
+  animation: e-pulse 1.4s ease-out 3;
+}
+html[data-tl-theme="e-daylight"][data-tl-phase="night"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"],
+html[data-tl-theme="e-daylight"][data-tl-phase="dusk"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  font-weight: 700;
+}

@@ -1,15 +1,14 @@
 # Edge check: Enlightenment · Usable
 
 - id: `e-usable` · stage: `usable`
-- base: http://localhost:5400 · 2026-11-15T03:51:43.816Z
+- base: http://localhost:5400 · 2026-11-15T04:38:29.174Z
 - loader: html[data-tl-theme] = `e-usable`
-- result: **pass** — axe serious/critical nodes 18 (contrast 3), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 15 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 
 ## home
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 3 | `.mx_HomePage_button_sendDm` |
 | nested-interactive | serious | 2 | `.mx_SpaceButton_active` |
 
 
@@ -47,6 +46,7 @@
 
 axe: no violations
 
+- no visible focus on 1/11 Tab stops: `div[aria-label="Send an unencrypted message…"]`
 
 ## modal
 

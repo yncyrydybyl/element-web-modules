@@ -1,9 +1,9 @@
 # Edge check: Enlightenment · Current
 
 - id: `e-current` · stage: `pure`
-- base: http://localhost:5400 · 2026-11-15T03:54:36.891Z
+- base: http://localhost:5400 · 2026-11-15T04:28:12.112Z
 - loader: html[data-tl-theme] = `e-current`
-- result: **pass** — axe serious/critical nodes 23 (contrast 3), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 20 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 1, console errors 4
 
 ## home
 
@@ -24,7 +24,7 @@
 | axe rule | impact | nodes | example |
 |---|---|---|---|
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\31 5 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\31 0 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## irc
@@ -40,26 +40,23 @@
 |---|---|---|---|
 | aria-prohibited-attr | serious | 4 | `span[title="@themes-mira:datanauten.de"][data-color="3"][aria-label="P` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 4 | `#\33 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 4 | `#\32 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings
 
 axe: no violations
 
+- no visible focus on 1/11 Tab stops: `div[aria-label="Send an unencrypted message…"]`
 
 ## modal
 
-| axe rule | impact | nodes | example |
-|---|---|---|---|
-| color-contrast | serious | 2 | `div:nth-child(3) > p` |
+axe: no violations
 
 
 ## login
 
-| axe rule | impact | nodes | example |
-|---|---|---|---|
-| color-contrast | serious | 1 | `h2` |
+axe: no violations
 
 
 ## Console errors

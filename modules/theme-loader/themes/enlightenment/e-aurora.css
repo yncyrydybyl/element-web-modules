@@ -1,0 +1,265 @@
+/* e-aurora — "Edje Aurora": E17 glass structure over a slow polar aurora.
+ * base #121418 · panels #1A1D23 · raised #232832 · line #0A0B0E · text #DDE3EA · muted #8B95A5
+ * ramp: teal #2EE6C5 → cyan #33A1FF → violet #9B6BFF → magenta #FF5FC8
+ */
+html[data-tl-theme="e-aurora"] {
+  --a-teal: #2EE6C5;
+  --a-cyan: #33A1FF;
+  --a-violet: #9B6BFF;
+  --a-magenta: #FF5FC8;
+  --a-ramp: linear-gradient(90deg, #2EE6C5, #33A1FF 35%, #9B6BFF 68%, #FF5FC8);
+  --e-wall:
+    url("assets/grain.png"),
+    radial-gradient(ellipse 60% 45% at 15% 0%, rgba(46, 230, 197, 0.55), transparent 70%),
+    radial-gradient(ellipse 55% 40% at 50% 8%, rgba(51, 161, 255, 0.45), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 85% 0%, rgba(155, 107, 255, 0.5), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 100% 30%, rgba(255, 95, 200, 0.35), transparent 70%),
+    linear-gradient(180deg, #0E1424 0%, #121418 55%, #0C0D10 100%);
+  --e-gap: 6px;
+  --e-win-radius: 8px;
+  --e-win-border: 0 0 0 1px rgba(255, 255, 255, 0.07);
+  --e-win-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  --e-bar-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 51%),
+    rgba(26, 29, 35, 0.72);
+  --e-bar-fg: #EEF3F8;
+  --e-bar-line: rgba(255, 255, 255, 0.06);
+  --e-bar-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --e-bar-font: "Titillium Web", "DejaVu Sans", sans-serif;
+  --e-bar-weight: 700;
+
+  --e-shelf-bg: rgba(26, 29, 35, 0.62);
+  --e-list-bg: #1A1D23;
+  --e-list-fg: #DDE3EA;
+  --e-list-sep: #0A0B0E;
+  --e-hover-bg: #20242C;
+  --e-sel-bg: #232832;
+  --e-sel-fg: #FFFFFF;
+  --e-sel-bar: linear-gradient(180deg, #2EE6C5, #9B6BFF);
+  --e-sel-bar-w: 3px;
+  --e-sel-bar-glow: 0 0 10px rgba(46, 230, 197, 0.6), 0 0 18px rgba(155, 107, 255, 0.4);
+  --e-row-radius: 6px;
+
+  --e-well-bg: #0E1014;
+  --e-well-border: rgba(255, 255, 255, 0.08);
+  --e-well-radius: 8px;
+  --e-well-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+
+  --e-btn-bg: #232832;
+  --e-btn-bg-hover: #2A3140;
+  --e-btn-bg-active: #1C2029;
+  --e-btn-fg: #DDE3EA;
+  --e-btn-border: 1px solid rgba(255, 255, 255, 0.08);
+  --e-btn-radius: 999px;
+  --e-pri-bg: linear-gradient(90deg, #33A1FF, #9B6BFF);
+  --e-pri-bg-hover: linear-gradient(90deg, #4DB0FF, #AD84FF);
+  --e-pri-fg: #06121F;
+  --e-pri-shadow: 0 0 14px rgba(51, 161, 255, 0.45);
+
+  --e-focus: #33A1FF;
+  --e-focus-glow: 0 0 0 4px rgba(51, 161, 255, 0.25);
+
+  --e-menu-bg: rgba(26, 29, 35, 0.94);
+  --e-menu-border: rgba(255, 255, 255, 0.08);
+  --e-menu-sel: linear-gradient(90deg, rgba(46, 230, 197, 0.16), rgba(155, 107, 255, 0.16));
+  --e-menu-sel-fg: #FFFFFF;
+  --e-menu-radius: 8px;
+  --e-menu-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --e-tip-bg: rgba(14, 16, 20, 0.95);
+  --e-tip-fg: #DDE3EA;
+  --e-tip-border: rgba(46, 230, 197, 0.6);
+
+  --e-scroll-thumb: rgba(110, 120, 255, 0.55);
+  --e-scroll-thumb-hover: #9B6BFF;
+  --e-scroll-w: 7px;
+
+  --e-bubble-own: #1C2638;
+  --e-bubble-other: #1A1D23;
+  --e-highlight-bar: #FF5FC8;
+  --e-readmarker: #2EE6C5;
+
+  --e-code-bg: #0E1014;
+  --e-code-fg: #DDE3EA;
+  --e-code-border: rgba(255, 255, 255, 0.06);
+  --e-hl-keyword: #B08CFF;
+  --e-hl-string: #2EE6C5;
+  --e-hl-comment: #6B7585;
+  --e-hl-number: #FFD166;
+  --e-hl-class: #7CC4FF;
+  --e-hl-function: #33A1FF;
+  --e-hl-tag: #FF5FC8;
+  --e-hl-attr: #FFD166;
+
+  --e-badge-bg: #2A3140;
+  --e-badge-fg: #DDE3EA;
+  --e-badge-hl-bg: #FF5FC8;
+  --e-badge-hl-fg: #121418;
+  --e-pulse: rgba(255, 95, 200, 0.8);
+  --e-pulse-0: rgba(255, 95, 200, 0);
+
+  --e-icon-hover-filter: drop-shadow(0 0 4px rgba(51, 161, 255, 0.9));
+  --e-dialog-bg: #1A1D23;
+  --e-backdrop: rgba(6, 8, 14, 0.65);
+  --e-auth-bg: var(--e-wall);
+  --e-clock-face: radial-gradient(circle at 50% 35%, #232832, #0E1014 70%);
+  --e-clock-rim: rgba(255, 255, 255, 0.12);
+  --e-clock-sec: #FF5FC8;
+  --e-clock-hand: #2EE6C5;
+  --e-clock-glow: drop-shadow(0 0 2px rgba(46, 230, 197, 0.9));
+}
+
+/* aurora drifts behind the glass (shell only, background-position) */
+@keyframes e-aurora-drift {
+  0% { background-position: 0 0, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0 0; }
+  50% { background-position: 0 0, 30% 6%, -20% 4%, -25% 2%, -10% 10%, 0 0; }
+  100% { background-position: 0 0, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0 0; }
+}
+html[data-tl-theme="e-aurora"] .mx_MatrixChat {
+  background-size: 128px 128px, 140% 140%, 140% 140%, 140% 140%, 140% 140%, 100% 100%;
+  animation: e-aurora-drift 30s ease-in-out infinite;
+}
+html[data-tl-theme="e-aurora"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="e-aurora"] body {
+  background: #0C0D10;
+}
+
+/* glass shelves: the aurora shows through header, space shelf and composer (fixed attachment = one sky) */
+html[data-tl-theme="e-aurora"] {
+  --a-sky:
+    radial-gradient(ellipse 45% 70% at 12% 0%, rgba(46, 230, 197, 0.75), transparent 70%),
+    radial-gradient(ellipse 40% 60% at 42% 0%, rgba(51, 161, 255, 0.65), transparent 70%),
+    radial-gradient(ellipse 40% 70% at 72% 0%, rgba(155, 107, 255, 0.7), transparent 70%),
+    radial-gradient(ellipse 35% 60% at 98% 10%, rgba(255, 95, 200, 0.6), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 30% 100%, rgba(155, 107, 255, 0.35), transparent 70%),
+    radial-gradient(ellipse 45% 50% at 85% 100%, rgba(46, 230, 197, 0.3), transparent 70%),
+    linear-gradient(180deg, #0E1424 0%, #121418 55%, #0C0D10 100%);
+}
+@keyframes e-aurora-sky {
+  0%, 100% { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
+  50% { background-position: 0 0, 0 0, 8vw 1vh, -6vw 0, -10vw 1vh, -5vw 2vh, 6vw 0, -6vw 0, 0 0; }
+}
+html[data-tl-theme="e-aurora"] .mx_SpacePanel,
+html[data-tl-theme="e-aurora"] .mx_RoomHeader,
+html[data-tl-theme="e-aurora"] .mx_MessageComposer {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 50%, transparent 51%),
+    linear-gradient(rgba(16, 18, 24, 0.5), rgba(16, 18, 24, 0.5)),
+    var(--a-sky);
+  background-attachment: fixed;
+  background-size: 100vw 100vh;
+  animation: e-aurora-sky 30s ease-in-out infinite;
+}
+html[data-tl-theme="e-aurora"] .mx_SpacePanel {
+  background:
+    linear-gradient(rgba(16, 18, 24, 0.58), rgba(16, 18, 24, 0.58)),
+    var(--a-sky);
+  background-attachment: fixed;
+  background-size: 100vw 100vh;
+}
+html[data-tl-theme="e-aurora"] .mx_RoomView {
+  background: transparent;
+}
+html[data-tl-theme="e-aurora"] .mx_RoomView_body {
+  background: transparent;
+}
+html[data-tl-theme="e-aurora"] .mx_RoomView_messagePanel,
+html[data-tl-theme="e-aurora"] .mx_RoomView_timeline {
+  background: #121418;
+}
+html[data-tl-theme="e-aurora"] .mx_MessageComposer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+/* aurora hairline under the header */
+html[data-tl-theme="e-aurora"] .mx_RoomHeader {
+  border-bottom: 0;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+}
+html[data-tl-theme="e-aurora"] .mx_RoomHeader::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--a-ramp);
+  opacity: 0.85;
+  pointer-events: none;
+}
+html[data-tl-theme="e-aurora"] .mx_RoomHeader_heading {
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+
+/* round avatars, aurora ring on hover */
+html[data-tl-theme="e-aurora"] .mx_EventTile:hover [class*="_slotAvatar_"] .mx_BaseAvatar,
+html[data-tl-theme="e-aurora"] .mx_EventTile:hover .mx_EventTile_avatar .mx_BaseAvatar {
+  box-shadow: 0 0 0 2px #121418, 0 0 0 3px #2EE6C5, 0 0 10px rgba(155, 107, 255, 0.6);
+}
+
+/* Ibar magnify */
+html[data-tl-theme="e-aurora"] .mx_SpaceButton .mx_SpaceButton_avatarWrapper {
+  transition: transform 140ms ease-out;
+}
+html[data-tl-theme="e-aurora"] .mx_SpaceButton:hover .mx_SpaceButton_avatarWrapper {
+  transform: scale(1.22);
+}
+html[data-tl-theme="e-aurora"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: transparent;
+  border-radius: 12px;
+  box-shadow: 0 0 0 2px #2EE6C5, 0 0 12px rgba(46, 230, 197, 0.55), 0 0 22px rgba(155, 107, 255, 0.35);
+}
+
+/* mentions glow magenta */
+html[data-tl-theme="e-aurora"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  background: linear-gradient(90deg, rgba(255, 95, 200, 0.12), transparent 60%);
+}
+html[data-tl-theme="e-aurora"] [class*="_notificationBadge_"][class*="_highlighted_"],
+html[data-tl-theme="e-aurora"] .mx_NotificationBadge_level_highlight {
+  box-shadow: 0 0 10px rgba(255, 95, 200, 0.7);
+  animation: e-pulse 1.4s ease-out 3;
+}
+
+/* dialogs: aurora hairline on top */
+html[data-tl-theme="e-aurora"] .mx_Dialog > .mx_Dialog_header,
+html[data-tl-theme="e-aurora"] .mx_Dialog > div > .mx_Dialog_header {
+  background: #1A1D23;
+  border-bottom: 0;
+  box-shadow: inset 0 2px 0 #2EE6C5, inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  border-image: none;
+  position: relative;
+}
+html[data-tl-theme="e-aurora"] .mx_Dialog > .mx_Dialog_header::before,
+html[data-tl-theme="e-aurora"] .mx_Dialog > div > .mx_Dialog_header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--a-ramp);
+}
+
+/* scrollbars: gradient thumb */
+html[data-tl-theme="e-aurora"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2EE6C5, #9B6BFF);
+  border-radius: 999px;
+}
+
+/* type: Titillium for headings, room names */
+html[data-tl-theme="e-aurora"] .mx_RoomListPanel header h1,
+html[data-tl-theme="e-aurora"] .mx_DisambiguatedProfile_displayName,
+html[data-tl-theme="e-aurora"] .mx_EventTile_body h1,
+html[data-tl-theme="e-aurora"] .mx_EventTile_body h2,
+html[data-tl-theme="e-aurora"] .mx_EventTile_body h3 {
+  font-family: "Titillium Web", "DejaVu Sans", sans-serif;
+  font-weight: 700;
+}
+html[data-tl-theme="e-aurora"] [class*="_chat-filter_"][aria-selected="true"] {
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="e-aurora"] .mx_MatrixChat,
+  html[data-tl-theme="e-aurora"] .mx_SpacePanel,
+  html[data-tl-theme="e-aurora"] .mx_RoomHeader,
+  html[data-tl-theme="e-aurora"] .mx_MessageComposer { animation: none; }
+}

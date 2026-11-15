@@ -1,9 +1,9 @@
 # Edge check: E16 · BrushedMetal-Tigert
 
 - id: `e16-brushed-metal` · stage: `past`
-- base: http://localhost:5400 · 2026-11-15T03:57:30.914Z
+- base: http://localhost:5400 · 2026-11-15T04:47:36.959Z
 - loader: html[data-tl-theme] = `e16-brushed-metal`
-- result: **pass** — axe serious/critical nodes 21 (contrast 6), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
+- result: **pass** — axe serious/critical nodes 20 (contrast 0), views with overflow 0, missing/zero-size essentials 0, clipped texts 0, focus stops without visible focus 0, console errors 4
 
 ## home
 
@@ -23,9 +23,8 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 1 | `.mx_MNoticeBody > .translate.mx_EventTile_body[dir="auto"]` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 2 | `#\31 6 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 2 | `#\38  > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .mx` |
 
 
 ## irc
@@ -39,9 +38,9 @@
 
 | axe rule | impact | nodes | example |
 |---|---|---|---|
-| color-contrast | serious | 5 | `._repliesAmount_60abi_66` |
+| aria-prohibited-attr | serious | 4 | `span[title="@themes-mira:datanauten.de"][data-color="3"][aria-label="P` |
 | nested-interactive | serious | 2 | `div[aria-label="Home"]` |
-| scrollable-region-focusable | serious | 3 | `#\31 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
+| scrollable-region-focusable | serious | 4 | `#\32 9 > ._slotBody_t6spj_104[data-testid="event-tile-slot-body"] > .m` |
 
 
 ## settings

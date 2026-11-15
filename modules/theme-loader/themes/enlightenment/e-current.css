@@ -1,0 +1,136 @@
+/* e-current — today's flat Enlightenment theme (EFL colorclasses.edc).
+ * :bg #404040 · :bg-alt #383838 · :bg-dim #303030 · :bg-dark #202020 · :bg-dark-alt #1C1C1C · :bg-darkest #101010
+ * :fg #A0A0A0 · :fg-high #C8C8C8 · :fg-higher #DCDCDC · :selected #3399FF · :selected-alt #FF9933
+ */
+html[data-tl-theme="e-current"] {
+  /* desktop: the 0.25 default wallpaper — dark slate with diagonal facets */
+  --e-wall:
+    linear-gradient(118deg, transparent 0 55%, rgba(40, 92, 86, 0.55) 55% 62%, transparent 62%),
+    linear-gradient(64deg, transparent 0 70%, rgba(150, 110, 70, 0.55) 70% 74%, transparent 74%),
+    linear-gradient(160deg, #2A2E36 0%, #1E2128 60%, #191B20 100%);
+  --e-gap: 0px;
+  --e-win-border: 0 0 0 1px #101010;
+
+  --e-bar-bg: #202020;
+  --e-bar-fg: #FFFFFF;
+  --e-bar-line: #101010;
+  --e-glyph-color: #C8C8C8;
+  --e-glyphs: #C8C8C8;
+  --e-glyphs-w: 0px;
+
+  --e-shelf-bg: #1C1C1C;
+  --e-list-bg: #383838;
+  --e-list-fg: #DCDCDC;
+  --e-list-sep: transparent;
+  --e-hover-bg: #404040;
+  --e-sel-bg: #262626;
+  --e-sel-fg: #FFFFFF;
+  --e-sel-bar: #3399FF;
+  --e-sel-bar-w: 3px;
+
+  --e-well-bg: #303030;
+  --e-well-border: #101010;
+  --e-well-radius: 0px;
+
+  --e-btn-bg: #606060;
+  --e-btn-bg-hover: #6A6A6A;
+  --e-btn-bg-active: #505050;
+  --e-btn-fg: #F0F0F0;
+  --e-btn-border: 1px solid #101010;
+  --e-btn-radius: 0px;
+  --e-pri-bg: #3399FF;
+  --e-pri-bg-hover: #52A8FF;
+  --e-pri-fg: #101010;
+
+  --e-menu-bg: #303030;
+  --e-menu-border: #101010;
+  --e-menu-sel: rgba(51, 153, 255, 0.25);
+  --e-menu-sel-fg: #FFFFFF;
+  --e-menu-radius: 0px;
+  --e-menu-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  --e-tip-bg: #202020;
+  --e-tip-fg: #DCDCDC;
+  --e-tip-border: #101010;
+
+  --e-scroll-thumb: rgba(51, 153, 255, 0.7);
+  --e-scroll-thumb-hover: #3399FF;
+  --e-scroll-w: 8px;
+
+  --e-bubble-own: #2C3846;
+  --e-bubble-other: #3A3A3A;
+  --e-highlight-bar: #FF9933;
+  --e-readmarker: #3399FF;
+
+  --e-code-bg: #202020;
+  --e-code-fg: #DCDCDC;
+  --e-code-border: #101010;
+
+  --e-badge-bg: #606060;
+  --e-badge-fg: #FFFFFF;
+  --e-badge-hl-bg: #3399FF;
+  --e-badge-hl-fg: #101010;
+
+  --e-dialog-anim: e-fade-in 100ms ease-out;
+  --e-dialog-bg: #404040;
+  --e-backdrop: rgba(16, 16, 16, 0.6);
+}
+
+/* Title bar: centred bold title, chevron/close glyph trio */
+html[data-tl-theme="e-current"] .mx_RoomHeader {
+  --e-glyphs-w: 64px;
+  height: 40px;
+  min-height: 40px;
+  padding-block: 0;
+}
+html[data-tl-theme="e-current"] .mx_RoomHeader::after {
+  background: none;
+  height: 16px;
+  /* three glyphs from assets, as masks */
+  background-color: #C8C8C8;
+  -webkit-mask: url("assets/e-glyph-min.svg") 0 0 / 16px 16px no-repeat, url("assets/e-glyph-max.svg") 24px 0 / 16px 16px no-repeat, url("assets/e-glyph-close.svg") 48px 0 / 16px 16px no-repeat;
+  mask: url("assets/e-glyph-min.svg") 0 0 / 16px 16px no-repeat, url("assets/e-glyph-max.svg") 24px 0 / 16px 16px no-repeat, url("assets/e-glyph-close.svg") 48px 0 / 16px 16px no-repeat;
+}
+html[data-tl-theme="e-current"] .mx_RoomHeader > .mx_BaseAvatar {
+  zoom: 0.65;
+}
+html[data-tl-theme="e-current"] .mx_RoomHeader_heading {
+  font-size: 13px;
+}
+
+/* square avatars everywhere (radius 2px) */
+html[data-tl-theme="e-current"] [class*="_avatar_"][data-type="round"],
+html[data-tl-theme="e-current"] .mx_BaseAvatar[data-type="round"] {
+  --cpd-avatar-radius: 2px;
+  border-radius: 2px;
+}
+html[data-tl-theme="e-current"] [class*="_avatar_"] img {
+  border-radius: 2px;
+}
+
+/* room list: compact, small type */
+html[data-tl-theme="e-current"] .mx_RoomListItemView {
+  font-size: 13px;
+}
+html[data-tl-theme="e-current"] .mx_RoomListPanel header h1 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* shelf: active space = blue underline bar on the left */
+html[data-tl-theme="e-current"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: transparent;
+  box-shadow: inset -3px 0 0 #3399FF;
+}
+
+/* timeline separator lines in #505050 */
+html[data-tl-theme="e-current"] .mx_TimelineSeparator hr {
+  border-color: #505050;
+  background: #505050;
+}
+
+/* shelf look for the composer */
+html[data-tl-theme="e-current"] .mx_MessageComposer {
+  background: #202020;
+  border-top: 1px solid #101010;
+}
