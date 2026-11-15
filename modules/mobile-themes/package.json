@@ -1,7 +1,7 @@
 {
     "name": "@datanauten/element-web-mobile-themes",
-    "version": "0.0.1",
-    "description": "Element Web module (skeleton): marks phones/touch devices with html[data-mt-mobile] and injects a scoped mobile stylesheet. Research: ../docs/MOBILE-ISSUES.md",
+    "version": "0.1.0",
+    "description": "Element Web module that makes Element Web usable on phones: single-pane shell, phone-sized dialogs, touch and keyboard handling, all scoped to html[data-mt-mobile]. Issues: ../docs/MOBILE-ISSUES.md",
     "private": true,
     "type": "module",
     "license": "AGPL-3.0-only",
@@ -11,7 +11,9 @@
         "dev": "node dev/server.mjs",
         "lint:types": "tsc --noEmit",
         "test:smoke": "node test/smoke.mjs",
-        "audit": "node test/audit.mjs"
+        "audit": "node test/audit.mjs",
+        "test:shell": "node test/shell.mjs",
+        "test:desktop": "node test/desktop.mjs"
     },
     "devDependencies": {
         "@element-hq/element-web-module-api": "2.3.0",
