@@ -82,6 +82,16 @@ Lucida, the E16 X11 core font, is proprietary. The CSS references it only via `l
 | code blocks / hljs | E syntax colourclasses (keyword #FF9999, string #33FF99, …) or per-variant sets; per-span inline-code backgrounds removed inside `pre` |
 | polls, E2EE shields, unread badges, long names, RTL, mobile | checked in shots 03/18/19/20/22/23; nothing clipped or unreadable |
 
+### Bold pass (lead review)
+
+- Shared wallpaper decoration layers (`.mx_MatrixChat::before/::after`). They animate only by `transform`/`opacity` and stop under reduced motion. Windows are translucent, and the left panel gets a generic E title bar.
+- e17-glow: blue-black wallpaper with a glowing E logo and swirl rays behind translucent windows, blue-edged borders, gradient title bars on every window, blooming blue selection bars.
+- e-aurora: an animated, blurred aurora curtain layer behind all glass panels, ramp-coloured window edges, and solid text plates under every message, sender and room row.
+- e-ember: forge wallpaper (heat gradient, rising embers, heat shimmer), copper frames on every window, copper title bars, solid orange bloom selection.
+- e-neon-steel: grid-floor wallpaper, steel bevel frames with cyan/magenta neon tubes, chamfered neon-underlined title bars, hazard stripe on the shelf.
+- e-current: framed windows on the faceted 0.25 wallpaper, a "Rooms" title bar and a blue focus line under the header.
+- Fixed: `assets/e-logo.svg` was malformed XML after the phase-A metadata strip, so the logo mask never rendered.
+
 ### Known gaps
 
 - Element Call, Jitsi and widget iframes stay Element light/dark; only their frame is themed.

@@ -187,3 +187,82 @@ html[data-tl-theme="e-neon-steel"] .mx_DecoratedRoomAvatar_icon_online::before {
   background-color: #99FF33;
   box-shadow: 0 0 6px rgba(153, 255, 51, 0.8);
 }
+
+/* ================================================================== bold pass: cyberpunk-industrial
+ * dark grid floor + magenta/cyan haze, heavy bevelled steel frames on every window, neon tubes along the
+ * frames (cyan / magenta alternating), chamfered title bars, hazard stripes on the shelf. */
+html[data-tl-theme="e-neon-steel"] {
+  --n-frame-steel: linear-gradient(135deg, #8E99B0 0%, #4A5168 22%, #2D3243 50%, #4A5168 78%, #8E99B0 100%);
+  --e-wall:
+    repeating-linear-gradient(0deg, rgba(51, 224, 255, 0.07) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, rgba(51, 224, 255, 0.07) 0 1px, transparent 1px 48px),
+    radial-gradient(ellipse 60% 50% at 85% 10%, rgba(255, 51, 153, 0.35), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 10% 95%, rgba(51, 224, 255, 0.28), transparent 70%),
+    linear-gradient(180deg, #070A12 0%, #0B0F1A 60%, #05070C 100%);
+  /* slow neon flicker of the haze (opacity only, on the decoration layer) */
+  --e-deco: radial-gradient(ellipse 40% 30% at 70% 0%, rgba(255, 51, 153, 0.35), transparent 70%), radial-gradient(ellipse 35% 30% at 20% 100%, rgba(51, 224, 255, 0.3), transparent 70%);
+  --e-deco-anim: e-neon-hum 4s steps(2, end) infinite;
+  --e-gap: 12px;
+  --e-win-border: 0 0 0 1px #05070C;
+  --e-win-shadow: 0 0 0 7px #05070C;
+  --e-list-bg: rgba(18, 24, 38, 0.94);
+  --e-rp-bg: rgba(18, 24, 38, 0.95);
+  --e-timeline-bg: rgba(11, 15, 24, 0.94);
+  --e-roomview-bg: transparent;
+  --e-lp-title: "// ROOMS" / "";
+  --e-lp-title-h: 26px;
+  --e-lp-title-font: 700 12px/1 "Exo 2", sans-serif;
+  --e-hover-bg: rgba(51, 224, 255, 0.10);
+  --e-sel-bg: linear-gradient(90deg, rgba(51, 224, 255, 0.28), rgba(255, 51, 153, 0.18));
+  --e-sel-glow: inset 0 0 0 1px rgba(51, 224, 255, 0.7), 0 0 14px rgba(51, 224, 255, 0.45);
+  --e-clock-fg: #33E0FF;
+}
+@keyframes e-neon-hum {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+html[data-tl-theme="e-neon-steel"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="e-neon-steel"] body {
+  background: #05070C;
+}
+/* heavy steel frames + neon tubes */
+html[data-tl-theme="e-neon-steel"] .mx_SpacePanel,
+html[data-tl-theme="e-neon-steel"] .mx_LeftPanel,
+html[data-tl-theme="e-neon-steel"] .mx_RoomView,
+html[data-tl-theme="e-neon-steel"] .mx_RightPanel {
+  border: 5px solid transparent;
+  border-image: var(--n-frame-steel) 1;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 1px #05070C, 0 0 0 3px #33E0FF, 0 0 14px 2px rgba(51, 224, 255, 0.7), inset 0 0 0 1px #05070C;
+}
+html[data-tl-theme="e-neon-steel"] .mx_SpacePanel,
+html[data-tl-theme="e-neon-steel"] .mx_RoomView {
+  box-shadow: 0 0 0 1px #05070C, 0 0 0 3px #FF3399, 0 0 14px 2px rgba(255, 51, 153, 0.7), inset 0 0 0 1px #05070C;
+}
+/* hazard stripe at the bottom of the shelf */
+html[data-tl-theme="e-neon-steel"] .mx_SpacePanel {
+  background:
+    repeating-linear-gradient(135deg, #FFB547 0 8px, #05070C 8px 16px) 0 100% / 100% 10px no-repeat,
+    linear-gradient(90deg, #161C2B, #111725);
+}
+/* title bars: steel with a neon underline, chamfered corners */
+html[data-tl-theme="e-neon-steel"] .mx_LeftPanel::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  border-bottom: 2px solid #33E0FF;
+  box-shadow: 0 2px 10px rgba(51, 224, 255, 0.6);
+  color: #E6F0FF;
+}
+html[data-tl-theme="e-neon-steel"] .mx_RoomHeader {
+  border-bottom: 2px solid #FF3399;
+  box-shadow: var(--n-bevel), 0 2px 12px rgba(255, 51, 153, 0.55);
+}
+html[data-tl-theme="e-neon-steel"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  color: #FFFFFF;
+}
+html[data-tl-theme="e-neon-steel"] .mx_MessageComposer {
+  border-top: 2px solid #33E0FF;
+  box-shadow: var(--n-bevel), 0 -2px 12px rgba(51, 224, 255, 0.45);
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="e-neon-steel"] .mx_MatrixChat::before { animation: none; }
+}

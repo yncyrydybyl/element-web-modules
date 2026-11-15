@@ -28,7 +28,7 @@ def rgba(h, a):
 DECORATIVE = {
     "e16-brushed-metal": ["#9FE8E3", "#F2D29B", "#D7B8F5", "#A8E39A", "#F5A9A0", "#A9C8FF"],
     "e17-glow": ["#66B8FF", "#FF9933", "#99FF33", "#FF66B3", "#B57BFF", "#33FF99"],
-    "e-current": ["#66B8FF", "#FF9933", "#99FF33", "#FF66B3", "#B57BFF", "#33FF99"],
+    "e-current": ["#66B8FF", "#FF9933", "#99FF33", "#FF85C2", "#C49BFF", "#33FF99"],
     "e-aurora": ["#2EE6C5", "#33A1FF", "#B08CFF", "#FF5FC8", "#FFD166", "#7CF29A"],
     "e-ember": ["#FFB547", "#FF7A1A", "#F0506A", "#E8C39E", "#B5D86A", "#7FC8D9"],
     "e-neon-steel": ["#33E0FF", "#FF3399", "#99FF33", "#FFB547", "#B57BFF", "#5EA0FF"],

@@ -134,3 +134,40 @@ html[data-tl-theme="e-current"] .mx_MessageComposer {
   background: #202020;
   border-top: 1px solid #101010;
 }
+
+/* ================================================================== bold pass: E windows on the E desktop */
+html[data-tl-theme="e-current"] {
+  --e-wall:
+    linear-gradient(118deg, transparent 0 52%, rgba(46, 110, 102, 0.85) 52% 60%, transparent 60%),
+    linear-gradient(64deg, transparent 0 68%, rgba(176, 128, 78, 0.85) 68% 73%, transparent 73%),
+    linear-gradient(150deg, transparent 0 20%, rgba(60, 70, 90, 0.6) 20% 34%, transparent 34%),
+    linear-gradient(160deg, #2C3140 0%, #1E222B 60%, #16181E 100%);
+  --e-gap: 9px;
+  --e-win-border: 0 0 0 1px #101010;
+  --e-win-shadow: 0 4px 16px rgba(0, 0, 0, 0.65);
+  --e-lp-title: "Rooms" / "";
+  --e-lp-title-h: 28px;
+  --e-lp-title-bg:
+    url("assets/e-glyph-close.svg") calc(100% - 8px) 50% / 12px 12px no-repeat,
+    #202020;
+  --e-lp-title-font: 700 12px/1 "DejaVu Sans", sans-serif;
+  --e-rp-bg: #404040;
+}
+html[data-tl-theme="e-current"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="e-current"] body {
+  background: #16181E;
+}
+html[data-tl-theme="e-current"] .mx_RoomHeader {
+  border-bottom: 1px solid #101010;
+}
+/* thin blue line under the active window's title, like E's focused border */
+html[data-tl-theme="e-current"] .mx_RoomHeader::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: #3399FF;
+  pointer-events: none;
+}

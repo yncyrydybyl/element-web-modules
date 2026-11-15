@@ -178,3 +178,77 @@ html[data-tl-theme="e17-glow"] [class*="_chat-filter_"]:hover {
 html[data-tl-theme="e17-glow"] [class*="_chat-filter_"] {
   border-radius: 4px;
 }
+
+/* ================================================================== bold pass: unmistakably E17
+ * dark blue-black wallpaper with a glowing E logo + swirl, translucent bordered windows,
+ * gradient title bars on every window, blooming blue selection bars, glossy shelf. */
+html[data-tl-theme="e17-glow"] {
+  --e-wall: radial-gradient(ellipse 90% 80% at 66% 48%, #1B3C6E 0%, #0D2140 32%, #07101F 62%, #030509 100%);
+  --e-deco: radial-gradient(circle at 50% 50%, #CFE8FF 0%, #66B8FF 30%, #1F6FD1 60%, rgba(31, 111, 209, 0.2) 100%);
+  --e-deco-mask: url("assets/e-logo.svg") 64% 46% / min(78vh, 700px) no-repeat;
+  --e-deco-opacity: 0.5;
+  --e-deco2: repeating-conic-gradient(from 10deg at 64% 46%, rgba(102, 184, 255, 0.10) 0deg 5deg, transparent 5deg 15deg);
+  --e-gap: 8px;
+  --e-win-radius: 4px;
+  --e-win-border: 0 0 0 1px #000, 0 0 0 2px rgba(102, 184, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --e-win-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
+  --e-bar-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 50%, transparent 51%),
+    linear-gradient(180deg, #3F4A5C 0%, #262E3B 50%, #161B24 51%, #0D1117 100%);
+  --e-bar-shadow: inset 0 -1px 0 rgba(51, 153, 255, 0.75), 0 1px 8px rgba(51, 153, 255, 0.25);
+  --e-bar-text-shadow: 0 1px 0 #000, 0 0 8px rgba(102, 184, 255, 0.7);
+  --e-list-bg: rgba(16, 18, 26, 0.7);
+  --e-rp-bg: rgba(18, 20, 27, 0.86);
+  --e-timeline-bg: rgba(12, 14, 22, 0.6);
+  --e-roomview-bg: transparent;
+  --e-lp-title: "Everything" / "";
+  --e-lp-title-h: 24px;
+  --e-shelf-bg:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.10) 0, transparent 3px, transparent calc(100% - 2px), rgba(51, 153, 255, 0.5) 100%),
+    linear-gradient(180deg, rgba(40, 48, 64, 0.85) 0%, rgba(16, 20, 28, 0.92) 100%);
+  --e-hover-bg: rgba(51, 153, 255, 0.12);
+  --e-sel-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 51%),
+    linear-gradient(90deg, rgba(51, 153, 255, 0.85) 0%, rgba(40, 130, 230, 0.55) 45%, rgba(51, 153, 255, 0.12) 100%);
+  --e-sel-glow: 0 0 16px rgba(51, 153, 255, 0.55), inset 0 0 0 1px rgba(160, 210, 255, 0.35);
+  --e-sel-text-shadow: 0 0 8px rgba(190, 225, 255, 0.95);
+  --e-sel-bar: #CFE8FF;
+  --e-row-radius: 4px;
+  --e-menu-sel:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 51%),
+    linear-gradient(90deg, rgba(51, 153, 255, 0.85), rgba(51, 153, 255, 0.2));
+  --e-menu-bg: rgba(20, 24, 32, 0.96);
+  --e-dialog-bg: rgba(26, 30, 38, 0.97);
+  --e-clock-face: radial-gradient(circle at 50% 30%, #2A3A55, #070B14 70%);
+  --e-clock-rim: #66B8FF;
+}
+html[data-tl-theme="e17-glow"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="e17-glow"] body {
+  background: #030509;
+}
+html[data-tl-theme="e17-glow"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  color: #FFFFFF;
+}
+html[data-tl-theme="e17-glow"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_container_"]::before {
+  display: none;
+}
+html[data-tl-theme="e17-glow"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 51%), radial-gradient(circle, rgba(51, 153, 255, 0.85), rgba(51, 153, 255, 0.2) 75%);
+  box-shadow: 0 0 0 1px #9FD0FF, 0 0 14px 3px rgba(51, 153, 255, 0.7);
+}
+html[data-tl-theme="e17-glow"] .mx_MessageComposer {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0, rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(42, 50, 66, 0.92) 0%, rgba(14, 18, 26, 0.96) 100%);
+  border-top: 1px solid #000;
+  box-shadow: 0 -1px 0 rgba(51, 153, 255, 0.6), 0 -6px 18px rgba(51, 153, 255, 0.15);
+}
+html[data-tl-theme="e17-glow"] .mx_RoomHeader_heading {
+  color: #FFFFFF;
+}
+html[data-tl-theme="e17-glow"] .mx_TabbedView_tabLabel_active {
+  background: var(--e-sel-bg);
+  box-shadow: var(--e-sel-glow);
+}

@@ -167,3 +167,115 @@ html[data-tl-theme="e-ember"] .mx_NotificationBadge {
 html[data-tl-theme="e-ember"] .mx_TabbedView_tabLabel_active {
   box-shadow: inset 3px 0 0 #FF9933, 0 0 10px rgba(255, 122, 26, 0.2);
 }
+
+/* ================================================================== bold pass: a forge
+ * heat-gradient wallpaper with rising embers (transform-animated layer), copper/bronze frames on every
+ * window, copper title bars everywhere, orange bloom selection. */
+html[data-tl-theme="e-ember"] {
+  --m-frame: 0 0 0 1px #0A0806, 0 0 0 4px #8A5533, 0 0 0 5px #2A1608, 0 0 0 6px rgba(255, 170, 90, 0.35);
+  --e-wall:
+    radial-gradient(ellipse 90% 55% at 50% 115%, #FF7A1A 0%, #C2410C 22%, #6A1B06 45%, transparent 72%),
+    radial-gradient(ellipse 50% 40% at 8% 100%, rgba(255, 181, 71, 0.55), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 95% 105%, rgba(224, 52, 74, 0.5), transparent 70%),
+    linear-gradient(180deg, #120D0A 0%, #1C120C 50%, #2A1408 100%);
+  /* embers: a tall tile of glowing sparks that drifts upward (transform only) */
+  --e-deco:
+    radial-gradient(2px 2px at 12% 18%, #FFD08A 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 27% 62%, #FFB547 50%, transparent 51%),
+    radial-gradient(2.5px 2.5px at 43% 35%, #FF9933 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 58% 78%, #FFD08A 50%, transparent 51%),
+    radial-gradient(2px 2px at 71% 22%, #FF7A1A 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 84% 55%, #FFB547 50%, transparent 51%),
+    radial-gradient(2px 2px at 93% 88%, #FF9933 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 5% 90%, #FFD08A 50%, transparent 51%);
+  --e-deco-inset: 0 0 -620px 0;
+  --e-deco-anim: e-embers-rise 24s linear infinite;
+  --e-deco-opacity: 0.85;
+  --e-deco2: radial-gradient(ellipse 70% 30% at 50% 100%, rgba(255, 122, 26, 0.35), transparent 70%);
+  --e-deco2-anim: e-heat 5s ease-in-out infinite alternate;
+  --e-gap: 10px;
+  --e-win-radius: 4px;
+  --e-win-border: var(--m-frame);
+  --e-win-shadow: 0 0 24px rgba(255, 122, 26, 0.35), 0 8px 20px rgba(0, 0, 0, 0.6);
+  --e-list-bg: rgba(30, 22, 17, 0.8);
+  --e-rp-bg: rgba(30, 22, 17, 0.92);
+  --e-timeline-bg: rgba(22, 16, 12, 0.8);
+  --e-roomview-bg: transparent;
+  --e-shelf-bg: linear-gradient(90deg, rgba(42, 26, 16, 0.92), rgba(20, 14, 10, 0.94));
+  --e-lp-title: "FORGE · ROOMS" / "";
+  --e-lp-title-h: 26px;
+  --e-lp-title-bg:
+    url("assets/e16-btn-close.svg") calc(100% - 5px) 50% / 16px 16px no-repeat,
+    url("assets/e16-btn-max.svg") calc(100% - 23px) 50% / 16px 16px no-repeat,
+    url("assets/e16-btn-menu.svg") 5px 50% / 16px 16px no-repeat,
+    var(--e-bar-bg);
+  --e-lp-title-font: 700 12px/1 "Saira Semi Condensed", "DejaVu Sans", sans-serif;
+  --e-hover-bg: rgba(255, 122, 26, 0.12);
+  --e-sel-bg:
+    linear-gradient(180deg, rgba(255, 230, 190, 0.2) 0%, transparent 55%),
+    linear-gradient(90deg, #FFA347 0%, #FF8A26 45%, #E0741A 100%);
+  --e-sel-fg: #1A0D04;
+  --e-sel-bar: #FFD08A;
+  --e-sel-glow: 0 0 18px rgba(255, 122, 26, 0.65), inset 0 0 0 1px rgba(255, 208, 138, 0.4);
+  --e-sel-text-shadow: none;
+  --e-menu-sel: linear-gradient(90deg, #FFA347, #E0741A);
+  --e-menu-sel-fg: #1A0D04;
+  --e-dialog-bg: rgba(40, 30, 24, 0.98);
+  --e-clock-fg: #FFD08A;
+}
+@keyframes e-embers-rise {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -600px, 0); }
+}
+@keyframes e-heat {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
+}
+html[data-tl-theme="e-ember"] .mx_MatrixChat::before {
+  background-size: 420px 300px;
+  will-change: transform;
+}
+html[data-tl-theme="e-ember"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="e-ember"] body {
+  background: #120D0A;
+}
+html[data-tl-theme="e-ember"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  color: #1A0D04;
+  text-shadow: 0 1px 0 rgba(255, 230, 190, 0.5);
+}
+html[data-tl-theme="e-ember"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_container_"]::before {
+  display: none;
+}
+html[data-tl-theme="e-ember"] .mx_RightPanel [class*="_header_"]:first-child,
+html[data-tl-theme="e-ember"] .mx_BaseCard_header {
+  background: var(--e-bar-bg);
+  color: #FFF1E0;
+}
+html[data-tl-theme="e-ember"] .mx_RightPanel [class*="_header_"]:first-child [class*="_icon-button_"] {
+  --cpd-color-icon-secondary: #FFE7CC;
+  --cpd-color-icon-tertiary: #FFE7CC;
+}
+html[data-tl-theme="e-ember"] .mx_MessageComposer {
+  background:
+    linear-gradient(180deg, rgba(255, 220, 160, 0.12) 0, rgba(255, 220, 160, 0.12) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(58, 36, 22, 0.94), rgba(26, 18, 13, 0.96));
+  border-top: 2px solid #8A5533;
+  box-shadow: 0 -6px 16px rgba(255, 122, 26, 0.18);
+}
+html[data-tl-theme="e-ember"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: radial-gradient(circle, rgba(255, 122, 26, 0.75), rgba(255, 122, 26, 0.1) 75%);
+  box-shadow: 0 0 0 2px #FFB547, 0 0 16px 3px rgba(255, 122, 26, 0.7);
+}
+html[data-tl-theme="e-ember"] .mx_TabbedView_tabLabel_active {
+  background: var(--e-sel-bg);
+  color: #1A0D04;
+  box-shadow: var(--e-sel-glow);
+}
+html[data-tl-theme="e-ember"] .mx_TabbedView_tabLabel_active .mx_TabbedView_tabLabel_text,
+html[data-tl-theme="e-ember"] .mx_TabbedView_tabLabel_active svg {
+  color: #1A0D04;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="e-ember"] .mx_MatrixChat::before,
+  html[data-tl-theme="e-ember"] .mx_MatrixChat::after { animation: none; }
+}

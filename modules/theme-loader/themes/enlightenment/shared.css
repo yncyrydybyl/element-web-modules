@@ -141,11 +141,78 @@ html[data-tl-family="enlightenment"] .mx_Separator {
 html[data-tl-family="enlightenment"] .mx_SpacePanel {
   background: var(--e-shelf-bg);
 }
-html[data-tl-family="enlightenment"] .mx_LeftPanel,
-html[data-tl-family="enlightenment"] .mx_LeftPanel_roomListContainer,
-html[data-tl-family="enlightenment"] .mx_RoomListPanel {
+html[data-tl-family="enlightenment"] .mx_LeftPanel {
   background: var(--e-list-bg);
   color: var(--e-list-fg);
+}
+html[data-tl-family="enlightenment"] .mx_LeftPanel_roomListContainer,
+html[data-tl-family="enlightenment"] .mx_RoomListPanel {
+  background: transparent;
+  color: var(--e-list-fg);
+}
+html[data-tl-family="enlightenment"] .mx_RightPanel {
+  background: var(--e-rp-bg, var(--e-list-bg));
+}
+html[data-tl-family="enlightenment"] .mx_RightPanel .mx_BaseCard {
+  background: transparent;
+}
+
+/* wallpaper decoration layers (E logo, aurora curtains, embers…): animated by transform only */
+html[data-tl-family="enlightenment"] .mx_MatrixChat {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+html[data-tl-family="enlightenment"] .mx_MatrixChat::before,
+html[data-tl-family="enlightenment"] .mx_MatrixChat::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+html[data-tl-family="enlightenment"] .mx_MatrixChat::before {
+  inset: var(--e-deco-inset, 0);
+  background: var(--e-deco, none);
+  -webkit-mask: var(--e-deco-mask, none);
+  mask: var(--e-deco-mask, none);
+  opacity: var(--e-deco-opacity, 1);
+  animation: var(--e-deco-anim, none);
+}
+html[data-tl-family="enlightenment"] .mx_MatrixChat::after {
+  inset: var(--e-deco2-inset, 0);
+  background: var(--e-deco2, none);
+  opacity: var(--e-deco2-opacity, 1);
+  animation: var(--e-deco2-anim, none);
+}
+html[data-tl-family="enlightenment"] .mx_MatrixChat > div:first-child {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* generic E title bar on the left panel (e16, e17, e-current, ember, neon) */
+html[data-tl-family="enlightenment"] .mx_LeftPanel {
+  position: relative;
+  padding-top: var(--e-lp-title-h, 0px);
+  box-sizing: border-box;
+}
+html[data-tl-family="enlightenment"] .mx_LeftPanel::before {
+  content: var(--e-lp-title, none);
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--e-lp-title-h, 0px);
+  background: var(--e-lp-title-bg, var(--e-bar-bg));
+  color: var(--e-bar-fg);
+  font: var(--e-lp-title-font, 700 12px/1 var(--e-bar-font));
+  line-height: var(--e-lp-title-h, 0px);
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-shadow: var(--e-bar-text-shadow);
+  border-bottom: 1px solid var(--e-bar-line);
+  box-shadow: var(--e-bar-shadow);
+  box-sizing: border-box;
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* ------------------------------------------------------------------ title bars */
@@ -260,9 +327,14 @@ html[data-tl-family="enlightenment"] .mx_RoomListItemView.mx_RoomListItemView_se
 }
 
 /* ------------------------------------------------------------------ timeline */
-html[data-tl-family="enlightenment"] .mx_RoomView_body,
+html[data-tl-family="enlightenment"] .mx_RoomView {
+  background: var(--e-roomview-bg, var(--cpd-color-bg-canvas-default));
+}
+html[data-tl-family="enlightenment"] .mx_RoomView_body {
+  background: var(--e-timeline-bg, var(--cpd-color-bg-canvas-default));
+}
 html[data-tl-family="enlightenment"] .mx_RoomView_messagePanel {
-  background: var(--cpd-color-bg-canvas-default);
+  background: transparent;
 }
 html[data-tl-family="enlightenment"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line,
 html[data-tl-family="enlightenment"] .mx_EventTile[class*="_stateHighlighted_"] [class*="_slotBody_"] {
