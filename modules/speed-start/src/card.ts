@@ -288,6 +288,8 @@ export const cardCss = `
 .${C} {
     --ss-accent: var(--cpd-color-text-action-accent, #0b7a52);
     position: absolute;
+    /* In front of the snapshot's scanlines and tear band. */
+    z-index: 2;
     width: min(380px, calc(100vw - 32px));
     box-sizing: border-box;
     padding: 20px 22px 16px;
