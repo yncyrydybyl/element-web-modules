@@ -28,10 +28,6 @@
       "url": "https://www.npmjs.com/package/@fontsource/win95fa"
     },
     {
-      "title": "Pixel Operator font (Jayvee Enaguas), CC0 1.0",
-      "url": "https://github.com/bauripalash/ttf-pixeloperator-fork"
-    },
-    {
       "title": "The Ultimate Oldschool PC Font Pack v2.2 (VileR), CC BY-SA 4.0 — PxPlus IBM VGA 8x16",
       "url": "https://int10h.org/oldschool-pc-fonts/"
     },
@@ -56,7 +52,7 @@
     "Element Call / Jitsi / widget iframes only know light|dark: they render in modern Element styling inside a Win 3.x MDI frame (we style .mx_AppTile/.mx_CallView chrome only).",
     "The new room list is virtualised (react-virtuoso, measured row heights): a true wrapping Program Manager icon grid would break scrolling, so rooms are a single column of 32px program items; spaces (not virtualised) get the real minimized-group-icon strip.",
     "No real window management: MDI windows are CSS frames around fixed Element regions; min/max buttons and the control-menu box are decorative unless the enhancer wires them (maximise = collapse left panel / right panel; control menu = room context menu).",
-    "Bitmap fonts: the real System and MS Sans Serif are .FON bitmaps browsers cannot use even if installed; local() is tried but W95FA / Pixel Operator carry the look. Pixel fonts are only crisp at 16px multiples and with integer devicePixelRatio; at 125%/150% zoom they blur.",
+    "Bitmap fonts: the real System and MS Sans Serif are .FON bitmaps browsers cannot use even if installed; local() is tried but W95FA (+ our overstrike bold) and PxPlus carry the look. W95FA is crisp at 12.5px multiples, PxPlus at 16px multiples, and with integer devicePixelRatio; at 125%/150% zoom they blur.",
     "User font-size slider (FontWatcher) scales :root; the pure variants pin chrome to 16px and only let the timeline scale, usable follows the slider in 16px steps where possible.",
     "Emoji stay Twemoji colour glyphs (no 1992 equivalent); avatars can be posterised with a CSS filter approximation only (true 16-colour dither needs an SVG filter, too expensive per tile in usable variants).",
     "Compound/Radix tooltips and some menus are portals with hashed classes; restyled via [role=tooltip]/[role=menu] only.",
@@ -88,8 +84,8 @@
       },
       "phases": null,
       "fonts": {
-        "ui": "MS Sans Serif (local) → W95FA 16px",
-        "display": "System bold (local) → Pixel Operator Bold 16px",
+        "ui": "MS Sans Serif (local) → W95FA 12.5px (native)",
+        "display": "System bold (local) → W95FA Overstrike Bold",
         "mono": "Fixedsys (local) → PxPlus IBM VGA 8x16 16px"
       },
       "shape": {
@@ -159,7 +155,7 @@
       "phases": null,
       "fonts": {
         "ui": "W95FA 16px (follows Element font size in 16px steps; falls back to system-ui above 24px)",
-        "display": "Pixel Operator Bold 16px",
+        "display": "W95FA Overstrike Bold",
         "mono": "PxPlus IBM VGA 8x16 16px"
       },
       "shape": {
@@ -228,8 +224,8 @@
       },
       "phases": null,
       "fonts": {
-        "ui": "MS Sans Serif (local) → W95FA 16px",
-        "display": "System bold (local) → Pixel Operator Bold 16px",
+        "ui": "MS Sans Serif (local) → W95FA 12.5px (native)",
+        "display": "System bold (local) → W95FA Overstrike Bold",
         "mono": "Fixedsys (local) → PxPlus IBM VGA 8x16 16px"
       },
       "shape": {
@@ -298,8 +294,8 @@
       },
       "phases": null,
       "fonts": {
-        "ui": "MS Sans Serif (local) → W95FA 16px",
-        "display": "System bold (local) → Pixel Operator Bold 16px",
+        "ui": "MS Sans Serif (local) → W95FA 12.5px (native)",
+        "display": "System bold (local) → W95FA Overstrike Bold",
         "mono": "Fixedsys (local) → PxPlus IBM VGA 8x16 16px"
       },
       "shape": {
@@ -451,8 +447,8 @@
         }
       ],
       "fonts": {
-        "ui": "MS Sans Serif (local) → W95FA 16px",
-        "display": "System bold (local) → Pixel Operator Bold 16px",
+        "ui": "MS Sans Serif (local) → W95FA 12.5px (native)",
+        "display": "System bold (local) → W95FA Overstrike Bold",
         "mono": "Fixedsys (local) → PxPlus IBM VGA 8x16 16px"
       },
       "shape": {

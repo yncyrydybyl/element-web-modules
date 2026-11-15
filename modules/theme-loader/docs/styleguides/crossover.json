@@ -71,7 +71,7 @@
       "fonts": {
         "ui": "W95FA (from win311 assets, OFL) 16px → Pixelated MS Sans Serif",
         "display": "Antonio (from lcars assets, OFL), ALL CAPS, right-aligned",
-        "mono": "VT323 (from win311 assets, OFL) / Fixedsys Excelsior"
+        "mono": "PxPlus IBM VGA 8x16 (from win311 assets, CC BY-SA 4.0)"
       },
       "shape": {
         "radius": "elbow outer 64px / inner 32px on the frame; 2px (Win 3.1 corner-pixel knock-out) on buttons; 0 on windows",
@@ -106,13 +106,13 @@
         "scrollbars": "Win 3.1 17px scrollbar recoloured: 1px black outline, track #333 (dithered), fixed-size square thumb in #9999CC, triangle arrow buttons",
         "focus": "Win 3.1 dotted rectangle in #FFCC99 around the label PLUS a 2px solid #FFCC99 outline (offset 2px) so it stays ≥3:1",
         "badges": "black numerals on a small #FF9900 block at the left end of the row; mentions = #CC6666 block",
-        "code": "VT323 on black, LCARS-tinted hljs (keywords #FF9900, strings #99CCFF, comments #9999CC)",
+        "code": "PxPlus IBM VGA on black, 12px blue-bell left bar, LCARS-tinted hljs (keywords #FF9900, strings #99CCFF, comments #9999CC)",
         "iframes": "calls/widgets run dark; framed as an MDI child window with title bar",
         "icons": "Compound icons hidden in primary chrome and replaced by Antonio caps labels (LCARS has no icons); kept (recoloured) inside menus for recognition",
         "motion": "zoom rectangle on dialog open, brightness on press, optional chirp; no data-cascade animation in the timeline"
       },
       "difficulty": "hard",
-      "enhancer": "reuses the lcars frame overlay (elbows, block stack, numbers, stardate) and the win311 title-bar decoration (control-menu box, ▼▲, menu bar); adds opt-in WebAudio chirps"
+      "enhancer": "none in phase B: the LCARS frame, title bars, menu bar and TRANSMIT label are pure CSS (pseudo-elements + @win311/@lcars assets); opt-in chirps postponed"
     },
     {
       "id": "x-teams-sketch",
@@ -141,7 +141,7 @@
       "fonts": {
         "ui": "Balsamiq Sans (from sketch assets, OFL)",
         "display": "Balsamiq Sans Bold (headings), Architects Daughter for sticky-note annotations (from sketch assets, OFL)",
-        "mono": "sketch family mono (JetBrains Mono / Victor Mono, OFL)"
+        "mono": "Comic Shanns Mono (from sketch assets, MIT)"
       },
       "shape": {
         "radius": "irregular hand-drawn: 255px 15px 225px 15px / 15px 225px 15px 255px (rotating 3 variants)",
@@ -182,7 +182,7 @@
         "motion": "only the hover wobble; no boiling filters"
       },
       "difficulty": "medium",
-      "enhancer": "reuses teams layout enhancer (app-bar labels, header tabs) if any; adds sticky-note annotations (aria-hidden) into empty states"
+      "enhancer": "none in phase B: app-bar labels, header tabs and sticky notes are CSS pseudo-elements"
     },
     {
       "id": "x-kde-e16",
@@ -252,7 +252,7 @@
         "motion": "150ms Breeze hover, window-shade close; no animated textures"
       },
       "difficulty": "medium",
-      "enhancer": "adds the decorative E16 bevel button trio to the header and dialog title bars (aria-hidden), reusing the enlightenment family's enhancer pieces"
+      "enhancer": "none in phase B: the E16 gem-button trio is a CSS background (@enlightenment/assets/e16-btn-*.svg)"
     }
   ]
 }

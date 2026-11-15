@@ -573,7 +573,7 @@
         "own": "#e9e4f2",
         "other": "#f8f3ea",
         "critical": "#b3261e",
-        "success": "#3d7a3a"
+        "success": "#33682f"
       },
       "phases": null,
       "fonts": {
@@ -643,7 +643,7 @@
         "own": "#fff1e0",
         "other": "#ffffff",
         "critical": "#c92a2a",
-        "success": "#2b8a3e"
+        "success": "#237032"
       },
       "phases": null,
       "fonts": {

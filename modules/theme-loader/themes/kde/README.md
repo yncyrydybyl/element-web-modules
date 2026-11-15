@@ -7,6 +7,36 @@ The design intent is in `docs/styleguides/kde.md`, and the gallery data is in `d
 
 The asset directory is flat, because the build flattens assets to `kde--<file>`. Files are grouped by prefix: `breeze-*`, `ocean-*` and `oxygen-*`.
 
+## Implementation status (phase B)
+
+| Variant | Status | What is implemented |
+|---|---|---|
+| kde-breeze-light | done | NeoChat layout: header band shared by the space column, room-list search row and room header (48 px, `#dee0e2`); Breeze titlebar overlay (chevrons, title from `document.title`, maximise toggles fullscreen); 56 px space column with KDE-logo Home button, 30 % accent tile and edge indicator; Plasma clock; Kirigami room list ("People ——— ⌄" section rules, accent selection with outline); white 5 px message cards on the Window canvas (own messages tinted, mentions with orange left bar); Breeze push buttons, check boxes, radios, switches, line edits, menus, tooltips, dialogs, settings sidebar, scrollbars; Breeze icons on composer, header, space panel and action bar; Breeze-style code highlighting; Hanabi login backdrop. |
+| kde-breeze-dark | done | The same rules on Breeze Dark values. |
+| kde-breeze-daylight | done | Light at dawn and day, Breeze Classic at dusk (dark `#475057` header band and titlebar, `#31363b` panel), Breeze Dark at night. KWin Night Color warm overlay: one fixed multiply layer at 6, 8 and 10 %. 2 s crossfade between phases. Every phase was screenshotted. |
+| kde-oxygen | done | Radial-lit `#d6d2d0` window; sunken white view panes for the room list and timeline; glossy jelly buttons with the `#6ed6ff` glow on hover; dark glass Plasma panel with the KDE 4 logo; colourful Oxygen icons (PNG); glossy blue selection; etched separators instead of cards; sunken "hole" line edits; jelly-circle titlebar with help/min/max/close; Oxygen font and Oxygen Mono. |
+| kde-ocean | done | Ocean tokens: Inter, `#fbfcfe` surface, room list and right panel as floating cards, `#dae2ff` pill selection, Ocean bubbles, Ocean input (44 px, r6, focus ring), filled round send button, Ocean pill badges and chips, nav pills in settings, left-hand traffic-light titlebar, 24 px Ocean icons, gradient Home tile. Filled buttons use `#2058c3` instead of the spec's `#4172de`, because `#4172de` with `#faf8ff` text is only 4.25:1. |
+| kde-usable | done | No titlebar, 44 px band, 14.5 px body, Qt zebra rows in the timeline and room list, unread rows marked with an accent bar, dark-blue unread pills, 3 px `#1e6fa5` focus ring with a white gap, filled default buttons, permanent 10 px scrollbars with a groove, darker outlines under `prefers-contrast: more`. |
+| kde-glass | done | Hanabi dark wallpaper behind everything; backdrop blur only on the big panes (floating rounded space panel, room list, room view, dialogs, menus); translucent cards without per-tile blur; violet accent-from-wallpaper glow on selection, unread badges, the send button and focus; ember-orange mentions; dialogs open with a "Magic Lamp"-like animation (turned off under reduced motion); opaque fallback when `backdrop-filter` is not supported. |
+
+### Edge-check results (`tests/reports/kde-*.md`, latest run)
+
+| Variant | Result | Contrast nodes | Invisible focus stops | Overflow | Missing essentials |
+|---|---|---|---|---|---|
+| kde-breeze-light | pass | 0 | 0 | 0 | 0 |
+| kde-breeze-dark | pass | 0 | 0 | 0 | 0 |
+| kde-breeze-daylight | pass | 0 | 0 | 0 | 0 |
+| kde-oxygen | pass | 4, then fixed (home tiles, timestamp) | 0 | 0 | 0 |
+| kde-ocean | pass | 0 | 0 | 0 | 0 |
+| kde-usable | pass | 0 | 0 | 0 | 0 |
+| kde-glass | pass | 2, then fixed (orange @room pill text) | 0 | 0 | 0 |
+
+The remaining serious axe findings come from Element itself and are the same in every theme: `nested-interactive` (space buttons), `scrollable-region-focusable` (code blocks) and `aria-prohibited-attr` (avatars). Console errors are Element's (no map style configured, rust crypto store warning).
+
+Checked in the screenshots: modals, context menus, settings, login, mobile width (390 px), threads, code blocks, polls, E2EE DM, unread badges, very long names (IRC) and RTL. Accessibility deviations from the pure looks: link `#1d6fa5` instead of `#2980b9`, timestamps `#5f6b77` instead of `#707d8a`, 2 px focus outline instead of Breeze's 1 px, and filled reds darkened (`#b0303e`).
+
+Dev tools (not shipped): `tools/probe.mjs` (uses the harness session pool, no login) and `tools/cssgrep.py` (searches Element's CSS).
+
 ## Assets and licences
 
 | Files | Source | Licence | Notes |

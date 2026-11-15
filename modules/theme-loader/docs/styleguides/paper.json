@@ -163,18 +163,18 @@
       "texture": "none",
       "motion": "200ms opacity reveals for hover/focus chrome and iA focus dimming; instant under reduced motion",
       "signature": [
-        "iA focus mode: older messages dim to 35%, the last four stay at full ink",
+        "iA focus mode: older messages recede to the muted ink (still ≥4.5:1), the last four stay at full ink",
         "no lines anywhere — structure by whitespace only",
-        "room list and space rail fade to 40% until you reach for them",
+        "room list and space rail recede to muted ink until you reach for them",
         "header shows the room name and nothing else at rest",
         "composer is just a caret until focused"
       ],
       "regions": {
         "shell": "single sheet, no lines at all, structure by whitespace (24px gutters)",
-        "spaces": "space rail at 40% opacity until hover/focus-within; selected = ink dot",
-        "roomlist": "text column fading to 40% opacity until hover/focus-within, selected = weight 600, unread = weight 600 + •",
+        "spaces": "space rail in muted ink until hover/focus-within; selected = ink dot",
+        "roomlist": "text column in muted ink (≥4.5:1) until hover/focus-within, selected = weight 600, unread = weight 600 + •",
         "header": "room name only (topic, facepile, call buttons opacity 0 until hover/focus-within)",
-        "timeline": "iA focus mode: tiles at 35% opacity except the last 4, hovered and focused ones; timestamps + action bar hidden until hover/focus; avatars hidden, names in small caps",
+        "timeline": "iA focus mode: older tiles in muted ink (≥4.5:1) except the last 4, hovered and focused ones; timestamps + action bar hidden until hover/focus; avatars hidden, names in small caps",
         "names-avatars": "avatars hidden in timeline (kept in member list), names small caps muted, no colour",
         "composer": "no visible boundary until focused; caret only; send button opacity 0 but focusable (Enter sends)",
         "rightpanel": "no border, opens as an extra column separated by whitespace",
@@ -241,7 +241,7 @@
       ],
       "regions": {
         "shell": "blank sheet; the only chrome is text; 'lines' at ~1.07:1 (deliberately below 3:1)",
-        "spaces": "space rail off-canvas: 8px hover strip at the left edge reveals it, Ctrl+Shift+S / focus also reveals",
+        "spaces": "space rail off-canvas: 8px hover strip at the left edge reveals it, Alt+Shift+P / focus also reveals",
         "roomlist": "left panel off-canvas, revealed by 8px left-edge strip hover, Ctrl+K (room search) or keyboard focus; text only",
         "header": "room name in muted at 13px small caps, nothing else visible until hover/focus-within",
         "timeline": "single 68ch column, metadata at the 4.5:1 floor, no separators, no avatars, date separators as muted small caps",
@@ -375,16 +375,16 @@
       "signature": [
         "iA focus dimming on black",
         "no lines, whitespace only",
-        "periphery fades to 40% until hover/focus",
+        "periphery recedes to muted ink until hover/focus",
         "room name only in the header",
         "caret-only composer"
       ],
       "regions": {
         "shell": "single sheet, no lines at all, structure by whitespace (24px gutters)",
-        "spaces": "space rail at 40% opacity until hover/focus-within; selected = ink dot",
-        "roomlist": "text column fading to 40% opacity until hover/focus-within, selected = weight 600, unread = weight 600 + •",
+        "spaces": "space rail in muted ink until hover/focus-within; selected = ink dot",
+        "roomlist": "text column in muted ink (≥4.5:1) until hover/focus-within, selected = weight 600, unread = weight 600 + •",
         "header": "room name only (topic, facepile, call buttons opacity 0 until hover/focus-within)",
-        "timeline": "iA focus mode: tiles at 35% opacity except the last 4, hovered and focused ones; timestamps + action bar hidden until hover/focus; avatars hidden, names in small caps",
+        "timeline": "iA focus mode: older tiles in muted ink (≥4.5:1) except the last 4, hovered and focused ones; timestamps + action bar hidden until hover/focus; avatars hidden, names in small caps",
         "names-avatars": "avatars hidden in timeline (kept in member list), names small caps muted, no colour",
         "composer": "no visible boundary until focused; caret only; send button opacity 0 but focusable (Enter sends)",
         "rightpanel": "no border, opens as an extra column separated by whitespace",
@@ -451,7 +451,7 @@
       ],
       "regions": {
         "shell": "blank sheet; the only chrome is text; 'lines' at ~1.07:1 (deliberately below 3:1)",
-        "spaces": "space rail off-canvas: 8px hover strip at the left edge reveals it, Ctrl+Shift+S / focus also reveals",
+        "spaces": "space rail off-canvas: 8px hover strip at the left edge reveals it, Alt+Shift+P / focus also reveals",
         "roomlist": "left panel off-canvas, revealed by 8px left-edge strip hover, Ctrl+K (room search) or keyboard focus; text only",
         "header": "room name in muted at 13px small caps, nothing else visible until hover/focus-within",
         "timeline": "single 68ch column, metadata at the 4.5:1 floor, no separators, no avatars, date separators as muted small caps",

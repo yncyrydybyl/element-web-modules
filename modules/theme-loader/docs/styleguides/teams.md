@@ -256,18 +256,19 @@ See `teams.json → limits`. The main ones:
 | Presence only where Element renders it | — |
 | Own-right alignment | Bubble layout only |
 
-## 10. Enhancer plans (`themes/teams/enhance.ts`, one file, variant-switched)
+## 10. Enhancer (`themes/teams/enhance.ts`)
 
-| feature | variants | notes |
-|---|---|---|
-| Title bar overlay (48 px): back/fwd, search pill → opens Element search (dispatch Ctrl+K), logo | 2026-L/D/daylight, 2024, 2028 (floating), classic (purple full-width variant) | pushes `#matrixchat` down via `html[data-tl-family=teams] .mx_MatrixChat_wrapper{margin-top:48px}` |
-| Sun/moon glyph in the title bar | daylight | `onPhase()` |
-| Copilot chip in the room header | 2026, 2028 | `extras.addRoomHeaderButtonCallback` if available, else a sibling overlay; opens the room summary card |
-| AI suggestion chips above the composer | 2028 | insert canned text via `execCommand('insertText')` into the focused composer; decorative, removable |
-| Aurora wallpaper layer | 2028 | static gradient div in `ctx.root`, behind the app |
-| PING!/POW! bursts | comic | MutationObserver on mention badges, 1 burst per change, throttled, off under reduced motion |
-| Scanline/grid layer, boot glitch | cyberpunk | one fixed overlay, `pointer-events: none` |
-| none | usable-light/dark | pure CSS on purpose |
+Phase B moved almost everything the plan gave to the enhancer into CSS. That is more robust and it can't break React:
+
+| feature | how it is done now |
+|---|---|
+| Title bar | CSS: `.mx_MatrixChat` padding-top plus `::before` (logo) and `::after` (title). The room-list search pill and the user menu are lifted into the title bar with `position: fixed`; this needed `.mx_LeftPanel { contain: none }` |
+| Sun/moon glyph | CSS: `--tm-title-text` per `data-tl-phase` |
+| Copilot chip | CSS `::after` on `.mx_RoomHeader` (decorative, hidden while the right panel is open) |
+| PING! bursts | CSS `::after` on highlighted tiles (comic) |
+| Scanlines / grid | CSS `body::after`, one fixed overlay (cyberpunk), off under reduced motion |
+| Aurora wallpaper | CSS background (2028) |
+| **AI suggestion chips** | **enhancer, teams-2028 only:** overlay in `ctx.root` that follows the composer; a click inserts a canned prompt via `execCommand('insertText')` and nothing is sent; hidden while dialogs or menus are open and below 769 px |
 
 ## 11. Phase B notes
 
@@ -276,7 +277,20 @@ See `teams.json → limits`. The main ones:
 - The 2028 palette uses 8-digit hex (alpha) for glass surfaces. The manifest tokens use opaque fallbacks.
 - `teams-2026-daylight.css` should only add the dawn/dusk neutrals and import the light/dark variant rules under `[data-tl-phase]`.
 
-## 12. Sources
+## 12. Implementation notes (phase B)
+
+- **Shared structure:** `shared.css` holds the whole Teams structure, driven by `--tm-*` variables. Each variant file only sets variables and adds overrides.
+- **Shared CSS between variants:**
+  - teams-2026-daylight loads the light and dark files; their selectors include `teams-2026-daylight` with or without `[data-tl-phase="night"]`.
+  - teams-usable-dark loads `teams-2026-dark.css` and `teams-usable-light.css`; the usable rules are scoped with `:is([data-tl-theme="teams-usable-light"], [data-tl-theme="teams-usable-dark"])`.
+- **Bubbles:** messages in the group layout become Teams bubbles: the `.mx_EventTile_line` gets a margin instead of a padding gutter and `width: fit-content`.
+- **Own messages:** right-aligned without avatar/name in all non-usable variants. The usable variants keep Element's layout and coloured names.
+- **Pitfall 1, the effects canvas:** it is window-sized; with the 48 px title bar it overflowed the room view, and `scrollIntoView()` shifted the whole app. Fixed with `max-height: 100%` plus `overflow: clip` on the shell. `clip`, not `hidden`, because overflow:hidden boxes can still be scrolled programmatically.
+- **Pitfall 2, `position: fixed`:** `backdrop-filter` and `clip-path` on an ancestor break `position: fixed` children and clip the message action bar and autocomplete. So:
+  - 2028 blurs only the conversation and right panes.
+  - cyberpunk paints its chamfers on bubbles and composer with gradients instead of clip-path.
+
+## 13. Sources
 
 All URLs are in `teams.json → sources`. Primary:
 

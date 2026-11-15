@@ -1,0 +1,14 @@
+/* teams-usable-dark — usable Teams on the 2026 dark base (teams-2026-dark.css is loaded first). */
+html[data-tl-theme="teams-usable-dark"] {
+  --tm-brand: #5b5fc7;
+  --tm-brand-hover: #4f52b2;
+  --tm-brand-fg: #9299f7;
+  --tm-brand-icon: #9299f7;
+  --tm-fg2: #e0e0e0;
+  --tm-fg3: #d6d6d6;
+  --tm-stroke1: #666666;
+  --tm-stroke2: #525252;
+  --tm-critical-fg: #f1707b;
+  --tm-bubble-other: #333333;
+  --tm-copilot: none;
+}

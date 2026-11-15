@@ -16,7 +16,7 @@ without breaking**: text stays ≥4.5:1 at every stage, and the focus ring is dr
 | Level | Variants | What is visible at rest | Reveal mechanism |
 |---|---|---|---|
 | 1 Calm | `paper-white`, `paper-black`, `paper-daylight` | everything; hairlines; grayscale avatars; muted icons | — |
-| 3 Quiet | `paper-white-quiet`, `paper-black-quiet` | text; no lines; periphery at 40%; older tiles dimmed to 35% | hover, `:focus-within`, `(hover: none)` = always |
+| 3 Quiet | `paper-white-quiet`, `paper-black-quiet` | text; no lines; periphery recedes to muted ink; older tiles recede to muted ink (≥4.5:1) | hover, `:focus-within`, `(hover: none)` = always |
 | 5 Invisible | `paper-white-invisible`, `paper-black-invisible` | text and the focus ring only; chrome boundaries ~1.07:1 | 8px left-edge strip, Ctrl+K, keyboard focus |
 
 Seriousness 10 throughout, hype 0 (daylight 1 for the clock trick).
@@ -51,8 +51,8 @@ The per-variant phrases are in `paper.json`. Summary:
 | Region | L1 Calm | L3 Quiet | L5 Invisible |
 |---|---|---|---|
 | shell | one sheet, 1 hairline left/timeline | no lines, whitespace | blank sheet |
-| spaces | grayscale avatars, ink bar for selected | 40% until hover/focus | off-canvas, edge strip |
-| roomlist | text only, 600 + 2px rule selected, • unread | fades to 40% | off-canvas (Ctrl+K, focus, strip) |
+| spaces | grayscale avatars, ink bar for selected | muted ink until hover/focus | off-canvas, edge strip |
+| roomlist | text only, 600 + 2px rule selected, • unread | recedes to muted ink | off-canvas (Ctrl+K, focus, strip) |
 | header | name 22px + topic | name only | muted small-caps name |
 | timeline | 68ch, 17/1.6, small-caps senders | + focus dimming, hover timestamps/action bar | + no avatars, metadata at floor |
 | names-avatars | grayscale 24px round | avatars hidden in timeline | hidden |
@@ -123,8 +123,9 @@ Only opacity, 150–200ms. Invisible has none. Daylight phase changes use a 2s b
 
 - `data-tl-recent` on the last four `.mx_EventTile` (MutationObserver on the timeline list). This is more robust than `:nth-last-child`,
   which counts read markers and separators. Used by the quiet and invisible variants.
-- Invisible only: an `aria-hidden` 8px left-edge strip in `ctx.root`. Hovering it sets `html[data-tl-reveal]`. Ctrl+Shift+S toggles the
-  reveal for keyboard users (Ctrl+K already opens room search).
+- Invisible only: an `aria-hidden` 8px left-edge strip in `ctx.root`. Hovering it sets `html[data-tl-reveal]`. Alt+Shift+P toggles the
+  reveal for keyboard users (Ctrl+K already opens room search). Alt+Shift+P is not bound in Element 1.12.33
+  (`KeyboardShortcuts.ts`); the originally planned Ctrl+Shift+S is also free in Element but is Firefox's screenshot shortcut.
 - No enhancer for the L1 variants or daylight. Those are CSS only.
 
 ## Assets and licences

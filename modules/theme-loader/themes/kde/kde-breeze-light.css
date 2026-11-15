@@ -1,0 +1,4 @@
+/* Breeze Light (Plasma 6) — palette defaults live in shared.css; this file only adds light-specific touches. */
+html[data-tl-theme="kde-breeze-light"] {
+  --kde-wallpaper: url("assets/wallpaper-hanabi-light.webp");
+}

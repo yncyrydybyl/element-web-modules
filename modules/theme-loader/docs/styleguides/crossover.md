@@ -34,7 +34,7 @@ because it is only 4.48:1. Success is `#99CC99`, which is not canon: LCARS has n
 **Type:**
 - W95FA 16px for UI and body. It is OFL and comes from win311.
 - Antonio caps for frame labels and the header (OFL, from lcars).
-- VT323 for code.
+- PxPlus IBM VGA 8x16 for code (win311 asset, CC BY-SA 4.0); VT323 was not bundled by win311.
 
 **Motion:** Win 3.1 wireframe zoom rectangle when a dialog opens, brightness on press, and an opt-in synthesised chirp. None of it runs under reduced motion.
 
@@ -96,9 +96,12 @@ decorative overlays (frame, title-bar trios, sticky notes) are `aria-hidden` wit
 - Hashed classes need substring selectors. The Teams card layout and LCARS frame use CSS grid on stable `mx_` wrappers only.
 - **Asset reuse:** the build flattens assets to `<family>--<file>`. A crossover must either reference the parent family's flattened
   file (needs loader/build support for cross-family URLs) or copy the woff2 into `themes/crossover/assets/` in phase B.
-  This needs a decision with the loader owner. Until then the manifest's `fonts` is empty.
+  Resolved in phase B: the loader supports `@<family>/assets/<file>` references, the crossover manifest uses them for all fonts and images.
 
 ## Enhancer plans
+
+**Phase B result:** all three crossovers ship CSS-only (`"enhance": false`); everything below was achievable with
+pseudo-elements and cross-family `@family/assets/…` references. The original plans are kept for reference.
 
 - x-win311-lcars: compose the lcars frame overlay (elbows, block stack, numbers, stardate) with the win311 title-bar decorations
   (control-menu box, ▼▲, menu bar). Add opt-in WebAudio chirps.
@@ -108,5 +111,5 @@ decorative overlays (frame, title-bar trios, sticky notes) are `aria-hidden` wit
 ## Sources and licences
 
 The parent dossiers are the source of truth. See `crossover.json` → `sources`. Fonts will come from the parent families:
-W95FA (OFL), Antonio (OFL), VT323 (OFL), Balsamiq Sans (OFL), Architects Daughter (OFL), Noto Sans (OFL), Silkscreen (OFL),
+W95FA (OFL), Antonio (OFL), PxPlus IBM VGA 8x16 (CC BY-SA 4.0), Balsamiq Sans (OFL), Architects Daughter (OFL), Noto Sans (OFL), Silkscreen (OFL),
 Hack (MIT + Bitstream Vera). LCARS is © CBS/Paramount, and Teams/Windows are Microsoft trademarks. Use is internal only.

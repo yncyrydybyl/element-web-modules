@@ -111,7 +111,7 @@ V.append(variant(
     regions={"badges": "unread = #5B5FC7 count pill, mention = #C4314B, room with activity gets the 2026 purple left dot",
              "header": "64px: avatar 32 + name Semibold 18, header buttons as tab strip (2px brand underline), Copilot sparkle chip, video/call split button right"},
     difficulty="medium",
-    enhancer="Title bar overlay (back/forward, centered search pill that opens Element's search dialog, Teams logo); Copilot chip in header (decorative, opens room summary card); room-list section headings ('Pinned', 'Chats', 'Muted') derived from Element's own sections",
+    enhancer=None,
 ))
 
 # ---------- 2026 dark ----------
@@ -138,7 +138,7 @@ V.append(variant(
              "scrollbars": "thin 6px, thumb #5c5c5c / hover #8a8a8a",
              "auth": "#292929 card radius 8 on deep indigo gradient (#29274f → #1f1f1f), logo above",
              "timeline": "others #292929 cards, own #2F2F4A, same grouping/hover bar as light"},
-    enhancer="same as 2026 light",
+    enhancer=None,
 ))
 
 # ---------- 2026 daylight ----------
@@ -164,7 +164,7 @@ V.append(variant(
              "iframes": "light for dawn/day/dusk, dark at night (data-tl-base)",
              "motion": "2s colour cross-fade at phase boundaries, Fluent micro-motion otherwise; reduced motion = instant"},
     difficulty="medium",
-    enhancer="shares the 2026 enhancer; onPhase() swaps the sun/moon glyph in the title bar",
+    enhancer=None,
 ))
 
 # ---------- 2024 (past) ----------
@@ -186,7 +186,7 @@ V.append(variant(
              "header": "56px: name Semibold 18 + Chat/Shared tabs with 2px brand underline, video/call buttons right",
              "timeline": "others #F5F5F5 bubbles radius 4 shadow2; own #E8EBFA; hover reaction bar"},
     difficulty="easy",
-    enhancer="title bar overlay with 2019 logo and search pill (shared with 2026, different logo); no Copilot chip",
+    enhancer=None,
 ))
 
 # ---------- classic 2020 (past) ----------
@@ -218,7 +218,7 @@ V.append(variant(
              "badges": "#C4314B red count pill (classic used red for unread), #6264A7 for mentions-free activity",
              "code": "Cascadia Mono 13 → Consolas, #F3F2F1 block radius 3"},
     difficulty="medium",
-    enhancer="purple top bar overlay with search proxy and logo",
+    enhancer=None,
 ))
 
 # ---------- 2028 (future) ----------
@@ -256,7 +256,7 @@ V.append(variant(
              "icons": "Fluent filled 24 icons; sparkle glyph with Copilot gradient for AI surfaces",
              "focus": "2px #654CF5 ring + 2px white halo"},
     difficulty="hard",
-    enhancer="decorative AI suggestion chips above composer (insert canned text into the composer on click), 'Copilot' label on the right panel header, aurora wallpaper layer in ctx.root",
+    enhancer="Copilot suggestion chips floating above the composer (overlay in ctx.root, follows the composer; click inserts a canned prompt, nothing is sent)",
 ))
 
 # ---------- usable light ----------
@@ -345,7 +345,7 @@ V.append(variant(
              "icons": "Fluent filled icons with 1px ink stroke via drop-shadow trick on rail/composer",
              "motion": "pop-in on new bubbles + PING! burst; no loops; reduced motion = static"},
     difficulty="hard",
-    enhancer="PING!/POW! burst overlay when a mention badge appears or increments (MutationObserver on badges); optional onomatopoeia sticker on send",
+    enhancer=None,
 ))
 
 # ---------- cyberpunk ----------
@@ -386,7 +386,7 @@ V.append(variant(
              "icons": "Fluent regular icons in cyan, filled violet when active, drop-shadow glow",
              "motion": "glitch on hover, caret blink, logo flicker; reduced motion = none"},
     difficulty="hard",
-    enhancer="scanline + grid overlay layer in ctx.root; one-time 'boot' glitch of the logo on mount (skipped under reduced motion)",
+    enhancer=None,
 ))
 
 guide = {
@@ -406,27 +406,29 @@ with open(f"{ROOT}/docs/styleguides/teams.json", "w") as f:
     f.write("\n")
 
 # ---------------- manifest ----------------
-SEL = [
-    {"family": "Selawik", "file": "assets/selawik-light.woff2", "weight": "300", "style": "normal"},
-    {"family": "Selawik", "file": "assets/selawik-semilight.woff2", "weight": "350", "style": "normal"},
-    {"family": "Selawik", "file": "assets/selawik-regular.woff2", "weight": "400", "style": "normal"},
-    {"family": "Selawik", "file": "assets/selawik-semibold.woff2", "weight": "600", "style": "normal"},
-    {"family": "Selawik", "file": "assets/selawik-bold.woff2", "weight": "700", "style": "normal"},
-]
-CAS = [
-    {"family": "Cascadia Mono", "file": "assets/cascadia-mono-regular.woff2", "weight": "400", "style": "normal"},
-    {"family": "Cascadia Mono", "file": "assets/cascadia-mono-semibold.woff2", "weight": "600", "style": "normal"},
-    {"family": "Cascadia Mono", "file": "assets/cascadia-mono-bold.woff2", "weight": "700", "style": "normal"},
-]
+SEG_LOCAL = {"300": ["Segoe UI Light", "SegoeUI-Light"], "350": ["Segoe UI Semilight", "SegoeUI-Semilight"],
+             "400": ["Segoe UI", "SegoeUI"], "600": ["Segoe UI Semibold", "SegoeUI-Semibold"], "700": ["Segoe UI Bold", "SegoeUI-Bold"]}
+SEG_FILE = {"300": "light", "350": "semilight", "400": "regular", "600": "semibold", "700": "bold"}
+SEL = [{"family": "TL Segoe", "local": SEG_LOCAL[w], "file": f"assets/selawik-{SEG_FILE[w]}.woff2", "weight": w,
+        "style": "normal", "display": "swap"} for w in ["300", "350", "400", "600", "700"]]
+CAS = [{"family": "TL Cascadia", "local": ["Cascadia Mono", "CascadiaMono-Regular"] if w == "400" else [f"Cascadia Mono {n}", f"CascadiaMono-{n}"],
+        "file": f"assets/cascadia-mono-{n.lower()}.woff2", "weight": w, "style": "normal", "display": "swap"}
+       for w, n in [("400", "Regular"), ("600", "SemiBold"), ("700", "Bold")]]
 COMIC = [
-    {"family": "Comic Neue", "file": "assets/comic-neue-regular.woff2", "weight": "400", "style": "normal"},
-    {"family": "Comic Neue", "file": "assets/comic-neue-bold.woff2", "weight": "700", "style": "normal"},
-    {"family": "Bangers", "file": "assets/bangers-regular.woff2", "weight": "400", "style": "normal"},
+    {"family": "TL Comic", "local": ["Comic Sans MS", "ComicSansMS"], "file": "assets/comic-neue-regular.woff2", "weight": "400", "style": "normal", "display": "swap"},
+    {"family": "TL Comic", "local": ["Comic Sans MS Bold", "ComicSansMS-Bold"], "file": "assets/comic-neue-bold.woff2", "weight": "700", "style": "normal", "display": "swap"},
+    {"family": "Bangers", "file": "assets/bangers-regular.woff2", "weight": "400", "style": "normal", "display": "swap"},
 ]
 CYBER = [
-    {"family": "Orbitron", "file": "assets/orbitron-vf.woff2", "weight": "400 900", "style": "normal"},
-    {"family": "Share Tech Mono", "file": "assets/share-tech-mono-regular.woff2", "weight": "400", "style": "normal"},
+    {"family": "Orbitron", "file": "assets/orbitron-vf.woff2", "weight": "400 900", "style": "normal", "display": "swap"},
+    {"family": "Share Tech Mono", "file": "assets/share-tech-mono-regular.woff2", "weight": "400", "style": "normal", "display": "swap"},
 ]
+SANS = '"Segoe UI Variable Text", "TL Segoe", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, "Segoe UI Emoji"'
+MONO_STACK = '"TL Cascadia", Consolas, "Courier New", monospace'
+FONT_TOKENS = {
+    "teams-comic": ('"TL Comic", "Comic Sans MS", "Comic Neue", cursive, sans-serif', MONO_STACK),
+    "teams-cyberpunk": (SANS, '"Share Tech Mono", "TL Cascadia", monospace'),
+}
 
 def tokens(p, dark=False):
     return {
@@ -461,7 +463,7 @@ FONTS = {
     "teams-comic": SEL + CAS + COMIC,
     "teams-cyberpunk": SEL + CYBER + CAS,
 }
-ENH = {"teams-usable-light": False, "teams-usable-dark": False}
+ENH = {"teams-2028": True}
 
 manifest = {"family": "teams", "name": "Microsoft Teams", "variants": []}
 for v in V:
@@ -471,12 +473,15 @@ for v in V:
         "description": DESC[v["id"]],
         "css": ["shared.css", f"{v['id']}.css"],
         "fonts": FONTS.get(v["id"], SEL + CAS),
-        "tokens": tokens(v["palette"]),
-        "enhance": ENH.get(v["id"], True),
+        "tokens": dict(tokens(v["palette"]), **{"--cpd-font-family-sans": FONT_TOKENS.get(v["id"], (SANS, MONO_STACK))[0],
+                                               "--cpd-font-family-mono": FONT_TOKENS.get(v["id"], (SANS, MONO_STACK))[1]}),
+        "enhance": ENH.get(v["id"], False),
         "schedule": v["phases"]["schedule"] if v["phases"] else None,
     }
     if v["id"] in ("teams-2026-daylight",):
         m["css"] = ["shared.css", "teams-2026-light.css", "teams-2026-dark.css", "teams-2026-daylight.css"]
+    if v["id"] == "teams-usable-dark":
+        m["css"] = ["shared.css", "teams-2026-dark.css", "teams-usable-light.css", "teams-usable-dark.css"]
     if v["id"] == "teams-2028":
         m["tokens"]["--cpd-color-bg-canvas-default"] = "#ffffff"
         m["tokens"]["--cpd-color-bg-subtle-secondary"] = "#f7f6fd"

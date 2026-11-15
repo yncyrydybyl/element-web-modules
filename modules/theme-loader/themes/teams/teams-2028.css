@@ -1,0 +1,329 @@
+/* teams-2028 — speculative "Copilot Glass": V21 violet ramp (#654CF5, staged in @fluentui/tokens),
+   floating glass panes over an aurora wallpaper, Copilot pane, pill controls.
+   Performance: backdrop-filter only on the big panes, dialogs and menus — never per timeline tile. */
+html[data-tl-theme="teams-2028"] {
+  --tm-b60: #4d3aba; --tm-b70: #5a40db; --tm-b80: #654cf5; --tm-b90: #7769fa;
+  --tm-b100: #887dff; --tm-b110: #9791ff; --tm-b120: #aba8ff; --tm-b140: #c8c7ff;
+  --tm-b150: #dcdbff; --tm-b160: #e8e8ff;
+  --tm-brand: #654cf5;
+  --tm-brand-hover: #5a40db;
+  --tm-brand-pressed: #4d3aba;
+  --tm-brand-fg: #5a40db;
+  --tm-brand-icon: #654cf5;
+  --tm-brand-tint: #e8e8ff;
+  --tm-logo: url("assets/teams-logo-2025.svg");
+  --tm-title-text: "Teams";
+  --tm-copilot: "Recap with Copilot";
+
+  --tm-glass: rgba(255, 255, 255, 0.62);
+  --tm-glass-strong: rgba(255, 255, 255, 0.8);
+  --tm-titlebar: transparent;
+  --tm-rail: rgba(255, 255, 255, 0.45);
+  --tm-list: transparent;
+  --tm-canvas: transparent;
+  --tm-timeline-bg: transparent;
+  --tm-header-bg: transparent;
+  --tm-rightpanel-bg: transparent;
+  --tm-surface: rgba(255, 255, 255, 0.92);
+  --tm-surface2: rgba(255, 255, 255, 0.7);
+  --tm-composer-bg: rgba(255, 255, 255, 0.95);
+  --tm-row-selected: #e8e8ff;
+  --tm-row-hover: rgba(255, 255, 255, 0.6);
+  --tm-hover: rgba(101, 76, 245, 0.08);
+  --tm-pressed: rgba(101, 76, 245, 0.14);
+  --tm-bubble-other: rgba(255, 255, 255, 0.86);
+  --tm-bubble-own: #e8e8ff;
+  --tm-bubble-shadow: 0 1px 2px rgba(31, 29, 46, 0.06), 0 2px 8px rgba(31, 29, 46, 0.06);
+  --tm-code-bg: rgba(245, 244, 252, 0.9);
+  --tm-search-bg: rgba(255, 255, 255, 0.7);
+  --tm-search-border: rgba(255, 255, 255, 0.9);
+  --tm-chip-bg: rgba(255, 255, 255, 0.7);
+
+  --tm-fg1: #1f1d2e;
+  --tm-fg2: #3b3950;
+  --tm-fg3: #55536a;
+  --tm-stroke1: #cfcde3;
+  --tm-stroke2: rgba(31, 29, 46, 0.09);
+  --tm-header-border: rgba(31, 29, 46, 0.06);
+  --tm-list-separator: transparent;
+
+  --tm-radius-m: 10px;
+  --tm-radius-l: 12px;
+  --tm-radius-bubble: 14px;
+  --tm-radius-btn: 999px;
+  --tm-radius-composer: 24px;
+  --tm-radius-dialog: 20px;
+  --tm-radius-pane: 16px;
+  --tm-sh-a: rgba(31, 29, 46, 0.08);
+  --tm-sh-k: rgba(31, 29, 46, 0.12);
+  --tm-composer-shadow: var(--tm-shadow28);
+  --tm-pane-gap: 12px;
+  --tm-titlebar-h: 52px;
+  --tm-focus-outer: #654cf5;
+  --tm-focus-inner: #ffffff;
+  --tm-auth-bg: radial-gradient(circle at 15% 20%, #a1d3ff 0, transparent 45%),
+    radial-gradient(circle at 85% 15%, #e3acfd 0, transparent 40%),
+    radial-gradient(circle at 60% 90%, #bd96ff 0, transparent 50%), #f4f3fb;
+  --tm-aurora: radial-gradient(1200px 700px at 8% 0%, #a1d3ff 0%, transparent 60%),
+    radial-gradient(900px 700px at 100% 10%, #e3acfd 0%, transparent 55%),
+    radial-gradient(1000px 800px at 55% 110%, #bd96ff 0%, transparent 60%),
+    linear-gradient(135deg, #eef1ff 0%, #f4f3fb 50%, #f6eefc 100%);
+}
+html[data-tl-theme="teams-2028"],
+html[data-tl-theme="teams-2028"] body,
+html[data-tl-theme="teams-2028"] [class*="cpd-theme-"] {
+  --cpd-color-bg-canvas-default: #ffffff;
+  --cpd-color-bg-subtle-secondary: rgba(101, 76, 245, 0.06);
+}
+html[data-tl-theme="teams-2028"] body,
+html[data-tl-theme="teams-2028"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="teams-2028"] .mx_MatrixChat {
+  background: var(--tm-aurora) fixed;
+}
+html[data-tl-theme="teams-2028"] .mx_MatrixChat::before {
+  background: var(--tm-logo) no-repeat 22px 50% / 26px 26px;
+}
+html[data-tl-theme="teams-2028"] .mx_MatrixChat::after {
+  font: 600 15px/52px var(--tm-font-display);
+  left: 60px;
+  color: var(--tm-fg1);
+}
+/* the four floating glass panes */
+html[data-tl-theme="teams-2028"] .mx_SpacePanel,
+html[data-tl-theme="teams-2028"] .mx_LeftPanel,
+html[data-tl-theme="teams-2028"] .mx_RoomView_wrapper,
+html[data-tl-theme="teams-2028"] .mx_RightPanel {
+  background: var(--tm-glass);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 16px;
+  box-shadow: var(--tm-shadow28), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+}
+html[data-tl-theme="teams-2028"] .mx_SpacePanel {
+  height: calc(100% - 12px);
+  margin: 0 0 12px 12px;
+  background: rgba(255, 255, 255, 0.45);
+  width: 64px;
+  min-width: 64px;
+  --tm-rail-w: 64px;
+}
+html[data-tl-theme="teams-2028"] .mx_LeftPanel {
+  width: calc(100% - 18px);
+  margin: 0 6px 12px 12px;
+  height: calc(100% - 12px);
+}
+/* real blur only where no position:fixed children live (rail/list host the title-bar search + user menu) */
+html[data-tl-theme="teams-2028"] .mx_RoomView_wrapper,
+html[data-tl-theme="teams-2028"] .mx_RightPanel {
+  -webkit-backdrop-filter: blur(30px) saturate(1.4);
+  backdrop-filter: blur(30px) saturate(1.4);
+}
+html[data-tl-theme="teams-2028"] .mx_RoomView_wrapper {
+  width: calc(100% - 18px);
+  margin: 0 12px 12px 6px;
+  height: calc(100% - 12px);
+  background: rgba(255, 255, 255, 0.5);
+}
+html[data-tl-theme="teams-2028"] .mx_RightPanel {
+  margin: 0 0 0 12px;
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.75);
+}
+html[data-tl-theme="teams-2028"] .mx_LeftPanel,
+html[data-tl-theme="teams-2028"] .mx_LeftPanel_roomListContainer,
+html[data-tl-theme="teams-2028"] .mx_RoomListPanel,
+html[data-tl-theme="teams-2028"] .mx_RoomView,
+html[data-tl-theme="teams-2028"] .mx_MainSplit {
+  background-color: transparent;
+}
+html[data-tl-theme="teams-2028"] .mx_RoomListPanel [class*="_stickyRow_"] {
+  background: transparent;
+}
+html[data-tl-theme="teams-2028"] .mx_Separator[data-separator],
+html[data-tl-theme="teams-2028"] .mx_MatrixChat > div > [class*="_separator_"] {
+  background: transparent;
+}
+/* rail: icons only, selected = filled violet circle */
+html[data-tl-theme="teams-2028"] .mx_SpacePanel .mx_SpaceButton::after {
+  display: none;
+}
+html[data-tl-theme="teams-2028"] .mx_SpacePanel .mx_SpaceButton {
+  height: 56px;
+}
+html[data-tl-theme="teams-2028"] .mx_SpacePanel .mx_SpaceButton_active::before {
+  display: none;
+}
+html[data-tl-theme="teams-2028"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_selectionWrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 250ms var(--tm-ease), transform 250ms var(--tm-ease);
+}
+html[data-tl-theme="teams-2028"] .mx_SpacePanel .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: #654cf5;
+  box-shadow: 0 6px 16px rgba(101, 76, 245, 0.35);
+  color: #ffffff;
+}
+html[data-tl-theme="teams-2028"] .mx_SpacePanel .mx_SpaceButton_active .mx_SpaceButton_avatarWrapper > [class*="_avatar_"] {
+  box-shadow: none;
+}
+html[data-tl-theme="teams-2028"] .mx_SpacePanel .mx_SpaceButton:hover .mx_SpaceButton_selectionWrapper {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.7);
+}
+html[data-tl-theme="teams-2028"] .mx_SpacePanel .mx_SpaceButton_active:hover .mx_SpaceButton_selectionWrapper {
+  background: #5a40db;
+}
+/* list */
+html[data-tl-theme="teams-2028"] .mx_RoomListItemView > [class*="_container_"] {
+  border-radius: 12px;
+}
+html[data-tl-theme="teams-2028"] .mx_RoomListPanel > header[class*="_header_"] h1 {
+  font: 600 22px/28px var(--tm-font-display);
+}
+/* header */
+html[data-tl-theme="teams-2028"] .mx_RoomHeader .mx_RoomHeader_heading {
+  font: 600 22px/28px var(--tm-font-display);
+}
+html[data-tl-theme="teams-2028"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after {
+  content: "Chat";
+  align-self: center;
+  height: 28px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #e8e8ff;
+  color: #4d3aba;
+  box-shadow: none;
+}
+html[data-tl-theme="teams-2028"] .mx_RoomHeader::after {
+  border-radius: 999px;
+  background:
+    url("assets/copilot-sparkle.svg") no-repeat 8px 50% / 16px 16px,
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #2870ea, #1bc5a9, #8a3ffc, #e24aa4) border-box;
+}
+/* composer: floating pill */
+html[data-tl-theme="teams-2028"] .mx_MessageComposer {
+  padding: 0 20px 18px;
+}
+html[data-tl-theme="teams-2028"] .mx_MessageComposer_wrapper {
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding-left: 18px;
+}
+html[data-tl-theme="teams-2028"] .mx_MessageComposer_wrapper:focus-within {
+  box-shadow: 0 0 0 2px #654cf5, var(--tm-shadow28);
+}
+html[data-tl-theme="teams-2028"] .mx_MessageComposer_sendMessage {
+  -webkit-mask: none;
+  mask: none;
+  background: #654cf5 url("assets/fluent-send_20_filled.svg") no-repeat 50% 50% / 16px 16px;
+  border-radius: 50%;
+  filter: none;
+}
+html[data-tl-theme="teams-2028"] .mx_MessageComposer_sendMessage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  -webkit-mask: url("assets/fluent-send_20_filled.svg") center / 16px 16px no-repeat;
+  mask: url("assets/fluent-send_20_filled.svg") center / 16px 16px no-repeat;
+}
+html[data-tl-theme="teams-2028"] .mx_MessageComposer_sendMessage {
+  position: relative;
+}
+/* Copilot pane = right panel */
+html[data-tl-theme="teams-2028"] .mx_RightPanel .mx_BaseCard_header {
+  position: relative;
+  border-bottom: 0;
+}
+html[data-tl-theme="teams-2028"] .mx_RightPanel .mx_BaseCard_header::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 0;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(90deg, #2870ea, #1bc5a9, #8a3ffc, #e24aa4);
+}
+/* AI chips (enhancer) */
+html[data-tl-theme="teams-2028"] .tm-ai-chips {
+  display: flex;
+  gap: 8px;
+  padding: 0 24px 8px;
+  flex-wrap: wrap;
+}
+html[data-tl-theme="teams-2028"] .tm-ai-chip {
+  height: 28px;
+  padding: 0 12px 0 28px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  background:
+    url("assets/copilot-sparkle.svg") no-repeat 8px 50% / 14px 14px,
+    linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)) padding-box,
+    linear-gradient(90deg, #2870ea, #1bc5a9, #8a3ffc, #e24aa4) border-box;
+  font: 600 12px/16px var(--tm-font);
+  color: #1f1d2e;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(31, 29, 46, 0.08);
+  animation: tm-chip-in 300ms var(--tm-ease) both;
+}
+html[data-tl-theme="teams-2028"] .tm-ai-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(101, 76, 245, 0.2);
+}
+@keyframes tm-chip-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+/* dialogs and menus: glass */
+html[data-tl-theme="teams-2028"] .mx_Dialog,
+html[data-tl-theme="teams-2028"] [role="menu"],
+html[data-tl-theme="teams-2028"] .mx_ContextualMenu {
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+html[data-tl-theme="teams-2028"] .mx_Dialog_background {
+  background: rgba(60, 40, 120, 0.18);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+html[data-tl-theme="teams-2028"] .mx_AuthPage_modal {
+  border-radius: 20px;
+  box-shadow: var(--tm-shadow28);
+}
+/* settings dialog panes get an opaque base for readability */
+html[data-tl-theme="teams-2028"] .mx_Dialog:has(.mx_UserSettingsDialog, .mx_RoomSettingsDialog) {
+  background: rgba(255, 255, 255, 0.95);
+}
+html[data-tl-theme="teams-2028"] .mx_UserSettingsDialog,
+html[data-tl-theme="teams-2028"] .mx_RoomSettingsDialog {
+  background: transparent;
+}
+@media (max-width: 768px) {
+  html[data-tl-theme="teams-2028"] .mx_SpacePanel,
+  html[data-tl-theme="teams-2028"] .mx_LeftPanel,
+  html[data-tl-theme="teams-2028"] .mx_RoomView_wrapper {
+    margin: 6px;
+    height: calc(100% - 12px);
+  }
+}
+@media (prefers-contrast: more) {
+  html[data-tl-theme="teams-2028"] {
+    --tm-glass: #ffffff;
+    --tm-bubble-other: #f0f0f0;
+    --tm-stroke2: #8a8886;
+  }
+}
+/* room for the floating Copilot chips above the composer */
+html[data-tl-theme="teams-2028"] .mx_RoomView_body .mx_RoomView_MessageList {
+  padding-bottom: 40px;
+}
+html[data-tl-theme="teams-2028"] .mx_RoomListPanel [class*="_stickyRow_"] {
+  background: rgba(249, 248, 255, 0.97);
+}

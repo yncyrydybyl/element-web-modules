@@ -1,0 +1,1081 @@
+/* ==========================================================================================
+   KDE family — shared Breeze rule set (docs/styleguides/kde.md)
+   Everything here is written against --kde-* custom properties. Variant files set those
+   (and add their signature rules). Defaults below = Breeze Light (Plasma 6).
+   Values: plasma/breeze colors/*.colors + kstyle/breezehelper.cpp (see style guide §2).
+   ========================================================================================== */
+
+html[data-tl-family="kde"] {
+  /* palette (Breeze Light) */
+  --kde-window: #eff0f1;          /* Colors:Window — canvas, room list, dialogs */
+  --kde-window-alt: #e3e5e7;
+  --kde-view: #ffffff;            /* Colors:View — cards, inputs, composer, menus */
+  --kde-view-alt: #f7f7f7;
+  --kde-button: #fcfcfc;          /* Colors:Button */
+  --kde-header: #dee0e2;          /* Colors:Header — unified titlebar/toolbar band */
+  --kde-header-text: #232629;
+  --kde-rail: #e3e5e7;            /* space column */
+  --kde-rail-text: #232629;
+  --kde-text: #232629;
+  --kde-muted: #535d67;           /* AA-darkened ForegroundInactive (orig #707d8a) */
+  --kde-inactive: #5f6b77;        /* Breeze inactive #707d8a, darkened for AA timestamps */
+  --kde-accent: #3daee9;          /* Plasma blue — highlight / focus / hover */
+  --kde-accent-text: #1d6fa5;     /* accent used as text on light (AA) */
+  --kde-on-accent: #ffffff;
+  --kde-solid: #1d6fa5;           /* solid fills that carry text (pills, poll bars, switches) — AA with white */
+  --kde-on-solid: #ffffff;
+  --kde-link: #1d6fa5;            /* Breeze #2980b9, darkened for AA on Window */
+  --kde-visited: #9b59b6;
+  --kde-outline: #c6c8c9;         /* mix(Window, Text, .2) */
+  --kde-button-outline: #d1d1d2;  /* mix(Button, Text, .2) */
+  --kde-separator: #c6c8c9;
+  --kde-sel: rgb(61 174 233 / .3);   /* highlight α .3 */
+  --kde-sel-solid: #c5e7f8;
+  --kde-hover: rgb(61 174 233 / .15);
+  --kde-pressed: #c3e5f6;         /* mix(Button, highlight, .3) */
+  --kde-default-btn: #d6ecf8;     /* mix(Button, highlight, .2) */
+  --kde-default-pen: #87c0de;
+  --kde-negative: #da4453;
+  --kde-critical-solid: #b0303e;  /* filled red with white text (AA) */
+  --kde-negative-text: #b0303e;
+  --kde-neutral: #f67400;
+  --kde-positive: #27ae60;
+  --kde-positive-text: #1d7a45;
+  --kde-own: #e2f3fc;
+  --kde-card: #ffffff;
+  --kde-mention-bg: #fef1e6;
+  --kde-tooltip: #f7f7f7;
+  --kde-tooltip-text: #232629;
+  --kde-complementary: #2a2e32;
+  --kde-code-bg: #f7f7f7;
+  --kde-scroll: rgb(35 38 41 / .5);
+  /* shape */
+  --kde-radius: 5px;
+  --kde-radius-card: 5px;
+  --kde-radius-check: 4px;
+  --kde-shadow-btn: 0 1px 1px rgb(0 0 0 / .125);
+  --kde-shadow-card: 0 1px 1px rgb(0 0 0 / .1), 0 0 0 1px rgb(0 0 0 / .04);
+  --kde-shadow-popup: 0 4px 14px rgb(0 0 0 / .25);
+  --kde-shadow-dialog: 0 10px 30px rgb(0 0 0 / .3);
+  --kde-focus-w: 2px;
+  --kde-focus: var(--kde-accent);
+  --kde-band-h: 48px;
+  --kde-rail-w: 56px;
+  --kde-titlebar-h: 30px;
+  --kde-dur: 150ms;
+  /* names (darkened KDE HIG hues — AA on Window/View) */
+  --kde-name-1: #1b6aa5; --kde-name-2: #7a3e96; --kde-name-3: #1d7a45;
+  --kde-name-4: #b0303e; --kde-name-5: #a8500a; --kde-name-6: #126fb4;
+  /* avatar hues (KDE HIG) */
+  --kde-hue-1: #3daee9; --kde-hue-2: #9b59b6; --kde-hue-3: #27ae60;
+  --kde-hue-4: #da4453; --kde-hue-5: #f67400; --kde-hue-6: #1d99f3;
+  --kde-avatar-tint: 15%;
+  /* syntax (KSyntaxHighlighting Breeze Light) */
+  --kde-hl-keyword: #1f1c1b; --kde-hl-control: #1f1c1b; --kde-hl-func: #644a9b; --kde-hl-string: #bf0303;
+  --kde-hl-number: #b08000; --kde-hl-comment: #898887; --kde-hl-type: #0057ae; --kde-hl-pre: #006e28;
+  --kde-hl-attr: #0057ae; --kde-hl-var: #0057ae;
+  /* icon set (Breeze) — url()s are resolved by the loader */
+  --kde-ico-send: url("assets/breeze-document-send.svg");
+  --kde-ico-attach: url("assets/breeze-mail-attachment.svg");
+  --kde-ico-emoji: url("assets/breeze-smiley.svg");
+  --kde-ico-more: url("assets/breeze-overflow-menu.svg");
+  --kde-ico-menu: url("assets/breeze-application-menu.svg");
+  --kde-ico-video: url("assets/breeze-camera-video.svg");
+  --kde-ico-call: url("assets/breeze-call-start.svg");
+  --kde-ico-threads: url("assets/breeze-dialog-messages.svg");
+  --kde-ico-info: url("assets/breeze-help-about.svg");
+  --kde-ico-search: url("assets/breeze-edit-find.svg");
+  --kde-ico-add: url("assets/breeze-list-add.svg");
+  --kde-ico-home: url("assets/breeze-kde-symbolic.svg");
+  --kde-ico-settings: url("assets/breeze-configure.svg");
+  --kde-ico-reply: url("assets/breeze-mail-reply-sender.svg");
+  --kde-ico-edit: url("assets/breeze-document-edit.svg");
+  --kde-ico-delete: url("assets/breeze-edit-delete.svg");
+  --kde-ico-react: url("assets/breeze-smiley.svg");
+  --kde-ico-close: url("assets/breeze-window-close.svg");
+  --kde-ico-members: url("assets/breeze-group.svg");
+  --kde-ico-notify: url("assets/breeze-notifications.svg");
+  --kde-ico-pin: url("assets/breeze-window-pin.svg");
+  --kde-ico-copy: url("assets/breeze-edit-copy.svg");
+  --kde-ico-mic: url("assets/breeze-audio-input-microphone.svg");
+  --kde-ico-filter: url("assets/breeze-view-filter.svg");
+  --kde-ico-down: url("assets/breeze-go-down.svg");
+  --kde-ico-up: url("assets/breeze-go-up.svg");
+  --kde-ico-check: url("assets/breeze-checkmark.svg");
+  --kde-icon-size: 20px;
+
+  color-scheme: light;
+  accent-color: var(--kde-accent);
+}
+
+/* ------------------------------------------------------------------ Compound token mapping */
+html[data-tl-family="kde"],
+html[data-tl-family="kde"] body,
+html[data-tl-family="kde"] [class*="cpd-theme-"] {
+  --cpd-color-theme-bg: var(--kde-view);
+  --cpd-color-bg-canvas-default: var(--kde-window);
+  --cpd-color-bg-canvas-default-level-1: var(--kde-view);
+  --cpd-color-bg-canvas-disabled: var(--kde-window-alt);
+  --cpd-color-bg-subtle-primary: var(--kde-window-alt);
+  --cpd-color-bg-subtle-secondary: var(--kde-window);
+  --cpd-color-bg-subtle-secondary-level-0: var(--kde-window);
+  --cpd-color-bg-subtle-tertiary: var(--kde-view-alt);
+  --cpd-color-bg-action-primary-rest: var(--kde-solid);
+  --cpd-color-bg-action-primary-hovered: color-mix(in srgb, var(--kde-solid) 85%, #000);
+  --cpd-color-bg-action-primary-pressed: color-mix(in srgb, var(--kde-solid) 70%, #000);
+  --cpd-color-bg-action-primary-disabled: var(--kde-outline);
+  --cpd-color-bg-action-secondary-rest: var(--kde-button);
+  --cpd-color-bg-action-secondary-hovered: var(--kde-hover);
+  --cpd-color-bg-action-secondary-pressed: var(--kde-sel);
+  --cpd-color-bg-action-tertiary-rest: transparent;
+  --cpd-color-bg-action-tertiary-hovered: var(--kde-hover);
+  --cpd-color-bg-action-tertiary-selected: var(--kde-sel);
+  --cpd-color-bg-accent-rest: var(--kde-accent);
+  --cpd-color-bg-accent-hovered: color-mix(in srgb, var(--kde-accent) 85%, #000);
+  --cpd-color-bg-accent-pressed: color-mix(in srgb, var(--kde-accent) 70%, #000);
+  --cpd-color-bg-accent-selected: var(--kde-sel);
+  --cpd-color-bg-accent-subtle: var(--kde-hover);
+  --cpd-color-bg-critical-primary: var(--kde-critical-solid);
+  --cpd-color-bg-critical-hovered: color-mix(in srgb, var(--kde-critical-solid) 85%, #000);
+  --cpd-color-bg-critical-subtle: color-mix(in srgb, var(--kde-negative) 12%, var(--kde-view));
+  --cpd-color-bg-critical-subtle-hovered: color-mix(in srgb, var(--kde-negative) 20%, var(--kde-view));
+  --cpd-color-bg-success-subtle: color-mix(in srgb, var(--kde-positive) 14%, var(--kde-view));
+  --cpd-color-bg-info-subtle: color-mix(in srgb, var(--kde-accent) 14%, var(--kde-view));
+  --cpd-color-bg-badge-default: var(--kde-window-alt);
+  --cpd-color-bg-badge-accent: var(--kde-sel);
+  --cpd-color-bg-badge-critical: var(--kde-critical-solid);
+  --cpd-color-bg-badge-info: var(--kde-hover);
+  --cpd-color-bg-decorative-1: color-mix(in srgb, var(--kde-hue-1) var(--kde-avatar-tint), var(--kde-view));
+  --cpd-color-bg-decorative-2: color-mix(in srgb, var(--kde-hue-2) var(--kde-avatar-tint), var(--kde-view));
+  --cpd-color-bg-decorative-3: color-mix(in srgb, var(--kde-hue-3) var(--kde-avatar-tint), var(--kde-view));
+  --cpd-color-bg-decorative-4: color-mix(in srgb, var(--kde-hue-4) var(--kde-avatar-tint), var(--kde-view));
+  --cpd-color-bg-decorative-5: color-mix(in srgb, var(--kde-hue-5) var(--kde-avatar-tint), var(--kde-view));
+  --cpd-color-bg-decorative-6: color-mix(in srgb, var(--kde-hue-6) var(--kde-avatar-tint), var(--kde-view));
+  --cpd-color-text-decorative-1: var(--kde-name-1);
+  --cpd-color-text-decorative-2: var(--kde-name-2);
+  --cpd-color-text-decorative-3: var(--kde-name-3);
+  --cpd-color-text-decorative-4: var(--kde-name-4);
+  --cpd-color-text-decorative-5: var(--kde-name-5);
+  --cpd-color-text-decorative-6: var(--kde-name-6);
+  --cpd-color-text-primary: var(--kde-text);
+  --cpd-color-text-secondary: var(--kde-muted);
+  --cpd-color-text-disabled: color-mix(in srgb, var(--kde-text) 45%, var(--kde-window));
+  --cpd-color-text-action-primary: var(--kde-text);
+  --cpd-color-text-action-accent: var(--kde-accent-text);
+  --cpd-color-text-action-success: var(--kde-positive-text);
+  --cpd-color-text-link-external: var(--kde-link);
+  --cpd-color-text-on-solid-primary: var(--kde-on-solid);
+  --cpd-color-text-critical-primary: var(--kde-negative-text);
+  --cpd-color-text-success-primary: var(--kde-positive-text);
+  --cpd-color-text-info-primary: var(--kde-accent-text);
+  --cpd-color-text-warning-primary: #a8500a;
+  --cpd-color-text-badge-accent: var(--kde-text);
+  --cpd-color-text-badge-info: var(--kde-text);
+  --cpd-color-icon-primary: var(--kde-text);
+  --cpd-color-icon-primary-alpha: var(--kde-text);
+  --cpd-color-icon-secondary: color-mix(in srgb, var(--kde-text) 80%, transparent);
+  --cpd-color-icon-secondary-alpha: color-mix(in srgb, var(--kde-text) 80%, transparent);
+  --cpd-color-icon-tertiary: var(--kde-muted);
+  --cpd-color-icon-tertiary-alpha: var(--kde-muted);
+  --cpd-color-icon-quaternary: var(--kde-inactive);
+  --cpd-color-icon-quaternary-alpha: var(--kde-inactive);
+  --cpd-color-icon-disabled: color-mix(in srgb, var(--kde-text) 40%, transparent);
+  --cpd-color-icon-accent-primary: var(--kde-accent);
+  --cpd-color-icon-accent-tertiary: var(--kde-accent);
+  --cpd-color-icon-critical-primary: var(--kde-negative);
+  --cpd-color-icon-success-primary: var(--kde-positive);
+  --cpd-color-icon-info-primary: var(--kde-accent);
+  --cpd-color-icon-warning-primary: var(--kde-neutral);
+  --cpd-color-icon-on-solid-primary: var(--kde-on-solid);
+  --cpd-color-border-interactive-primary: color-mix(in srgb, var(--kde-text) 45%, var(--kde-window));
+  --cpd-color-border-interactive-secondary: var(--kde-outline);
+  --cpd-color-border-interactive-hovered: var(--kde-accent);
+  --cpd-color-border-interactive-pressed: var(--kde-accent);
+  --cpd-color-border-focused: var(--kde-focus);
+  --cpd-color-border-accent-primary: var(--kde-accent);
+  --cpd-color-border-accent-subtle: color-mix(in srgb, var(--kde-accent) 50%, var(--kde-view));
+  --cpd-color-border-critical-primary: var(--kde-negative);
+  --cpd-color-border-critical-subtle: color-mix(in srgb, var(--kde-negative) 45%, var(--kde-view));
+  --cpd-color-border-critical-hovered: var(--kde-negative);
+  --cpd-color-border-success-subtle: color-mix(in srgb, var(--kde-positive) 45%, var(--kde-view));
+  --cpd-color-border-info-subtle: color-mix(in srgb, var(--kde-accent) 45%, var(--kde-view));
+  --cpd-color-border-disabled: var(--kde-outline);
+  --cpd-color-separator-primary: var(--kde-separator);
+  --cpd-color-separator-secondary: color-mix(in srgb, var(--kde-separator) 60%, transparent);
+  --cpd-color-gray-300: var(--kde-window-alt);
+  --cpd-color-gray-400: var(--kde-outline);
+  --cpd-color-gray-800: var(--kde-muted);
+  --cpd-color-alpha-gray-300: var(--kde-hover);
+  --cpd-color-green-300: var(--kde-own);
+  --cpd-color-gradient-subtle-linear: linear-gradient(var(--kde-view), var(--kde-window));
+  --cpd-radius-pill-effect: var(--kde-radius);
+  --cpd-font-size-body-lg: 1rem;
+  --cpd-font-size-body-md: 0.875rem;
+  --cpd-font-size-body-sm: 0.8125rem;
+  --cpd-font-size-body-xs: 0.6875rem;
+  --cpd-font-size-heading-sm: 1.125rem;
+  --cpd-font-size-heading-md: 1.375rem;
+  --cpd-font-size-heading-lg: 1.5rem;
+  --cpd-font-size-heading-xl: 1.75rem;
+  --cpd-font-letter-spacing-heading-sm: 0;
+  --cpd-font-letter-spacing-heading-md: 0;
+  --cpd-font-letter-spacing-heading-lg: 0;
+  --cpd-font-letter-spacing-heading-xl: 0;
+  --cpd-font-letter-spacing-body-lg: 0;
+  --cpd-font-letter-spacing-body-md: 0;
+  --cpd-font-letter-spacing-body-sm: 0;
+  --cpd-font-letter-spacing-body-xs: 0;
+  --transition-short: var(--kde-dur);
+  --transition-standard: var(--kde-dur);
+}
+
+html[data-tl-family="kde"] body {
+  background: var(--kde-window);
+  color: var(--kde-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------------ titlebar offset (enhancer) */
+html[data-tl-family="kde"][data-kde-titlebar],
+html[data-tl-family="kde"][data-kde-titlebar] body { overflow: hidden; }
+html[data-tl-family="kde"][data-kde-titlebar] #matrixchat {
+  position: fixed; top: var(--kde-titlebar-h); left: 0; right: 0; bottom: 0; height: auto !important;
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar {
+  position: absolute; inset: 0 0 auto 0; height: var(--kde-titlebar-h);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--kde-tb-bg, var(--kde-header)); color: var(--kde-tb-text, var(--kde-header-text));
+  font: 400 13px/1 var(--cpd-font-family-sans); letter-spacing: 0;
+  user-select: none; pointer-events: auto;
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__title {
+  max-width: calc(100% - 220px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__app {
+  position: absolute; left: 8px; top: 0; bottom: 0; display: flex; align-items: center; gap: 8px;
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__app i {
+  display: block; width: 16px; height: 16px; background: currentColor;
+  mask: var(--kde-tb-ico, url("assets/breeze-im-matrix.svg")) center / contain no-repeat;
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__app i.kde-titlebar__icon {
+  background: var(--kde-accent);
+  mask-image: url("assets/breeze-dialog-messages.svg");
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__app i.kde-titlebar__pin { opacity: .8; mask-image: url("assets/breeze-window-pin.svg"); }
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__btns {
+  position: absolute; right: 6px; top: 0; bottom: 0; display: flex; align-items: center; gap: 6px;
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__btn {
+  width: 20px; height: 20px; border-radius: 50%; border: 0; padding: 0; margin: 0;
+  background: transparent; color: inherit; cursor: default; position: relative;
+  transition: background-color var(--kde-dur), color var(--kde-dur);
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__btn::before {
+  content: ""; position: absolute; inset: 0; margin: auto; width: 10px; height: 10px;
+  background: currentColor;
+}
+/* Breeze decoration glyphs: chevron down, chevron up, cross */
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__btn--min::before {
+  clip-path: polygon(0 25%, 12% 13%, 50% 51%, 88% 13%, 100% 25%, 50% 75%);
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__btn--max::before {
+  clip-path: polygon(0 75%, 50% 25%, 100% 75%, 88% 87%, 50% 49%, 12% 87%);
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__btn--close::before {
+  clip-path: polygon(10% 0, 50% 40%, 90% 0, 100% 10%, 60% 50%, 100% 90%, 90% 100%, 50% 60%, 10% 100%, 0 90%, 40% 50%, 0 10%);
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__btn:hover { background: color-mix(in srgb, currentColor 18%, transparent); }
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__btn--max { cursor: pointer; }
+html[data-tl-family="kde"] #tl-overlay-root .kde-titlebar__btn--close:hover { background: var(--kde-negative); color: #fff; }
+
+/* ------------------------------------------------------------------ app shell */
+html[data-tl-family="kde"] .mx_MatrixChat > :not(.mx_LeftPanel):not(.mx_SpacePanel):not(.mx_ResizeHandle):not(.mx_LeftPanel_outerWrapper) {
+  background-color: var(--kde-window);
+}
+html[data-tl-family="kde"] .mx_Separator,
+html[data-tl-family="kde"] [class*="_separator_"][role="separator"][aria-label] {
+  background: var(--kde-separator);
+}
+
+/* ------------------------------------------------------------------ space column (vertical Plasma panel) */
+html[data-tl-family="kde"] .mx_SpacePanel {
+  --activeBackground-color: var(--kde-sel);
+  --activeBorder-color: transparent;
+  background: linear-gradient(var(--kde-header) 0 var(--kde-band-h), var(--kde-separator) var(--kde-band-h) calc(var(--kde-band-h) + 1px), var(--kde-rail) calc(var(--kde-band-h) + 1px));
+  color: var(--kde-rail-text);
+  border-right: 1px solid var(--kde-separator);
+}
+html[data-tl-family="kde"] .mx_SpacePanel.collapsed { width: var(--kde-rail-w); }
+html[data-tl-family="kde"] .mx_SpacePanel > .mx_UserMenu {
+  height: var(--kde-band-h); margin: 0 0 7px; padding: 0; justify-content: center; align-items: center; box-sizing: border-box;
+}
+html[data-tl-family="kde"] .mx_SpacePanel > .mx_UserMenu [class*="_avatar_"] { --cpd-avatar-size: 32px !important; }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceItem { position: relative; }
+html[data-tl-family="kde"] .mx_SpacePanel.collapsed .mx_SpaceTreeLevel > .mx_SpaceItem { padding-left: 0; justify-content: center; width: 100%; }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_narrow { margin: 0 auto; padding: 2px 0; }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_selectionWrapper {
+  border-radius: var(--kde-radius); padding: 4px; border: 1px solid transparent;
+  transition: background-color var(--kde-dur), border-color var(--kde-dur);
+}
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton:hover .mx_SpaceButton_selectionWrapper {
+  background: var(--kde-hover);
+}
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper,
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active.mx_SpaceButton_narrow .mx_SpaceButton_selectionWrapper {
+  background: var(--kde-sel); border: 1px solid var(--kde-accent); padding: 4px;
+}
+/* Plasma task-manager active indicator: 3px line on the outer edge */
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceItem:has(> .mx_SpaceButton_active)::before {
+  content: ""; position: absolute; left: 0; top: 8px; height: 32px; width: 3px; border-radius: 0 2px 2px 0;
+  background: var(--kde-accent);
+}
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton_icon { background-color: transparent !important; border-radius: var(--kde-radius); }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton_icon::before { background-color: var(--kde-rail-text); }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon > svg { visibility: hidden; }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon {
+  background: var(--kde-home-tile, transparent) !important;
+}
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon::after {
+  content: ""; position: absolute; inset: 0; margin: auto; width: 26px; height: 26px;
+  background: var(--kde-home-color, var(--kde-accent));
+  mask: var(--kde-ico-home) center / contain no-repeat;
+}
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton_icon { position: relative; }
+html[data-tl-family="kde"] .mx_SpacePanel [class*="_avatar_"][data-type="square"] { border-radius: var(--kde-radius); }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpacePanel_toggleCollapse { background-color: var(--kde-muted); }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_QuickSettingsButton,
+html[data-tl-family="kde"] .mx_SpacePanel .mx_ThreadsActivityCentreButton { color: var(--kde-rail-text); border-radius: var(--kde-radius); }
+
+/* ------------------------------------------------------------------ room list (Kirigami sidebar) */
+html[data-tl-family="kde"] .mx_RoomListPanel {
+  background: var(--kde-window);
+  border-right: 0;
+}
+html[data-tl-family="kde"] .mx_LeftPanel,
+html[data-tl-family="kde"] .mx_LeftPanel_outerWrapper,
+html[data-tl-family="kde"] .mx_LeftPanel_wrapper { background: var(--kde-window); }
+/* search row = header band */
+html[data-tl-family="kde"] .mx_RoomListPanel > [role="search"] {
+  height: var(--kde-band-h) !important; min-height: 0 !important; flex: 0 0 var(--kde-band-h); box-sizing: border-box; padding: 0 8px !important;
+  background: var(--kde-header); border-bottom: 1px solid var(--kde-separator);
+  align-items: center;
+}
+html[data-tl-family="kde"] .mx_RoomListPanel > [role="search"] button[class*="_search_"] {
+  height: 30px; min-block-size: 30px; border-radius: var(--kde-radius);
+  background: var(--kde-view); border: 1px solid var(--kde-outline); color: var(--kde-muted);
+  box-shadow: none; padding-inline: 8px;
+}
+html[data-tl-family="kde"] .mx_RoomListPanel > [role="search"] button[class*="_search_"]:hover { border-color: var(--kde-accent); background: var(--kde-view); }
+html[data-tl-family="kde"] .mx_RoomListPanel > [role="search"] kbd {
+  font: 400 11px/1 var(--cpd-font-family-sans); color: var(--kde-inactive);
+  border: 1px solid var(--kde-outline); border-radius: 3px; padding: 2px 4px; background: var(--kde-window);
+}
+html[data-tl-family="kde"] .mx_RoomListPanel > [role="search"] > button + button,
+html[data-tl-family="kde"] .mx_RoomListPanel > [role="search"] [class*="_icon-button_"] { color: var(--kde-header-text); }
+/* room list header ("Theme Lab ⌄  ··· +") as a Kirigami heading */
+html[data-tl-family="kde"] .mx_RoomListPanel header[class*="_header_"] { height: auto; padding: 10px 12px 4px; }
+html[data-tl-family="kde"] .mx_RoomListPanel header[class*="_header_"] h1 { font: 700 15px/1.3 var(--cpd-font-family-sans); }
+/* filter chips → Breeze tool buttons */
+html[data-tl-family="kde"] [class*="_roomListPrimaryFilters_"] { padding-block: 4px 8px; }
+html[data-tl-family="kde"] [class*="_chat-filter_"] {
+  border-radius: var(--kde-radius); border-color: var(--kde-button-outline); background: var(--kde-button);
+  box-shadow: var(--kde-shadow-btn); font: 400 12px/1 var(--cpd-font-family-sans); padding: 5px 9px; color: var(--kde-text);
+  transition: border-color var(--kde-dur), background-color var(--kde-dur);
+}
+html[data-tl-family="kde"] [class*="_chat-filter_"]:hover { border-color: var(--kde-accent); background: var(--kde-button); }
+html[data-tl-family="kde"] [class*="_chat-filter_"][aria-selected="true"] {
+  background: var(--kde-sel); border-color: var(--kde-accent); color: var(--kde-text); box-shadow: none;
+}
+/* section headers (Element "sections") → "Favourite ———— ⌃" */
+html[data-tl-family="kde"] .mx_RoomListPanel [class*="_sectionTitle_"],
+html[data-tl-family="kde"] .mx_RoomListPanel [class*="_sectionLabel_"] {
+  font: 600 13px/1.3 var(--cpd-font-family-sans); color: var(--kde-muted);
+}
+/* rows */
+html[data-tl-family="kde"] .mx_RoomListItemView {
+  padding-inline: 6px; background: transparent;
+}
+html[data-tl-family="kde"] .mx_RoomListItemView > [class*="_container_"] {
+  border-radius: var(--kde-radius); border: 1px solid transparent; padding-inline: 6px;
+  transition: background-color var(--kde-dur), border-color var(--kde-dur);
+}
+html[data-tl-family="kde"] .mx_RoomListItemView:hover > [class*="_container_"],
+html[data-tl-family="kde"] .mx_RoomListItemView:focus-visible > [class*="_container_"] { background: var(--kde-hover); }
+html[data-tl-family="kde"] .mx_RoomListItemView.mx_RoomListItemView_selected > [class*="_container_"],
+html[data-tl-family="kde"] .mx_RoomListItemView[aria-selected="true"] > [class*="_container_"] {
+  background: var(--kde-sel); border-color: var(--kde-accent);
+}
+html[data-tl-family="kde"] .mx_RoomListItemView[aria-selected="true"]::before,
+html[data-tl-family="kde"] .mx_RoomListItemView_selected::before { display: none; }
+html[data-tl-family="kde"] .mx_RoomListItemView [class*="_roomName_"] { font: 400 14px/1.35 var(--cpd-font-family-sans); color: var(--kde-text); }
+html[data-tl-family="kde"] .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"],
+html[data-tl-family="kde"] .mx_RoomListItemView:has([class*="_unread-counter_"]) [class*="_roomName_"],
+html[data-tl-family="kde"] .mx_RoomListItemView:has([class*="_notificationBadge_"]) [class*="_roomName_"] { font-weight: 700; }
+html[data-tl-family="kde"] .mx_RoomListItemView [class*="_messagePreview_"],
+html[data-tl-family="kde"] .mx_RoomListItemView [class*="_preview_"] { color: var(--kde-muted); font-size: 12px; }
+
+/* ------------------------------------------------------------------ room header (header band) */
+html[data-tl-family="kde"] .mx_RoomHeader {
+  height: var(--kde-band-h); background: var(--kde-header); color: var(--kde-header-text);
+  border-bottom: 1px solid var(--kde-separator); padding-inline: 12px 8px; gap: 6px;
+}
+html[data-tl-family="kde"] .mx_RoomHeader:hover { background: var(--kde-header); }
+html[data-tl-family="kde"] .mx_RoomHeader > [class*="_avatar_"] { --cpd-avatar-size: 28px !important; width: 28px !important; height: 28px !important; }
+html[data-tl-family="kde"] .mx_RoomHeader .mx_RoomHeader_heading { font: 400 17px/1.3 var(--cpd-font-family-sans); color: var(--kde-header-text); }
+html[data-tl-family="kde"] .mx_RoomHeader_infoWrapper:hover .mx_RoomHeader_heading { color: var(--kde-header-text); }
+html[data-tl-family="kde"] .mx_RoomHeader .mx_FacePile { background: transparent; border-radius: var(--kde-radius); }
+html[data-tl-family="kde"] .mx_RoomHeader [class*="_icon-button_"],
+html[data-tl-family="kde"] .mx_RoomHeader .tl-header-button {
+  border-radius: var(--kde-radius) !important; border: 1px solid transparent; color: var(--kde-header-text);
+  width: 32px; height: 32px;
+}
+
+/* ------------------------------------------------------------------ Breeze tool buttons (flat icon buttons) */
+html[data-tl-family="kde"] [class*="_icon-button_"] { border-radius: var(--kde-radius); }
+html[data-tl-family="kde"] [class*="_icon-button_"]:not([aria-disabled="true"]):hover,
+html[data-tl-family="kde"] .mx_MessageComposer_button:hover,
+html[data-tl-family="kde"] .mx_RoomHeader .tl-header-button:hover {
+  background: var(--kde-sel) !important; border-color: var(--kde-accent); color: inherit;
+}
+html[data-tl-family="kde"] [class*="_icon-button_"]:not([aria-disabled="true"]):hover > [class*="_indicator-icon_"] { color: inherit; }
+html[data-tl-family="kde"] [class*="_icon-button_"]:active { background: var(--kde-sel) !important; }
+html[data-tl-family="kde"] [class*="_icon-button_"][aria-expanded="true"],
+html[data-tl-family="kde"] .mx_RoomHeader button:has(svg.mx_RoomHeader_toggled),
+html[data-tl-family="kde"] .mx_RoomHeader [class*="_icon-button_"][data-state="open"] {
+  background: color-mix(in srgb, var(--kde-text) 12.5%, transparent) !important;
+  border: 1px solid var(--kde-outline);
+}
+html[data-tl-family="kde"] [class*="_icon-button_"]::before { border-radius: var(--kde-radius); }
+
+/* ------------------------------------------------------------------ timeline */
+html[data-tl-family="kde"] .mx_RoomView,
+html[data-tl-family="kde"] .mx_RoomView_body,
+html[data-tl-family="kde"] .mx_RoomView_timeline,
+html[data-tl-family="kde"] .mx_MainSplit { background: var(--kde-window); }
+html[data-tl-family="kde"] .mx_EventTile {
+  --event-tile-state-hover-background: transparent;
+  --event-tile-state-selected-background: transparent;
+  --event-tile-state-highlight-background: transparent;
+  --event-tile-bubble-self-background: var(--kde-own);
+  --event-tile-bubble-other-background: var(--kde-card);
+  --event-tile-bubble-hover-background: transparent;
+  --event-tile-bubble-corner-radius: var(--kde-radius-card);
+  --event-tile-state-marker-color: var(--kde-accent);
+}
+/* NeoChat cards: one card per message behind sender + body (group layout) */
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_shape"]) {
+  isolation: isolate;
+}
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"]:has(.mx_EventTileBubble)::before { display: none !important; }
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_shape"])::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset-block: 12px 1px; inset-inline-start: 54px; inset-inline-end: max(24px, calc(100% - 860px));
+  background: var(--kde-card); border-radius: var(--kde-radius-card); box-shadow: var(--kde-shadow-card);
+  transition: background-color var(--kde-dur), box-shadow var(--kde-dur);
+}
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateContinuation_"]:not([class*="_stateInfo_"])::before { inset-block-start: 1px; }
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"])::before { background: var(--kde-own); }
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):hover::before {
+  box-shadow: var(--kde-shadow-card), 0 0 0 1px color-mix(in srgb, var(--kde-accent) 45%, transparent);
+}
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateSelected_"]::before,
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateActionBarFocused_"]::before {
+  box-shadow: 0 0 0 1px var(--kde-accent);
+}
+/* mentions: Kirigami InlineMessage (neutral) */
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateHighlighted_"]:not([class*="_stateInfo_"])::before {
+  background: var(--kde-mention-bg) !important;
+  box-shadow: inset 3px 0 0 var(--kde-neutral), var(--kde-shadow-card);
+}
+html[data-tl-family="kde"] .mx_EventTile .mx_EventTile_line { border-radius: var(--kde-radius-card); }
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutGroup_"] .mx_EventTile_line { background: transparent !important; }
+html[data-tl-family="kde"] .mx_EventTile .mx_DisambiguatedProfile_displayName,
+html[data-tl-family="kde"] .mx_EventTile [class*="_disambiguatedProfile_"] { font-weight: 700; }
+html[data-tl-family="kde"] .mx_MessageTimestamp { color: var(--kde-inactive); font-size: 11px; }
+html[data-tl-family="kde"] .mx_EventTile_body { line-height: 1.45; }
+html[data-tl-family="kde"] .mx_EventTile_body a,
+html[data-tl-family="kde"] .markdown-body a { color: var(--kde-link); }
+html[data-tl-family="kde"] .mx_EventTile_body a:visited { color: var(--kde-visited); }
+/* state events / summaries: muted, no card */
+html[data-tl-family="kde"] .mx_TextualEvent,
+html[data-tl-family="kde"] .mx_GenericEventListSummary_summary { color: var(--kde-muted); }
+/* date separator: Kirigami heading with hairlines */
+html[data-tl-family="kde"] .mx_TimelineSeparator hr,
+html[data-tl-family="kde"] [class*="_timelineSeparator_"] hr { border-color: var(--kde-separator); background: var(--kde-separator); }
+html[data-tl-family="kde"] .mx_TimelineSeparator h2,
+html[data-tl-family="kde"] [class*="_timelineSeparator_"] h2 { font: 600 13px/1.3 var(--cpd-font-family-sans); color: var(--kde-muted); text-transform: none; }
+/* read marker */
+html[data-tl-family="kde"] [class*="_readMarker_"] hr,
+html[data-tl-family="kde"] .mx_RoomView_myReadMarker { border-top-color: var(--kde-accent); background: var(--kde-accent); }
+/* crypto / info bubbles → Kirigami InlineMessage */
+html[data-tl-family="kde"] .mx_EventTileBubble,
+html[data-tl-family="kde"] .mx_cryptoEvent {
+  background: var(--kde-view); border-radius: var(--kde-radius); border: 1px solid var(--kde-outline);
+  box-shadow: inset 3px 0 0 var(--kde-accent);
+}
+html[data-tl-family="kde"] .mx_cryptoEvent:has(svg[class*="critical"]),
+html[data-tl-family="kde"] .mx_NewRoomIntro > .mx_cryptoEvent { box-shadow: inset 3px 0 0 var(--kde-neutral); }
+/* bubble layout */
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line {
+  box-shadow: var(--kde-shadow-card);
+}
+/* IRC layout: flat on View with Qt zebra rows */
+html[data-tl-family="kde"] .mx_IRCLayout,
+html[data-tl-family="kde"] .mx_RoomView_body:has(.mx_IRCLayout) .mx_RoomView_timeline { background: var(--kde-view); }
+html[data-tl-family="kde"] .mx_IRCLayout .mx_RoomView_MessageList > li:nth-child(even) .mx_EventTile_line,
+html[data-tl-family="kde"] .mx_IRCLayout .mx_RoomView_MessageList > li:nth-child(even).mx_EventTile { background: var(--kde-view-alt); }
+
+/* reactions → Breeze toggle tool buttons */
+html[data-tl-family="kde"] [class*="_reactionsRowButton_"] {
+  border-radius: var(--kde-radius); border: 1px solid var(--kde-button-outline); background: var(--kde-button);
+  box-shadow: var(--kde-shadow-btn);
+}
+html[data-tl-family="kde"] [class*="_reactionsRowButton_"]:hover { border-color: var(--kde-accent); }
+html[data-tl-family="kde"] [class*="_reactionsRowButtonSelected_"] { background: var(--kde-sel); border-color: var(--kde-accent); }
+
+/* message action bar → Breeze toolbar */
+html[data-tl-family="kde"] .mx_MessageActionBar {
+  background: var(--kde-view); border: 1px solid var(--kde-outline); border-radius: var(--kde-radius);
+  box-shadow: var(--kde-shadow-popup); padding: 2px;
+}
+html[data-tl-family="kde"] .mx_MessageActionBar > * { border-radius: calc(var(--kde-radius) - 1px); }
+html[data-tl-family="kde"] .mx_MessageActionBar_iconButton:hover { background: var(--kde-sel); }
+
+/* code */
+html[data-tl-family="kde"] code,
+html[data-tl-family="kde"] pre,
+html[data-tl-family="kde"] .mx_EventTile_pre_container,
+html[data-tl-family="kde"] .hljs { font-family: var(--cpd-font-family-mono) !important; }
+html[data-tl-family="kde"] .mx_EventTile_body pre { background: transparent !important; border: 0 !important; }
+html[data-tl-family="kde"] .mx_EventTile_pre_container {
+  background: var(--kde-code-bg) !important; border: 1px solid var(--kde-outline); border-radius: var(--kde-radius);
+  font-size: 13px;
+}
+html[data-tl-family="kde"] .mx_EventTile_body code:not(pre code) {
+  background: var(--kde-code-bg); border: 1px solid var(--kde-outline); border-radius: 3px; padding: 0 3px; font-size: .92em;
+}
+html[data-tl-family="kde"] .hljs { background: transparent !important; color: var(--kde-text); }
+html[data-tl-family="kde"] .hljs-keyword, html[data-tl-family="kde"] .hljs-selector-tag, html[data-tl-family="kde"] .hljs-built_in { color: var(--kde-hl-keyword); font-weight: 700; }
+html[data-tl-family="kde"] .hljs-title, html[data-tl-family="kde"] .hljs-title.function_, html[data-tl-family="kde"] .hljs-section { color: var(--kde-hl-func); }
+html[data-tl-family="kde"] .hljs-string, html[data-tl-family="kde"] .hljs-regexp, html[data-tl-family="kde"] .hljs-addition { color: var(--kde-hl-string); }
+html[data-tl-family="kde"] .hljs-number, html[data-tl-family="kde"] .hljs-literal, html[data-tl-family="kde"] .hljs-symbol { color: var(--kde-hl-number); }
+html[data-tl-family="kde"] .hljs-comment, html[data-tl-family="kde"] .hljs-quote { color: var(--kde-hl-comment); font-style: italic; }
+html[data-tl-family="kde"] .hljs-type, html[data-tl-family="kde"] .hljs-class, html[data-tl-family="kde"] .hljs-title.class_ { color: var(--kde-hl-type); }
+html[data-tl-family="kde"] .hljs-meta, html[data-tl-family="kde"] .hljs-meta .hljs-keyword { color: var(--kde-hl-pre); }
+html[data-tl-family="kde"] .hljs-attr, html[data-tl-family="kde"] .hljs-attribute, html[data-tl-family="kde"] .hljs-property { color: var(--kde-hl-attr); }
+html[data-tl-family="kde"] .hljs-variable, html[data-tl-family="kde"] .hljs-params, html[data-tl-family="kde"] .hljs-template-variable { color: var(--kde-hl-var); }
+html[data-tl-family="kde"] .hljs-deletion { color: var(--kde-negative-text); }
+
+/* blockquote: Kirigami left bar */
+html[data-tl-family="kde"] .mx_EventTile_body blockquote { border-left: 3px solid var(--kde-outline); color: var(--kde-muted); }
+
+/* ------------------------------------------------------------------ composer */
+html[data-tl-family="kde"] .mx_MessageComposer {
+  background: var(--kde-view); border-top: 1px solid var(--kde-separator);
+}
+html[data-tl-family="kde"] .mx_MessageComposer_wrapper { padding-block: 6px; }
+html[data-tl-family="kde"] .mx_MessageComposer_row { min-height: 40px; }
+html[data-tl-family="kde"] .mx_BasicMessageComposer_input,
+html[data-tl-family="kde"] .mx_WysiwygComposer_Editor_content { font: 400 14px/1.45 var(--cpd-font-family-sans); color: var(--kde-text); }
+html[data-tl-family="kde"] .mx_BasicMessageComposer_input:not(.mx_BasicMessageComposer_inputEmpty) { min-height: 20px; }
+html[data-tl-family="kde"] .mx_BasicMessageComposer .mx_BasicMessageComposer_inputEmpty > :first-child::before { color: var(--kde-muted); }
+html[data-tl-family="kde"] .mx_MessageComposer_button,
+html[data-tl-family="kde"] .mx_MessageComposer_actions [class*="_icon-button_"] {
+  width: 30px !important; height: 30px !important; border-radius: var(--kde-radius); border: 1px solid transparent;
+}
+html[data-tl-family="kde"] .mx_MessageComposer_sendMessage {
+  border-radius: var(--kde-radius); background: transparent !important; border: 1px solid transparent;
+}
+html[data-tl-family="kde"] .mx_MessageComposer_sendMessage:hover { background: var(--kde-sel) !important; border-color: var(--kde-accent); }
+html[data-tl-family="kde"] .mx_MessageComposerFormatBar {
+  background: var(--kde-view); border: 1px solid var(--kde-outline); border-radius: var(--kde-radius); box-shadow: var(--kde-shadow-popup);
+}
+html[data-tl-family="kde"] .mx_Autocomplete {
+  background: var(--kde-view); border: 1px solid var(--kde-outline); border-radius: var(--kde-radius); box-shadow: var(--kde-shadow-popup);
+}
+html[data-tl-family="kde"] .mx_Autocomplete_Completion_block.selected,
+html[data-tl-family="kde"] .mx_Autocomplete_Completion.selected,
+html[data-tl-family="kde"] .mx_Autocomplete_Completion:hover { background: var(--kde-sel); border-radius: var(--kde-radius); }
+html[data-tl-family="kde"] .mx_RoomView_statusArea { background: var(--kde-window); }
+
+/* ------------------------------------------------------------------ right panel */
+html[data-tl-family="kde"] .mx_RightPanel {
+  background: var(--kde-window); border-left: 1px solid var(--kde-separator);
+}
+html[data-tl-family="kde"] .mx_BaseCard { background: var(--kde-window); }
+html[data-tl-family="kde"] .mx_BaseCard_header {
+  min-height: var(--kde-band-h); height: var(--kde-band-h); box-sizing: border-box;
+  background: var(--kde-header); border-bottom: 1px solid var(--kde-separator); margin: 0; padding-inline: 12px 8px;
+}
+html[data-tl-family="kde"] .mx_BaseCard_header_title,
+html[data-tl-family="kde"] .mx_BaseCard_header h2 { font: 400 15px/1.3 var(--cpd-font-family-sans); }
+html[data-tl-family="kde"] .mx_RoomSummaryCard [class*="_menuItem_"],
+html[data-tl-family="kde"] .mx_BaseCard [role="menuitem"] { border-radius: var(--kde-radius); }
+html[data-tl-family="kde"] .mx_ThreadPanel .mx_EventTile,
+html[data-tl-family="kde"] .mx_ThreadView .mx_EventTile { --kde-card: var(--kde-view); }
+
+/* ------------------------------------------------------------------ buttons (Breeze push buttons) */
+html[data-tl-family="kde"] [class*="_button_"][data-kind]:not([class*="_icon-button_"]),
+html[data-tl-family="kde"] .mx_AccessibleButton_hasKind:not(.mx_AccessibleButton_kind_link):not(.mx_AccessibleButton_kind_link_inline):not(.mx_AccessibleButton_kind_link_sm):not([class*="kind_icon"]) {
+  border-radius: var(--kde-radius) !important;
+  font-weight: 400;
+  transition: border-color var(--kde-dur), background-color var(--kde-dur), box-shadow var(--kde-dur);
+}
+/* every "real" button kind gets the Breeze frame */
+html[data-tl-family="kde"] [class*="_button_"][data-kind="secondary"]:not([class*="_icon-button_"]),
+html[data-tl-family="kde"] [class*="_button_"][data-kind="primary"]:not([class*="_icon-button_"]),
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_primary,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_primary_sm,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_secondary,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_secondary_content,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_danger,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_danger_outline,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_danger_sm,
+html[data-tl-family="kde"] .mx_Dialog_buttons button:not([class*="_icon-button_"]),
+html[data-tl-family="kde"] .mx_Dialog_buttons input[type="submit"] {
+  background: var(--kde-button) !important;
+  color: var(--kde-text) !important;
+  border: 1px solid var(--kde-button-outline) !important;
+  box-shadow: var(--kde-shadow-btn);
+}
+html[data-tl-family="kde"] [class*="_button_"][data-kind="primary"] > svg,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_primary > svg { color: var(--kde-text) !important; }
+/* default button = the primary one (accent tinted, as Breeze's default button in an active window) */
+html[data-tl-family="kde"] [class*="_button_"][data-kind="primary"]:not([class*="_destructive_"]):not([class*="_icon-button_"]),
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_primary,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_primary_sm,
+html[data-tl-family="kde"] .mx_Dialog_buttons button.mx_Dialog_primary,
+html[data-tl-family="kde"] .mx_Dialog_buttons .mx_Dialog_primary {
+  background: var(--kde-default-btn) !important;
+  border-color: var(--kde-default-pen) !important;
+}
+html[data-tl-family="kde"] [class*="_button_"][data-kind]:not([aria-disabled="true"]):not([class*="_icon-button_"]):hover,
+html[data-tl-family="kde"] .mx_AccessibleButton_hasKind:not(.mx_AccessibleButton_disabled):not([class*="kind_link"]):not([class*="kind_icon"]):hover,
+html[data-tl-family="kde"] .mx_Dialog_buttons button:not([disabled]):hover {
+  border-color: var(--kde-accent) !important;
+}
+html[data-tl-family="kde"] [class*="_button_"][data-kind="primary"]:not([aria-disabled="true"]):not([class*="_icon-button_"]):active,
+html[data-tl-family="kde"] [class*="_button_"][data-kind="secondary"]:not([aria-disabled="true"]):not([class*="_icon-button_"]):active,
+html[data-tl-family="kde"] .mx_AccessibleButton_hasKind:not([class*="kind_link"]):active,
+html[data-tl-family="kde"] .mx_Dialog_buttons button:active {
+  background: var(--kde-pressed) !important; border-color: var(--kde-accent) !important; box-shadow: none;
+}
+/* destructive: red text + red outline */
+html[data-tl-family="kde"] [class*="_button_"][class*="_destructive_"],
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_danger,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_danger_outline,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_danger_sm,
+html[data-tl-family="kde"] .mx_Dialog_buttons .danger {
+  color: var(--kde-negative-text) !important; border-color: color-mix(in srgb, var(--kde-negative) 60%, var(--kde-button-outline)) !important;
+  background: var(--kde-button) !important;
+}
+html[data-tl-family="kde"] [class*="_button_"][class*="_destructive_"]:hover,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_danger:hover,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_danger_outline:hover { border-color: var(--kde-negative) !important; background: color-mix(in srgb, var(--kde-negative) 10%, var(--kde-button)) !important; }
+html[data-tl-family="kde"] [class*="_button_"][class*="_destructive_"] > svg { color: var(--kde-negative) !important; }
+/* tertiary / link */
+html[data-tl-family="kde"] [class*="_button_"][data-kind="tertiary"] { text-decoration: none; color: var(--kde-link); border: 1px solid transparent; }
+html[data-tl-family="kde"] [class*="_button_"][data-kind="tertiary"]:hover { background: var(--kde-sel) !important; color: var(--kde-text); }
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_link,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_link_inline,
+html[data-tl-family="kde"] .mx_AccessibleButton_kind_link_sm { color: var(--kde-link) !important; }
+/* disabled */
+html[data-tl-family="kde"] [class*="_button_"][aria-disabled="true"],
+html[data-tl-family="kde"] .mx_AccessibleButton_disabled.mx_AccessibleButton_hasKind {
+  opacity: .55; box-shadow: none;
+}
+html[data-tl-family="kde"] [class*="_text-button_"] { border-radius: var(--kde-radius); }
+html[data-tl-family="kde"] [class*="_text-button_"]:hover { background: var(--kde-sel); }
+
+/* ------------------------------------------------------------------ inputs (Breeze line edit) */
+html[data-tl-family="kde"] .mx_Field {
+  border: 1px solid var(--kde-outline); border-radius: var(--kde-radius); background: var(--kde-view);
+  transition: border-color var(--kde-dur);
+}
+html[data-tl-family="kde"] .mx_Field:hover { border-color: color-mix(in srgb, var(--kde-accent) 60%, var(--kde-outline)); }
+html[data-tl-family="kde"] .mx_Field:focus-within { border-color: var(--kde-accent); box-shadow: 0 0 0 1px var(--kde-accent); }
+html[data-tl-family="kde"] .mx_Field input,
+html[data-tl-family="kde"] .mx_Field select,
+html[data-tl-family="kde"] .mx_Field textarea { background: transparent; color: var(--kde-text); }
+html[data-tl-family="kde"] .mx_Field label { background: var(--kde-view) !important; color: var(--kde-muted); }
+html[data-tl-family="kde"] .mx_Field_valid.mx_Field:not(:focus-within) { border-color: var(--kde-outline); }
+html[data-tl-family="kde"] .mx_Field_invalid { border-color: var(--kde-negative) !important; }
+html[data-tl-family="kde"] [class*="_control_"]:is(input[type="text"], input[type="password"], input[type="search"], input[type="email"], input:not([type]), textarea),
+html[data-tl-family="kde"] input[class*="_input_"]:not([type="checkbox"]):not([type="radio"]),
+html[data-tl-family="kde"] textarea[class*="_input_"] {
+  border-radius: var(--kde-radius) !important; border: 1px solid var(--kde-outline) !important; background: var(--kde-view) !important;
+  box-shadow: none;
+}
+html[data-tl-family="kde"] [class*="_control_"]:is(input, textarea):hover,
+html[data-tl-family="kde"] input[class*="_input_"]:hover { border-color: color-mix(in srgb, var(--kde-accent) 60%, var(--kde-outline)) !important; }
+html[data-tl-family="kde"] [class*="_control_"]:is(input, textarea):focus,
+html[data-tl-family="kde"] input[class*="_input_"]:focus { border-color: var(--kde-accent) !important; outline: 1px solid var(--kde-accent) !important; outline-offset: 0 !important; }
+/* check boxes: Breeze 6 — tinted fill + blue tick */
+html[data-tl-family="kde"] input[type="checkbox"]:not([role="switch"]):not([class*="_toggle_"] input) { accent-color: var(--kde-accent); }
+html[data-tl-family="kde"] .mx_StyledCheckbox input[type="checkbox"] + label > .mx_StyledCheckbox_background,
+html[data-tl-family="kde"] [class*="_checkbox_"] > div,
+html[data-tl-family="kde"] [class*="_checkbox_"] [class*="_ui_"] {
+  border-radius: var(--kde-radius-check) !important; border: 1px solid var(--kde-separator) !important; background: var(--kde-button) !important;
+}
+html[data-tl-family="kde"] .mx_StyledCheckbox input[type="checkbox"]:checked + label > .mx_StyledCheckbox_background,
+html[data-tl-family="kde"] [class*="_checkbox_"] input:checked + div,
+html[data-tl-family="kde"] [class*="_checkbox_"] input:checked + [class*="_ui_"] {
+  background: color-mix(in srgb, var(--kde-accent) 30%, var(--kde-button)) !important; border-color: var(--kde-accent) !important;
+}
+html[data-tl-family="kde"] .mx_StyledCheckbox input[type="checkbox"]:checked + label > .mx_StyledCheckbox_background > svg,
+html[data-tl-family="kde"] [class*="_checkbox_"] input:checked + div > svg,
+html[data-tl-family="kde"] [class*="_checkbox_"] input:checked + [class*="_ui_"] > svg { color: var(--kde-accent-text) !important; }
+/* radios */
+html[data-tl-family="kde"] .mx_StyledRadioButton input[type="radio"] + div { border-color: var(--kde-separator); background: var(--kde-button); }
+html[data-tl-family="kde"] .mx_StyledRadioButton input[type="radio"]:checked + div { border-color: var(--kde-accent); background: color-mix(in srgb, var(--kde-accent) 30%, var(--kde-button)); }
+html[data-tl-family="kde"] .mx_StyledRadioButton input[type="radio"]:checked + div > div { background: var(--kde-accent-text); }
+/* switches (Breeze/Kirigami switch: grey track, white knob; on = accent track) */
+html[data-tl-family="kde"] .mx_ToggleSwitch { background: color-mix(in srgb, var(--kde-text) 22%, var(--kde-window)); border: 1px solid var(--kde-outline); }
+html[data-tl-family="kde"] .mx_ToggleSwitch.mx_ToggleSwitch_on { background: var(--kde-accent); border-color: var(--kde-accent); }
+html[data-tl-family="kde"] .mx_ToggleSwitch_ball { background: var(--kde-button); box-shadow: 0 1px 2px rgb(0 0 0 / .3); }
+html[data-tl-family="kde"] [role="switch"],
+html[data-tl-family="kde"] input[role="switch"] { accent-color: var(--kde-accent); }
+
+/* ------------------------------------------------------------------ dialogs (Breeze dialog) */
+html[data-tl-family="kde"] .mx_Dialog_background { background-color: rgb(0 0 0 / .35); }
+html[data-tl-family="kde"] .mx_Dialog {
+  background: var(--kde-window); color: var(--kde-text);
+  border-radius: var(--kde-radius); border: 1px solid var(--kde-outline);
+  box-shadow: var(--kde-shadow-dialog);
+}
+html[data-tl-family="kde"] .mx_Dialog_header { background: transparent; border-bottom: 1px solid var(--kde-separator); padding-bottom: 10px; margin-bottom: 14px; }
+html[data-tl-family="kde"] .mx_Dialog_border { background: transparent !important; padding: 0 !important; border: 0 !important; box-shadow: none !important; backdrop-filter: none !important; }
+html[data-tl-family="kde"] .mx_Dialog_title { font: 400 18px/1.35 var(--cpd-font-family-sans); color: var(--kde-text); }
+html[data-tl-family="kde"] .mx_Dialog_title strong, html[data-tl-family="kde"] .mx_Dialog_title b { font-weight: 700; }
+html[data-tl-family="kde"] .mx_Dialog_cancelButton { border-radius: 50%; }
+html[data-tl-family="kde"] .mx_Dialog_cancelButton:hover { background: var(--kde-negative) !important; color: #fff; }
+html[data-tl-family="kde"] .mx_Dialog_buttons { gap: 6px; }
+html[data-tl-family="kde"] .mx_CompoundDialog,
+html[data-tl-family="kde"] [role="dialog"][class*="_dialog_"] { background: var(--kde-window); border-radius: var(--kde-radius); }
+html[data-tl-family="kde"] .mx_CompoundDialog_header { background: var(--kde-header); border-bottom: 1px solid var(--kde-separator); }
+
+/* ------------------------------------------------------------------ menus + tooltips */
+html[data-tl-family="kde"] .mx_ContextualMenu,
+html[data-tl-family="kde"] [role="menu"][class*="_menu_"],
+html[data-tl-family="kde"] [data-radix-popper-content-wrapper] > [role="menu"] {
+  background: var(--kde-view); color: var(--kde-text);
+  border: 1px solid var(--kde-outline); border-radius: var(--kde-radius);
+  box-shadow: var(--kde-shadow-popup); padding: 4px;
+}
+html[data-tl-family="kde"] .mx_IconizedContextMenu .mx_AccessibleButton,
+html[data-tl-family="kde"] [role="menu"] [role="menuitem"],
+html[data-tl-family="kde"] [role="menu"] [role="menuitemcheckbox"],
+html[data-tl-family="kde"] [role="menu"] [role="menuitemradio"],
+html[data-tl-family="kde"] [class*="_item_"][role^="menuitem"] {
+  border-radius: calc(var(--kde-radius) - 1px); border: 1px solid transparent; font-size: 13px;
+}
+html[data-tl-family="kde"] .mx_IconizedContextMenu .mx_AccessibleButton:hover,
+html[data-tl-family="kde"] .mx_IconizedContextMenu .mx_AccessibleButton:focus-visible,
+html[data-tl-family="kde"] [role="menu"] [role^="menuitem"]:hover,
+html[data-tl-family="kde"] [role="menu"] [role^="menuitem"]:focus,
+html[data-tl-family="kde"] [role="menu"] [role^="menuitem"][data-highlighted] {
+  background: var(--kde-sel) !important; border-color: var(--kde-accent);
+}
+html[data-tl-family="kde"] .mx_IconizedContextMenu_optionList:not(:first-child) { border-top-color: var(--kde-separator) !important; }
+html[data-tl-family="kde"] [role="menu"] [role="separator"] { background: var(--kde-separator); }
+html[data-tl-family="kde"] [role="tooltip"],
+html[data-tl-family="kde"] [class*="_tooltip_"]:not([class*="_tooltip-"]) {
+  background: var(--kde-tooltip) !important; color: var(--kde-tooltip-text) !important;
+  border: 1px solid var(--kde-outline); border-radius: var(--kde-radius); box-shadow: 0 2px 8px rgb(0 0 0 / .2);
+  font: 400 12px/1.4 var(--cpd-font-family-sans);
+}
+html[data-tl-family="kde"] [role="tooltip"] *,
+html[data-tl-family="kde"] [class*="_tooltip_"] [class*="_caption_"] { color: var(--kde-tooltip-text) !important; }
+html[data-tl-family="kde"] [role="tooltip"] svg[class*="_arrow_"],
+html[data-tl-family="kde"] [class*="_tooltip_"] [class*="_arrow_"] { fill: var(--kde-tooltip); }
+
+/* ------------------------------------------------------------------ settings (System Settings) */
+html[data-tl-family="kde"] .mx_TabbedView_tabLabels { padding: 8px 6px; }
+html[data-tl-family="kde"] .mx_TabbedView_tabLabel {
+  border-radius: var(--kde-radius); border: 1px solid transparent; color: var(--kde-text);
+}
+html[data-tl-family="kde"] .mx_TabbedView_tabLabel:hover { background: var(--kde-hover); }
+html[data-tl-family="kde"] .mx_TabbedView_tabLabel_active,
+html[data-tl-family="kde"] .mx_TabbedView_tabLabel_active:hover { background: var(--kde-sel) !important; border-color: var(--kde-accent); color: var(--kde-text) !important; }
+html[data-tl-family="kde"] .mx_TabbedView_tabLabel_active .mx_TabbedView_maskedIcon::before { background-color: var(--kde-text); }
+html[data-tl-family="kde"] .mx_TabbedView_tabLabel_active svg { color: var(--kde-text); }
+html[data-tl-family="kde"] .mx_TabbedView_tabPanel { background: transparent; }
+html[data-tl-family="kde"] .mx_SettingsSection,
+html[data-tl-family="kde"] .mx_SettingsSubsection { --SettingsSubsection_divider: var(--kde-separator); }
+html[data-tl-family="kde"] .mx_SettingsSubsection_heading,
+html[data-tl-family="kde"] .mx_SettingsSection_title,
+html[data-tl-family="kde"] .mx_SettingsTab_heading { color: var(--kde-text); }
+html[data-tl-family="kde"] [role="tablist"]:not(.mx_TabbedView_tabLabels) [role="tab"][aria-selected="true"] { box-shadow: inset 0 -3px 0 var(--kde-accent); }
+
+/* ------------------------------------------------------------------ auth (Plasma lock-screen feel) */
+html[data-tl-family="kde"] .mx_AuthPage,
+html[data-tl-family="kde"] .mx_AuthPage[style] {
+  background: var(--kde-wallpaper, url("assets/wallpaper-hanabi-light.webp")) center / cover no-repeat, var(--kde-window) !important;
+}
+html[data-tl-family="kde"] .mx_AuthPage_modal {
+  background: var(--kde-window); border-radius: var(--kde-radius); border: 1px solid var(--kde-outline);
+  box-shadow: var(--kde-shadow-dialog);
+}
+html[data-tl-family="kde"] .mx_AuthPage_modalContent,
+html[data-tl-family="kde"] .mx_AuthBody { background: var(--kde-window); }
+html[data-tl-family="kde"] .mx_AuthHeader { background: var(--kde-header); border-right: 1px solid var(--kde-separator); }
+html[data-tl-family="kde"] .mx_AuthFooter,
+html[data-tl-family="kde"] .mx_AuthFooter a { color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / .6); }
+
+/* ------------------------------------------------------------------ badges */
+html[data-tl-family="kde"] [class*="_unread-counter_"],
+html[data-tl-family="kde"] [class*="_notificationBadge_"] {
+  border-radius: var(--kde-radius); font-weight: 600;
+}
+html[data-tl-family="kde"] [class*="_unread-counter_"]:not([data-kind="critical"]) {
+  background: transparent !important; color: var(--kde-text) !important; font: 400 13px/1 var(--cpd-font-family-sans);
+}
+html[data-tl-family="kde"] [data-kind="critical"][class*="_unread-counter_"],
+html[data-tl-family="kde"] [class*="_notificationBadge_"][data-kind="critical"],
+html[data-tl-family="kde"] .mx_NotificationBadge_level_highlight {
+  background: var(--kde-critical-solid) !important; color: var(--kde-on-critical, var(--kde-on-solid)) !important; border-radius: 9px;
+}
+html[data-tl-family="kde"] [class*="_badge_"] { border-radius: var(--kde-radius); }
+
+/* ------------------------------------------------------------------ avatars: Kirigami ring initials */
+html[data-tl-family="kde"] [class*="_avatar-imageless_"] {
+  font-weight: 500;
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+/* ------------------------------------------------------------------ scrollbars (Breeze: 8px pill, accent on hover) */
+html[data-tl-family="kde"] * { scrollbar-color: var(--kde-scroll) transparent; scrollbar-width: thin; }
+html[data-tl-family="kde"] ::-webkit-scrollbar { width: 8px; height: 8px; background: transparent; }
+html[data-tl-family="kde"] ::-webkit-scrollbar-thumb { background: var(--kde-scroll); border-radius: 4px; border: 0; }
+html[data-tl-family="kde"] ::-webkit-scrollbar-thumb:hover { background: var(--kde-accent); }
+html[data-tl-family="kde"] ::-webkit-scrollbar-track { background: transparent; }
+
+/* ------------------------------------------------------------------ focus (2px accent — thicker than Breeze's 1px for WCAG) */
+html[data-tl-family="kde"] :focus-visible {
+  outline: var(--kde-focus-w) solid var(--kde-focus) !important;
+  outline-offset: 1px !important;
+}
+html[data-tl-family="kde"] .mx_BasicMessageComposer_input:focus-visible { outline: none !important; }
+html[data-tl-family="kde"] .mx_Field :is(input, textarea, select):focus-visible { outline: 1px solid var(--kde-focus) !important; outline-offset: -1px !important; }
+
+/* ------------------------------------------------------------------ icon swaps (Breeze icons via mask) */
+html[data-tl-family="kde"] :is(
+  .mx_MessageComposer_sendMessage,
+  .mx_MessageComposer_actions .mx_EmojiButton,
+  .mx_MessageComposer_actions [aria-label="Attachment"],
+  .mx_MessageComposer_actions .mx_MessageComposer_buttonMenu,
+  .mx_RoomHeader [aria-label="Video call"],
+  .mx_RoomHeader [aria-label="Voice call"],
+  .mx_RoomHeader [aria-label="Threads"],
+  .mx_RoomHeader [class*="_icon-button_"][aria-label="Room info"],
+  .mx_RoomHeader [aria-label="Notifications"],
+  .mx_RoomListPanel [role="search"] button[class*="_search_"],
+  .mx_RoomListPanel header [aria-label="Room Options"],
+  .mx_RoomListPanel header [aria-label="Add"],
+  .mx_RoomListPanel header [aria-label="Start chat"],
+  .mx_RoomListPanel header [aria-label="New message"],
+  .mx_SpacePanel .mx_QuickSettingsButton,
+  .mx_SpacePanel .mx_ThreadsActivityCentreButton,
+  .mx_SpacePanel .mx_SpaceButton_new .mx_SpaceButton_icon,
+  .mx_MessageActionBar [aria-label="Reply"],
+  .mx_MessageActionBar [aria-label="Edit"],
+  .mx_MessageActionBar [aria-label="React"],
+  .mx_MessageActionBar [aria-label="Reply in thread"],
+  .mx_MessageActionBar [aria-label="Options"],
+  .mx_MessageActionBar [aria-label="Delete"]
+) { position: relative; }
+html[data-tl-family="kde"] :is(
+  .mx_MessageComposer_sendMessage,
+  .mx_MessageComposer_actions .mx_EmojiButton,
+  .mx_MessageComposer_actions [aria-label="Attachment"],
+  .mx_MessageComposer_actions .mx_MessageComposer_buttonMenu,
+  .mx_RoomHeader [aria-label="Video call"],
+  .mx_RoomHeader [aria-label="Voice call"],
+  .mx_RoomHeader [aria-label="Threads"],
+  .mx_RoomHeader [class*="_icon-button_"][aria-label="Room info"],
+  .mx_RoomHeader [aria-label="Notifications"],
+  .mx_RoomListPanel header [aria-label="Room Options"],
+  .mx_SpacePanel .mx_QuickSettingsButton,
+  .mx_SpacePanel .mx_ThreadsActivityCentreButton,
+  .mx_SpacePanel .mx_SpaceButton_new .mx_SpaceButton_icon,
+  .mx_MessageActionBar [aria-label="Reply"],
+  .mx_MessageActionBar [aria-label="Edit"],
+  .mx_MessageActionBar [aria-label="React"],
+  .mx_MessageActionBar [aria-label="Reply in thread"],
+  .mx_MessageActionBar [aria-label="Options"],
+  .mx_MessageActionBar [aria-label="Delete"]
+) svg:not(.mx_MessageComposer_e2eIcon) { visibility: hidden; }
+html[data-tl-family="kde"] :is(
+  .mx_MessageComposer_sendMessage,
+  .mx_MessageComposer_actions .mx_EmojiButton,
+  .mx_MessageComposer_actions [aria-label="Attachment"],
+  .mx_MessageComposer_actions .mx_MessageComposer_buttonMenu,
+  .mx_RoomHeader [aria-label="Video call"],
+  .mx_RoomHeader [aria-label="Voice call"],
+  .mx_RoomHeader [aria-label="Threads"],
+  .mx_RoomHeader [class*="_icon-button_"][aria-label="Room info"],
+  .mx_RoomHeader [aria-label="Notifications"],
+  .mx_RoomListPanel header [aria-label="Room Options"],
+  .mx_SpacePanel .mx_QuickSettingsButton,
+  .mx_SpacePanel .mx_ThreadsActivityCentreButton,
+  .mx_SpacePanel .mx_SpaceButton_new .mx_SpaceButton_icon,
+  .mx_MessageActionBar [aria-label="Reply"],
+  .mx_MessageActionBar [aria-label="Edit"],
+  .mx_MessageActionBar [aria-label="React"],
+  .mx_MessageActionBar [aria-label="Reply in thread"],
+  .mx_MessageActionBar [aria-label="Options"],
+  .mx_MessageActionBar [aria-label="Delete"]
+)::after {
+  content: ""; position: absolute; inset: 0; margin: auto; pointer-events: none;
+  width: var(--kde-icon-size); height: var(--kde-icon-size);
+  background: var(--kde-icon-paint, currentColor);
+  mask: var(--kde-ico) center / contain no-repeat;
+}
+html[data-tl-family="kde"] .mx_MessageComposer_sendMessage { --kde-ico: var(--kde-ico-send); color: var(--kde-text); }
+html[data-tl-family="kde"] .mx_MessageComposer_actions .mx_EmojiButton { --kde-ico: var(--kde-ico-emoji); }
+html[data-tl-family="kde"] .mx_MessageComposer_actions [aria-label="Attachment"] { --kde-ico: var(--kde-ico-attach); }
+html[data-tl-family="kde"] .mx_MessageComposer_actions .mx_MessageComposer_buttonMenu { --kde-ico: var(--kde-ico-more); }
+html[data-tl-family="kde"] .mx_RoomHeader [aria-label="Video call"] { --kde-ico: var(--kde-ico-video); }
+html[data-tl-family="kde"] .mx_RoomHeader [aria-label="Voice call"] { --kde-ico: var(--kde-ico-call); }
+html[data-tl-family="kde"] .mx_RoomHeader [aria-label="Threads"] { --kde-ico: var(--kde-ico-threads); }
+html[data-tl-family="kde"] .mx_RoomHeader [class*="_icon-button_"][aria-label="Room info"] { --kde-ico: var(--kde-ico-info); }
+html[data-tl-family="kde"] .mx_RoomHeader [aria-label="Notifications"] { --kde-ico: var(--kde-ico-notify); }
+html[data-tl-family="kde"] .mx_RoomListPanel header [aria-label="Room Options"] { --kde-ico: var(--kde-ico-more); }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_QuickSettingsButton { --kde-ico: var(--kde-ico-settings); }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_ThreadsActivityCentreButton { --kde-ico: var(--kde-ico-threads); }
+html[data-tl-family="kde"] .mx_SpacePanel .mx_SpaceButton_new .mx_SpaceButton_icon { --kde-ico: var(--kde-ico-add); }
+html[data-tl-family="kde"] .mx_MessageActionBar [aria-label="Reply"] { --kde-ico: var(--kde-ico-reply); }
+html[data-tl-family="kde"] .mx_MessageActionBar [aria-label="Edit"] { --kde-ico: var(--kde-ico-edit); }
+html[data-tl-family="kde"] .mx_MessageActionBar [aria-label="React"] { --kde-ico: var(--kde-ico-react); }
+html[data-tl-family="kde"] .mx_MessageActionBar [aria-label="Reply in thread"] { --kde-ico: var(--kde-ico-threads); }
+html[data-tl-family="kde"] .mx_MessageActionBar [aria-label="Options"] { --kde-ico: var(--kde-ico-more); }
+html[data-tl-family="kde"] .mx_MessageActionBar [aria-label="Delete"] { --kde-ico: var(--kde-ico-delete); }
+html[data-tl-family="kde"] .mx_MessageActionBar :is([aria-label="Reply"], [aria-label="Edit"], [aria-label="React"], [aria-label="Reply in thread"], [aria-label="Options"], [aria-label="Delete"]) { --kde-icon-size: 16px; }
+html[data-tl-family="kde"] .mx_RoomListPanel [role="search"] button[class*="_search_"] > svg {
+  visibility: hidden;
+}
+html[data-tl-family="kde"] .mx_RoomListPanel [role="search"] button[class*="_search_"]::before {
+  content: ""; position: absolute; left: 9px; top: 0; bottom: 0; margin: auto; width: 16px; height: 16px;
+  background: currentColor; mask: var(--kde-ico-search) center / contain no-repeat;
+}
+
+/* ------------------------------------------------------------------ toasts (Plasma notification popup) */
+html[data-tl-family="kde"] .mx_Toast_toast,
+html[data-tl-family="kde"] [class*="_toast_"] {
+  background: var(--kde-view); color: var(--kde-text); border: 1px solid var(--kde-outline);
+  border-radius: var(--kde-radius); box-shadow: var(--kde-shadow-popup);
+}
+
+/* ------------------------------------------------------------------ iframes / widgets frame */
+html[data-tl-family="kde"] .mx_AppTile,
+html[data-tl-family="kde"] .mx_AppTile_mini,
+html[data-tl-family="kde"] .mx_CallView { border: 1px solid var(--kde-outline); border-radius: var(--kde-radius); overflow: hidden; }
+html[data-tl-family="kde"] .mx_AppTileMenuBar { background: var(--kde-header); }
+
+/* ------------------------------------------------------------------ the theme loader UI stays readable */
+html[data-tl-family="kde"] .tl-ui { color: var(--kde-text); }
+
+/* ------------------------------------------------------------------ reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="kde"] *,
+  html[data-tl-family="kde"] *::before,
+  html[data-tl-family="kde"] *::after { transition: none !important; animation: none !important; }
+}
+
+/* ------------------------------------------------------------------ Plasma digital clock (enhancer) */
+html[data-tl-family="kde"] #tl-overlay-root .kde-clock {
+  position: absolute; height: 36px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: var(--kde-rail-text); font: 400 12px/1.15 var(--cpd-font-family-sans); text-align: center; pointer-events: none;
+}
+html[data-tl-family="kde"] #tl-overlay-root .kde-clock__time { font-size: 13px; font-weight: 400; font-variant-numeric: tabular-nums; }
+html[data-tl-family="kde"] #tl-overlay-root .kde-clock__date { font-size: 10px; opacity: .8; }
+
+/* room list sections: Kirigami "People ———— ⌃" */
+html[data-tl-family="kde"] .mx_RoomListPanel [class*="_stickyBackground_"],
+html[data-tl-family="kde"] .mx_RoomListPanel button[class*="_header_"] { background: var(--kde-window); }
+html[data-tl-family="kde"] .mx_RoomListPanel button[class*="_header_"] > [class*="_container_"] { padding-inline: 12px; }
+html[data-tl-family="kde"] .mx_RoomListPanel button[class*="_header_"] > [class*="_container_"] > div:first-child {
+  flex: 1; display: flex; align-items: center; gap: 8px;
+}
+html[data-tl-family="kde"] .mx_RoomListPanel button[class*="_header_"] [class*="_title_"] {
+  order: 0; font: 600 13px/1.3 var(--cpd-font-family-sans); color: var(--kde-muted);
+}
+html[data-tl-family="kde"] .mx_RoomListPanel button[class*="_header_"] > [class*="_container_"] > div:first-child::after {
+  content: ""; order: 1; flex: 1; height: 1px; background: var(--kde-separator);
+}
+html[data-tl-family="kde"] .mx_RoomListPanel button[class*="_header_"] svg[class*="_chevron_"] {
+  order: 2; width: 18px; height: 18px; color: var(--kde-muted);
+}
+html[data-tl-family="kde"] .mx_RoomHeader > [class*="_avatar_"] img { width: 100%; height: 100%; }
+
+/* user/room pills: Breeze-tinted chips instead of dark Compound pills */
+html[data-tl-family="kde"] .mx_Pill {
+  background: var(--kde-sel) !important; color: var(--kde-text) !important; border-radius: 9px;
+}
+html[data-tl-family="kde"] .mx_Pill.mx_UserPill_me,
+html[data-tl-family="kde"] .mx_Pill.mx_AtRoomPill {
+  background: var(--kde-critical-solid) !important; color: var(--kde-on-critical, var(--kde-on-solid)) !important;
+}
+html[data-tl-family="kde"] .mx_Pill .mx_Pill_text { color: inherit !important; }
+/* bubble layout highlight → tinted bubble with neutral bar */
+html[data-tl-family="kde"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateHighlighted_"] .mx_EventTile_line {
+  background: var(--kde-mention-bg) !important; box-shadow: inset 3px 0 0 var(--kde-neutral), var(--kde-shadow-card);
+}
+/* dialog buttons */
+html[data-tl-family="kde"] .mx_Dialog_buttons button,
+html[data-tl-family="kde"] .mx_Dialog_buttons input[type="submit"] { border-radius: var(--kde-radius) !important; min-width: 80px; font-weight: 400; }
+/* compound form controls (checkbox / radio / switch share the _ui_ class) */
+html[data-tl-family="kde"] input[type="checkbox"]:not([role="switch"]) + [class*="_ui_"] {
+  border-radius: var(--kde-radius-check); border-color: var(--kde-separator); background: var(--kde-button);
+}
+html[data-tl-family="kde"] input[type="checkbox"]:not([role="switch"]):checked + [class*="_ui_"] {
+  background: color-mix(in srgb, var(--kde-accent) 30%, var(--kde-button)); border-color: var(--kde-accent);
+}
+html[data-tl-family="kde"] input[type="checkbox"]:not([role="switch"]):checked + [class*="_ui_"] svg { color: var(--kde-accent-text); }
+html[data-tl-family="kde"] input[type="radio"] + [class*="_ui_"] { border-color: var(--kde-separator); background: var(--kde-button); }
+html[data-tl-family="kde"] input[type="radio"]:checked + [class*="_ui_"] {
+  background: color-mix(in srgb, var(--kde-accent) 30%, var(--kde-button)); border-color: var(--kde-accent);
+}
+html[data-tl-family="kde"] input[type="radio"]:checked + [class*="_ui_"]::after { background: var(--kde-accent-text); border-color: var(--kde-accent-text); inline-size: 8px; block-size: 8px; }
+html[data-tl-family="kde"] input[role="switch"] + [class*="_ui_"] {
+  border-radius: 9999px; background: color-mix(in srgb, var(--kde-text) 20%, var(--kde-window));
+  border-color: color-mix(in srgb, var(--kde-text) 28%, var(--kde-window));
+}
+html[data-tl-family="kde"] input[role="switch"] + [class*="_ui_"]::after {
+  --dot-color: #ffffff; border-color: rgb(0 0 0 / .18); box-shadow: 0 1px 2px rgb(0 0 0 / .3);
+}
+html[data-tl-family="kde"] input[role="switch"]:checked + [class*="_ui_"] { background: var(--kde-accent); border-color: var(--kde-accent); }
+html[data-tl-family="kde"] input[role="switch"]:checked + [class*="_ui_"]::after { --dot-color: #ffffff; }
+/* menus opened by click get programmatic focus: no ring on the container itself */
+html[data-tl-family="kde"] .mx_ContextualMenu:focus-visible,
+html[data-tl-family="kde"] [role="menu"]:focus-visible,
+html[data-tl-family="kde"] [role="dialog"]:focus-visible,
+html[data-tl-family="kde"] .mx_Dialog:focus-visible { outline: none !important; }
+html[data-tl-family="kde"] .mx_SendMessageComposer,
+html[data-tl-family="kde"] .mx_BasicMessageComposer,
+html[data-tl-family="kde"] .mx_MessageComposer_wrapper { background: transparent; }
+html[data-tl-family="kde"] .mx_MessageComposer_row { box-sizing: border-box; }
+
+/* polls: Breeze progress bars */
+html[data-tl-family="kde"] .mx_PollOption { border-radius: var(--kde-radius); border-color: var(--kde-outline); background: var(--kde-view); }
+html[data-tl-family="kde"] .mx_PollOption_checked { border-color: var(--kde-accent); }
+html[data-tl-family="kde"] .mx_PollOption_popularityBackground { background: color-mix(in srgb, var(--kde-text) 12%, var(--kde-view)); border-radius: 3px; height: 6px; }
+html[data-tl-family="kde"] .mx_PollOption_popularityBackground .mx_PollOption_popularityAmount { background: var(--kde-accent); border-radius: 3px; height: 6px; }
+
+/* home page tiles + hard-coded greys in Element CSS */
+html[data-tl-family="kde"] .mx_HomePage_default_buttons .mx_AccessibleButton {
+  background-color: var(--kde-solid) !important; color: var(--kde-on-solid) !important; border-radius: var(--kde-radius-card);
+}
+html[data-tl-family="kde"] .mx_HomePage_default_buttons .mx_AccessibleButton::before { background-color: var(--kde-on-solid) !important; }
+html[data-tl-family="kde"] .mx_HomePage h2,
+html[data-tl-family="kde"] .mx_HomePage_default h2,
+html[data-tl-family="kde"] .mx_CreateRoomDialog p,
+html[data-tl-family="kde"] .mx_CreateRoomDialog .mx_Field_input label,
+html[data-tl-family="kde"] .mx_BaseCard h4 { color: var(--kde-muted) !important; }
+html[data-tl-family="kde"] .mx_BaseCard_header h4 { color: var(--kde-header-text) !important; }
+html[data-tl-family="kde"] .mx_AuthBody h2,
+html[data-tl-family="kde"] .mx_AuthBody .mx_ServerPicker h2,
+html[data-tl-family="kde"] .mx_ServerPicker_desc { color: var(--kde-muted) !important; }
+html[data-tl-family="kde"] .mx_AuthPage_modal.mx_AuthPage_modal_withBlur .mx_AuthPage_modalContent { background: var(--kde-window); }

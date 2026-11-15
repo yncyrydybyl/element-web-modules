@@ -63,7 +63,9 @@
         "--cpd-color-border-focused": "#3daee9",
         "--cpd-color-border-interactive-primary": "#c6c8c9",
         "--cpd-color-text-critical-primary": "#da4453",
-        "--cpd-color-text-success-primary": "#27ae60"
+        "--cpd-color-text-success-primary": "#27ae60",
+        "--cpd-font-family-sans": "\"Noto Sans\", \"Noto Sans Display\", sans-serif",
+        "--cpd-font-family-mono": "\"Hack\", \"Noto Sans Mono\", monospace"
       },
       "enhance": true,
       "schedule": null
@@ -129,7 +131,9 @@
         "--cpd-color-border-focused": "#3daee9",
         "--cpd-color-border-interactive-primary": "#4c4e51",
         "--cpd-color-text-critical-primary": "#da4453",
-        "--cpd-color-text-success-primary": "#27ae60"
+        "--cpd-color-text-success-primary": "#27ae60",
+        "--cpd-font-family-sans": "\"Noto Sans\", \"Noto Sans Display\", sans-serif",
+        "--cpd-font-family-mono": "\"Hack\", \"Noto Sans Mono\", monospace"
       },
       "enhance": true,
       "schedule": null
@@ -185,7 +189,10 @@
           "style": "italic"
         }
       ],
-      "tokens": {},
+      "tokens": {
+        "--cpd-font-family-sans": "\"Noto Sans\", \"Noto Sans Display\", sans-serif",
+        "--cpd-font-family-mono": "\"Hack\", \"Noto Sans Mono\", monospace"
+      },
       "enhance": true,
       "schedule": [
         {
@@ -259,7 +266,9 @@
         "--cpd-color-border-focused": "#43ace8",
         "--cpd-color-border-interactive-primary": "#b3aeaa",
         "--cpd-color-text-critical-primary": "#bf0303",
-        "--cpd-color-text-success-primary": "#006e28"
+        "--cpd-color-text-success-primary": "#006e28",
+        "--cpd-font-family-sans": "\"Oxygen\", \"Noto Sans\", sans-serif",
+        "--cpd-font-family-mono": "\"Oxygen Mono\", \"Hack\", monospace"
       },
       "enhance": true,
       "schedule": null
@@ -325,7 +334,9 @@
         "--cpd-color-border-focused": "#2058c3",
         "--cpd-color-border-interactive-primary": "#c5c6d0",
         "--cpd-color-text-critical-primary": "#b7211e",
-        "--cpd-color-text-success-primary": "#4c6d0e"
+        "--cpd-color-text-success-primary": "#4c6d0e",
+        "--cpd-font-family-sans": "\"Inter\", \"Noto Sans\", sans-serif",
+        "--cpd-font-family-mono": "\"Hack\", monospace"
       },
       "enhance": true,
       "schedule": null
@@ -391,7 +402,9 @@
         "--cpd-color-border-focused": "#1e6fa5",
         "--cpd-color-border-interactive-primary": "#9aa0a6",
         "--cpd-color-text-critical-primary": "#b0303e",
-        "--cpd-color-text-success-primary": "#1d7a45"
+        "--cpd-color-text-success-primary": "#1d7a45",
+        "--cpd-font-family-sans": "\"Noto Sans\", \"Noto Sans Display\", sans-serif",
+        "--cpd-font-family-mono": "\"Hack\", \"Noto Sans Mono\", monospace"
       },
       "enhance": false,
       "schedule": null
@@ -457,7 +470,9 @@
         "--cpd-color-border-focused": "#7f6df2",
         "--cpd-color-border-interactive-primary": "#4c4e51",
         "--cpd-color-text-critical-primary": "#ff5c6c",
-        "--cpd-color-text-success-primary": "#3ddc84"
+        "--cpd-color-text-success-primary": "#3ddc84",
+        "--cpd-font-family-sans": "\"Noto Sans\", \"Noto Sans Display\", sans-serif",
+        "--cpd-font-family-mono": "\"Hack\", \"Noto Sans Mono\", monospace"
       },
       "enhance": true,
       "schedule": null

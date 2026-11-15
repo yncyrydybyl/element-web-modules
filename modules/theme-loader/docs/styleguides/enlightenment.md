@@ -109,7 +109,7 @@ Rules:
 
 - **Focus**: every variant draws a **solid** 2px ring of ≥3:1 against its background. The glow is extra and never the only signal (dossier §3.6, WCAG 1.4.11). On e16's light metal the ring is 2px dotted black; on teal it is solid `#88DDDD`.
 - **Contrast**: all palettes were checked with `tools/contrast.py`. Text on bg is ≥9:1, muted on bg is ≥5:1, and accent on bg is ≥4.5:1 in every variant and phase. The exceptions:
-  - e-current's sidebar muted text is 4.9:1.
+  - e-current's muted text is #B0B0B0 instead of E's #A8A8A8, because #A8A8A8 only reaches 4.36:1 on #404040 dialogs (edgecheck finding).
   - Dark 1px "outline" borders are intentionally low-contrast on dark grounds, as in E. Controls are then identified by fill and inner highlight, plus the focus ring.
   - e16 chrome uses black text on `#C8C8C6` metal (12.5:1). Teal `#1D5A5A` used as text on metal reaches 4.7:1.
 - **Textures** under text stay at ≤6% opacity, or there is no texture at all (timeline is always solid apart from e16's 6% desktop grain).
@@ -192,7 +192,7 @@ Full region phrases are listed below and repeated in `enlightenment.json`.
 *1999's default E16 theme: brushed aluminium window frames on a deep turquoise desktop.*
 
 - **Stage/mode:** past · dark · S6 H6 · difficulty hard
-- **Palette:** `bg` #1F4746 `surface` #C8C8C6 `sidebar` #C8C8C6 `rail` #A7A7A6 `text` #FFFFFF `muted` #B4D4D2 `accent` #88DDDD `onAccent` #0E2A2A `border` #121212 `own` #2C6563 `other` #26504F `critical` #FF8A7A `success` #9BE36B
+- **Palette:** `bg` #1F4746 `surface` #C8C8C6 `sidebar` #C8C8C6 `rail` #A7A7A6 `text` #FFFFFF `muted` #C4E0DE `accent` #88DDDD `onAccent` #0E2A2A `border` #121212 `own` #2C6563 `other` #26504F `critical` #FF8A7A `success` #9BE36B
 - **Fonts:** UI Lucida Grande / Lucida Sans (local) → DejaVu Sans, 13px; bold for titles; display Lucida bold → DejaVu Sans Bold (title bars); Silkscreen for pager/iconbox micro-labels; mono DejaVu Sans Mono
 - **Shape:** radius 0px (2px on gem buttons only); border bevel; shadow none; 1px #FEFEFE inner top highlight + 1px #121212 outline (E16 border pixmaps); density compact
 - **Texture:** brushed-metal (self-made brushed-aluminium.png, Tigert light_brushed.png optional) + turquoise desktop (tigert-turquoise-bg.jpg / CSS gradient #1D5A5A→#346F6E)
@@ -278,7 +278,7 @@ Full region phrases are listed below and repeated in `enlightenment.json`.
 *Today's flat Enlightenment theme: #202020 title bars, #404040 bodies, thin #3399FF accent lines.*
 
 - **Stage/mode:** pure · dark · S8 H5 · difficulty easy
-- **Palette:** `bg` #303030 `surface` #404040 `sidebar` #383838 `rail` #202020 `text` #DCDCDC `muted` #A8A8A8 `accent` #3399FF `onAccent` #101010 `border` #101010 `own` #2C3846 `other` #3A3A3A `critical` #FF6B6B `success` #33FF33
+- **Palette:** `bg` #303030 `surface` #404040 `sidebar` #383838 `rail` #202020 `text` #DCDCDC `muted` #B0B0B0 `accent` #3399FF `onAccent` #101010 `border` #101010 `own` #2C3846 `other` #3A3A3A `critical` #FF6B6B `success` #33FF33
 - **Fonts:** UI DejaVu Sans (E 'Sans'), 13px; display DejaVu Sans Bold 13px titles; shelf clock digits in DejaVu Sans with wide letter-spacing (E uses a thin face; not bundled); mono DejaVu Sans Mono
 - **Shape:** radius 0px (2px on small controls); border hairline; shadow windows: 0 2px 12px rgba(0,0,0,.5); no gloss; density compact
 - **Texture:** none (flat); optional faint diagonal desktop shapes (CSS gradients) as in the 0.25 default wallpaper

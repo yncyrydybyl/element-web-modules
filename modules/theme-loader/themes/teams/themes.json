@@ -17,52 +17,92 @@
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -77,9 +117,11 @@
         "--cpd-color-border-interactive-secondary": "#e0e0e0",
         "--cpd-color-bg-critical-primary": "#c4314b",
         "--cpd-color-text-critical-primary": "#c4314b",
-        "--cpd-color-text-success-primary": "#107c10"
+        "--cpd-color-text-success-primary": "#107c10",
+        "--cpd-font-family-sans": "\"Segoe UI Variable Text\", \"TL Segoe\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, \"Segoe UI Emoji\"",
+        "--cpd-font-family-mono": "\"TL Cascadia\", Consolas, \"Courier New\", monospace"
       },
-      "enhance": true,
+      "enhance": false,
       "schedule": null
     },
     {
@@ -97,52 +139,92 @@
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -157,9 +239,11 @@
         "--cpd-color-border-interactive-secondary": "#525252",
         "--cpd-color-bg-critical-primary": "#dc626d",
         "--cpd-color-text-critical-primary": "#dc626d",
-        "--cpd-color-text-success-primary": "#54b054"
+        "--cpd-color-text-success-primary": "#54b054",
+        "--cpd-font-family-sans": "\"Segoe UI Variable Text\", \"TL Segoe\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, \"Segoe UI Emoji\"",
+        "--cpd-font-family-mono": "\"TL Cascadia\", Consolas, \"Courier New\", monospace"
       },
-      "enhance": true,
+      "enhance": false,
       "schedule": null
     },
     {
@@ -179,52 +263,92 @@
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -239,9 +363,11 @@
         "--cpd-color-border-interactive-secondary": "#e0e0e0",
         "--cpd-color-bg-critical-primary": "#c4314b",
         "--cpd-color-text-critical-primary": "#c4314b",
-        "--cpd-color-text-success-primary": "#107c10"
+        "--cpd-color-text-success-primary": "#107c10",
+        "--cpd-font-family-sans": "\"Segoe UI Variable Text\", \"TL Segoe\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, \"Segoe UI Emoji\"",
+        "--cpd-font-family-mono": "\"TL Cascadia\", Consolas, \"Courier New\", monospace"
       },
-      "enhance": true,
+      "enhance": false,
       "schedule": [
         {
           "from": "06:00",
@@ -280,52 +406,92 @@
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -340,9 +506,11 @@
         "--cpd-color-border-interactive-secondary": "#e0e0e0",
         "--cpd-color-bg-critical-primary": "#c4314b",
         "--cpd-color-text-critical-primary": "#c4314b",
-        "--cpd-color-text-success-primary": "#107c10"
+        "--cpd-color-text-success-primary": "#107c10",
+        "--cpd-font-family-sans": "\"Segoe UI Variable Text\", \"TL Segoe\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, \"Segoe UI Emoji\"",
+        "--cpd-font-family-mono": "\"TL Cascadia\", Consolas, \"Courier New\", monospace"
       },
-      "enhance": true,
+      "enhance": false,
       "schedule": null
     },
     {
@@ -360,52 +528,92 @@
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -420,9 +628,11 @@
         "--cpd-color-border-interactive-secondary": "#e1dfdd",
         "--cpd-color-bg-critical-primary": "#c4314b",
         "--cpd-color-text-critical-primary": "#c4314b",
-        "--cpd-color-text-success-primary": "#237b4b"
+        "--cpd-color-text-success-primary": "#237b4b",
+        "--cpd-font-family-sans": "\"Segoe UI Variable Text\", \"TL Segoe\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, \"Segoe UI Emoji\"",
+        "--cpd-font-family-mono": "\"TL Cascadia\", Consolas, \"Courier New\", monospace"
       },
-      "enhance": true,
+      "enhance": false,
       "schedule": null
     },
     {
@@ -440,52 +650,92 @@
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -500,7 +750,9 @@
         "--cpd-color-border-interactive-secondary": "#dcdbff",
         "--cpd-color-bg-critical-primary": "#c4314b",
         "--cpd-color-text-critical-primary": "#c4314b",
-        "--cpd-color-text-success-primary": "#107c10"
+        "--cpd-color-text-success-primary": "#107c10",
+        "--cpd-font-family-sans": "\"Segoe UI Variable Text\", \"TL Segoe\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, \"Segoe UI Emoji\"",
+        "--cpd-font-family-mono": "\"TL Cascadia\", Consolas, \"Courier New\", monospace"
       },
       "enhance": true,
       "schedule": null
@@ -520,52 +772,92 @@
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -580,7 +872,9 @@
         "--cpd-color-border-interactive-secondary": "#d1d1d1",
         "--cpd-color-bg-critical-primary": "#b10e1c",
         "--cpd-color-text-critical-primary": "#b10e1c",
-        "--cpd-color-text-success-primary": "#0e700e"
+        "--cpd-color-text-success-primary": "#0e700e",
+        "--cpd-font-family-sans": "\"Segoe UI Variable Text\", \"TL Segoe\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, \"Segoe UI Emoji\"",
+        "--cpd-font-family-mono": "\"TL Cascadia\", Consolas, \"Courier New\", monospace"
       },
       "enhance": false,
       "schedule": null
@@ -596,56 +890,98 @@
       "description": "Usable Teams in dark with brighter text and visible strokes.",
       "css": [
         "shared.css",
+        "teams-2026-dark.css",
+        "teams-usable-light.css",
         "teams-usable-dark.css"
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -660,7 +996,9 @@
         "--cpd-color-border-interactive-secondary": "#666666",
         "--cpd-color-bg-critical-primary": "#f1707b",
         "--cpd-color-text-critical-primary": "#f1707b",
-        "--cpd-color-text-success-primary": "#54b054"
+        "--cpd-color-text-success-primary": "#54b054",
+        "--cpd-font-family-sans": "\"Segoe UI Variable Text\", \"TL Segoe\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, \"Segoe UI Emoji\"",
+        "--cpd-font-family-mono": "\"TL Cascadia\", Consolas, \"Courier New\", monospace"
       },
       "enhance": false,
       "schedule": null
@@ -680,70 +1018,121 @@
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Comic Neue",
+          "family": "TL Comic",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
           "file": "assets/comic-neue-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Comic Neue",
+          "family": "TL Comic",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
           "file": "assets/comic-neue-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Bangers",
           "file": "assets/bangers-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -758,9 +1147,11 @@
         "--cpd-color-border-interactive-secondary": "#111111",
         "--cpd-color-bg-critical-primary": "#e8222e",
         "--cpd-color-text-critical-primary": "#e8222e",
-        "--cpd-color-text-success-primary": "#1e9e4a"
+        "--cpd-color-text-success-primary": "#1e9e4a",
+        "--cpd-font-family-sans": "\"TL Comic\", \"Comic Sans MS\", \"Comic Neue\", cursive, sans-serif",
+        "--cpd-font-family-mono": "\"TL Cascadia\", Consolas, \"Courier New\", monospace"
       },
-      "enhance": true,
+      "enhance": false,
       "schedule": null
     },
     {
@@ -778,64 +1169,106 @@
       ],
       "fonts": [
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Light",
+            "SegoeUI-Light"
+          ],
           "file": "assets/selawik-light.woff2",
           "weight": "300",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semilight",
+            "SegoeUI-Semilight"
+          ],
           "file": "assets/selawik-semilight.woff2",
           "weight": "350",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI",
+            "SegoeUI"
+          ],
           "file": "assets/selawik-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Semibold",
+            "SegoeUI-Semibold"
+          ],
           "file": "assets/selawik-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Selawik",
+          "family": "TL Segoe",
+          "local": [
+            "Segoe UI Bold",
+            "SegoeUI-Bold"
+          ],
           "file": "assets/selawik-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Orbitron",
           "file": "assets/orbitron-vf.woff2",
           "weight": "400 900",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
           "family": "Share Tech Mono",
           "file": "assets/share-tech-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono",
+            "CascadiaMono-Regular"
+          ],
           "file": "assets/cascadia-mono-regular.woff2",
           "weight": "400",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono SemiBold",
+            "CascadiaMono-SemiBold"
+          ],
           "file": "assets/cascadia-mono-semibold.woff2",
           "weight": "600",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         },
         {
-          "family": "Cascadia Mono",
+          "family": "TL Cascadia",
+          "local": [
+            "Cascadia Mono Bold",
+            "CascadiaMono-Bold"
+          ],
           "file": "assets/cascadia-mono-bold.woff2",
           "weight": "700",
-          "style": "normal"
+          "style": "normal",
+          "display": "swap"
         }
       ],
       "tokens": {
@@ -850,9 +1283,11 @@
         "--cpd-color-border-interactive-secondary": "#3a2a66",
         "--cpd-color-bg-critical-primary": "#ff3b5c",
         "--cpd-color-text-critical-primary": "#ff3b5c",
-        "--cpd-color-text-success-primary": "#2dff9a"
+        "--cpd-color-text-success-primary": "#2dff9a",
+        "--cpd-font-family-sans": "\"Segoe UI Variable Text\", \"TL Segoe\", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, \"Segoe UI Emoji\"",
+        "--cpd-font-family-mono": "\"Share Tech Mono\", \"TL Cascadia\", monospace"
       },
-      "enhance": true,
+      "enhance": false,
       "schedule": null
     }
   ]

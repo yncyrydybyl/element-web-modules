@@ -1,0 +1,109 @@
+/* Breeze by the clock: dawn/day = Breeze Light, dusk = Breeze Classic (Plasma 5, dark titlebar),
+   night = Breeze Dark; KWin "Night Color" warm overlay at dawn, dusk and night. */
+
+/* dawn + day: Breeze Light defaults from shared.css */
+html[data-tl-theme="kde-breeze-daylight"] {
+  --kde-wallpaper: url("assets/wallpaper-hanabi-light.webp");
+  --kde-nightcolor: 0;
+}
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dawn"] { --kde-nightcolor: .06; }
+
+/* dusk: Breeze Classic (BreezeClassic.colors) */
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] {
+  --kde-window: #eff0f1;
+  --kde-window-alt: #e3e5e6;
+  --kde-view: #fcfcfc;
+  --kde-view-alt: #eff0f1;
+  --kde-button: #eff0f1;
+  --kde-header: #475057;          /* Breeze Classic active titlebar, unified with the toolbar band */
+  --kde-header-text: #fcfcfc;
+  --kde-rail: #31363b;            /* Complementary */
+  --kde-rail-text: #eff0f1;
+  --kde-text: #232627;
+  --kde-muted: #5c6670;
+  --kde-inactive: #6c7879;
+  --kde-outline: #bcc0c2;
+  --kde-button-outline: #bcc0c2;
+  --kde-separator: #bcc0c2;
+  --kde-card: #fcfcfc;
+  --kde-own: #e0f1fa;
+  --kde-tooltip: #232627;
+  --kde-tooltip-text: #fcfcfc;
+  --kde-nightcolor: .08;
+}
+/* the header band is dark at dusk: inputs inside it stay light */
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_RoomHeader [class*="_icon-button_"],
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_RoomHeader .tl-header-button,
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_BaseCard_header { color: #fcfcfc; }
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_SpacePanel .mx_SpaceButton_icon::before { background-color: #eff0f1; }
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_SpacePanel [class*="_icon-button_"] { color: #eff0f1; }
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_BaseCard_header,
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_BaseCard_header * { --cpd-color-text-primary: #fcfcfc; --cpd-color-icon-primary: #fcfcfc; --cpd-color-icon-secondary: #dfe3e6; }
+
+/* night: Breeze Dark */
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="night"] {
+  --kde-window: #202326;
+  --kde-window-alt: #292c30;
+  --kde-view: #141618;
+  --kde-view-alt: #1d1f22;
+  --kde-button: #292c30;
+  --kde-header: #292c30;
+  --kde-header-text: #fcfcfc;
+  --kde-rail: #1b1e20;
+  --kde-rail-text: #fcfcfc;
+  --kde-text: #fcfcfc;
+  --kde-muted: #a1a9b1;
+  --kde-inactive: #a1a9b1;
+  --kde-accent-text: #3daee9;
+  --kde-solid: #3daee9;
+  --kde-on-solid: #141618;
+  --kde-link: #1d99f3;
+  --kde-outline: #4c4e51;
+  --kde-button-outline: #535659;
+  --kde-separator: #3a3d41;
+  --kde-sel-solid: #294d60;
+  --kde-pressed: #2f5367;
+  --kde-default-btn: #2d4655;
+  --kde-default-pen: #3d7fa3;
+  --kde-negative-text: #f16b77;
+  --kde-critical-solid: #e85f6c;
+  --kde-positive-text: #3ed07b;
+  --kde-own: #1c3442;
+  --kde-card: #141618;
+  --kde-mention-bg: #362414;
+  --kde-tooltip: #292c30;
+  --kde-tooltip-text: #fcfcfc;
+  --kde-code-bg: #1d1f22;
+  --kde-scroll: rgb(252 252 252 / .4);
+  --kde-shadow-btn: 0 1px 2px rgb(0 0 0 / .35);
+  --kde-shadow-card: 0 1px 2px rgb(0 0 0 / .35), 0 0 0 1px rgb(255 255 255 / .04);
+  --kde-shadow-popup: 0 4px 16px rgb(0 0 0 / .5);
+  --kde-shadow-dialog: 0 12px 36px rgb(0 0 0 / .6);
+  --kde-name-1: #3daee9; --kde-name-2: #b77fd0; --kde-name-3: #3ed07b;
+  --kde-name-4: #f16b77; --kde-name-5: #fd9a4a; --kde-name-6: #4fb1f7;
+  --kde-avatar-tint: 22%;
+  --kde-hl-keyword: #cfcfc2; --kde-hl-control: #fdbc4b; --kde-hl-func: #b77fd0; --kde-hl-string: #f44f4f;
+  --kde-hl-number: #f67400; --kde-hl-comment: #7a7c7d; --kde-hl-type: #2980b9; --kde-hl-pre: #27ae60;
+  --kde-hl-attr: #2980b9; --kde-hl-var: #27aeae;
+  --kde-wallpaper: url("assets/wallpaper-hanabi-dark.webp");
+  --kde-nightcolor: .10;
+  color-scheme: dark;
+}
+
+/* KWin Night Color: one fixed multiply layer, no per-element cost */
+html[data-tl-theme="kde-breeze-daylight"] body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 2147483000;
+  background: #ffb366; mix-blend-mode: multiply; opacity: var(--kde-nightcolor);
+  transition: opacity 2s ease;
+}
+/* phase crossfade (the loader marks the ~2 s fade window) */
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] body,
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] .mx_RoomListPanel,
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] .mx_RoomHeader,
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] .mx_SpacePanel,
+html[data-tl-theme="kde-breeze-daylight"][data-tl-phase-fading] .mx_RoomView_body {
+  transition: background-color 2s ease, color 2s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="kde-breeze-daylight"] body::after { transition: none; }
+}

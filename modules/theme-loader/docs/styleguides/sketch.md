@@ -237,7 +237,7 @@ re-skin (title block, dimensions), not because readability drops.
 ### 4.7 sketch-napkin — "back of a napkin" (level-6, light)
 Palette: bg `#f3ece0`, surface `#f8f3ea`, sidebar `#ebe2d1`, rail `#c8a97e` (kraft sleeve), text `#22408c` (ballpoint),
 muted `#5d6380`, accent `#22408c`, onAccent `#ffffff`, border `#22408c`, own `#e9e4f2`, other `#f8f3ea`, critical `#b3261e`,
-success `#3d7a3a`. Coffee `rgba(111,78,55,.22)`.
+success `#33682f`. Coffee `rgba(111,78,55,.22)`.
 Signature: (1) **embossed quilted napkin** texture (`napkin-fibre.svg`) with a dotted embossed border pattern around each panel.
 (2) **Coffee rings** (`coffee-ring.svg`) at 2–3 fixed positions on shell and dialogs. (3) Everything rotated ±0.4–0.8°
 (per `nth-child`), with frames in the rough `x` grade. (4) **Ink bleed**: `text-shadow: 0 0 .4px currentColor` and slightly
@@ -247,7 +247,7 @@ off (irregular `clip-path`). Readability: medium (Gochi Hand at 1.12×).
 ### 4.8 sketch-scribble — "boiling scribble" (level-7, light)
 Palette: bg `#fffdf8`, surface `#ffffff`, sidebar `#f5f1e8`, rail `#ebe5d6`, text `#2b2b2b` (graphite), muted `#6b6b6b`, accent
 `#b83d0b` (orange crayon), onAccent `#ffffff`, border `#2b2b2b`, own `#fff1e0`, other `#ffffff`, critical `#c92a2a`,
-success `#2b8a3e`. Crayon set: `#c92a2a #1864ab #2b8a3e #e67700 #862e9c #0b7285`.
+success `#237032`. Crayon set: `#c92a2a #1864ab #2b8a3e #e67700 #862e9c #0b7285`.
 Signature: (1) **Boiling lines**: frames, icons and headers cycle `sk-boil-0..2` at 8 fps (Squigglevision). (2) **Crooked
 layout**: panels rotated −1°/+0.8°, room tiles alternate ±1.2°, the composer is skewed. Hit areas are unchanged (transforms are
 visual only). (3) **Cross-hatch shadows** (`crosshatch.svg`) under cards and dialogs instead of box-shadow. (4) Shantell Sans

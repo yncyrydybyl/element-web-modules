@@ -1,0 +1,1313 @@
+/* ==========================================================================
+   teams / shared.css — the Teams structure, driven by --tm-* variables that
+   each variant file defines. Scope: html[data-tl-family="teams"].
+   Target Element 1.12.33. Hashed CSS-module classes only via [class*="_name_"].
+   ========================================================================== */
+
+/* ---------- 0. defaults (2026 light) — variants override ---------------- */
+html[data-tl-family="teams"] {
+  --tm-b60: #444791; --tm-b70: #4f52b2; --tm-b80: #5b5fc7; --tm-b90: #7579eb;
+  --tm-b100: #7f85f5; --tm-b110: #9299f7; --tm-b120: #aab1fa; --tm-b140: #c5cbfa;
+  --tm-b150: #dce0fa; --tm-b160: #e8ebfa; --tm-b20: #2f2f4a; --tm-b30: #333357; --tm-b40: #383966;
+
+  --tm-brand: var(--tm-b80);
+  --tm-brand-hover: var(--tm-b70);
+  --tm-brand-pressed: var(--tm-b60);
+  --tm-brand-fg: var(--tm-b70);          /* links, accent text */
+  --tm-brand-icon: var(--tm-b80);        /* selected icons */
+  --tm-brand-tint: var(--tm-b160);       /* own bubble, selected chip */
+  --tm-brand-tint2: var(--tm-b150);
+  --tm-on-brand: #ffffff;
+
+  --tm-titlebar: #ebebeb;
+  --tm-rail: #ebebeb;
+  --tm-list: #f5f5f5;
+  --tm-canvas: #ffffff;
+  --tm-surface: #ffffff;                 /* dialogs, menus, cards */
+  --tm-surface2: #fafafa;
+  --tm-row-selected: #ffffff;
+  --tm-row-hover: #ebebeb;
+  --tm-hover: #f5f5f5;
+  --tm-pressed: #e0e0e0;
+  --tm-bubble-other: #f5f5f5;
+  --tm-bubble-own: var(--tm-brand-tint);
+  --tm-code-bg: #f5f5f5;
+
+  --tm-fg1: #242424;
+  --tm-fg2: #424242;
+  --tm-fg3: #616161;
+  --tm-fg4: #707070;
+  --tm-fg-disabled: #bdbdbd;
+  --tm-stroke1: #d1d1d1;
+  --tm-stroke2: #e0e0e0;
+  --tm-stroke-access: #616161;
+  --tm-critical: #c4314b;
+  --tm-critical-fg: #b10e1c;
+  --tm-critical-tint: #fdf3f4;
+  --tm-success: #107c10;
+  --tm-success-tint: #f1faf1;
+  --tm-warning: #bc4b09;
+  --tm-presence: #6bb700;
+
+  --tm-focus-outer: #000000;
+  --tm-focus-inner: #ffffff;
+
+  --tm-radius-s: 2px;
+  --tm-radius-m: 4px;
+  --tm-radius-l: 8px;
+  --tm-radius-bubble: 8px;
+  --tm-radius-pane: 0px;
+  --tm-radius-btn: 4px;
+
+  --tm-sh-a: rgba(0, 0, 0, 0.12);
+  --tm-sh-k: rgba(0, 0, 0, 0.14);
+  --tm-shadow2: 0 0 2px var(--tm-sh-a), 0 1px 2px var(--tm-sh-k);
+  --tm-shadow4: 0 0 2px var(--tm-sh-a), 0 2px 4px var(--tm-sh-k);
+  --tm-shadow8: 0 0 2px var(--tm-sh-a), 0 4px 8px var(--tm-sh-k);
+  --tm-shadow16: 0 0 2px var(--tm-sh-a), 0 8px 16px var(--tm-sh-k);
+  --tm-shadow28: 0 0 8px var(--tm-sh-a), 0 14px 28px var(--tm-sh-k);
+  --tm-shadow64: 0 0 8px var(--tm-sh-a), 0 32px 64px var(--tm-sh-k);
+  --tm-bubble-shadow: none;
+
+  --tm-font: "Segoe UI Variable Text", "TL Segoe", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, "Segoe UI Emoji";
+  --tm-font-display: "Segoe UI Variable Display", "TL Segoe", system-ui, sans-serif;
+  --tm-mono: "TL Cascadia", Consolas, "Courier New", monospace;
+
+  --tm-titlebar-h: 48px;
+  --tm-rail-w: 68px;
+  --tm-ease: cubic-bezier(0.33, 0, 0.67, 1);
+  --tm-fast: 150ms;
+  --tm-normal: 200ms;
+  --tm-logo: url("assets/teams-logo-2025.svg");
+  --tm-name-color: var(--tm-fg1);
+  --tm-pane-gap: 0px;
+  --tm-pane-border: 0 solid transparent;
+}
+
+/* ---------- 1. Compound tokens from --tm-* ------------------------------ */
+html[data-tl-family="teams"],
+html[data-tl-family="teams"] body,
+html[data-tl-family="teams"] [class*="cpd-theme-"] {
+  --cpd-color-theme-bg: var(--tm-canvas);
+  --cpd-color-bg-canvas-default: var(--tm-canvas);
+  --cpd-color-bg-canvas-default-level-1: var(--tm-surface);
+  --cpd-color-bg-subtle-primary: var(--tm-pressed);
+  --cpd-color-bg-subtle-secondary: var(--tm-hover);
+  --cpd-color-bg-subtle-tertiary: var(--tm-surface2);
+  --cpd-color-bg-action-primary-rest: var(--tm-brand);
+  --cpd-color-bg-action-primary-hovered: var(--tm-brand-hover);
+  --cpd-color-bg-action-primary-pressed: var(--tm-brand-pressed);
+  --cpd-color-bg-action-primary-disabled: var(--tm-fg-disabled);
+  --cpd-color-bg-action-secondary-rest: var(--tm-surface);
+  --cpd-color-bg-action-secondary-hovered: var(--tm-hover);
+  --cpd-color-bg-action-secondary-pressed: var(--tm-pressed);
+  --cpd-color-bg-action-tertiary-hovered: var(--tm-hover);
+  --cpd-color-bg-action-tertiary-selected: var(--tm-pressed);
+  --cpd-color-bg-accent-rest: var(--tm-brand);
+  --cpd-color-bg-accent-hovered: var(--tm-brand-hover);
+  --cpd-color-bg-accent-pressed: var(--tm-brand-pressed);
+  --cpd-color-bg-accent-selected: var(--tm-brand-tint);
+  --cpd-color-bg-critical-primary: var(--tm-critical);
+  --cpd-color-bg-critical-hovered: var(--tm-critical-fg);
+  --cpd-color-bg-critical-subtle: var(--tm-critical-tint);
+  --cpd-color-bg-critical-subtle-hovered: var(--tm-critical-tint);
+  --cpd-color-bg-success-subtle: var(--tm-success-tint);
+  --cpd-color-bg-info-subtle: var(--tm-brand-tint);
+  --cpd-color-bg-badge-default: var(--tm-pressed);
+  --cpd-color-bg-badge-accent: var(--tm-brand);
+  --cpd-color-bg-badge-info: var(--tm-brand-tint);
+  --cpd-color-text-primary: var(--tm-fg1);
+  --cpd-color-text-secondary: var(--tm-fg3);
+  --cpd-color-text-disabled: var(--tm-fg-disabled);
+  --cpd-color-text-action-primary: var(--tm-fg1);
+  --cpd-color-text-action-accent: var(--tm-brand-fg);
+  --cpd-color-text-link-external: var(--tm-brand-fg);
+  --cpd-color-text-on-solid-primary: var(--tm-on-brand);
+  --cpd-color-text-critical-primary: var(--tm-critical-fg);
+  --cpd-color-text-success-primary: var(--tm-success);
+  --cpd-color-text-info-primary: var(--tm-brand-fg);
+  --cpd-color-text-badge-accent: var(--tm-on-brand);
+  --cpd-color-icon-primary: var(--tm-fg1);
+  --cpd-color-icon-secondary: var(--tm-fg2);
+  --cpd-color-icon-tertiary: var(--tm-fg3);
+  --cpd-color-icon-quaternary: var(--tm-fg4);
+  --cpd-color-icon-accent-primary: var(--tm-brand-icon);
+  --cpd-color-icon-accent-tertiary: var(--tm-brand-icon);
+  --cpd-color-icon-on-solid-primary: var(--tm-on-brand);
+  --cpd-color-icon-critical-primary: var(--tm-critical);
+  --cpd-color-icon-success-primary: var(--tm-success);
+  --cpd-color-icon-info-primary: var(--tm-brand-icon);
+  --cpd-color-border-interactive-primary: var(--tm-stroke-access);
+  --cpd-color-border-interactive-secondary: var(--tm-stroke1);
+  --cpd-color-border-interactive-hovered: var(--tm-fg3);
+  --cpd-color-border-focused: var(--tm-brand);
+  --cpd-color-border-accent: var(--tm-brand);
+  --cpd-color-border-disabled: var(--tm-stroke2);
+  --cpd-color-separator-primary: var(--tm-stroke2);
+  --cpd-color-separator-secondary: var(--tm-stroke2);
+  /* Element's legacy accent scale (read marker, toggles, mentions) → brand ramp */
+  --cpd-color-green-300: var(--tm-brand-tint);
+  --cpd-color-green-400: var(--tm-b150);
+  --cpd-color-green-500: var(--tm-b140);
+  --cpd-color-green-700: var(--tm-b100);
+  --cpd-color-green-800: var(--tm-b90);
+  --cpd-color-green-900: var(--tm-brand);
+  --cpd-color-green-1000: var(--tm-brand-hover);
+  --cpd-color-green-1100: var(--tm-brand-pressed);
+  --cpd-color-green-1200: var(--tm-brand-pressed);
+  /* Fluent persona colours for default avatars (Background2 / Foreground2) */
+  --cpd-color-bg-decorative-1: #9abfdc; --cpd-color-text-decorative-1: #002c4e;
+  --cpd-color-bg-decorative-2: #d9a7e0; --cpd-color-text-decorative-2: #4c0d55;
+  --cpd-color-bg-decorative-3: #9bd9db; --cpd-color-text-decorative-3: #02494c;
+  --cpd-color-bg-decorative-4: #efc4ad; --cpd-color-text-decorative-4: #712d09;
+  --cpd-color-bg-decorative-5: #bdd99b; --cpd-color-text-decorative-5: #294903;
+  --cpd-color-bg-decorative-6: #edbbe7; --cpd-color-text-decorative-6: #6d2064;
+  --cpd-font-family-sans: var(--tm-font);
+  --cpd-font-family-mono: var(--tm-mono);
+  --emoji-font-family: "Segoe UI Emoji", "Twemoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+}
+
+/* ---------- 2. base type & shell --------------------------------------- */
+html[data-tl-family="teams"] body {
+  background-color: var(--tm-titlebar);
+  color: var(--tm-fg1);
+  -webkit-font-smoothing: antialiased;
+}
+@layer tl-important {
+  html[data-tl-family="teams"] body {
+    font-family: var(--tm-font) !important;
+  }
+}
+html[data-tl-family="teams"] * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--tm-scroll-thumb, #c7c7c7) transparent;
+}
+html[data-tl-family="teams"] pre,
+html[data-tl-family="teams"] code,
+html[data-tl-family="teams"] kbd {
+  font-family: var(--tm-mono);
+}
+
+/* Title bar: the app sits below a 48 px strip with logo; the room-list
+   search pill is lifted into it (Teams' centered search) and the user menu
+   goes to the top right. */
+html[data-tl-family="teams"] .mx_MatrixChat_wrapper {
+  background-color: var(--tm-titlebar);
+}
+html[data-tl-family="teams"] .mx_MatrixChat {
+  position: relative;
+  box-sizing: border-box;
+  padding-top: var(--tm-titlebar-h);
+  background-color: var(--tm-titlebar);
+}
+html[data-tl-family="teams"] .mx_MatrixChat::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--tm-titlebar-h);
+  background: var(--tm-logo) no-repeat 22px 50% / 24px 24px, var(--tm-titlebar-bg, var(--tm-titlebar));
+  pointer-events: none;
+  z-index: 0;
+}
+html[data-tl-family="teams"] .mx_MatrixChat::after {
+  content: var(--tm-title-text, "Microsoft Teams");
+  position: absolute;
+  top: 0;
+  left: 56px;
+  height: var(--tm-titlebar-h);
+  line-height: var(--tm-titlebar-h);
+  font: 600 12px/var(--tm-titlebar-h) var(--tm-font);
+  color: var(--tm-titlebar-fg, var(--tm-fg2));
+  pointer-events: none;
+}
+/* search pill → title bar centre (LeftPanel's `contain: content` would trap position:fixed) */
+html[data-tl-family="teams"] .mx_LeftPanel {
+  contain: none;
+}
+html[data-tl-family="teams"] .mx_RoomListPanel > [role="search"] {
+  min-height: 32px;
+  max-height: 32px;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 5;
+  top: calc((var(--tm-titlebar-h) - 32px) / 2);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(560px, 40vw);
+  height: 32px;
+  padding: 0;
+  border: 0;
+}
+html[data-tl-family="teams"] .mx_RoomListPanel > [role="search"] > button {
+  width: 100%;
+  height: 32px;
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: var(--tm-radius-m);
+  border: 1px solid var(--tm-search-border, transparent);
+  background: var(--tm-search-bg, var(--tm-canvas));
+  color: var(--tm-search-fg, var(--tm-fg3));
+  box-shadow: none;
+  justify-content: flex-start;
+}
+html[data-tl-family="teams"] .mx_RoomListPanel > [role="search"] > button:hover {
+  border-color: var(--tm-stroke1);
+}
+html[data-tl-family="teams"] .mx_RoomListPanel > [role="search"] > button svg {
+  color: var(--tm-search-fg, var(--tm-fg3));
+}
+html[data-tl-family="teams"] .mx_RoomListPanel > [role="search"] kbd {
+  background: transparent;
+  color: var(--tm-search-fg, var(--tm-fg3));
+  font-family: var(--tm-font);
+  font-size: 12px;
+}
+/* user menu → title bar right */
+html[data-tl-family="teams"] .mx_SpacePanel .mx_UserMenu {
+  position: fixed;
+  z-index: 5;
+  top: calc((var(--tm-titlebar-h) - 32px) / 2);
+  right: 12px;
+  width: auto;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_UserMenu button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_UserMenu [class*="_avatarWrapper_"],
+html[data-tl-family="teams"] .mx_SpacePanel .mx_UserMenu [class*="_avatar_"] {
+  width: 32px !important;
+  height: 32px !important;
+  --cpd-avatar-size: 32px !important;
+  font-size: 13px;
+}
+/* presence dot on the own avatar (Teams always shows it) */
+html[data-tl-family="teams"] .mx_SpacePanel .mx_UserMenu [class*="_avatarWrapper_"] {
+  position: relative;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_UserMenu [class*="_avatarWrapper_"]::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tm-presence);
+  box-shadow: 0 0 0 2px var(--tm-titlebar);
+}
+
+/* ---------- 3. app bar (space panel) ----------------------------------- */
+html[data-tl-family="teams"] .mx_SpacePanel {
+  background-color: var(--tm-rail);
+  width: var(--tm-rail-w);
+  min-width: var(--tm-rail-w);
+  padding: 0;
+  border: 0;
+  border-radius: var(--tm-radius-pane);
+  margin: 0 var(--tm-pane-gap) var(--tm-pane-gap) var(--tm-pane-gap);
+}
+html[data-tl-family="teams"] .mx_SpacePanel.collapsed {
+  width: var(--tm-rail-w);
+}
+html[data-tl-family="teams"] .mx_SpacePanel_toggleCollapse {
+  display: none;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceTreeLevel {
+  padding: 4px 0 0;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceItem {
+  padding: 0;
+  margin: 0;
+  width: var(--tm-rail-w);
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--tm-rail-w);
+  height: 56px;
+  margin: 0;
+  padding: 6px 4px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: 0;
+  color: var(--tm-rail-fg, var(--tm-fg3));
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton::after {
+  content: attr(aria-label);
+  display: block;
+  max-width: calc(var(--tm-rail-w) - 8px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font: 400 10px/14px var(--tm-font);
+  color: var(--tm-rail-fg, var(--tm-fg3));
+  text-align: center;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"]::after { content: "Chat"; }
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton_new::after { content: "Create"; }
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton:hover {
+  color: var(--tm-rail-fg-hover, var(--tm-brand-icon));
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton:hover::after {
+  color: var(--tm-rail-fg-hover, var(--tm-brand-icon));
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_selectionWrapper {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: var(--tm-radius-m);
+  background: transparent;
+  flex: none;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_avatarWrapper,
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_avatarWrapper > [class*="_avatar_"] {
+  width: 28px;
+  height: 28px;
+  --cpd-avatar-size: 28px;
+  font-size: 12px;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_avatarWrapper > [class*="_avatar_"] {
+  border-radius: var(--tm-radius-m);
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_icon {
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+  background: transparent;
+  color: inherit;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_icon svg {
+  width: 24px;
+  height: 24px;
+  color: inherit;
+}
+/* Home → Teams "Chat" icon (Fluent), filled when active */
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon svg {
+  opacity: 0;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon {
+  background-color: currentColor;
+  -webkit-mask: url("assets/fluent-chat_24_regular.svg") center / 24px 24px no-repeat;
+  mask: url("assets/fluent-chat_24_regular.svg") center / 24px 24px no-repeat;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton_active[aria-label="Home"] .mx_SpaceButton_icon {
+  -webkit-mask-image: url("assets/fluent-chat_24_filled.svg");
+  mask-image: url("assets/fluent-chat_24_filled.svg");
+}
+/* selected: 3 px brand pill on the left edge + brand label/icon */
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton_active {
+  color: var(--tm-rail-icon-active, var(--tm-brand-icon));
+  background: var(--tm-rail-selected, transparent);
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton_active::after {
+  color: var(--tm-rail-fg-active, var(--tm-brand-icon));
+  font-weight: 600;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton_active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--tm-rail-pill, var(--tm-brand));
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton_active .mx_SpaceButton_avatarWrapper > [class*="_avatar_"] {
+  box-shadow: 0 0 0 2px var(--tm-rail), 0 0 0 3px var(--tm-rail-pill, var(--tm-brand));
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"].mx_SpaceButton_active .mx_SpaceButton_avatarWrapper > * {
+  box-shadow: none;
+}
+/* badges on rail items */
+html[data-tl-family="teams"] .mx_SpacePanel .mx_SpacePanel_badgeContainer {
+  position: absolute;
+  top: 4px;
+  right: 12px;
+  left: auto;
+  height: auto;
+  width: auto;
+}
+/* bottom of the rail */
+html[data-tl-family="teams"] .mx_SpacePanel .mx_ThreadsActivityCentre_container,
+html[data-tl-family="teams"] .mx_SpacePanel .mx_QuickSettingsButton {
+  margin: 0 auto;
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_QuickSettingsButton {
+  margin-bottom: 12px;
+  color: var(--tm-rail-fg, var(--tm-fg3));
+}
+html[data-tl-family="teams"] .mx_SpacePanel .mx_ThreadsActivityCentreButton,
+html[data-tl-family="teams"] .mx_SpacePanel .mx_QuickSettingsButton {
+  border-radius: var(--tm-radius-m);
+  color: var(--tm-rail-fg, var(--tm-fg3));
+}
+
+/* ---------- 4. chat list (left panel) ---------------------------------- */
+html[data-tl-family="teams"] .mx_LeftPanel,
+html[data-tl-family="teams"] .mx_LeftPanel_roomListContainer,
+html[data-tl-family="teams"] .mx_RoomListPanel {
+  background-color: var(--tm-list);
+}
+html[data-tl-family="teams"] .mx_LeftPanel_outerWrapper {
+  border-radius: var(--tm-radius-pane) 0 0 0;
+  overflow: hidden;
+}
+html[data-tl-family="teams"] .mx_RoomListPanel {
+  border-inline-end: 1px solid var(--tm-list-border, transparent);
+}
+html[data-tl-family="teams"] .mx_RoomListPanel > header[class*="_header_"] {
+  padding-top: 6px;
+}
+/* 2026 chat sections ("People", "Rooms", …) */
+html[data-tl-family="teams"] .mx_RoomListPanel [class*="_stickyRow_"] {
+  background-color: var(--tm-list);
+}
+html[data-tl-family="teams"] .mx_RoomListPanel [role="gridcell"] > button[class*="_header_"] {
+  background: transparent;
+  color: var(--tm-fg2);
+  font: 600 12px/16px var(--tm-font);
+}
+html[data-tl-family="teams"] .mx_RoomListPanel [role="gridcell"] > button[class*="_header_"] * {
+  font: inherit;
+  color: inherit;
+}
+html[data-tl-family="teams"] .mx_RoomListPanel [role="gridcell"] > button[class*="_header_"]:hover {
+  background: var(--tm-row-hover);
+}
+html[data-tl-family="teams"] .mx_RoomListPanel > header[class*="_header_"] h1 {
+  font: 700 20px/28px var(--tm-font-display);
+  color: var(--tm-fg1);
+}
+/* filter chips (Teams Quick views) */
+html[data-tl-family="teams"] .mx_RoomListPanel [class*="_chat-filter_"] {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--tm-stroke1);
+  background: var(--tm-chip-bg, var(--tm-canvas));
+  color: var(--tm-fg2);
+  font: 400 12px/16px var(--tm-font);
+}
+html[data-tl-family="teams"] .mx_RoomListPanel [class*="_chat-filter_"]:hover {
+  background: var(--tm-hover);
+  border-color: var(--tm-fg3);
+}
+html[data-tl-family="teams"] .mx_RoomListPanel [class*="_chat-filter_"][aria-selected="true"] {
+  background: var(--tm-brand-tint);
+  border-color: var(--tm-brand);
+  color: var(--tm-chip-selected-fg, var(--tm-brand-fg));
+  font-weight: 600;
+}
+/* rows */
+html[data-tl-family="teams"] .mx_RoomListItemView {
+  border-radius: var(--tm-radius-m);
+  color: var(--tm-fg1);
+}
+html[data-tl-family="teams"] .mx_RoomListItemView > [class*="_container_"] {
+  margin: 0 8px;
+  padding: 0 8px;
+  border-radius: var(--tm-radius-m);
+}
+html[data-tl-family="teams"] .mx_RoomListItemView:hover > [class*="_container_"],
+html[data-tl-family="teams"] .mx_RoomListItemView[data-state="open"] > [class*="_container_"] {
+  background: var(--tm-row-hover);
+}
+html[data-tl-family="teams"] .mx_RoomListItemView,
+html[data-tl-family="teams"] .mx_RoomListItemView:hover,
+html[data-tl-family="teams"] .mx_RoomListItemView[aria-selected="true"],
+html[data-tl-family="teams"] .mx_RoomListItemView_selected {
+  background: transparent;
+}
+html[data-tl-family="teams"] .mx_RoomListItemView_selected > [class*="_container_"],
+html[data-tl-family="teams"] .mx_RoomListItemView[aria-selected="true"] > [class*="_container_"] {
+  background: var(--tm-row-selected);
+  box-shadow: var(--tm-row-selected-shadow, none);
+}
+html[data-tl-family="teams"] .mx_RoomListItemView [class*="_roomName_"] {
+  font: 400 14px/20px var(--tm-font);
+  color: var(--tm-fg1);
+}
+html[data-tl-family="teams"] .mx_RoomListItemView [class*="_bold_"] [class*="_roomName_"],
+html[data-tl-family="teams"] .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"] {
+  font-weight: 700;
+}
+html[data-tl-family="teams"] .mx_RoomListItemView [class*="_messagePreview_"],
+html[data-tl-family="teams"] .mx_RoomListItemView [class*="_message-preview_"] {
+  font: 400 12px/16px var(--tm-font);
+  color: var(--tm-fg3);
+}
+html[data-tl-family="teams"] .mx_RoomListItemView [class*="_avatar_"] {
+  --cpd-avatar-size: 32px;
+}
+/* the separator between list and conversation */
+html[data-tl-family="teams"] .mx_Separator[data-separator],
+html[data-tl-family="teams"] .mx_MatrixChat > div > [class*="_separator_"] {
+  background: var(--tm-list-separator, var(--tm-stroke2));
+}
+
+/* ---------- 5. conversation: room view + header ------------------------ */
+html[data-tl-family="teams"] .mx_RoomView,
+html[data-tl-family="teams"] .mx_RoomView_wrapper,
+html[data-tl-family="teams"] .mx_MainSplit {
+  background-color: var(--tm-canvas);
+}
+html[data-tl-family="teams"] .mx_RoomView_wrapper {
+  border-radius: var(--tm-radius-pane-conv, 0);
+  overflow: hidden;
+}
+html[data-tl-family="teams"] .mx_RoomHeader {
+  height: 56px;
+  min-height: 56px;
+  padding: 0 16px 0 20px;
+  gap: 8px;
+  background-color: var(--tm-header-bg, var(--tm-canvas));
+  border-bottom: 1px solid var(--tm-header-border, var(--tm-stroke2));
+  box-shadow: var(--tm-header-shadow, none);
+}
+html[data-tl-family="teams"] .mx_RoomHeader > [class*="_avatar_"] {
+  --cpd-avatar-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+html[data-tl-family="teams"] .mx_RoomHeader .mx_RoomHeader_infoWrapper {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+html[data-tl-family="teams"] .mx_RoomHeader .mx_RoomHeader_info {
+  align-self: center;
+  align-items: center;
+  min-width: 0;
+  flex: 0 1 auto;
+  width: auto;
+}
+html[data-tl-family="teams"] .mx_RoomHeader .mx_RoomHeader_heading {
+  flex: 0 1 auto;
+}
+html[data-tl-family="teams"] .mx_RoomHeader .mx_RoomHeader_heading {
+  font: 700 18px/24px var(--tm-font-display);
+  color: var(--tm-fg1);
+}
+/* Copilot chip (2026/2028): decorative, far right of the header */
+html[data-tl-family="teams"] .mx_RoomHeader::after {
+  content: var(--tm-copilot, none);
+  order: 99;
+  flex: none;
+  height: 28px;
+  padding: 0 10px 0 28px;
+  margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--tm-radius-btn);
+  font: 600 12px/16px var(--tm-font);
+  color: var(--tm-fg1);
+  background:
+    url("assets/copilot-sparkle.svg") no-repeat 8px 50% / 16px 16px,
+    linear-gradient(var(--tm-surface), var(--tm-surface)) padding-box,
+    linear-gradient(90deg, #2870ea, #1bc5a9, #8a3ffc, #e24aa4) border-box;
+  border: 1.5px solid transparent;
+  pointer-events: none;
+}
+/* the Teams "Chat" tab, always active (Element's conversation view) */
+html[data-tl-family="teams"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after {
+  content: var(--tm-tab-label, "Chat");
+  flex: none;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  padding: 0 2px;
+  font: 600 14px/20px var(--tm-font);
+  color: var(--tm-fg1);
+  box-shadow: inset 0 -3px 0 var(--tm-brand);
+}
+html[data-tl-family="teams"] .mx_RoomHeader .mx_RoomHeader_infoWrapper:hover .mx_RoomHeader_heading {
+  text-decoration: underline;
+}
+/* header icon buttons: Fluent subtle buttons */
+html[data-tl-family="teams"] .mx_RoomHeader > button[class*="_icon-button_"],
+html[data-tl-family="teams"] .mx_RoomHeader > div > button[class*="_icon-button_"] {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: var(--tm-radius-m);
+  color: var(--tm-fg2);
+}
+html[data-tl-family="teams"] .mx_RoomHeader button[class*="_icon-button_"]:hover {
+  background: var(--tm-hover);
+  color: var(--tm-brand-icon);
+}
+html[data-tl-family="teams"] .mx_RoomHeader .mx_FacePile {
+  border-radius: var(--tm-radius-m);
+  padding: 0 6px;
+}
+
+/* Fluent icon swap helper: hide Compound's svg, paint the Fluent glyph */
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Video call"] [class*="_indicator-icon_"],
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Voice call"] [class*="_indicator-icon_"],
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Threads"] [class*="_indicator-icon_"],
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Room info"] [class*="_indicator-icon_"],
+html[data-tl-family="teams"] .mx_MessageComposer_actions [aria-label="Emoji"],
+html[data-tl-family="teams"] .mx_MessageComposer_actions button[aria-label="Attachment"] [class*="_indicator-icon_"],
+html[data-tl-family="teams"] .mx_MessageComposer_actions [aria-label="More options"],
+html[data-tl-family="teams"] .mx_MessageComposer_sendMessage {
+  background-color: currentColor;
+  -webkit-mask: var(--tm-ico) center / 20px 20px no-repeat;
+  mask: var(--tm-ico) center / 20px 20px no-repeat;
+}
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Video call"] svg,
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Voice call"] svg,
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Threads"] svg,
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Room info"] svg,
+html[data-tl-family="teams"] .mx_MessageComposer_actions [aria-label="Emoji"] svg,
+html[data-tl-family="teams"] .mx_MessageComposer_actions button[aria-label="Attachment"] svg,
+html[data-tl-family="teams"] .mx_MessageComposer_actions [aria-label="More options"] svg,
+html[data-tl-family="teams"] .mx_MessageComposer_sendMessage svg,
+html[data-tl-family="teams"] .mx_MessageComposer_sendMessage::before {
+  opacity: 0;
+}
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Video call"] { --tm-ico: url("assets/fluent-video_20_regular.svg"); }
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Voice call"] { --tm-ico: url("assets/fluent-call_20_regular.svg"); }
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Threads"] { --tm-ico: url("assets/fluent-chat_multiple_20_regular.svg"); }
+html[data-tl-family="teams"] .mx_RoomHeader button[aria-label="Room info"] { --tm-ico: url("assets/fluent-info_20_regular.svg"); }
+html[data-tl-family="teams"] .mx_MessageComposer_actions [aria-label="Emoji"] { --tm-ico: url("assets/fluent-emoji_20_regular.svg"); }
+html[data-tl-family="teams"] .mx_MessageComposer_actions button[aria-label="Attachment"] { --tm-ico: url("assets/fluent-attach_20_regular.svg"); }
+html[data-tl-family="teams"] .mx_MessageComposer_actions [aria-label="More options"] { --tm-ico: url("assets/fluent-add_circle_20_regular.svg"); }
+html[data-tl-family="teams"] .mx_MessageComposer_sendMessage { --tm-ico: url("assets/fluent-send_20_filled.svg"); }
+
+/* ---------- 6. timeline ------------------------------------------------- */
+html[data-tl-family="teams"] .mx_RoomView_body,
+html[data-tl-family="teams"] .mx_RoomView_messagePanel,
+html[data-tl-family="teams"] .mx_RoomView_timeline {
+  background-color: var(--tm-timeline-bg, var(--tm-canvas));
+}
+html[data-tl-family="teams"] .mx_EventTile {
+  --event-tile-bubble-other-background: var(--tm-bubble-other);
+  --event-tile-bubble-self-background: var(--tm-bubble-own);
+  --event-tile-bubble-corner-radius: var(--tm-radius-bubble);
+  --event-tile-state-hover-background: var(--tm-hover);
+  --event-tile-state-selected-background: var(--tm-hover);
+  --event-tile-state-highlight-background: var(--tm-critical-tint);
+  --event-tile-state-marker-color: var(--tm-brand);
+  --event-tile-content-inline-end: 0px;
+}
+/* names: Semibold, never rainbow (Teams) */
+html[data-tl-family="teams"] .mx_EventTile .mx_DisambiguatedProfile,
+html[data-tl-family="teams"] .mx_EventTile .mx_DisambiguatedProfile_displayName {
+  color: var(--tm-name-color);
+  font: 600 12px/16px var(--tm-font);
+}
+html[data-tl-family="teams"] .mx_EventTile .mx_DisambiguatedProfile_mxid {
+  color: var(--tm-fg3);
+  font-size: 11px;
+}
+html[data-tl-family="teams"] .mx_MessageTimestamp {
+  color: var(--tm-fg3);
+  font-family: var(--tm-font);
+}
+
+/* Teams cards/bubbles in the group ("modern") layout. Info/state tiles stay flat. */
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_stateBubbleContainer_"]):not([class*="_shapeThreadsList_"]):not([class*="_shapeNotification_"]):not([class*="_shapeFile_"]) {
+  --event-tile-group-line-padding-inline-start: 12px;
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_stateBubbleContainer_"]):not([class*="_shapeThreadsList_"]):not([class*="_shapeNotification_"]):not([class*="_shapeFile_"]) > .mx_EventTile_line {
+  box-sizing: border-box;
+  width: fit-content;
+  min-width: 96px;
+  max-width: min(calc(100% - 64px - 88px), 860px);
+  margin-inline-start: 64px;
+  padding: 6px 12px 7px;
+  border-radius: var(--tm-radius-bubble);
+  background-color: var(--tm-bubble-other);
+  box-shadow: var(--tm-bubble-shadow);
+  border: var(--tm-bubble-border, 0 solid transparent);
+  transition: background-color var(--tm-fast) var(--tm-ease);
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_stateBubbleContainer_"]) > .mx_EventTile_line [class*="_slotTimestamp_"] {
+  inset-inline-start: -58px;
+  top: 7px;
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_stateBubbleContainer_"]) > .mx_EventTile_line [class*="_slotPadlock_"] {
+  inset-inline-start: -18px;
+  top: 7px;
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]) > [class*="_slotSender_"] > * {
+  margin-inline-start: 66px;
+  margin-bottom: 3px;
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]) > [class*="_slotAvatar_"] {
+  inset-block-start: 18px;
+  inset-inline-start: 18px;
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]) > [class*="_slotAvatar_"] [class*="_avatar_"] {
+  --cpd-avatar-size: 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateContinuation_"]) {
+  padding-top: 14px;
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateContinuation_"] {
+  padding-top: 3px;
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]) [class*="_slotThreadInfo_"],
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]) [class*="_slotFooter_"] {
+  margin-inline-start: 64px;
+}
+/* own messages: right-aligned brand bubbles, no avatar/name (pure Teams). Usable variants opt out. */
+html[data-tl-family="teams"]:not([data-tl-theme^="teams-usable"]) .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]):not([class*="_stateBubbleContainer_"]) > .mx_EventTile_line {
+  margin-inline-start: auto;
+  margin-inline-end: 24px;
+  background-color: var(--tm-bubble-own);
+  border: var(--tm-bubble-own-border, var(--tm-bubble-border, 0 solid transparent));
+}
+html[data-tl-family="teams"]:not([data-tl-theme^="teams-usable"]) .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"][class*="_hasReceiptSlot_"]:not([class*="_stateInfo_"]) > .mx_EventTile_line {
+  margin-inline-end: 80px;
+}
+html[data-tl-family="teams"]:not([data-tl-theme^="teams-usable"]) .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) > [class*="_slotAvatar_"],
+html[data-tl-family="teams"]:not([data-tl-theme^="teams-usable"]) .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) > [class*="_slotSender_"] {
+  display: none;
+}
+html[data-tl-family="teams"]:not([data-tl-theme^="teams-usable"]) .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) > .mx_EventTile_line [class*="_slotTimestamp_"] {
+  inset-inline-start: auto;
+  inset-inline-end: calc(100% + 6px);
+}
+html[data-tl-family="teams"]:not([data-tl-theme^="teams-usable"]) .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) [class*="_slotThreadInfo_"],
+html[data-tl-family="teams"]:not([data-tl-theme^="teams-usable"]) .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) [class*="_slotFooter_"] {
+  justify-content: flex-end;
+  margin-inline-end: 24px;
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) > .mx_EventTile_line {
+  background-color: var(--tm-bubble-own);
+}
+/* states */
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateHighlighted_"]:not([class*="_stateInfo_"]) > .mx_EventTile_line {
+  background-color: var(--tm-mention-bg, var(--tm-bubble-other));
+  box-shadow: inset 3px 0 0 var(--tm-mention-bar, var(--tm-critical)), var(--tm-bubble-shadow);
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:is([class*="_stateSelected_"], [class*="_stateEditing_"]):not([class*="_stateInfo_"]) > .mx_EventTile_line {
+  box-shadow: 0 0 0 2px var(--tm-brand);
+}
+html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):hover > .mx_EventTile_line {
+  filter: var(--tm-bubble-hover-filter, brightness(0.985));
+}
+/* info / state events: compact, muted, centered like Teams' system messages */
+html[data-tl-family="teams"] .mx_EventTile[class*="_stateInfo_"],
+html[data-tl-family="teams"] .mx_GenericEventListSummary {
+  color: var(--tm-fg3);
+}
+html[data-tl-family="teams"] .mx_EventTileBubble,
+html[data-tl-family="teams"] .mx_NewRoomIntro [class*="_container_"] {
+  border-radius: var(--tm-radius-l);
+  background-color: var(--tm-surface2);
+  border: 1px solid var(--tm-stroke2);
+}
+html[data-tl-family="teams"] .mx_NewRoomIntro h2 {
+  font: 700 20px/28px var(--tm-font-display);
+}
+/* date separators */
+html[data-tl-family="teams"] .mx_TimelineSeparator,
+html[data-tl-family="teams"] .mx_DateSeparator {
+  color: var(--tm-fg3);
+  font: 400 12px/16px var(--tm-font);
+}
+html[data-tl-family="teams"] .mx_DateSeparator > hr,
+html[data-tl-family="teams"] .mx_TimelineSeparator > hr {
+  border-top-color: var(--tm-stroke2);
+}
+html[data-tl-family="teams"] .mx_DateSeparator h2 {
+  font: 600 12px/16px var(--tm-font);
+  color: var(--tm-fg3);
+}
+/* read marker: brand line */
+html[data-tl-family="teams"] [class*="_readMarker_"] hr {
+  border-color: var(--tm-brand);
+  background: var(--tm-brand);
+}
+/* bubble layout: Teams colours and radius come through the variables */
+html[data-tl-family="teams"] .mx_EventTile[class*="_layoutBubble_"] {
+  --event-tile-bubble-corner-radius: var(--tm-radius-bubble);
+}
+/* reactions: pills */
+html[data-tl-family="teams"] .mx_ReactionsRow [class*="_reaction"],
+html[data-tl-family="teams"] .mx_ReactionsRow .mx_ReactionsRowButton {
+  border-radius: 999px;
+  border: 1px solid var(--tm-stroke2);
+  background: var(--tm-surface);
+  color: var(--tm-fg2);
+}
+html[data-tl-family="teams"] .mx_ReactionsRow .mx_ReactionsRowButton_selected,
+html[data-tl-family="teams"] .mx_ReactionsRow [aria-pressed="true"] {
+  border-color: var(--tm-brand);
+  background: var(--tm-brand-tint);
+  color: var(--tm-brand-fg);
+}
+/* hover action bar = Teams reaction bar */
+html[data-tl-family="teams"] .mx_MessageActionBar {
+  border-radius: var(--tm-radius-m);
+  border: 1px solid var(--tm-stroke2);
+  background: var(--tm-surface);
+  box-shadow: var(--tm-shadow8);
+}
+html[data-tl-family="teams"] .mx_MessageActionBar > * {
+  border-radius: var(--tm-radius-m);
+}
+html[data-tl-family="teams"] .mx_MessageActionBar > *:hover {
+  background: var(--tm-hover);
+  color: var(--tm-brand-icon);
+}
+/* links and pills */
+html[data-tl-family="teams"] .mx_EventTile_body a,
+html[data-tl-family="teams"] .mx_EventTile_content a {
+  color: var(--tm-brand-fg);
+}
+html[data-tl-family="teams"] .mx_Pill {
+  border-radius: var(--tm-radius-m);
+  background: transparent;
+  color: var(--tm-brand-fg);
+  font-weight: 600;
+}
+html[data-tl-family="teams"] .mx_Pill.mx_UserPill_me,
+html[data-tl-family="teams"] .mx_Pill.mx_AtRoomPill {
+  color: var(--tm-critical-fg);
+  background: transparent;
+}
+/* code */
+html[data-tl-family="teams"] .mx_EventTile_body code,
+html[data-tl-family="teams"] .mx_EventTile_content code {
+  font-family: var(--tm-mono);
+  font-size: 0.9em;
+  background: var(--tm-code-bg);
+  border-radius: var(--tm-radius-s);
+  padding: 1px 4px;
+}
+html[data-tl-family="teams"] .mx_EventTile_body pre,
+html[data-tl-family="teams"] .mx_EventTile_pre_container pre {
+  font-family: var(--tm-mono);
+  font-size: 13px;
+  background: var(--tm-code-bg);
+  border: 1px solid var(--tm-stroke2);
+  border-radius: var(--tm-radius-m);
+}
+html[data-tl-family="teams"] .mx_EventTile_body pre code {
+  background: transparent;
+  padding: 0;
+}
+html[data-tl-family="teams"] .mx_EventTile_pre_container {
+  background: transparent;
+  border-radius: var(--tm-radius-m);
+}
+/* blockquote */
+html[data-tl-family="teams"] .mx_EventTile_body blockquote {
+  border-inline-start: 3px solid var(--tm-stroke1);
+  color: var(--tm-fg2);
+}
+
+/* ---------- 7. composer ------------------------------------------------- */
+html[data-tl-family="teams"] .mx_MessageComposer {
+  box-sizing: border-box;
+  background-color: var(--tm-timeline-bg, var(--tm-canvas));
+  padding: 0 20px 16px;
+  border-top: 0;
+}
+html[data-tl-family="teams"] .mx_MessageComposer_wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 2px 8px 2px 14px;
+  background: var(--tm-composer-bg, var(--tm-surface));
+  border: 1px solid var(--tm-stroke2);
+  border-bottom: 1px solid var(--tm-stroke1);
+  border-radius: var(--tm-radius-composer, var(--tm-radius-l));
+  box-shadow: inset 0 -2px 0 transparent, var(--tm-composer-shadow, none);
+  transition: box-shadow var(--tm-fast) var(--tm-ease);
+}
+html[data-tl-family="teams"] .mx_MessageComposer_wrapper:focus-within {
+  box-shadow: inset 0 -2px 0 var(--tm-brand), var(--tm-composer-shadow, none);
+}
+html[data-tl-family="teams"] .mx_MessageComposer_row {
+  min-height: 44px;
+}
+html[data-tl-family="teams"] .mx_BasicMessageComposer_input {
+  font: 400 14px/20px var(--tm-font);
+  color: var(--tm-fg1);
+}
+html[data-tl-family="teams"] .mx_MessageComposer .mx_BasicMessageComposer_input:focus-visible,
+html[data-tl-family="teams"] .mx_MessageComposer .mx_BasicMessageComposer_input:focus {
+  outline: none;
+  box-shadow: none;
+}
+html[data-tl-family="teams"] .mx_BasicMessageComposer_inputEmpty > :first-child::before {
+  color: var(--tm-fg3);
+}
+html[data-tl-family="teams"] .mx_MessageComposer_actions {
+  gap: 2px;
+}
+html[data-tl-family="teams"] .mx_MessageComposer_actions > * {
+  color: var(--tm-fg2);
+  border-radius: var(--tm-radius-m);
+}
+html[data-tl-family="teams"] .mx_MessageComposer_actions > *:hover {
+  color: var(--tm-brand-icon);
+}
+html[data-tl-family="teams"] .mx_MessageComposer_sendMessage {
+  color: var(--tm-brand-icon);
+  background-color: var(--tm-brand-icon);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--tm-radius-m);
+}
+html[data-tl-family="teams"] .mx_MessageComposer_row {
+  padding-inline-start: 20px;
+  position: relative;
+}
+html[data-tl-family="teams"] .mx_MessageComposer_e2eIconWrapper {
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+}
+/* reply/edit preview, autocomplete */
+html[data-tl-family="teams"] .mx_Autocomplete {
+  border-radius: var(--tm-radius-l);
+  border: 1px solid var(--tm-stroke2);
+  background: var(--tm-surface);
+  box-shadow: var(--tm-shadow16);
+}
+html[data-tl-family="teams"] .mx_Autocomplete_Completion.selected,
+html[data-tl-family="teams"] .mx_Autocomplete_Completion:hover {
+  background: var(--tm-hover);
+}
+
+/* ---------- 8. right panel --------------------------------------------- */
+html[data-tl-family="teams"] .mx_RightPanel {
+  background-color: var(--tm-rightpanel-bg, var(--tm-canvas));
+  border-inline-start: 1px solid var(--tm-stroke2);
+  border-radius: var(--tm-radius-pane-right, 0);
+}
+html[data-tl-family="teams"] .mx_RightPanel .mx_BaseCard,
+html[data-tl-family="teams"] .mx_RightPanel .mx_BaseCard_header {
+  background-color: transparent;
+}
+html[data-tl-family="teams"] .mx_BaseCard_header {
+  border-bottom: 1px solid var(--tm-stroke2);
+  min-height: 56px;
+}
+html[data-tl-family="teams"] .mx_BaseCard_header h2,
+html[data-tl-family="teams"] .mx_BaseCard_header [class*="_heading_"],
+html[data-tl-family="teams"] .mx_BaseCard_header_title {
+  font: 700 16px/22px var(--tm-font-display);
+  color: var(--tm-fg1);
+}
+
+/* ---------- 9. controls ------------------------------------------------- */
+html[data-tl-family="teams"] [class*="_button_"][data-kind],
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_primary,
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_secondary,
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_danger,
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_danger_outline {
+  border-radius: var(--tm-radius-btn);
+  font-family: var(--tm-font);
+  font-weight: 600;
+}
+html[data-tl-family="teams"] [class*="_button_"][data-kind="secondary"],
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_secondary {
+  border: 1px solid var(--tm-stroke1);
+  background: var(--tm-surface);
+  color: var(--tm-fg1);
+}
+html[data-tl-family="teams"] [class*="_button_"][data-kind="secondary"]:hover,
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_primary_outline:hover {
+  background: var(--tm-hover);
+  border-color: var(--tm-stroke-access);
+}
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_primary,
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_primary_sm {
+  background-color: var(--tm-brand);
+  color: var(--tm-on-brand);
+}
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_primary:hover {
+  background-color: var(--tm-brand-hover);
+}
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_link,
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_link_inline,
+html[data-tl-family="teams"] .mx_AccessibleButton_kind_link_sm {
+  color: var(--tm-brand-fg);
+}
+/* inputs: Fluent signature (darker bottom stroke, 2px brand bottom on focus) */
+html[data-tl-family="teams"] .mx_Field {
+  border-radius: var(--tm-radius-m);
+  border-color: var(--tm-stroke1);
+  border-bottom-color: var(--tm-stroke-access);
+  background: var(--tm-input-bg, var(--tm-surface));
+}
+html[data-tl-family="teams"] .mx_Field:focus-within {
+  border-color: var(--tm-stroke1);
+  box-shadow: inset 0 -2px 0 var(--tm-brand);
+}
+html[data-tl-family="teams"] .mx_Field label {
+  background: var(--tm-input-bg, var(--tm-surface));
+}
+html[data-tl-family="teams"] .mx_Field:focus-within label {
+  color: var(--tm-brand-fg);
+}
+html[data-tl-family="teams"] input[class*="_control_"],
+html[data-tl-family="teams"] [class*="_container_"] > input[class*="_control_"] {
+  border-radius: var(--tm-radius-m);
+}
+/* toggles/checkboxes follow brand via tokens */
+
+/* ---------- 10. dialogs, menus, tooltips -------------------------------- */
+html[data-tl-family="teams"] .mx_Dialog button,
+html[data-tl-family="teams"] .mx_Dialog input[type="submit"],
+html[data-tl-family="teams"] .mx_Dialog_buttons button {
+  border-radius: var(--tm-radius-btn);
+  font-family: var(--tm-font);
+}
+html[data-tl-family="teams"] .mx_Dialog button.mx_Dialog_primary,
+html[data-tl-family="teams"] .mx_Dialog input[type="submit"].mx_Dialog_primary {
+  background-color: var(--tm-brand);
+  border-color: var(--tm-brand);
+  color: var(--tm-on-brand);
+  font-weight: 600;
+}
+html[data-tl-family="teams"] .mx_ToastContainer {
+  top: calc(var(--tm-titlebar-h) + 8px);
+}
+html[data-tl-family="teams"] .mx_Toast_toast {
+  border-radius: var(--tm-radius-l);
+  box-shadow: var(--tm-shadow16);
+  background: var(--tm-surface);
+}
+html[data-tl-family="teams"] .mx_Dialog,
+html[data-tl-family="teams"] .mx_CompoundDialog {
+  background-color: var(--tm-surface);
+  border-radius: var(--tm-radius-dialog, var(--tm-radius-l));
+  box-shadow: var(--tm-shadow64);
+  color: var(--tm-fg1);
+}
+html[data-tl-family="teams"] .mx_Dialog_background {
+  background-color: var(--tm-backdrop, rgba(0, 0, 0, 0.4));
+  opacity: 1;
+}
+html[data-tl-family="teams"] .mx_Dialog_title,
+html[data-tl-family="teams"] .mx_Dialog_header h1,
+html[data-tl-family="teams"] .mx_CompoundDialog_header h1 {
+  font: 700 20px/28px var(--tm-font-display);
+  color: var(--tm-fg1);
+}
+html[data-tl-family="teams"] .mx_ContextualMenu,
+html[data-tl-family="teams"] [role="menu"],
+html[data-tl-family="teams"] [data-radix-popper-content-wrapper] > [role="dialog"] {
+  border-radius: var(--tm-radius-l);
+  box-shadow: var(--tm-shadow16);
+  background-color: var(--tm-surface);
+  border: 1px solid var(--tm-menu-border, transparent);
+}
+html[data-tl-family="teams"] [role="menu"] [role="menuitem"],
+html[data-tl-family="teams"] .mx_IconizedContextMenu_item {
+  border-radius: var(--tm-radius-m);
+  font: 400 14px/20px var(--tm-font);
+}
+html[data-tl-family="teams"] [role="menu"] [role="menuitem"]:hover,
+html[data-tl-family="teams"] .mx_IconizedContextMenu_item:hover {
+  background: var(--tm-hover);
+}
+html[data-tl-family="teams"] [role="tooltip"] {
+  border-radius: var(--tm-radius-m);
+  font-family: var(--tm-font);
+}
+
+/* ---------- 11. settings ------------------------------------------------ */
+html[data-tl-family="teams"] .mx_TabbedView_tabLabel {
+  position: relative;
+  border-radius: var(--tm-radius-m);
+  color: var(--tm-fg2);
+}
+html[data-tl-family="teams"] .mx_TabbedView_tabLabel:hover {
+  background: var(--tm-hover);
+}
+html[data-tl-family="teams"] .mx_TabbedView_tabLabel_active,
+html[data-tl-family="teams"] .mx_TabbedView_tabLabel_active:hover {
+  background: var(--tm-tab-active-bg, var(--tm-hover));
+  color: var(--tm-fg1);
+  font-weight: 600;
+}
+html[data-tl-family="teams"] .mx_TabbedView_tabLabel_active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--tm-brand);
+}
+html[data-tl-family="teams"] .mx_TabbedView_tabLabel_active .mx_TabbedView_maskedIcon,
+html[data-tl-family="teams"] .mx_TabbedView_tabLabel_active svg {
+  color: var(--tm-brand-icon);
+}
+html[data-tl-family="teams"] .mx_SettingsTab h2,
+html[data-tl-family="teams"] .mx_SettingsSection h2,
+html[data-tl-family="teams"] .mx_SettingsTab_heading {
+  font-family: var(--tm-font-display);
+  font-weight: 700;
+}
+
+/* ---------- 12. auth / welcome ----------------------------------------- */
+html[data-tl-family="teams"] .mx_AuthPage {
+  /* Element sets the welcome background inline */
+  background: var(--tm-auth-bg, linear-gradient(135deg, #e8ebfa 0%, #f5f5f5 45%, #ebe5fa 100%)) !important;
+}
+html[data-tl-family="teams"] .mx_AuthPage_modalContent {
+  background-color: var(--tm-surface) !important;
+}
+html[data-tl-family="teams"] .mx_Welcome .mx_Welcome_logo img,
+html[data-tl-family="teams"] .mx_HomePage_default img.mx_HomePage_logo,
+html[data-tl-family="teams"] .mx_HomePage_default_wrapper > img {
+  content: var(--tm-logo);
+}
+html[data-tl-family="teams"] .mx_AuthPage_modal {
+  border-radius: var(--tm-radius-l);
+  box-shadow: var(--tm-shadow16);
+  overflow: hidden;
+}
+html[data-tl-family="teams"] .mx_AuthPage_modalBlur {
+  display: none;
+}
+html[data-tl-family="teams"] .mx_AuthHeaderLogo img {
+  content: var(--tm-logo);
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+html[data-tl-family="teams"] .mx_AuthHeader,
+html[data-tl-family="teams"] .mx_AuthBody {
+  background-color: var(--tm-surface);
+}
+
+/* ---------- 13. focus & motion ----------------------------------------- */
+html[data-tl-family="teams"] :focus-visible {
+  outline: 2px solid var(--tm-focus-outer);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 1px var(--tm-focus-inner) inset;
+}
+html[data-tl-family="teams"] .mx_RoomListItemView:focus-visible > [class*="_container_"] {
+  outline: 2px solid var(--tm-focus-outer);
+  outline-offset: -1px;
+}
+html[data-tl-family="teams"] .mx_RoomListItemView:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="teams"] *,
+  html[data-tl-family="teams"] *::before,
+  html[data-tl-family="teams"] *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- 14. loader UI stays usable --------------------------------- */
+html[data-tl-family="teams"] .tl-ui {
+  font-family: var(--tm-font);
+}
+
+/* ---------- 15. narrow / mobile ---------------------------------------- */
+@media (max-width: 768px) {
+  html[data-tl-family="teams"] {
+    --tm-titlebar-h: 0px;
+  }
+  html[data-tl-family="teams"] .mx_MatrixChat::before,
+  html[data-tl-family="teams"] .mx_MatrixChat::after {
+    display: none;
+  }
+  html[data-tl-family="teams"] .mx_RoomListPanel > [role="search"] {
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    padding: 12px 12px 0;
+  }
+  html[data-tl-family="teams"] .mx_SpacePanel .mx_UserMenu {
+    position: static;
+    margin: 12px auto 4px;
+  }
+  html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_stateBubbleContainer_"]) > .mx_EventTile_line {
+    max-width: calc(100% - 52px - 12px);
+    margin-inline-start: 52px;
+    min-width: 0;
+  }
+  html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]) > [class*="_slotSender_"] > * {
+    margin-inline-start: 54px;
+  }
+  html[data-tl-family="teams"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]) > [class*="_slotAvatar_"] {
+    inset-inline-start: 12px;
+  }
+  html[data-tl-family="teams"] .mx_MessageComposer {
+    padding: 0 8px 8px;
+  }
+}
+
+/* ---------- 16. the chat-effects canvas is window-sized; with the title bar it would
+   overflow the room view and let scrollIntoView() shift the whole app up ---------- */
+html[data-tl-family="teams"] .mx_RoomView > canvas {
+  max-height: 100%;
+}
+html[data-tl-family="teams"] .mx_RoomView_wrapper,
+html[data-tl-family="teams"] .mx_MatrixChat {
+  overflow: hidden;
+}
+/* LeftPanel without `contain` lets the virtualised room list size the document; clip it. */
+html[data-tl-family="teams"],
+html[data-tl-family="teams"] body {
+  overflow: clip;
+}
+html[data-tl-family="teams"] #matrixchat,
+html[data-tl-family="teams"] .mx_MatrixChat_wrapper,
+html[data-tl-family="teams"] .mx_LeftPanel,
+html[data-tl-family="teams"] .mx_MatrixChat,
+html[data-tl-family="teams"] .mx_RoomView_wrapper,
+html[data-tl-family="teams"] .mx_RoomView {
+  overflow: clip;
+}
+
+/* ---------- 17. tweaks found in screenshot review ----------------------- */
+html[data-tl-family="teams"] .mx_MessageComposer_wrapper {
+  padding-right: 12px;
+}
+html[data-tl-family="teams"] .mx_RightPanel .mx_MessageComposer {
+  padding: 0 10px 10px;
+}
+html[data-tl-family="teams"] .mx_RightPanel .mx_MessageComposer_wrapper {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+/* the header gets crowded when the right panel is open: drop the decorative Copilot chip */
+html[data-tl-family="teams"] .mx_MainSplit:has(> .mx_RightPanel) .mx_RoomHeader::after,
+html[data-tl-family="teams"] .mx_MainSplit:has(.mx_RightPanel) .mx_RoomHeader::after {
+  display: none;
+}
+html[data-tl-family="teams"] .mx_RoomHeader > [class*="_avatar_"] {
+  font-size: 14px;
+  line-height: 32px;
+  --cpd-avatar-size: 32px;
+}

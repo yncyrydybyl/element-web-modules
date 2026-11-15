@@ -83,7 +83,7 @@
     {
       "phases": null,
       "difficulty": "medium",
-      "enhancer": "Title bar overlay (back/forward, centered search pill that opens Element's search dialog, Teams logo); Copilot chip in header (decorative, opens room summary card); room-list section headings ('Pinned', 'Chats', 'Muted') derived from Element's own sections",
+      "enhancer": null,
       "regions": {
         "shell": "48px title-bar strip in rail colour across the top (enhancer), white content area; no window chrome",
         "spaces": "Teams app bar: 68px rail, 20px Fluent icon over 10px label (attr(aria-label)), selected = 3px left brand pill + filled brand icon; Teams logo on top",
@@ -153,7 +153,7 @@
     {
       "phases": null,
       "difficulty": "medium",
-      "enhancer": "same as 2026 light",
+      "enhancer": null,
       "regions": {
         "shell": "48px title-bar strip in rail colour across the top (enhancer), white content area; no window chrome",
         "spaces": "Teams app bar: 68px rail, 20px Fluent icon over 10px label (attr(aria-label)), selected = 3px left brand pill + filled brand icon; Teams logo on top",
@@ -306,7 +306,7 @@
         ]
       },
       "difficulty": "medium",
-      "enhancer": "shares the 2026 enhancer; onPhase() swaps the sun/moon glyph in the title bar",
+      "enhancer": null,
       "regions": {
         "shell": "2026 light/dark shell; dawn/dusk only shift the neutrals (canvas, list, rail, borders)",
         "spaces": "Teams app bar: 68px rail, 20px Fluent icon over 10px label (attr(aria-label)), selected = 3px left brand pill + filled brand icon; Teams logo on top",
@@ -376,7 +376,7 @@
     {
       "phases": null,
       "difficulty": "easy",
-      "enhancer": "title bar overlay with 2019 logo and search pill (shared with 2026, different logo); no Copilot chip",
+      "enhancer": null,
       "regions": {
         "shell": "48px title-bar strip in rail colour across the top (enhancer), white content area; no window chrome",
         "spaces": "Teams app bar: 68px rail, 20px Fluent icon over 10px label (attr(aria-label)), selected = 3px left brand pill + filled brand icon; Teams logo on top",
@@ -446,7 +446,7 @@
     {
       "phases": null,
       "difficulty": "medium",
-      "enhancer": "purple top bar overlay with search proxy and logo",
+      "enhancer": null,
       "regions": {
         "shell": "48px #464775 top bar across the full width (enhancer) with white search box and avatar; grey canvas",
         "spaces": "#33344A rail 68px, white 20px icons + 10px labels, selected #6264A7 left pill and lighter tile",
@@ -516,7 +516,7 @@
     {
       "phases": null,
       "difficulty": "hard",
-      "enhancer": "decorative AI suggestion chips above composer (insert canned text into the composer on click), 'Copilot' label on the right panel header, aurora wallpaper layer in ctx.root",
+      "enhancer": "Copilot suggestion chips floating above the composer (overlay in ctx.root, follows the composer; click inserts a canned prompt, nothing is sent)",
       "regions": {
         "shell": "aurora gradient wallpaper; rail, list, conversation and right panel as separate floating panes (gap 12px, radius 16)",
         "spaces": "glass pill rail 64px floating, icons 24px no labels, selected = filled violet circle",
@@ -726,7 +726,7 @@
     {
       "phases": null,
       "difficulty": "hard",
-      "enhancer": "PING!/POW! burst overlay when a mention badge appears or increments (MutationObserver on badges); optional onomatopoeia sticker on send",
+      "enhancer": null,
       "regions": {
         "shell": "comic page: yellow #FFE14D gutters, every region a panel with 3px ink border + offset shadow",
         "spaces": "purple #5B5FC7 masthead rail, white icons with ink outline, selected = yellow starburst behind",
@@ -796,7 +796,7 @@
     {
       "phases": null,
       "difficulty": "hard",
-      "enhancer": "scanline + grid overlay layer in ctx.root; one-time 'boot' glitch of the logo on mount (skipped under reduced motion)",
+      "enhancer": null,
       "regions": {
         "shell": "#0b0614 with faint 40px violet grid, scanline overlay above everything (pointer-events none)",
         "spaces": "#07040d rail, cyan icons, selected = violet glowing left bar + chamfered tile",

@@ -1,0 +1,36 @@
+/* teams-2026-light — Teams as shipped in Nov 2026 (Fluent 2, brandTeams #5B5FC7, 2025 logo).
+   Most values are the shared.css defaults; this file holds the 2026 specifics.
+   Also used by teams-2026-daylight outside the night phase (and dawn/dusk tweak it there). */
+html[data-tl-theme="teams-2026-light"],
+html[data-tl-theme="teams-2026-daylight"]:not([data-tl-phase="night"]) {
+  --tm-logo: url("assets/teams-logo-2025.svg");
+  --tm-radius-bubble: 8px;
+  --tm-search-bg: #ffffff;
+  --tm-search-border: #e0e0e0;
+  --tm-row-selected-shadow: 0 0 2px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --tm-mention-bg: #fdf3f4;
+  --tm-copilot: "Copilot";
+}
+html[data-tl-theme="teams-2026-dark"],
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="night"] {
+  --tm-copilot: "Copilot";
+}
+/* 2026 chat-list "activity" indicator: purple dot in front of unread rows */
+html[data-tl-theme="teams-2026-light"] .mx_RoomListItemView:has([class*="_notificationDecoration_"] > *) > [class*="_container_"],
+html[data-tl-theme="teams-2026-dark"] .mx_RoomListItemView:has([class*="_notificationDecoration_"] > *) > [class*="_container_"],
+html[data-tl-theme="teams-2026-daylight"] .mx_RoomListItemView:has([class*="_notificationDecoration_"] > *) > [class*="_container_"] {
+  position: relative;
+}
+html[data-tl-theme="teams-2026-light"] .mx_RoomListItemView:has([class*="_notificationDecoration_"] > *) > [class*="_container_"]::before,
+html[data-tl-theme="teams-2026-dark"] .mx_RoomListItemView:has([class*="_notificationDecoration_"] > *) > [class*="_container_"]::before,
+html[data-tl-theme="teams-2026-daylight"] .mx_RoomListItemView:has([class*="_notificationDecoration_"] > *) > [class*="_container_"]::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: var(--tm-brand-icon);
+}
