@@ -1,0 +1,35 @@
+/* ==========================================================================
+   crossover — shared rules for the three mashups. Each variant file is
+   self-contained (tokens + chrome); this file only carries the floors.
+   Style guide: docs/styleguides/crossover.md
+   ========================================================================== */
+
+/* never let scrollIntoView scroll the app shell (frames must stay put) */
+html[data-tl-family="crossover"] .mx_MatrixChat_wrapper {
+  overflow: clip;
+}
+
+/* Loader UI stays usable in every crossover */
+html[data-tl-family="crossover"] .tl-ui,
+html[data-tl-family="crossover"] .tl-ui * {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Reduced motion: no zoom rectangles, roll-ups, wobbles or chirps */
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="crossover"] *,
+  html[data-tl-family="crossover"] *::before,
+  html[data-tl-family="crossover"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Forced colours: drop textures and decorations, keep structure */
+@media (forced-colors: active) {
+  html[data-tl-family="crossover"] * {
+    background-image: none !important;
+    text-shadow: none !important;
+  }
+}

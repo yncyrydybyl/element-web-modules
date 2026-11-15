@@ -1,0 +1,18 @@
+/* paper-white — palette (style guide: docs/styleguides/paper.md). Everything else lives in shared.css. */
+html[data-tl-theme="paper-white"] {
+  --p-paper: #FBFBF8;
+  --p-ink: #1A1A1A;
+  --p-muted: #6B6B6B;
+  --p-accent: #0B6BCB;
+  --p-on-accent: #FFFFFF;
+  --p-line: #E6E4DF;
+  --p-wash: #F2F1EC;
+  --p-wash2: #EFEEE9;
+  --p-mention: #FFF3B0;
+  --p-critical: #B3261E;
+  --p-success: #2E7D32;
+  --p-caret: #1AA3FF;
+  --p-focus: #0B6BCB;
+  --p-scheme: light;
+  --p-muted-hc: #3D3D3D;
+}

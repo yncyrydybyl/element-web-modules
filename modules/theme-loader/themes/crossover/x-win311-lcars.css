@@ -1,0 +1,641 @@
+/* ==========================================================================
+   x-win311-lcars — "Starfleet runs Windows 3.11"
+   Grammar: Windows 3.1 (MDI windows, flat title bars, control-menu box, ▼▲, no ✕,
+   bevel push buttons, Program Manager, 17px scrollbars, dotted focus).
+   Material: LCARS (black field, elbow frame, pastel blocks, Antonio caps).
+   Reuses @win311 (W95FA, PxPlus VGA, title-bar/scroll SVGs) and @lcars (Antonio).
+   ========================================================================== */
+
+html[data-tl-theme="x-win311-lcars"] {
+  --xl-bg: #000000;
+  --xl-text: #ffcc99;          /* tanoi, 14.4:1 */
+  --xl-muted: #9999cc;         /* blue-bell, 7.8:1 */
+  --xl-accent: #ff9900;        /* atomic tangerine */
+  --xl-on: #000000;
+  --xl-lilac: #cc99cc;
+  --xl-bell: #9999cc;
+  --xl-tanoi: #ffcc99;
+  --xl-gold: #ffcc66;
+  --xl-peel: #ff9966;
+  --xl-rose: #cc6666;          /* critical, 5.7:1 */
+  --xl-melrose: #9999ff;
+  --xl-anakiwa: #99ccff;
+  --xl-ok: #99cc99;
+  --xl-own: #1a1208;
+  --xl-gap: 6px;
+  --xl-arm: 92px;
+  --xl-top: 44px;
+  --xl-bottom: 24px;
+  --xl-title-h: 22px;
+  --xl-font: "W95FA", "Pixelated MS Sans Serif", "MS Sans Serif", sans-serif;
+  --xl-caps: "Antonio", "Arial Narrow", sans-serif;
+  --xl-mono: "PxPlus IBM VGA 8x16", "W95FA", ui-monospace, monospace;
+  /* Win 3.1 bevel in LCARS colours */
+  --xl-bevel: inset 1px 1px 0 rgb(255 255 255 / .75), inset 2px 2px 0 rgb(255 255 255 / .35), inset -1px -1px 0 rgb(0 0 0 / .45), inset -2px -2px 0 rgb(0 0 0 / .25);
+  --xl-bevel-pressed: inset 1px 1px 0 rgb(0 0 0 / .45);
+  color-scheme: dark;
+}
+
+/* ---------- tokens ---------- */
+html[data-tl-theme="x-win311-lcars"],
+html[data-tl-theme="x-win311-lcars"] body,
+html[data-tl-theme="x-win311-lcars"] [class*="cpd-theme-"] {
+  --cpd-color-theme-bg: #000;
+  --cpd-color-bg-canvas-default: #000;
+  --cpd-color-bg-canvas-default-level-1: #000;
+  --cpd-color-bg-subtle-primary: #1a1a2a;
+  --cpd-color-bg-subtle-secondary: #000;
+  --cpd-color-bg-subtle-secondary-level-0: #000;
+  --cpd-color-bg-subtle-tertiary: #0d0d14;
+  --cpd-color-bg-canvas-disabled: #1a1a2a;
+  --cpd-color-bg-action-primary-rest: var(--xl-accent);
+  --cpd-color-bg-action-primary-hovered: #ffad33;
+  --cpd-color-bg-action-primary-pressed: #e68a00;
+  --cpd-color-bg-action-primary-disabled: #4d3a26;
+  --cpd-color-bg-action-secondary-rest: #000;
+  --cpd-color-bg-action-secondary-hovered: #1a1a2a;
+  --cpd-color-bg-action-secondary-pressed: #26263d;
+  --cpd-color-bg-action-tertiary-rest: transparent;
+  --cpd-color-bg-action-tertiary-hovered: #1a1a2a;
+  --cpd-color-bg-action-tertiary-selected: #26263d;
+  --cpd-color-bg-accent-rest: var(--xl-accent);
+  --cpd-color-bg-accent-hovered: #ffad33;
+  --cpd-color-bg-accent-pressed: #e68a00;
+  --cpd-color-bg-accent-selected: #33260f;
+  --cpd-color-bg-accent-subtle: #1a1208;
+  --cpd-color-bg-critical-primary: var(--xl-rose);
+  --cpd-color-bg-critical-hovered: #d97f7f;
+  --cpd-color-bg-critical-subtle: #2a1010;
+  --cpd-color-bg-critical-subtle-hovered: #3a1616;
+  --cpd-color-bg-success-subtle: #102010;
+  --cpd-color-bg-info-subtle: #10182a;
+  --cpd-color-bg-badge-default: var(--xl-bell);
+  --cpd-color-bg-badge-accent: var(--xl-accent);
+  --cpd-color-bg-badge-critical: var(--xl-rose);
+  --cpd-color-text-badge-accent: #000;
+  --cpd-color-text-primary: var(--xl-text);
+  --cpd-color-text-secondary: var(--xl-muted);
+  --cpd-color-text-disabled: #8080a0;
+  --cpd-color-text-action-primary: var(--xl-text);
+  --cpd-color-text-action-accent: var(--xl-accent);
+  --cpd-color-text-link-external: var(--xl-anakiwa);
+  --cpd-color-text-critical-primary: var(--xl-rose);
+  --cpd-color-text-success-primary: var(--xl-ok);
+  --cpd-color-text-info-primary: var(--xl-anakiwa);
+  --cpd-color-text-on-solid-primary: #000;
+  --cpd-color-text-decorative-1: #ff9900;
+  --cpd-color-text-decorative-2: #cc99cc;
+  --cpd-color-text-decorative-3: #99ccff;
+  --cpd-color-text-decorative-4: #ffcc66;
+  --cpd-color-text-decorative-5: #ff9966;
+  --cpd-color-text-decorative-6: #9999ff;
+  --cpd-color-bg-decorative-1: #ff9900;
+  --cpd-color-bg-decorative-2: #cc99cc;
+  --cpd-color-bg-decorative-3: #99ccff;
+  --cpd-color-bg-decorative-4: #ffcc66;
+  --cpd-color-bg-decorative-5: #ff9966;
+  --cpd-color-bg-decorative-6: #9999ff;
+  --cpd-color-icon-primary: var(--xl-text);
+  --cpd-color-icon-secondary: var(--xl-muted);
+  --cpd-color-icon-tertiary: var(--xl-muted);
+  --cpd-color-icon-quaternary: #8080a0;
+  --cpd-color-icon-accent-primary: var(--xl-accent);
+  --cpd-color-icon-accent-tertiary: var(--xl-accent);
+  --cpd-color-icon-critical-primary: var(--xl-rose);
+  --cpd-color-icon-success-primary: var(--xl-ok);
+  --cpd-color-icon-info-primary: var(--xl-anakiwa);
+  --cpd-color-icon-on-solid-primary: #000;
+  --cpd-color-border-focused: var(--xl-tanoi);
+  --cpd-color-border-interactive-primary: var(--xl-bell);
+  --cpd-color-border-interactive-secondary: #4d4d73;
+  --cpd-color-border-interactive-hovered: var(--xl-accent);
+  --cpd-color-border-accent-primary: var(--xl-accent);
+  --cpd-color-border-critical-primary: var(--xl-rose);
+  --cpd-color-separator-primary: #4d4d73;
+  --cpd-color-separator-secondary: #33334d;
+  --cpd-color-gray-300: #1a1a2a;
+  --cpd-color-gray-400: #4d4d73;
+  --cpd-color-gray-800: #8080a0;
+  --cpd-color-gray-900: var(--xl-muted);
+  --cpd-color-gray-1400: var(--xl-text);
+  --cpd-color-green-900: var(--xl-accent);
+  --cpd-color-green-1100: var(--xl-accent);
+  --cpd-font-family-sans: "W95FA", "Pixelated MS Sans Serif", sans-serif !important;
+  --cpd-font-family-mono: "PxPlus IBM VGA 8x16", "W95FA", monospace !important;
+  --cpd-font-size-body-md: 16px;
+  --cpd-font-size-body-sm: 16px;
+  --cpd-font-size-body-xs: 16px;
+  --cpd-font-size-body-lg: 16px;
+  --cpd-font-letter-spacing-body-md: 0;
+  --cpd-font-letter-spacing-body-sm: 0;
+}
+
+/* ---------- base ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  background: #000;
+  & body, & .mx_MatrixChat_wrapper, & .mx_MatrixChat, & .mx_RoomView, & .mx_RoomView_wrapper,
+  & .mx_MainSplit, & .mx_LeftPanel, & .mx_LeftPanel_outerWrapper, & .mx_LeftPanel_wrapper,
+  & .mx_RoomListPanel, & .mx_RoomView_body { background-color: #000; }
+  & .mx_MatrixChat { -webkit-font-smoothing: none; font-variant-numeric: tabular-nums; }
+  & ::selection { background: var(--xl-accent); color: #000; }
+
+  /* Win 3.1 dotted focus rectangle, plus a solid ring so it stays ≥3:1 */
+  & :focus-visible {
+    outline: 2px solid var(--xl-tanoi) !important;
+    outline-offset: 2px;
+    box-shadow: inset 0 0 0 1px #000, inset 0 0 0 2px transparent;
+    background-image: none;
+  }
+  & button:focus-visible, & [role="button"]:focus-visible, & [role="option"]:focus-visible {
+    outline-style: dotted !important;
+    box-shadow: 0 0 0 4px #000, 0 0 0 6px var(--xl-tanoi);
+  }
+
+  /* 17px Win 3.1 scrollbars, LCARS colours */
+  & *, & *::before { scrollbar-width: auto; scrollbar-color: auto; }
+  & ::-webkit-scrollbar { width: 17px; height: 17px; background: #1a1a2a; }
+  & ::-webkit-scrollbar-track {
+    background: repeating-conic-gradient(#33334d 0 25%, #000 0 50%) 0 0 / 2px 2px;
+    box-shadow: inset 1px 0 0 var(--xl-bell);
+  }
+  & ::-webkit-scrollbar-thumb {
+    min-height: 17px;
+    background: var(--xl-bell);
+    border: 1px solid #000;
+    box-shadow: var(--xl-bevel);
+  }
+  & ::-webkit-scrollbar-button { display: block; width: 17px; height: 17px; background-repeat: no-repeat; }
+  & ::-webkit-scrollbar-button:vertical:start:increment,
+  & ::-webkit-scrollbar-button:vertical:end:decrement,
+  & ::-webkit-scrollbar-button:horizontal { display: none; }
+  & ::-webkit-scrollbar-button:vertical:start:decrement { background-image: url("@win311/assets/scroll-up.svg"); }
+  & ::-webkit-scrollbar-button:vertical:end:increment { background-image: url("@win311/assets/scroll-down.svg"); }
+  & ::-webkit-scrollbar-corner { background: #000; }
+  & .mx_AutoHideScrollbar, & [class*="_scrollbar_"] { scrollbar-gutter: auto; }
+}
+
+/* ---------- the LCARS frame around Program Manager ---------- */
+html[data-tl-theme="x-win311-lcars"] .mx_MatrixChat_wrapper {
+  position: relative;
+  box-sizing: border-box;
+  padding: var(--xl-top) 0 var(--xl-bottom) 0;
+  /* bottom bar: elbow + segmented bar */
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: calc(var(--xl-bottom) - var(--xl-gap));
+    background:
+      linear-gradient(90deg,
+        var(--xl-lilac) 0 calc(var(--xl-arm) + 40px), #000 0 calc(var(--xl-arm) + 46px),
+        var(--xl-peel) 0 40%, #000 0 calc(40% + 6px),
+        var(--xl-bell) 0 62%, #000 0 calc(62% + 6px),
+        var(--xl-gold) 0 calc(100% - 40px), #000 0 calc(100% - 34px),
+        var(--xl-rose) 0);
+    border-bottom-left-radius: 28px;
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+    pointer-events: none;
+    z-index: 4;
+  }
+  /* top bar: elbow sweeping from the left arm, caption right-aligned */
+  &::after {
+    content: "LCARS 40274 · PROGRAM MANAGER · 47-1138";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: calc(var(--xl-top) - var(--xl-gap));
+    box-sizing: border-box;
+    padding: 0 48px 2px 0;
+    display: flex; align-items: flex-end; justify-content: flex-end;
+    font: 500 20px/1 var(--xl-caps);
+    letter-spacing: .04em;
+    color: #000;
+    background:
+      linear-gradient(90deg,
+        var(--xl-lilac) 0 calc(var(--xl-arm) + 40px), #000 0 calc(var(--xl-arm) + 46px),
+        var(--xl-accent) 0 52%, #000 0 calc(52% + 6px),
+        var(--xl-tanoi) 0 calc(100% - 40px), #000 0 calc(100% - 34px),
+        var(--xl-bell) 0);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+    pointer-events: none;
+    z-index: 4;
+  }
+}
+
+/* ---------- space panel = LCARS arm, spaces are Program Manager groups ---------- */
+html[data-tl-theme="x-win311-lcars"] .mx_SpacePanel {
+  box-sizing: border-box;
+  width: var(--xl-arm) !important;
+  background: #000;
+  padding: 0 !important;
+  margin-right: var(--xl-gap);
+  border: 0;
+  counter-reset: xl-space;
+  & .mx_UserMenu {
+    margin: 0 !important;
+    padding: 8px 10px 8px 0;
+    background: var(--xl-lilac);
+    display: flex; justify-content: flex-end;
+    border-bottom: var(--xl-gap) solid #000;
+  }
+  & .mx_UserMenu [class*="_avatar_"] { border-radius: 0 !important; --cpd-avatar-radius: 0; box-shadow: 0 0 0 2px #000; }
+  & .mx_SpacePanel_toggleCollapse { display: none; }
+  & .mx_SpaceTreeLevel {
+    display: flex; flex-direction: column; gap: var(--xl-gap);
+    padding: 0 !important; margin: 0 !important; width: 100% !important;
+    scrollbar-width: none;
+  }
+  & > .mx_SpaceTreeLevel::after { content: ""; flex: 1 0 20px; background: var(--xl-bell); }
+  & .mx_SpaceItem { width: 100% !important; padding: 0 !important; margin: 0 !important; counter-increment: xl-space; }
+  & .mx_SpaceButton {
+    position: relative;
+    width: 100% !important; min-height: 64px;
+    margin: 0 !important; padding: 6px 8px !important;
+    border-radius: 0 !important;
+    background: var(--xl-sp, var(--xl-tanoi));
+    box-shadow: none;
+    display: flex !important; align-items: flex-start;
+  }
+  & > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(4n+1) > .mx_SpaceButton { --xl-sp: var(--xl-tanoi); }
+  & > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(4n+2) > .mx_SpaceButton { --xl-sp: var(--xl-bell); }
+  & > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(4n+3) > .mx_SpaceButton { --xl-sp: var(--xl-peel); }
+  & > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(4n+4) > .mx_SpaceButton { --xl-sp: var(--xl-melrose); }
+  & .mx_SpaceButton.mx_SpaceButton_active { --xl-sp: var(--xl-accent) !important; }
+  & .mx_SpaceButton:hover { filter: brightness(1.15); }
+  & .mx_SpaceButton::after {
+    content: counter(xl-space, decimal-leading-zero) "-" "GRP";
+    position: absolute; right: 8px; bottom: 4px;
+    font: 500 15px/1 var(--xl-caps); letter-spacing: .04em; color: #000;
+  }
+  & .mx_SpaceButton_selectionWrapper { background: transparent !important; padding: 0 !important; border: 0 !important; box-shadow: none !important; }
+  /* Program Manager group icon: avatar in a tiny Win 3.1 window frame */
+  & .mx_SpaceButton [class*="_avatar_"] {
+    --cpd-avatar-radius: 0;
+    border-radius: 0 !important;
+    box-shadow: 0 0 0 1px #000, 0 0 0 3px #c0c0c0, 0 0 0 4px #000;
+    filter: saturate(.6) contrast(1.1);
+  }
+  & .mx_SpaceButton_icon { background: #000 !important; border-radius: 0 !important; }
+  & .mx_SpaceButton_icon::before { background-color: var(--xl-sp, var(--xl-tanoi)) !important; }
+  & .mx_SpacePanel_badgeContainer { position: absolute; left: 44px; top: 2px; }
+  & .mx_ThreadsActivityCentre_container {
+    margin: var(--xl-gap) 0 0 !important; padding: 6px 0 !important;
+    background: var(--xl-rose); display: flex; justify-content: center;
+  }
+  & .mx_QuickSettingsButton {
+    width: 100% !important; margin: var(--xl-gap) 0 0 !important; border-radius: 0 !important;
+    background: var(--xl-lilac) !important; height: 48px !important;
+  }
+  & .mx_ThreadsActivityCentreButton, & .mx_QuickSettingsButton { color: #000 !important; }
+  & .mx_ThreadsActivityCentreButton svg, & .mx_QuickSettingsButton svg { color: #000; }
+  & .mx_QuickSettingsButton::before, & .mx_ThreadsActivityCentreButton::before { background-color: #000 !important; }
+}
+
+/* ---------- MDI child windows: black client area, blue-bell sizing band ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & .mx_MatrixChat > [data-group] { padding: 4px var(--xl-gap) 4px 0; box-sizing: border-box; background: #000; }
+  & .mx_MatrixChat > [data-group] > .mx_Separator { background: transparent !important; width: var(--xl-gap); }
+  & .mx_MatrixChat > [data-group] > .mx_Separator * { background: transparent !important; }
+  & #left-panel > .mx_LeftPanel_panel,
+  & .mx_MainSplit > .mx_RoomView_body,
+  & .mx_RightPanel {
+    box-sizing: border-box;
+    border: 1px solid #000;
+    box-shadow: 0 0 0 3px var(--xl-bell), 0 0 0 4px #000;
+    margin: 4px;
+    background: #000;
+    overflow: clip !important;
+  }
+  & .mx_MainSplit > .mx_RoomView_body { margin-right: 8px; }
+  & .mx_RightPanel_ResizeWrapper { background: transparent; padding: 4px; box-sizing: border-box; }
+  & .mx_RightPanel_ResizeWrapper > .mx_RightPanel { margin: 0 !important; height: 100%; border-radius: 0; }
+  /* active window → tangerine sizing band */
+  & #left-panel > .mx_LeftPanel_panel:focus-within,
+  & .mx_RightPanel:focus-within,
+  & [data-group]:not(:has(#left-panel :focus, .mx_RightPanel :focus)) .mx_MainSplit > .mx_RoomView_body {
+    box-shadow: 0 0 0 3px var(--xl-accent), 0 0 0 4px #000;
+  }
+}
+
+/* ---------- title bars (room list, room, right panel cards) ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & .mx_RoomListPanel > header[class*="_header_"],
+  & .mx_RoomHeader,
+  & .mx_RightPanel .mx_BaseCard_header {
+    position: relative;
+    box-sizing: border-box;
+    height: calc(var(--xl-title-h) + 1px) !important;
+    min-height: 0 !important;
+    padding: 0 42px 0 22px !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid #000 !important;
+    background: var(--xl-bell) !important;
+    color: #000;
+    gap: 2px !important;
+    flex: 0 0 auto;
+    &::before {
+      content: ""; position: absolute; left: 0; top: 0; width: 20px; height: var(--xl-title-h);
+      background: url("@win311/assets/ctl-mdi.svg") 1px 2px / 18px 18px no-repeat;
+      pointer-events: none;
+    }
+    &::after {
+      content: ""; position: absolute; right: 2px; top: 2px; width: 38px; height: 18px;
+      background:
+        url("@win311/assets/btn-min.svg") 0 0 / 19px 18px no-repeat,
+        url("@win311/assets/btn-max.svg") 19px 0 / 19px 18px no-repeat;
+      pointer-events: none;
+    }
+    & h1, & h2, & .mx_RoomHeader_heading, & [class*="_heading_"] {
+      font: 600 17px/var(--xl-title-h) var(--xl-caps) !important;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #000 !important;
+      text-align: center;
+    }
+    & button, & [class*="_icon-button_"] { color: #000 !important; }
+    & svg { color: #000; }
+    & [class*="_avatar_"] { display: none; }
+  }
+  & .mx_RoomHeader { order: -2; }
+  & .mx_RoomHeader .mx_RoomHeader_infoWrapper { justify-content: center; flex: 1 1 auto; }
+  & .mx_RoomHeader .mx_RoomHeader_info { justify-content: center; }
+  & .mx_RoomHeader [class*="_icon-button_"], & .mx_RoomHeader .tl-header-button { width: 22px !important; height: 22px !important; padding: 2px !important; }
+  & .mx_RoomHeader .mx_FacePile { display: none; }
+  /* active title */
+  & #left-panel:focus-within .mx_RoomListPanel > header[class*="_header_"],
+  & .mx_RightPanel:focus-within .mx_BaseCard_header,
+  & [data-group]:not(:has(#left-panel :focus, .mx_RightPanel :focus)) .mx_RoomHeader {
+    background: var(--xl-accent) !important;
+  }
+}
+
+/* menu bar under the room's title bar */
+html[data-tl-theme="x-win311-lcars"] .mx_RoomView_body::before {
+  content: "ROOM   EDIT   VIEW   CALL   HELP";
+  order: -1;
+  display: block;
+  flex: 0 0 auto;
+  height: 22px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--xl-bell);
+  font: 500 16px/22px var(--xl-caps);
+  letter-spacing: .06em;
+  white-space: pre;
+  color: var(--xl-tanoi);
+  background: #000;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+}
+
+/* ---------- room list = "ROOMS" group window, list-box rows ---------- */
+html[data-tl-theme="x-win311-lcars"] .mx_RoomListPanel {
+  background: #000;
+  gap: 0;
+  & > header[class*="_header_"] { order: -2; display: flex; align-items: center; }
+  & > header[class*="_header_"] [class*="_container_"] { width: 100%; justify-content: center; gap: 2px; padding: 0 !important; }
+  & > header[class*="_header_"] button { width: 20px !important; height: 20px !important; padding: 0; border-radius: 0; }
+  & > [role="search"] {
+    order: -1; padding: 6px; margin: 0; border-bottom: 1px solid var(--xl-bell);
+    & button[class*="_search_"] { border-radius: 0; border: 1px solid var(--xl-bell); background: #000; color: var(--xl-muted); height: 26px; }
+  }
+  & [class*="_roomListPrimaryFilters_"] { padding: 6px; border-bottom: 1px solid var(--xl-bell); }
+  & [class*="_chat-filter_"] {
+    border-radius: 999px; border: 1px solid #000; background: var(--xl-lilac); color: #000;
+    box-shadow: var(--xl-bevel); font: 500 15px/1 var(--xl-caps); text-transform: uppercase; letter-spacing: .04em;
+    padding: 4px 12px 3px; height: 24px;
+  }
+  & [class*="_chat-filter_"][aria-selected="true"] { background: var(--xl-accent); box-shadow: var(--xl-bevel-pressed); }
+}
+html[data-tl-theme="x-win311-lcars"] .mx_RoomListItemView {
+  border-radius: 0 !important;
+  background: transparent !important;
+  min-height: 34px;
+  & [class*="_container_"] { background: transparent !important; border-radius: 0 !important; gap: 8px; }
+  & [class*="_container_"]::before { display: none !important; }
+  & [class*="_avatar_"] { --cpd-avatar-size: 20px !important; width: 20px !important; height: 20px !important; border-radius: 0 !important; --cpd-avatar-radius: 0; filter: saturate(.6); }
+  & .mx_RoomAvatarView_PresenceDecoration { display: none; }
+  & [class*="_content_"] { border: 0 !important; }
+  & [class*="_roomName_"] { color: var(--xl-text); padding: 0 3px; font-size: 16px; }
+  &:hover [class*="_roomName_"] { color: #fff; }
+  &.mx_RoomListItemView_selected [class*="_roomName_"] { background: var(--xl-accent); color: #000; }
+  /* unread count the 1992 way: "(3)" */
+  & [class*="_unread-counter_"] { background: transparent !important; color: var(--xl-gold); padding: 0; min-width: 0; font-weight: 400; }
+  & [class*="_unread-counter_"]::before { content: "("; }
+  & [class*="_unread-counter_"]::after { content: ")"; }
+  & [class*="_notificationDecoration_"] svg { color: var(--xl-rose); }
+}
+html[data-tl-theme="x-win311-lcars"] [class*="_roomListSectionHeader_"],
+html[data-tl-theme="x-win311-lcars"] .mx_RoomListPanel [class*="_header_"]:not(header) [class*="_title_"] {
+  font: 500 15px/1 var(--xl-caps);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--xl-lilac);
+}
+
+/* ---------- timeline: black client area, IRC flavour ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & .mx_RoomView_MessageList { background: #000; }
+  & .mx_EventTile [class*="_line_"], & .mx_EventTile .mx_EventTile_line { border-radius: 0; font-size: 16px; line-height: 1.35; }
+  & .mx_EventTile:hover [class*="_line_"], & .mx_EventTile[class*="_stateActionBarFocused_"] [class*="_line_"] { background: #10101c; }
+  & .mx_EventTile[class*="_stateHighlighted_"] [class*="_line_"] { background: #2a1010; box-shadow: inset 4px 0 0 var(--xl-rose); }
+  & .mx_DisambiguatedProfile, & [class*="_disambiguatedProfile_"] {
+    font: 600 17px/1.2 var(--xl-caps); text-transform: uppercase; letter-spacing: .05em;
+  }
+  & .mx_DisambiguatedProfile [class*="_displayName_"]::before, & .mx_DisambiguatedProfile_displayName::before { content: "<"; }
+  & .mx_DisambiguatedProfile [class*="_displayName_"]::after, & .mx_DisambiguatedProfile_displayName::after { content: ">"; }
+  & .mx_EventTile [class*="_avatar_"] { --cpd-avatar-radius: 0; border-radius: 0 !important; box-shadow: 0 0 0 2px var(--xl-bell); filter: saturate(.6) contrast(1.1); }
+  & .mx_MessageTimestamp { color: var(--xl-muted); font-family: var(--xl-mono); }
+  & .mx_MessageTimestamp::before { content: "["; }
+  & .mx_MessageTimestamp::after { content: "]"; }
+  & .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"] { background: #0d0d14; border: 1px solid var(--xl-bell); border-radius: 0; }
+  & .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] [class*="_line_"] { background: var(--xl-own); border-color: var(--xl-accent); }
+  & .mx_EventTile_body a { color: var(--xl-anakiwa); }
+  & .mx_TimelineSeparator { font: 500 16px/1 var(--xl-caps); text-transform: uppercase; letter-spacing: .08em; color: var(--xl-lilac); }
+  & .mx_TimelineSeparator > hr { border-color: var(--xl-lilac); border-width: 0 0 4px; border-radius: 4px; }
+  & .mx_Pill { border-radius: 999px; font-family: var(--xl-caps); text-transform: uppercase; letter-spacing: .03em; }
+  & .mx_ReactionsRowButton { border-radius: 999px; background: #000; border: 1px solid var(--xl-bell); }
+  & .mx_ReactionsRowButton_selected { background: #33260f; border-color: var(--xl-accent); }
+  & .mx_MessageActionBar, & [class*="_toolbar_"]:has([class*="_toolbar_item_"]) {
+    background: #c0c0c0; border: 1px solid #000; border-radius: 0; box-shadow: var(--xl-bevel);
+  }
+  & .mx_MessageActionBar *, & [class*="_toolbar_item_"] { color: #000 !important; }
+  & .mx_EventTile_body pre, & .mx_EventTile_pre_container {
+    background: #000 !important; border: 1px solid var(--xl-bell); border-left: 12px solid var(--xl-bell); border-radius: 0;
+  }
+  & pre, & code { font-family: var(--xl-mono) !important; font-size: 16px; }
+  & pre code [class^="hljs-"] { color: var(--xl-text); }
+  & pre code .hljs-keyword, & pre code .hljs-built_in { color: var(--xl-accent); }
+  & pre code .hljs-title { color: var(--xl-gold); }
+  & pre code .hljs-string { color: var(--xl-anakiwa); }
+  & pre code .hljs-number, & pre code .hljs-literal { color: var(--xl-peel); }
+  & pre code .hljs-comment { color: var(--xl-muted); }
+  & pre code .hljs-variable, & pre code .hljs-attr { color: var(--xl-lilac); }
+  & .mx_EventTile_body code:not(pre code) { background: #1a1a2a; border-radius: 0; color: var(--xl-gold); }
+}
+
+/* ---------- composer: bottom bar with a black edit slot + TRANSMIT ---------- */
+html[data-tl-theme="x-win311-lcars"] .mx_MessageComposer {
+  background: #000;
+  border-top: 6px solid var(--xl-peel);
+  & .mx_MessageComposer_wrapper { padding: 8px 10px; }
+  & .mx_SendMessageComposer, & .mx_WysiwygComposer_Editor {
+    background: #000;
+    border: 1px solid var(--xl-bell);
+    border-radius: 0;
+    padding: 4px 8px;
+  }
+  & .mx_SendMessageComposer:focus-within { border-color: var(--xl-accent); }
+  & .mx_BasicMessageComposer_input { caret-color: var(--xl-accent); caret-shape: block; font-size: 16px; }
+  & .mx_BasicMessageComposer_input:focus-visible { outline: none !important; box-shadow: none !important; }
+  & .mx_MessageComposer_actions .mx_MessageComposer_button,
+  & .mx_MessageComposer_actions [class*="_icon-button_"] {
+    background: var(--xl-lilac) !important; color: #000 !important;
+    border: 1px solid #000; border-radius: 999px; box-shadow: var(--xl-bevel);
+  }
+  & .mx_MessageComposer_actions .mx_MessageComposer_button::before { background-color: #000 !important; }
+  & .mx_MessageComposer_actions svg, & .mx_MessageComposer_actions svg * { color: #000; fill: #000; }
+  & .mx_MessageComposer_sendMessage {
+    width: auto !important; min-width: 96px; border-radius: 999px !important;
+    background: var(--xl-accent) !important; outline: 2px solid #000; box-shadow: var(--xl-bevel);
+  }
+  & .mx_MessageComposer_sendMessage svg { display: none; }
+  & .mx_MessageComposer_sendMessage::after { content: "TRANSMIT"; font: 600 16px/1 var(--xl-caps); letter-spacing: .05em; color: #000; padding: 0 10px; }
+}
+
+/* ---------- right panel ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & .mx_RightPanel, & .mx_BaseCard { background: #000; }
+  & .mx_RightPanel [class*="_avatar_"] { --cpd-avatar-radius: 0; border-radius: 0 !important; }
+}
+
+/* ---------- buttons: LCARS pills with Win 3.1 outline + bevel ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & [class*="_button_"][data-kind], & .mx_AccessibleButton_hasKind:not(.mx_AccessibleButton_kind_link):not(.mx_AccessibleButton_kind_link_inline) {
+    border-radius: 999px !important;
+    border: 1px solid #000 !important;
+    box-shadow: var(--xl-bevel);
+    font-family: var(--xl-caps) !important;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 600;
+    color: #000 !important;
+  }
+  & [class*="_button_"][data-kind="primary"], & .mx_AccessibleButton_kind_primary { background: var(--xl-accent) !important; outline: 1px solid #000; }
+  & [class*="_button_"][data-kind="secondary"], & .mx_AccessibleButton_kind_primary_outline, & .mx_AccessibleButton_kind_secondary { background: var(--xl-lilac) !important; }
+  & [class*="_button_"][data-kind="tertiary"] { background: var(--xl-bell) !important; }
+  & .mx_AccessibleButton_kind_danger, & [class*="_button_"][class*="_destructive_"] { background: var(--xl-rose) !important; }
+  & [class*="_button_"][data-kind]:active, & .mx_AccessibleButton_hasKind:active { box-shadow: var(--xl-bevel-pressed); translate: 1px 1px; }
+  & [class*="_button_"][data-kind] svg { color: #000; }
+  & .mx_AccessibleButton_kind_link, & .mx_AccessibleButton_kind_link_inline { color: var(--xl-anakiwa); }
+  /* inputs: Win 3.1 flat edit field */
+  & .mx_Field { border-radius: 0; border: 1px solid var(--xl-bell); background: #000; }
+  & .mx_Field:focus-within { border-color: var(--xl-accent); }
+  & .mx_Field label { background: #000 !important; color: var(--xl-muted); }
+  & .mx_Field input, & .mx_Field textarea, & .mx_Field select { caret-color: var(--xl-accent); }
+  & .mx_ToggleSwitch { border-radius: 999px; background: #1a1a2a; border: 1px solid var(--xl-bell); }
+  & .mx_ToggleSwitch_on { background: var(--xl-accent); }
+  & input[type="checkbox"], & input[type="radio"] { accent-color: var(--xl-accent); }
+}
+
+/* ---------- dialogs: Win 3.1 modal (double frame) coloured LCARS ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & .mx_Dialog_border { background: transparent; padding: 0; border-radius: 0; box-shadow: none; backdrop-filter: none; }
+  & .mx_Dialog_background { background: #000; opacity: .7 !important; }
+  & .mx_Dialog {
+    position: relative;
+    background: #000;
+    border: 1px solid #000;
+    border-radius: 0;
+    box-shadow: 0 0 0 4px var(--xl-accent), 0 0 0 5px #000, 0 0 0 7px var(--xl-accent);
+    padding-top: calc(var(--xl-title-h) + 20px) !important;
+    color: var(--xl-text);
+  }
+  & .mx_Dialog::before {
+    content: "47-1138";
+    position: absolute; left: 0; right: 0; top: 0; height: var(--xl-title-h);
+    background: url("@win311/assets/ctl-mdi.svg") 1px 2px / 18px 18px no-repeat, var(--xl-accent);
+    border-bottom: 1px solid #000;
+    font: 600 16px/var(--xl-title-h) var(--xl-caps); letter-spacing: .05em; text-align: center; color: #000;
+    pointer-events: none;
+  }
+  & .mx_Dialog_title { font: 600 24px/1.1 var(--xl-caps); text-transform: uppercase; letter-spacing: .04em; color: var(--xl-accent); }
+  & .mx_Dialog_cancelButton { top: calc(var(--xl-title-h) + 8px) !important; }
+  & .mx_TabbedView_tabLabel {
+    border-radius: 0; margin-bottom: 4px; background: var(--xl-bell); color: #000;
+    font: 600 16px/1 var(--xl-caps); text-transform: uppercase; letter-spacing: .04em; justify-content: flex-end;
+  }
+  & .mx_TabbedView_tabLabel svg, & .mx_TabbedView_tabLabel .mx_TabbedView_maskedIcon { color: #000; }
+  & .mx_TabbedView_tabLabel .mx_TabbedView_maskedIcon::before { background-color: #000; }
+  & .mx_TabbedView_tabLabel:hover { filter: brightness(1.15); background: var(--xl-bell); }
+  & .mx_TabbedView_tabLabel_active { background: var(--xl-accent); color: #000; }
+}
+
+/* ---------- menus & tooltips ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & .mx_ContextualMenu, & [role="menu"], & .mx_IconizedContextMenu {
+    background: #000; border: 1px solid var(--xl-bell); border-radius: 0; box-shadow: none;
+  }
+  & [role="menuitem"]:hover, & .mx_IconizedContextMenu_option:hover { background: var(--xl-accent); color: #000; }
+  & [role="menuitem"]:hover *, & .mx_IconizedContextMenu_option:hover * { color: #000; }
+  & [role="tooltip"], & [class*="_tooltip_"] { background: var(--xl-tanoi); color: #000; border-radius: 0 999px 999px 0; }
+  & [role="tooltip"] *, & [class*="_tooltip_"] * { color: #000; }
+  & .mx_Toast_toast { background: #000; border: 1px solid var(--xl-accent); border-radius: 0; }
+}
+
+/* ---------- badges ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & [class*="_notificationBadge_"] { background: var(--xl-accent) !important; color: #000 !important; border-radius: 0 !important; font-family: var(--xl-caps); }
+  & [class*="_notificationBadge_"][class*="_highlight_"] { background: var(--xl-rose) !important; }
+}
+
+/* ---------- auth: LCARS frame + Win 3.1 log-on dialog ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & .mx_AuthPage { background: #000 !important; }
+  & .mx_AuthPage_modalBlur { display: none; }
+  & .mx_AuthPage_modal {
+    position: relative; border-radius: 0; background: #000;
+    box-shadow: 0 0 0 4px var(--xl-accent), 0 0 0 5px #000, 0 0 0 7px var(--xl-accent) !important;
+    padding-top: var(--xl-title-h);
+  }
+  & .mx_AuthPage_modal::before {
+    content: "LCARS ACCESS 40274 — LOG ON";
+    position: absolute; left: 0; right: 0; top: 0; height: var(--xl-title-h);
+    background: url("@win311/assets/ctl-mdi.svg") 1px 2px / 18px 18px no-repeat, var(--xl-accent);
+    font: 600 16px/var(--xl-title-h) var(--xl-caps); letter-spacing: .05em; text-align: center; color: #000;
+  }
+  & .mx_AuthPage_modalContent { background: #000 !important; }
+  & .mx_AuthHeaderLogo img { filter: sepia(1) saturate(4) hue-rotate(-10deg); }
+  & .mx_AuthFooter { background: transparent; opacity: 1; }
+  & .mx_AuthFooter a { color: var(--xl-lilac) !important; font-family: var(--xl-caps); text-transform: uppercase; }
+}
+
+/* ---------- widgets / calls ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & .mx_AppTileMenuBar { background: var(--xl-bell); color: #000; }
+  & .mx_AppTile { border: 1px solid #000; box-shadow: 0 0 0 3px var(--xl-bell); border-radius: 0; }
+}
+
+/* ---------- motion: Win 3.1 zoom rectangle on dialog open, LCARS press glow ---------- */
+html[data-tl-theme="x-win311-lcars"] {
+  & .mx_Dialog { animation: xl-zoom 120ms steps(4, end); }
+  & .mx_SpaceButton, & [class*="_button_"][data-kind] { transition: filter 80ms; }
+  & .mx_SpaceButton:active, & [class*="_button_"][data-kind]:active { filter: brightness(1.15); }
+}
+@keyframes xl-zoom {
+  from { clip-path: inset(45% 45% 45% 45%); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* ---------- narrow screens: thinner arm, shorter caption ---------- */
+@media (max-width: 600px) {
+  html[data-tl-theme="x-win311-lcars"] { --xl-arm: 60px; --xl-top: 36px; }
+  html[data-tl-theme="x-win311-lcars"] .mx_MatrixChat_wrapper::after { content: "LCARS 40274"; font-size: 16px; padding-right: 36px; }
+  html[data-tl-theme="x-win311-lcars"] .mx_SpacePanel .mx_SpaceButton::after { content: counter(xl-space, decimal-leading-zero); }
+  html[data-tl-theme="x-win311-lcars"] .mx_RoomView_body::before { content: "ROOM  EDIT  VIEW"; }
+}

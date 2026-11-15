@@ -65,22 +65,6 @@
           "style": "italic"
         }
       ],
-      "tokens": {
-        "--cpd-color-bg-canvas-default": "#FBFBF8",
-        "--cpd-color-bg-subtle-secondary": "#FBFBF8",
-        "--cpd-color-bg-subtle-primary": "#F4F3EE",
-        "--cpd-color-text-primary": "#1A1A1A",
-        "--cpd-color-text-secondary": "#6B6B6B",
-        "--cpd-color-text-action-accent": "#0B6BCB",
-        "--cpd-color-text-link-external": "#0B6BCB",
-        "--cpd-color-border-interactive-secondary": "#E6E4DF",
-        "--cpd-color-border-focused": "#0B6BCB",
-        "--cpd-color-icon-primary": "#1A1A1A",
-        "--cpd-color-icon-secondary": "#6B6B6B",
-        "--cpd-color-icon-tertiary": "#6B6B6B",
-        "--cpd-color-text-critical-primary": "#B3261E",
-        "--cpd-color-text-success-primary": "#2E7D32"
-      },
       "enhance": false,
       "schedule": null
     },
@@ -147,22 +131,6 @@
           "style": "italic"
         }
       ],
-      "tokens": {
-        "--cpd-color-bg-canvas-default": "#FCFCFA",
-        "--cpd-color-bg-subtle-secondary": "#FCFCFA",
-        "--cpd-color-bg-subtle-primary": "#FCFCFA",
-        "--cpd-color-text-primary": "#1A1A1A",
-        "--cpd-color-text-secondary": "#6B6B6B",
-        "--cpd-color-text-action-accent": "#0B6BCB",
-        "--cpd-color-text-link-external": "#0B6BCB",
-        "--cpd-color-border-interactive-secondary": "#EDEDEA",
-        "--cpd-color-border-focused": "#0B6BCB",
-        "--cpd-color-icon-primary": "#1A1A1A",
-        "--cpd-color-icon-secondary": "#6B6B6B",
-        "--cpd-color-icon-tertiary": "#6B6B6B",
-        "--cpd-color-text-critical-primary": "#B3261E",
-        "--cpd-color-text-success-primary": "#2E7D32"
-      },
       "enhance": true,
       "schedule": null
     },
@@ -229,22 +197,6 @@
           "style": "italic"
         }
       ],
-      "tokens": {
-        "--cpd-color-bg-canvas-default": "#FFFFFF",
-        "--cpd-color-bg-subtle-secondary": "#FFFFFF",
-        "--cpd-color-bg-subtle-primary": "#FFFFFF",
-        "--cpd-color-text-primary": "#222222",
-        "--cpd-color-text-secondary": "#767676",
-        "--cpd-color-text-action-accent": "#505050",
-        "--cpd-color-text-link-external": "#505050",
-        "--cpd-color-border-interactive-secondary": "#F7F7F7",
-        "--cpd-color-border-focused": "#222222",
-        "--cpd-color-icon-primary": "#222222",
-        "--cpd-color-icon-secondary": "#767676",
-        "--cpd-color-icon-tertiary": "#767676",
-        "--cpd-color-text-critical-primary": "#B3261E",
-        "--cpd-color-text-success-primary": "#2E7D32"
-      },
       "enhance": true,
       "schedule": null
     },
@@ -311,22 +263,6 @@
           "style": "italic"
         }
       ],
-      "tokens": {
-        "--cpd-color-bg-canvas-default": "#0E0E0E",
-        "--cpd-color-bg-subtle-secondary": "#0E0E0E",
-        "--cpd-color-bg-subtle-primary": "#151515",
-        "--cpd-color-text-primary": "#E8E6E1",
-        "--cpd-color-text-secondary": "#9A9893",
-        "--cpd-color-text-action-accent": "#6CB6FF",
-        "--cpd-color-text-link-external": "#6CB6FF",
-        "--cpd-color-border-interactive-secondary": "#242424",
-        "--cpd-color-border-focused": "#6CB6FF",
-        "--cpd-color-icon-primary": "#E8E6E1",
-        "--cpd-color-icon-secondary": "#9A9893",
-        "--cpd-color-icon-tertiary": "#9A9893",
-        "--cpd-color-text-critical-primary": "#FF7B72",
-        "--cpd-color-text-success-primary": "#5FD08A"
-      },
       "enhance": false,
       "schedule": null
     },
@@ -393,22 +329,6 @@
           "style": "italic"
         }
       ],
-      "tokens": {
-        "--cpd-color-bg-canvas-default": "#0C0C0C",
-        "--cpd-color-bg-subtle-secondary": "#0C0C0C",
-        "--cpd-color-bg-subtle-primary": "#0C0C0C",
-        "--cpd-color-text-primary": "#E8E6E1",
-        "--cpd-color-text-secondary": "#9A9893",
-        "--cpd-color-text-action-accent": "#6CB6FF",
-        "--cpd-color-text-link-external": "#6CB6FF",
-        "--cpd-color-border-interactive-secondary": "#1A1A1A",
-        "--cpd-color-border-focused": "#6CB6FF",
-        "--cpd-color-icon-primary": "#E8E6E1",
-        "--cpd-color-icon-secondary": "#9A9893",
-        "--cpd-color-icon-tertiary": "#9A9893",
-        "--cpd-color-text-critical-primary": "#FF7B72",
-        "--cpd-color-text-success-primary": "#5FD08A"
-      },
       "enhance": true,
       "schedule": null
     },
@@ -475,22 +395,6 @@
           "style": "italic"
         }
       ],
-      "tokens": {
-        "--cpd-color-bg-canvas-default": "#0A0A0A",
-        "--cpd-color-bg-subtle-secondary": "#0A0A0A",
-        "--cpd-color-bg-subtle-primary": "#0A0A0A",
-        "--cpd-color-text-primary": "#D6D4CF",
-        "--cpd-color-text-secondary": "#7E7E7E",
-        "--cpd-color-text-action-accent": "#BDBDBD",
-        "--cpd-color-text-link-external": "#BDBDBD",
-        "--cpd-color-border-interactive-secondary": "#121212",
-        "--cpd-color-border-focused": "#D6D4CF",
-        "--cpd-color-icon-primary": "#D6D4CF",
-        "--cpd-color-icon-secondary": "#7E7E7E",
-        "--cpd-color-icon-tertiary": "#7E7E7E",
-        "--cpd-color-text-critical-primary": "#FF7B72",
-        "--cpd-color-text-success-primary": "#5FD08A"
-      },
       "enhance": true,
       "schedule": null
     },
@@ -557,22 +461,6 @@
           "style": "italic"
         }
       ],
-      "tokens": {
-        "--cpd-color-bg-canvas-default": "#FFFFFF",
-        "--cpd-color-bg-subtle-secondary": "#FFFFFF",
-        "--cpd-color-bg-subtle-primary": "#F5F5F2",
-        "--cpd-color-text-primary": "#1A1A1A",
-        "--cpd-color-text-secondary": "#6B6B6B",
-        "--cpd-color-text-action-accent": "#0B6BCB",
-        "--cpd-color-text-link-external": "#0B6BCB",
-        "--cpd-color-border-interactive-secondary": "#E8E8E4",
-        "--cpd-color-border-focused": "#0B6BCB",
-        "--cpd-color-icon-primary": "#1A1A1A",
-        "--cpd-color-icon-secondary": "#6B6B6B",
-        "--cpd-color-icon-tertiary": "#6B6B6B",
-        "--cpd-color-text-critical-primary": "#B3261E",
-        "--cpd-color-text-success-primary": "#2E7D32"
-      },
       "enhance": false,
       "schedule": [
         {

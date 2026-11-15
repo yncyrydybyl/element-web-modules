@@ -2,3 +2,7 @@
 node_modules/
 recordings/raw/
 .playwright-mcp/
+recordings/screens/**
+!recordings/screens/*/
+!recordings/screens/*/hero.png
+recordings/walkthroughs/*.webm
