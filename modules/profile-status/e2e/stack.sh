@@ -8,7 +8,7 @@
 #     turns on Element's own MSC4426 implementation (labs "feature_user_status", default on in 1.12.33
 #     when the server supports it), to test the module side by side with it.
 #     Carol's profile card is prefilled through the admin's token, the way an IdP/HR sync would.
-#   - Element Web v1.12.33 on http://127.0.0.1:${PS_EL_PORT:-5813}, lib/ mounted at /modules/profile-status
+#   - Element Web v1.12.36 on http://127.0.0.1:${PS_EL_PORT:-5813}, lib/ mounted at /modules/profile-status
 # State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -60,7 +60,7 @@ JSON
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" -v "$PWD/lib:/modules/profile-status:ro,z" \
-      ghcr.io/element-hq/element-web:v1.12.33 >/dev/null
+      ghcr.io/element-hq/element-web:v1.12.36 >/dev/null
     for _ in $(seq 30); do curl -sf "http://127.0.0.1:$EL_PORT/modules/profile-status/index.js" >/dev/null && break; sleep 1; done
     echo "Synapse $HSURL  Element http://127.0.0.1:$EL_PORT  (alice / alice-pass, bob / bob-pass, carol / carol-pass, admin / admin-pass)" ;;
   down) podman rm -f "$EL" "$HS" >/dev/null 2>&1 || true ;;

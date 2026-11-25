@@ -4,7 +4,7 @@
 #     (alice-pass), bob and carol. Space "Acme" (alice is admin) with a well-kept room, rooms that
 #     break policies, one where alice has no power, one she isn't in, and a sub-space "Teams";
 #     space "Camp" belongs to bob, so alice can't change its policies.
-#   - Element Web ${RC_ELEMENT:-v1.12.33} on http://127.0.0.1:${RC_EL_PORT:-5807}, lib/ mounted at /modules/room-checker
+#   - Element Web ${RC_ELEMENT:-v1.12.36} on http://127.0.0.1:${RC_EL_PORT:-5807}, lib/ mounted at /modules/room-checker
 # State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down | reset
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -47,7 +47,7 @@ JSON
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" -v "$PWD/lib:/modules/room-checker:ro,z" \
-      "ghcr.io/element-hq/element-web:${RC_ELEMENT:-v1.12.33}" >/dev/null
+      "ghcr.io/element-hq/element-web:${RC_ELEMENT:-v1.12.36}" >/dev/null
     for _ in $(seq 30); do curl -sf "http://127.0.0.1:$EL_PORT/modules/room-checker/index.js" >/dev/null && break; sleep 1; done
     if [ "$fresh" = 1 ]; then
       for u in $USERS; do

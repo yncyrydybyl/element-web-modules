@@ -3,7 +3,7 @@
 #   - Synapse v1.162.0 on http://127.0.0.1:${SUITE_HS_PORT:-18485}, server name suite.test, with the
 #     homeserver settings from suite/README.md (delayed events, profile updates in sync), users alice,
 #     bob and carol (passwords <name>-pass), and the spaces #contoso and #engineering
-#   - Element Web v1.12.33 on http://127.0.0.1:${SUITE_EL_PORT:-5816} with every suite module's lib/
+#   - Element Web v1.12.36 on http://127.0.0.1:${SUITE_EL_PORT:-5816} with every suite module's lib/
 #     mounted under /modules/<name>, and the example config.json from suite/README.md
 # Builds a module first if its lib/ is missing. State lives in suite/e2e/.run/ (git-ignored).
 #   suite/e2e/stack.sh up | down
@@ -88,7 +88,7 @@ JSON
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" "${mounts[@]}" \
-      ghcr.io/element-hq/element-web:v1.12.33 >/dev/null
+      ghcr.io/element-hq/element-web:v1.12.36 >/dev/null
     for _ in $(seq 30); do curl -sf "http://127.0.0.1:$EL_PORT/modules/teams-welcome/index.js" >/dev/null && break; sleep 1; done
     echo "Synapse http://127.0.0.1:$HS_PORT  Element http://127.0.0.1:$EL_PORT  (alice / alice-pass, bob / bob-pass, carol / carol-pass)" ;;
   down) podman rm -f "$EL" "$HS" >/dev/null 2>&1 || true ;;

@@ -3,7 +3,7 @@
 #   - Synapse v1.162.0 on http://127.0.0.1:${SS_HS_PORT:-18459}, server name ss.test,
 #     users alice and bob (passwords alice-pass / bob-pass), a space "Team" and ${SS_ROOMS:-40} rooms
 #     with a message from bob each, so alice has a room list worth drawing
-#   - Element Web ${SS_ELEMENT:-v1.12.33} on http://127.0.0.1:${SS_EL_PORT:-5794}, lib/ mounted at /modules/speed-start
+#   - Element Web ${SS_ELEMENT:-v1.12.36} on http://127.0.0.1:${SS_EL_PORT:-5794}, lib/ mounted at /modules/speed-start
 # State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -48,7 +48,7 @@ JSON
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" -v "$PWD/lib:/modules/speed-start:ro,z" \
-      "ghcr.io/element-hq/element-web:${SS_ELEMENT:-v1.12.33}" >/dev/null
+      "ghcr.io/element-hq/element-web:${SS_ELEMENT:-v1.12.36}" >/dev/null
     for _ in $(seq 30); do curl -sf "http://127.0.0.1:$EL_PORT/modules/speed-start/index.js" >/dev/null && break; sleep 1; done
     if [ "$fresh" = 1 ]; then
       for u in alice bob; do

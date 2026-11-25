@@ -3,7 +3,7 @@
 # (rootless podman: UID=0 in the container is the calling user on the host, so e2e/.run stays yours)
 #   - Synapse  (matrixdotorg/synapse v1.162.0) on http://127.0.0.1:${MCM_HS_PORT:-18448}, server name marcade.test,
 #     users alice (room admin) and bob (plain member), passwords alice-pass / bob-pass
-#   - Element Web v1.12.30 (same image as opendesk-local) on http://127.0.0.1:${MCM_EL_PORT:-5791}
+#   - Element Web v1.12.36 (same image as opendesk-local) on http://127.0.0.1:${MCM_EL_PORT:-5791}
 #     with dist/ mounted at /modules/marcade (the image's entrypoint adds it to config.json)
 #   - a second Element on ${MCM_EL2_PORT:-5792} with "hide_integrations": true
 # State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down | logs
@@ -46,14 +46,14 @@ YAML
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" \
       -v "$PWD/dist:/modules/marcade:ro,z" \
-      docker.io/vectorim/element-web:v1.12.30 >/dev/null
+      ghcr.io/element-hq/element-web:v1.12.36 >/dev/null
     # second Element, same module, "hide_integrations": true
     jq '."de.minagawa.marcade_element_module".hide_integrations = true' "$RUN/element-config.json" > "$RUN/element-config-hide.json"
     podman rm -f "$EL2" >/dev/null 2>&1 || true
     podman run -d --name "$EL2" -p "127.0.0.1:$EL2_PORT:$EL2_PORT" -e ELEMENT_WEB_PORT="$EL2_PORT" \
       -v "$RUN/element-config-hide.json:/app/config.json:ro,z" \
       -v "$PWD/dist:/modules/marcade:ro,z" \
-      docker.io/vectorim/element-web:v1.12.30 >/dev/null
+      ghcr.io/element-hq/element-web:v1.12.36 >/dev/null
     for p in "$EL_PORT" "$EL2_PORT"; do
       for _ in $(seq 30); do curl -sf "http://127.0.0.1:$p/modules/marcade/index.js" >/dev/null && break; sleep 1; done
     done

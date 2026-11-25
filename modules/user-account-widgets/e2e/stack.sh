@@ -2,7 +2,7 @@
 # Throwaway test stack, nothing shared is touched (adapted from modules/text-reactions/e2e/stack.sh):
 #   - Synapse v1.162.0 on http://127.0.0.1:${UAW_HS_PORT:-18478}, server name uaw.test,
 #     users alice and bob (passwords alice-pass / bob-pass), rooms "Docs" (bob posted a PDF) and "Lunch"
-#   - Element Web v1.12.32 on http://127.0.0.1:${UAW_EL_PORT:-5808}, lib/ mounted at /modules/user-account-widgets,
+#   - Element Web v1.12.36 on http://127.0.0.1:${UAW_EL_PORT:-5808}, lib/ mounted at /modules/user-account-widgets,
 #     with the Marcade PDF viewer offered as a suggestion
 # State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down
 set -euo pipefail
@@ -45,7 +45,7 @@ JSON
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" -v "$PWD/lib:/modules/user-account-widgets:ro,z" \
-      ghcr.io/element-hq/element-web:v1.12.32 >/dev/null
+      ghcr.io/element-hq/element-web:v1.12.36 >/dev/null
     for _ in $(seq 30); do curl -sf "http://127.0.0.1:$EL_PORT/modules/user-account-widgets/index.js" >/dev/null && break; sleep 1; done
     # Two rooms; in "Docs" bob posts a PDF for alice's own PDF viewer to find.
     login() { curl -sf -X POST "http://127.0.0.1:$HS_PORT/_matrix/client/v3/login" -d "{\"type\":\"m.login.password\",\"identifier\":{\"type\":\"m.id.user\",\"user\":\"$1\"},\"password\":\"$1-pass\"}" | jq -r .access_token; }
