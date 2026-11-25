@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 // Mobile audit: runs Element Web under Playwright device emulation and records what breaks.
 //
-//   NODE_PATH=~/projects/matrix-search-widget/node_modules node mobile/test/audit.mjs \
+//   NODE_PATH=~/projects/matrix-search-widget/node_modules node mobile/e2e/audit.mjs \
 //       [--device iphone15|iphone15-land|pixel8|pixel8-land|all] [--base-url https://element.datanauten.de]
 //       [--anon-only] [--no-anon] [--with-module] [--out recordings/mobile]
 //
 // Output: recordings/mobile/<device>/NN-name.png + metrics.json (per device), recordings/mobile/summary.json.
 // Logged-in part uses the session pool of tests/harness (exclusive slot lock, never a new login). The anonymous part
 // (mobile-guide redirect, login) uses a fresh throw-away context.
-// --with-module: intercepts config.json and serves mobile/dist/ as /element-modules/mobile-themes/ (no deploy).
+// --with-module: intercepts config.json and serves mobile-themes/lib/ as /element-modules/mobile-themes/ (no deploy).
 //
 // Writes it makes on the server: read receipts in Showcase/Sandbox (like the harness). It never sends messages,
 // never reacts, never joins calls. Device-level settings that Element changes because of the narrow window
@@ -18,14 +18,14 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const H = await import(path.join(HERE, "../../tests/harness/lib.mjs"));
+const H = await import(path.join(HERE, "../../theme-loader/qa/harness/lib.mjs"));
 const { chromium, acquireSlot, fixtures, waitForApp, dismissNags, sleep, log, parseArgs, ensureDir, ROOT, STATE, HIDE_TOASTS_CSS } = H;
 const { devices } = H.req("playwright");
 
 const a = parseArgs(process.argv.slice(2), { device: "all", baseUrl: "https://element.datanauten.de", user: "themes-mira" });
 const BASE = a.baseUrl.replace(/\/$/, "");
 const OUT = ensureDir(path.resolve(ROOT, a.out || "recordings/mobile"));
-const MODULE_DIST = path.join(HERE, "../dist");
+const MODULE_DIST = path.join(HERE, "../lib");
 
 const land = (d) => ({ ...d, viewport: { width: d.viewport.height, height: d.viewport.width } });
 const DEVICES = {
@@ -96,7 +96,7 @@ function measure() {
 
 // ----------------------------------------------------------------------------------------- module interception
 async function routeModule(ctx) {
-    if (!fs.existsSync(path.join(MODULE_DIST, "index.js"))) throw new Error("mobile/dist/index.js missing: run `npm run build` in mobile/ first");
+    if (!fs.existsSync(path.join(MODULE_DIST, "index.js"))) throw new Error("lib/index.js missing: run `pnpm build` in modules/mobile-themes first");
     await ctx.route(/\/config(\.[^/]+)?\.json(\?.*)?$/, async (route) => {
         const res = await route.fetch();
         const c = await res.json();

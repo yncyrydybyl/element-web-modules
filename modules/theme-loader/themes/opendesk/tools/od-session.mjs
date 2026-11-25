@@ -4,7 +4,7 @@
 //   NODE_PATH=~/projects/matrix-search-widget/node_modules node themes/opendesk/tools/od-session.mjs [--base-url https://chat.od.blackpony.club] [--portal]
 import fs from 'node:fs';
 import path from 'node:path';
-import { launch, masterProfile, STATE, parseArgs, log } from '../../../tests/harness/lib.mjs';
+import { launch, masterProfile, STATE, parseArgs, log } from '../../../qa/harness/lib.mjs';
 
 const args = parseArgs(process.argv.slice(2), { 'base-url': 'https://chat.od.blackpony.club' });
 const base = args['base-url'];

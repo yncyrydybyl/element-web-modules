@@ -1,4 +1,4 @@
-import type { Enhancer, EnhancerContext } from "../../loader/src/types";
+import type { Enhancer, EnhancerContext } from "../../src/types";
 
 /*
  * paper enhancer (quiet + invisible stages only; L1 variants have "enhance": false).

@@ -1,19 +1,19 @@
 # theme-loader
 
-Element Web runtime module (module API `^1.14.0 || ^2.0.0`, built and tested against Element **1.12.33** / API 2.3.0)
-that applies the theme families in `../themes/` as described in [`../docs/CONTRACT.md`](../docs/CONTRACT.md).
+Element Web runtime module (module API `^1.14.0 || ^2.0.0`, built and tested against Element **1.12.33** and **1.12.36** / API 2.3.0)
+that applies the theme families in `themes/` as described in [`docs/CONTRACT.md`](docs/CONTRACT.md).
 
 ## For theme authors: the dev server
 
-One shared dev server serves a stock Element Web 1.12.33 that loads the loader, and the loader reads every theme
+One shared dev server serves a stock Element Web 1.12.36 that loads the loader, and the loader reads every theme
 file live from `themes/`. You don't need to build anything: edit, then reload the browser.
 
 ```sh
-cd ~/projects/element-web-themes/loader
-npm run dev          # starts it in the background on :5400; if it's already running it does nothing
-npm run dev:status   # {"ok":true,…,"errors":N}   (N = validation errors over all families)
-npm run dev:stop     # only if you really need to (it is shared by all theme agents)
-npm run check -- <family>   # validate one family on the command line (manifest, files, CSS scoping)
+cd modules/theme-loader
+pnpm dev          # starts it in the background on :5400; if it's already running it does nothing
+pnpm dev:status   # {"ok":true,…,"errors":N}   (N = validation errors over all families)
+pnpm dev:stop     # only if you really need to (it is shared by all theme agents)
+pnpm check -- <family>   # validate one family on the command line (manifest, files, CSS scoping)
 ```
 
 - App: **http://127.0.0.1:5400/** (homeserver https://matrix.datanauten.de, log in with a test user from
@@ -26,11 +26,11 @@ npm run check -- <family>   # validate one family on the command line (manifest,
   `/tl-dev/enhance/<family>.js` (your enhance.ts, bundled on request), `/tl-dev/status`.
 - Nothing is cached: CSS, assets, manifests and enhancers are re-read on every reload. A broken manifest/CSS/enhancer
   in one family only affects that family (it shows up in `problems` / the browser console with `[theme-loader]`).
-- Changes to `loader/src` are also picked up on reload (the loader is re-bundled when its sources change). Changes to
-  `dev/server.mjs` need `npm run dev:stop && npm run dev`.
+- Changes to `src/` are also picked up on reload (the loader is re-bundled when its sources change). Changes to
+  `dev/server.mjs` need `pnpm dev:stop && pnpm dev`.
 
-Logs: `loader/.dev/server.log`. The server runs under a small supervisor loop that restarts it if it dies.
-Element itself is downloaded once (release tarball) into `loader/.element/` (git-ignored).
+Logs: `.dev/server.log`. The server runs under a small supervisor loop that restarts it if it dies.
+Element itself is downloaded once (release tarball) into `.element/` (git-ignored).
 
 ## Architecture
 
@@ -53,9 +53,9 @@ src/enhancers.ts     runs themes/<family>/enhance.ts (prod: bundled into index.j
 src/picker/*         "Themes" settings tab (DOM injection like remote-modules' settingsInjector), gallery grouped by
                      family with stage/mode filters + search + phase override, quick switcher dialog, styles
 build/lib.mjs        discovery, manifest + CSS validation (postcss), registry aggregation (dev/prod)
-build/build.mjs      production build → dist/
-dev/server.mjs       dev server (see above); TL_DEV_MODE=prod serves dist/ instead (prod preview)
-test/e2e.cjs         Playwright end-to-end check against the dev server
+build/build.mjs      production build → lib/
+dev/server.mjs       dev server (see above); TL_DEV_MODE=prod serves lib/ instead (prod preview)
+e2e/run.cjs          Playwright end-to-end check against the dev server
 ```
 
 Robustness: `load()` never rejects; every DOM/API call that can fail is wrapped and logged with `[theme-loader]`;
@@ -79,13 +79,13 @@ Hidden variants can always be applied with `?tl_theme=<id>` (or listed with `?tl
 
 ```sh
 pnpm install            # once
-npm run build           # validates every family, fails on any error; output in dist/
-npm run build:demo      # same, but the _demo family is listed in the picker
+pnpm build           # validates every family, fails on any error; output in lib/
+pnpm build:demo      # same, but the _demo family is listed in the picker
 node build/build.mjs --families _demo,teams   # build a subset (for testing while other families are unfinished)
-npm run lint:types      # tsc over the loader and all themes/*/enhance.ts
+pnpm lint:types      # tsc over the loader and all themes/*/enhance.ts
 ```
 
-`dist/` is one flat directory:
+`lib/` is one flat directory:
 
 - `index.js` (+ `.map`): loader + registry + all enhancers (~45 kB + enhancers). The registry (metadata and tokens of
   all variants) is baked in, so the active theme can be applied without an extra request.
@@ -97,21 +97,21 @@ npm run lint:types      # tsc over the loader and all themes/*/enhance.ts
 The applied variant's CSS is also cached in `localStorage["tl.cssCache"]`, so the next start applies it with no
 network request.
 
-Prod preview of a build (no live themes, exactly the dist/ files):
+Prod preview of a build (no live themes, exactly the lib/ files):
 `TL_DEV_MODE=prod TL_DEV_PORT=5401 node dev/server.mjs` → http://127.0.0.1:5401/
 
 ## Deploy (element.datanauten.de) — to be done by the maintainer
 
-Not deployed by the build. Steps (see `../research/02-infra.md` §1.3; mind the dirty working tree caveat there):
+Not deployed by the build. Steps (see `research/02-infra.md` §1.3; mind the dirty working tree caveat there):
 
 ```sh
-cd ~/projects/element-web-themes/loader && npm run build
+cd modules/theme-loader && pnpm build
 R=~/projects/dtn10/datanauten.de
 D=$R/inventory/host_vars/matrix.datanauten.de/files/element-modules/theme-loader
-rm -rf "$D" && mkdir -p "$D" && cp dist/* "$D/" && rm "$D/files.txt"
+rm -rf "$D" && mkdir -p "$D" && cp lib/* "$D/" && rm "$D/files.txt"
 # vars.yml → datanauten_element_modules, ideally right after speed-start so it loads early:
 #   - name: theme-loader
-#     files: [<every line of dist/files.txt>]
+#     files: [<every line of lib/files.txt>]
 #     config:
 #       de.datanauten.theme_loader: { default_theme: null }
 cd $R && . venv/bin/activate
@@ -124,8 +124,8 @@ CSP on element.datanauten.de needs no change (inline `<style>`, same-origin font
 ## Tests
 
 ```sh
-npm run dev
-NODE_PATH=~/projects/matrix-search-widget/node_modules node test/e2e.cjs [--user themes-mira] [--headed]
+pnpm dev
+NODE_PATH=~/projects/matrix-search-widget/node_modules node e2e/run.cjs [--user themes-mira] [--headed]
 ```
 
 Logs in through MAS with a test user (password never printed), then: Themes tab (Element default, both _demo variants,
@@ -134,7 +134,7 @@ all four daylight phases via `?tl_phase` (attribute, Element base class, enhance
 `?tl_theme` not persisted, quick switcher (preview + Esc revert, type + Enter), room-header button, and finally
 "Element default" restoring Element exactly (no attributes, no theme nodes, same base class and computed styles,
 account data `theme: null`). Fails on any `[theme-loader]` console error or page error. Screenshots and
-`e2e-results.json` go to `../recordings/loader/`. The browser profile lives in `.dev/pw-profile` (log in once).
+`e2e-results.json` go to `recordings/loader/`. The browser profile lives in `.dev/pw-profile` (log in once).
 
 ## Known limitations
 
@@ -146,3 +146,13 @@ account data `theme: null`). Fails on any `[theme-loader]` console error or page
 - Login from `http://127.0.0.1:5400` uses MAS compat SSO; Element logs one harmless "Dynamic registration failed"
   error first (MAS rejects the http/localhost OIDC client).
 - `?tl_theme` affects one page load; navigating inside Element keeps it until reload.
+
+## Test stack
+
+```sh
+e2e/stack.sh up     # Synapse on :18487, Element Web v1.12.36 on :5818 with lib/ mounted (alice / alice-pass, bob / bob-pass)
+e2e/stack.sh down
+```
+
+`TL_ELEMENT=v1.12.33 e2e/stack.sh up` tries another Element version. `pnpm build` empties `lib/` in place, so a
+running stack picks up a rebuild on reload.

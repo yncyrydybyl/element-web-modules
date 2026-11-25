@@ -5,7 +5,7 @@
 //   - screenshots pixel by pixel (python3/PIL; dynamic content such as typing/presence may differ by a few px)
 // Output: recordings/mobile/after/desktop/{without,with}/*.png, diff-*.png, desktop.json. Exit 1 on a layout diff.
 //
-//   NODE_PATH=~/projects/matrix-search-widget/node_modules node mobile/test/desktop.mjs [--base-url …] [--theme id]
+//   NODE_PATH=~/projects/matrix-search-widget/node_modules node mobile/e2e/desktop.mjs [--base-url …] [--theme id]
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";

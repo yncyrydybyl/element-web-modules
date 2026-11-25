@@ -18,13 +18,13 @@ routing** (all numbers below are post-deploy). One post-deploy regression was fo
 
 | run | per variant | output |
 |---|---|---|
-| `tests/harness/shoot.mjs --base-url https://element.datanauten.de --only 01,02,03,06,07,13,14,15,16,21` | main views, thread, room info, user menu, Appearance + Themes tabs, create-room modal, login | `recordings/prod-qa/<id>/shoot/` |
-| `edgecheck` (copy of `tests/harness/edgecheck.mjs` that writes to `tests/reports/prod/`) | axe, focus, overflow, essentials, console | `tests/reports/prod/<id>.md/.json` |
+| `qa/harness/shoot.mjs --base-url https://element.datanauten.de --only 01,02,03,06,07,13,14,15,16,21` | main views, thread, room info, user menu, Appearance + Themes tabs, create-room modal, login | `recordings/prod-qa/<id>/shoot/` |
+| `edgecheck` (copy of `qa/harness/edgecheck.mjs` that writes to `qa/reports/prod/`) | axe, focus, overflow, essentials, console | `qa/reports/prod/<id>.md/.json` |
 | `.state/qa-scripts/prodqa.mjs` (module views) | speed-start snapshot, teams-welcome guide (+ step 2), room header with module buttons, Activity, Files, Saved messages, Tags, My apps, room checker, user menu + Set status (profile-status), keyboard shortcuts (`?`), space map (Ctrl+I), people map (Alt+P), composer `+` menu (teamwork), message action bar, Settings → Modules (+ scrolled), Themes, Preferences (multi-tab, maps) | `recordings/prod-qa/<id>/p*.png` + `manifest.json` |
 | `.state/qa-scripts/verify.mjs` | the cross-cutting checks below | `recordings/prod-qa/_verify/` |
 | same module views with the local build routed in | after-fix check (all 65, then deeper on representative variants) | `.state/qa-local-all/`, `.state/qa-local/` (git-ignored) |
 
-The dev-server screenshots in `recordings/screens/` and `tests/reports/*.md` were not touched.
+The dev-server screenshots in `recordings/screens/` and `qa/reports/*.md` were not touched.
 
 ## Post-deploy re-verification (v=758ed22c3dac)
 
@@ -191,7 +191,7 @@ export NODE_PATH=~/projects/matrix-search-widget/node_modules
 node .state/qa-scripts/prodqa.mjs --theme <id>                 # module views → recordings/prod-qa/<id>/
 node .state/qa-scripts/verify.mjs                              # persistence, switcher, tabs, custom themes, daylight
 node .state/qa-scripts/edgecheck-prod.mjs --theme <id> --base-url https://element.datanauten.de
-node tests/harness/shoot.mjs --theme <id> --base-url https://element.datanauten.de --out recordings/prod-qa/<id>/shoot --only 01,02,03,06,07,13,14,15,16,21
+node qa/harness/shoot.mjs --theme <id> --base-url https://element.datanauten.de --out recordings/prod-qa/<id>/shoot --only 01,02,03,06,07,13,14,15,16,21
 TL_LOCAL_DIST=$PWD/.state/qa-dist node .state/qa-scripts/prodqa.mjs --theme <id> --out .state/qa-local/<id>   # pre-deploy: local build on prod
 ```
 (`.state/qa-scripts/batch-*.sh` run these for all 65 with 3 session slots.)

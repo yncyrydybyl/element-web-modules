@@ -13,5 +13,5 @@
         "strict": true,
         "noEmit": true
     },
-    "include": ["src", "../themes/*/enhance.ts"]
+    "include": ["src", "themes/*/enhance.ts"]
 }

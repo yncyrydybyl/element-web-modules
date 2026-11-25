@@ -2,8 +2,8 @@
 // Smoke test: the module loads in Element 1.12.33 (dev server, logged out) without errors, sets html[data-mt-mobile]
 // on phones / coarse pointers and not on desktop, and injects its stylesheet exactly once.
 //
-//   npm run dev &   (or MT_DEV_MODE=prod for dist/)
-//   NODE_PATH=~/projects/matrix-search-widget/node_modules node test/smoke.mjs [--base-url http://127.0.0.1:5410]
+//   npm run dev &   (or MT_DEV_MODE=prod for lib/)
+//   NODE_PATH=~/projects/matrix-search-widget/node_modules node e2e/smoke.mjs [--base-url http://127.0.0.1:5410]
 import { createRequire } from "node:module";
 import path from "node:path";
 

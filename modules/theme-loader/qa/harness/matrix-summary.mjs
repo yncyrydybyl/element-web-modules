@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Merge tests/reports/matrix/*.json into tests/reports/matrix/SUMMARY.md.
-//   node tests/harness/matrix-summary.mjs [--only run1,run2]
+// Merge qa/reports/matrix/*.json into qa/reports/matrix/SUMMARY.md.
+//   node qa/harness/matrix-summary.mjs [--only run1,run2]
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from './lib.mjs';

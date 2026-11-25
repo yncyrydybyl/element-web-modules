@@ -1,7 +1,7 @@
 // Dev tool (not shipped): evaluate JS / screenshot a URL in the themetest openDesk session.
 //   node themes/opendesk/tools/od-probe.mjs --url URL [--js 'expr'] [--shot out.png] [--wait 6000]
 import fs from 'node:fs';
-import { launch, parseArgs } from '../../../tests/harness/lib.mjs';
+import { launch, parseArgs } from '../../../qa/harness/lib.mjs';
 const a = parseArgs(process.argv.slice(2), { url: 'https://chat.od.blackpony.club/', wait: '6000' });
 const { page, cleanup, consoleErrors } = await launch({ user: 'themetest', base: 'https://chat.od.blackpony.club' });
 try {

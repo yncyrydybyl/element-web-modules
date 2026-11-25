@@ -5,7 +5,7 @@ cd "$(dirname "$0")/.."
 LOADER=$(pwd)
 PORT=${TL_DEV_PORT:-5400}
 RUN="$LOADER/.dev"
-EL_VER=1.12.33
+EL_VER=1.12.36
 EL_DIR="$LOADER/.element/element-v$EL_VER"
 mkdir -p "$RUN"
 

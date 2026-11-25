@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // Viewport matrix + device emulation (docs/TESTCASES.md VP-*, MOB-*, MOD-06/07, A11Y-03).
-//   node tests/harness/viewports.mjs --mode matrix  --themes sample|<ids> [--mobile-module] [--base-url URL] [--run NAME] [--parallel N]
-//   node tests/harness/viewports.mjs --mode login   --themes sample|<ids> [--mobile-module] ...
-//   node tests/harness/viewports.mjs --mode devices --themes sample|<ids> [--mobile-module] [--devices iphone15,pixel8,…] ...
-// matrix : one logged-in session per theme, live-resized through widths × heights (tests/catalogue.json):
+//   node qa/harness/viewports.mjs --mode matrix  --themes sample|<ids> [--mobile-module] [--base-url URL] [--run NAME] [--parallel N]
+//   node qa/harness/viewports.mjs --mode login   --themes sample|<ids> [--mobile-module] ...
+//   node qa/harness/viewports.mjs --mode devices --themes sample|<ids> [--mobile-module] [--devices iphone15,pixel8,…] ...
+// matrix : one logged-in session per theme, live-resized through widths × heights (qa/catalogue.json):
 //          VP-01/02/03/04/05/09/10 at every size, VP-06/07 at heights 568 + 900, VP-12 at heights ≤ 568, VP-16 at the end.
 // login  : logged-out, VP-15 at every width × (568, 900).
 // devices: fresh context per device (DPR, touch, mobile UA): MOB-01..10, MOD-06/07, VP-13/14, A11Y-03.
-// Output: tests/reports/matrix/<run>.json, screenshots recordings/tests/<case>/<run>/<theme>--<WxH>.png
+// Output: qa/reports/matrix/<run>.json, screenshots recordings/tests/<case>/<run>/<theme>--<WxH>.png
 // Writes nothing to the account; mx_local_settings (Element's RoomList collapse at narrow widths) restored on close.
 import path from 'node:path';
 import { ROOT, parseArgs, resolveBase, fixtures, selectSpace, gotoRoom, sleep, log, waitForApp } from './lib.mjs';

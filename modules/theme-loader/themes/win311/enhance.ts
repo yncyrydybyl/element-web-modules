@@ -7,7 +7,7 @@
  *  - Help ▸ About: a Win 3.1 "About" dialog
  * Everything lives in ctx.root; unmount() removes it all. Never throws into Element.
  */
-import type { Enhancer, EnhancerContext } from "../../loader/src/types";
+import type { Enhancer, EnhancerContext } from "../../src/types";
 
 type Item = { label: string; key?: string; disabled?: boolean; sep?: boolean; run?: () => void };
 

@@ -16,7 +16,7 @@
  * Without "apps", openDesk's default host names are derived when Element runs on chat.<domain>
  * (portal., files., webmail., projects., wiki., meet., notes.); elsewhere the grid button is hidden.
  */
-import type { EnhancerContext } from "../../loader/src/types";
+import type { EnhancerContext } from "../../src/types";
 
 interface AppLink {
     id?: string;

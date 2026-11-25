@@ -1,4 +1,4 @@
-import type { EnhancerContext } from "../../loader/src/types";
+import type { EnhancerContext } from "../../src/types";
 
 /*
  * teams enhancer — only teams-2028 uses it (manifest "enhance": true there).

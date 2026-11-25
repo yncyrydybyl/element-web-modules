@@ -1,4 +1,4 @@
-import type { EnhancerContext, Enhancer } from "../../loader/src/types";
+import type { EnhancerContext, Enhancer } from "../../src/types";
 
 /*
  * sketch family enhancer (docs/styleguides/sketch.md §7)

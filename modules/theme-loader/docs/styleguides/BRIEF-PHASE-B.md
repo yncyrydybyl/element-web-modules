@@ -6,8 +6,8 @@ Implement your family's variants exactly as your style guide (docs/styleguides/<
 - **Dev server** http://localhost:5400 serves Element 1.12.33 + the loader, reading `themes/` live (no rebuild).
   Usage details: `loader/README.md`. Do not restart/kill it; if it's down, start it with the documented idempotent
   command. Never edit `loader/` — ask via your reply if the loader lacks something.
-- **Harness** `tests/README.md`: `shoot.mjs --theme <id>` (standard screenshot set to recordings/screens/<id>/),
-  `edgecheck.mjs --theme <id>` (axe/contrast/overflow/console → tests/reports/<id>.md),
+- **Harness** `qa/README.md`: `shoot.mjs --theme <id>` (standard screenshot set to recordings/screens/<id>/),
+  `edgecheck.mjs --theme <id>` (axe/contrast/overflow/console → qa/reports/<id>.md),
   `walkthrough.mjs --theme <id>` (scripted video), `--phase` for daylight phases, `--mobile`.
   Test users and seeded rooms live on matrix.datanauten.de (`.state/`, never print secrets).
   Only send messages into the "Theme Lab · Sandbox" room.

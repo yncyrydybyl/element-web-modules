@@ -4,7 +4,7 @@
 //   node themes/kde/tools/probe.mjs --theme kde-breeze-light --room showcase --dump out.txt --shot out.png
 //   [--eval "js"] [--phase night] [--width 1440 --height 900] [--click "<css selector>"]
 import fs from 'node:fs';
-import { launch, resolveBase, themeUrl, waitForApp, dismissNags, selectSpace, gotoRoom, fixtures, parseArgs, stabilise, sleep, closeOverlays } from '../../../tests/harness/lib.mjs';
+import { launch, resolveBase, themeUrl, waitForApp, dismissNags, selectSpace, gotoRoom, fixtures, parseArgs, stabilise, sleep, closeOverlays } from '../../../qa/harness/lib.mjs';
 
 const a = parseArgs(process.argv.slice(2), { width: 1440, height: 900 });
 const base = await resolveBase(a.baseUrl);

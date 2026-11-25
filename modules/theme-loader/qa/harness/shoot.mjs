@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Standard screenshot set for one theme.
-//   node tests/harness/shoot.mjs --theme <id> [--phase <p>] [--base-url URL] [--user themes-mira]
+//   node qa/harness/shoot.mjs --theme <id> [--phase <p>] [--base-url URL] [--user themes-mira]
 //        [--width 1440 --height 900] [--mobile] [--only 02,05] [--out DIR] [--hero]
 // Output: recordings/screens/<id>[--<phase>]/<NN-region>.png (+ manifest.json). --mobile: 390x844 into .../mobile/.
 // --hero: only the hero shot (Showcase main timeline, modern layout, scrolled to the bottom) →

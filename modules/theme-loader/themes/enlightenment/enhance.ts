@@ -1,4 +1,4 @@
-import type { Enhancer, EnhancerContext } from "../../loader/src/types";
+import type { Enhancer, EnhancerContext } from "../../src/types";
 
 /*
  * Enlightenment family enhancer.

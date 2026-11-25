@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Contact sheets from the hero screenshots.
 
-    python3 tests/harness/contact.py            # → recordings/contact/<family>.png + all.png
+    python3 qa/harness/contact.py            # → recordings/contact/<family>.png + all.png
 
 Input: recordings/screens/<id>/hero.png (shoot.mjs --hero). Order and labels from docs/CATALOG.md order and
 themes/<family>/themes.json (name, stage, mode). Families with no hero yet are skipped.

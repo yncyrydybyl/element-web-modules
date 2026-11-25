@@ -105,4 +105,4 @@ Lucida, the E16 X11 core font, is proprietary. The CSS references it only via `l
 
 - Screens: `recordings/screens/<id>/` (23 shots + `hero.png`). Daylight phases are in `e-daylight--{dawn,day,dusk,night}/`, and `recordings/screens/e-daylight/hero.png` is the dusk timeline.
 - Walkthroughs: `recordings/walkthroughs/<id>.webm` for all 7 non-daylight variants plus `e-daylight--dusk.webm`.
-- Reports: `tests/reports/<id>.md`, all passing.
+- Reports: `qa/reports/<id>.md`, all passing.

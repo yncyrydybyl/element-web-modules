@@ -1,7 +1,7 @@
 // Dev tool (not shipped): check the enhancer's app switcher with an "apps" config injected into the dev
 // server's config.json (Playwright route; nothing is written). Uses the harness session pool.
 //   node themes/opendesk/tools/topbar-test.mjs [--theme opendesk-light] [--shot out.png]
-import { launch, resolveBase, themeUrl, waitForApp, parseArgs, sleep } from '../../../tests/harness/lib.mjs';
+import { launch, resolveBase, themeUrl, waitForApp, parseArgs, sleep } from '../../../qa/harness/lib.mjs';
 const a = parseArgs(process.argv.slice(2), { theme: 'opendesk-light', shot: 'recordings/screens/opendesk-light/x-app-switcher.png' });
 const base = await resolveBase(a.baseUrl);
 const { page, consoleErrors, cleanup } = await launch({ user: 'themes-mira', base });

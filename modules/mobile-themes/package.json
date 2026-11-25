@@ -1,25 +1,33 @@
 {
-    "name": "@datanauten/element-web-mobile-themes",
+    "name": "@datanauten/element-web-module-mobile-themes",
     "version": "0.1.0",
-    "description": "Element Web module that makes Element Web usable on phones: single-pane shell, phone-sized dialogs, touch and keyboard handling, all scoped to html[data-mt-mobile]. Issues: ../docs/MOBILE-ISSUES.md",
+    "description": "Element Web module that makes Element Web usable on phones: single-pane shell, phone-sized dialogs, touch and keyboard handling, all scoped to html[data-mt-mobile]. Issues: docs/MOBILE-ISSUES.md",
     "private": true,
     "type": "module",
+    "main": "lib/index.js",
     "license": "AGPL-3.0-only",
     "packageManager": "pnpm@10.29.3",
+    "files": [
+        "lib"
+    ],
     "scripts": {
         "build": "node build/build.mjs",
         "dev": "node dev/server.mjs",
         "lint:types": "tsc --noEmit",
-        "test:smoke": "node test/smoke.mjs",
-        "audit": "node test/audit.mjs",
-        "test:shell": "node test/shell.mjs",
-        "test:desktop": "node test/desktop.mjs"
+        "test:smoke": "node e2e/smoke.mjs",
+        "audit": "node e2e/audit.mjs",
+        "test:shell": "node e2e/shell.mjs",
+        "test:desktop": "node e2e/desktop.mjs",
+        "test": "vitest run",
+        "test:watch": "vitest"
     },
     "devDependencies": {
         "@element-hq/element-web-module-api": "2.3.0",
         "@types/node": "^24.19.2",
         "@types/react": "^19.3.0",
         "esbuild": "^0.25.0",
-        "typescript": "^5.9.3"
+        "typescript": "^5.9.3",
+        "jsdom": "^27.4.0",
+        "vitest": "^4.1.12"
     }
 }

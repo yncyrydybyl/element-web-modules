@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // Functional test matrix: per-theme P0 (+ P1) cases from docs/TESTCASES.md, one logged-in pool session per theme.
-//   node tests/harness/functional.mjs --themes all|sample|<id,id> [--base-url URL] [--run NAME] [--tier p0|p1]
+//   node qa/harness/functional.mjs --themes all|sample|<id,id> [--base-url URL] [--run NAME] [--tier p0|p1]
 //        [--send] [--send-extra] [--modules] [--parallel N] [--mobile-module] [--no-auth]
 // --modules   : production module coexistence (MOD-01/02/05, HDR-06) in an extra session with the teams-welcome guide shown
 // --tier p0   : P0 cases only (+ a few P1 that are free once the view is open)
 // --tier p1   : also the P1 UI cases (thread, room info, members, emoji, spotlight, layouts, motion, E2EE …)
 // --send      : MSG-01/CMP-02 — sends one short message to "Theme Lab · Sandbox" (the only room we write to)
 // --send-extra: MSG-02..10 (markdown, reply, edit, redact, react, thread, poll, file, image) in the Sandbox
-// Output: tests/reports/matrix/<run>.json, screenshots recordings/tests/<case>/<run>/<theme>[--x].png
+// Output: qa/reports/matrix/<run>.json, screenshots recordings/tests/<case>/<run>/<theme>[--x].png
 // Writes: read receipts + the Sandbox messages above. Device settings (layout, RoomList) restored on close.
 // Never clicks a theme card or Enter in the switcher (no account-data writes); THM-03 verifies that.
 import path from 'node:path';
@@ -572,11 +572,11 @@ async function sendExtra(theme) {
       await sleep(2500);
       return (await tileOf(txt).count()) ? { status: 'fail', detail: 'tile still shows text' } : { status: 'pass' };
     });
-    for (const [id, file] of [['MSG-09', 'tests/fixtures/assets/release-notes.pdf'], ['MSG-10', 'tests/fixtures/assets/palette.png']]) {
+    for (const [id, file] of [['MSG-09', 'qa/fixtures/assets/release-notes.pdf'], ['MSG-10', 'qa/fixtures/assets/palette.png']]) {
       await C(id, async () => {
         const fs = await import('node:fs');
         let f = path.join(ROOT, file);
-        if (!fs.existsSync(f)) { const cand = fs.readdirSync(path.join(ROOT, 'tests/fixtures/assets')).find((x) => (id === 'MSG-09' ? /\.pdf$/ : /\.png$/).test(x)); f = cand && path.join(ROOT, 'tests/fixtures/assets', cand); }
+        if (!fs.existsSync(f)) { const cand = fs.readdirSync(path.join(ROOT, 'qa/fixtures/assets')).find((x) => (id === 'MSG-09' ? /\.pdf$/ : /\.png$/).test(x)); f = cand && path.join(ROOT, 'qa/fixtures/assets', cand); }
         if (!f) return { status: 'skip', detail: 'no asset' };
         const bodySel = id === 'MSG-09' ? '.mx_MFileBody, [class*="MFileBody"]' : '.mx_MImageBody, [class*="MImageBody"]';
         const before = await page.locator('.mx_RoomView_messagePanel').locator(bodySel).count();

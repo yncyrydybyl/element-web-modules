@@ -1,21 +1,21 @@
 // End-to-end check of the theme loader against the dev server (http://127.0.0.1:5400) and matrix.datanauten.de.
 //
-//   NODE_PATH=~/projects/matrix-search-widget/node_modules node test/e2e.cjs [--user themes-mira] [--headed]
+//   NODE_PATH=~/projects/matrix-search-widget/node_modules node e2e/run.cjs [--user themes-mira] [--headed]
 //
-// Logs in through MAS (compat SSO) with a test user from ../.state/users.txt (never printed), switches the _demo
+// Logs in through MAS (compat SSO) with a test user from .state/users.txt (never printed), switches the _demo
 // themes via the Themes tab, the quick switcher and ?tl_theme, forces daylight phases, checks account-data
 // persistence across reloads, checks that "Element default" restores Element exactly, and fails on any
-// [theme-loader] console error or page error. Screenshots go to ../recordings/loader/.
+// [theme-loader] console error or page error. Screenshots go to recordings/loader/.
 const { chromium } = require("playwright");
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = path.resolve(__dirname, "../..");
+const ROOT = path.resolve(__dirname, "..");
 const BASE = process.env.TL_DEV_URL ?? "http://127.0.0.1:5400/";
 const OUT = path.join(ROOT, "recordings/loader");
 // Fresh profile per run (a reused, half-verified session lands on Element's "Confirm your identity" page);
 // the device is logged out at the end so test runs don't pile up sessions on the account.
-const PROFILE = path.join(ROOT, `loader/.dev/pw-profile-${process.pid}`);
+const PROFILE = path.join(ROOT, `.dev/pw-profile-${process.pid}`);
 const args = process.argv.slice(2);
 const userArg = args.includes("--user") ? args[args.indexOf("--user") + 1] : null;
 const users = fs

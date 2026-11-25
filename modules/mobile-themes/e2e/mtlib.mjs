@@ -5,10 +5,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const HERE = path.dirname(fileURLToPath(import.meta.url));
-export const H = await import(path.join(HERE, "../../tests/harness/lib.mjs"));
+export const H = await import(path.join(HERE, "../../theme-loader/qa/harness/lib.mjs"));
 export const { chromium, acquireSlot, fixtures, waitForApp, dismissNags, sleep, log, parseArgs, ensureDir, ROOT, STATE, HIDE_TOASTS_CSS } = H;
 const { devices } = H.req("playwright");
-export const MODULE_DIST = path.join(HERE, "../dist");
+export const MODULE_DIST = path.join(HERE, "../lib");
 
 const land = (d) => ({ ...d, viewport: { width: d.viewport.height, height: d.viewport.width } });
 export const DEVICES = {
@@ -30,9 +30,9 @@ export function ctxOptions(d) {
     return { ...o, locale: "en-GB", timezoneId: "Europe/Berlin", colorScheme: "light" };
 }
 
-/** config.json + /element-modules/mobile-themes/* from mobile/dist (nothing deployed). */
+/** config.json + /element-modules/mobile-themes/* from lib/ (nothing deployed). */
 export async function routeModule(ctx, { extraConfig = null } = {}) {
-    if (!fs.existsSync(path.join(MODULE_DIST, "index.js"))) throw new Error("mobile/dist/index.js missing: run `npm run build` in mobile/ first");
+    if (!fs.existsSync(path.join(MODULE_DIST, "index.js"))) throw new Error("lib/index.js missing: run `pnpm build` in modules/mobile-themes first");
     await ctx.route(/\/config(\.[^/]+)?\.json(\?.*)?$/, async (route) => {
         const res = await route.fetch();
         const c = await res.json();

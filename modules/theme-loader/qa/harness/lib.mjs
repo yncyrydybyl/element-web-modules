@@ -27,9 +27,9 @@ export const { chromium } = req('playwright');
 
 /** Absolute path of a file inside a package (harness node_modules first, then NODE_PATH, then known checkouts). */
 export function findModuleFile(mod, file) {
-  const dirs = [path.join(ROOT, 'tests/harness/node_modules'), ...nodePaths, path.join(os.homedir(), 'projects/element-call/node_modules')];
+  const dirs = [path.join(ROOT, 'qa/harness/node_modules'), ...nodePaths, path.join(os.homedir(), 'projects/element-call/node_modules')];
   for (const d of dirs) { const f = path.join(d, mod, file); if (fs.existsSync(f)) return f; }
-  throw new Error(`${mod}/${file} not found — run: (cd tests/harness && npm install)`);
+  throw new Error(`${mod}/${file} not found — run: (cd qa/harness && npm install)`);
 }
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -101,7 +101,7 @@ export function tryLock(dir) {
 /** Wait for a free session slot of `user` (exclusive: no two browsers ever share one device's crypto store). */
 export async function acquireSlot(user, base, { slot = null, timeoutMs = +(process.env.TL_SLOT_TIMEOUT || 30 * 60000) } = {}) {
   const slots = slot ? [+slot] : sessionSlots(user, base);
-  if (!slots.length) throw new Error(`No session for ${user} on ${base}. Create it once with:\n  node tests/harness/session.mjs ${user} --base-url ${base}`);
+  if (!slots.length) throw new Error(`No session for ${user} on ${base}. Create it once with:\n  node qa/harness/session.mjs ${user} --base-url ${base}`);
   const t0 = Date.now(); let said = false;
   for (;;) {
     for (const n of slots) {

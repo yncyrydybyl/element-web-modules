@@ -1,4 +1,4 @@
-import type { EnhancerContext, Enhancer } from "../../loader/src/types";
+import type { EnhancerContext, Enhancer } from "../../src/types";
 
 // A tiny overlay badge that shows the current daylight phase.
 let badge: HTMLElement | null = null;

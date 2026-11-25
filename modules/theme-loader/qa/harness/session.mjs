@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Create / refresh the master Element session of a test user for one origin (base URL).
-//   node tests/harness/session.mjs themes-mira [--base-url URL] [--bootstrap] [--verify] [--sync] [--headed]
+//   node qa/harness/session.mjs themes-mira [--base-url URL] [--bootstrap] [--verify] [--sync] [--headed]
 // First run logs in ONCE with m.login.password (non-expiring compat token, device "Theme Lab · Element (<host>)"),
 // injects it via window.mxLoginWithAccessToken and keeps the browser profile in .state/profiles/<user>@<host>/.
 //   --bootstrap  set up cross-signing + recovery in Element (account without cross-signing; mira). Recovery key -> .state/<user>.recovery

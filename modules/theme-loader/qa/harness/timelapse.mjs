@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Daylight time-lapse: the Showcase timeline of one daylight variant while the phase cycles dawn → day → dusk → night.
-//   node tests/harness/timelapse.mjs --theme <daylight-id> [--seg 5] [--base-url URL] [--user themes-mira]
+//   node qa/harness/timelapse.mjs --theme <daylight-id> [--seg 5] [--base-url URL] [--user themes-mira]
 // Output: recordings/timelapse/<id>.webm (+ .json with the name for grid.sh; GRID_SRC=recordings/timelapse).
 // Four fixed slots at representative clock times (07:00, 12:30, 19:30, 23:30); each slot shows the phase the
 // variant's schedule has at that time (LCARS: day, day, evening, night), so all clips line up slot by slot.

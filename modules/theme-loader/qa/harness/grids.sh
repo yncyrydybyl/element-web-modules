@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # All comparison grids in recordings/grids/ (wraps grid.sh). Needs the walkthrough webms (walkthrough.mjs; daylight
 # variants recorded with --phase day --name <id>) and, for daylight-timelapse, recordings/timelapse/*.webm (timelapse.mjs).
-#   tests/harness/grids.sh            # all
-#   tests/harness/grids.sh lcars pure # only these (output basenames)
+#   qa/harness/grids.sh            # all
+#   qa/harness/grids.sh lcars pure # only these (output basenames)
 set -euo pipefail
 H="$(cd "$(dirname "$0")" && pwd)"; ROOT="$(cd "$H/../.." && pwd)"; G="$ROOT/recordings/grids"
 export GRID_ENCODER=${GRID_ENCODER:-libx264} GRID_CRF=${GRID_CRF:-27}

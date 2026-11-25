@@ -4,7 +4,7 @@
 //   node themes/opendesk/tools/od-shoot.mjs --themes element-default,opendesk-light,… [--phase night] [--out recordings/opendesk-prod]
 import fs from 'node:fs';
 import path from 'node:path';
-import { launch, parseArgs, sleep, log } from '../../../tests/harness/lib.mjs';
+import { launch, parseArgs, sleep, log } from '../../../qa/harness/lib.mjs';
 
 const a = parseArgs(process.argv.slice(2), { 'base-url': 'https://chat.od.blackpony.club', out: 'recordings/opendesk-prod' });
 const base = a.baseUrl || a['base-url'];

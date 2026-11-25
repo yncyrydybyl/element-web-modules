@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regenerates the fixture media in tests/fixtures/assets/ (committed; seed.py only uploads them).
+# Regenerates the fixture media in qa/fixtures/assets/ (committed; seed.py only uploads them).
 # Needs ImageMagick 7 (magick) and ffmpeg. Deterministic enough: re-running produces the same pictures.
 set -euo pipefail
 D="$(cd "$(dirname "$0")" && pwd)/assets"

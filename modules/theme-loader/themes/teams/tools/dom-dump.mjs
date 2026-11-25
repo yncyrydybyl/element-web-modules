@@ -4,7 +4,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
-const lib = await import(path.join(here, '../../../tests/harness/lib.mjs'));
+const lib = await import(path.join(here, '../../../qa/harness/lib.mjs'));
 const { launch, parseArgs, resolveBase, fixtures, themeUrl, waitForApp, dismissNags, gotoRoom, selectSpace, sleep } = lib;
 
 const a = parseArgs(process.argv.slice(2), { user: 'themes-mira', room: 'design', depth: '7', width: '1440', height: '900' });

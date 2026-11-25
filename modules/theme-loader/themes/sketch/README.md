@@ -46,7 +46,7 @@ Shared mechanics:
 
 ### Mask-outline performance (long timeline)
 
-Measured on the dev server in a pooled harness session (`tests/harness/lib.mjs` launch, no new devices). Showcase in
+Measured on the dev server in a pooled harness session (`qa/harness/lib.mjs` launch, no new devices). Showcase in
 bubble layout, cloned to ~600 tiles (every tile has a masked `::after` outline), scrolled 45 px per frame for
 200 frames. 6 interleaved on/off rounds, medians. The machine was loaded by other agents' browsers, so the absolute
 numbers are noisy.
@@ -120,7 +120,7 @@ pages, so do not redistribute them.
 
 ## Edge-case results (phase B, 2026-11-15)
 
-`tests/reports/sketch-<id>.md`: every variant **passes** edgecheck (no overflow, no missing essentials, no page
+`qa/reports/sketch-<id>.md`: every variant **passes** edgecheck (no overflow, no missing essentials, no page
 errors). The 4 console errors are Element's own (`map_style_url` missing, rust crypto store warning), the same for every theme.
 
 | check | result |

@@ -8,7 +8,7 @@ import postcss from "postcss";
 import selectorParser from "postcss-selector-parser";
 
 export const LOADER_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-export const REPO_DIR = resolve(LOADER_DIR, "..");
+export const REPO_DIR = LOADER_DIR;
 export const THEMES_DIR = join(REPO_DIR, "themes");
 
 const MODES = new Set(["light", "dark", "daylight"]);

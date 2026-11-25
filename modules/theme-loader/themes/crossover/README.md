@@ -28,7 +28,7 @@ LCARS (© CBS/Paramount), Teams and Windows (Microsoft) are used for internal pu
 
 ## Edge-case results
 
-See `tests/reports/x-*.md`. Text contrast is ≥4.5:1 by palette design (LCARS tanoi 14.4:1, sketch ink 15.6:1,
+See `qa/reports/x-*.md`. Text contrast is ≥4.5:1 by palette design (LCARS tanoi 14.4:1, sketch ink 15.6:1,
 Breeze 17.7:1); focus is drawn in every variant; reduced motion removes the zoom rectangle, window-shade and wobble.
 
 ## Known gaps

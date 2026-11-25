@@ -1,12 +1,12 @@
-// Dev server for the mobile-themes module (default port 5410). Same approach as loader/dev/server.mjs, but standalone
+// Dev server for the mobile-themes module (default port 5410). Same approach as ../theme-loader/dev/server.mjs, but standalone
 // so the shared theme-loader dev server (:5400) stays untouched.
 //
-//   /                                         stock Element Web 1.12.33, read-only from loader/.element/ (the release
-//                                             tarball the loader dev server downloaded; run `npm run dev` in loader/
+//   /                                         stock Element Web 1.12.36, read-only from ../theme-loader/.element/ (the release
+//                                             tarball the loader dev server downloaded; run `pnpm dev` in ../theme-loader/
 //                                             once if it is missing)
-//   /config.json                              loader/dev/config.json (read-only) with modules = [mobile-themes]
+//   /config.json                              ../theme-loader/dev/config.json (read-only) with modules = [mobile-themes]
 //                                             (+ the theme loader proxied from :5400 when MT_WITH_LOADER=1)
-//   /element-modules/mobile-themes/index.js   bundled from src/ on every request (MT_DEV_MODE=prod: dist/ instead)
+//   /element-modules/mobile-themes/index.js   bundled from src/ on every request (MT_DEV_MODE=prod: lib/ instead)
 //   /mt-dev/status                            health JSON
 //
 // Mobile UAs are redirected to /mobile_guide/ by Element before any module loads; for testing in device emulation,
@@ -21,10 +21,10 @@ const HOST = process.env.MT_DEV_HOST ?? "127.0.0.1";
 const PROD = process.env.MT_DEV_MODE === "prod";
 const WITH_LOADER = process.env.MT_WITH_LOADER === "1";
 const LOADER_PORT = Number(process.env.TL_DEV_PORT ?? 5400);
-const ELEMENT_VERSION = "1.12.33";
-const LOADER_DIR = join(MODULE_DIR, "..", "loader");
+const ELEMENT_VERSION = "1.12.36";
+const LOADER_DIR = join(MODULE_DIR, "..", "theme-loader");
 const ELEMENT_DIR = join(LOADER_DIR, ".element", `element-v${ELEMENT_VERSION}`);
-const DIST = join(MODULE_DIR, "dist");
+const DIST = join(MODULE_DIR, "lib");
 const MOD = "/element-modules/mobile-themes/";
 
 const TYPES = {
@@ -104,5 +104,5 @@ if (!existsSync(join(ELEMENT_DIR, "index.html"))) {
 const server = createServer((req, res) => handle(req, res).catch((e) => { log("request failed", req.url, e); try { send(res, 500, "internal error"); } catch { /* sent */ } }));
 server.keepAliveTimeout = 5000;
 server.on("error", (e) => { console.error("server error", e.message); process.exit(e.code === "EADDRINUSE" ? 3 : 1); });
-server.listen(PORT, HOST, () => log(`mobile-themes dev server on http://${HOST}:${PORT}/ (${PROD ? "dist/" : "live src/"}${WITH_LOADER ? ", + theme-loader from :" + LOADER_PORT : ""})`));
+server.listen(PORT, HOST, () => log(`mobile-themes dev server on http://${HOST}:${PORT}/ (${PROD ? "lib/" : "live src/"}${WITH_LOADER ? ", + theme-loader from :" + LOADER_PORT : ""})`));
 for (const sig of ["SIGTERM", "SIGINT"]) process.on(sig, () => server.close(() => process.exit(0)));

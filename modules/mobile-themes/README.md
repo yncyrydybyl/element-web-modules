@@ -1,16 +1,13 @@
 # mobile-themes
 
-Element Web runtime module (module API `^1.14.0 || ^2.0.0`, built and tested against Element **1.12.33** / API 2.3.0)
+Element Web runtime module (module API `^1.14.0 || ^2.0.0`, built and tested against Element **1.12.33** and **1.12.36** / API 2.3.0)
 that makes Element Web usable on phones: a single-pane shell (room list → room → panel) with a back button and
 back-gesture support, phone-sized dialogs and settings, 16 px inputs, 44 px touch targets, long-press message menus,
-keyboard-aware layout, safe areas. Issue list and status: [`../docs/MOBILE-ISSUES.md`](../docs/MOBILE-ISSUES.md);
-background: [`../research/05-mobile.md`](../research/05-mobile.md). **Not deployed.**
-
-Why `mobile/` at the repo root (not `modules/mobile-themes/`): it mirrors `loader/` (same layout, same build/dev
-approach, same flat `dist/`). If a third module appears, both can move under `modules/` together.
+keyboard-aware layout, safe areas. Issue list and status: [`docs/MOBILE-ISSUES.md`](docs/MOBILE-ISSUES.md);
+background: [`docs/research-mobile.md`](docs/research-mobile.md). **Not deployed.**
 
 **Desktop is untouched.** Every rule and every behaviour is gated by `html[data-mt-mobile]` (most by
-`html[data-mt-compact]`), which is absent on a desktop window; `test/desktop.mjs` checks this at 1440×900.
+`html[data-mt-compact]`), which is absent on a desktop window; `e2e/desktop.mjs` checks this at 1440×900.
 
 ## What it does
 
@@ -37,7 +34,7 @@ Load it after the theme loader. Different attribute prefixes (`data-mt-*` / `dat
 layers (`mt-important`, `tl-important`). Shell rules use `html[data-mt-compact][data-mt-view…]` so their specificity is
 above theme selectors (some themes use `!important` on header/pane geometry). Themes may react to mobile mode with
 `html[data-tl-theme="x"][data-mt-compact] …` (allowed by the contract). Tested with Element default, teams-2026-light,
-win311-default, lcars-tng and paper-white; theme tweaks worth doing are listed in `../docs/MOBILE-ISSUES.md` §8.
+win311-default, lcars-tng and paper-white; theme tweaks worth doing are listed in `docs/MOBILE-ISSUES.md` §8.
 
 ## Config (`config.json`, all optional)
 
@@ -87,7 +84,7 @@ pattern the deploy already uses for the CSP template). The Element image serves 
 instead of an nginx rule:
 
 ```yaml
-# 1. copy the page: files/element-mobile-guide/index.html  (= mobile/server/mobile_guide/index.html)
+# 1. copy the page: files/element-mobile-guide/index.html  (= server/mobile_guide/index.html)
 aux_file_definitions_custom: |-
   {%- set files = [{
         'dest': matrix_client_element_data_path ~ '/nginx/csp-blob.conf.template',
@@ -124,21 +121,21 @@ problem. Upstream configurability (PR #34508) was closed "needs a product decisi
 ## Build
 
 ```sh
-cd ~/projects/element-web-themes/mobile
+cd modules/mobile-themes
 pnpm install            # once
-npm run build           # → dist/index.js (+ .map), dist/files.txt (flat, like loader/dist)
-npm run lint:types      # tsc
+pnpm build           # → lib/index.js (+ .map), lib/files.txt (flat, like theme-loader/lib)
+pnpm lint:types      # tsc
 ```
 
 ## Dev server (port 5410, separate from the shared theme-loader server on 5400)
 
 ```sh
-npm run dev                                   # http://127.0.0.1:5410/ — module bundled from src/ per request
-MT_WITH_LOADER=1 npm run dev                  # also load the theme loader, proxied from the :5400 dev server
-MT_DEV_MODE=prod MT_DEV_PORT=5411 npm run dev # serve dist/ exactly as it would be deployed
+pnpm dev                                   # http://127.0.0.1:5410/ — module bundled from src/ per request
+MT_WITH_LOADER=1 pnpm dev                  # also load the theme loader, proxied from the :5400 dev server
+MT_DEV_MODE=prod MT_DEV_PORT=5411 pnpm dev # serve lib/ exactly as it would be deployed
 ```
 
-Stock Element 1.12.33 from `loader/.element/` with `loader/dev/config.json` (both read-only). No harness sessions
+Stock Element 1.12.36 from `../theme-loader/.element/` with `../theme-loader/dev/config.json` (both read-only). No harness sessions
 for :5410 — use it logged out, or test logged-in with interception (below). In device emulation open
 `http://127.0.0.1:5410/#/welcome` or set `sessionStorage.skip_mobile_redirect = "true"`.
 
@@ -146,30 +143,30 @@ for :5410 — use it logged out, or test logged-in with interception (below). In
 
 ```sh
 export NODE_PATH=~/projects/matrix-search-widget/node_modules
-npm run build
-node test/smoke.mjs                              # dev server: attributes, stylesheet once, no errors (5 cases)
-node test/shell.mjs [--device iphone15,…|all] [--theme <id>] [--only with|without] [--base-url URL]
+pnpm build
+node e2e/smoke.mjs                              # dev server: attributes, stylesheet once, no errors (5 cases)
+node e2e/shell.mjs [--device iphone15,…|all] [--theme <id>] [--only with|without] [--base-url URL]
                                                  # before/after phone flow → recordings/mobile/after/<device>[--theme]/
-node test/desktop.mjs [--theme <id>]             # 1440×900: layout fingerprint + pixel diff with vs. without
-node test/audit.mjs [--device …] [--with-module] # the research audit (recordings/mobile/<device>[--module]/)
-node test/run.mjs --script x.mjs --with-module   # ad-hoc: logged-in page + your script
+node e2e/desktop.mjs [--theme <id>]             # 1440×900: layout fingerprint + pixel diff with vs. without
+node e2e/audit.mjs [--device …] [--with-module] # the research audit (recordings/mobile/<device>[--module]/)
+node e2e/run.mjs --script x.mjs --with-module   # ad-hoc: logged-in page + your script
 # WebKit (iPhone, logged out; host lacks WebKit's libs → local Playwright image):
 podman run --rm --network host --security-opt label=disable \
   -v ~/projects/matrix-search-widget/node_modules:/pw/node_modules:ro -v ~/.cache/ms-playwright:/ms-playwright:ro \
   -e PLAYWRIGHT_BROWSERS_PATH=/ms-playwright -v $PWD/..:/proj mcr.microsoft.com/playwright:v1.65.0-noble \
-  node /proj/mobile/test/webkit.mjs
+  node /proj/modules/mobile-themes/e2e/webkit.mjs
 ```
 
 All logged-in tests use the harness session pool (`tests/README.md`: exclusive slot, never a login, no messages or
 reactions, `mx_local_settings` restored), against production with the module injected by request interception
-(`config.json` + `/element-modules/mobile-themes/*` from `dist/`), or against the loader dev server
+(`config.json` + `/element-modules/mobile-themes/*` from `lib/`), or against the loader dev server
 (`--base-url http://localhost:5400`, both modules). `shell.mjs` simulates the keyboard two ways: `visual` (iOS /
 Android default: `visualViewport.height` shrinks, layout stays) and `layout` (Android `resizes-content`).
 
 ## Deploy
 
-Not deployed. When it is: same procedure as the loader (`loader/README.md` → Deploy), module directory
-`element-modules/mobile-themes`, files from `dist/files.txt`, listed **after** the theme loader. Combine with the
+Not deployed. When it is: same procedure as the loader (`../theme-loader/README.md` → Deploy), module directory
+`element-modules/mobile-themes`, files from `lib/files.txt`, listed **after** the theme loader. Combine with the
 mobile-guide proposal above, otherwise phone users only reach the app through the guide's "desktop site" link.
 
 ## Needs real devices
@@ -193,15 +190,26 @@ src/mobile.css    the scoped stylesheet (bundled as text)
 server/mobile_guide/index.html   proposal: replacement mobile guide page (not deployed)
 build/            esbuild setup + production build
 dev/server.mjs    dev server (:5410)
-test/             smoke, shell (before/after), desktop (regression), webkit, audit (research), run (ad-hoc), mtlib
+e2e/              smoke, shell (before/after), desktop (regression), webkit, audit (research), run (ad-hoc), mtlib
 ```
 
 ### Live check
 
-`node test/live-guide.mjs --base-url https://element.datanauten.de` (and `https://chat.od.blackpony.club`): logged out,
+`node e2e/live-guide.mjs --base-url https://element.datanauten.de` (and `https://chat.od.blackpony.club`): logged out,
 no interception. iPhone/Pixel → our guide → "Continue in the browser" → Element in mobile mode, new tab skips the
 guide, `?mobile_web=0` shows it again; desktop gets no mobile mode. Screenshots + result.json in `recordings/mobile/live/<host>/`.
 
 On openDesk the files are served by the theme-loader nginx (Ingress paths `/modules/mobile-themes`, `/mobile_guide`);
 see the openDesk repo's runbook §11. On datanauten: `mobile-themes` entry in `datanauten_element_modules` plus the
 mobile_guide mount (vars.yml).
+
+## Test stack
+
+```sh
+e2e/stack.sh up     # Synapse on :18488, Element Web v1.12.36 on :5819 with lib/ mounted (alice / alice-pass, bob / bob-pass)
+e2e/stack.sh down
+```
+
+`MT_ELEMENT=v1.12.33 e2e/stack.sh up` tries another Element version. `pnpm build` empties `lib/` in place, so a
+running stack picks up a rebuild on reload.
+In mobile-themes the stack also mounts ../theme-loader/lib when it has been built.

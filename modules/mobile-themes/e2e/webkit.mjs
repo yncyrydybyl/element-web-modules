@@ -8,7 +8,7 @@
 //   podman run --rm --network host --security-opt label=disable \
 //     -v ~/projects/matrix-search-widget/node_modules:/pw/node_modules:ro -v ~/.cache/ms-playwright:/ms-playwright:ro \
 //     -e PLAYWRIGHT_BROWSERS_PATH=/ms-playwright -v $PWD:/proj mcr.microsoft.com/playwright:v1.65.0-noble \
-//     node /proj/mobile/test/webkit.mjs [--base-url http://127.0.0.1:5410] [--out /proj/recordings/mobile/after/webkit]
+//     node /proj/mobile/e2e/webkit.mjs [--base-url http://127.0.0.1:5410] [--out /proj/recordings/mobile/after/webkit]
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";

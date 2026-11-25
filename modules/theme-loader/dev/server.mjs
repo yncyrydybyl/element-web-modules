@@ -1,6 +1,6 @@
 // Dev server for concurrent theme work (port 5400).
 //
-//   /                                   Element Web 1.12.33 (release tarball in loader/.element/, CSP as shipped)
+//   /                                   Element Web 1.12.36 (release tarball in .element/, CSP as shipped)
 //   /config.json, /config.<host>.json   generated from dev/config.json (homeserver matrix.datanauten.de)
 //   /element-modules/theme-loader/index.js   the loader, bundled from loader/src on request (dev build: no baked
 //                                       registry, no baked enhancers)
@@ -18,14 +18,14 @@ import { buildEnhancer, buildLoader } from "../build/bundle.mjs";
 
 const PORT = Number(process.env.TL_DEV_PORT ?? 5400);
 const HOST = process.env.TL_DEV_HOST ?? "127.0.0.1";
-const ELEMENT_VERSION = "1.12.33";
+const ELEMENT_VERSION = "1.12.36";
 const ELEMENT_DIR = join(LOADER_DIR, ".element", `element-v${ELEMENT_VERSION}`);
 const DEV_BASE = "/tl-dev/";
 const startedAt = new Date().toISOString();
-// TL_DEV_MODE=prod (e.g. TL_DEV_PORT=5401): serve the production build in loader/dist/ as the module instead,
+// TL_DEV_MODE=prod (e.g. TL_DEV_PORT=5401): serve the production build in lib/ as the module instead,
 // exactly as it would be deployed (flat directory, baked registry, no live themes). For checking a build.
 const PROD = process.env.TL_DEV_MODE === "prod";
-const DIST = join(LOADER_DIR, "dist");
+const DIST = join(LOADER_DIR, "lib");
 
 const TYPES = {
     ".html": "text/html; charset=utf-8",

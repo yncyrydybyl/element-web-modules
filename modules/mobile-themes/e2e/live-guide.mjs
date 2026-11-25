@@ -2,13 +2,13 @@
 // phone UA → Element redirects to /mobile_guide/ → our page → "Continue in the browser" → Element login in mobile
 // mode; a new tab skips the guide (remembered choice); ?mobile_web=0 shows it again. Desktop gets no mobile mode.
 //
-//   NODE_PATH=~/projects/matrix-search-widget/node_modules node mobile/test/live-guide.mjs \
+//   NODE_PATH=~/projects/matrix-search-widget/node_modules node mobile/e2e/live-guide.mjs \
 //       [--base-url https://element.datanauten.de] [--out recordings/mobile/live]
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const H = await import(path.join(path.dirname(fileURLToPath(import.meta.url)), "../../tests/harness/lib.mjs"));
+const H = await import(path.join(path.dirname(fileURLToPath(import.meta.url)), "../../theme-loader/qa/harness/lib.mjs"));
 const { chromium, devices } = H.req("playwright");
 
 const args = Object.fromEntries(process.argv.slice(2).join(" ").split("--").filter(Boolean).map((s) => s.trim().split(/\s+/)));

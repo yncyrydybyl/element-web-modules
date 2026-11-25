@@ -19,7 +19,7 @@ The asset directory is flat, because the build flattens assets to `kde--<file>`.
 | kde-usable | done | No titlebar, 44 px band, 14.5 px body, Qt zebra rows in the timeline and room list, unread rows marked with an accent bar, dark-blue unread pills, 3 px `#1e6fa5` focus ring with a white gap, filled default buttons, permanent 10 px scrollbars with a groove, darker outlines under `prefers-contrast: more`. |
 | kde-glass | done | Hanabi dark wallpaper behind everything; backdrop blur only on the big panes (floating rounded space panel, room list, room view, dialogs, menus); translucent cards without per-tile blur; violet accent-from-wallpaper glow on selection, unread badges, the send button and focus; ember-orange mentions; dialogs open with a "Magic Lamp"-like animation (turned off under reduced motion); opaque fallback when `backdrop-filter` is not supported. |
 
-### Edge-check results (`tests/reports/kde-*.md`, latest run)
+### Edge-check results (`qa/reports/kde-*.md`, latest run)
 
 | Variant | Result | Contrast nodes | Invisible focus stops | Overflow | Missing essentials |
 |---|---|---|---|---|---|

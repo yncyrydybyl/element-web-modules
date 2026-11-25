@@ -14,20 +14,20 @@ seeds of jonas/lena/theo), `nio/` (E2EE stores of the seeder devices). Never pri
 
 ```sh
 export NODE_PATH=~/projects/matrix-search-widget/node_modules      # Playwright 1.62.1
-(cd tests/harness && npm install)                                   # once: axe-core
+(cd qa/harness && npm install)                                   # once: axe-core
 
-node tests/harness/shoot.mjs      --theme teams-2026-light          # → recordings/screens/<id>/NN-region.png + manifest.json
-node tests/harness/shoot.mjs      --theme teams-2026-daylight --phase night   # → recordings/screens/<id>--night/
-node tests/harness/shoot.mjs      --theme lcars-tng --only 02,04,05 # subset by prefix
-node tests/harness/shoot.mjs      --theme lcars-tng --mobile        # whole set at 390x844 → recordings/screens/<id>/mobile/
-node tests/harness/walkthrough.mjs --theme lcars-tng                # → recordings/walkthroughs/<id>.webm (45 s, 1440x900) + .json
-node tests/harness/edgecheck.mjs  --theme lcars-tng                 # → tests/reports/<id>.md + .json (exit 1 = FAIL)
-tests/harness/grid.sh recordings/grids/lcars.mp4 lcars-tng lcars-voyager lcars-picard lcars-usable   # 2–9 tiles
-node tests/harness/shoot.mjs      --theme lcars-tng --hero          # → recordings/screens/<id>/hero.png + thumb.webp
-node tests/harness/timelapse.mjs  --theme e-daylight                # → recordings/timelapse/<id>.webm (phases cycle live)
-node tests/harness/film.mjs       --clip loader                     # extra takes for the showcase film (loader|rtl|code|modal)
-tests/harness/grids.sh                                              # all grids in recordings/grids/
-python3 tests/harness/contact.py                                    # recordings/contact/*.png
+node qa/harness/shoot.mjs      --theme teams-2026-light          # → recordings/screens/<id>/NN-region.png + manifest.json
+node qa/harness/shoot.mjs      --theme teams-2026-daylight --phase night   # → recordings/screens/<id>--night/
+node qa/harness/shoot.mjs      --theme lcars-tng --only 02,04,05 # subset by prefix
+node qa/harness/shoot.mjs      --theme lcars-tng --mobile        # whole set at 390x844 → recordings/screens/<id>/mobile/
+node qa/harness/walkthrough.mjs --theme lcars-tng                # → recordings/walkthroughs/<id>.webm (45 s, 1440x900) + .json
+node qa/harness/edgecheck.mjs  --theme lcars-tng                 # → qa/reports/<id>.md + .json (exit 1 = FAIL)
+qa/harness/grid.sh recordings/grids/lcars.mp4 lcars-tng lcars-voyager lcars-picard lcars-usable   # 2–9 tiles
+node qa/harness/shoot.mjs      --theme lcars-tng --hero          # → recordings/screens/<id>/hero.png + thumb.webp
+node qa/harness/timelapse.mjs  --theme e-daylight                # → recordings/timelapse/<id>.webm (phases cycle live)
+node qa/harness/film.mjs       --clip loader                     # extra takes for the showcase film (loader|rtl|code|modal)
+qa/harness/grids.sh                                              # all grids in recordings/grids/
+python3 qa/harness/contact.py                                    # recordings/contact/*.png
 ```
 
 Every run hides Element toasts (CSS from first paint, write-free; `TL_SHOW_TOASTS=1` to see them) and scrolls only
@@ -54,28 +54,28 @@ theme / typo). `?tl_theme=` is never persisted, so runs never change anyone's th
   Ctrl-C and SIGTERM; a `kill -9`'d run leaves a stale lock that the next run breaks.
 - If a run was killed, Element's own cross-tab lock may show "Element is open in another window"; the harness clicks
   Continue (safe, because it holds the slot lock).
-- **More slots** (if agents keep waiting): `node tests/harness/session.mjs themes-mira --slot 9 --verify` (one new
+- **More slots** (if agents keep waiting): `node qa/harness/session.mjs themes-mira --slot 9 --verify` (one new
   device, verified with the recovery key, then marked ready). Do this once, not per run.
 - **No shared mutable state between runs:** each run has its own dir `.state/run/<user>-XXXX/` (videos, logged-out
   profile for the login shot), removed afterwards. Output paths are per theme (`recordings/screens/<id>/`,
-  `recordings/walkthroughs/<id>.webm`, `tests/reports/<id>.*`); two runs of the *same* theme overwrite each other.
+  `recordings/walkthroughs/<id>.webm`, `qa/reports/<id>.*`); two runs of the *same* theme overwrite each other.
 - **No account-data writes:** layouts are switched with device-level settings (`mxSettingsStore … 'device'`) and
   restored at the end; the Themes tab is only opened, never clicked; the Appearance tab is only looked at.
 - **Writes the harness does make:** read receipts in the rooms it opens (Showcase, Code Review is not opened,
   Sandbox, DM Jonas); `walkthrough.mjs` sends one message + one 👍 reaction to **Theme Lab · Sandbox** (unencrypted).
 - Chrome flatpak needs `--filesystem=.state` (it has a private /tmp); the wrapper is generated in `.state/bin/`.
 
-## Fixtures (`tests/fixtures/seed.py`)
+## Fixtures (`qa/fixtures/seed.py`)
 
 Idempotent: rooms/uploads/events have stable keys recorded in `.state/fixtures.json`; re-running only sends what's
 missing. Rate limits on the production server are strict (room creation/joins can wait 5 min per 429); the seeder
 just waits.
 
 ```sh
-python3 tests/fixtures/seed.py all       # everything, in order (safe to re-run)
-python3 tests/fixtures/seed.py status    # rooms, event counts, mira's unread counts
-python3 tests/fixtures/seed.py unread    # re-create unread/highlight state for mira (after it got cleared)
-python3 tests/fixtures/seed.py history [room-key …]   # (re)send missing timeline events
+python3 qa/fixtures/seed.py all       # everything, in order (safe to re-run)
+python3 qa/fixtures/seed.py status    # rooms, event counts, mira's unread counts
+python3 qa/fixtures/seed.py unread    # re-create unread/highlight state for mira (after it got cleared)
+python3 qa/fixtures/seed.py history [room-key …]   # (re)send missing timeline events
 ```
 
 Steps of `all`: `login` (one "Theme Lab seeder" device per user, token in `.state/tokens.json`) → `base`
@@ -84,7 +84,7 @@ Steps of `all`: `login` (one "Theme Lab seeder" device per user, token in `.stat
 jonas/lena/theo created in Python, every seeder device signed, mira signs the others' master keys = "verified
 users") → `history` (E2EE rooms are sent through matrix-nio from the seeder devices; the script re-execs under
 `TL_NIO_PYTHON`, default the matrix-commander Homebrew venv) → `unread` → `session.mjs --sync`.
-Media are pre-generated in `tests/fixtures/assets/` by `make-assets.sh` (ImageMagick + ffmpeg).
+Media are pre-generated in `qa/fixtures/assets/` by `make-assets.sh` (ImageMagick + ffmpeg).
 
 Space **Theme Lab** (all rooms carry the `de.datanauten.theme_lab` creation flag + `de.datanauten.theme_lab.fixture`
 state event; topics end in "[Theme Lab test fixture]"):
@@ -145,19 +145,19 @@ are **report-only** (never fail). `--views timeline,irc` limits the run.
 
 ## Test matrix (`functional.mjs`, `viewports.mjs`)
 
-Case catalogue: `docs/TESTCASES.md`, generated from `tests/catalogue.py` (ids, priorities, sample, viewport lists →
-`tests/catalogue.json`). Every result is keyed by case id; reports go to `tests/reports/matrix/<run>.json`, screenshots
+Case catalogue: `docs/TESTCASES.md`, generated from `qa/catalogue.py` (ids, priorities, sample, viewport lists →
+`qa/catalogue.json`). Every result is keyed by case id; reports go to `qa/reports/matrix/<run>.json`, screenshots
 to `recordings/tests/<case-id>/<run>/<theme>[--<viewport>].png`, and `matrix-summary.mjs` merges all reports into
-`tests/reports/matrix/SUMMARY.md`.
+`qa/reports/matrix/SUMMARY.md`.
 
 ```sh
-node tests/harness/functional.mjs --themes all --tier p1 --send --parallel 5          # T0 P0 + P1 UI cases, all 72 + default
-node tests/harness/functional.mjs --themes sample --send-extra                          # MSG-02..10 in the Sandbox
-node tests/harness/functional.mjs --base-url https://element.datanauten.de --themes sample --tier p1 --modules --parallel 1
-node tests/harness/viewports.mjs  --mode matrix  --themes sample [--mobile-module]      # 12 widths × 7 heights per theme
-node tests/harness/viewports.mjs  --mode login   --themes sample                        # logged-out, every width × 568/900
-node tests/harness/viewports.mjs  --mode devices --themes sample --mobile-module        # DPR/touch/UA devices, MOB-*, MOD-06/07
-node tests/harness/matrix-summary.mjs
+node qa/harness/functional.mjs --themes all --tier p1 --send --parallel 5          # T0 P0 + P1 UI cases, all 72 + default
+node qa/harness/functional.mjs --themes sample --send-extra                          # MSG-02..10 in the Sandbox
+node qa/harness/functional.mjs --base-url https://element.datanauten.de --themes sample --tier p1 --modules --parallel 1
+node qa/harness/viewports.mjs  --mode matrix  --themes sample [--mobile-module]      # 12 widths × 7 heights per theme
+node qa/harness/viewports.mjs  --mode login   --themes sample                        # logged-out, every width × 568/900
+node qa/harness/viewports.mjs  --mode devices --themes sample --mobile-module        # DPR/touch/UA devices, MOB-*, MOD-06/07
+node qa/harness/matrix-summary.mjs
 ```
 
 - Sessions come from the pool (`acquireSlot`); the slot profile is used in place, so `mx_local_settings` (layout,

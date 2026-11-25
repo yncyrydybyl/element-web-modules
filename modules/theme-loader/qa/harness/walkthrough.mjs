@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // The same 45 s user journey for every theme, recorded to recordings/walkthroughs/<id>[--<phase>].webm (1440x900).
-//   node tests/harness/walkthrough.mjs --theme <id> [--phase p] [--base-url URL] [--user themes-mira] [--duration 45]
+//   node qa/harness/walkthrough.mjs --theme <id> [--phase p] [--base-url URL] [--user themes-mira] [--duration 45]
 //        [--name <out-basename>]   (e.g. --phase day --name teams-2026-daylight: clock-independent main clip)
 // Element toasts are hidden (lib.mjs launch), the root never scrolls (scrollInPanel), so clips stay comparable.
 // Timing is deterministic: every step starts at a fixed offset from the journey start, and the recording is trimmed

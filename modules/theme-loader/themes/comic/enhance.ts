@@ -8,7 +8,7 @@
  *   after-midnight: neon flicker on room change, sparkle trail (fine pointers, motion allowed)
  * Everything degrades with ctx.reducedMotion and is removed in unmount(). Never throws into Element.
  */
-import type { Enhancer, EnhancerContext } from "../../loader/src/types";
+import type { Enhancer, EnhancerContext } from "../../src/types";
 
 type Feature = "counter" | "topic" | "wordart" | "roomchange" | "klammi" | "warning" | "panic" | "sparkles" | "jingle" | "hueguard";
 

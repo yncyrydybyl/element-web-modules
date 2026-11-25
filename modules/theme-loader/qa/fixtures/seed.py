@@ -4,14 +4,14 @@
 Idempotent: every room, upload and event gets a stable key; what exists is recorded in .state/fixtures.json and
 skipped on re-runs. Secrets (tokens, cross-signing seeds, recovery key) live only in .state/ with mode 600.
 
-    python3 tests/fixtures/seed.py all        # everything below, in order (safe to re-run)
-    python3 tests/fixtures/seed.py login      # m.login.password once per user -> .state/tokens.json ("Theme Lab seeder" device)
-    python3 tests/fixtures/seed.py base       # profiles, avatars, space "Theme Lab", rooms, DMs, joins
-    node    tests/harness/session.mjs themes-mira --bootstrap   # Element session + cross-signing/recovery for mira
-    python3 tests/fixtures/seed.py xsign      # cross-signing for jonas/lena/theo, sign seeder devices, mira verifies the others
-    python3 tests/fixtures/seed.py history    # seeded timelines (E2EE rooms sent via matrix-nio from the seeder devices)
-    python3 tests/fixtures/seed.py unread     # (re)create unread + highlight counts for mira in rooms the harness never opens
-    python3 tests/fixtures/seed.py status     # summary of what exists
+    python3 qa/fixtures/seed.py all        # everything below, in order (safe to re-run)
+    python3 qa/fixtures/seed.py login      # m.login.password once per user -> .state/tokens.json ("Theme Lab seeder" device)
+    python3 qa/fixtures/seed.py base       # profiles, avatars, space "Theme Lab", rooms, DMs, joins
+    node    qa/harness/session.mjs themes-mira --bootstrap   # Element session + cross-signing/recovery for mira
+    python3 qa/fixtures/seed.py xsign      # cross-signing for jonas/lena/theo, sign seeder devices, mira verifies the others
+    python3 qa/fixtures/seed.py history    # seeded timelines (E2EE rooms sent via matrix-nio from the seeder devices)
+    python3 qa/fixtures/seed.py unread     # (re)create unread + highlight counts for mira in rooms the harness never opens
+    python3 qa/fixtures/seed.py status     # summary of what exists
 
 E2EE: commands that send encrypted events re-exec themselves under a Python that has matrix-nio[e2e]
 (TL_NIO_PYTHON, default: the matrix-commander Homebrew venv).
@@ -402,7 +402,7 @@ def cmd_xsign():
         if lp == "themes-mira":
             rk_path = STATE / "themes-mira.recovery"
             if not master or not rk_path.exists():
-                print(" mira: no cross-signing yet -> run `node tests/harness/session.mjs themes-mira --bootstrap` first"); continue
+                print(" mira: no cross-signing yet -> run `node qa/harness/session.mjs themes-mira --bootstrap` first"); continue
             rk = rk_path.read_text().strip()
             seeds = {"self_signing": ssss_decrypt(lp, "m.cross_signing.self_signing", rk),
                      "user_signing": ssss_decrypt(lp, "m.cross_signing.user_signing", rk)}
@@ -481,7 +481,7 @@ CODE_CSS = '''html[data-tl-theme="win311-default"] .mx_EventTile {
 CODE_SH = '''#!/usr/bin/env bash
 set -euo pipefail
 for t in teams-2026-light win311-default lcars-tng; do
-  node tests/harness/shoot.mjs --theme "$t" &
+  node qa/harness/shoot.mjs --theme "$t" &
 done
 wait'''
 CODE_RUST = '''fn main() {
@@ -855,11 +855,11 @@ def cmd_all():
     need_nio()
     cmd_login(); cmd_base()
     if not (STATE / "themes-mira.recovery").exists():
-        subprocess.run(["node", str(ROOT / "tests/harness/session.mjs"), "themes-mira", "--bootstrap"], check=True)
+        subprocess.run(["node", str(ROOT / "qa/harness/session.mjs"), "themes-mira", "--bootstrap"], check=True)
     cmd_xsign()
     cmd_history()
     cmd_unread()
-    subprocess.run(["node", str(ROOT / "tests/harness/session.mjs"), "themes-mira", "--sync"], check=True)
+    subprocess.run(["node", str(ROOT / "qa/harness/session.mjs"), "themes-mira", "--sync"], check=True)
     cmd_status()
 
 

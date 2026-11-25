@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Side-by-side / grid video of walkthrough clips with a caption bar per tile.
-#   tests/harness/grid.sh <out.mp4> <id1> <id2> [... up to 9]
+#   qa/harness/grid.sh <out.mp4> <id1> <id2> [... up to 9]
 # Inputs: recordings/walkthroughs/<id>.webm (ids may carry a phase suffix, e.g. teams-2026-daylight--night).
 # Layout: 2 → 1x2, 3 → 1x3, 4 → 2x2, 5-6 → 2x3, 7-9 → 3x3 (empty cells black). Output 1920 px wide (x264, yuv420p).
 # Caption = theme name from recordings/walkthroughs/<id>.json (written by walkthrough.mjs), else the id.

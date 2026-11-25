@@ -2,7 +2,7 @@
 // Ad-hoc driver: logged-in Element (session pool) under device emulation, optionally with the module injected, then
 // runs a script module `export default async ({ page, ctx, R, h, out }) => {}`. For exploration and one-off checks.
 //
-//   node mobile/test/run.mjs --script path/to/x.mjs [--device iphone15] [--base-url https://element.datanauten.de]
+//   node mobile/e2e/run.mjs --script path/to/x.mjs [--device iphone15] [--base-url https://element.datanauten.de]
 //        [--with-module] [--theme lcars-tng] [--out dir]
 import path from "node:path";
 import * as h from "./mtlib.mjs";

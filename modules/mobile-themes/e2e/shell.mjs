@@ -6,7 +6,7 @@
 //   recordings/mobile/after/<device>/compare.png           side-by-side sheet (needs python3 + PIL; skipped otherwise)
 //   recordings/mobile/after/<device>/result.json           per step: ok/error, measure() metrics, module state
 //
-//   NODE_PATH=~/projects/matrix-search-widget/node_modules node mobile/test/shell.mjs \
+//   NODE_PATH=~/projects/matrix-search-widget/node_modules node mobile/e2e/shell.mjs \
 //       [--device iphone15,pixel8,iphone15-land,pixel8-land|all] [--base-url https://element.datanauten.de]
 //       [--theme <tl_theme id>] [--only with|without] [--out recordings/mobile/after]
 //

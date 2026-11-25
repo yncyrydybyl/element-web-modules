@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Extra footage for the showcase film (recordings/showcase/): short scripted takes the 45 s walkthroughs don't cover.
-//   node tests/harness/film.mjs --clip <name> [--theme <id>] [--base-url URL]
+//   node qa/harness/film.mjs --clip <name> [--theme <id>] [--base-url URL]
 // Clips: loader (Themes tab + Alt+Shift+T quick switcher previews, Esc reverts — nothing is selected or saved),
 //        rtl (the RTL room), code (code blocks in Showcase), modal (create-room dialog + emoji picker + settings).
 // Output: recordings/showcase/work/clips/<name>.mp4 (1440x900, 30 fps, trimmed at a magenta sync frame).

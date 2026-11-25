@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Automated edge checks for one theme → tests/reports/<id>[--<phase>].json + .md
-//   node tests/harness/edgecheck.mjs --theme <id> [--phase p] [--base-url URL] [--user themes-mira] [--views timeline,irc]
+// Automated edge checks for one theme → qa/reports/<id>[--<phase>].json + .md
+//   node qa/harness/edgecheck.mjs --theme <id> [--phase p] [--base-url URL] [--user themes-mira] [--views timeline,irc]
 // Checks per view: axe-core (WCAG 2 A/AA incl. color-contrast), keyboard focus visibility (Tab walk), console errors,
 // horizontal overflow, essential elements with zero size / invisible, clipped text without ellipsis.
 // Variants whose stage is level-5+ / invisible / unreadable (by design) are "report-only": findings never fail.
@@ -204,7 +204,7 @@ S.consoleErrors = report.consoleErrors.length;
 S.fail = !reportOnly && (S.missing > 0 || S.overflowViews > 0 || report.consoleErrors.some((e) => /pageerror/.test(e)));
 report.summary = S;
 report.finished = new Date().toISOString();
-const dir = ensureDir(path.join(ROOT, 'tests/reports'));
+const dir = ensureDir(path.join(ROOT, 'qa/reports'));
 const stem = path.join(dir, a.theme + (a.phase ? `--${a.phase}` : ''));
 fs.writeFileSync(stem + '.json', JSON.stringify(report, null, 2));
 

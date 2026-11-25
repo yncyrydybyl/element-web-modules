@@ -1,7 +1,7 @@
-// Production build: validate all families, flatten CSS + assets into dist/ (<family>--<file>), write
-// dist/themes.json and bundle loader + all enhancers into dist/index.js.
+// Production build: validate all families, flatten CSS + assets into lib/ (<family>--<file>), write
+// lib/themes.json and bundle loader + all enhancers into lib/index.js.
 //   node build/build.mjs [--show-demo] [--out <dir>] [--families a,b]   (--families: build only those, for testing)
-import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { buildLoader } from "./bundle.mjs";
 import { aggregate, flatName, formatProblems, listAssets, LOADER_DIR, loadAll, parseAssetRef, rewriteCssUrls, sha, THEMES_DIR } from "./lib.mjs";
@@ -9,7 +9,7 @@ import { aggregate, flatName, formatProblems, listAssets, LOADER_DIR, loadAll, p
 const args = process.argv.slice(2);
 const showHidden = args.includes("--show-demo");
 const outIdx = args.indexOf("--out");
-const OUT = outIdx >= 0 ? args[outIdx + 1] : join(LOADER_DIR, "dist");
+const OUT = outIdx >= 0 ? args[outIdx + 1] : join(LOADER_DIR, "lib");
 
 const famIdx = args.indexOf("--families");
 const onlyFamilies = famIdx >= 0 ? args[famIdx + 1].split(",") : null;
@@ -26,8 +26,9 @@ if (errors.length) {
     process.exit(1);
 }
 
-rmSync(OUT, { recursive: true, force: true });
+// Empty the directory instead of replacing it: e2e/stack.sh bind-mounts it into the Element container.
 mkdirSync(OUT, { recursive: true });
+for (const f of readdirSync(OUT)) rmSync(join(OUT, f), { recursive: true, force: true });
 const written = new Map(); // flat name -> source, to catch collisions
 const emit = (name, src, data) => {
     if (written.has(name) && written.get(name) !== src) {

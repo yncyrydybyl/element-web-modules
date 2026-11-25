@@ -1,6 +1,6 @@
 # Test matrix — summary
 
-Generated 2026-11-15 14:28 from 13 report(s) in `tests/reports/matrix/` (21127 results). Cases: `docs/TESTCASES.md`. Screenshots: `recordings/tests/<case-id>/<run>/`.
+Generated 2026-11-15 14:28 from 13 report(s) in `qa/reports/matrix/` (21127 results). Cases: `docs/TESTCASES.md`. Screenshots: `recordings/tests/<case-id>/<run>/`.
 
 | run | base | started | mobile/dist | results |
 |---|---|---|---|---|

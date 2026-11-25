@@ -8,15 +8,15 @@ Production runs upstream Element 1.12.33, deployed with Ansible (matrix-docker-a
 ## Steps
 
 ```sh
-# 1. Build (validates manifests, scoping, assets; writes loader/dist + dist/files.txt)
-cd ~/projects/element-web-themes/loader && npm run build
+# 1. Build (validates manifests, scoping, assets; writes lib/ + lib/files.txt)
+cd ~/projects/element-modules/element-web-modules/modules/theme-loader && pnpm build
 
 # 2. Copy into the deploy repo
 R=~/projects/dtn10/datanauten.de
 D=$R/inventory/host_vars/matrix.datanauten.de/files/element-modules/theme-loader
-rm -rf "$D" && mkdir -p "$D" && cp dist/* "$D/" && rm "$D/files.txt"
+rm -rf "$D" && mkdir -p "$D" && cp lib/* "$D/" && rm "$D/files.txt"
 
-# 3. Refresh the files: list of the theme-loader entry in vars.yml from dist/files.txt
+# 3. Refresh the files: list of the theme-loader entry in vars.yml from lib/files.txt
 python3 tools/deploy/update_vars.py        # see below; or edit by hand
 
 # 4. Deploy (≈10 min) and restart the Element container
@@ -37,7 +37,7 @@ uses the old unit (`systemctl show matrix-client-element -p NeedDaemonReload` sa
 
 ## mobile-themes
 
-Same deploy repo: entry `mobile-themes` in `datanauten_element_modules` (files from `mobile/dist`: `index.js`,
+Same deploy repo: entry `mobile-themes` in `datanauten_element_modules` (files from `modules/mobile-themes/lib`: `index.js`,
 `index.js.map` → `files/element-modules/mobile-themes/`), and the replacement guide page
 `mobile/server/mobile_guide/index.html` → `files/element-mobile-guide/index.html`, mounted over
 `/app/mobile_guide/index.html`. Check: `node mobile/test/live-guide.mjs --base-url https://element.datanauten.de`.

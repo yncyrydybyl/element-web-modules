@@ -7,7 +7,7 @@
  *  - daylight: night phase disables audio + cascade.
  * Never throws into Element; unmount() removes every attribute, node, observer and timer.
  */
-import type { EnhancerContext, Enhancer } from "../../loader/src/types";
+import type { EnhancerContext, Enhancer } from "../../src/types";
 
 interface Cfg {
     year: number; // in-universe year for the stardate

@@ -5,7 +5,7 @@
  *  2. a Plasma digital clock at the bottom of the space column.
  * Everything is wrapped in try/catch and fully removed in unmount().
  */
-import type { EnhancerContext } from "../../loader/src/types";
+import type { EnhancerContext } from "../../src/types";
 
 type Deco = "breeze" | "oxygen" | "ocean" | "glass" | null;
 

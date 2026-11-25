@@ -59,7 +59,7 @@ export interface ResolvedFont extends Omit<FontSpec, "file"> {
     url?: string;
 }
 
-/** A variant in the aggregated registry (dist/themes.json or the dev server's live themes.json). */
+/** A variant in the aggregated registry (lib/themes.json or the dev server's live themes.json). */
 export interface Variant extends Omit<VariantManifest, "css" | "fonts"> {
     family: string;
     familyName: Localised;
