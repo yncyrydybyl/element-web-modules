@@ -36,7 +36,6 @@ export const translations = {
         en: "↑↓ preview · Enter apply · Esc cancel · Alt+Shift+T opens this anywhere",
         de: "↑↓ Vorschau · Enter übernehmen · Esc abbrechen · Alt+Shift+T öffnet das überall",
     },
-    tl_button_label: { en: "Switch theme (Alt+Shift+T)", de: "Theme wechseln (Alt+Shift+T)" },
     tl_dev_problems: { en: "Theme validation problems (dev server)", de: "Theme-Validierungsfehler (Dev-Server)" },
     tl_hidden: { en: "hidden", de: "versteckt" },
 } as const;

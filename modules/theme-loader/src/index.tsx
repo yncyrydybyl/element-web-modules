@@ -19,7 +19,7 @@ import { currentPhase, FORCE_PHASE_KEY, Scheduler } from "./scheduler";
 import { ThemeStore } from "./store";
 import type { Registry, Variant } from "./types";
 import type { PickerController } from "./picker/controller";
-import { PALETTE_ICON, SettingsInjector } from "./picker/settingsInjector";
+import { SettingsInjector } from "./picker/settingsInjector";
 import { ThemesTab } from "./picker/ThemesTab";
 import { QuickSwitcher } from "./picker/QuickSwitcher";
 import { LOADER_CSS } from "./picker/styles";
@@ -297,24 +297,6 @@ export class ThemeLoaderModule implements Module {
                 () => this.i18n.t("tl_tab"),
             );
             this.injector.start();
-        });
-        safe("room header button", () => {
-            const extras = (this.api as { extras?: { addRoomHeaderButtonCallback?: (cb: (roomId: string) => React.JSX.Element | undefined) => void } }).extras;
-            if (typeof extras?.addRoomHeaderButtonCallback !== "function") {
-                warn("room header buttons not supported by this Element; use Alt+Shift+T");
-                return;
-            }
-            extras.addRoomHeaderButtonCallback(() => (
-                <button
-                    type="button"
-                    className="tl-ui tl-header-button"
-                    aria-label={this.i18n.t("tl_button_label")}
-                    title={this.i18n.t("tl_button_label")}
-                    data-tl-quick-switch=""
-                    onClick={() => this.openQuickSwitcher()}
-                    dangerouslySetInnerHTML={{ __html: PALETTE_ICON }}
-                />
-            ));
         });
         window.addEventListener(
             "keydown",

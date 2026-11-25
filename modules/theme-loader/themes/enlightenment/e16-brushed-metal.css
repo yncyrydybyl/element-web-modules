@@ -217,8 +217,7 @@ html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader > .mx_BaseAvatar {
 html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader_heading {
   font-size: 13px;
 }
-html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader [class*="_icon-button_"],
-html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader .tl-header-button {
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader [class*="_icon-button_"] {
   color: #1A1A1A;
   --cpd-color-icon-secondary: #1A1A1A;
   --cpd-color-icon-tertiary: #1A1A1A;

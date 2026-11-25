@@ -64,10 +64,6 @@ export const LOADER_CSS = `
 .tl-phase { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font: var(--cpd-font-body-sm-regular); }
 .tl-phase select { font: inherit; padding: 2px 6px; border-radius: 6px; background: var(--cpd-color-bg-canvas-default); color: var(--cpd-color-text-primary); border: 1px solid var(--cpd-color-border-interactive-secondary); }
 
-.tl-header-button { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 4px; border: 0; border-radius: 50%; background: transparent; color: var(--cpd-color-icon-secondary); cursor: pointer; }
-.tl-header-button:hover { background: var(--cpd-color-bg-subtle-primary); color: var(--cpd-color-icon-primary); }
-.tl-header-button:focus-visible { outline: 2px solid var(--cpd-color-border-focused); }
-.tl-header-button svg { width: 20px; height: 20px; }
 
 .tl-quick { display: flex; flex-direction: column; gap: 8px; width: min(560px, 80vw); }
 .tl-quick-list { list-style: none; margin: 0; padding: 0; max-height: 55vh; overflow: auto; }

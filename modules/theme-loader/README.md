@@ -21,7 +21,7 @@ pnpm check -- <family>   # validate one family on the command line (manifest, fi
 - Force a theme for one page load: `http://127.0.0.1:5400/?tl_theme=<variant-id>` (not saved; `?tl_theme=none` =
   Element default). Force a daylight phase: `&tl_phase=night` or `localStorage["tl.forcePhase"]="night"`.
 - Picker: User settings → **Themes** (all families incl. hidden ones in dev, validation problems listed at the top).
-  Quick switcher: palette button in the room header or **Alt+Shift+T** (↑↓ preview, Enter apply, Esc revert).
+  Quick switcher: **Alt+Shift+T** (↑↓ preview, Enter apply, Esc revert).
 - Live endpoints: `/tl-dev/themes.json` (aggregated registry + `problems`), `/tl-dev/themes/<family>/<file>`,
   `/tl-dev/enhance/<family>.js` (your enhance.ts, bundled on request), `/tl-dev/status`.
 - Nothing is cached: CSS, assets, manifests and enhancers are re-read on every reload. A broken manifest/CSS/enhancer
@@ -131,7 +131,7 @@ NODE_PATH=~/projects/matrix-search-widget/node_modules node e2e/run.cjs [--user 
 Logs in through MAS with a test user (password never printed), then: Themes tab (Element default, both _demo variants,
 mode filter), font/enhancer/inline CSS, account data saved, restore from account data with the local cache cleared,
 all four daylight phases via `?tl_phase` (attribute, Element base class, enhancer `onPhase`), `tl.forcePhase`,
-`?tl_theme` not persisted, quick switcher (preview + Esc revert, type + Enter), room-header button, and finally
+`?tl_theme` not persisted, quick switcher (preview + Esc revert, type + Enter), and finally
 "Element default" restoring Element exactly (no attributes, no theme nodes, same base class and computed styles,
 account data `theme: null`). Fails on any `[theme-loader]` console error or page error. Screenshots and
 `e2e-results.json` go to `recordings/loader/`. The browser profile lives in `.dev/pw-profile` (log in once).

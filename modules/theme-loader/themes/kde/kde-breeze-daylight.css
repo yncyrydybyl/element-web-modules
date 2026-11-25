@@ -33,7 +33,6 @@ html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] {
 }
 /* the header band is dark at dusk: inputs inside it stay light */
 html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_RoomHeader [class*="_icon-button_"],
-html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_RoomHeader .tl-header-button,
 html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_BaseCard_header { color: #fcfcfc; }
 html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_SpacePanel .mx_SpaceButton_icon::before { background-color: #eff0f1; }
 html[data-tl-theme="kde-breeze-daylight"][data-tl-phase="dusk"] .mx_SpacePanel [class*="_icon-button_"] { color: #eff0f1; }

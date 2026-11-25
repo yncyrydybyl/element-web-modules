@@ -143,10 +143,9 @@ CSS targets `html[data-tl-theme="x"][data-tl-phase="night"]`. Transitions betwee
 - Picker: User Settings → "Themes" tab with gallery, plus a quick switcher button.
 - "Element default" (no loader theme) is always available.
 - ADDED: **`.tl-ui` must stay usable.** All loader UI carries the root class `tl-ui` (plus `tl-picker` for the Themes tab
-  panel/gallery, `tl-switcher` for the quick switcher, `tl-tab-label` for the tab label, `tl-header-button` for the room
-  header button). Every theme must keep `.tl-ui` readable and clickable, and the dialog that contains it
+  panel/gallery, `tl-switcher` for the quick switcher, `tl-tab-label` for the tab label). Every theme must keep `.tl-ui` readable and clickable, and the dialog that contains it
   (`.mx_Dialog:has(.tl-ui)`), so users can always switch back. Deliberately unreadable variants (sketch-unreadable,
   comic-unreadable, paper-*-invisible, …) must exempt them from their effects, e.g. `… :not(.tl-ui *)` or by
-  resetting inside `html[data-tl-theme="x"] .tl-ui`. Quick switcher: room-header palette button and **Alt+Shift+T**.
+  resetting inside `html[data-tl-theme="x"] .tl-ui`. Quick switcher: **Alt+Shift+T**.
 - ADDED: the html attribute `data-tl-phase-fading` is present for ~2 s after a phase change (the loader's built-in
   fade); `?tl_theme=none` forces Element default for one page load.

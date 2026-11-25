@@ -246,7 +246,7 @@ html[data-tl-theme="x-kde-e16"] .mx_RoomHeader {
     text-shadow: 0 1px 0 rgb(255 255 255 / .65);
   }
   & .mx_RoomHeader_infoWrapper { justify-content: center; }
-  & [class*="_icon-button_"], & .tl-header-button { color: var(--xk-metal-text) !important; }
+  & [class*="_icon-button_"] { color: var(--xk-metal-text) !important; }
   & [class*="_icon-button_"] svg { color: var(--xk-metal-text); }
   & [class*="_icon-button_"]:hover { background: rgb(255 255 255 / .35) !important; border-radius: 5px; box-shadow: 0 0 0 1px var(--xk-accent); }
   & .mx_FacePile [class*="_avatar_"] { box-shadow: 0 0 0 1px var(--xk-metal-line); }
