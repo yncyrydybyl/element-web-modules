@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-theme-loader",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Element Web module: loads the element-web-themes families (tokens, CSS, fonts, enhancers, daylight schedules) with a Themes settings tab and a quick switcher",
     "private": true,
     "type": "module",

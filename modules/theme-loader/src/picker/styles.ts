@@ -9,7 +9,6 @@ export const LOADER_CSS = `
 
 .mx_TabbedView[data-tl-themes-tab] > .mx_TabbedView_tabPanel:not(.tl-tab-panel),
 .mx_TabbedView:not([data-tl-themes-tab]) > .tl-tab-panel { display: none; }
-.mx_TabbedView[data-tl-themes-tab] .mx_TabbedView_tabLabel_active:not(.tl-tab-label) { background-color: transparent; color: inherit; }
 .mx_UserSettingsDialog_title[data-tl-tab] { font-size: 0 !important; }
 .mx_UserSettingsDialog_title[data-tl-tab] > * { display: none; }
 .mx_UserSettingsDialog_title[data-tl-tab]::before { content: attr(data-tl-prefix) " "; font: var(--cpd-font-heading-md-semibold); white-space: pre; }

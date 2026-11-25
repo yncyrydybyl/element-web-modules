@@ -1,6 +1,6 @@
 {
     "name": "@datanauten/element-web-module-mobile-themes",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Element Web module that makes Element Web usable on phones: single-pane shell, phone-sized dialogs, touch and keyboard handling, all scoped to html[data-mt-mobile]. Issues: docs/MOBILE-ISSUES.md",
     "private": true,
     "type": "module",

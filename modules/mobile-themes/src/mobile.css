@@ -256,6 +256,11 @@ html[data-mt-compact][data-mt-view] .mx_RoomHeader > [class*="_icon-button_"] {
     height: var(--mt-target) !important;
     flex: 0 0 auto;
 }
+/* The last icon button is "Room info", which the room name (infoWrapper) also opens. On a phone the header holds
+   back, avatar, video, voice, threads, info and "⋯": without dropping the duplicate the name shrinks to a letter. */
+html[data-mt-compact][data-mt-view] .mx_RoomHeader > [class*="_icon-button_"]:not(:has(~ [class*="_icon-button_"])) {
+    display: none !important;
+}
 html[data-mt-compact][data-mt-view] .mx_RoomHeader .mt-more {
     order: 2;
 }
