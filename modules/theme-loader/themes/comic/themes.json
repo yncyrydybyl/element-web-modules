@@ -1,0 +1,543 @@
+{
+  "family": "comic",
+  "name": "Comic Sans Party",
+  "variants": [
+    {
+      "id": "comic-casual-friday",
+      "name": "Comic Sans · Casual Friday",
+      "stage": "level-1",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 5,
+      "hype": 4,
+      "description": "Level 1: Element with Comic Sans MS (local) / Comic Relief everywhere and Comic Mono for code; Element palette, rounder corners, one rainbow date separator, sticky-note mentions. Fully readable.",
+      "css": [
+        "shared.css",
+        "comic-casual-friday.css"
+      ],
+      "fonts": [
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "display": "swap"
+        }
+      ],
+      "tokens": {},
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "comic-geocities",
+      "name": "Comic Sans · GeoCities",
+      "stage": "level-2",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 3,
+      "hype": 7,
+      "description": "Level 2: a 1998 personal homepage. Clouds tile, white page table, blue underlined links, marquee topic, hit counter, rainbow hr, under-construction sign, NEW! starbursts, 'Sign my guestbook!' composer with 'Submit Query'. Readable; motion off with reduced motion.",
+      "css": [
+        "shared.css",
+        "comic-geocities.css"
+      ],
+      "fonts": [
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "VT323",
+          "file": "assets/vt323-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Tinos",
+          "file": "assets/tinos-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Times New Roman",
+            "TimesNewRomanPSMT"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Tinos",
+          "file": "assets/tinos-400-italic.woff2",
+          "weight": "400",
+          "style": "italic",
+          "local": [
+            "Times New Roman Italic",
+            "TimesNewRomanPS-ItalicMT"
+          ],
+          "display": "swap"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#FFFFFF",
+        "--cpd-color-bg-canvas-default": "#FFFFFF",
+        "--cpd-color-bg-subtle-secondary": "#E8DDE8",
+        "--cpd-color-bg-subtle-primary": "#000080",
+        "--cpd-color-text-primary": "#000000",
+        "--cpd-color-text-secondary": "#555555",
+        "--cpd-color-text-action-accent": "#0000EE",
+        "--cpd-color-bg-accent-rest": "#0000EE",
+        "--cpd-color-bg-action-primary-rest": "#0000EE",
+        "--cpd-color-text-on-solid-primary": "#FFFFFF",
+        "--cpd-color-border-interactive-primary": "#808080",
+        "--cpd-color-text-critical-primary": "#FF0000",
+        "--cpd-color-bg-critical-primary": "#FF0000",
+        "--cpd-color-text-success-primary": "#008000",
+        "--cpd-color-text-link-external": "#0000EE"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "comic-wordart",
+      "name": "Comic Sans · WordArt 97",
+      "stage": "level-3",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 2,
+      "hype": 8,
+      "description": "Level 3: Office 97 desktop. Teal desktop, Win95 bevel windows with navy title bars, WordArt room name and per-sender WordArt names, timeline as a Word 97 page, yellow tooltips and Klammi the paperclip helper.",
+      "css": [
+        "shared.css",
+        "comic-wordart.css"
+      ],
+      "fonts": [
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Anton",
+          "file": "assets/anton-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Impact"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Tinos",
+          "file": "assets/tinos-700-italic.woff2",
+          "weight": "700",
+          "style": "italic",
+          "local": [
+            "Times New Roman Bold Italic",
+            "TimesNewRomanPS-BoldItalicMT"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Tinos",
+          "file": "assets/tinos-400-italic.woff2",
+          "weight": "400",
+          "style": "italic",
+          "local": [
+            "Times New Roman Italic",
+            "TimesNewRomanPS-ItalicMT"
+          ],
+          "display": "swap"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#FFFFFF",
+        "--cpd-color-bg-canvas-default": "#FFFFFF",
+        "--cpd-color-bg-subtle-secondary": "#C0C0C0",
+        "--cpd-color-bg-subtle-primary": "#008080",
+        "--cpd-color-text-primary": "#000000",
+        "--cpd-color-text-secondary": "#555555",
+        "--cpd-color-text-action-accent": "#000080",
+        "--cpd-color-bg-accent-rest": "#000080",
+        "--cpd-color-bg-action-primary-rest": "#000080",
+        "--cpd-color-text-on-solid-primary": "#FFFFFF",
+        "--cpd-color-border-interactive-primary": "#808080",
+        "--cpd-color-text-critical-primary": "#FF0000",
+        "--cpd-color-bg-critical-primary": "#FF0000",
+        "--cpd-color-text-success-primary": "#008000"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "comic-poster",
+      "name": "Comic Sans · Evil Party Poster",
+      "stage": "level-4",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 1,
+      "hype": 9,
+      "description": "Level 4: evil 90s party poster. Magenta/cyan/yellow with black outlines and hard drop shadows, per-sender WordArt and sticker colours, tilted tiles, marquee, 1 Hz blinking badges, rainbow composer border with flames. Body text stays black on light stickers.",
+      "css": [
+        "shared.css",
+        "comic-poster.css"
+      ],
+      "fonts": [
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Anton",
+          "file": "assets/anton-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Impact"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Luckiest Guy",
+          "file": "assets/luckiest-guy-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Chewy",
+          "file": "assets/chewy-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "VT323",
+          "file": "assets/vt323-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#FFFFFF",
+        "--cpd-color-bg-canvas-default": "#FFFFFF",
+        "--cpd-color-bg-subtle-secondary": "#FF00FF",
+        "--cpd-color-bg-subtle-primary": "#9900FF",
+        "--cpd-color-text-primary": "#000000",
+        "--cpd-color-text-secondary": "#7A00CC",
+        "--cpd-color-text-action-accent": "#FF0066",
+        "--cpd-color-bg-accent-rest": "#FF0066",
+        "--cpd-color-bg-action-primary-rest": "#FF0066",
+        "--cpd-color-text-on-solid-primary": "#FFFF00",
+        "--cpd-color-border-interactive-primary": "#000000",
+        "--cpd-color-text-critical-primary": "#FF0000",
+        "--cpd-color-bg-critical-primary": "#FF0000",
+        "--cpd-color-text-success-primary": "#33CC33"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "comic-unreadable",
+      "name": "Comic Sans · Unreadable",
+      "stage": "level-5",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 0,
+      "hype": 10,
+      "description": "Level 5, READABILITY IS NOT A GOAL: magenta on cyan on an animated rainbow checkerboard, slow whole-app hue rotation, wobbling tiles, spinning avatars, marquees everywhere, sparkle cursor. Shows a motion/seizure warning first and keeps a PANIC button; reduced motion stops all movement. Joke variant.",
+      "css": [
+        "shared.css",
+        "comic-poster.css",
+        "comic-unreadable.css"
+      ],
+      "fonts": [
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Anton",
+          "file": "assets/anton-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Impact"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Luckiest Guy",
+          "file": "assets/luckiest-guy-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Chewy",
+          "file": "assets/chewy-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "VT323",
+          "file": "assets/vt323-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#00FFFF",
+        "--cpd-color-bg-canvas-default": "#00FFFF",
+        "--cpd-color-bg-subtle-secondary": "#FFFF00",
+        "--cpd-color-bg-subtle-primary": "#FF6600",
+        "--cpd-color-text-primary": "#FF00FF",
+        "--cpd-color-text-secondary": "#FFFF00",
+        "--cpd-color-text-action-accent": "#00FF00",
+        "--cpd-color-bg-accent-rest": "#00FF00",
+        "--cpd-color-bg-action-primary-rest": "#00FF00",
+        "--cpd-color-text-on-solid-primary": "#FF00FF",
+        "--cpd-color-border-interactive-primary": "#FF0000",
+        "--cpd-color-text-critical-primary": "#FF0000",
+        "--cpd-color-bg-critical-primary": "#FF0000",
+        "--cpd-color-text-success-primary": "#00FF00"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "comic-after-midnight",
+      "name": "Comic Sans · After Midnight",
+      "stage": "exciting",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 2,
+      "hype": 9,
+      "description": "Exciting / dark: Comic Sans rave in the blacklight room. Black-purple starfield with slow parallax, neon WordArt room name, glowing own messages and buttons, neon grid floor. Readable (AA) on dark bands.",
+      "css": [
+        "shared.css",
+        "comic-after-midnight.css"
+      ],
+      "fonts": [
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS",
+            "ComicSansMS"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Relief",
+          "file": "assets/comic-relief-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "local": [
+            "Comic Sans MS Bold",
+            "ComicSansMS-Bold"
+          ],
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Comic Mono",
+          "file": "assets/comic-mono-700.woff2",
+          "weight": "700",
+          "style": "normal",
+          "display": "swap"
+        },
+        {
+          "family": "Chewy",
+          "file": "assets/chewy-400.woff2",
+          "weight": "400",
+          "style": "normal",
+          "display": "swap"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#07001A",
+        "--cpd-color-bg-canvas-default": "#07001A",
+        "--cpd-color-bg-subtle-secondary": "#0B0024",
+        "--cpd-color-bg-subtle-primary": "#140033",
+        "--cpd-color-text-primary": "#F2EEFF",
+        "--cpd-color-text-secondary": "#B8A8E8",
+        "--cpd-color-text-action-accent": "#FF3CF0",
+        "--cpd-color-bg-accent-rest": "#FF3CF0",
+        "--cpd-color-bg-action-primary-rest": "#FF3CF0",
+        "--cpd-color-text-on-solid-primary": "#000000",
+        "--cpd-color-border-interactive-primary": "#5B2BBF",
+        "--cpd-color-text-critical-primary": "#FF4D6D",
+        "--cpd-color-bg-critical-primary": "#FF4D6D",
+        "--cpd-color-text-success-primary": "#7DFF5A"
+      },
+      "enhance": true,
+      "schedule": null
+    }
+  ]
+}

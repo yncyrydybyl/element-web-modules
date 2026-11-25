@@ -1,0 +1,754 @@
+/* ==========================================================================================
+   openDesk family — shared rule set (docs/styleguides/opendesk.md)
+   Every rule is written against --od-* custom properties; the variant files set them and add
+   their signature rules. Defaults below = openDesk Light (ZenDiS openDesk CE v1.19 theme:
+   helmfile/environments/default/theme.yaml.gotmpl + portal/Nextcloud/OX as rendered on a live suite).
+   ========================================================================================== */
+
+html[data-tl-family="opendesk"] {
+  /* palette — openDesk Light */
+  --od-canvas: #f5f5f5;             /* theme.colors.secondaryGreyLight — portal canvas */
+  --od-surface: #ffffff;            /* timeline, cards, dialogs */
+  --od-surface-alt: #f9fafb;        /* neutral-50 — zebra / code */
+  --od-sidebar: #f5f5f5;            /* room list (Nextcloud navigation grey, portal canvas) */
+  --od-rail: #ffffff;               /* space column */
+  --od-rail-border: #d9dbdf;
+  --od-rail-text: var(--od-text);
+  --od-rail-hover: var(--od-hover);
+  --od-rail-active: var(--od-tint);
+  --od-bar: #ffffff;                /* suite top bar (portal / Nextcloud / OX header) */
+  --od-bar-text: #203257;
+  --od-bar-border: #d9dbdf;         /* neutral-200 */
+  --od-bar-h: 64px;
+  --od-wordmark: url("assets/od-wordmark.svg");
+  --od-text: #203257;               /* secondary-900 — portal body text */
+  --od-heading: #203257;
+  --od-muted: #4d5b79;              /* secondary-700 */
+  --od-subtle: #5d6a85;             /* timestamps (AA on white and #f5f5f5) */
+  --od-primary: #571efa;            /* theme.colors.primary */
+  --od-primary-hover: #4519c2;      /* primary-800 */
+  --od-primary-pressed: #341291;    /* primary-900 */
+  --od-on-primary: #ffffff;
+  --od-accent-text: #571efa;        /* links / accent text (7.3:1 on white) */
+  --od-tint: #ece7fe;               /* primary-100 */
+  --od-tint-strong: #dcd2fe;        /* primary-200 */
+  --od-tint-soft: #f7f5ff;          /* primary-50 */
+  --od-hover: rgb(87 30 250 / .07);
+  --od-sel-bg: #571efa;             /* selected room: Nextcloud's filled primary pill */
+  --od-sel-text: #ffffff;
+  --od-border: #d3d7de;             /* secondary-200 */
+  --od-border-strong: #99a1b2;      /* secondary-400 (input outlines, 3:1) */
+  --od-separator: #e1e4e8;
+  --od-own: #f7f5ff;                /* own message tint */
+  --od-mention: #fff7d6;
+  --od-mention-bar: #ffc700;        /* secondaryYellow */
+  --od-critical: #d92d2d;
+  --od-critical-text: #b42020;
+  --od-on-critical: #ffffff;
+  --od-success: #13866f;
+  --od-warning: #8a5a00;
+  --od-info: #0c3ff3;               /* secondaryBlueHighcontrast */
+  --od-code-bg: #f4f5f7;
+  --od-tooltip: #203257;
+  --od-tooltip-text: #ffffff;
+  --od-scroll: rgb(32 50 87 / .35);
+  --od-focus: #571efa;
+  --od-focus-w: 2px;
+  --od-backdrop: rgb(19 31 48 / .45);
+  /* shape */
+  --od-radius: 4px;                 /* portal/Keycloak buttons and inputs */
+  --od-radius-tile: 8px;            /* portal app tiles, cards */
+  --od-radius-dialog: 12px;         /* Keycloak login card */
+  --od-radius-chip: 999px;
+  --od-shadow-tile: 0 1px 2px rgb(19 31 48 / .06), 0 0 0 1px rgb(19 31 48 / .06);
+  --od-shadow-popup: 0 4px 16px rgb(19 31 48 / .16), 0 0 0 1px rgb(19 31 48 / .06);
+  --od-shadow-dialog: 0 16px 48px rgb(19 31 48 / .22);
+  --od-dur: 150ms;
+  --od-heading-font: var(--cpd-font-family-sans);
+  --od-heading-weight: 700;
+  --od-heading-transform: none;
+  --od-home-icon: url("assets/od-app-chat.svg");
+  /* names / avatars (openDesk secondary colours, darkened for AA) */
+  --od-name-1: #571efa; --od-name-2: #0d6aa6; --od-name-3: #b0185f;
+  --od-name-4: #0f7a64; --od-name-5: #8a5a00; --od-name-6: #4d5b79;
+  --od-hue-1: #571efa; --od-hue-2: #52c1ff; --od-hue-3: #ff529e;
+  --od-hue-4: #00ffcd; --od-hue-5: #ffc700; --od-hue-6: #adb3bc;
+  --od-avatar-tint: 22%;
+  --od-avatar-base: var(--od-surface);
+  /* syntax */
+  --od-hl-keyword: #571efa; --od-hl-func: #0b5a8e; --od-hl-string: #b0185f; --od-hl-number: #8a5a00;
+  --od-hl-comment: #5d6a85; --od-hl-type: #0f7a64; --od-hl-attr: #4519c2;
+
+  color-scheme: light;
+  accent-color: var(--od-primary);
+}
+
+/* ------------------------------------------------------------------ Compound token mapping */
+html[data-tl-family="opendesk"],
+html[data-tl-family="opendesk"] body,
+html[data-tl-family="opendesk"] [class*="cpd-theme-"] {
+  --cpd-color-theme-bg: var(--od-surface);
+  --cpd-color-bg-canvas-default: var(--od-surface);
+  --cpd-color-bg-canvas-default-level-1: var(--od-surface);
+  --cpd-color-bg-canvas-disabled: var(--od-canvas);
+  --cpd-color-bg-subtle-primary: var(--od-separator);
+  --cpd-color-bg-subtle-secondary: var(--od-canvas);
+  --cpd-color-bg-subtle-secondary-level-0: var(--od-canvas);
+  --cpd-color-bg-subtle-tertiary: var(--od-surface-alt);
+  --cpd-color-bg-action-primary-rest: var(--od-primary);
+  --cpd-color-bg-action-primary-hovered: var(--od-primary-hover);
+  --cpd-color-bg-action-primary-pressed: var(--od-primary-pressed);
+  --cpd-color-bg-action-primary-disabled: var(--od-border);
+  --cpd-color-bg-action-secondary-rest: var(--od-surface);
+  --cpd-color-bg-action-secondary-hovered: var(--od-tint-soft);
+  --cpd-color-bg-action-secondary-pressed: var(--od-tint);
+  --cpd-color-bg-action-tertiary-rest: transparent;
+  --cpd-color-bg-action-tertiary-hovered: var(--od-hover);
+  --cpd-color-bg-action-tertiary-selected: var(--od-tint);
+  --cpd-color-bg-accent-rest: var(--od-primary);
+  --cpd-color-bg-accent-hovered: var(--od-primary-hover);
+  --cpd-color-bg-accent-pressed: var(--od-primary-pressed);
+  --cpd-color-bg-accent-selected: var(--od-tint);
+  --cpd-color-bg-accent-subtle: var(--od-tint-soft);
+  --cpd-color-bg-critical-primary: var(--od-critical);
+  --cpd-color-bg-critical-hovered: color-mix(in srgb, var(--od-critical) 85%, #000);
+  --cpd-color-bg-critical-subtle: color-mix(in srgb, var(--od-critical) 10%, var(--od-surface));
+  --cpd-color-bg-critical-subtle-hovered: color-mix(in srgb, var(--od-critical) 18%, var(--od-surface));
+  --cpd-color-bg-success-subtle: color-mix(in srgb, var(--od-success) 12%, var(--od-surface));
+  --cpd-color-bg-info-subtle: color-mix(in srgb, var(--od-info) 10%, var(--od-surface));
+  --cpd-color-bg-badge-default: var(--od-separator);
+  --cpd-color-bg-badge-accent: var(--od-tint);
+  --cpd-color-bg-badge-critical: var(--od-critical);
+  --cpd-color-bg-badge-info: var(--od-tint);
+  --cpd-color-bg-decorative-1: color-mix(in srgb, var(--od-hue-1) var(--od-avatar-tint), var(--od-avatar-base));
+  --cpd-color-bg-decorative-2: color-mix(in srgb, var(--od-hue-2) var(--od-avatar-tint), var(--od-avatar-base));
+  --cpd-color-bg-decorative-3: color-mix(in srgb, var(--od-hue-3) var(--od-avatar-tint), var(--od-avatar-base));
+  --cpd-color-bg-decorative-4: color-mix(in srgb, var(--od-hue-4) var(--od-avatar-tint), var(--od-avatar-base));
+  --cpd-color-bg-decorative-5: color-mix(in srgb, var(--od-hue-5) var(--od-avatar-tint), var(--od-avatar-base));
+  --cpd-color-bg-decorative-6: color-mix(in srgb, var(--od-hue-6) var(--od-avatar-tint), var(--od-avatar-base));
+  --cpd-color-text-decorative-1: var(--od-name-1);
+  --cpd-color-text-decorative-2: var(--od-name-2);
+  --cpd-color-text-decorative-3: var(--od-name-3);
+  --cpd-color-text-decorative-4: var(--od-name-4);
+  --cpd-color-text-decorative-5: var(--od-name-5);
+  --cpd-color-text-decorative-6: var(--od-name-6);
+  --cpd-color-text-primary: var(--od-text);
+  --cpd-color-text-secondary: var(--od-muted);
+  --cpd-color-text-disabled: color-mix(in srgb, var(--od-text) 45%, var(--od-surface));
+  --cpd-color-text-action-primary: var(--od-text);
+  --cpd-color-text-action-accent: var(--od-accent-text);
+  --cpd-color-text-action-success: var(--od-success);
+  --cpd-color-text-link-external: var(--od-accent-text);
+  --cpd-color-text-on-solid-primary: var(--od-on-primary);
+  --cpd-color-text-critical-primary: var(--od-critical-text);
+  --cpd-color-text-success-primary: var(--od-success);
+  --cpd-color-text-info-primary: var(--od-info);
+  --cpd-color-text-warning-primary: var(--od-warning);
+  --cpd-color-text-badge-accent: var(--od-text);
+  --cpd-color-text-badge-info: var(--od-text);
+  --cpd-color-icon-primary: var(--od-text);
+  --cpd-color-icon-primary-alpha: var(--od-text);
+  --cpd-color-icon-secondary: var(--od-muted);
+  --cpd-color-icon-secondary-alpha: var(--od-muted);
+  --cpd-color-icon-tertiary: var(--od-muted);
+  --cpd-color-icon-tertiary-alpha: var(--od-muted);
+  --cpd-color-icon-quaternary: var(--od-subtle);
+  --cpd-color-icon-quaternary-alpha: var(--od-subtle);
+  --cpd-color-icon-disabled: color-mix(in srgb, var(--od-text) 40%, transparent);
+  --cpd-color-icon-accent-primary: var(--od-primary);
+  --cpd-color-icon-accent-tertiary: var(--od-accent-text);
+  --cpd-color-icon-critical-primary: var(--od-critical);
+  --cpd-color-icon-success-primary: var(--od-success);
+  --cpd-color-icon-info-primary: var(--od-info);
+  --cpd-color-icon-warning-primary: var(--od-warning);
+  --cpd-color-icon-on-solid-primary: var(--od-on-primary);
+  --cpd-color-border-interactive-primary: var(--od-border-strong);
+  --cpd-color-border-interactive-secondary: var(--od-border);
+  --cpd-color-border-interactive-hovered: var(--od-primary);
+  --cpd-color-border-interactive-pressed: var(--od-primary);
+  --cpd-color-border-focused: var(--od-focus);
+  --cpd-color-border-accent-primary: var(--od-primary);
+  --cpd-color-border-accent-subtle: var(--od-tint-strong);
+  --cpd-color-border-critical-primary: var(--od-critical);
+  --cpd-color-border-critical-subtle: color-mix(in srgb, var(--od-critical) 40%, var(--od-surface));
+  --cpd-color-border-critical-hovered: var(--od-critical);
+  --cpd-color-border-success-subtle: color-mix(in srgb, var(--od-success) 40%, var(--od-surface));
+  --cpd-color-border-info-subtle: color-mix(in srgb, var(--od-info) 40%, var(--od-surface));
+  --cpd-color-border-disabled: var(--od-border);
+  --cpd-color-separator-primary: var(--od-separator);
+  --cpd-color-separator-secondary: var(--od-separator);
+  --cpd-color-gray-300: var(--od-separator);
+  --cpd-color-gray-400: var(--od-border);
+  --cpd-color-gray-800: var(--od-muted);
+  --cpd-color-alpha-gray-300: var(--od-hover);
+  --cpd-color-green-300: var(--od-own);
+  --cpd-color-gradient-subtle-linear: linear-gradient(var(--od-surface), var(--od-canvas));
+  --cpd-font-letter-spacing-heading-sm: 0;
+  --cpd-font-letter-spacing-heading-md: 0;
+  --cpd-font-letter-spacing-heading-lg: 0;
+  --cpd-font-letter-spacing-heading-xl: 0;
+  --cpd-font-letter-spacing-body-lg: 0;
+  --cpd-font-letter-spacing-body-md: 0;
+  --cpd-font-letter-spacing-body-sm: 0;
+  --cpd-font-letter-spacing-body-xs: 0;
+  --transition-short: var(--od-dur);
+  --transition-standard: var(--od-dur);
+}
+
+html[data-tl-family="opendesk"] body {
+  background: var(--od-canvas);
+  color: var(--od-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------------ suite top bar (enhancer) */
+html[data-tl-family="opendesk"][data-od-topbar],
+html[data-tl-family="opendesk"][data-od-topbar] body { overflow: hidden; }
+html[data-tl-family="opendesk"][data-od-topbar] #matrixchat {
+  position: fixed; top: var(--od-bar-h); left: 0; right: 0; bottom: 0; height: auto !important;
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar {
+  position: absolute; inset: 0 0 auto 0; height: var(--od-bar-h); box-sizing: border-box;
+  display: flex; align-items: center; gap: 0;
+  background: var(--od-bar); color: var(--od-bar-text);
+  border-bottom: 1px solid var(--od-bar-border);
+  font: 400 14px/1 var(--cpd-font-family-sans); pointer-events: auto;
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__grid {
+  width: var(--od-bar-h); height: 100%; flex: none; border: 0; margin: 0; padding: 0; cursor: pointer;
+  background: transparent; color: inherit; display: grid; place-items: center;
+  transition: background-color var(--od-dur);
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__grid:hover,
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__grid[aria-expanded="true"] { background: var(--od-hover); }
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__grid svg { width: 20px; height: 20px; fill: currentColor; }
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__brand {
+  display: flex; align-items: center; height: 100%; padding: 0 16px 0 24px; color: inherit; text-decoration: none;
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__grid + .od-topbar__brand { padding-left: 4px; }
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__wordmark {
+  display: block; width: 84px; height: 17px; background: var(--od-wordmark) left center / contain no-repeat;
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__app {
+  font: 600 15px/1 var(--od-heading-font); color: var(--od-bar-text); padding-left: 14px; margin-left: 2px;
+  border-left: 1px solid var(--od-bar-border); height: 22px; display: flex; align-items: center;
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__spacer { flex: 1; }
+html[data-tl-family="opendesk"] #tl-overlay-root .od-topbar__clock {
+  padding: 0 24px; color: var(--od-muted); font-variant-numeric: tabular-nums; font-size: 13px;
+}
+/* app switcher popover (portal "Applications" tiles) */
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps {
+  position: absolute; top: calc(var(--od-bar-h) + 6px); left: 8px; width: 336px; box-sizing: border-box;
+  background: var(--od-surface); color: var(--od-text); border-radius: var(--od-radius-tile);
+  box-shadow: var(--od-shadow-popup); padding: 16px; pointer-events: auto;
+  font: 400 13px/1.3 var(--cpd-font-family-sans); z-index: 1;
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps[hidden] { display: none; }
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps__title {
+  margin: 0 0 12px; font: 600 14px/1.2 var(--od-heading-font); color: var(--od-heading);
+  display: flex; align-items: center; gap: 8px;
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps__list {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; padding: 0; list-style: none;
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps__item {
+  display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 4px 8px;
+  border-radius: var(--od-radius-tile); color: var(--od-text); text-decoration: none; text-align: center;
+  transition: background-color var(--od-dur);
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps__item:hover { background: var(--od-tint-soft); }
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps__item[aria-current="page"] { background: var(--od-tint); font-weight: 600; }
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps__icon {
+  width: 48px; height: 48px; border-radius: var(--od-radius-tile); background: #fff center / 100% no-repeat;
+  box-shadow: var(--od-shadow-tile);
+}
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps__empty { color: var(--od-muted); margin: 0; line-height: 1.45; }
+html[data-tl-family="opendesk"] #tl-overlay-root .od-apps__empty code { font-size: 12px; }
+
+/* openDesk's own Element banner (io.element.element-web-modules.banner, on real openDesk deployments):
+   restyle it instead of adding a second bar. It is a body child next to #matrixchat. */
+html[data-tl-family="opendesk"] body > div:not(#matrixchat) > nav:has(> a > img) {
+  background: var(--od-bar) !important; color: var(--od-bar-text);
+  border-bottom: 1px solid var(--od-bar-border); box-sizing: border-box;
+  font-family: var(--cpd-font-family-sans);
+}
+html[data-tl-family="opendesk"] body > div:not(#matrixchat) > nav:has(> a > img) > button {
+  background: transparent !important; color: var(--od-bar-text) !important;
+  transition: background-color var(--od-dur);
+}
+html[data-tl-family="opendesk"] body > div:not(#matrixchat) > nav:has(> a > img) > button:hover,
+html[data-tl-family="opendesk"] body > div:not(#matrixchat) > nav:has(> a > img) > button[aria-expanded="true"] {
+  background: var(--od-hover) !important;
+}
+html[data-tl-family="opendesk"] body > div:not(#matrixchat) > nav:has(> a > img) > button svg,
+html[data-tl-family="opendesk"] body > div:not(#matrixchat) > nav:has(> a > img) > button svg * { fill: currentColor; }
+html[data-tl-family="opendesk"] body > div:not(#matrixchat) > nav:has(> a > img) > a > img {
+  content: var(--od-wordmark); height: 17px !important; width: auto; margin-left: 4px;
+}
+
+/* ------------------------------------------------------------------ separators */
+html[data-tl-family="opendesk"] .mx_Separator,
+html[data-tl-family="opendesk"] [class*="_separator_"][role="separator"][aria-label] { background: var(--od-separator); }
+
+/* ------------------------------------------------------------------ space column */
+html[data-tl-family="opendesk"] .mx_SpacePanel {
+  --activeBackground-color: var(--od-rail-active);
+  --activeBorder-color: transparent;
+  background: var(--od-rail); color: var(--od-rail-text);
+  border-right: 1px solid var(--od-rail-border);
+}
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_selectionWrapper {
+  border-radius: var(--od-radius-tile); transition: background-color var(--od-dur);
+}
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton:hover .mx_SpaceButton_selectionWrapper { background: var(--od-rail-hover); }
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper,
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active.mx_SpaceButton_narrow .mx_SpaceButton_selectionWrapper {
+  background: var(--od-rail-active); box-shadow: inset 0 0 0 1px var(--od-tint-strong);
+}
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceItem { position: relative; }
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceItem:has(> .mx_SpaceButton_active)::before {
+  content: ""; position: absolute; left: 0; top: 10px; height: 28px; width: 3px; border-radius: 0 3px 3px 0;
+  background: var(--od-primary);
+}
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton_icon { border-radius: var(--od-radius-tile); position: relative; }
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton_icon::before { background-color: var(--od-rail-text); }
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton_name { color: var(--od-rail-text); }
+/* Home = the openDesk chat app icon (duotone violet tile) */
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon,
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton[aria-label="Startseite"] .mx_SpaceButton_icon {
+  background: var(--od-home-bg, #fff) var(--od-home-icon) center / 100% no-repeat !important;
+  box-shadow: var(--od-shadow-tile);
+}
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon > svg,
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpaceButton[aria-label="Startseite"] .mx_SpaceButton_icon > svg { visibility: hidden; }
+html[data-tl-family="opendesk"] .mx_SpacePanel [class*="_avatar_"][data-type="square"] { border-radius: var(--od-radius-tile); }
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_SpacePanel_toggleCollapse { background-color: var(--od-rail-text); }
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_QuickSettingsButton,
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_ThreadsActivityCentreButton { color: var(--od-rail-text); border-radius: var(--od-radius-tile); }
+html[data-tl-family="opendesk"] .mx_SpacePanel [class*="_icon-button_"] { color: var(--od-rail-text); }
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_QuickSettingsButton:hover,
+html[data-tl-family="opendesk"] .mx_SpacePanel .mx_ThreadsActivityCentreButton:hover { background: var(--od-rail-hover); }
+
+/* ------------------------------------------------------------------ room list (Nextcloud-style navigation) */
+html[data-tl-family="opendesk"] .mx_LeftPanel,
+html[data-tl-family="opendesk"] .mx_LeftPanel_outerWrapper,
+html[data-tl-family="opendesk"] .mx_LeftPanel_wrapper,
+html[data-tl-family="opendesk"] .mx_RoomListPanel { background: var(--od-sidebar); }
+html[data-tl-family="opendesk"] .mx_RoomListPanel { border-right: 1px solid var(--od-rail-border); }
+html[data-tl-family="opendesk"] .mx_RoomListPanel > [role="search"] { border-bottom: 1px solid var(--od-separator); }
+html[data-tl-family="opendesk"] .mx_RoomListPanel > [role="search"] button[class*="_search_"] {
+  border-radius: var(--od-radius); background: var(--od-surface); border: 1px solid var(--od-border);
+  color: var(--od-muted); box-shadow: none;
+}
+html[data-tl-family="opendesk"] .mx_RoomListPanel > [role="search"] button[class*="_search_"]:hover { border-color: var(--od-primary); }
+html[data-tl-family="opendesk"] .mx_RoomListPanel > [role="search"] kbd {
+  font: 400 11px/1 var(--cpd-font-family-sans); color: var(--od-muted);
+  border: 1px solid var(--od-border); border-radius: 3px; padding: 2px 4px; background: var(--od-canvas);
+}
+html[data-tl-family="opendesk"] .mx_RoomListPanel header[class*="_header_"] h1 {
+  font: var(--od-heading-weight) 18px/1.3 var(--od-heading-font); color: var(--od-heading); text-transform: var(--od-heading-transform);
+}
+/* filter chips → portal outline buttons ("View all") */
+html[data-tl-family="opendesk"] [class*="_chat-filter_"] {
+  border-radius: var(--od-radius); border: 1px solid var(--od-border); background: var(--od-surface);
+  color: var(--od-text); font: 600 12px/1 var(--cpd-font-family-sans); padding: 6px 10px;
+  transition: border-color var(--od-dur), background-color var(--od-dur);
+}
+html[data-tl-family="opendesk"] [class*="_chat-filter_"]:hover { border-color: var(--od-primary); background: var(--od-surface); color: var(--od-accent-text); }
+html[data-tl-family="opendesk"] [class*="_chat-filter_"][aria-selected="true"] {
+  background: var(--od-tint); border-color: var(--od-primary); color: var(--od-accent-text);
+}
+html[data-tl-family="opendesk"] .mx_RoomListPanel [class*="_stickyBackground_"],
+html[data-tl-family="opendesk"] .mx_RoomListPanel button[class*="_header_"] { background: var(--od-sidebar); }
+html[data-tl-family="opendesk"] .mx_RoomListPanel button[class*="_header_"] [class*="_title_"] {
+  font: 700 12px/1.3 var(--cpd-font-family-sans); color: var(--od-muted); text-transform: uppercase; letter-spacing: .04em;
+}
+/* rows: rounded, selected = filled primary pill with white text (Nextcloud app navigation) */
+html[data-tl-family="opendesk"] .mx_RoomListItemView { background: transparent; }
+html[data-tl-family="opendesk"] .mx_RoomListItemView > [class*="_container_"] {
+  border-radius: var(--od-radius-tile); padding-inline: 8px; margin-inline: 8px; transition: background-color var(--od-dur), color var(--od-dur);
+}
+html[data-tl-family="opendesk"] .mx_RoomListItemView:hover > [class*="_container_"],
+html[data-tl-family="opendesk"] .mx_RoomListItemView:focus-visible > [class*="_container_"] { background: var(--od-hover); }
+html[data-tl-family="opendesk"] .mx_RoomListItemView.mx_RoomListItemView_selected > [class*="_container_"],
+html[data-tl-family="opendesk"] .mx_RoomListItemView[aria-selected="true"] > [class*="_container_"] {
+  background: var(--od-sel-bg); color: var(--od-sel-text);
+}
+html[data-tl-family="opendesk"] .mx_RoomListItemView:is(.mx_RoomListItemView_selected, [aria-selected="true"]) :is([class*="_roomName_"], [class*="_messagePreview_"], [class*="_preview_"], [class*="_icon-button_"], svg) {
+  color: var(--od-sel-text) !important;
+}
+html[data-tl-family="opendesk"] .mx_RoomListItemView:is(.mx_RoomListItemView_selected, [aria-selected="true"]) [class*="_unread-counter_"] {
+  background: var(--od-sel-text) !important; color: var(--od-sel-bg) !important;
+}
+html[data-tl-family="opendesk"] .mx_RoomListItemView > [class*="_container_"]::before { display: var(--od-row-marker, none); background-color: var(--od-primary); }
+html[data-tl-family="opendesk"] .mx_RoomListItemView[aria-selected="true"]::before,
+html[data-tl-family="opendesk"] .mx_RoomListItemView_selected::before { display: none; }
+html[data-tl-family="opendesk"] .mx_RoomListItemView [class*="_roomName_"] { font: 400 14px/1.35 var(--cpd-font-family-sans); color: var(--od-text); }
+html[data-tl-family="opendesk"] .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"],
+html[data-tl-family="opendesk"] .mx_RoomListItemView:has([class*="_unread-counter_"]) [class*="_roomName_"],
+html[data-tl-family="opendesk"] .mx_RoomListItemView:has([class*="_notificationBadge_"]) [class*="_roomName_"] { font-weight: 700; }
+html[data-tl-family="opendesk"] .mx_RoomListItemView [class*="_messagePreview_"],
+html[data-tl-family="opendesk"] .mx_RoomListItemView [class*="_preview_"] { color: var(--od-muted); font-size: 12px; }
+
+/* ------------------------------------------------------------------ room header */
+html[data-tl-family="opendesk"] .mx_RoomHeader {
+  background: var(--od-surface); border-bottom: 1px solid var(--od-separator); color: var(--od-text);
+}
+html[data-tl-family="opendesk"] .mx_RoomHeader:hover { background: var(--od-surface); }
+html[data-tl-family="opendesk"] .mx_RoomHeader .mx_RoomHeader_heading {
+  font: var(--od-heading-weight) 17px/1.3 var(--od-heading-font); color: var(--od-heading); text-transform: var(--od-heading-transform);
+}
+html[data-tl-family="opendesk"] .mx_RoomHeader [class*="_icon-button_"],
+html[data-tl-family="opendesk"] .mx_RoomHeader .tl-header-button { border-radius: var(--od-radius) !important; color: var(--od-text); }
+html[data-tl-family="opendesk"] [class*="_icon-button_"] { border-radius: var(--od-radius); }
+html[data-tl-family="opendesk"] [class*="_icon-button_"]::before { border-radius: var(--od-radius); }
+html[data-tl-family="opendesk"] [class*="_icon-button_"]:not([aria-disabled="true"]):hover,
+html[data-tl-family="opendesk"] .mx_RoomHeader .tl-header-button:hover { background: var(--od-hover) !important; }
+html[data-tl-family="opendesk"] [class*="_icon-button_"]:not([aria-disabled="true"]):hover > [class*="_indicator-icon_"] { color: var(--od-accent-text); }
+html[data-tl-family="opendesk"] [class*="_icon-button_"][aria-expanded="true"],
+html[data-tl-family="opendesk"] .mx_RoomHeader [class*="_icon-button_"][data-state="open"] { background: var(--od-tint) !important; color: var(--od-accent-text); }
+
+/* ------------------------------------------------------------------ timeline */
+html[data-tl-family="opendesk"] .mx_RoomView,
+html[data-tl-family="opendesk"] .mx_RoomView_body,
+html[data-tl-family="opendesk"] .mx_RoomView_timeline,
+html[data-tl-family="opendesk"] .mx_MainSplit { background: var(--od-surface); }
+html[data-tl-family="opendesk"] .mx_EventTile {
+  --event-tile-state-hover-background: var(--od-surface-alt);
+  --event-tile-state-selected-background: var(--od-tint-soft);
+  --event-tile-state-highlight-background: var(--od-mention);
+  --event-tile-bubble-self-background: var(--od-tint);
+  --event-tile-bubble-other-background: var(--od-canvas);
+  --event-tile-bubble-hover-background: var(--od-surface-alt);
+  --event-tile-bubble-corner-radius: var(--od-radius-tile);
+  --event-tile-state-marker-color: var(--od-primary);
+}
+html[data-tl-family="opendesk"] .mx_EventTile:not([class*="_layoutBubble_"]) .mx_EventTile_line { border-radius: var(--od-radius-tile); }
+html[data-tl-family="opendesk"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) .mx_EventTile_line {
+  background: var(--od-own);
+}
+html[data-tl-family="opendesk"] .mx_EventTile[class*="_stateHighlighted_"]:not([class*="_layoutBubble_"]) .mx_EventTile_line {
+  background: var(--od-mention) !important; box-shadow: inset 3px 0 0 var(--od-mention-bar);
+}
+html[data-tl-family="opendesk"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateHighlighted_"] .mx_EventTile_line {
+  background: var(--od-mention) !important; box-shadow: inset 3px 0 0 var(--od-mention-bar);
+}
+html[data-tl-family="opendesk"] .mx_EventTile .mx_DisambiguatedProfile_displayName,
+html[data-tl-family="opendesk"] .mx_EventTile [class*="_disambiguatedProfile_"] { font-weight: 700; }
+html[data-tl-family="opendesk"] .mx_MessageTimestamp { color: var(--od-subtle); font-size: 11px; }
+html[data-tl-family="opendesk"] .mx_EventTile_body { line-height: 1.5; }
+html[data-tl-family="opendesk"] .mx_EventTile_body a,
+html[data-tl-family="opendesk"] .markdown-body a { color: var(--od-accent-text); }
+html[data-tl-family="opendesk"] .mx_TextualEvent,
+html[data-tl-family="opendesk"] .mx_GenericEventListSummary_summary { color: var(--od-muted); }
+html[data-tl-family="opendesk"] .mx_TimelineSeparator hr,
+html[data-tl-family="opendesk"] [class*="_timelineSeparator_"] hr { border-color: var(--od-separator); background: var(--od-separator); }
+html[data-tl-family="opendesk"] .mx_TimelineSeparator h2,
+html[data-tl-family="opendesk"] [class*="_timelineSeparator_"] h2 {
+  font: 600 12px/1.3 var(--cpd-font-family-sans); color: var(--od-muted);
+  background: var(--od-surface); border: 1px solid var(--od-border); border-radius: var(--od-radius-chip); padding: 3px 12px;
+}
+html[data-tl-family="opendesk"] [class*="_readMarker_"] hr,
+html[data-tl-family="opendesk"] .mx_RoomView_myReadMarker { border-top-color: var(--od-primary); background: var(--od-primary); }
+html[data-tl-family="opendesk"] .mx_EventTileBubble,
+html[data-tl-family="opendesk"] .mx_cryptoEvent {
+  background: var(--od-tint-soft); border-radius: var(--od-radius-tile); border: 1px solid var(--od-tint-strong);
+}
+html[data-tl-family="opendesk"] .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line { box-shadow: none; }
+html[data-tl-family="opendesk"] .mx_IRCLayout .mx_RoomView_MessageList > li:nth-child(even) .mx_EventTile_line { background: var(--od-surface-alt); }
+/* reactions: portal outline chips */
+html[data-tl-family="opendesk"] [class*="_reactionsRowButton_"] {
+  border-radius: var(--od-radius-chip); border: 1px solid var(--od-border); background: var(--od-surface);
+}
+html[data-tl-family="opendesk"] [class*="_reactionsRowButton_"]:hover { border-color: var(--od-primary); }
+html[data-tl-family="opendesk"] [class*="_reactionsRowButtonSelected_"] { background: var(--od-tint); border-color: var(--od-primary); }
+/* message action bar */
+html[data-tl-family="opendesk"] .mx_MessageActionBar {
+  background: var(--od-surface); border: 1px solid var(--od-border); border-radius: var(--od-radius-tile);
+  box-shadow: var(--od-shadow-popup);
+}
+html[data-tl-family="opendesk"] .mx_MessageActionBar > * { border-radius: var(--od-radius); }
+html[data-tl-family="opendesk"] .mx_MessageActionBar_iconButton:hover { background: var(--od-hover); color: var(--od-accent-text); }
+/* pills */
+html[data-tl-family="opendesk"] .mx_Pill { background: var(--od-tint) !important; color: var(--od-accent-text) !important; }
+html[data-tl-family="opendesk"] .mx_Pill.mx_UserPill_me,
+html[data-tl-family="opendesk"] .mx_Pill.mx_AtRoomPill { background: var(--od-primary) !important; color: var(--od-on-primary) !important; }
+html[data-tl-family="opendesk"] .mx_Pill .mx_Pill_text { color: inherit !important; }
+/* polls */
+html[data-tl-family="opendesk"] .mx_PollOption { border-radius: var(--od-radius-tile); border-color: var(--od-border); background: var(--od-surface); }
+html[data-tl-family="opendesk"] .mx_PollOption_checked { border-color: var(--od-primary); }
+html[data-tl-family="opendesk"] .mx_PollOption_popularityBackground .mx_PollOption_popularityAmount { background: var(--od-primary); }
+
+/* code */
+html[data-tl-family="opendesk"] .mx_EventTile_pre_container {
+  background: var(--od-code-bg) !important; border: 1px solid var(--od-separator); border-radius: var(--od-radius-tile);
+}
+html[data-tl-family="opendesk"] .mx_EventTile_body pre { background: transparent !important; border: 0 !important; }
+html[data-tl-family="opendesk"] .mx_EventTile_body code:not(pre code) {
+  background: var(--od-code-bg); border: 1px solid var(--od-separator); border-radius: 3px; padding: 0 4px;
+}
+html[data-tl-family="opendesk"] .hljs { background: transparent !important; color: var(--od-text); }
+html[data-tl-family="opendesk"] .hljs-keyword, html[data-tl-family="opendesk"] .hljs-selector-tag, html[data-tl-family="opendesk"] .hljs-built_in { color: var(--od-hl-keyword); font-weight: 600; }
+html[data-tl-family="opendesk"] .hljs-title, html[data-tl-family="opendesk"] .hljs-title.function_, html[data-tl-family="opendesk"] .hljs-section { color: var(--od-hl-func); }
+html[data-tl-family="opendesk"] .hljs-string, html[data-tl-family="opendesk"] .hljs-regexp, html[data-tl-family="opendesk"] .hljs-addition { color: var(--od-hl-string); }
+html[data-tl-family="opendesk"] .hljs-number, html[data-tl-family="opendesk"] .hljs-literal, html[data-tl-family="opendesk"] .hljs-symbol { color: var(--od-hl-number); }
+html[data-tl-family="opendesk"] .hljs-comment, html[data-tl-family="opendesk"] .hljs-quote { color: var(--od-hl-comment); font-style: italic; }
+html[data-tl-family="opendesk"] .hljs-type, html[data-tl-family="opendesk"] .hljs-class, html[data-tl-family="opendesk"] .hljs-title.class_ { color: var(--od-hl-type); }
+html[data-tl-family="opendesk"] .hljs-attr, html[data-tl-family="opendesk"] .hljs-attribute, html[data-tl-family="opendesk"] .hljs-property,
+html[data-tl-family="opendesk"] .hljs-variable, html[data-tl-family="opendesk"] .hljs-params, html[data-tl-family="opendesk"] .hljs-meta { color: var(--od-hl-attr); }
+html[data-tl-family="opendesk"] .hljs-deletion { color: var(--od-critical-text); }
+html[data-tl-family="opendesk"] .mx_EventTile_body blockquote { border-left: 3px solid var(--od-tint-strong); color: var(--od-muted); }
+
+/* ------------------------------------------------------------------ composer */
+html[data-tl-family="opendesk"] .mx_MessageComposer { background: var(--od-surface); }
+html[data-tl-family="opendesk"] .mx_MessageComposer_wrapper { background: transparent; }
+html[data-tl-family="opendesk"] .mx_MessageComposer_row {
+  border: 1px solid var(--od-border-strong); border-radius: var(--od-radius-tile); background: var(--od-surface);
+  padding-inline: 4px 4px; box-sizing: border-box; transition: border-color var(--od-dur), box-shadow var(--od-dur);
+}
+html[data-tl-family="opendesk"] .mx_MessageComposer_row:focus-within { border-color: var(--od-primary); box-shadow: 0 0 0 1px var(--od-primary); }
+html[data-tl-family="opendesk"] .mx_SendMessageComposer,
+html[data-tl-family="opendesk"] .mx_BasicMessageComposer { background: transparent; }
+html[data-tl-family="opendesk"] .mx_BasicMessageComposer_input,
+html[data-tl-family="opendesk"] .mx_WysiwygComposer_Editor_content { color: var(--od-text); }
+html[data-tl-family="opendesk"] .mx_BasicMessageComposer_input:focus-visible { outline: none !important; }
+html[data-tl-family="opendesk"] .mx_MessageComposer_sendMessage {
+  background: var(--od-primary) !important; border-radius: var(--od-radius) !important;
+}
+html[data-tl-family="opendesk"] .mx_MessageComposer_sendMessage:hover { background: var(--od-primary-hover) !important; }
+html[data-tl-family="opendesk"] .mx_MessageComposer_sendMessage svg { color: var(--od-on-primary) !important; }
+html[data-tl-family="opendesk"] .mx_MessageComposer_sendMessage::before { background-color: var(--od-on-primary) !important; }
+html[data-tl-family="opendesk"] .mx_MessageComposer_button:hover { background: var(--od-hover); border-radius: var(--od-radius); }
+html[data-tl-family="opendesk"] .mx_Autocomplete,
+html[data-tl-family="opendesk"] .mx_MessageComposerFormatBar {
+  background: var(--od-surface); border: 1px solid var(--od-border); border-radius: var(--od-radius-tile); box-shadow: var(--od-shadow-popup);
+}
+html[data-tl-family="opendesk"] .mx_Autocomplete_Completion_block.selected,
+html[data-tl-family="opendesk"] .mx_Autocomplete_Completion.selected,
+html[data-tl-family="opendesk"] .mx_Autocomplete_Completion:hover { background: var(--od-tint); border-radius: var(--od-radius); }
+html[data-tl-family="opendesk"] .mx_RoomView_statusArea { background: var(--od-surface); }
+
+/* ------------------------------------------------------------------ right panel */
+html[data-tl-family="opendesk"] .mx_RightPanel { background: var(--od-surface); border-left: 1px solid var(--od-separator); }
+html[data-tl-family="opendesk"] .mx_BaseCard { background: var(--od-surface); }
+html[data-tl-family="opendesk"] .mx_BaseCard_header { border-bottom: 1px solid var(--od-separator); }
+html[data-tl-family="opendesk"] .mx_BaseCard_header_title,
+html[data-tl-family="opendesk"] .mx_BaseCard_header h2 { font: var(--od-heading-weight) 16px/1.3 var(--od-heading-font); color: var(--od-heading); text-transform: var(--od-heading-transform); }
+html[data-tl-family="opendesk"] .mx_RoomSummaryCard [class*="_menuItem_"],
+html[data-tl-family="opendesk"] .mx_BaseCard [role="menuitem"] { border-radius: var(--od-radius-tile); }
+
+/* ------------------------------------------------------------------ buttons (portal: filled primary 4px, outline secondary) */
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind]:not([class*="_icon-button_"]),
+html[data-tl-family="opendesk"] .mx_AccessibleButton_hasKind:not([class*="kind_link"]):not([class*="kind_icon"]) {
+  border-radius: var(--od-radius) !important; font-weight: 600;
+  transition: border-color var(--od-dur), background-color var(--od-dur), color var(--od-dur);
+}
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind="primary"]:not([class*="_destructive_"]):not([class*="_icon-button_"]),
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_primary,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_primary_sm,
+html[data-tl-family="opendesk"] .mx_Dialog_buttons .mx_Dialog_primary {
+  background: var(--od-primary) !important; color: var(--od-on-primary) !important; border: 1px solid var(--od-primary) !important;
+}
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind="primary"]:not([class*="_destructive_"]):not([aria-disabled="true"]):not([class*="_icon-button_"]):hover,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_primary:not(.mx_AccessibleButton_disabled):hover,
+html[data-tl-family="opendesk"] .mx_Dialog_buttons .mx_Dialog_primary:hover {
+  background: var(--od-primary-hover) !important; border-color: var(--od-primary-hover) !important;
+}
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind="primary"] > svg,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_primary > svg { color: var(--od-on-primary) !important; }
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind="secondary"]:not([class*="_icon-button_"]),
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_secondary,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_secondary_content,
+html[data-tl-family="opendesk"] .mx_Dialog_buttons button:not(.mx_Dialog_primary):not([class*="_icon-button_"]):not(.danger) {
+  background: var(--od-surface) !important; color: var(--od-accent-text) !important; border: 1px solid var(--od-border-strong) !important;
+}
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind="secondary"]:not([aria-disabled="true"]):not([class*="_icon-button_"]):hover,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_primary_outline:hover,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_secondary:hover,
+html[data-tl-family="opendesk"] .mx_Dialog_buttons button:not(.mx_Dialog_primary):not([class*="_icon-button_"]):not(.danger):hover {
+  border-color: var(--od-primary) !important; background: var(--od-tint-soft) !important;
+}
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind="secondary"] > svg { color: var(--od-accent-text) !important; }
+html[data-tl-family="opendesk"] [class*="_button_"][class*="_destructive_"],
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_danger,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_danger_outline,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_danger_sm,
+html[data-tl-family="opendesk"] .mx_Dialog_buttons .danger {
+  color: var(--od-critical-text) !important; background: var(--od-surface) !important;
+  border: 1px solid color-mix(in srgb, var(--od-critical) 60%, var(--od-border)) !important;
+}
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind="primary"][class*="_destructive_"],
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_danger {
+  background: var(--od-critical) !important; color: var(--od-on-critical) !important; border-color: var(--od-critical) !important;
+}
+html[data-tl-family="opendesk"] [class*="_button_"][class*="_destructive_"] > svg { color: currentColor !important; }
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind="tertiary"] { color: var(--od-accent-text); }
+html[data-tl-family="opendesk"] [class*="_button_"][data-kind="tertiary"]:hover { background: var(--od-hover) !important; }
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_link,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_link_inline,
+html[data-tl-family="opendesk"] .mx_AccessibleButton_kind_link_sm { color: var(--od-accent-text) !important; }
+html[data-tl-family="opendesk"] [class*="_button_"][aria-disabled="true"],
+html[data-tl-family="opendesk"] .mx_AccessibleButton_disabled.mx_AccessibleButton_hasKind { opacity: .5; }
+html[data-tl-family="opendesk"] [class*="_text-button_"] { border-radius: var(--od-radius); }
+html[data-tl-family="opendesk"] [class*="_text-button_"]:hover { background: var(--od-hover); }
+html[data-tl-family="opendesk"] .mx_Dialog_buttons button,
+html[data-tl-family="opendesk"] .mx_Dialog_buttons input[type="submit"] { border-radius: var(--od-radius) !important; font-weight: 600; }
+
+/* ------------------------------------------------------------------ inputs (Keycloak fields) */
+html[data-tl-family="opendesk"] .mx_Field { border: 1px solid var(--od-border-strong); border-radius: var(--od-radius); background: var(--od-surface); }
+html[data-tl-family="opendesk"] .mx_Field:hover { border-color: var(--od-primary); }
+html[data-tl-family="opendesk"] .mx_Field:focus-within { border-color: var(--od-primary); box-shadow: 0 0 0 1px var(--od-primary); }
+html[data-tl-family="opendesk"] .mx_Field input,
+html[data-tl-family="opendesk"] .mx_Field select,
+html[data-tl-family="opendesk"] .mx_Field textarea { background: transparent; color: var(--od-text); }
+html[data-tl-family="opendesk"] .mx_Field label { background: var(--od-surface) !important; color: var(--od-muted); }
+html[data-tl-family="opendesk"] .mx_Field_invalid { border-color: var(--od-critical) !important; }
+html[data-tl-family="opendesk"] .mx_Field :is(input, textarea, select):focus-visible { outline: var(--od-focus-w) solid var(--od-focus) !important; outline-offset: -2px !important; border-radius: var(--od-radius); }
+html[data-tl-family="opendesk"] [class*="_control_"]:is(input[type="text"], input[type="password"], input[type="search"], input[type="email"], input:not([type]), textarea),
+html[data-tl-family="opendesk"] input[class*="_input_"]:not([type="checkbox"]):not([type="radio"]),
+html[data-tl-family="opendesk"] textarea[class*="_input_"] {
+  border-radius: var(--od-radius) !important; border: 1px solid var(--od-border-strong) !important; background: var(--od-surface) !important; color: var(--od-text);
+}
+html[data-tl-family="opendesk"] [class*="_control_"]:is(input, textarea):focus,
+html[data-tl-family="opendesk"] input[class*="_input_"]:focus { border-color: var(--od-primary) !important; outline: 1px solid var(--od-primary) !important; outline-offset: 0 !important; }
+html[data-tl-family="opendesk"] input[type="checkbox"]:not([role="switch"]) + [class*="_ui_"] { border-radius: 3px; border-color: var(--od-border-strong); }
+html[data-tl-family="opendesk"] input[type="checkbox"]:not([role="switch"]):checked + [class*="_ui_"],
+html[data-tl-family="opendesk"] input[type="radio"]:checked + [class*="_ui_"],
+html[data-tl-family="opendesk"] input[role="switch"]:checked + [class*="_ui_"] { background: var(--od-primary); border-color: var(--od-primary); }
+html[data-tl-family="opendesk"] .mx_StyledCheckbox input[type="checkbox"]:checked + label > .mx_StyledCheckbox_background { background: var(--od-primary); border-color: var(--od-primary); }
+html[data-tl-family="opendesk"] .mx_ToggleSwitch.mx_ToggleSwitch_on { background: var(--od-primary); }
+
+/* ------------------------------------------------------------------ dialogs (Keycloak login card) */
+html[data-tl-family="opendesk"] .mx_Dialog_background { background-color: var(--od-backdrop); }
+html[data-tl-family="opendesk"] .mx_Dialog {
+  background: var(--od-surface); color: var(--od-text); border-radius: var(--od-radius-dialog); box-shadow: var(--od-shadow-dialog);
+}
+html[data-tl-family="opendesk"] .mx_Dialog_border { background: transparent !important; padding: 0 !important; border: 0 !important; box-shadow: none !important; backdrop-filter: none !important; }
+html[data-tl-family="opendesk"] .mx_Dialog_title { font: var(--od-heading-weight) 20px/1.3 var(--od-heading-font); color: var(--od-heading); text-transform: var(--od-heading-transform); }
+/* The suite top bar lives in #tl-overlay-root (z 3000), which paints above Element's dialog/menu containers
+   (they are `isolation: isolate`, z auto). Like the app itself, dialogs open below the bar, never under it
+   (VP-06: the × sat under the bar at <= 414 px), and scroll when taller than the space left. */
+html[data-tl-family="opendesk"][data-od-topbar] .mx_Dialog_wrapper { top: var(--od-bar-h); bottom: 0; height: auto; }
+html[data-tl-family="opendesk"][data-od-topbar] .mx_Dialog { max-height: calc(100dvh - var(--od-bar-h) - 16px); }
+/* phones: fixed-width dialogs (create room = 450 px) shrink to the screen instead of scrolling sideways */
+@media (max-width: 520px) {
+  html[data-tl-family="opendesk"] .mx_Dialog { padding: 24px 16px; }
+  html[data-tl-family="opendesk"] .mx_Dialog .mx_Dialog_fixedWidth { max-width: calc(100vw - 32px); }
+}
+html[data-tl-family="opendesk"] .mx_CompoundDialog,
+html[data-tl-family="opendesk"] [role="dialog"][class*="_dialog_"] { background: var(--od-surface); border-radius: var(--od-radius-dialog); }
+
+/* ------------------------------------------------------------------ menus + tooltips */
+html[data-tl-family="opendesk"] .mx_ContextualMenu,
+html[data-tl-family="opendesk"] [role="menu"][class*="_menu_"],
+html[data-tl-family="opendesk"] [data-radix-popper-content-wrapper] > [role="menu"] {
+  background: var(--od-surface); color: var(--od-text); border-radius: var(--od-radius-tile); box-shadow: var(--od-shadow-popup); border: 0;
+}
+html[data-tl-family="opendesk"] [role="menu"] [role^="menuitem"],
+html[data-tl-family="opendesk"] .mx_IconizedContextMenu .mx_AccessibleButton { border-radius: var(--od-radius); }
+html[data-tl-family="opendesk"] .mx_IconizedContextMenu .mx_AccessibleButton:hover,
+html[data-tl-family="opendesk"] [role="menu"] [role^="menuitem"]:hover,
+html[data-tl-family="opendesk"] [role="menu"] [role^="menuitem"][data-highlighted] { background: var(--od-tint-soft) !important; }
+html[data-tl-family="opendesk"] [role="tooltip"],
+html[data-tl-family="opendesk"] [class*="_tooltip_"]:not([class*="_tooltip-"]) {
+  background: var(--od-tooltip) !important; color: var(--od-tooltip-text) !important; border-radius: var(--od-radius);
+  font: 600 12px/1.4 var(--cpd-font-family-sans);
+}
+html[data-tl-family="opendesk"] [role="tooltip"] *,
+html[data-tl-family="opendesk"] [class*="_tooltip_"] [class*="_caption_"] { color: var(--od-tooltip-text) !important; }
+html[data-tl-family="opendesk"] [role="tooltip"] svg[class*="_arrow_"],
+html[data-tl-family="opendesk"] [class*="_tooltip_"] [class*="_arrow_"] { fill: var(--od-tooltip); }
+
+/* ------------------------------------------------------------------ settings */
+html[data-tl-family="opendesk"] .mx_TabbedView_tabLabel { border-radius: var(--od-radius-tile); color: var(--od-text); }
+html[data-tl-family="opendesk"] .mx_TabbedView_tabLabel:hover { background: var(--od-hover); }
+html[data-tl-family="opendesk"] .mx_TabbedView_tabLabel_active,
+html[data-tl-family="opendesk"] .mx_TabbedView_tabLabel_active:hover { background: var(--od-sel-bg) !important; color: var(--od-sel-text) !important; }
+html[data-tl-family="opendesk"] .mx_TabbedView_tabLabel_active svg { color: var(--od-sel-text); }
+html[data-tl-family="opendesk"] .mx_TabbedView_tabLabel_active .mx_TabbedView_maskedIcon::before { background-color: var(--od-sel-text); }
+html[data-tl-family="opendesk"] .mx_SettingsSection,
+html[data-tl-family="opendesk"] .mx_SettingsSubsection { --SettingsSubsection_divider: var(--od-separator); }
+html[data-tl-family="opendesk"] .mx_SettingsTab_heading,
+html[data-tl-family="opendesk"] .mx_SettingsSection_title,
+html[data-tl-family="opendesk"] .mx_SettingsSubsection_heading { color: var(--od-heading); font-family: var(--od-heading-font); }
+html[data-tl-family="opendesk"] [role="tablist"]:not(.mx_TabbedView_tabLabels) [role="tab"][aria-selected="true"] { box-shadow: inset 0 -3px 0 var(--od-primary); }
+
+/* ------------------------------------------------------------------ auth (Keycloak login page look) */
+html[data-tl-family="opendesk"] .mx_AuthPage,
+html[data-tl-family="opendesk"] .mx_AuthPage[style] {
+  background: var(--od-auth-bg, url("assets/od-login-background.webp") center / cover no-repeat, #eceef3) !important;
+}
+html[data-tl-family="opendesk"] .mx_AuthPage_modal {
+  background: var(--od-surface); border-radius: var(--od-radius-dialog); box-shadow: var(--od-shadow-dialog); overflow: hidden;
+}
+html[data-tl-family="opendesk"] .mx_AuthPage_modalContent,
+html[data-tl-family="opendesk"] .mx_AuthBody,
+html[data-tl-family="opendesk"] .mx_AuthPage_modal.mx_AuthPage_modal_withBlur .mx_AuthPage_modalContent { background: var(--od-surface); }
+html[data-tl-family="opendesk"] .mx_AuthHeader { background: var(--od-surface); border-right: 1px solid var(--od-separator); }
+html[data-tl-family="opendesk"] .mx_AuthHeaderLogo img { content: var(--od-auth-logo, url("assets/od-logo.svg")); max-width: 180px; }
+html[data-tl-family="opendesk"] .mx_AuthFooter,
+html[data-tl-family="opendesk"] .mx_AuthFooter a { color: var(--od-muted); }
+html[data-tl-family="opendesk"] .mx_AuthBody h1,
+html[data-tl-family="opendesk"] .mx_AuthBody h2 { color: var(--od-heading); font-family: var(--od-heading-font); }
+
+/* ------------------------------------------------------------------ badges */
+html[data-tl-family="opendesk"] [class*="_unread-counter_"],
+html[data-tl-family="opendesk"] [class*="_notificationBadge_"] { font-weight: 700; }
+html[data-tl-family="opendesk"] [class*="_unread-counter_"]:not([data-kind="critical"]) { background: var(--od-primary) !important; color: var(--od-on-primary) !important; }
+html[data-tl-family="opendesk"] [data-kind="critical"][class*="_unread-counter_"],
+html[data-tl-family="opendesk"] [class*="_notificationBadge_"][data-kind="critical"],
+html[data-tl-family="opendesk"] .mx_NotificationBadge_level_highlight { background: var(--od-critical) !important; color: var(--od-on-critical) !important; }
+
+/* ------------------------------------------------------------------ home page */
+html[data-tl-family="opendesk"] .mx_HomePage h1 { color: var(--od-heading); font-family: var(--od-heading-font); font-weight: var(--od-heading-weight); }
+html[data-tl-family="opendesk"] .mx_HomePage_default_buttons .mx_AccessibleButton {
+  background-color: var(--od-surface) !important; color: var(--od-text) !important; border-radius: var(--od-radius-tile);
+  box-shadow: var(--od-shadow-tile);
+}
+html[data-tl-family="opendesk"] .mx_HomePage_default_buttons .mx_AccessibleButton::before { background-color: var(--od-primary) !important; }
+
+/* ------------------------------------------------------------------ scrollbars */
+html[data-tl-family="opendesk"] * { scrollbar-color: var(--od-scroll) transparent; scrollbar-width: thin; }
+
+/* ------------------------------------------------------------------ focus */
+html[data-tl-family="opendesk"] :focus-visible { outline: var(--od-focus-w) solid var(--od-focus) !important; outline-offset: 1px !important; }
+html[data-tl-family="opendesk"] .mx_ContextualMenu:focus-visible,
+html[data-tl-family="opendesk"] [role="menu"]:focus-visible,
+html[data-tl-family="opendesk"] [role="dialog"]:focus-visible,
+html[data-tl-family="opendesk"] .mx_Dialog:focus-visible { outline: none !important; }
+
+/* ------------------------------------------------------------------ toasts, widgets */
+html[data-tl-family="opendesk"] .mx_Toast_toast { background: var(--od-surface); color: var(--od-text); border-radius: var(--od-radius-tile); box-shadow: var(--od-shadow-popup); }
+html[data-tl-family="opendesk"] .mx_AppTile,
+html[data-tl-family="opendesk"] .mx_AppTile_mini,
+html[data-tl-family="opendesk"] .mx_CallView { border-radius: var(--od-radius-tile); overflow: hidden; }
+
+/* ------------------------------------------------------------------ the theme loader UI stays readable */
+html[data-tl-family="opendesk"] .tl-ui { color: var(--od-text); }
+
+/* ------------------------------------------------------------------ other datanauten modules (production) */
+/* teams-welcome (prod) docks its guide at top: 16px; with the suite top bar it starts below the bar (MOD-02:
+   the bar covered the guide's header and close button). Phones (<= 600 px) anchor it at the bottom: cap its height. */
+html[data-tl-family="opendesk"][data-od-topbar] #teams-welcome-root .twl-panel-frame { top: calc(var(--od-bar-h) + var(--cpd-space-4x)); }
+@media (max-width: 600px) {
+  html[data-tl-family="opendesk"][data-od-topbar] #teams-welcome-root .twl-panel-frame { top: auto; max-height: calc(100dvh - var(--od-bar-h) - 2 * var(--cpd-space-2x)); }
+}
+html[data-tl-family="opendesk"] :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+  border-radius: var(--od-radius-dialog) !important; box-shadow: var(--od-shadow-dialog) !important;
+}
+html[data-tl-family="opendesk"] :is(.twl-button, .drm-button, .ks-button, .rc-button, .pm-button, .fh-button) { border-radius: var(--od-radius) !important; }
+html[data-tl-family="opendesk"] :is(.act-chip, .fh-chip, .pm-chip, .rc-chip) { border-radius: var(--od-radius-chip) !important; }
+
+/* ------------------------------------------------------------------ reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="opendesk"] *,
+  html[data-tl-family="opendesk"] *::before,
+  html[data-tl-family="opendesk"] *::after { transition: none !important; animation: none !important; }
+}
+
+/* tooltips: floating-ui places them at left 0 and shifts them 5 px in from the edge, so a tooltip as wide as the
+   viewport (this family's larger tooltip font, e.g. the composer's "not end-to-end encrypted") overflowed the page
+   by 5 px at 320 px (VP-04). Cap the width to the viewport minus that padding. */
+html[data-tl-family="opendesk"] [class*="_tooltip_"] { box-sizing: border-box; max-width: min(580px, calc(100vw - 10px)) !important; }

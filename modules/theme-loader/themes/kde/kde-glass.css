@@ -1,0 +1,215 @@
+/* Breeze · Glass — translucent Breeze Dark over the Plasma "Hanabi" wallpaper (CC-BY-SA-4.0),
+   KWin-style blur on big panes only, floating Plasma panel, accent-from-wallpaper violet glow. */
+html[data-tl-theme="kde-glass"] {
+  --kde-window: #202326;
+  --kde-window-alt: #2a2d35;
+  --kde-view: #141618;
+  --kde-view-alt: #1d1f22;
+  --kde-button: rgb(255 255 255 / .08);
+  --kde-header: rgb(41 44 48 / .70);
+  --kde-header-text: #fcfcfc;
+  --kde-rail: rgb(32 35 38 / .6);
+  --kde-rail-text: #fcfcfc;
+  --kde-text: #fcfcfc;
+  --kde-muted: #b4bbc2;
+  --kde-inactive: #b4bbc2;
+  --kde-accent: #7f6df2;           /* "accent from wallpaper" */
+  --kde-accent-text: #9d8cff;
+  --kde-solid: #5f4bd8;
+  --kde-on-solid: #ffffff;
+  --kde-on-critical: #1b1210;
+  --kde-link: #a99cff;
+  --kde-visited: #d29bff;
+  --kde-outline: rgb(255 255 255 / .16);
+  --kde-button-outline: rgb(255 255 255 / .14);
+  --kde-separator: rgb(255 255 255 / .10);
+  --kde-sel: rgb(127 109 242 / .32);
+  --kde-sel-solid: #3b3466;
+  --kde-hover: rgb(127 109 242 / .16);
+  --kde-pressed: rgb(127 109 242 / .45);
+  --kde-default-btn: rgb(127 109 242 / .35);
+  --kde-default-pen: #9d8cff;
+  --kde-negative: #ff5c6c;
+  --kde-critical-solid: #ff9a3c;
+  --kde-negative-text: #ff8a96;
+  --kde-neutral: #ff9a3c;
+  --kde-positive: #3ddc84;
+  --kde-positive-text: #3ddc84;
+  --kde-own: rgb(64 52 140 / .62);
+  --kde-card: rgb(29 31 34 / .62);
+  --kde-mention-bg: rgb(255 154 60 / .18);
+  --kde-tooltip: rgb(32 35 38 / .92);
+  --kde-tooltip-text: #fcfcfc;
+  --kde-code-bg: rgb(20 22 24 / .8);
+  --kde-scroll: rgb(255 255 255 / .35);
+  --kde-radius: 5px;
+  --kde-radius-card: 8px;
+  --kde-glow: 0 0 0 1px #9d8cff, 0 0 14px rgb(127 109 242 / .55);
+  --kde-shadow-btn: none;
+  --kde-shadow-card: 0 0 0 1px rgb(255 255 255 / .05);
+  --kde-shadow-popup: 0 12px 40px rgb(0 0 0 / .5);
+  --kde-shadow-dialog: 0 24px 60px rgb(0 0 0 / .6);
+  --kde-focus: #9d8cff;
+  --kde-name-1: #7fc8ff; --kde-name-2: #c9a8ff; --kde-name-3: #6ff0a8;
+  --kde-name-4: #ff8a96; --kde-name-5: #ffb066; --kde-name-6: #9d8cff;
+  --kde-hue-1: #3daee9; --kde-hue-2: #9d8cff; --kde-hue-3: #3ddc84;
+  --kde-hue-4: #ff5c6c; --kde-hue-5: #ff9a3c; --kde-hue-6: #1d99f3;
+  --kde-avatar-tint: 28%;
+  --kde-hl-keyword: #cfcfc2; --kde-hl-control: #fdbc4b; --kde-hl-func: #c9a8ff; --kde-hl-string: #ff8a96;
+  --kde-hl-number: #ffb066; --kde-hl-comment: #8d8f91; --kde-hl-type: #7fc8ff; --kde-hl-pre: #6ff0a8;
+  --kde-hl-attr: #7fc8ff; --kde-hl-var: #5fe0e0;
+  --kde-wallpaper: url("assets/wallpaper-hanabi-dark.webp");
+  --kde-tb-bg: rgb(32 35 38 / .55);
+  --kde-home-color: #fcfcfc;
+  --kde-blur: blur(24px) saturate(1.4);
+  color-scheme: dark;
+}
+html[data-tl-theme="kde-glass"],
+html[data-tl-theme="kde-glass"] body,
+html[data-tl-theme="kde-glass"] [class*="cpd-theme-"] {
+  --cpd-color-bg-canvas-default: rgb(20 22 24 / .62);
+  --cpd-color-bg-subtle-secondary: rgb(255 255 255 / .05);
+  --cpd-color-bg-subtle-primary: rgb(255 255 255 / .08);
+  --cpd-color-text-on-solid-primary: #ffffff;
+}
+
+/* the wallpaper behind everything */
+html[data-tl-theme="kde-glass"] body {
+  background: #141018 url("assets/wallpaper-hanabi-dark.webp") center / cover no-repeat fixed;
+}
+html[data-tl-theme="kde-glass"] .mx_MatrixChat > :not(.mx_LeftPanel):not(.mx_SpacePanel):not(.mx_ResizeHandle):not(.mx_LeftPanel_outerWrapper),
+html[data-tl-theme="kde-glass"] .mx_MatrixChat,
+html[data-tl-theme="kde-glass"] .mx_LeftPanel,
+html[data-tl-theme="kde-glass"] .mx_LeftPanel_outerWrapper,
+html[data-tl-theme="kde-glass"] .mx_LeftPanel_wrapper,
+html[data-tl-theme="kde-glass"] .mx_RoomView,
+html[data-tl-theme="kde-glass"] .mx_MainSplit,
+html[data-tl-theme="kde-glass"] .mx_RoomView_body { background: transparent !important; }
+
+/* floating Plasma panel */
+html[data-tl-theme="kde-glass"] .mx_SpacePanel {
+  background: var(--kde-rail); backdrop-filter: var(--kde-blur);
+  margin: 8px 0 8px 8px; height: calc(100% - 16px); border-radius: 12px; border: 0;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08), 0 12px 40px rgb(0 0 0 / .45);
+}
+html[data-tl-theme="kde-glass"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper,
+html[data-tl-theme="kde-glass"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active.mx_SpaceButton_narrow .mx_SpaceButton_selectionWrapper {
+  background: rgb(127 109 242 / .35); border-color: #9d8cff; box-shadow: 0 0 14px rgb(127 109 242 / .6);
+}
+html[data-tl-theme="kde-glass"] .mx_SpacePanel .mx_SpaceItem:has(> .mx_SpaceButton_active)::before { background: #9d8cff; box-shadow: 0 0 8px #9d8cff; }
+html[data-tl-theme="kde-glass"] .mx_Separator,
+html[data-tl-theme="kde-glass"] [class*="_separator_"][role="separator"][aria-label] { background: transparent; width: 8px; }
+
+/* glass panes (≈6 blurred layers in total) */
+html[data-tl-theme="kde-glass"] .mx_RoomListPanel {
+  background: rgb(32 35 38 / .72); backdrop-filter: var(--kde-blur);
+  margin: 8px 0 8px 8px; height: calc(100% - 16px); border-radius: 8px; overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .07), 0 12px 40px rgb(0 0 0 / .4);
+}
+html[data-tl-theme="kde-glass"] .mx_RoomListPanel > [role="search"] { background: rgb(255 255 255 / .04); }
+html[data-tl-theme="kde-glass"] .mx_RoomListPanel > [role="search"] button[class*="_search_"] { background: rgb(0 0 0 / .3); border-color: rgb(255 255 255 / .14); color: #b4bbc2; }
+html[data-tl-theme="kde-glass"] .mx_RoomListPanel > [role="search"] kbd { background: rgb(255 255 255 / .08); border-color: rgb(255 255 255 / .14); color: #b4bbc2; }
+html[data-tl-theme="kde-glass"] .mx_RoomListPanel [class*="_stickyBackground_"],
+html[data-tl-theme="kde-glass"] .mx_RoomListPanel button[class*="_header_"] { background: transparent; }
+html[data-tl-theme="kde-glass"] .mx_RoomView_wrapper {
+  margin: 8px; height: calc(100% - 16px); border-radius: 8px; overflow: hidden;
+  background: rgb(20 22 24 / .62); backdrop-filter: var(--kde-blur);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .07), 0 12px 40px rgb(0 0 0 / .4);
+}
+html[data-tl-theme="kde-glass"] .mx_RoomView_timeline { background: transparent !important; }
+html[data-tl-theme="kde-glass"] .mx_RoomHeader { background: rgb(41 44 48 / .55); }
+html[data-tl-theme="kde-glass"] .mx_RoomHeader:hover { background: rgb(41 44 48 / .55); }
+html[data-tl-theme="kde-glass"] .mx_MessageComposer { background: rgb(20 22 24 / .45); border-top-color: rgb(255 255 255 / .08); }
+html[data-tl-theme="kde-glass"] .mx_RightPanel { background: rgb(32 35 38 / .5); border-left-color: rgb(255 255 255 / .08); }
+html[data-tl-theme="kde-glass"] .mx_BaseCard { background: transparent; }
+html[data-tl-theme="kde-glass"] .mx_RoomView_statusArea { background: transparent; }
+
+/* timeline cards: translucent, no per-tile blur */
+html[data-tl-theme="kde-glass"] .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_shape"])::before { border-radius: 8px; }
+html[data-tl-theme="kde-glass"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"])::before {
+  box-shadow: inset 0 0 0 1px rgb(157 140 255 / .35);
+}
+html[data-tl-theme="kde-glass"] .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):hover::before { box-shadow: inset 0 0 0 1px rgb(157 140 255 / .55); }
+html[data-tl-theme="kde-glass"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateHighlighted_"]:not([class*="_stateInfo_"])::before {
+  box-shadow: inset 3px 0 0 #ff9a3c, 0 0 18px rgb(255 154 60 / .25);
+}
+html[data-tl-theme="kde-glass"] .mx_EventTileBubble,
+html[data-tl-theme="kde-glass"] .mx_cryptoEvent { background: rgb(20 22 24 / .6); border-color: rgb(255 255 255 / .12); }
+
+/* glow */
+html[data-tl-theme="kde-glass"] .mx_RoomListItemView.mx_RoomListItemView_selected > [class*="_container_"],
+html[data-tl-theme="kde-glass"] .mx_RoomListItemView[aria-selected="true"] > [class*="_container_"] {
+  border-color: #9d8cff; box-shadow: 0 0 14px rgb(127 109 242 / .5);
+}
+html[data-tl-theme="kde-glass"] .mx_MessageComposer_sendMessage {
+  background: #5f4bd8 !important; border-radius: 50%; color: #fff; box-shadow: 0 0 14px rgb(127 109 242 / .65);
+}
+html[data-tl-theme="kde-glass"] .mx_MessageComposer_sendMessage:hover { background: #9d8cff !important; }
+html[data-tl-theme="kde-glass"] .mx_MessageComposer_row:focus-within { box-shadow: 0 0 0 1px #9d8cff, 0 0 18px rgb(127 109 242 / .35); border-radius: 6px; }
+html[data-tl-theme="kde-glass"] [class*="_unread-counter_"]:not([data-kind="critical"]) {
+  background: #5f4bd8 !important; color: #fff !important; border-radius: 9px; padding: 0 6px; min-width: 18px; box-shadow: 0 0 10px rgb(127 109 242 / .7);
+}
+html[data-tl-theme="kde-glass"] [data-kind="critical"][class*="_unread-counter_"],
+html[data-tl-theme="kde-glass"] [class*="_notificationBadge_"][data-kind="critical"] { background: #ff9a3c !important; color: #1b1210 !important; box-shadow: 0 0 10px rgb(255 154 60 / .7); }
+html[data-tl-theme="kde-glass"] .mx_Pill { background: rgb(127 109 242 / .35) !important; color: #fff !important; }
+html[data-tl-theme="kde-glass"] .mx_Pill.mx_UserPill_me,
+html[data-tl-theme="kde-glass"] .mx_Pill.mx_AtRoomPill { background: #ff9a3c !important; color: #1b1210 !important; }
+html[data-tl-theme="kde-glass"] :focus-visible { box-shadow: 0 0 14px rgb(127 109 242 / .6); }
+
+/* buttons */
+html[data-tl-theme="kde-glass"] [class*="_button_"][data-kind="primary"]:not([class*="_destructive_"]):not([class*="_icon-button_"]),
+html[data-tl-theme="kde-glass"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="kde-glass"] .mx_Dialog_buttons button.mx_Dialog_primary { background: #5f4bd8 !important; border-color: #9d8cff !important; color: #fff !important; }
+html[data-tl-theme="kde-glass"] [class*="_button_"][data-kind="primary"]:not([class*="_icon-button_"]) > svg { color: #fff !important; }
+html[data-tl-theme="kde-glass"] [class*="_button_"][data-kind]:not([aria-disabled="true"]):not([class*="_icon-button_"]):hover,
+html[data-tl-theme="kde-glass"] .mx_Dialog_buttons button:not([disabled]):hover { box-shadow: 0 0 0 1px #9d8cff, 0 0 14px rgb(127 109 242 / .55); }
+
+/* dialogs + menus = glass sheets */
+html[data-tl-theme="kde-glass"] .mx_Dialog_background { background: rgb(0 0 0 / .45); }
+html[data-tl-theme="kde-glass"] .mx_Dialog {
+  background: rgb(32 35 38 / .78); backdrop-filter: blur(40px) saturate(1.4); border-color: rgb(255 255 255 / .12); border-radius: 12px;
+  animation: kde-lamp .22s cubic-bezier(.2, .9, .3, 1.2);
+}
+html[data-tl-theme="kde-glass"] .mx_ContextualMenu,
+html[data-tl-theme="kde-glass"] [role="menu"][class*="_menu_"],
+html[data-tl-theme="kde-glass"] [data-radix-popper-content-wrapper] > [role="menu"] {
+  background: rgb(32 35 38 / .8); backdrop-filter: var(--kde-blur); border-radius: 8px;
+}
+html[data-tl-theme="kde-glass"] [role="tooltip"],
+html[data-tl-theme="kde-glass"] [class*="_tooltip_"]:not([class*="_tooltip-"]) { backdrop-filter: blur(16px); }
+html[data-tl-theme="kde-glass"] .mx_Field { background: rgb(0 0 0 / .35); }
+html[data-tl-theme="kde-glass"] .mx_Field label { background: #26242e !important; }
+html[data-tl-theme="kde-glass"] .mx_MessageActionBar { background: rgb(32 35 38 / .85); }
+@keyframes kde-lamp {
+  from { opacity: 0; transform: translateY(12px) scale(.9); }
+  to { opacity: 1; transform: none; }
+}
+
+/* titlebar */
+html[data-tl-theme="kde-glass"] #tl-overlay-root .kde-titlebar { backdrop-filter: var(--kde-blur); box-shadow: inset 0 -1px rgb(255 255 255 / .06); }
+html[data-tl-theme="kde-glass"] #tl-overlay-root .kde-titlebar__app i.kde-titlebar__icon { background: #9d8cff; }
+html[data-tl-theme="kde-glass"] #tl-overlay-root .kde-clock { color: #fcfcfc; text-shadow: 0 0 6px rgb(127 109 242 / .8); }
+
+/* auth: Plasma lock screen over Hanabi */
+html[data-tl-theme="kde-glass"] .mx_AuthPage_modal { background: rgb(24 26 30 / .86); backdrop-filter: blur(40px); border-color: rgb(255 255 255 / .12); border-radius: 12px; }
+html[data-tl-theme="kde-glass"] .mx_AuthPage_modalContent,
+html[data-tl-theme="kde-glass"] .mx_AuthBody,
+html[data-tl-theme="kde-glass"] .mx_AuthHeader { background: transparent; }
+
+/* no backdrop-filter → opaque Breeze Dark */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html[data-tl-theme="kde-glass"] .mx_RoomListPanel,
+  html[data-tl-theme="kde-glass"] .mx_RoomView_wrapper,
+  html[data-tl-theme="kde-glass"] .mx_SpacePanel,
+  html[data-tl-theme="kde-glass"] .mx_Dialog { background: rgb(32 35 38 / .96); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="kde-glass"] .mx_Dialog { animation: none; }
+}
+html[data-tl-theme="kde-glass"] .mx_Pill.mx_UserPill_me,
+html[data-tl-theme="kde-glass"] .mx_Pill.mx_AtRoomPill,
+html[data-tl-theme="kde-glass"] [data-kind="critical"][class*="_unread-counter_"] { color: #1b1210 !important; }
+html[data-tl-theme="kde-glass"],
+html[data-tl-theme="kde-glass"] body { --cpd-color-text-on-solid-primary: #ffffff; }
+html[data-tl-theme="kde-glass"] .mx_AuthPage_modalBlur { display: none !important; }
+html[data-tl-theme="kde-glass"] .mx_AuthPage_modal.mx_AuthPage_modal_withBlur .mx_AuthPage_modalContent { background: transparent; }

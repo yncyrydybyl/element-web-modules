@@ -1,0 +1,136 @@
+/* sketch-daylight — notebook by day (sketch-notebook.css), desk lamp at dusk, chalkboard at night
+   (sketch-chalkboard.css). This file only adds the dawn and dusk moods + the phase fade. */
+
+/* --- dawn: cool morning tint, low sun streak from the right ------------------ */
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dawn"],
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dawn"] body,
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dawn"] [class*="cpd-theme-"] {
+    --cpd-color-theme-bg: #fbf3ec;
+    --cpd-color-bg-canvas-default: #fbf3ec;
+    --cpd-color-bg-subtle-secondary: #f3e8de;
+    --cpd-color-bg-subtle-primary: #e8dccf;
+    --cpd-color-text-primary: #2b2f4a;
+    --cpd-color-text-secondary: #625d6b;
+    --cpd-color-text-action-accent: #3b5bdb;
+    --cpd-color-text-link-external: #3b5bdb;
+    --cpd-color-bg-accent-rest: #3b5bdb;
+    --cpd-color-icon-primary: #2b2f4a;
+    --cpd-color-icon-secondary: #625d6b;
+    --cpd-color-border-interactive-primary: #2b2f4a;
+    --cpd-color-border-focused: #3b5bdb;
+}
+
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dawn"] {
+    --sk-ink: #2b2f4a;
+    --sk-line: #2b2f4a;
+    --sk-accent: #3b5bdb;
+    --sk-focus: #3b5bdb;
+    --sk-paper: #fbf3ec;
+    --sk-btn-line: #2b2f4a;
+}
+
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dawn"] .mx_MatrixChat {
+    background:
+        linear-gradient(250deg, rgba(255, 214, 170, 0.45), transparent 35%),
+        url("assets/paper-grain.svg") 0 0 / 240px 240px,
+        #fbf3ec;
+}
+
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dawn"] .mx_RoomView_messagePanel {
+    background-color: #fffaf5;
+}
+
+/* --- dusk: warm paper under a desk lamp ------------------------------------- */
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"],
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"] body,
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"] [class*="cpd-theme-"] {
+    --cpd-color-theme-bg: #f6e7c8;
+    --cpd-color-bg-canvas-default: #f6e7c8;
+    --cpd-color-bg-subtle-secondary: #ecd9b2;
+    --cpd-color-bg-subtle-primary: #d9bf8c;
+    --cpd-color-text-primary: #3a2a17;
+    --cpd-color-text-secondary: #6e5a3e;
+    --cpd-color-text-action-accent: #9c4a1a;
+    --cpd-color-text-link-external: #9c4a1a;
+    --cpd-color-bg-accent-rest: #9c4a1a;
+    --cpd-color-bg-action-primary-rest: #3a2a17;
+    --cpd-color-text-critical-primary: #a61e1e;
+    --cpd-color-text-success-primary: #3f6b2a;
+    --cpd-color-icon-primary: #3a2a17;
+    --cpd-color-icon-secondary: #6e5a3e;
+    --cpd-color-border-interactive-primary: #3a2a17;
+    --cpd-color-border-focused: #9c4a1a;
+    --cpd-color-bg-action-tertiary-hovered: rgba(255, 210, 120, 0.4);
+}
+
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"] {
+    --sk-ink: #3a2a17;
+    --sk-line: #3a2a17;
+    --sk-accent: #9c4a1a;
+    --sk-focus: #9c4a1a;
+    --sk-paper: #f6e7c8;
+    --sk-rule: rgba(150, 120, 80, 0.4);
+    --sk-margin: rgba(170, 70, 50, 0.6);
+    --sk-btn-line: #3a2a17;
+    --sk-sel-line: #9c4a1a;
+    --sk-avatar-line: rgba(58, 42, 23, 0.6);
+    --sk-et-bubble-self-background: #f1dcc0;
+    --sk-et-bubble-other-background: #fbf0d9;
+}
+
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"] .mx_MatrixChat {
+    background: url("assets/paper-grain.svg") 0 0 / 240px 240px, #f6e7c8;
+}
+
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"] .mx_RoomView_messagePanel {
+    background-color: #fbf0d9;
+}
+
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"] .mx_RoomListItemView {
+    background: #fbf0d9;
+}
+
+/* the lamp: warm pool of light from the top left, dark corners */
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"] .mx_MatrixChat::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    background: radial-gradient(ellipse 85% 95% at 18% 0%, rgba(255, 246, 221, 0) 0, rgba(255, 246, 221, 0) 45%, rgba(90, 55, 20, 0.22) 85%, rgba(50, 30, 10, 0.32) 100%);
+    mix-blend-mode: multiply;
+}
+
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"] .mx_MatrixChat::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    background: radial-gradient(circle at 15% 0, rgba(255, 236, 170, 0.35), transparent 55%);
+    mix-blend-mode: soft-light;
+}
+
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dusk"] .mx_MessageComposer_wrapper {
+    background: linear-gradient(180deg, #ffe3a3, #ffd77f);
+}
+
+/* --- phase fade (loader sets data-tl-phase-fading for ~2 s) --------------------- */
+@media (prefers-reduced-motion: no-preference) {
+    html[data-tl-theme="sketch-daylight"][data-tl-phase-fading] :is(.mx_MatrixChat, .mx_RoomView_messagePanel, .mx_RoomListItemView, .mx_MessageComposer_wrapper, .mx_EventTile_body) {
+        transition: background-color 2s, color 2s;
+    }
+}
+
+/* dawn: low sun streak from the right over everything (soft-light, no pointer events) */
+html[data-tl-theme="sketch-daylight"][data-tl-phase="dawn"] .mx_MatrixChat::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    background:
+        linear-gradient(250deg, rgba(255, 190, 140, 0.4) 0, rgba(255, 210, 170, 0.15) 30%, transparent 55%),
+        linear-gradient(0deg, rgba(150, 170, 230, 0.12), transparent 40%);
+    mix-blend-mode: multiply;
+}

@@ -1,0 +1,4 @@
+# Don't install package versions published less than a day ago (supply-chain safety).
+minimumReleaseAge: 1440
+onlyBuiltDependencies:
+  - esbuild

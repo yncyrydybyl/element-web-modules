@@ -1,0 +1,167 @@
+/* LCARS · Picard (2401): thin slate frames, outlined controls, cyan data, orange-red indicators. */
+html[data-tl-theme="lcars-picard"] {
+  --lc-c1: #9ea5ba;   /* light gray: band B */
+  --lc-c2: #6d748c;   /* primary gray */
+  --lc-c3: #52596e;   /* medium-dark gray: band A */
+  --lc-c4: #6d748c;
+  --lc-c5: #e7442a;   /* orange-red */
+  --lc-c6: #ff977b;   /* pale orange-red */
+  --lc-c7: #37a6d1;   /* blue */
+  --lc-c8: #2a7193;   /* medium-dark blue */
+  --lc-text: #d2d5df;
+  --lc-muted: #9ea5ba;
+  --lc-accent: #37a6d1;
+  --lc-crit: #e7442a;
+  --lc-ok: #6cc4a4;
+  --lc-link: #41c4f7;
+  --lc-panel: #0b1018;
+  --lc-line: #2f3749;
+
+  --lc-arm: 92px;
+  --lc-band: 64px;
+  --lc-bar: 8px;
+  --lc-bbar: 8px;
+  --lc-gap: 4px;
+  --lc-ro: 40px;
+  --lc-ri: 30px;
+  --lc-pill-h: 36px;
+  --lc-pill-r: 3px;
+  --lc-btn-r: 3px;
+  --lc-label-weight: 400;
+  --lc-label-track: 0.07em;
+  --lc-body-weight: 400;
+  --lc-body-track: 0.025em;
+}
+/* outlined controls instead of filled pills */
+html[data-tl-theme="lcars-picard"] .mx_RoomListItemView {
+  background: transparent !important;
+  border: 1px solid var(--lc-pill, var(--lc-c2)) !important;
+  border-radius: 3px !important;
+  & [class*="_roomName_"] { color: var(--lc-text) !important; font-weight: 400 !important; }
+  & [class*="_hoverMenu_"] button, & [class*="_hoverMenu_"] svg, & [class*="_notificationDecoration_"] svg { color: var(--lc-text) !important; }
+  &:hover { background: rgba(28, 60, 85, 0.45) !important; filter: none; }
+}
+html[data-tl-theme="lcars-picard"] .mx_RoomListPanel [data-item-index] { --lc-pill: #52596e; }
+html[data-tl-theme="lcars-picard"] .mx_RoomListItemView[class*="_bold_"] { border-color: #9ea5ba !important; }
+html[data-tl-theme="lcars-picard"] .mx_RoomListItemView.mx_RoomListItemView_selected {
+  background: var(--lc-accent) !important;
+  border-color: var(--lc-accent) !important;
+  & [class*="_roomName_"] { color: #000 !important; }
+  &::after { border-radius: 3px; width: 8px; right: -14px; background: var(--lc-c5); animation: none; }
+}
+html[data-tl-theme="lcars-picard"] .mx_RoomListItemView [class*="_notificationDecoration_"] [class*="_unread-counter_"] {
+  background: var(--lc-c5) !important; color: #000 !important;
+}
+/* space stack: outlined rectangles, active cyan with a red marker square */
+html[data-tl-theme="lcars-picard"] .mx_SpacePanel .mx_SpaceButton {
+  background: transparent !important;
+  box-shadow: inset 0 0 0 1px #6d748c;
+  &::after { color: var(--lc-text) !important; }
+  & .mx_SpaceButton_icon, & .mx_SpaceButton_avatarPlaceholder { background: #2f3749 !important; }
+  & .mx_SpaceButton_icon svg { color: var(--lc-text); }
+  & .mx_SpaceButton_icon::before { background-color: var(--lc-text) !important; }
+}
+html[data-tl-theme="lcars-picard"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active {
+  box-shadow: inset 0 0 0 1px var(--lc-accent), inset 6px 0 0 var(--lc-c5);
+  &::after { color: var(--lc-accent) !important; }
+}
+html[data-tl-theme="lcars-picard"] .mx_SpacePanel > .mx_SpaceTreeLevel::after { background: #2f3749; }
+html[data-tl-theme="lcars-picard"] .mx_SpacePanel .mx_ThreadsActivityCentre_container { background: #2f3749; }
+html[data-tl-theme="lcars-picard"] .mx_SpacePanel .mx_ThreadsActivityCentre_container::after { color: var(--lc-text); }
+html[data-tl-theme="lcars-picard"] .mx_SpacePanel .mx_ThreadsActivityCentreButton { color: var(--lc-text) !important; }
+/* header: lighter, cyan name, outlined buttons */
+html[data-tl-theme="lcars-picard"] .mx_RoomHeader {
+  & .mx_RoomHeader_heading { font-weight: 300 !important; color: var(--lc-accent) !important; letter-spacing: 0.08em; }
+  & > button:not([class*="_avatar_"]):not(.mx_RoomHeader_infoWrapper), & > div > button {
+    background: transparent !important;
+    border: 1px solid var(--lc-hb, var(--lc-c2)) !important;
+    color: var(--lc-text) !important;
+  }
+  & > button svg, & > div > button svg { color: var(--lc-text) !important; }
+  & > button[aria-label]::after { color: var(--lc-text); font-weight: 400; }
+  & > button[aria-label="Video call"] { --lc-hb: var(--lc-accent); }
+  & > button[aria-label="Threads"] { --lc-hb: #9ea5ba; }
+  & > button[aria-label="Room info"] { --lc-hb: var(--lc-c6); }
+  &::after { color: var(--lc-c5); }
+}
+/* content well: hairline frame */
+html[data-tl-theme="lcars-picard"] .mx_RoomView_timeline {
+  border-left: 1px solid #52596e;
+  border-top: 1px solid #52596e;
+  border-top-left-radius: 24px;
+  margin: 6px 0 0 4px;
+}
+html[data-tl-theme="lcars-picard"] .mx_EventTile:hover > .mx_EventTile_line,
+html[data-tl-theme="lcars-picard"] .mx_EventTile[class*="_stateSelected_"] > .mx_EventTile_line { background-color: rgba(28, 60, 85, 0.35) !important; }
+html[data-tl-theme="lcars-picard"] .mx_Username_color1 { color: #41c4f7 !important; }
+html[data-tl-theme="lcars-picard"] .mx_Username_color2 { color: #ff977b !important; }
+html[data-tl-theme="lcars-picard"] .mx_Username_color3 { color: #d2d5df !important; }
+html[data-tl-theme="lcars-picard"] .mx_Username_color4 { color: #9ea5ba !important; }
+html[data-tl-theme="lcars-picard"] .mx_Username_color5 { color: #37a6d1 !important; }
+html[data-tl-theme="lcars-picard"] .mx_Username_color6 { color: #ff6753 !important; }
+html[data-tl-theme="lcars-picard"] .mx_EventTile pre, html[data-tl-theme="lcars-picard"] .mx_EventTile_pre_container {
+  background: rgba(28, 60, 85, 0.35) !important; border-left: 2px solid var(--lc-accent) !important;
+}
+/* composer: hairline slot, outlined actions */
+html[data-tl-theme="lcars-picard"] .mx_MessageComposer {
+  & .mx_SendMessageComposer { border: 1px solid #6d748c; border-left: 6px solid #6d748c; border-radius: 3px; }
+  & .mx_MessageComposer_actions > * {
+    background: transparent !important;
+    border: 1px solid var(--lc-ab, #6d748c) !important;
+    color: var(--lc-text) !important;
+    border-radius: 3px !important;
+  }
+  & .mx_MessageComposer_actions > *::after { color: var(--lc-text); font-weight: 400; }
+  & .mx_MessageComposer_actions svg { color: var(--lc-text) !important; }
+  & .mx_MessageComposer_actions > .mx_EmojiButton { --lc-ab: #9ea5ba; }
+  & .mx_MessageComposer_actions > [aria-label="Attachment"] { --lc-ab: var(--lc-accent); }
+  & .mx_MessageComposer_actions > .mx_MessageComposer_buttonMenu { --lc-ab: #6d748c; }
+  & .mx_MessageComposer_sendMessage { border-radius: 3px !important; }
+}
+/* buttons: outlined; primary solid cyan */
+html[data-tl-theme="lcars-picard"] [class*="_button_"][data-kind="secondary"],
+html[data-tl-theme="lcars-picard"] .mx_AccessibleButton_kind_secondary,
+html[data-tl-theme="lcars-picard"] .mx_AccessibleButton_kind_primary_outline {
+  background: transparent !important;
+  border: 1px solid #9ea5ba !important;
+  color: var(--lc-text) !important;
+}
+html[data-tl-theme="lcars-picard"] .mx_Dialog,
+html[data-tl-theme="lcars-picard"] [role="dialog"][class*="_dialog_"] {
+  border-left-width: 10px !important; border-top-width: 6px !important; border-bottom-width: 4px !important;
+  border-radius: 28px 0 0 18px !important;
+  --lc-dlg: #6d748c; --lc-dlg2: #52596e;
+}
+html[data-tl-theme="lcars-picard"] .mx_TabbedView_tabLabel:nth-child(n) {
+  background: transparent !important; box-shadow: inset 0 0 0 1px #6d748c;
+  & * { color: var(--lc-text) !important; }
+  &::after { color: var(--lc-text); }
+}
+html[data-tl-theme="lcars-picard"] .mx_TabbedView_tabLabel:nth-child(n)[aria-selected="true"],
+html[data-tl-theme="lcars-picard"] .mx_TabbedView_tabLabel_active { background: var(--lc-accent) !important; & * { color: #000 !important; } }
+html[data-tl-theme="lcars-picard"] .mx_TabbedView_tabLabel .mx_TabbedView_maskedIcon::before { background-color: var(--lc-text) !important; }
+/* slow scan hairline across band A (decorative, off with reduced motion) */
+html[data-tl-theme="lcars-picard"] .mx_RoomHeader::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--lc-band) - var(--lc-bar));
+  left: 0;
+  width: 60px; height: var(--lc-bar);
+  background: linear-gradient(90deg, transparent, rgba(65, 196, 247, 0.9), transparent);
+  animation: lc-scan 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes lc-scan { from { transform: translateX(0); } to { transform: translateX(calc(100cqw - 60px)); } }
+html[data-tl-theme="lcars-picard"] .mx_RoomHeader { container-type: inline-size; }
+html[data-tl-theme="lcars-picard"] button, html[data-tl-theme="lcars-picard"] [role="button"] { transition: background-color 200ms ease, filter 200ms ease; }
+/* compact contexts (right panel open): icons on outlined buttons must use the text colour */
+html[data-tl-theme="lcars-picard"] .mx_MainSplit:has(.mx_RightPanel) .mx_RoomHeader > button[aria-label] svg,
+html[data-tl-theme="lcars-picard"] .mx_RightPanel .mx_MessageComposer_actions > * svg { color: var(--lc-text) !important; fill: var(--lc-text) !important; }
+@media (max-width: 800px) {
+  html[data-tl-theme="lcars-picard"] .mx_RoomHeader > button[aria-label] svg,
+  html[data-tl-theme="lcars-picard"] .mx_MessageComposer_actions > * svg { color: var(--lc-text) !important; fill: var(--lc-text) !important; }
+}
+html[data-tl-theme="lcars-picard"] .hljs-variable, html[data-tl-theme="lcars-picard"] .hljs-params, html[data-tl-theme="lcars-picard"] .hljs-property { color: #d2d5df; }
+html[data-tl-theme="lcars-picard"] .hljs-comment, html[data-tl-theme="lcars-picard"] .hljs-quote { color: #9ea5ba; }
+html[data-tl-theme="lcars-picard"] .hljs-keyword, html[data-tl-theme="lcars-picard"] .hljs-built_in { color: #ff977b; }
+html[data-tl-theme="lcars-picard"] .hljs-number, html[data-tl-theme="lcars-picard"] .hljs-literal { color: #41c4f7; }

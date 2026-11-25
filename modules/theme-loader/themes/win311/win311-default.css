@@ -1,0 +1,4 @@
+/* win311-default — "Windows Default" scheme (verified in PCjs). All slots are the shared.css defaults. */
+html[data-tl-theme="win311-default"] {
+  --w-desktop: #c0c0c0;
+}

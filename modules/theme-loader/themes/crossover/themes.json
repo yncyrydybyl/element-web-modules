@@ -1,0 +1,150 @@
+{
+  "family": "crossover",
+  "name": "Crossovers",
+  "variants": [
+    {
+      "id": "x-win311-lcars",
+      "name": "Crossover · Starfleet runs Windows 3.11",
+      "stage": "crossover",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 3,
+      "hype": 9,
+      "description": "Starfleet runs Windows 3.11: Win 3.1 title bars, ▼▲ buttons, bevel push buttons and Program Manager groups rendered in LCARS colours inside an LCARS frame on black.",
+      "css": [
+        "shared.css",
+        "x-win311-lcars.css"
+      ],
+      "fonts": [
+        {
+          "family": "W95FA",
+          "file": "@win311/assets/w95fa.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "W95FA",
+          "file": "@win311/assets/w95fa-overstrike-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Antonio",
+          "file": "@lcars/assets/antonio-variable.woff2",
+          "weight": "100 700",
+          "style": "normal"
+        },
+        {
+          "family": "PxPlus IBM VGA 8x16",
+          "file": "@win311/assets/pxplus-ibm-vga-8x16.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "x-teams-sketch",
+      "name": "Crossover · Teams, sketched by the PM",
+      "stage": "crossover",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 5,
+      "hype": 6,
+      "description": "Teams 2026 layout drawn as a Balsamiq wireframe: hand-drawn 2px strokes, hatching, Balsamiq Sans, Teams purple as the only marker colour.",
+      "css": [
+        "shared.css",
+        "x-teams-sketch.css"
+      ],
+      "fonts": [
+        {
+          "family": "Balsamiq Sans",
+          "file": "@sketch/assets/balsamiq-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Balsamiq Sans",
+          "file": "@sketch/assets/balsamiq-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "Balsamiq Sans",
+          "file": "@sketch/assets/balsamiq-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Architects Daughter",
+          "file": "@sketch/assets/architects-daughter-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "@sketch/assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "x-kde-e16",
+      "name": "Crossover · Breeze in brushed metal",
+      "stage": "crossover",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 5,
+      "hype": 7,
+      "description": "Breeze Dark widgets (radius 5, Plasma blue focus glow, Noto Sans) wearing E16 BrushedMetal-Tigert title bars and frames.",
+      "css": [
+        "shared.css",
+        "x-kde-e16.css"
+      ],
+      "fonts": [
+        {
+          "family": "Noto Sans",
+          "file": "@kde/assets/noto-sans-var.woff2",
+          "weight": "400 700",
+          "style": "normal"
+        },
+        {
+          "family": "Noto Sans",
+          "file": "@kde/assets/noto-sans-italic-var.woff2",
+          "weight": "400 700",
+          "style": "italic"
+        },
+        {
+          "family": "Hack",
+          "file": "@kde/assets/hack-regular.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "@kde/assets/hack-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Hack",
+          "file": "@kde/assets/hack-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "Silkscreen",
+          "file": "@enlightenment/assets/silkscreen-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "enhance": false,
+      "schedule": null
+    }
+  ]
+}

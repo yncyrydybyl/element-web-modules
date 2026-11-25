@@ -1,0 +1,316 @@
+{
+  "family": "win311",
+  "name": "Windows 3.11",
+  "variants": [
+    {
+      "id": "win311-default",
+      "name": "Windows 3.11 · Windows Default",
+      "stage": "pure",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 8,
+      "hype": 4,
+      "description": "Windows for Workgroups 3.11 with the out-of-box 'Windows Default' scheme (verified in PCjs): Program Manager frame, MDI windows, navy title bars, ▼▲ and no close button, spaces as program-group icons.",
+      "css": [
+        "shared.css",
+        "win311-default.css"
+      ],
+      "fonts": [
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "MS Sans Serif"
+          ]
+        },
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa-overstrike-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "PxPlus IBM VGA 8x16",
+          "file": "assets/pxplus-ibm-vga-8x16.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {},
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "win311-usable",
+      "name": "Windows 3.11 · Usable",
+      "stage": "usable",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 8,
+      "hype": 3,
+      "description": "Windows 3.11 look tuned for all-day chat: comfortable rows, CTL3D inputs, proportional scrollbars, AA contrast, all Element affordances.",
+      "css": [
+        "shared.css",
+        "win311-usable.css"
+      ],
+      "fonts": [
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "MS Sans Serif"
+          ]
+        },
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa-overstrike-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "PxPlus IBM VGA 8x16",
+          "file": "assets/pxplus-ibm-vga-8x16.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {},
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "win311-hotdog",
+      "name": "Windows 3.11 · Hot Dog Stand",
+      "stage": "exciting",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 2,
+      "hype": 9,
+      "description": "The exact Hot Dog Stand scheme: yellow desktop, red windows with white text, black title bars. Unapologetic; white-on-red text is only 4:1.",
+      "css": [
+        "shared.css",
+        "win311-hotdog.css"
+      ],
+      "fonts": [
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "MS Sans Serif"
+          ]
+        },
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa-overstrike-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "PxPlus IBM VGA 8x16",
+          "file": "assets/pxplus-ibm-vga-8x16.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {},
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "win311-leather",
+      "name": "Windows 3.11 · Black Leather Jacket",
+      "stage": "pure",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 7,
+      "hype": 5,
+      "description": "Black Leather Jacket chrome (black desktop, #400080 titles, grey menus) with dark windows as the family's dark mode.",
+      "css": [
+        "shared.css",
+        "win311-leather.css"
+      ],
+      "fonts": [
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "MS Sans Serif"
+          ]
+        },
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa-overstrike-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "PxPlus IBM VGA 8x16",
+          "file": "assets/pxplus-ibm-vga-8x16.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {},
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "win311-daylight",
+      "name": "Windows 3.11 · Control Panel Clock",
+      "stage": "pure",
+      "mode": "daylight",
+      "base": "light",
+      "seriousness": 7,
+      "hype": 5,
+      "description": "Shipped colour schemes by local time: Ocean (06–09), Windows Default (09–18), Plasma Power Saver (18–21), Black Leather Jacket (21–06).",
+      "css": [
+        "shared.css",
+        "win311-daylight.css"
+      ],
+      "fonts": [
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "MS Sans Serif"
+          ]
+        },
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa-overstrike-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "PxPlus IBM VGA 8x16",
+          "file": "assets/pxplus-ibm-vga-8x16.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {},
+      "enhance": true,
+      "schedule": [
+        {
+          "from": "06:00",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "09:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "18:00",
+          "phase": "dusk",
+          "base": "dark"
+        },
+        {
+          "from": "21:00",
+          "phase": "night",
+          "base": "dark"
+        }
+      ]
+    },
+    {
+      "id": "win311-2030",
+      "name": "Windows 3.11 · 2030 Edition",
+      "stage": "future",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 6,
+      "hype": 7,
+      "description": "Windows 3.11 that never died: same bevels and ▼▲, high-DPI pixel type, frosted navy title bars, a dock of program groups.",
+      "css": [
+        "shared.css",
+        "win311-2030.css"
+      ],
+      "fonts": [
+        {
+          "family": "Pixelify Sans",
+          "file": "assets/pixelify-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Pixelify Sans",
+          "file": "assets/pixelify-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa.woff2",
+          "weight": "400",
+          "style": "normal",
+          "local": [
+            "MS Sans Serif"
+          ]
+        },
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa-overstrike-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "PxPlus IBM VGA 8x16",
+          "file": "assets/pxplus-ibm-vga-8x16.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {},
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "win311-cyberpunk",
+      "name": "Windows 3.11 · VGA Night City",
+      "stage": "cyberpunk",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 3,
+      "hype": 9,
+      "description": "16-colour VGA neon: magenta titles, cyan frames, Norton-blue room list, CRT scanlines and a DOS-prompt composer.",
+      "css": [
+        "shared.css",
+        "win311-cyberpunk.css"
+      ],
+      "fonts": [
+        {
+          "family": "PxPlus IBM VGA 8x16",
+          "file": "assets/pxplus-ibm-vga-8x16.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "W95FA",
+          "file": "assets/w95fa-overstrike-bold.woff2",
+          "weight": "700",
+          "style": "normal"
+        }
+      ],
+      "tokens": {},
+      "enhance": true,
+      "schedule": null
+    }
+  ]
+}

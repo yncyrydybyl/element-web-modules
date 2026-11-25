@@ -1,0 +1,18 @@
+/* paper-black-quiet — palette (style guide: docs/styleguides/paper.md). Everything else lives in shared.css. */
+html[data-tl-theme="paper-black-quiet"] {
+  --p-paper: #0C0C0C;
+  --p-ink: #E8E6E1;
+  --p-muted: #9A9893;
+  --p-accent: #6CB6FF;
+  --p-on-accent: #0C0C0C;
+  --p-line: #1A1A1A;
+  --p-wash: #151515;
+  --p-wash2: #1C1C1C;
+  --p-mention: #3A3320;
+  --p-critical: #FF7B72;
+  --p-success: #5FD08A;
+  --p-caret: #6CB6FF;
+  --p-focus: #E8E6E1;
+  --p-scheme: dark;
+  --p-muted-hc: #C9C7C2;
+}

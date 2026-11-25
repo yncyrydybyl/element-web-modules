@@ -1,0 +1,18 @@
+/* paper-white-quiet — palette (style guide: docs/styleguides/paper.md). Everything else lives in shared.css. */
+html[data-tl-theme="paper-white-quiet"] {
+  --p-paper: #FCFCFA;
+  --p-ink: #1A1A1A;
+  --p-muted: #6B6B6B;
+  --p-accent: #0B6BCB;
+  --p-on-accent: #FFFFFF;
+  --p-line: #EDEDEA;
+  --p-wash: #F4F4F1;
+  --p-wash2: #ECECE8;
+  --p-mention: #FFF3B0;
+  --p-critical: #B3261E;
+  --p-success: #2E7D32;
+  --p-caret: #1AA3FF;
+  --p-focus: #1A1A1A;
+  --p-scheme: light;
+  --p-muted-hc: #3D3D3D;
+}

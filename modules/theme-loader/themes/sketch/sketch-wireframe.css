@@ -1,0 +1,246 @@
+/* sketch-wireframe — level 2: the PM's Balsamiq mockup. Greyscale, double-stroke frames,
+   X-box placeholders, hatched skeletons, yellow note callouts. Layout untouched. */
+
+html[data-tl-theme="sketch-wireframe"] {
+    --sk-ink: #1a1a1a;
+    --sk-line: #2b2b2b;
+    --sk-accent: #0a64d6;
+    --sk-focus: #0a64d6;
+    --sk-display: "Balsamiq Sans", sans-serif;
+    --sk-content: "Balsamiq Sans", sans-serif;
+    --sk-frame-1: url("assets/frame-s1.svg");
+    --sk-frame-2: url("assets/frame-s2.svg");
+    --sk-frame-3: url("assets/frame-s3.svg");
+    --sk-pill: url("assets/pill-s1.svg");
+    --sk-circle: url("assets/circle-2.svg");
+    --sk-underline: url("assets/underline-1.svg");
+    --sk-highlight: #fff3a0;
+    --sk-sel-line: #1a1a1a;
+    --sk-avatar-line: #2b2b2b;
+    --sk-btn-line: #2b2b2b;
+    --sk-note: #fff3a0;
+
+    --sk-et-bubble-self-background: #f2f2f2;
+    --sk-et-bubble-other-background: #ffffff;
+    --sk-et-bubble-corner-radius: 6px;
+    --cpd-color-bg-subtle-tertiary: #f2f2f2;
+    --cpd-color-bg-action-tertiary-hovered: #e8e8e8;
+    --cpd-color-bg-action-secondary-hovered: #e8e8e8;
+    --cpd-color-separator-primary: #bdbdbd;
+    --cpd-color-border-interactive-secondary: #8a8a8a;
+    --cpd-color-bg-critical-subtle: #fde8ea;
+    --cpd-color-bg-success-subtle: #e9f3e6;
+    --cpd-color-bg-info-subtle: #e7f0fc;
+    --cpd-color-text-info-primary: #0a64d6;
+    --cpd-color-green-900: #0a64d6;
+    --cpd-color-green-800: #0a52b0;
+    --cpd-color-icon-tertiary: #7a7a7a;
+}
+
+/* greyscale media — wireframes have no colour except link blue */
+html[data-tl-theme="sketch-wireframe"] :is(.mx_EventTile img, .mx_EventTile video, .mx_BaseAvatar img, [class*="_avatar_"] img, .mx_MImageBody canvas, .mx_LinkPreviewWidget img) {
+    filter: grayscale(1) contrast(1.08);
+}
+
+/* image-less avatars: grey circle with an X behind the initial */
+html[data-tl-theme="sketch-wireframe"] :is(span[class*="_avatar_"], button[class*="_avatar_"]):not(:has(img)) {
+    background:
+        linear-gradient(45deg, transparent calc(50% - 0.6px), rgba(0, 0, 0, 0.28) calc(50% - 0.6px) calc(50% + 0.6px), transparent calc(50% + 0.6px)),
+        linear-gradient(-45deg, transparent calc(50% - 0.6px), rgba(0, 0, 0, 0.28) calc(50% - 0.6px) calc(50% + 0.6px), transparent calc(50% + 0.6px)),
+        #e2e2e2 !important;
+    color: #1a1a1a !important;
+}
+
+/* media placeholders: X-crossed box while loading / hidden */
+html[data-tl-theme="sketch-wireframe"] :is(.mx_MImageBody_thumbnail_container, .mx_HiddenImagePlaceholder, .mx_MImageBody_placeholder) {
+    background:
+        linear-gradient(to top right, transparent calc(50% - 1px), #2b2b2b calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)),
+        linear-gradient(to bottom right, transparent calc(50% - 1px), #2b2b2b calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)),
+        #efefef;
+}
+
+/* hatched skeletons */
+html[data-tl-theme="sketch-wireframe"] :is(.mx_SkeletonUI, [class*="_skeleton_"], .mx_InlineSpinner, .mx_Spinner) {
+    background: url("assets/hachure.svg") 0 0 / 18px 18px;
+    opacity: 0.35;
+}
+
+/* --- panels outlined in sketch strokes ------------------------------------ */
+html[data-tl-theme="sketch-wireframe"] .mx_MatrixChat {
+    background: #fbfbfb;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_SpacePanel {
+    background: #e2e2e2;
+    border-right: 2px solid #2b2b2b;
+}
+
+html[data-tl-theme="sketch-wireframe"] :is(.mx_LeftPanel, .mx_RoomListPanel) {
+    background: #efefef;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_LeftPanel {
+    border-right: 2px solid #2b2b2b;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_RoomHeader {
+    background: #ffffff;
+    border-bottom: 2px solid #2b2b2b;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_RoomHeader_heading .mx_RoomHeader_truncated {
+    background: none;
+    font-weight: 700;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_RoomView_body {
+    background: #ffffff;
+}
+
+/* room list rows: ruled separators, selected = solid link blue */
+html[data-tl-theme="sketch-wireframe"] .mx_RoomListItemView {
+    border-bottom: 1px solid #c9c9c9;
+}
+
+html[data-tl-theme="sketch-wireframe"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"]) {
+    background: #dbe8fb;
+}
+
+html[data-tl-theme="sketch-wireframe"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"]) [class*="_container_"] {
+    background: transparent;
+}
+
+html[data-tl-theme="sketch-wireframe"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"])::after {
+    background: #0a64d6;
+    inset: 2px 4px;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+    background: #ffffff;
+    outline: 2px solid #2b2b2b;
+    border-radius: 6px;
+}
+
+/* --- timeline: double-stroke frames on bubbles ------------------------------ */
+html[data-tl-theme="sketch-wireframe"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"]) {
+    position: relative;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    background: #2b2b2b;
+    -webkit-mask: url("assets/frame-s2.svg") 0 0 / 100% 100% no-repeat;
+    mask: url("assets/frame-s2.svg") 0 0 / 100% 100% no-repeat;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_EventTile[class*="_layoutBubble_"]:nth-child(odd) [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    -webkit-mask-image: url("assets/frame-s3.svg");
+    mask-image: url("assets/frame-s3.svg");
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_DisambiguatedProfile {
+    font-weight: 700;
+}
+
+html[data-tl-theme="sketch-wireframe"] :is(.mx_TimelineSeparator, .mx_DateSeparator) > hr {
+    border: 0;
+    height: 2px;
+    background: #2b2b2b;
+    opacity: 0.6;
+}
+
+/* --- composer: wireframe text field ----------------------------------------- */
+html[data-tl-theme="sketch-wireframe"] .mx_MessageComposer {
+    background: #ffffff;
+    border-top: 2px solid #2b2b2b;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_MessageComposer_wrapper {
+    background: #ffffff;
+    border-radius: 4px;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_BasicMessageComposer_input .mx_BasicMessageComposer_inputEmpty::before,
+html[data-tl-theme="sketch-wireframe"] .mx_BasicMessageComposer_inputEmpty > :first-child::before {
+    font-style: italic;
+}
+
+/* --- buttons: Balsamiq pills ------------------------------------------------- */
+html[data-tl-theme="sketch-wireframe"] :is(button[class*="_button_"][data-kind], .mx_AccessibleButton_kind_primary, .mx_AccessibleButton_kind_secondary, .mx_AccessibleButton_kind_primary_outline, .mx_Dialog_buttons button):not(.tl-ui *) {
+    border-radius: 999px;
+}
+
+/* --- dialogs: wireframe window ------------------------------------------------- */
+html[data-tl-theme="sketch-wireframe"] .mx_Dialog {
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.12);
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_Dialog_header {
+    border-bottom: 2px solid #2b2b2b;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_Dialog_background {
+    background: #d9d9d9;
+}
+
+/* menus */
+html[data-tl-theme="sketch-wireframe"] :is(.mx_ContextualMenu, [role="menu"]) {
+    background: #ffffff;
+    border-radius: 2px;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* tooltips + toasts as yellow sticky annotations */
+html[data-tl-theme="sketch-wireframe"] [role="tooltip"] {
+    background: var(--sk-note);
+    color: #1a1a1a;
+    border: 1.5px solid #2b2b2b;
+    border-radius: 2px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_Toast_toast {
+    background: var(--sk-note);
+    color: #1a1a1a;
+}
+
+/* code: mono on hatched light grey */
+html[data-tl-theme="sketch-wireframe"] :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) {
+    background: repeating-linear-gradient(-45deg, #f7f7f7 0 8px, #efefef 8px 9px);
+    border-color: transparent;
+}
+
+/* badges: grey hatch pill, mentions blue */
+html[data-tl-theme="sketch-wireframe"] [class*="_notificationBadge_"] {
+    --cpd-color-bg-critical-primary: #0a64d6;
+}
+
+/* icons a touch heavier, like felt-tip */
+html[data-tl-theme="sketch-wireframe"] :is(.mx_RoomHeader, .mx_SpacePanel, .mx_MessageComposer_actions) svg {
+    stroke: currentColor;
+    stroke-width: 0.6px;
+    paint-order: stroke;
+}
+
+/* auth: login form mock-up */
+html[data-tl-theme="sketch-wireframe"] .mx_AuthPage {
+    background: #efefef;
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_AuthPage_modal {
+    background: #ffffff;
+    border: 2px solid #2b2b2b;
+    border-radius: 4px;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.12);
+}
+
+html[data-tl-theme="sketch-wireframe"] .mx_AuthHeaderLogo img {
+    filter: grayscale(1);
+}

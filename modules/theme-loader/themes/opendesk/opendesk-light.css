@@ -1,0 +1,2 @@
+/* openDesk · Light — the shipped look; everything comes from shared.css defaults. */
+html[data-tl-theme="opendesk-light"] { --od-bar-h: 64px; }

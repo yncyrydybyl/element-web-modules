@@ -1,0 +1,1552 @@
+{
+ "run": "fix-opendesk-after",
+ "base": "http://localhost:5400",
+ "started": "2026-11-15T14:59:17.939Z",
+ "mobileDist": "c523634b52fe",
+ "mode": "matrix",
+ "mobileModule": false,
+ "themes": 2,
+ "finished": "2026-11-15T15:00:09.248Z",
+ "results": [
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer input x 129-483 y 513-537 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--600x568.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room name 125px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 450px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer input x 129-483 y 513-537 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--600x568.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room name 125px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 30,76,570,556 inVp true scrolls true close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 450px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 600), visible tab panel 486px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 30,68,570,556 inVp true scrolls true close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 600), visible tab panel 486px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer input x 129-329 y 513-537 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--414x568.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--414x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 290px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer input x 129-329 y 513-537 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--414x568.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--414x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 0,76,414,556 inVp true scrolls true close true primary false",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 290px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 414), visible tab panel 300px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 0,68,414,556 inVp true scrolls true close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 414), visible tab panel 300px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer input x 129-305 y 513-537 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--390x568.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--390x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 276px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer input x 129-305 y 513-537 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--390x568.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--390x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 0,76,390,556 inVp true scrolls true close true primary false",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 276px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 0,68,390,556 inVp true scrolls true close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 390), visible tab panel 276px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 390), visible tab panel 276px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer input x 129-235 y 513-537 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "2 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--320x568.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--320x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "short height: composer true, 2 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 234px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer input x 129-235 y 513-537 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "2 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--320x568.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--320x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "short height: composer true, 2 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 0,76,320,556 inVp true scrolls true close true primary false",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 234px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 320), visible tab panel 206px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 0,68,320,556 inVp true scrolls true close true primary false",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 320), visible tab panel 206px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "composer input x 129-483 y 845-869 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--600x900.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "room name 125px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "dialog 440px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "dialog 35,233,565,732 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "composer input x 129-483 y 845-869 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x900",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--600x900.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "room name 125px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "dialog 440px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "settings inViewport true (right 600), visible tab panel 496px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "dialog 35,229,565,728 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "composer input x 129-329 y 845-869 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--414x900.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--414x900.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "settings inViewport true (right 600), visible tab panel 496px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "dialog 280px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "dialog 0,222,414,742 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "composer input x 129-329 y 845-869 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x900",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--414x900.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x900",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--414x900.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "dialog 280px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "settings inViewport true (right 409), visible tab panel 301px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "dialog 0,218,414,738 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "composer input x 129-305 y 845-869 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--390x900.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--390x900.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "settings inViewport true (right 409), visible tab panel 301px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "dialog 266px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "dialog 0,222,390,742 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "composer input x 129-305 y 845-869 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x900",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--390x900.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x900",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--390x900.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "dialog 266px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "settings inViewport true (right 386), visible tab panel 279px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "dialog 0,218,390,738 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "composer input x 129-235 y 845-869 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--320x900.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-light--320x900.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "settings inViewport true (right 386), visible tab panel 279px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "dialog 224px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "dialog 0,190,320,775 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "composer input x 129-235 y 845-869 h24",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x900",
+   "status": "fail",
+   "detail": "room list items 0, back control false",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--320x900.png"
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x900",
+   "status": "fail",
+   "detail": "room name 0px wide",
+   "shot": "recordings/tests/VP-01/fix-opendesk-after/opendesk-classic--320x900.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "settings inViewport true (right 320), visible tab panel 216px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "dialog 224px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "dialog 0,186,320,771 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-16",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "settings inViewport true (right 320), visible tab panel 216px",
+   "shot": null
+  },
+  {
+   "case": "VP-16",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "opendesk-classic",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  }
+ ]
+}

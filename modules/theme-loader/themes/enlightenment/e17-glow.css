@@ -1,0 +1,254 @@
+/* e17-glow — Enlightenment 0.17 dark theme (Raster, 2012).
+ * Sampled from v0.17.6 data/themes/img: vgrad_med_dark #303030→#111111, vgrad_med #606060→#313131,
+ * menu_sel_bg #000→#3D3D3D (black recessed well), bg_radgrad #545354→#1C1D1D, all glow sprites #3399FF.
+ */
+html[data-tl-theme="e17-glow"] {
+  --e-glow-c: 51, 153, 255;
+  --e-wall: radial-gradient(ellipse at 50% 40%, #545354 0%, #383838 45%, #1C1D1D 100%);
+  --e-gap: 5px;
+  --e-win-radius: 3px;
+  --e-win-border: 0 0 0 1px #000000;
+  --e-win-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+
+  /* glossy bar: gradient + 1px white-7% top line + shine strip */
+  --e-bar-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0, rgba(255, 255, 255, 0.10) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 50%, transparent 51%),
+    linear-gradient(180deg, #3A3A3A 0%, #262626 50%, #1B1B1B 51%, #111111 100%);
+  --e-bar-fg: #FFFFFF;
+  --e-bar-line: #000000;
+  --e-bar-text-shadow: 0 1px 0 #000, 0 0 6px rgba(0, 0, 0, 0.8);
+  --e-glyph-color: #D8D8D8;
+
+  --e-shelf-bg:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0, transparent 2px),
+    linear-gradient(90deg, #303030 0%, #1E1E1E 50%, #161616 100%);
+  --e-list-bg: #202020;
+  --e-list-fg: #E6E6E6;
+  --e-list-sep: rgba(255, 255, 255, 0.04);
+  --e-hover-bg: #2C2C2C;
+  --e-sel-bg: linear-gradient(180deg, #000000 0%, #0C0C0C 45%, #1B1B1B 80%, #3D3D3D 100%);
+  --e-sel-fg: #FFFFFF;
+  --e-sel-bar: #3399FF;
+  --e-sel-bar-w: 3px;
+  --e-sel-bar-glow: 0 0 6px 1px rgba(var(--e-glow-c), 0.9), 0 0 14px 3px rgba(var(--e-glow-c), 0.45);
+  --e-sel-glow: inset 0 1px 3px rgba(0, 0, 0, 0.9);
+  --e-sel-text-shadow: 0 0 6px rgba(102, 184, 255, 0.85);
+  --e-row-radius: 3px;
+
+  --e-well-bg: #161616;
+  --e-well-border: #000000;
+  --e-well-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.06);
+  --e-well-radius: 3px;
+
+  --e-btn-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0, rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(180deg, #606060 0%, #494949 50%, #3C3C3C 51%, #313131 100%);
+  --e-btn-bg-hover:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+    linear-gradient(180deg, #6A6A6A 0%, #525252 50%, #444444 51%, #383838 100%);
+  --e-btn-bg-active: linear-gradient(180deg, #202020 0%, #2E2E2E 100%);
+  --e-btn-fg: #FFFFFF;
+  --e-btn-border: 1px solid #000000;
+  --e-btn-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --e-btn-shadow-active: inset 0 1px 3px #000;
+  --e-btn-radius: 4px;
+  --e-pri-bg: linear-gradient(180deg, #8CCBFF 0%, #4AA3F5 48%, #1E78DA 52%, #0D5BB0 100%);
+  --e-pri-bg-hover: linear-gradient(180deg, #A3D6FF 0%, #5CB0FA 48%, #2A86E8 52%, #1266C2 100%);
+  --e-pri-fg: #FFFFFF;
+  --e-pri-shadow: 0 0 0 1px #04203F, 0 0 8px rgba(var(--e-glow-c), 0.55);
+
+  --e-focus: #3399FF;
+  --e-focus-glow: 0 0 6px 1px rgba(var(--e-glow-c), 0.85), 0 0 16px 3px rgba(var(--e-glow-c), 0.35);
+
+  --e-menu-bg: rgba(32, 32, 32, 0.97);
+  --e-menu-border: #000000;
+  --e-menu-sel: linear-gradient(180deg, #000 0%, #121212 55%, #3D3D3D 100%);
+  --e-menu-sel-fg: #FFFFFF;
+  --e-menu-radius: 3px;
+  --e-menu-shadow: 0 6px 22px rgba(0, 0, 0, 0.75);
+  --e-tip-bg: rgba(24, 24, 24, 0.97);
+  --e-tip-fg: #E6E6E6;
+  --e-tip-border: #000000;
+
+  --e-scroll-thumb: #4A4A4A;
+  --e-scroll-thumb-hover: #3399FF;
+  --e-scroll-track: #101010;
+  --e-scroll-w: 9px;
+
+  --e-bubble-own: linear-gradient(180deg, #2A3A4C 0%, #22303F 100%);
+  --e-bubble-other: linear-gradient(180deg, #353535 0%, #2B2B2B 100%);
+  --e-highlight-bar: #3399FF;
+  --e-readmarker: #3399FF;
+
+  --e-code-bg: #161616;
+  --e-code-fg: #E6E6E6;
+  --e-code-border: #000000;
+
+  --e-badge-bg: radial-gradient(circle at 50% 25%, #6A6A6A, #2A2A2A 75%);
+  --e-badge-fg: #FFFFFF;
+  --e-badge-hl-bg: radial-gradient(circle at 50% 25%, #9FD0FF, #3399FF 55%, #0A4D99 100%);
+  --e-badge-hl-fg: #06192C;
+
+  --e-avatar-ring: 0 0 0 1px #000, inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  --e-icon-hover-filter: drop-shadow(0 0 3px rgba(var(--e-glow-c), 0.95));
+  --e-dialog-bg: #2E2E2E;
+  --e-backdrop: rgba(0, 0, 0, 0.6);
+  --e-auth-bg: radial-gradient(ellipse at 50% 40%, #545354 0%, #383838 45%, #1C1D1D 100%);
+}
+
+/* Title bar: glowing min/max/close glyphs */
+html[data-tl-theme="e17-glow"] .mx_RoomHeader {
+  --e-glyphs-w: 64px;
+}
+html[data-tl-theme="e17-glow"] .mx_RoomHeader::after {
+  background: #D8D8D8;
+  -webkit-mask: url("assets/e-glyph-min.svg") 0 0 / 16px 16px no-repeat, url("assets/e-glyph-max.svg") 24px 0 / 16px 16px no-repeat, url("assets/e-glyph-close.svg") 48px 0 / 16px 16px no-repeat;
+  mask: url("assets/e-glyph-min.svg") 0 0 / 16px 16px no-repeat, url("assets/e-glyph-max.svg") 24px 0 / 16px 16px no-repeat, url("assets/e-glyph-close.svg") 48px 0 / 16px 16px no-repeat;
+  filter: drop-shadow(0 0 3px rgba(51, 153, 255, 0.9));
+}
+html[data-tl-theme="e17-glow"] .mx_RoomHeader_heading {
+  font-size: 15px;
+}
+
+/* Shelf / Ibar: active space glows, icons magnify */
+html[data-tl-theme="e17-glow"] .mx_SpaceButton .mx_SpaceButton_avatarWrapper {
+  transition: transform 120ms ease-out;
+}
+html[data-tl-theme="e17-glow"] .mx_SpaceButton:hover .mx_SpaceButton_avatarWrapper {
+  transform: scale(1.2);
+}
+html[data-tl-theme="e17-glow"] .mx_SpaceItem:has(+ .mx_SpaceItem .mx_SpaceButton:hover) > .mx_SpaceButton .mx_SpaceButton_avatarWrapper,
+html[data-tl-theme="e17-glow"] .mx_SpaceItem:has(> .mx_SpaceButton:hover) + .mx_SpaceItem > .mx_SpaceButton .mx_SpaceButton_avatarWrapper {
+  transform: scale(1.08);
+}
+html[data-tl-theme="e17-glow"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: linear-gradient(180deg, #000 0%, #141414 60%, #3A3A3A 100%);
+  box-shadow: inset 0 0 0 1px #000, 0 0 0 1px rgba(51, 153, 255, 0.9), 0 0 8px 2px rgba(51, 153, 255, 0.55);
+  border-radius: 6px;
+}
+
+/* room list: black recessed selection well, glow bar, glowing name */
+html[data-tl-theme="e17-glow"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  font-weight: 700;
+}
+html[data-tl-theme="e17-glow"] .mx_RoomListPanel header h1 {
+  color: #FFFFFF;
+  text-shadow: 0 1px 0 #000;
+}
+
+/* gel orb avatars */
+html[data-tl-theme="e17-glow"] .mx_BaseAvatar {
+  border-radius: 50%;
+}
+
+/* unread marker = horizontal glow bar */
+html[data-tl-theme="e17-glow"] [class*="_readMarker_"] hr,
+html[data-tl-theme="e17-glow"] .mx_MessagePanel_myReadMarker hr {
+  box-shadow: 0 0 6px 1px rgba(51, 153, 255, 0.85);
+}
+html[data-tl-theme="e17-glow"] .mx_TimelineSeparator hr {
+  border-color: #000;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* composer = glossy shelf */
+html[data-tl-theme="e17-glow"] .mx_MessageComposer {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, #333333 0%, #242424 50%, #1A1A1A 51%, #141414 100%);
+  border-top: 1px solid #000;
+}
+
+/* E17 pulse on mention badges (3×) */
+html[data-tl-theme="e17-glow"] [class*="_notificationBadge_"][class*="_highlighted_"],
+html[data-tl-theme="e17-glow"] .mx_NotificationBadge_level_highlight {
+  animation: e-pulse 1.4s ease-out 3;
+}
+html[data-tl-theme="e17-glow"] [class*="_notificationBadge_"] {
+  box-shadow: 0 0 0 1px #000;
+}
+
+/* buttons get a blue halo on hover */
+html[data-tl-theme="e17-glow"] .mx_AccessibleButton_kind_primary_outline:hover,
+html[data-tl-theme="e17-glow"] [class*="_button_"][data-kind="secondary"]:hover,
+html[data-tl-theme="e17-glow"] [class*="_chat-filter_"]:hover {
+  box-shadow: 0 0 0 1px #000, 0 0 8px rgba(51, 153, 255, 0.6);
+}
+html[data-tl-theme="e17-glow"] [class*="_chat-filter_"] {
+  border-radius: 4px;
+}
+
+/* ================================================================== bold pass: unmistakably E17
+ * dark blue-black wallpaper with a glowing E logo + swirl, translucent bordered windows,
+ * gradient title bars on every window, blooming blue selection bars, glossy shelf. */
+html[data-tl-theme="e17-glow"] {
+  --e-wall: radial-gradient(ellipse 90% 80% at 66% 48%, #1B3C6E 0%, #0D2140 32%, #07101F 62%, #030509 100%);
+  --e-deco: radial-gradient(circle at 50% 50%, #CFE8FF 0%, #66B8FF 30%, #1F6FD1 60%, rgba(31, 111, 209, 0.2) 100%);
+  --e-deco-mask: url("assets/e-logo.svg") 64% 46% / min(78vh, 700px) no-repeat;
+  --e-deco-opacity: 0.5;
+  --e-deco2: repeating-conic-gradient(from 10deg at 64% 46%, rgba(102, 184, 255, 0.10) 0deg 5deg, transparent 5deg 15deg);
+  --e-gap: 8px;
+  --e-win-radius: 4px;
+  --e-win-border: 0 0 0 1px #000, 0 0 0 2px rgba(102, 184, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --e-win-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
+  --e-bar-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 50%, transparent 51%),
+    linear-gradient(180deg, #3F4A5C 0%, #262E3B 50%, #161B24 51%, #0D1117 100%);
+  --e-bar-shadow: inset 0 -1px 0 rgba(51, 153, 255, 0.75), 0 1px 8px rgba(51, 153, 255, 0.25);
+  --e-bar-text-shadow: 0 1px 0 #000, 0 0 8px rgba(102, 184, 255, 0.7);
+  --e-list-bg: rgba(16, 18, 26, 0.7);
+  --e-rp-bg: rgba(18, 20, 27, 0.86);
+  --e-timeline-bg: rgba(12, 14, 22, 0.6);
+  --e-roomview-bg: transparent;
+  --e-lp-title: "Everything" / "";
+  --e-lp-title-h: 24px;
+  --e-shelf-bg:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.10) 0, transparent 3px, transparent calc(100% - 2px), rgba(51, 153, 255, 0.5) 100%),
+    linear-gradient(180deg, rgba(40, 48, 64, 0.85) 0%, rgba(16, 20, 28, 0.92) 100%);
+  --e-hover-bg: rgba(51, 153, 255, 0.12);
+  --e-sel-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 51%),
+    linear-gradient(90deg, rgba(51, 153, 255, 0.85) 0%, rgba(40, 130, 230, 0.55) 45%, rgba(51, 153, 255, 0.12) 100%);
+  --e-sel-glow: 0 0 16px rgba(51, 153, 255, 0.55), inset 0 0 0 1px rgba(160, 210, 255, 0.35);
+  --e-sel-text-shadow: 0 0 8px rgba(190, 225, 255, 0.95);
+  --e-sel-bar: #CFE8FF;
+  --e-row-radius: 4px;
+  --e-menu-sel:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 51%),
+    linear-gradient(90deg, rgba(51, 153, 255, 0.85), rgba(51, 153, 255, 0.2));
+  --e-menu-bg: rgba(20, 24, 32, 0.96);
+  --e-dialog-bg: rgba(26, 30, 38, 0.97);
+  --e-clock-face: radial-gradient(circle at 50% 30%, #2A3A55, #070B14 70%);
+  --e-clock-rim: #66B8FF;
+}
+html[data-tl-theme="e17-glow"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="e17-glow"] body {
+  background: #030509;
+}
+html[data-tl-theme="e17-glow"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  color: #FFFFFF;
+}
+html[data-tl-theme="e17-glow"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_container_"]::before {
+  display: none;
+}
+html[data-tl-theme="e17-glow"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 51%), radial-gradient(circle, rgba(51, 153, 255, 0.85), rgba(51, 153, 255, 0.2) 75%);
+  box-shadow: 0 0 0 1px #9FD0FF, 0 0 14px 3px rgba(51, 153, 255, 0.7);
+}
+html[data-tl-theme="e17-glow"] .mx_MessageComposer {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0, rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(42, 50, 66, 0.92) 0%, rgba(14, 18, 26, 0.96) 100%);
+  border-top: 1px solid #000;
+  box-shadow: 0 -1px 0 rgba(51, 153, 255, 0.6), 0 -6px 18px rgba(51, 153, 255, 0.15);
+}
+html[data-tl-theme="e17-glow"] .mx_RoomHeader_heading {
+  color: #FFFFFF;
+}
+html[data-tl-theme="e17-glow"] .mx_TabbedView_tabLabel_active {
+  background: var(--e-sel-bg);
+  box-shadow: var(--e-sel-glow);
+}

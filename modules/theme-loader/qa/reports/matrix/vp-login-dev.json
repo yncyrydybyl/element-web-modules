@@ -1,0 +1,2892 @@
+{
+ "run": "vp-login-dev",
+ "base": "http://localhost:5400",
+ "started": "2026-11-15T13:20:19.916Z",
+ "mobileDist": "040daffb139d",
+ "mode": "login",
+ "mobileModule": false,
+ "themes": 12,
+ "finished": "2026-11-15T13:21:58.206Z",
+ "results": [
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 186px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 175px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 186px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 175px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 186px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 175px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 175px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 186px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 175px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 186px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 175px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 186px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 175px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 186px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 175px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 186px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-2026-light--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-cyberpunk",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/teams-cyberpunk--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/element-default--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 320px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 355px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 355px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 355px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 190px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 190px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 190px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 190px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 320px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 355px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 355px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 355px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 190px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 190px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 190px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 190px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 734px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/lcars-tng--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/win311-default--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "kde-breeze-dark",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/kde-breeze-dark--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 187px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 164px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 187px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 164px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 205px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 187px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 164px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 205px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 187px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 164px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 205px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 205px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 187px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 164px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 187px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 205px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 164px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 187px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 205px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 164px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 187px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 205px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 164px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 205px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "opendesk-light",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/opendesk-light--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "paper-white-invisible",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 708px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/paper-white-invisible--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "e-aurora",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/e-aurora--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 196px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--320x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 196px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--360x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 196px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--390x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 196px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--414x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "820x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "1024x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "1280x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "1920x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "2560x568",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--2560x568.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 196px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "320x900",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--320x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 196px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "360x900",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--360x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 179px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 196px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "390x900",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--390x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 196px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "414x900",
+   "status": "pass",
+   "detail": "box 177px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--414x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "600x900",
+   "status": "pass",
+   "detail": "button reachable after scrolling; overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "768x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "820x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "1024x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "1280x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "1920x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": null
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "sketch-unreadable",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/sketch-unreadable--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "comic-unreadable",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 717px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/comic-unreadable--2560x900.png"
+  },
+  {
+   "case": "VP-15",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "x-win311-lcars",
+   "viewport": "2560x900",
+   "status": "pass",
+   "detail": "box 706px",
+   "shot": "recordings/tests/VP-15/vp-login-dev/x-win311-lcars--2560x900.png"
+  }
+ ]
+}

@@ -1,0 +1,69 @@
+/* openDesk · Barrierefrei — openDesk for long workdays and BITV 2.0 / WCAG 2.2 (AA everywhere, AAA for body
+   text): darker violet, 3px high-contrast focus ring with a white gap, underlined links, 15px body text,
+   bigger targets, unread rooms marked with a bar (not by colour alone), compact 48px suite bar. */
+html[data-tl-theme="opendesk-usable"] {
+  --od-bar-h: 48px;
+  --od-canvas: #f5f5f5;
+  --od-sidebar: #f5f5f5;
+  --od-text: #131f30;               /* neutral-900 — 16:1 on white */
+  --od-heading: #131f30;
+  --od-muted: #3e4859;              /* neutral-700 — 9:1 */
+  --od-subtle: #4d5b79;             /* 6.9:1 */
+  --od-primary: #4519c2;            /* primary-800 — 9.6:1 with white */
+  --od-primary-hover: #341291;
+  --od-primary-pressed: #210c5c;
+  --od-accent-text: #4519c2;
+  --od-sel-bg: #4519c2;
+  --od-border: #99a1b2;
+  --od-border-strong: #637089;      /* 5:1 — form controls clearly visible */
+  --od-separator: #d3d7de;
+  --od-rail-border: #b6bcc8;
+  --od-bar-border: #b6bcc8;
+  --od-critical: #b42020;
+  --od-critical-text: #a01818;
+  --od-success: #0d6b58;
+  --od-focus: #0c3ff3;              /* theme.colors.secondaryBlueHighcontrast */
+  --od-focus-w: 3px;
+  --od-dur: 0ms;
+  --od-hl-comment: #4d5b79;
+}
+html[data-tl-theme="opendesk-usable"],
+html[data-tl-theme="opendesk-usable"] body,
+html[data-tl-theme="opendesk-usable"] [class*="cpd-theme-"] {
+  --cpd-font-size-body-lg: 1.0625rem;
+  --cpd-font-size-body-md: 0.9375rem;
+  --cpd-font-size-body-sm: 0.875rem;
+  --cpd-font-size-body-xs: 0.8125rem;
+}
+/* focus: 3px blue ring with a white gap, visible on violet and on white */
+html[data-tl-theme="opendesk-usable"] :focus-visible {
+  outline: 3px solid var(--od-focus) !important; outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px #ffffff !important;
+}
+html[data-tl-theme="opendesk-usable"] .mx_Field :is(input, textarea, select):focus-visible { box-shadow: none !important; outline-offset: -3px !important; }
+html[data-tl-theme="opendesk-usable"] .mx_MessageComposer_row:focus-within { box-shadow: 0 0 0 2px var(--od-focus); border-color: var(--od-focus); }
+/* links are underlined (not colour alone) */
+html[data-tl-theme="opendesk-usable"] .mx_EventTile_body a,
+html[data-tl-theme="opendesk-usable"] .markdown-body a,
+html[data-tl-theme="opendesk-usable"] .mx_AccessibleButton_kind_link,
+html[data-tl-theme="opendesk-usable"] .mx_AccessibleButton_kind_link_inline { text-decoration: underline !important; text-underline-offset: 2px; }
+/* room list: larger rows, unread marked with a 4px bar */
+html[data-tl-theme="opendesk-usable"] .mx_RoomListItemView [class*="_roomName_"] { font-size: 15px; }
+html[data-tl-theme="opendesk-usable"] .mx_RoomListItemView [class*="_messagePreview_"],
+html[data-tl-theme="opendesk-usable"] .mx_RoomListItemView [class*="_preview_"] { font-size: 13px; color: var(--od-muted); }
+html[data-tl-theme="opendesk-usable"] .mx_RoomListItemView:is(:has([class*="_unread-counter_"]), :has([class*="_notificationBadge_"]), [class*="_bold_"]):not([aria-selected="true"]) > [class*="_container_"] {
+  box-shadow: inset 4px 0 0 var(--od-primary); background: var(--od-surface);
+}
+html[data-tl-theme="opendesk-usable"] [class*="_chat-filter_"] { font-size: 13px; padding: 8px 12px; border-color: var(--od-border-strong); }
+/* bigger targets in the composer and header */
+html[data-tl-theme="opendesk-usable"] .mx_RoomHeader [class*="_icon-button_"],
+html[data-tl-theme="opendesk-usable"] .mx_MessageComposer_actions [class*="_icon-button_"] { min-width: 40px; min-height: 40px; }
+html[data-tl-theme="opendesk-usable"] .mx_EventTile_body { line-height: 1.6; }
+html[data-tl-theme="opendesk-usable"] .mx_MessageTimestamp { font-size: 12px; }
+/* home tile icon in the 48px bar */
+html[data-tl-theme="opendesk-usable"] #tl-overlay-root .od-topbar__app { font-size: 14px; }
+/* permanent, wider scrollbars */
+html[data-tl-theme="opendesk-usable"] * { scrollbar-width: auto; scrollbar-color: #637089 #e1e4e8; }
+@media (prefers-contrast: more) {
+  html[data-tl-theme="opendesk-usable"] { --od-muted: #131f30; --od-subtle: #2a3348; --od-border: #3e4859; --od-border-strong: #131f30; --od-separator: #637089; }
+}

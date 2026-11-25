@@ -1,0 +1,86 @@
+/* LCARS · Red Alert: the frame pulses (1 Hz, static with reduced motion). */
+html[data-tl-theme="lcars-red-alert"] {
+  --lc-c1: #ff2200; --lc-c2: #ffaa99; --lc-c3: #cc4444; --lc-c4: #882211;
+  --lc-c5: #ff2200; --lc-c6: #ff6644; --lc-c7: #cc4444; --lc-c8: #aa3322;
+  --lc-text: #ffd6cc;
+  --lc-muted: #cc8877;
+  --lc-accent: #ff2200;
+  --lc-crit: #ff2200;
+  --lc-ok: #d9d5b8;
+  --lc-link: #ffaa99;
+  --lc-panel: #1a0505;
+  --lc-line: #3d1010;
+  --lc-on: #000;
+}
+/* pulse the frame: all frame colours dark + labels light in the second step */
+@keyframes lc-alert {
+  0%, 49.9% {
+    --lc-c1: #ff2200; --lc-c2: #ffaa99; --lc-c3: #cc4444; --lc-c4: #882211;
+    --lc-c5: #ff2200; --lc-c6: #ff6644; --lc-c7: #cc4444; --lc-c8: #aa3322; --lc-on: #000;
+  }
+  50%, 100% {
+    --lc-c1: #550000; --lc-c2: #4a0a0a; --lc-c3: #3d0000; --lc-c4: #2a0505;
+    --lc-c5: #550000; --lc-c6: #4a0a0a; --lc-c7: #3d0000; --lc-c8: #330303; --lc-on: #ffd6cc;
+  }
+}
+html[data-tl-theme="lcars-red-alert"] .mx_SpacePanel,
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel,
+html[data-tl-theme="lcars-red-alert"] .mx_RoomHeader,
+html[data-tl-theme="lcars-red-alert"] .mx_MessageComposer,
+html[data-tl-theme="lcars-red-alert"] .mx_RightPanel {
+  animation: lc-alert 1s infinite;
+}
+/* keep the room list readable: pills don't pulse (only the frame around them and unread ones) */
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index] { animation: none; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index] .mx_RoomListItemView { --lc-on: #000; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="0"], html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="5"] { --lc-pill: #ffaa99; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="1"], html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="6"] { --lc-pill: #dd5555; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="2"], html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="7"] { --lc-pill: #ff6644; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="3"], html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="8"] { --lc-pill: #e05544; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="4"], html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index$="9"] { --lc-pill: #ff8877; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel [data-item-index]:has([class*="_unread-counter_"]) .mx_RoomListItemView { animation: lc-unread 1s steps(1) infinite; }
+@keyframes lc-unread { 0%, 49.9% { background-color: var(--lc-pill); } 50%, 100% { background-color: #ff2200; } }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListPanel .mx_RoomListItemView { background-color: var(--lc-pill) !important; background-image: none !important; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListItemView.mx_RoomListItemView_selected { background-color: #ffd6cc !important; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomListItemView.mx_RoomListItemView_selected::after { background: #ff2200; }
+
+/* header: RED ALERT block over band B */
+html[data-tl-theme="lcars-red-alert"] .mx_RoomHeader::before {
+  content: "RED ALERT";
+  position: absolute;
+  top: calc(var(--lc-band) + var(--lc-gap) - 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: calc(var(--lc-bar) + 16px);
+  padding: 0 18px;
+  background: #000;
+  color: #ff2200;
+  font: 700 26px/calc(var(--lc-bar) + 16px) var(--lc-font);
+  letter-spacing: 0.22em;
+  border-left: 14px solid #ff2200;
+  border-right: 14px solid #ff2200;
+  border-radius: 999px;
+  animation: lc-alert-text 1s steps(1) infinite;
+  z-index: 1;
+}
+@keyframes lc-alert-text { 0%, 49.9% { color: #ff2200; border-color: #ff2200; } 50%, 100% { color: #ffd6cc; border-color: #550000; } }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomHeader::after { color: #ff2200; }
+html[data-tl-theme="lcars-red-alert"] .mx_RoomHeader .mx_RoomHeader_heading { color: #ff2200 !important; }
+
+/* mentions: pulsing red bar */
+html[data-tl-theme="lcars-red-alert"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line { animation: lc-mention 1s steps(1) infinite; }
+@keyframes lc-mention { 0%, 49.9% { box-shadow: inset 8px 0 0 #ff2200; } 50%, 100% { box-shadow: inset 8px 0 0 #550000; } }
+html[data-tl-theme="lcars-red-alert"] .mx_Username_color1 { color: #ff6644 !important; }
+html[data-tl-theme="lcars-red-alert"] .mx_Username_color2 { color: #ffaa99 !important; }
+html[data-tl-theme="lcars-red-alert"] .mx_Username_color3 { color: #ff8877 !important; }
+html[data-tl-theme="lcars-red-alert"] .mx_Username_color4 { color: #ffd6cc !important; }
+html[data-tl-theme="lcars-red-alert"] .mx_Username_color5 { color: #e98181 !important; }
+html[data-tl-theme="lcars-red-alert"] .mx_Username_color6 { color: #ff9966 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="lcars-red-alert"] .mx_RoomHeader::before { animation: none !important; }
+}
+@media (max-width: 800px) {
+  html[data-tl-theme="lcars-red-alert"] .mx_RoomHeader::before { font-size: 16px; letter-spacing: 0.12em; padding: 0 8px; border-width: 6px; }
+}
+html[data-tl-theme="lcars-red-alert"] .hljs-title, html[data-tl-theme="lcars-red-alert"] .hljs-function, html[data-tl-theme="lcars-red-alert"] .hljs-name { color: #ff8877; }

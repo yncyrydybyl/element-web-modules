@@ -1,0 +1,211 @@
+{
+  "family": "lcars",
+  "name": "LCARS (Star Trek)",
+  "variants": [
+    {
+      "id": "lcars-tng",
+      "name": "LCARS · TNG",
+      "stage": "pure",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 7,
+      "hype": 7,
+      "description": "TNG-era LCARS (2369 palette): room list as the left frame, elbows into header and composer bars, Antonio caps, numeric codes. Optional beeps (off by default).",
+      "css": [
+        "shared.css",
+        "lcars-tng.css"
+      ],
+      "fonts": [
+        {
+          "family": "Antonio",
+          "file": "assets/antonio-variable.woff2",
+          "weight": "100 700",
+          "style": "normal"
+        }
+      ],
+      "enhance": true,
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
+    },
+    {
+      "id": "lcars-voyager",
+      "name": "LCARS · Voyager",
+      "stage": "past",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 7,
+      "hype": 7,
+      "description": "Voyager/late-DS9 LCARS: silver-blue frames with gold and sky-blue accents, readout tables, stardate 5xxxx.",
+      "css": [
+        "shared.css",
+        "lcars-voyager.css"
+      ],
+      "fonts": [
+        {
+          "family": "Antonio",
+          "file": "assets/antonio-variable.woff2",
+          "weight": "100 700",
+          "style": "normal"
+        }
+      ],
+      "enhance": true,
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
+    },
+    {
+      "id": "lcars-picard",
+      "name": "LCARS · Picard",
+      "stage": "future",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 7,
+      "hype": 8,
+      "description": "Picard-era (2401) LCARS: thin slate-grey hairline frames, outlined buttons, cyan data, orange-red indicators.",
+      "css": [
+        "shared.css",
+        "lcars-picard.css"
+      ],
+      "fonts": [
+        {
+          "family": "Antonio",
+          "file": "assets/antonio-variable.woff2",
+          "weight": "100 700",
+          "style": "normal"
+        }
+      ],
+      "enhance": true,
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
+    },
+    {
+      "id": "lcars-usable",
+      "name": "LCARS · Usable",
+      "stage": "usable",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 9,
+      "hype": 5,
+      "description": "Slim LCARS frame around a normal, readable Element: Inter for content, Antonio only for chrome, icons kept, no blinking.",
+      "css": [
+        "shared.css",
+        "lcars-usable.css"
+      ],
+      "fonts": [
+        {
+          "family": "Antonio",
+          "file": "assets/antonio-variable.woff2",
+          "weight": "100 700",
+          "style": "normal"
+        }
+      ],
+      "enhance": true,
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Inter\", \"Antonio\", \"Arial Narrow\", sans-serif"
+      }
+    },
+    {
+      "id": "lcars-red-alert",
+      "name": "LCARS · Red Alert",
+      "stage": "exciting",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 3,
+      "hype": 10,
+      "description": "Red alert: the whole frame pulses red (1 s, static with reduced motion), RED ALERT bars, pulsing mentions.",
+      "css": [
+        "shared.css",
+        "lcars-red-alert.css"
+      ],
+      "fonts": [
+        {
+          "family": "Antonio",
+          "file": "assets/antonio-variable.woff2",
+          "weight": "100 700",
+          "style": "normal"
+        }
+      ],
+      "enhance": true,
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
+    },
+    {
+      "id": "lcars-lower-decks",
+      "name": "LCARS · Lower Decks",
+      "stage": "comic",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 3,
+      "hype": 9,
+      "description": "Lower Decks cartoon LCARS: Cerritos oranges on navy glass, thick ink outlines, cel shadows, deadpan joke labels.",
+      "css": [
+        "shared.css",
+        "lcars-lower-decks.css"
+      ],
+      "fonts": [
+        {
+          "family": "Antonio",
+          "file": "assets/antonio-variable.woff2",
+          "weight": "100 700",
+          "style": "normal"
+        }
+      ],
+      "enhance": true,
+      "schedule": null,
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
+    },
+    {
+      "id": "lcars-daylight",
+      "name": "LCARS · Ship's Clock",
+      "stage": "pure",
+      "mode": "daylight",
+      "base": "dark",
+      "seriousness": 7,
+      "hype": 7,
+      "description": "Ship's clock: full LCARS on alpha shift (07-18), reduced lighting on beta shift (18-22), dim amber night condition (22-07).",
+      "css": [
+        "shared.css",
+        "lcars-daylight.css"
+      ],
+      "fonts": [
+        {
+          "family": "Antonio",
+          "file": "assets/antonio-variable.woff2",
+          "weight": "100 700",
+          "style": "normal"
+        }
+      ],
+      "enhance": true,
+      "schedule": [
+        {
+          "from": "07:00",
+          "phase": "day",
+          "base": "dark"
+        },
+        {
+          "from": "18:00",
+          "phase": "evening",
+          "base": "dark"
+        },
+        {
+          "from": "22:00",
+          "phase": "night",
+          "base": "dark"
+        }
+      ],
+      "tokens": {
+        "--cpd-font-family-sans": "\"Antonio\", \"Arial Narrow\", sans-serif"
+      }
+    }
+  ]
+}

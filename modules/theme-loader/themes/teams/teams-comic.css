@@ -1,0 +1,480 @@
+/* teams-comic — the Monday stand-up as a comic page: yellow gutters, ink panels with hard
+   shadows, halftone canvas, speech-bubble messages with tails, Bangers lettering, PING! bursts.
+   Body text stays Comic Sans MS / Comic Neue at >= 14px; the loader UI (.tl-ui) is left alone. */
+html[data-tl-theme="teams-comic"] {
+  --tm-ink: #111111;
+  --tm-paper: #fff8e7;
+  --tm-yellow: #ffe14d;
+  --tm-red: #e8222e;
+  --tm-brand: #5b5fc7;
+  --tm-brand-hover: #4f52b2;
+  --tm-brand-pressed: #444791;
+  --tm-brand-fg: #3d3e9a;
+  --tm-brand-icon: #5b5fc7;
+  --tm-brand-tint: #d9dbff;
+  --tm-logo: url("assets/teams-logo-2025.svg");
+  --tm-title-text: "TEAMS COMICS #1 · \"THE STAND-UP\"";
+  --tm-copilot: none;
+
+  --tm-titlebar: var(--tm-yellow);
+  --tm-titlebar-fg: var(--tm-ink);
+  --tm-rail: #5b5fc7;
+  --tm-rail-fg: #ffffff;
+  --tm-rail-fg-hover: var(--tm-yellow);
+  --tm-rail-fg-active: var(--tm-yellow);
+  --tm-rail-icon-active: var(--tm-ink);
+  --tm-rail-pill: var(--tm-yellow);
+  --tm-list: #fdefc3;
+  --tm-canvas: var(--tm-paper);
+  --tm-surface: #ffffff;
+  --tm-surface2: #fffdf6;
+  --tm-row-selected: #ffffff;
+  --tm-row-hover: #fbe39a;
+  --tm-hover: #fff1b8;
+  --tm-pressed: #fbe39a;
+  --tm-bubble-other: #ffffff;
+  --tm-bubble-own: #d9dbff;
+  --tm-code-bg: #fffdf6;
+  --tm-search-bg: #ffffff;
+  --tm-search-border: var(--tm-ink);
+  --tm-search-fg: #4a4a4a;
+  --tm-chip-bg: #ffffff;
+
+  --tm-fg1: var(--tm-ink);
+  --tm-fg2: #2b2b2b;
+  --tm-fg3: #4a4a4a;
+  --tm-fg4: #5a5a5a;
+  --tm-stroke1: var(--tm-ink);
+  --tm-stroke2: var(--tm-ink);
+  --tm-stroke-access: var(--tm-ink);
+  --tm-critical: var(--tm-red);
+  --tm-critical-fg: #b3121b;
+  --tm-critical-tint: #ffe3e0;
+  --tm-success: #1e7a3c;
+  --tm-presence: #2fbf4a;
+
+  --tm-radius-m: 10px;
+  --tm-radius-l: 14px;
+  --tm-radius-bubble: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --tm-radius-btn: 999px;
+  --tm-radius-composer: 18px 10px 22px 12px / 12px 22px 10px 18px;
+  --tm-radius-dialog: 6px;
+  --tm-bubble-border: 2.5px solid var(--tm-ink);
+  --tm-bubble-shadow: 3px 3px 0 var(--tm-ink);
+  --tm-shadow8: 3px 3px 0 var(--tm-ink);
+  --tm-shadow16: 4px 4px 0 var(--tm-ink);
+  --tm-shadow64: 8px 8px 0 var(--tm-ink);
+  --tm-composer-shadow: 4px 4px 0 var(--tm-ink);
+  --tm-bubble-hover-filter: none;
+  --tm-name-color: var(--tm-ink);
+  --tm-focus-outer: var(--tm-ink);
+  --tm-focus-inner: var(--tm-yellow);
+  --tm-font: "TL Comic", "Comic Sans MS", "Comic Neue", cursive, sans-serif;
+  --tm-font-display: "Bangers", "TL Comic", cursive;
+  --tm-titlebar-h: 54px;
+  --tm-mention-bg: #fff1b8;
+  --tm-mention-bar: var(--tm-red);
+  --tm-scroll-thumb: var(--tm-ink);
+  --tm-auth-bg: radial-gradient(circle, rgba(17, 17, 17, 0.12) 1.4px, transparent 1.6px) 0 0 / 9px 9px,
+    conic-gradient(from 0deg at 50% 40%, #ffe14d 0 10deg, #ffd21a 10deg 20deg, #ffe14d 20deg 30deg, #ffd21a 30deg 40deg,
+      #ffe14d 40deg 50deg, #ffd21a 50deg 60deg, #ffe14d 60deg 70deg, #ffd21a 70deg 80deg, #ffe14d 80deg 90deg,
+      #ffd21a 90deg 100deg, #ffe14d 100deg 110deg, #ffd21a 110deg 120deg, #ffe14d 120deg 130deg, #ffd21a 130deg 140deg,
+      #ffe14d 140deg 150deg, #ffd21a 150deg 160deg, #ffe14d 160deg 170deg, #ffd21a 170deg 180deg, #ffe14d 180deg 190deg,
+      #ffd21a 190deg 200deg, #ffe14d 200deg 210deg, #ffd21a 210deg 220deg, #ffe14d 220deg 230deg, #ffd21a 230deg 240deg,
+      #ffe14d 240deg 250deg, #ffd21a 250deg 260deg, #ffe14d 260deg 270deg, #ffd21a 270deg 280deg, #ffe14d 280deg 290deg,
+      #ffd21a 290deg 300deg, #ffe14d 300deg 310deg, #ffd21a 310deg 320deg, #ffe14d 320deg 330deg, #ffd21a 330deg 340deg,
+      #ffe14d 340deg 350deg, #ffd21a 350deg 360deg);
+}
+html[data-tl-theme="teams-comic"],
+html[data-tl-theme="teams-comic"] body,
+html[data-tl-theme="teams-comic"] [class*="cpd-theme-"] {
+  --cpd-color-bg-decorative-1: #6ec6ff; --cpd-color-text-decorative-1: #111111;
+  --cpd-color-bg-decorative-2: #ff8fd8; --cpd-color-text-decorative-2: #111111;
+  --cpd-color-bg-decorative-3: #6be3a4; --cpd-color-text-decorative-3: #111111;
+  --cpd-color-bg-decorative-4: #ffb347; --cpd-color-text-decorative-4: #111111;
+  --cpd-color-bg-decorative-5: #c4f063; --cpd-color-text-decorative-5: #111111;
+  --cpd-color-bg-decorative-6: #ff7a7a; --cpd-color-text-decorative-6: #111111;
+}
+/* page: yellow gutters, every region an ink panel */
+html[data-tl-theme="teams-comic"] .mx_MatrixChat,
+html[data-tl-theme="teams-comic"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="teams-comic"] body {
+  background-color: var(--tm-yellow);
+}
+html[data-tl-theme="teams-comic"] .mx_MatrixChat::before {
+  background: var(--tm-logo) no-repeat 18px 50% / 30px 30px, var(--tm-yellow);
+  border-bottom: 3px solid var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_MatrixChat::after {
+  left: 60px;
+  font: 400 24px/54px "Bangers", cursive;
+  letter-spacing: 0.06em;
+  color: var(--tm-ink);
+  text-shadow: 2px 2px 0 #ffffff;
+}
+html[data-tl-theme="teams-comic"] .mx_SpacePanel,
+html[data-tl-theme="teams-comic"] .mx_LeftPanel,
+html[data-tl-theme="teams-comic"] .mx_RoomView_wrapper,
+html[data-tl-theme="teams-comic"] .mx_RightPanel {
+  border: 3px solid var(--tm-ink);
+  box-shadow: 5px 5px 0 var(--tm-ink);
+  box-sizing: border-box;
+}
+html[data-tl-theme="teams-comic"] .mx_SpacePanel {
+  margin: 10px 0 14px 10px;
+  height: calc(100% - 24px);
+  border-radius: 6px;
+}
+html[data-tl-theme="teams-comic"] .mx_LeftPanel {
+  width: calc(100% - 18px);
+  margin: 10px 6px 14px 12px;
+  height: calc(100% - 24px);
+  border-radius: 6px;
+}
+html[data-tl-theme="teams-comic"] .mx_RoomView_wrapper {
+  width: calc(100% - 20px);
+  margin: 10px 14px 14px 6px;
+  height: calc(100% - 24px);
+  border-radius: 6px;
+}
+html[data-tl-theme="teams-comic"] .mx_RightPanel {
+  margin-left: 10px;
+  border-radius: 6px;
+}
+html[data-tl-theme="teams-comic"] .mx_Separator[data-separator],
+html[data-tl-theme="teams-comic"] .mx_MatrixChat > div > [class*="_separator_"] {
+  background: transparent;
+}
+/* halftone canvas */
+html[data-tl-theme="teams-comic"] .mx_RoomView_body,
+html[data-tl-theme="teams-comic"] .mx_RoomView_messagePanel {
+  background:
+    radial-gradient(circle, rgba(17, 17, 17, 0.08) 1.5px, transparent 1.7px) 0 0 / 8px 8px,
+    var(--tm-paper);
+}
+html[data-tl-theme="teams-comic"] .mx_RoomView_timeline,
+html[data-tl-theme="teams-comic"] .mx_MessageComposer {
+  background: transparent;
+}
+/* rail: purple masthead, white ink icons, yellow starburst on selection */
+html[data-tl-theme="teams-comic"] .mx_SpacePanel .mx_SpaceButton::after {
+  font: 400 12px/14px "Bangers", cursive;
+  letter-spacing: 0.05em;
+}
+html[data-tl-theme="teams-comic"] .mx_SpacePanel .mx_SpaceButton_active::before {
+  display: none;
+}
+html[data-tl-theme="teams-comic"] .mx_SpacePanel .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: var(--tm-yellow);
+  clip-path: polygon(50% 0, 61% 18%, 82% 10%, 78% 32%, 100% 40%, 82% 55%, 95% 76%, 72% 76%, 66% 100%, 50% 84%, 34% 100%, 28% 76%, 5% 76%, 18% 55%, 0 40%, 22% 32%, 18% 10%, 39% 18%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html[data-tl-theme="teams-comic"] .mx_SpacePanel .mx_SpaceButton_active .mx_SpaceButton_avatarWrapper > [class*="_avatar_"] {
+  box-shadow: 0 0 0 2px var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_SpacePanel .mx_ThreadsActivityCentreButton,
+html[data-tl-theme="teams-comic"] .mx_SpacePanel .mx_QuickSettingsButton {
+  color: #ffffff;
+}
+html[data-tl-theme="teams-comic"] .mx_SpacePanel .mx_UserMenu [class*="_avatarWrapper_"]::after {
+  box-shadow: 0 0 0 2px var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_SpacePanel .mx_UserMenu [class*="_avatar_"] {
+  box-shadow: 0 0 0 2.5px var(--tm-ink), 2px 2px 0 2.5px var(--tm-ink);
+}
+/* list: caption boxes */
+html[data-tl-theme="teams-comic"] .mx_RoomListPanel > header[class*="_header_"] h1 {
+  font: 400 28px/32px "Bangers", cursive;
+  letter-spacing: 0.04em;
+}
+html[data-tl-theme="teams-comic"] .mx_RoomListItemView_selected > [class*="_container_"],
+html[data-tl-theme="teams-comic"] .mx_RoomListItemView[aria-selected="true"] > [class*="_container_"] {
+  border: 2.5px solid var(--tm-ink);
+  box-shadow: 3px 3px 0 var(--tm-ink);
+  transform: rotate(-0.6deg);
+}
+html[data-tl-theme="teams-comic"] .mx_RoomListPanel [class*="_chat-filter_"] {
+  border-width: 2px;
+  font: 400 15px/18px "Bangers", cursive;
+  letter-spacing: 0.06em;
+  box-shadow: 2px 2px 0 var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_RoomListPanel [class*="_chat-filter_"][aria-selected="true"] {
+  background: var(--tm-yellow);
+  color: var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_RoomListPanel [role="gridcell"] > button[class*="_header_"] {
+  font: 400 16px/20px "Bangers", cursive;
+  letter-spacing: 0.06em;
+  color: var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_RoomListItemView [class*="_avatar_"] {
+  box-shadow: 0 0 0 2px var(--tm-ink);
+}
+/* header: caption box with Bangers */
+html[data-tl-theme="teams-comic"] .mx_RoomHeader {
+  border-bottom: 3px solid var(--tm-ink);
+  background: var(--tm-yellow);
+}
+html[data-tl-theme="teams-comic"] .mx_RoomHeader .mx_RoomHeader_heading {
+  font: 400 28px/32px "Bangers", cursive;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+html[data-tl-theme="teams-comic"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after {
+  content: "CHAT!";
+  font: 400 18px/20px "Bangers", cursive;
+  letter-spacing: 0.06em;
+  box-shadow: none;
+  align-self: center;
+  padding: 4px 12px;
+  background: #ffffff;
+  border: 2.5px solid var(--tm-ink);
+  border-radius: 999px;
+  transform: rotate(-3deg);
+}
+html[data-tl-theme="teams-comic"] .mx_RoomHeader button[class*="_icon-button_"] {
+  border: 2px solid var(--tm-ink);
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 2px 2px 0 var(--tm-ink);
+  color: var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_RoomHeader > [class*="_avatar_"] {
+  box-shadow: 0 0 0 2.5px var(--tm-ink);
+}
+/* speech bubbles with tails */
+html[data-tl-theme="teams-comic"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_stateBubbleContainer_"]) > .mx_EventTile_line {
+  padding: 8px 16px 9px;
+  font-size: 15px;
+}
+html[data-tl-theme="teams-comic"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_stateContinuation_"]):not([class*="_stateBubbleContainer_"]) > .mx_EventTile_line::before {
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: 10px;
+  width: 16px;
+  height: 14px;
+  background: var(--tm-bubble-other);
+  border-left: 2.5px solid var(--tm-ink);
+  border-bottom: 2.5px solid var(--tm-ink);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  transform: skewY(-20deg);
+  box-sizing: border-box;
+}
+html[data-tl-theme="teams-comic"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]):not([class*="_stateContinuation_"]) > .mx_EventTile_line::before {
+  left: auto;
+  right: -13px;
+  background: var(--tm-bubble-own);
+  border-left: 0;
+  border-right: 2.5px solid var(--tm-ink);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  transform: skewY(20deg);
+}
+html[data-tl-theme="teams-comic"] .mx_EventTile .mx_DisambiguatedProfile_displayName {
+  font: 400 17px/20px "Bangers", cursive;
+  letter-spacing: 0.05em;
+}
+html[data-tl-theme="teams-comic"] .mx_EventTile [class*="_slotAvatar_"] [class*="_avatar_"] {
+  box-shadow: 0 0 0 2.5px var(--tm-ink);
+}
+/* PING! burst on mentions */
+html[data-tl-theme="teams-comic"] .mx_RoomView_body .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line::after {
+  content: "PING!";
+  position: absolute;
+  top: -18px;
+  right: -26px;
+  z-index: 2;
+  padding: 12px 14px;
+  font: 400 18px/18px "Bangers", cursive;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  background: var(--tm-red);
+  clip-path: polygon(50% 0, 61% 18%, 82% 6%, 79% 30%, 100% 36%, 84% 52%, 98% 74%, 74% 74%, 68% 100%, 50% 84%, 32% 100%, 26% 74%, 2% 74%, 16% 52%, 0 36%, 21% 30%, 18% 6%, 39% 18%);
+  transform: rotate(10deg);
+  animation: tm-pop 240ms cubic-bezier(0.3, 1.6, 0.6, 1) both;
+}
+@keyframes tm-pop {
+  from { transform: rotate(10deg) scale(0.4); opacity: 0; }
+  to { transform: rotate(10deg) scale(1); opacity: 1; }
+}
+html[data-tl-theme="teams-comic"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]) > .mx_EventTile_line {
+  animation: tm-bubble-in 160ms ease-out both;
+}
+@keyframes tm-bubble-in {
+  from { transform: scale(0.94); }
+  to { transform: none; }
+}
+/* state events as narration captions */
+html[data-tl-theme="teams-comic"] .mx_GenericEventListSummary .mx_EventTile_line,
+html[data-tl-theme="teams-comic"] .mx_EventTile[class*="_stateInfo_"] .mx_EventTile_line {
+  background: var(--tm-yellow);
+  border: 2px solid var(--tm-ink);
+  border-radius: 2px;
+  width: fit-content;
+  font-style: italic;
+}
+html[data-tl-theme="teams-comic"] .mx_EventTileBubble,
+html[data-tl-theme="teams-comic"] .mx_NewRoomIntro [class*="_container_"] {
+  border: 2.5px solid var(--tm-ink);
+  box-shadow: 4px 4px 0 var(--tm-ink);
+  background: #ffffff;
+}
+html[data-tl-theme="teams-comic"] .mx_NewRoomIntro h2,
+html[data-tl-theme="teams-comic"] .mx_Dialog_title,
+html[data-tl-theme="teams-comic"] .mx_Dialog_header h1,
+html[data-tl-theme="teams-comic"] .mx_BaseCard_header h2,
+html[data-tl-theme="teams-comic"] .mx_SettingsTab h2,
+html[data-tl-theme="teams-comic"] .mx_SettingsSection h2 {
+  font-family: "Bangers", cursive;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  font-size: 26px;
+}
+/* reactions + action bar */
+html[data-tl-theme="teams-comic"] .mx_ReactionsRow .mx_ReactionsRowButton {
+  border: 2px solid var(--tm-ink);
+  box-shadow: 2px 2px 0 var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_MessageActionBar {
+  border: 2.5px solid var(--tm-ink);
+}
+/* composer: thought bubble + SEND! burst */
+html[data-tl-theme="teams-comic"] .mx_MessageComposer_wrapper {
+  border: 2.5px solid var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_MessageComposer_wrapper:focus-within {
+  box-shadow: inset 0 -4px 0 var(--tm-yellow), 4px 4px 0 var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_MessageComposer_sendMessage {
+  -webkit-mask: none;
+  mask: none;
+  width: 56px;
+  height: 36px;
+  background: var(--tm-red);
+  clip-path: polygon(50% 0, 61% 18%, 82% 6%, 79% 30%, 100% 36%, 84% 52%, 98% 74%, 74% 74%, 68% 100%, 50% 84%, 32% 100%, 26% 74%, 2% 74%, 16% 52%, 0 36%, 21% 30%, 18% 6%, 39% 18%);
+  border-radius: 0;
+}
+html[data-tl-theme="teams-comic"] .mx_MessageComposer_sendMessage::after {
+  content: "SEND!";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 13px/1 "Bangers", cursive;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+html[data-tl-theme="teams-comic"] .mx_MessageComposer_sendMessage {
+  position: relative;
+}
+/* buttons, inputs, dialogs, menus */
+html[data-tl-theme="teams-comic"] [class*="_button_"][data-kind],
+html[data-tl-theme="teams-comic"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="teams-comic"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-theme="teams-comic"] .mx_Dialog button {
+  border: 2.5px solid var(--tm-ink);
+  box-shadow: 3px 3px 0 var(--tm-ink);
+  font-family: "Bangers", cursive;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  font-size: 16px;
+}
+html[data-tl-theme="teams-comic"] [class*="_button_"][data-kind]:active,
+html[data-tl-theme="teams-comic"] .mx_AccessibleButton_kind_primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_Field {
+  border: 2.5px solid var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_Field:focus-within {
+  background: #fff6c2;
+  box-shadow: 3px 3px 0 var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] .mx_Dialog {
+  border: 3px solid var(--tm-ink);
+  transform: rotate(-0.4deg);
+}
+html[data-tl-theme="teams-comic"] .mx_Dialog:has(.tl-ui) {
+  transform: none;
+}
+html[data-tl-theme="teams-comic"] [role="menu"],
+html[data-tl-theme="teams-comic"] .mx_ContextualMenu {
+  border: 2.5px solid var(--tm-ink);
+}
+html[data-tl-theme="teams-comic"] [role="tooltip"] {
+  background: #ffffff;
+  color: var(--tm-ink);
+  border: 2px solid var(--tm-ink);
+  border-radius: 12px;
+  box-shadow: 2px 2px 0 var(--tm-ink);
+}
+/* badges: red starbursts */
+html[data-tl-theme="teams-comic"],
+html[data-tl-theme="teams-comic"] body,
+html[data-tl-theme="teams-comic"] [class*="cpd-theme-"] {
+  --cpd-color-bg-badge-accent: var(--tm-red);
+}
+html[data-tl-theme="teams-comic"] .mx_RoomListItemView [class*="_notificationDecoration_"] [class*="_unread-counter_"],
+html[data-tl-theme="teams-comic"] .mx_RoomListItemView [class*="_notificationDecoration_"] [class*="_counter_"] {
+  background: var(--tm-red);
+  color: #ffffff;
+  clip-path: polygon(50% 0, 63% 20%, 85% 15%, 80% 37%, 100% 50%, 80% 63%, 85% 85%, 63% 80%, 50% 100%, 37% 80%, 15% 85%, 20% 63%, 0 50%, 20% 37%, 15% 15%, 37% 20%);
+  min-width: 26px;
+  height: 26px;
+  font-family: "Bangers", cursive;
+  font-size: 13px;
+}
+/* code */
+html[data-tl-theme="teams-comic"] .mx_EventTile_body pre,
+html[data-tl-theme="teams-comic"] .mx_EventTile_pre_container pre {
+  border: 2px solid var(--tm-ink);
+  box-shadow: 3px 3px 0 var(--tm-ink);
+}
+/* auth: cover page */
+html[data-tl-theme="teams-comic"] .mx_AuthPage_modal {
+  border: 3px solid var(--tm-ink);
+  box-shadow: 8px 8px 0 var(--tm-ink);
+  transform: rotate(-1deg);
+}
+html[data-tl-theme="teams-comic"] .mx_AuthPage::before {
+  content: "TEAMS COMICS #1";
+  display: block;
+  margin: 28px auto -60px;
+  font: 400 64px/1 "Bangers", cursive;
+  letter-spacing: 0.06em;
+  color: var(--tm-red);
+  -webkit-text-stroke: 2px var(--tm-ink);
+  text-shadow: 5px 5px 0 var(--tm-ink);
+  text-align: center;
+}
+html[data-tl-theme="teams-comic"] :focus-visible:not(.mx_BasicMessageComposer_input) {
+  outline: 3px solid var(--tm-ink);
+  box-shadow: 0 0 0 6px var(--tm-yellow);
+}
+/* loader UI stays plain and readable */
+html[data-tl-theme="teams-comic"] .tl-ui,
+html[data-tl-theme="teams-comic"] .tl-ui * {
+  font-family: var(--tm-font);
+  letter-spacing: normal;
+}
+@media (max-width: 768px) {
+  html[data-tl-theme="teams-comic"] .mx_SpacePanel,
+  html[data-tl-theme="teams-comic"] .mx_LeftPanel,
+  html[data-tl-theme="teams-comic"] .mx_RoomView_wrapper {
+    margin: 4px;
+    height: calc(100% - 8px);
+    box-shadow: 3px 3px 0 var(--tm-ink);
+  }
+}
+/* bubble layout: ink outlines too */
+html[data-tl-theme="teams-comic"] .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line {
+  border: 2.5px solid var(--tm-ink);
+  box-shadow: 3px 3px 0 var(--tm-ink);
+}

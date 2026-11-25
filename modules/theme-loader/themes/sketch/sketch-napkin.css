@@ -1,0 +1,225 @@
+/* sketch-napkin — level 6: back of a café napkin. Embossed quilting, coffee rings, cheap ballpoint
+   with ink bleed, everything slightly rotated, wobbly frames. Medium readability by design. */
+
+html[data-tl-theme="sketch-napkin"],
+html[data-tl-theme="sketch-napkin"] body,
+html[data-tl-theme="sketch-napkin"] [class*="cpd-theme-"] {
+    --cpd-color-gray-800: #5d6380;
+    --cpd-color-gray-900: #4d5370;
+    --cpd-color-text-placeholder: #5d6380;
+}
+
+html[data-tl-theme="sketch-napkin"] {
+    --sk-ink: #22408c;
+    --sk-line: #22408c;
+    --sk-accent: #22408c;
+    --sk-focus: #b3261e;
+    --sk-display: "Shadows Into Light Two", "Gochi Hand", cursive;
+    --sk-content: "Gochi Hand", "Patrick Hand", cursive;
+    --sk-frame-1: url("assets/frame-x1.svg");
+    --sk-frame-2: url("assets/frame-x2.svg");
+    --sk-frame-3: url("assets/frame-x3.svg");
+    --sk-pill: url("assets/frame-x2.svg");
+    --sk-circle: url("assets/circle-3.svg");
+    --sk-underline: url("assets/underline-2.svg");
+    --sk-highlight: rgba(255, 214, 102, 0.6);
+    --sk-sel-line: #22408c;
+    --sk-avatar-line: rgba(34, 64, 140, 0.8);
+    --sk-btn-line: #22408c;
+    --sk-quilt:
+        radial-gradient(circle, rgba(111, 78, 55, 0.18) 1px, transparent 1.6px) 0 0 / 9px 9px;
+
+    --sk-et-bubble-self-background: #e9e4f2;
+    --sk-et-bubble-other-background: #f8f3ea;
+    --sk-et-state-hover-background: rgba(34, 64, 140, 0.05);
+    --cpd-color-bg-subtle-tertiary: #ebe2d1;
+    --cpd-color-bg-action-tertiary-hovered: rgba(34, 64, 140, 0.08);
+    --cpd-color-bg-action-secondary-hovered: rgba(34, 64, 140, 0.08);
+    --cpd-color-separator-primary: rgba(34, 64, 140, 0.2);
+    --cpd-color-border-interactive-secondary: rgba(34, 64, 140, 0.45);
+    --cpd-color-green-900: #22408c;
+    --cpd-color-green-800: #1b3370;
+}
+
+/* ink bleed + handwriting size */
+html[data-tl-theme="sketch-napkin"] :is(.mx_EventTile_body, .mx_RoomListItemView, .mx_BasicMessageComposer_input, .mx_DisambiguatedProfile, .mx_RoomHeader_heading) {
+    text-shadow: 0 0 0.6px currentColor, 0.3px 0.2px 0.5px rgba(34, 64, 140, 0.35);
+}
+
+html[data-tl-theme="sketch-napkin"] :is(.mx_EventTile_body, .mx_RoomListItemView, .mx_BasicMessageComposer_input) {
+    font-size: 1.12em;
+    letter-spacing: 0.015em;
+    word-spacing: 0.06em;
+}
+
+html[data-tl-theme="sketch-napkin"] :is(.mx_RoomHeader_heading, .mx_Dialog_title, .mx_SettingsTab_heading) {
+    font-size: 1.45em;
+    font-weight: 400;
+}
+
+/* --- shell: quilted napkin + fibre + coffee rings ------------------------------- */
+html[data-tl-theme="sketch-napkin"] .mx_MatrixChat {
+    background:
+        url("assets/napkin-fibre.svg") 0 0 / 300px 300px,
+        var(--sk-quilt),
+        #f3ece0;
+}
+
+/* coffee rings sit on top of everything, like real stains (multiply, no pointer events) */
+html[data-tl-theme="sketch-napkin"] .mx_MatrixChat::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    mix-blend-mode: multiply;
+    background:
+        url("assets/coffee-ring.svg") calc(100% - 60px) 70px / 230px 230px no-repeat,
+        url("assets/coffee-ring.svg") 24% calc(100% - 40px) / 170px 170px no-repeat;
+}
+
+html[data-tl-theme="sketch-napkin"] :is(.mx_LeftPanel, .mx_RoomListPanel, .mx_RoomView, .mx_RoomView_wrapper, .mx_MainSplit, .mx_RoomView_body, .mx_RoomView_messagePanel, .mx_RoomHeader, .mx_MessageComposer, .mx_RightPanel) {
+    background: transparent;
+}
+
+/* kraft sleeve rail */
+html[data-tl-theme="sketch-napkin"] .mx_SpacePanel {
+    background: url("assets/paper-grain.svg") 0 0 / 240px 240px, #c8a97e;
+    box-shadow: inset -2px 0 3px rgba(80, 50, 20, 0.25);
+}
+
+/* embossed dotted border around the room list "napkin" */
+html[data-tl-theme="sketch-napkin"] .mx_LeftPanel {
+    margin: 6px;
+    border: 3px dotted rgba(111, 78, 55, 0.22);
+    border-radius: 4px;
+    transform: rotate(-0.4deg);
+}
+
+/* --- room list: wobbly, alternating tilt; selected room scribbled around ------------- */
+html[data-tl-theme="sketch-napkin"] .mx_RoomListItemView {
+    transform: rotate(var(--sk-tilt, -0.6deg));
+}
+
+html[data-tl-theme="sketch-napkin"] :nth-child(even) > .mx_RoomListItemView,
+html[data-tl-theme="sketch-napkin"] .mx_RoomListItemView:nth-child(even) {
+    --sk-tilt: 0.5deg;
+}
+
+html[data-tl-theme="sketch-napkin"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"]) {
+    background: transparent;
+}
+
+html[data-tl-theme="sketch-napkin"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"])::after {
+    -webkit-mask-image: url("assets/circle-3.svg");
+    mask-image: url("assets/circle-3.svg");
+    inset: -6px 0;
+}
+
+/* --- header: wobbly heading -------------------------------------------------------- */
+html[data-tl-theme="sketch-napkin"] .mx_RoomHeader {
+    border-bottom: none;
+    transform: rotate(-0.5deg) skewX(-0.5deg);
+}
+
+/* --- timeline: tilted tiles --------------------------------------------------------- */
+html[data-tl-theme="sketch-napkin"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(3n+1) {
+    transform: rotate(-0.35deg);
+}
+
+html[data-tl-theme="sketch-napkin"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(3n+2) {
+    transform: rotate(0.4deg) translateX(3px);
+}
+
+html[data-tl-theme="sketch-napkin"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"]) {
+    position: relative;
+}
+
+html[data-tl-theme="sketch-napkin"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    pointer-events: none;
+    background: #22408c;
+    -webkit-mask: url("assets/frame-x1.svg") 0 0 / 100% 100% no-repeat;
+    mask: url("assets/frame-x1.svg") 0 0 / 100% 100% no-repeat;
+}
+
+html[data-tl-theme="sketch-napkin"] .mx_EventTile[class*="_layoutBubble_"]:nth-child(odd) [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    -webkit-mask-image: url("assets/frame-x3.svg");
+    mask-image: url("assets/frame-x3.svg");
+}
+
+html[data-tl-theme="sketch-napkin"] :is(.mx_TimelineSeparator, .mx_DateSeparator) > hr {
+    border: 0;
+    height: 10px;
+    background: url("assets/underline-3.svg") center / 100% 10px no-repeat;
+    opacity: 0.5;
+}
+
+/* --- composer: a torn napkin scrap ------------------------------------------------- */
+html[data-tl-theme="sketch-napkin"] .mx_MessageComposer_wrapper {
+    background: url("assets/napkin-fibre.svg") 0 0 / 300px 300px, #faf6ee;
+    transform: rotate(-0.6deg);
+    box-shadow: 2px 3px 0 rgba(111, 78, 55, 0.15);
+    border-radius: 3px 9px 4px 12px;
+}
+
+/* --- dialogs: another napkin with a coffee ring ---------------------------------------- */
+html[data-tl-theme="sketch-napkin"] .mx_Dialog {
+    background:
+        url("assets/coffee-ring.svg") calc(100% + 40px) -50px / 190px 190px no-repeat,
+        url("assets/napkin-fibre.svg") 0 0 / 300px 300px,
+        #f8f3ea;
+    transform: rotate(-0.5deg);
+    box-shadow: 4px 6px 0 rgba(111, 78, 55, 0.15), 0 14px 30px rgba(0, 0, 0, 0.2);
+}
+
+html[data-tl-theme="sketch-napkin"] :is(.mx_ContextualMenu, [role="menu"]) {
+    background: #f8f3ea;
+    transform: rotate(0.6deg);
+}
+
+html[data-tl-theme="sketch-napkin"] [role="tooltip"] {
+    background: #22408c;
+    color: #f8f3ea;
+    transform: rotate(-1deg);
+}
+
+/* code on napkin */
+html[data-tl-theme="sketch-napkin"] :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) {
+    background: rgba(255, 255, 255, 0.55);
+    border-color: transparent;
+}
+
+html[data-tl-theme="sketch-napkin"] [class*="_notificationBadge_"] {
+    --cpd-color-bg-critical-primary: #b3261e;
+}
+
+/* icons: ballpoint with a static wobble (chrome only) */
+html[data-tl-theme="sketch-napkin"] :is(.mx_RoomHeader, .mx_SpacePanel, .mx_MessageComposer_actions) svg {
+    filter: url(#sk-rough-1);
+}
+
+/* hover: slow wobble */
+@keyframes sk-wobble {
+    0%, 100% { rotate: 0deg; }
+    33% { rotate: -0.7deg; }
+    66% { rotate: 0.6deg; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html[data-tl-theme="sketch-napkin"] :is(button[class*="_button_"][data-kind], .mx_AccessibleButton_kind_primary, .mx_AccessibleButton_kind_secondary, .mx_RoomListItemView):hover {
+        animation: sk-wobble 0.4s ease-in-out;
+    }
+}
+
+/* auth */
+html[data-tl-theme="sketch-napkin"] .mx_AuthPage {
+    background: url("assets/coffee-ring.svg") 70% 20% / 260px 260px no-repeat, url("assets/napkin-fibre.svg") 0 0 / 300px 300px, #f3ece0;
+}
+
+html[data-tl-theme="sketch-napkin"] .mx_AuthPage_modal {
+    background: #f8f3ea;
+    transform: rotate(-0.8deg);
+}

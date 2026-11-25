@@ -1,0 +1,385 @@
+{
+  "family": "opendesk",
+  "name": "openDesk",
+  "variants": [
+    {
+      "id": "opendesk-light",
+      "name": "openDesk · Light",
+      "stage": "pure",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 9,
+      "hype": 3,
+      "description": "openDesk as shipped by ZenDiS (v1.19): white 64px suite bar with the openDesk wordmark and app grid, #f5f5f5 portal canvas, navy #203257 text, violet #571EFA primary, Open Sans, 4px buttons and 8px tiles, Nextcloud-style filled violet selection.",
+      "css": [
+        "shared.css",
+        "opendesk-light.css"
+      ],
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-ext-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-italic.woff2",
+          "weight": "300 800",
+          "style": "italic",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        }
+      ],
+      "tokens": {
+        "--cpd-font-family-sans": "\"Open Sans\", \"Helvetica Neue\", Arial, sans-serif",
+        "--cpd-color-bg-canvas-default": "#f5f5f5",
+        "--cpd-color-text-primary": "#203257",
+        "--cpd-color-bg-action-primary-rest": "#571efa"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "opendesk-dark",
+      "name": "openDesk · Dark",
+      "stage": "pure",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 9,
+      "hype": 3,
+      "description": "openDesk Dark: the suite's navy darks (#131f30 / #0a121e) with the primary65 lavender #9673e9 for accent text and #571EFA for filled buttons, white wordmark on a navy suite bar.",
+      "css": [
+        "shared.css",
+        "opendesk-dark.css"
+      ],
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-ext-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-italic.woff2",
+          "weight": "300 800",
+          "style": "italic",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        }
+      ],
+      "tokens": {
+        "--cpd-font-family-sans": "\"Open Sans\", \"Helvetica Neue\", Arial, sans-serif",
+        "--cpd-color-bg-canvas-default": "#131f30",
+        "--cpd-color-text-primary": "#f0f1f3",
+        "--cpd-color-bg-action-primary-rest": "#6a45fb"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "opendesk-daylight",
+      "name": "openDesk · Daylight",
+      "stage": "pure",
+      "mode": "daylight",
+      "base": "light",
+      "seriousness": 9,
+      "hype": 4,
+      "description": "openDesk by the office clock: lavender primary-50 morning, the plain portal look by day, a navy suite bar with blue-grey canvas in the evening, openDesk Dark at night.",
+      "css": [
+        "shared.css",
+        "opendesk-dark.css",
+        "opendesk-daylight.css"
+      ],
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-ext-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-italic.woff2",
+          "weight": "300 800",
+          "style": "italic",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        }
+      ],
+      "tokens": {
+        "--cpd-font-family-sans": "\"Open Sans\", \"Helvetica Neue\", Arial, sans-serif"
+      },
+      "enhance": true,
+      "schedule": [
+        {
+          "from": "06:00",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "09:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "17:30",
+          "phase": "dusk",
+          "base": "light"
+        },
+        {
+          "from": "21:00",
+          "phase": "night",
+          "base": "dark"
+        }
+      ]
+    },
+    {
+      "id": "opendesk-usable",
+      "name": "openDesk · Barrierefrei",
+      "stage": "usable",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 10,
+      "hype": 2,
+      "description": "openDesk tuned for long public-sector workdays and BITV 2.0 / WCAG 2.2 AA+: darker violet #4519c2, 3px high-contrast #0c3ff3 focus ring with white gap, underlined links, 15px text, larger hit areas, unread rows marked with a bar, compact 48px suite bar.",
+      "css": [
+        "shared.css",
+        "opendesk-usable.css"
+      ],
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-ext-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-italic.woff2",
+          "weight": "300 800",
+          "style": "italic",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        }
+      ],
+      "tokens": {
+        "--cpd-font-family-sans": "\"Open Sans\", \"Helvetica Neue\", Arial, sans-serif"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "opendesk-classic",
+      "name": "openDesk · Souveräner Arbeitsplatz 2023",
+      "stage": "past",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 8,
+      "hype": 4,
+      "description": "The 2023 Sovereign Workplace / early openDesk (v0.3–0.5): violet #5e27dd suite band with the white 2023 wordmark, Nordeck-style banner, secondary chips in sky #52c1ff, pink #ff529e, yellow #ffc700 and mint #00ffcd, flatter Element 1.11-era panels.",
+      "css": [
+        "shared.css",
+        "opendesk-classic.css"
+      ],
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-ext-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-italic.woff2",
+          "weight": "300 800",
+          "style": "italic",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        }
+      ],
+      "tokens": {
+        "--cpd-font-family-sans": "\"Open Sans\", \"Helvetica Neue\", Arial, sans-serif",
+        "--cpd-color-bg-action-primary-rest": "#5e27dd"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "opendesk-2028",
+      "name": "openDesk · 2028",
+      "stage": "future",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 7,
+      "hype": 7,
+      "description": "Speculative openDesk 2028: the opendesk.eu marketing language moved into the product — Space Grotesk headings, floating 16px-radius panels on a lavender-to-sky canvas, frosted suite bar, violet→sky gradient actions, mint presence accents.",
+      "css": [
+        "shared.css",
+        "opendesk-2028.css"
+      ],
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-ext-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-italic.woff2",
+          "weight": "300 800",
+          "style": "italic",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Space Grotesk",
+          "file": "assets/space-grotesk-latin-wght-normal.woff2",
+          "weight": "300 700",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Space Grotesk",
+          "file": "assets/space-grotesk-latin-ext-wght-normal.woff2",
+          "weight": "300 700",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+        }
+      ],
+      "tokens": {
+        "--cpd-font-family-sans": "\"Open Sans\", \"Helvetica Neue\", Arial, sans-serif",
+        "--cpd-color-bg-action-primary-rest": "#571efa"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "opendesk-hyperdesk",
+      "name": "openDesk · Hyperdesk",
+      "stage": "exciting",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 4,
+      "hype": 9,
+      "description": "openDesk turned up to eleven: the isometric app-tile field of the login screen as a night-time neon wallpaper, violet glow, mint #00ffcd signal colour, Space Grotesk all-caps headings, glowing tiles and a slowly breathing suite bar (static under reduced motion).",
+      "css": [
+        "shared.css",
+        "opendesk-hyperdesk.css"
+      ],
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-ext-wght-normal.woff2",
+          "weight": "300 800",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+        },
+        {
+          "family": "Open Sans",
+          "file": "assets/open-sans-latin-wght-italic.woff2",
+          "weight": "300 800",
+          "style": "italic",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Space Grotesk",
+          "file": "assets/space-grotesk-latin-wght-normal.woff2",
+          "weight": "300 700",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+        },
+        {
+          "family": "Space Grotesk",
+          "file": "assets/space-grotesk-latin-ext-wght-normal.woff2",
+          "weight": "300 700",
+          "style": "normal",
+          "display": "swap",
+          "unicodeRange": "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+        }
+      ],
+      "tokens": {
+        "--cpd-font-family-sans": "\"Open Sans\", \"Helvetica Neue\", Arial, sans-serif",
+        "--cpd-color-bg-canvas-default": "#0c0820",
+        "--cpd-color-text-primary": "#f3f0ff"
+      },
+      "enhance": true,
+      "schedule": null
+    }
+  ]
+}

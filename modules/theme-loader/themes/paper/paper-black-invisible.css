@@ -1,0 +1,18 @@
+/* paper-black-invisible — palette (style guide: docs/styleguides/paper.md). Everything else lives in shared.css. */
+html[data-tl-theme="paper-black-invisible"] {
+  --p-paper: #0A0A0A;
+  --p-ink: #D6D4CF;
+  --p-muted: #7E7E7E;
+  --p-accent: #BDBDBD;
+  --p-on-accent: #0A0A0A;
+  --p-line: #121212;
+  --p-wash: #0F0F0F;
+  --p-wash2: #141414;
+  --p-mention: #0F0F0F;
+  --p-critical: #FF7B72;
+  --p-success: #5FD08A;
+  --p-caret: #D6D4CF;
+  --p-focus: #D6D4CF;
+  --p-scheme: dark;
+  --p-muted-hc: #B5B5B5;
+}

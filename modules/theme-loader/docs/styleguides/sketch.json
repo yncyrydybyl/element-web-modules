@@ -1,0 +1,919 @@
+{
+  "family": "sketch",
+  "name": "Hand-drawn / Sketch",
+  "concept": "Element drawn by hand, as a single ladder of roughness. Level 1 is a shippable sketch UI with Excalidraw's discipline (clean chrome, hand-drawn content); each rung adds paper texture, wobble, tilt and less legible handwriting (wireframe, notebook, whiteboard/chalkboard, blueprint, napkin, boiling scribble) until level 8 is unreadable on purpose. A daylight variant moves from notebook to desk lamp to chalkboard with the local clock.",
+  "sources": [
+    {
+      "title": "Excalidraw source: colors.ts / theme.scss / fonts (MIT)",
+      "url": "https://github.com/excalidraw/excalidraw"
+    },
+    {
+      "title": "Introducing Excalifont (OFL-1.1, licence in font file)",
+      "url": "https://plus.excalidraw.com/excalifont"
+    },
+    {
+      "title": "Virgil (OFL-1.1, superseded)",
+      "url": "https://github.com/excalidraw/virgil"
+    },
+    {
+      "title": "tldraw: Engineering imperfection with draw shapes",
+      "url": "https://tldraw.dev/blog/engineering-imperfection-with-draw-shapes"
+    },
+    {
+      "title": "tldraw styles (draw font / dash)",
+      "url": "https://tldraw.dev/sdk-features/styles"
+    },
+    {
+      "title": "Shantell Sans (OFL-1.1, INFM/BNCE axes)",
+      "url": "https://github.com/arrowtype/shantell-sans"
+    },
+    {
+      "title": "Balsamiq Sans (OFL-1.1)",
+      "url": "https://balsamiq.com/givingback/opensource/font/"
+    },
+    {
+      "title": "Balsamiq project styles (Sketch/Draft/Presentation)",
+      "url": "https://balsamiq.com/wireframes/desktop/docs/skins/"
+    },
+    {
+      "title": "Bootswatch Sketchy (MIT)",
+      "url": "https://bootswatch.com/sketchy/"
+    },
+    {
+      "title": "PaperCSS (ISC)",
+      "url": "https://www.getpapercss.com/"
+    },
+    {
+      "title": "DoodleCSS (MIT)",
+      "url": "https://github.com/chr15m/doodlecss"
+    },
+    {
+      "title": "rough.js (MIT)",
+      "url": "https://roughjs.com/"
+    },
+    {
+      "title": "wired-elements (MIT)",
+      "url": "https://wiredjs.com/"
+    },
+    {
+      "title": "rough-notation (MIT)",
+      "url": "https://roughnotation.com/"
+    },
+    {
+      "title": "CSS-Tricks: Squigglevision",
+      "url": "https://css-tricks.com/?p=311126"
+    },
+    {
+      "title": "Camillo Visini: Simulating hand-drawn motion with SVG filters",
+      "url": "https://camillovisini.com/coding/simulating-hand-drawn-motion-with-svg-filters"
+    },
+    {
+      "title": "Codrops: SVG filter texture with feTurbulence",
+      "url": "https://tympanus.net/codrops/2019/02/19/svg-filter-effects-creating-texture-with-feturbulence/"
+    },
+    {
+      "title": "Sara Soueidan: textured text techniques",
+      "url": "https://sarasoueidan.com/blog/textured-text-techniques/"
+    },
+    {
+      "title": "Anthony Hobday: hand-drawn borders",
+      "url": "https://anthonyhobday.com/sideprojects/visualtechniques/techniques/borders/hand-drawn-borders.html"
+    },
+    {
+      "title": "CSS lined paper background (psd-dude)",
+      "url": "https://www.psd-dude.com/tutorials/css-lined-paper-background.aspx"
+    },
+    {
+      "title": "Ruled paper proportions (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/Ruled_paper"
+    },
+    {
+      "title": "Jekyll Blueprint theme: CSS grid backgrounds",
+      "url": "https://csswitch.github.io/jekyll-blueprint-theme/2024/01/22/css-grid-backgrounds/"
+    },
+    {
+      "title": "Blueprint technical design reference",
+      "url": "https://chrislemke.github.io/website_designs/examples/Blueprint_Technical.html"
+    },
+    {
+      "title": "MockFlow sketchy hand-drawn UI kit",
+      "url": "https://mockflow.com/uikits/wireframe/sketchy-handdrawn-ui"
+    },
+    {
+      "title": "daisyUI trends: hand-drawn UI",
+      "url": "https://trends.daisyui.com/trend/hand-drawn-ui/"
+    },
+    {
+      "title": "Speckyboy: hand-drawn CSS/JS snippets",
+      "url": "https://speckyboy.com/css-javascript-snippets-hand-drawn-elements/"
+    },
+    {
+      "title": "Doodle Icons by Khushmeen (CC0)",
+      "url": "https://khushmeen.com/icons.html"
+    },
+    {
+      "title": "Google Fonts repository (OFL/Apache binaries)",
+      "url": "https://github.com/google/fonts"
+    },
+    {
+      "title": "Comic Shanns Mono (MIT)",
+      "url": "https://github.com/jesusmgg/comic-shanns-mono"
+    }
+  ],
+  "limits": [
+    "Element Call / widget / Jitsi iframes only know light/dark: blueprint and chalkboard use dark, the rest light; only the frame is sketched.",
+    "Compound icons are inline React SVGs: recolour + filter only; just send/check are swapped for rough.js drawings via masks.",
+    "User images/video pixels cannot be redrawn: CSS filters (greyscale, cyanotype) and drawn frames only.",
+    "Rough outlines are pre-rendered rough.js SVG masks (deterministic); true per-element random geometry would need runtime JS in a virtualised timeline and is avoided.",
+    "SVG filter wobble needs in-document <defs> (enhancer); without the enhancer the variants degrade to static frames.",
+    "Ruled-line rhythm breaks on media/code tiles; resynced per tile, not perfect.",
+    "Balsamiq publishes no official colours: wireframe palette is an approximation.",
+    "Unreadable variant keeps the theme picker readable as an escape hatch (deliberate exception to the theme).",
+    "Chat-effects canvas and Avatar.ts data-URL avatars keep Element's colours."
+  ],
+  "variants": [
+    {
+      "id": "sketch-designed",
+      "name": "Sketch · Designed",
+      "stage": "level-1",
+      "mode": "light",
+      "seriousness": 8,
+      "hype": 4,
+      "tagline": "Excalidraw discipline: clean islands, hand-drawn content.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#ffffff",
+        "sidebar": "#f8f9fa",
+        "rail": "#f1f0ff",
+        "text": "#1e1e1e",
+        "muted": "#5c5c5c",
+        "accent": "#6965db",
+        "onAccent": "#ffffff",
+        "border": "#1e1e1e",
+        "own": "#e3e2fe",
+        "other": "#f8f9fa",
+        "critical": "#e03131",
+        "success": "#2f9e44"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Assistant (chrome) + Excalifont (content)",
+        "display": "Excalifont",
+        "mono": "Comic Shanns Mono"
+      },
+      "shape": {
+        "radius": "8px islands; rough outline (rough.js grade d, roughness 0.6, 1 pass)",
+        "border": "sketch",
+        "shadow": "Excalidraw island shadow 0 0 1px rgba(0,0,0,.17), 0 7px 14px rgba(0,0,0,.05)",
+        "density": "normal"
+      },
+      "texture": "none",
+      "motion": "Static; hint annotations fade in 200ms; nothing else moves.",
+      "signature": [
+        "Floating white islands (space panel, room-list header, composer) with Excalidraw island shadow",
+        "Excalifont for content, Assistant for dense chrome — the Excalidraw split",
+        "Focus/selection = violet #6965DB box with 4 square transform handles",
+        "Hachure #A5D8FF fill on the selected room, rough.js outlines on bubbles",
+        "Grey Excalifont hint notes with curved hand-drawn arrows in empty states"
+      ],
+      "regions": {
+        "shell": "white canvas #ffffff, islands float with island shadow",
+        "spaces": "vertical island toolbar; selected space = violet selection box with handles",
+        "roomlist": "Excalifont rows on #f8f9fa; selected = #a5d8ff hachure + handles; hover = #f1f0ff",
+        "header": "island bar; room name Excalifont with underline-1 scribble; Assistant topic",
+        "timeline": "rough frame-d outlines on bubbles/cards; group/IRC keep layout, rough card on hover; own = #e3e2fe",
+        "names-avatars": "default avatars = drawn circles in Excalidraw stroke picks on light fills; names Excalifont in pick colours",
+        "composer": "island with rough frame-d border, circled send arrow (send-circled.svg), grey hint 'write something…'",
+        "rightpanel": "island sheet, Assistant headings, rough dividers",
+        "buttons": "primary violet fill #6965db with rough outline; secondary rough outline only; hover #f1f0ff",
+        "inputs": "rough outline, violet selection-box focus",
+        "dialogs": "island card, frame-d outline, soft island shadow",
+        "menus": "clean Assistant menus with 1px rough outline; tooltips dark #1e1e1e pill",
+        "settings": "readable Assistant; active tab underlined with underline-2",
+        "auth": "Excalidraw welcome screen: centred logo, grey Excalifont hints + arrows pointing at fields",
+        "scrollbars": "thin #6965db thumb with rounded rough end",
+        "focus": "Excalidraw selection box (2px #6965db outline + 4 handle squares) on top of a real outline",
+        "badges": "count inside drawn circle, fill #ffc9c9, stroke #e03131",
+        "code": "Comic Shanns Mono on #f8f9fa island, hljs = Excalidraw picks",
+        "iframes": "light; framed as island",
+        "icons": "recolour to #1e1e1e / #5c5c5c; send + check swapped for rough.js drawings",
+        "motion": "hint fade only"
+      },
+      "difficulty": "medium",
+      "enhancer": "Injects filter defs; places hint annotations + arrows anchored to empty states/composer; optional circled latest mention."
+    },
+    {
+      "id": "sketch-wireframe",
+      "name": "Sketch · Wireframe",
+      "stage": "level-2",
+      "mode": "light",
+      "seriousness": 7,
+      "hype": 3,
+      "tagline": "The PM's Balsamiq mockup, but it works.",
+      "palette": {
+        "bg": "#fbfbfb",
+        "surface": "#ffffff",
+        "sidebar": "#efefef",
+        "rail": "#e2e2e2",
+        "text": "#1a1a1a",
+        "muted": "#666666",
+        "accent": "#0a64d6",
+        "onAccent": "#ffffff",
+        "border": "#2b2b2b",
+        "own": "#f2f2f2",
+        "other": "#ffffff",
+        "critical": "#d0021b",
+        "success": "#2f7a25"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Balsamiq Sans",
+        "display": "Balsamiq Sans Bold",
+        "mono": "Comic Shanns Mono"
+      },
+      "shape": {
+        "radius": "pill 999px for buttons, 4px fields",
+        "border": "sketch",
+        "shadow": "none",
+        "density": "normal"
+      },
+      "texture": "none",
+      "motion": "None.",
+      "signature": [
+        "Greyscale UI and images; only link/selection blue #0A64D6 is coloured",
+        "X-crossed placeholder boxes for media, previews and image-less avatars",
+        "2-pass rough frames on every control; Balsamiq pill buttons",
+        "Hatched grey skeletons/loading states",
+        "Yellow #FFF3A0 sticky 'annotation' callouts for toasts and tooltips"
+      ],
+      "regions": {
+        "shell": "flat #fbfbfb with 1px #2b2b2b sketched frame around panels",
+        "spaces": "grey #e2e2e2 column; square wireframe buttons with X placeholder icons for avatars",
+        "roomlist": "wireframe rows separated by sketched rules; selected = solid blue #0a64d6, white text",
+        "header": "wireframe title bar; X-box avatar; Balsamiq Sans bold title",
+        "timeline": "real text, 2-pass rough frames on bubbles; group layout gets a light sketched card on hover",
+        "names-avatars": "avatars greyscale or X-circle; names bold #1a1a1a",
+        "composer": "wireframe text field + pill 'Send' button",
+        "rightpanel": "wireframe panel with sketched header rule",
+        "buttons": "Balsamiq pills (pill-s1/2), 2 strokes; primary = blue fill",
+        "inputs": "rectangle field with sketched border; placeholder grey italic",
+        "dialogs": "wireframe window with title bar and X close",
+        "menus": "wireframe dropdown, sketched separators",
+        "settings": "wireframe tabs, readable",
+        "auth": "login form mock-up: sketched fields on white, logo as X-box",
+        "scrollbars": "grey wireframe thumb, square",
+        "focus": "blue 3px outline + double sketched stroke",
+        "badges": "grey hachure pill with count; mentions blue",
+        "code": "mono on hatched light grey",
+        "iframes": "light",
+        "icons": "recolour #1a1a1a + stroke-thicken 0.6px",
+        "motion": "none"
+      },
+      "difficulty": "medium",
+      "enhancer": "Filter defs only (optional); no overlays."
+    },
+    {
+      "id": "sketch-notebook",
+      "name": "Sketch · Notebook",
+      "stage": "level-3",
+      "mode": "light",
+      "seriousness": 6,
+      "hype": 5,
+      "tagline": "College-ruled paper, blue ballpoint, red margin.",
+      "palette": {
+        "bg": "#fdfbf4",
+        "surface": "#fffdf7",
+        "sidebar": "#f4efe2",
+        "rail": "#e9e1cc",
+        "text": "#22336b",
+        "muted": "#62605a",
+        "accent": "#2a4cad",
+        "onAccent": "#ffffff",
+        "border": "#22336b",
+        "own": "#eef3ff",
+        "other": "#fdfbf4",
+        "critical": "#c62828",
+        "success": "#2e7d32"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Patrick Hand",
+        "display": "Caveat",
+        "mono": "Comic Shanns Mono"
+      },
+      "shape": {
+        "radius": "0 (paper) / irregular on cards",
+        "border": "sketch",
+        "shadow": "paper lift 0 1px 0 rgba(0,0,0,.08), 2px 3px 0 rgba(0,0,0,.06)",
+        "density": "airy"
+      },
+      "texture": "paper + ruled lines #a7c7e7 + red margin #e8817f + grain",
+      "motion": "Page-flip (rotateY 4°, 300ms) on room switch; highlighter swipe on new mentions.",
+      "signature": [
+        "Ruled lines with line-height = 28px rule pitch",
+        "Red double margin line; sender names/timestamps as Caveat margin notes rotated -2°",
+        "Spiral binding down the left edge of the room view",
+        "Room list as coloured index tabs",
+        "Yellow highlighter on mentions, search hits and selection"
+      ],
+      "regions": {
+        "shell": "cream paper #fdfbf4 + grain; spiral binding left of the room view",
+        "spaces": "notebook ring tabs on #e9e1cc",
+        "roomlist": "index tabs with decorative-colour edge stripes; selected tab sticks out 6px",
+        "header": "page heading in Caveat with today's date as margin note",
+        "timeline": "ruled 28px lines, margin at 64px, names/timestamps in margin; bubbles = index cards",
+        "names-avatars": "ballpoint-circled avatars (circle-1); names in pen colours",
+        "composer": "sticky note on the page, placeholder in Caveat",
+        "rightpanel": "loose sheet clipped with a CSS paperclip",
+        "buttons": "ballpoint-outlined boxes, hover = highlighter fill",
+        "inputs": "write-on-the-line: underline only, no box",
+        "dialogs": "torn-out page, zig-zag left edge, tape strip on top",
+        "menus": "index card with ruled lines",
+        "settings": "notebook tabs, readable",
+        "auth": "cardboard notebook cover with label sticker for the form",
+        "scrollbars": "pencil-line thumb #62605a",
+        "focus": "ballpoint circle + 3px #2a4cad outline",
+        "badges": "red-pen circled count",
+        "code": "mono on 5mm graph-paper square grid",
+        "iframes": "light",
+        "icons": "ink #22336b + static rough-1 on chrome icons",
+        "motion": "page flip on room switch"
+      },
+      "difficulty": "hard",
+      "enhancer": "Filter defs; page-flip class on room change; Caveat hint notes in empty rooms."
+    },
+    {
+      "id": "sketch-whiteboard",
+      "name": "Sketch · Whiteboard",
+      "stage": "level-4",
+      "mode": "light",
+      "seriousness": 5,
+      "hype": 6,
+      "tagline": "Dry-erase markers, an aluminium frame and sticky notes.",
+      "palette": {
+        "bg": "#f7f7f5",
+        "surface": "#ffffff",
+        "sidebar": "#eef0f2",
+        "rail": "#c9ced6",
+        "text": "#1b1b1b",
+        "muted": "#5f6368",
+        "accent": "#1f5bd6",
+        "onAccent": "#ffffff",
+        "border": "#1b1b1b",
+        "own": "#e8f0ff",
+        "other": "#ffffff",
+        "critical": "#d62828",
+        "success": "#127a5c"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Kalam",
+        "display": "Permanent Marker",
+        "mono": "Comic Shanns Mono"
+      },
+      "shape": {
+        "radius": "irregular (rough frame-s)",
+        "border": "sketch",
+        "shadow": "sticky-note peel 0 8px 10px -6px rgba(0,0,0,.3)",
+        "density": "normal"
+      },
+      "texture": "enamel sheen + ghost-erase smudges",
+      "motion": "Marker draw-in sweep on hover (clip-path, 250ms).",
+      "signature": [
+        "Brushed aluminium frame with a marker tray under the composer",
+        "Ghost-erased marker smudges on the board",
+        "Senders colour-coded in marker colours (black/blue/red/green/purple/orange)",
+        "Sticky notes for menus, tooltips and the thread panel",
+        "Permanent Marker room name with scribble underline; red magnets pin dialogs"
+      ],
+      "regions": {
+        "shell": "enamel board #f7f7f5 inside 10px aluminium frame; ghost smudges",
+        "spaces": "magnets on the frame rail #c9ced6",
+        "roomlist": "marker list; selected room circled in blue marker (circle-2)",
+        "header": "Permanent Marker title + scribble underline",
+        "timeline": "marker frames in the sender's colour (frame-s grade)",
+        "names-avatars": "marker circles; names in marker colours",
+        "composer": "composer sits on the marker tray ledge with 4 CSS markers",
+        "rightpanel": "column of sticky notes",
+        "buttons": "marker pills, double stroke",
+        "inputs": "marker underline",
+        "dialogs": "white sheet pinned with red magnets",
+        "menus": "sticky notes (#fff176/#ffb3c7/#a5e3ff), rotated ±1°",
+        "settings": "sticky tabs, readable",
+        "auth": "whiteboard with 'LOG IN →' written in marker",
+        "scrollbars": "marker-stroke thumb",
+        "focus": "blue marker circle + 3px #1f5bd6 outline",
+        "badges": "red marker dot with count",
+        "code": "mono on white card",
+        "iframes": "light",
+        "icons": "marker black + static rough-1 on chrome icons",
+        "motion": "draw-in sweep on hover"
+      },
+      "difficulty": "medium",
+      "enhancer": "Filter defs only."
+    },
+    {
+      "id": "sketch-chalkboard",
+      "name": "Sketch · Chalkboard",
+      "stage": "level-4",
+      "mode": "dark",
+      "seriousness": 5,
+      "hype": 6,
+      "tagline": "Chalk on a green slate, dust in the air.",
+      "palette": {
+        "bg": "#2e3b32",
+        "surface": "#34443a",
+        "sidebar": "#27332b",
+        "rail": "#6b4f32",
+        "text": "#f2f2ea",
+        "muted": "#b9c2b5",
+        "accent": "#f7e37a",
+        "onAccent": "#2e3b32",
+        "border": "#e8e8de",
+        "own": "#3a4c41",
+        "other": "#34443a",
+        "critical": "#f4a6b8",
+        "success": "#b8e6a1"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Gaegu",
+        "display": "Cabin Sketch",
+        "mono": "Comic Shanns Mono"
+      },
+      "shape": {
+        "radius": "irregular (rough frame-s), dotted chalk stroke",
+        "border": "sketch",
+        "shadow": "none",
+        "density": "airy"
+      },
+      "texture": "chalk dust (screen, 35%) + eraser arcs",
+      "motion": "Chalk dust settles once on load (opacity 0→.35, 1.2s).",
+      "signature": [
+        "Wooden frame with chalk tray (sticks + felt eraser) under the composer",
+        "Chalk-dust overlay and eraser swipes",
+        "Cabin Sketch headings with chalk-grain mask",
+        "Dotted, semi-opaque chalk strokes for frames",
+        "Unread counts circled in yellow chalk"
+      ],
+      "regions": {
+        "shell": "green slate #2e3b32 in wood frame #6b4f32; chalk dust overlay",
+        "spaces": "chalk-drawn circles on the wood rail",
+        "roomlist": "chalk list; selected = yellow chalk underline",
+        "header": "Cabin Sketch chalk title",
+        "timeline": "chalk text, dotted chalk frames; own = #3a4c41 smear",
+        "names-avatars": "chalk circles in chalk colours",
+        "composer": "chalk tray ledge with chalk sticks + eraser",
+        "rightpanel": "smaller slate panel",
+        "buttons": "chalk boxes, hover = filled smear",
+        "inputs": "chalk underline",
+        "dialogs": "slate with wooden border",
+        "menus": "small slate cards",
+        "settings": "chalk tabs, readable",
+        "auth": "slate with 'Sign in' in Cabin Sketch",
+        "scrollbars": "chalk-stroke thumb",
+        "focus": "yellow chalk circle + 3px #f7e37a outline",
+        "badges": "yellow chalk circle with count",
+        "code": "mono on darker slate #232e27",
+        "iframes": "dark; chalk frame",
+        "icons": "chalk white + static rough-1",
+        "motion": "dust settle on load"
+      },
+      "difficulty": "medium",
+      "enhancer": "Filter defs (sk-chalk, rough-1)."
+    },
+    {
+      "id": "sketch-blueprint",
+      "name": "Sketch · Blueprint",
+      "stage": "level-5",
+      "mode": "dark",
+      "seriousness": 6,
+      "hype": 6,
+      "tagline": "Cyanotype engineering drawing with a title block.",
+      "palette": {
+        "bg": "#123f73",
+        "surface": "#164a85",
+        "sidebar": "#0f3561",
+        "rail": "#0b2b50",
+        "text": "#eaf2ff",
+        "muted": "#a9c1e0",
+        "accent": "#ffd166",
+        "onAccent": "#0b2b50",
+        "border": "#e8f1ff",
+        "own": "#1a5596",
+        "other": "#164a85",
+        "critical": "#ff8a7a",
+        "success": "#7be0b0"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Architects Daughter",
+        "display": "Architects Daughter (uppercase, +0.12em)",
+        "mono": "Comic Shanns Mono"
+      },
+      "shape": {
+        "radius": "0",
+        "border": "hairline",
+        "shadow": "none",
+        "density": "normal"
+      },
+      "texture": "grid (minor 20px rgba(255,255,255,.08), major 100px rgba(255,255,255,.18))",
+      "motion": "None — precise.",
+      "signature": [
+        "Grid paper everywhere",
+        "Room header as engineering title block (ROOM / TOPIC / MEMBERS / SHEET / SCALE)",
+        "Dimension lines showing live panel widths; crop marks on dialogs",
+        "Zero radius, hairlines, dashed hidden lines for disabled",
+        "Avatars as section circles with centre cross; cyanotype images"
+      ],
+      "regions": {
+        "shell": "cyanotype #123f73 with grid; crop marks at corners",
+        "spaces": "numbered sheet column #0b2b50",
+        "roomlist": "parts list table with row numbers; selected = yellow redline box",
+        "header": "engineering title block grid",
+        "timeline": "grid, hairline frames, replies as callout leader lines",
+        "names-avatars": "section circles with cross; images cyanotype-filtered",
+        "composer": "dimensioned input '⟵ message ⟶'",
+        "rightpanel": "'DETAIL A' drawing sheet",
+        "buttons": "stencil rectangles, primary = yellow #ffd166 with navy text",
+        "inputs": "hairline box with dimension ticks",
+        "dialogs": "drawing sheet with crop marks + mini title block",
+        "menus": "parts-list table",
+        "settings": "sheet index tabs, readable",
+        "auth": "cover sheet with title block",
+        "scrollbars": "hairline with tick marks",
+        "focus": "yellow redline + 3px outline",
+        "badges": "revision triangle with count",
+        "code": "mono on grid, hairline frame",
+        "iframes": "dark; sheet frame",
+        "icons": "white hairline icons",
+        "motion": "none"
+      },
+      "difficulty": "hard",
+      "enhancer": "Writes data-sk-w (panel widths) and data-sk-sheet (room index) for dimension lines and the title block."
+    },
+    {
+      "id": "sketch-napkin",
+      "name": "Sketch · Napkin",
+      "stage": "level-6",
+      "mode": "light",
+      "seriousness": 4,
+      "hype": 7,
+      "tagline": "Drawn on the back of a café napkin.",
+      "palette": {
+        "bg": "#f3ece0",
+        "surface": "#f8f3ea",
+        "sidebar": "#ebe2d1",
+        "rail": "#c8a97e",
+        "text": "#22408c",
+        "muted": "#5d6380",
+        "accent": "#22408c",
+        "onAccent": "#ffffff",
+        "border": "#22408c",
+        "own": "#e9e4f2",
+        "other": "#f8f3ea",
+        "critical": "#b3261e",
+        "success": "#33682f"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Gochi Hand",
+        "display": "Shadows Into Light Two",
+        "mono": "Comic Shanns Mono"
+      },
+      "shape": {
+        "radius": "irregular (rough frame-x)",
+        "border": "sketch",
+        "shadow": "none",
+        "density": "airy"
+      },
+      "texture": "napkin fibre emboss + coffee rings",
+      "motion": "Slow wobble (±0.6°, 400ms) on hover.",
+      "signature": [
+        "Embossed quilted napkin texture with dotted emboss border",
+        "Coffee rings on shell and dialogs",
+        "Everything slightly rotated; wobbly frames",
+        "Ballpoint ink bleed",
+        "Composer as a torn napkin scrap"
+      ],
+      "regions": {
+        "shell": "napkin #f3ece0 with fibre emboss; coffee rings; kraft sleeve rail",
+        "spaces": "kraft strip with doodled circles",
+        "roomlist": "ballpoint list; selected room scribbled around (circle-3)",
+        "header": "wobbly heading with arrow",
+        "timeline": "tilted tiles, ink bleed, frame-x outlines",
+        "names-avatars": "doodle circles",
+        "composer": "torn napkin scrap (irregular clip-path)",
+        "rightpanel": "second napkin, rotated",
+        "buttons": "wobbly ovals",
+        "inputs": "ballpoint underline",
+        "dialogs": "napkin with coffee ring",
+        "menus": "napkin corner card",
+        "settings": "napkin tabs, readable-ish",
+        "auth": "napkin sketch of a login form",
+        "scrollbars": "ballpoint thumb",
+        "focus": "ballpoint circle + 3px outline",
+        "badges": "ballpoint scribble with count",
+        "code": "mono on napkin",
+        "iframes": "light",
+        "icons": "ballpoint + static rough-1",
+        "motion": "hover wobble"
+      },
+      "difficulty": "medium",
+      "enhancer": "Filter defs only."
+    },
+    {
+      "id": "sketch-scribble",
+      "name": "Sketch · Scribble",
+      "stage": "level-7",
+      "mode": "light",
+      "seriousness": 2,
+      "hype": 8,
+      "tagline": "Squigglevision: boiling lines, crooked everything.",
+      "palette": {
+        "bg": "#fffdf8",
+        "surface": "#ffffff",
+        "sidebar": "#f5f1e8",
+        "rail": "#ebe5d6",
+        "text": "#2b2b2b",
+        "muted": "#6b6b6b",
+        "accent": "#b83d0b",
+        "onAccent": "#ffffff",
+        "border": "#2b2b2b",
+        "own": "#fff1e0",
+        "other": "#ffffff",
+        "critical": "#c92a2a",
+        "success": "#237032"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Shantell Sans (INFM 100, BNCE 60)",
+        "display": "Rock Salt",
+        "mono": "Comic Shanns Mono"
+      },
+      "shape": {
+        "radius": "irregular (rough frame-x)",
+        "border": "sketch",
+        "shadow": "cross-hatch tile offset 6px",
+        "density": "normal"
+      },
+      "texture": "scrap paper grain",
+      "motion": "Boil 3 frames/0.375s (8fps) on ≤10 chrome elements; 1px hover jitter; all off with reduced motion.",
+      "signature": [
+        "Boiling lines (Squigglevision)",
+        "Crooked layout: panels ±1°, tiles alternate ±1.2°",
+        "Cross-hatch shadows",
+        "Hopping Shantell Sans letters (Bounce axis)",
+        "Scribble-out over redacted messages"
+      ],
+      "regions": {
+        "shell": "scrap paper, panels tilted",
+        "spaces": "boiling circles",
+        "roomlist": "wobbly list, alternating tilt",
+        "header": "Rock Salt title, boiling underline",
+        "timeline": "crooked tiles, boiling borders on hover/selected only",
+        "names-avatars": "boiling circles",
+        "composer": "scribbled box, boiling",
+        "rightpanel": "tilted sheet",
+        "buttons": "boiling pills",
+        "inputs": "wobbly box",
+        "dialogs": "crooked dialog with cross-hatch shadow",
+        "menus": "wobbly card",
+        "settings": "crooked tabs (settings text unrotated)",
+        "auth": "scribbled login",
+        "scrollbars": "wobbly thumb",
+        "focus": "orange crayon + 3px outline",
+        "badges": "boiling circle",
+        "code": "mono, slight tilt",
+        "iframes": "light",
+        "icons": "boil filter",
+        "motion": "boil + jitter"
+      },
+      "difficulty": "hard",
+      "enhancer": "Filter defs incl. boil-0..2; assigns data-sk-boil to ≤10 chrome nodes; pauses when hidden or reduced motion."
+    },
+    {
+      "id": "sketch-unreadable",
+      "name": "Sketch · Unreadable",
+      "stage": "level-8",
+      "mode": "light",
+      "seriousness": 0,
+      "hype": 9,
+      "tagline": "A toddler with crayons redrew Element. Good luck.",
+      "palette": {
+        "bg": "#f4e9d8",
+        "surface": "#fff6e6",
+        "sidebar": "#ffd8a8",
+        "rail": "#a5d8ff",
+        "text": "#7a7a7a",
+        "muted": "#a3a3a3",
+        "accent": "#f03e3e",
+        "onAccent": "#fff6e6",
+        "border": "#f03e3e",
+        "own": "#d3f9d8",
+        "other": "#fff3bf",
+        "critical": "#f03e3e",
+        "success": "#37b24d"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Reenie Beanie / Zeyada / La Belle Aurore (cycling)",
+        "display": "Rock Salt",
+        "mono": "Zeyada"
+      },
+      "shape": {
+        "radius": "irregular (rough frame-x, 6px crayon)",
+        "border": "sketch",
+        "shadow": "offset crayon fill 6px",
+        "density": "airy"
+      },
+      "texture": "construction paper grain + crayon wax",
+      "motion": "Boil + jitter everywhere (static chaos under reduced motion).",
+      "signature": [
+        "Three illegible scripts cycling per tile",
+        "Rotation up to ±4°, words drift off the line",
+        "Fat crayon outlines, fills offset outside the lines",
+        "Stick-figure avatars",
+        "Readable escape hatch for the theme picker"
+      ],
+      "regions": {
+        "shell": "construction paper #f4e9d8 with crayon scrawl background",
+        "spaces": "crayon blobs",
+        "roomlist": "scattered words, random-looking tilt",
+        "header": "huge crayon scrawl",
+        "timeline": "rotated, overlapping, unreadable tiles; text displaced",
+        "names-avatars": "stick figures in crayon colours",
+        "composer": "crayon box (input text kept at normal size so typing works)",
+        "rightpanel": "paper chaos",
+        "buttons": "crayon blobs",
+        "inputs": "crayon outline",
+        "dialogs": "crumpled-looking sheet",
+        "menus": "crayon cards",
+        "settings": "theme tab = escape hatch (plain Excalifont, no filters)",
+        "auth": "crayon, but inputs readable",
+        "scrollbars": "crayon thumb",
+        "focus": "red crayon + real 3px outline kept",
+        "badges": "crayon blob",
+        "code": "Zeyada, tilted",
+        "iframes": "light",
+        "icons": "boil + jitter",
+        "motion": "boil + jitter"
+      },
+      "difficulty": "medium",
+      "enhancer": "Filter defs; marks loader theme picker with data-sk-safe (escape hatch); boil throttle."
+    },
+    {
+      "id": "sketch-daylight",
+      "name": "Sketch · Daylight",
+      "stage": "level-3",
+      "mode": "daylight",
+      "seriousness": 6,
+      "hype": 5,
+      "tagline": "Notebook by day, desk lamp at dusk, chalkboard at night.",
+      "palette": {
+        "bg": "#fdfbf4",
+        "surface": "#fffdf7",
+        "sidebar": "#f4efe2",
+        "rail": "#e9e1cc",
+        "text": "#22336b",
+        "muted": "#62605a",
+        "accent": "#2a4cad",
+        "onAccent": "#ffffff",
+        "border": "#22336b",
+        "own": "#eef3ff",
+        "other": "#fdfbf4",
+        "critical": "#c62828",
+        "success": "#2e7d32"
+      },
+      "phases": {
+        "dawn": {
+          "bg": "#fbf3ec",
+          "surface": "#fffaf5",
+          "sidebar": "#f3e8de",
+          "rail": "#e8dccf",
+          "text": "#2b2f4a",
+          "muted": "#625d6b",
+          "accent": "#3b5bdb",
+          "onAccent": "#ffffff",
+          "border": "#2b2f4a",
+          "own": "#eef1ff",
+          "other": "#fbf3ec",
+          "critical": "#c62828",
+          "success": "#2e7d32"
+        },
+        "day": {
+          "bg": "#fdfbf4",
+          "surface": "#fffdf7",
+          "sidebar": "#f4efe2",
+          "rail": "#e9e1cc",
+          "text": "#22336b",
+          "muted": "#62605a",
+          "accent": "#2a4cad",
+          "onAccent": "#ffffff",
+          "border": "#22336b",
+          "own": "#eef3ff",
+          "other": "#fdfbf4",
+          "critical": "#c62828",
+          "success": "#2e7d32"
+        },
+        "dusk": {
+          "bg": "#f6e7c8",
+          "surface": "#fbf0d9",
+          "sidebar": "#ecd9b2",
+          "rail": "#d9bf8c",
+          "text": "#3a2a17",
+          "muted": "#6e5a3e",
+          "accent": "#9c4a1a",
+          "onAccent": "#ffffff",
+          "border": "#3a2a17",
+          "own": "#f1dcc0",
+          "other": "#f6e7c8",
+          "critical": "#a61e1e",
+          "success": "#3f6b2a"
+        },
+        "night": {
+          "bg": "#2e3b32",
+          "surface": "#34443a",
+          "sidebar": "#27332b",
+          "rail": "#6b4f32",
+          "text": "#f2f2ea",
+          "muted": "#b9c2b5",
+          "accent": "#f7e37a",
+          "onAccent": "#2e3b32",
+          "border": "#e8e8de",
+          "own": "#3a4c41",
+          "other": "#34443a",
+          "critical": "#f4a6b8",
+          "success": "#b8e6a1"
+        }
+      },
+      "fonts": {
+        "ui": "Patrick Hand (dawn/day/dusk) → Gaegu (night)",
+        "display": "Caveat → Cabin Sketch",
+        "mono": "Comic Shanns Mono"
+      },
+      "shape": {
+        "radius": "0 paper / irregular cards",
+        "border": "sketch",
+        "shadow": "paper lift; lamp vignette at dusk",
+        "density": "airy"
+      },
+      "texture": "ruled paper by day, lamp vignette at dusk, chalk dust at night",
+      "motion": "2s colour fade at phase boundaries; page flip by day.",
+      "signature": [
+        "Phase-shifting surface: paper → lamp-lit paper → slate",
+        "Radial desk-lamp vignette from the top left at dusk",
+        "Cool sun streak at dawn",
+        "Font swap to chalk hand at night",
+        "All notebook/chalkboard signature moves in their phases"
+      ],
+      "regions": {
+        "shell": "paper (dawn tint / day / lamp vignette) → slate at night",
+        "spaces": "ring tabs → chalk circles",
+        "roomlist": "index tabs → chalk list",
+        "header": "Caveat heading → Cabin Sketch",
+        "timeline": "ruled lines by day, chalk at night",
+        "names-avatars": "pen circles → chalk circles",
+        "composer": "sticky note → chalk tray",
+        "rightpanel": "loose sheet → small slate",
+        "buttons": "ballpoint boxes → chalk boxes",
+        "inputs": "write-on-line underline",
+        "dialogs": "torn page + tape → slate",
+        "menus": "index card → slate card",
+        "settings": "readable in all phases",
+        "auth": "notebook cover → slate",
+        "scrollbars": "pencil → chalk thumb",
+        "focus": "pen/chalk circle + 3px accent outline",
+        "badges": "red pen → yellow chalk circle",
+        "code": "graph paper → dark slate",
+        "iframes": "light by day, dark at night",
+        "icons": "ink → chalk",
+        "motion": "phase fade 2s"
+      },
+      "difficulty": "hard",
+      "enhancer": "Same as notebook + chalkboard; onPhase toggles the page-flip/dust features.",
+      "schedule": [
+        {
+          "from": "06:00",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "09:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "18:00",
+          "phase": "dusk",
+          "base": "light"
+        },
+        {
+          "from": "21:00",
+          "phase": "night",
+          "base": "dark"
+        }
+      ]
+    }
+  ]
+}

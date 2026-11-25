@@ -1,0 +1,212 @@
+/* sketch-scribble — level 7: boiling scribble (Squigglevision). Crooked layout, cross-hatch shadows,
+   Shantell Sans with Informality/Bounce, Rock Salt headings. Boil runs only while html.sk-boil is set
+   by the enhancer (visible tab, no reduced motion) and only on a handful of chrome elements. */
+
+html[data-tl-theme="sketch-scribble"] {
+    --sk-ink: #2b2b2b;
+    --sk-line: #2b2b2b;
+    --sk-accent: #b83d0b;
+    --sk-focus: #b83d0b;
+    --sk-display: "Rock Salt", "Shantell Sans", cursive;
+    --sk-content: "Shantell Sans", "Gochi Hand", cursive;
+    --sk-frame-1: url("assets/frame-x1.svg");
+    --sk-frame-2: url("assets/frame-x2.svg");
+    --sk-frame-3: url("assets/frame-x3.svg");
+    --sk-pill: url("assets/frame-x3.svg");
+    --sk-circle: url("assets/circle-3.svg");
+    --sk-underline: url("assets/underline-3.svg");
+    --sk-highlight: rgba(255, 169, 77, 0.55);
+    --sk-sel-line: #b83d0b;
+    --sk-avatar-line: #2b2b2b;
+    --sk-btn-line: #2b2b2b;
+    font-variation-settings: "INFM" 100, "BNCE" 60;
+
+    --sk-et-bubble-self-background: #fff1e0;
+    --sk-et-bubble-other-background: #ffffff;
+    --sk-et-state-hover-background: rgba(184, 61, 11, 0.05);
+    --cpd-color-bg-subtle-tertiary: #f5f1e8;
+    --cpd-color-bg-action-tertiary-hovered: rgba(184, 61, 11, 0.08);
+    --cpd-color-bg-action-secondary-hovered: rgba(184, 61, 11, 0.08);
+    --cpd-color-separator-primary: rgba(43, 43, 43, 0.25);
+    --cpd-color-border-interactive-secondary: rgba(43, 43, 43, 0.5);
+    --cpd-color-green-900: #b83d0b;
+    --cpd-color-green-800: #9a330a;
+}
+
+html[data-tl-theme="sketch-scribble"] :is(.mx_RoomHeader_heading, .mx_Dialog_title, .mx_SettingsTab_heading) {
+    font-size: 1.1em;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* --- shell: scrap paper ------------------------------------------------------- */
+html[data-tl-theme="sketch-scribble"] .mx_MatrixChat {
+    background: url("assets/paper-grain.svg") 0 0 / 240px 240px, #fffdf8;
+}
+
+html[data-tl-theme="sketch-scribble"] :is(.mx_LeftPanel, .mx_RoomListPanel, .mx_RoomView, .mx_RoomView_body, .mx_RoomHeader, .mx_MessageComposer, .mx_RightPanel) {
+    background: transparent;
+}
+
+html[data-tl-theme="sketch-scribble"] .mx_SpacePanel {
+    background: #ebe5d6;
+    transform: rotate(0.4deg);
+}
+
+/* crooked panels (visual only; hit areas follow the transform) */
+html[data-tl-theme="sketch-scribble"] .mx_LeftPanel {
+    transform: rotate(-0.8deg) translateY(4px);
+    border-right: 3px solid #2b2b2b;
+    border-radius: 0 20px 6px 0 / 0 200px 40px 0;
+}
+
+html[data-tl-theme="sketch-scribble"] .mx_RoomHeader {
+    transform: rotate(0.6deg);
+    border-bottom: 3px solid #2b2b2b;
+    border-radius: 0 0 40px 10px / 0 0 6px 3px;
+}
+
+/* room tiles alternate tilt */
+html[data-tl-theme="sketch-scribble"] .mx_RoomListItemView {
+    transform: rotate(var(--sk-tilt, -1.2deg));
+}
+
+html[data-tl-theme="sketch-scribble"] :nth-child(even) > .mx_RoomListItemView,
+html[data-tl-theme="sketch-scribble"] .mx_RoomListItemView:nth-child(even) {
+    --sk-tilt: 1deg;
+}
+
+html[data-tl-theme="sketch-scribble"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"]) {
+    background: url("assets/hachure.svg") 0 0 / 26px 26px, transparent;
+    background-color: rgba(255, 169, 77, 0.15);
+}
+
+/* timeline: the message line is crooked (not the whole row, so reactions/threads below stay hittable) */
+html[data-tl-theme="sketch-scribble"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(4n+1) > [class*="_line_"] {
+    transform: rotate(-1.4deg);
+}
+
+html[data-tl-theme="sketch-scribble"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(4n+2) > [class*="_line_"] {
+    transform: rotate(1.1deg) translateX(8px);
+}
+
+html[data-tl-theme="sketch-scribble"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(4n+3) > [class*="_line_"] {
+    transform: rotate(-0.6deg) translateX(-5px);
+}
+
+html[data-tl-theme="sketch-scribble"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"]) {
+    position: relative;
+}
+
+html[data-tl-theme="sketch-scribble"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    pointer-events: none;
+    background: #2b2b2b;
+    -webkit-mask: url("assets/frame-x2.svg") 0 0 / 100% 100% no-repeat;
+    mask: url("assets/frame-x2.svg") 0 0 / 100% 100% no-repeat;
+}
+
+/* redacted messages: scribbled out */
+html[data-tl-theme="sketch-scribble"] :is(.mx_RedactedBody, [class*="_redacted_"]) {
+    background: url("assets/scribble-out.svg") 0 50% / 100% 80% no-repeat;
+}
+
+/* --- cross-hatch shadows instead of box-shadow ------------------------------------- */
+html[data-tl-theme="sketch-scribble"] :is(.mx_Dialog, .mx_MessageComposer_wrapper)::before {
+    content: "";
+    position: absolute;
+    inset: 9px -9px -9px 9px;
+    z-index: 0;
+    pointer-events: none;
+    background: url("assets/crosshatch.svg") 0 0 / 28px 28px;
+    opacity: 0.35;
+    /* keep only the L-shaped part that sticks out below/right of the element */
+    clip-path: polygon(calc(100% - 9px) 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 9px), calc(100% - 9px) calc(100% - 9px));
+}
+
+html[data-tl-theme="sketch-scribble"] .mx_Dialog {
+    background: #ffffff;
+    box-shadow: none;
+    transform: rotate(-0.8deg);
+}
+
+html[data-tl-theme="sketch-scribble"] .mx_MessageComposer_wrapper {
+    background: #ffffff;
+    transform: rotate(-0.5deg) skewX(-1deg);
+}
+
+html[data-tl-theme="sketch-scribble"] :is(.mx_ContextualMenu, [role="menu"]) {
+    background: #ffffff;
+    transform: rotate(1deg);
+    box-shadow: 6px 6px 0 rgba(43, 43, 43, 0.15);
+}
+
+html[data-tl-theme="sketch-scribble"] [role="tooltip"] {
+    background: #2b2b2b;
+    color: #fffdf8;
+    transform: rotate(-1.5deg);
+}
+
+/* code */
+html[data-tl-theme="sketch-scribble"] :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) {
+    background: #fbf8f0;
+    border-color: transparent;
+    transform: rotate(-0.4deg);
+}
+
+html[data-tl-theme="sketch-scribble"] [class*="_notificationBadge_"] {
+    --cpd-color-bg-critical-primary: #c92a2a;
+}
+
+/* --- boiling lines (Squigglevision): 3 frames, 8 fps, max ~10 elements ------------- */
+@keyframes sk-boil {
+    0% { filter: url(#sk-boil-0); }
+    33% { filter: url(#sk-boil-1); }
+    66% { filter: url(#sk-boil-2); }
+}
+
+@keyframes sk-jitter {
+    0% { translate: 0 0; }
+    50% { translate: 1px -1px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html[data-tl-theme="sketch-scribble"].sk-boil :is(.mx_Dialog, .mx_MessageComposer_wrapper, .mx_ContextualMenu, [role="menu"])::after,
+    html[data-tl-theme="sketch-scribble"].sk-boil :is(.mx_RoomHeader, .mx_SpacePanel, .mx_MessageComposer_actions) svg,
+    html[data-tl-theme="sketch-scribble"].sk-boil :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"])::after,
+    html[data-tl-theme="sketch-scribble"].sk-boil :is(button[class*="_button_"][data-kind], .mx_AccessibleButton_kind_primary, .mx_AccessibleButton_kind_secondary):hover::after {
+        animation: sk-boil 0.375s steps(1) infinite;
+    }
+
+    html[data-tl-theme="sketch-scribble"].sk-boil .mx_RoomListItemView:hover {
+        animation: sk-jitter 0.2s steps(1) infinite;
+    }
+}
+
+/* static wobble on chrome icons when not boiling */
+html[data-tl-theme="sketch-scribble"]:not(.sk-boil) :is(.mx_RoomHeader, .mx_SpacePanel, .mx_MessageComposer_actions) svg {
+    filter: url(#sk-rough-1);
+}
+
+/* settings/dialog text itself stays unrotated inside the crooked dialog: keep the loader UI straight */
+html[data-tl-theme="sketch-scribble"] .mx_Dialog:has(.tl-ui) {
+    transform: none;
+}
+
+/* auth */
+html[data-tl-theme="sketch-scribble"] .mx_AuthPage {
+    background: url("assets/paper-grain.svg") 0 0 / 240px 240px, #fffdf8;
+}
+
+html[data-tl-theme="sketch-scribble"] .mx_AuthPage_modal {
+    background: #ffffff;
+    transform: rotate(-1deg);
+    box-shadow: 8px 8px 0 rgba(43, 43, 43, 0.15);
+}
+
+/* crooked tiles overlap a little: the one under the pointer comes to the front */
+html[data-tl-theme="sketch-scribble"] .mx_RoomView_MessageList > .mx_EventTile:is(:hover, :focus-within) {
+    z-index: 5;
+}

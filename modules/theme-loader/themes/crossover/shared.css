@@ -1,0 +1,52 @@
+/* ==========================================================================
+   crossover — shared rules for the three mashups. Each variant file is
+   self-contained (tokens + chrome); this file only carries the floors.
+   Style guide: docs/styleguides/crossover.md
+   ========================================================================== */
+
+/* never let scrollIntoView scroll the app shell (frames must stay put) */
+html[data-tl-family="crossover"] .mx_MatrixChat_wrapper {
+  overflow: clip;
+}
+
+/* Loader UI stays usable in every crossover */
+html[data-tl-family="crossover"] .tl-ui,
+html[data-tl-family="crossover"] .tl-ui * {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Reduced motion: no zoom rectangles, roll-ups, wobbles or chirps */
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="crossover"] *,
+  html[data-tl-family="crossover"] *::before,
+  html[data-tl-family="crossover"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Forced colours: drop textures and decorations, keep structure */
+@media (forced-colors: active) {
+  html[data-tl-family="crossover"] * {
+    background-image: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* Other datanauten modules (production): ~8 module buttons join the room header. When the room view is narrow
+   (teams-welcome guide docked, small window) drop the decorative header extras that need room: the E16 gems of
+   x-kde-e16 (they covered the last buttons) and the sketched "Chat Shared +" tab strip of x-teams-sketch. */
+html[data-tl-theme="x-kde-e16"].twl-docked .mx_RoomHeader::after { display: none; }
+html[data-tl-theme="x-kde-e16"].twl-docked .mx_RoomHeader { padding-right: 16px; }
+html[data-tl-theme="x-teams-sketch"].twl-docked .mx_RoomHeader .mx_RoomHeader_infoWrapper::after { display: none; }
+@media (max-width: 1100px) {
+  html[data-tl-theme="x-kde-e16"] .mx_RoomHeader::after { display: none; }
+  html[data-tl-theme="x-kde-e16"] .mx_RoomHeader { padding-right: 16px; }
+  html[data-tl-theme="x-teams-sketch"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after { display: none; }
+}
+
+/* tooltips: floating-ui places them at left 0 and shifts them 5 px in from the edge, so a tooltip as wide as the
+   viewport (this family's larger tooltip font, e.g. the composer's "not end-to-end encrypted") overflowed the page
+   by 5 px at 320 px (VP-04). Cap the width to the viewport minus that padding. */
+html[data-tl-family="crossover"] [class*="_tooltip_"] { box-sizing: border-box; max-width: min(580px, calc(100vw - 10px)) !important; }

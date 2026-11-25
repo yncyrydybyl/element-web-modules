@@ -1,0 +1,14 @@
+.state/
+node_modules/
+recordings/raw/
+.playwright-mcp/
+recordings/screens/**
+!recordings/screens/*/
+!recordings/screens/*/hero.png
+recordings/walkthroughs/*.webm
+!recordings/screens/*/thumb.webp
+recordings/timelapse/*.webm
+recordings/showcase/work/
+recordings/prod-qa/
+mobile/dist/
+recordings/tests/

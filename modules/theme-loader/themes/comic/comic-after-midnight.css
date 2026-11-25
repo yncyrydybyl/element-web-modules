@@ -1,0 +1,401 @@
+/* comic-after-midnight: exciting / dark. Comic Sans rave in the blacklight room: drifting starfield,
+   neon WordArt, glowing own messages and buttons, neon grid floor. Text on >= 82% opaque dark bands (AA). */
+
+html[data-tl-theme="comic-after-midnight"],
+html[data-tl-theme="comic-after-midnight"] body,
+html[data-tl-theme="comic-after-midnight"] [class*="cpd-theme-"] {
+  --cpd-color-theme-bg: #07001a;
+  --cpd-color-bg-canvas-default: #07001a;
+  --cpd-color-bg-canvas-default-level-1: #140033;
+  --cpd-color-bg-subtle-secondary: #0b0024;
+  --cpd-color-bg-subtle-primary: #140033;
+  --cpd-color-bg-subtle-tertiary: #1d0a40;
+  --cpd-color-text-primary: #f2eeff;
+  --cpd-color-text-secondary: #b8a8e8;
+  --cpd-color-text-disabled: #6e5fa0;
+  --cpd-color-text-action-accent: #ff6ff5;
+  --cpd-color-text-action-primary: #f2eeff;
+  --cpd-color-text-link-external: #39fff5;
+  --cpd-color-text-on-solid-primary: #000000;
+  --cpd-color-icon-primary: #f2eeff;
+  --cpd-color-icon-secondary: #b8a8e8;
+  --cpd-color-icon-tertiary: #8f7fc6;
+  --cpd-color-icon-accent-primary: #ff3cf0;
+  --cpd-color-icon-on-solid-primary: #000000;
+  --cpd-color-border-interactive-primary: #5b2bbf;
+  --cpd-color-border-interactive-secondary: #3d1d85;
+  --cpd-color-border-interactive-hovered: #ff3cf0;
+  --cpd-color-border-focused: #fff34d;
+  --cpd-color-separator-primary: #3d1d85;
+  --cpd-color-separator-secondary: #2a1460;
+  --cpd-color-bg-action-primary-rest: #ff3cf0;
+  --cpd-color-bg-action-primary-hovered: #ff70f4;
+  --cpd-color-bg-action-primary-pressed: #d01fc4;
+  --cpd-color-bg-action-secondary-rest: transparent;
+  --cpd-color-bg-action-secondary-hovered: #2a0050;
+  --cpd-color-bg-action-tertiary-hovered: #2a0050;
+  --cpd-color-bg-action-tertiary-selected: #3a0870;
+  --cpd-color-bg-accent-rest: #ff3cf0;
+  --cpd-color-bg-accent-hovered: #ff70f4;
+  --cpd-color-bg-critical-primary: #ff4d6d;
+  --cpd-color-text-critical-primary: #ff7a92;
+  --cpd-color-text-success-primary: #7dff5a;
+  --cpd-color-bg-decorative-1: #5a0d55;
+  --cpd-color-bg-decorative-2: #0b4a4a;
+  --cpd-color-bg-decorative-3: #4a4a0b;
+  --cpd-color-bg-decorative-4: #1f4a0b;
+  --cpd-color-bg-decorative-5: #4a2a05;
+  --cpd-color-bg-decorative-6: #2e1f66;
+  --cpd-color-text-decorative-1: #ff3cf0;
+  --cpd-color-text-decorative-2: #39fff5;
+  --cpd-color-text-decorative-3: #fff34d;
+  --cpd-color-text-decorative-4: #7dff5a;
+  --cpd-color-text-decorative-5: #ff9f1c;
+  --cpd-color-text-decorative-6: #a78bfa;
+  --cpd-color-alpha-gray-300: rgba(184, 168, 232, 0.12);
+  --cpd-color-gray-400: #2a1460;
+  --ewt-glow-m: 0 0 2px #ff3cf0, 0 0 8px #ff3cf0;
+  --ewt-glow-c: 0 0 2px #39fff5, 0 0 10px #39fff5;
+  --MBody-border-radius: 10px;
+  scrollbar-color: #ff3cf0 transparent;
+  scrollbar-width: thin;
+}
+
+/* ------------------------------------------------------------------ shell: two starfield layers */
+html[data-tl-theme="comic-after-midnight"] .mx_MatrixChat_wrapper { background: #07001a; }
+html[data-tl-theme="comic-after-midnight"] .mx_MatrixChat {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #07001a url("assets/tile-stars-deep.png") repeat;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_MatrixChat::before,
+html[data-tl-theme="comic-after-midnight"] .mx_MatrixChat::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -256px;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("assets/tile-stars-deep.png") repeat;
+  will-change: transform;
+  animation: ewt-am-drift 120s linear infinite;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_MatrixChat::after {
+  background: url("assets/tile-stars.png") repeat;
+  background-size: 384px 384px;
+  opacity: 0.55;
+  top: -384px;
+  animation: ewt-am-drift2 200s linear infinite;
+}
+@keyframes ewt-am-drift { to { transform: translateY(256px); } }
+@keyframes ewt-am-drift2 { to { transform: translateY(384px); } }
+
+/* panels are translucent over the stars */
+html[data-tl-theme="comic-after-midnight"] .mx_SpacePanel { background: rgba(0, 0, 0, 0.7); }
+html[data-tl-theme="comic-after-midnight"] .mx_LeftPanel_outerWrapper,
+html[data-tl-theme="comic-after-midnight"] .mx_LeftPanel {
+  background: rgba(11, 0, 36, 0.86);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_LeftPanel_outerWrapper { border-right: 1px solid #3d1d85; }
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListPanel { background: transparent; }
+html[data-tl-theme="comic-after-midnight"] .mx_RoomView,
+html[data-tl-theme="comic-after-midnight"] .mx_RoomView_wrapper,
+html[data-tl-theme="comic-after-midnight"] .mx_MainSplit,
+html[data-tl-theme="comic-after-midnight"] .mx_RoomView_body {
+  background: transparent;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_RoomView_timeline { background: rgba(7, 0, 26, 0.84); }
+html[data-tl-theme="comic-after-midnight"] .mx_RightPanel { background: rgba(20, 0, 51, 0.92); }
+
+/* ------------------------------------------------------------------ spaces */
+html[data-tl-theme="comic-after-midnight"] .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px #ff3cf0, var(--ewt-glow-m);
+}
+
+/* ------------------------------------------------------------------ room list + neon floor */
+html[data-tl-theme="comic-after-midnight"] .mx_LeftPanel { position: relative; }
+html[data-tl-theme="comic-after-midnight"] .mx_LeftPanel::after {
+  content: "";
+  position: absolute;
+  left: -30%;
+  right: -30%;
+  bottom: -20px;
+  height: 180px;
+  pointer-events: none;
+  background: url("assets/tile-neongrid.png") repeat;
+  background-size: 48px 48px;
+  transform: perspective(160px) rotateX(58deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(0deg, #000 30%, transparent);
+  mask-image: linear-gradient(0deg, #000 30%, transparent);
+  opacity: 0.75;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListPanel header h1 {
+  font-weight: 700;
+  color: #39fff5;
+  text-shadow: var(--ewt-glow-c);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListPanel [role="listbox"][aria-label] > button[role="option"] {
+  background: transparent;
+  border: 1px solid #5b2bbf;
+  color: #f2eeff;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListPanel [role="listbox"][aria-label] > button[role="option"][aria-selected="true"] {
+  background: #ff3cf0;
+  color: #000000;
+  border-color: #ff3cf0;
+  box-shadow: var(--ewt-glow-m);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListPanel [role="search"] button {
+  background: rgba(20, 0, 51, 0.9);
+  border: 1px solid #5b2bbf;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListItemView { border-radius: 10px; }
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListItemView_selected,
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListItemView[aria-selected="true"] {
+  background: rgba(58, 8, 112, 0.9);
+  box-shadow: inset 0 0 0 1px #ff3cf0, 0 0 10px rgba(255, 60, 240, 0.55);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListItemView_selected [class*="_roomName_"] {
+  color: #ffffff;
+  text-shadow: 0 0 6px #ff3cf0;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_RoomListItemView .mx_BaseAvatar {
+  box-shadow: 0 0 0 1px rgba(57, 255, 245, 0.6);
+}
+
+/* ------------------------------------------------------------------ header: neon WordArt */
+html[data-tl-theme="comic-after-midnight"] .mx_RoomHeader {
+  background: rgba(7, 0, 26, 0.9);
+  border-bottom: 1px solid #3d1d85;
+  box-shadow: 0 1px 0 rgba(255, 60, 240, 0.35);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_RoomHeader_heading {
+  font-family: "Chewy", var(--ewt-comic);
+  font-weight: 400;
+  font-size: 1.6em;
+  letter-spacing: 0.03em;
+  color: #ffe0fd;
+  text-shadow: 0 0 2px #ffffff, 0 0 6px #ff3cf0, 0 0 14px #ff3cf0, 0 0 26px #39fff5;
+}
+html[data-tl-theme="comic-after-midnight"].ewt-roomchange .mx_RoomHeader_heading {
+  animation: ewt-am-flicker 1.1s linear 1;
+}
+@keyframes ewt-am-flicker {
+  0%, 18%, 22%, 50%, 54%, 100% { opacity: 1; }
+  20%, 52% { opacity: 0.45; }
+}
+
+/* ------------------------------------------------------------------ timeline */
+html[data-tl-theme="comic-after-midnight"] .mx_TimelineSeparator > hr {
+  height: 2px;
+  border: 0;
+  border-radius: 2px;
+  background: #ff3cf0;
+  box-shadow: 0 0 4px #ff3cf0, 0 0 10px #ff3cf0;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_TimelineSeparator > hr:last-child {
+  background: #39fff5;
+  box-shadow: 0 0 4px #39fff5, 0 0 10px #39fff5;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_TimelineSeparator h2 {
+  font-family: "Chewy", var(--ewt-comic);
+  color: #fff34d;
+  text-shadow: 0 0 8px rgba(255, 243, 77, 0.7);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile[class*="_stateOwnEvent_"] > .mx_EventTile_line {
+  background: rgba(42, 0, 80, 0.85);
+  box-shadow: inset 2px 0 0 #39fff5, -2px 0 10px rgba(57, 255, 245, 0.35);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  background: rgba(60, 55, 0, 0.6);
+  box-shadow: inset 2px 0 0 #fff34d, -2px 0 12px rgba(255, 243, 77, 0.45);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile:hover > .mx_EventTile_line,
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile[class*="_stateSelected_"] > .mx_EventTile_line {
+  background-color: rgba(42, 20, 96, 0.7);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_DisambiguatedProfile_displayName,
+html[data-tl-theme="comic-after-midnight"] .mx_DisambiguatedProfile > span:first-child {
+  font-weight: 700;
+  text-shadow: 0 0 6px currentColor;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile .mx_BaseAvatar {
+  box-shadow: 0 0 0 2px #07001a, 0 0 0 3px #ff3cf0, 0 0 8px #ff3cf0;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile_body a { color: #39fff5; }
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile_body pre,
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile_pre_container {
+  background: #000000;
+  border: 1px solid #5b2bbf;
+  box-shadow: 0 0 10px rgba(91, 43, 191, 0.6);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile_body :not(pre) > code {
+  background: #1d0a40;
+  color: #fff34d;
+}
+html[data-tl-theme="comic-after-midnight"] .hljs { background: transparent; color: #f2eeff; }
+html[data-tl-theme="comic-after-midnight"] .hljs-keyword,
+html[data-tl-theme="comic-after-midnight"] .hljs-built_in { color: #ff6ff5; }
+html[data-tl-theme="comic-after-midnight"] .hljs-string { color: #39fff5; }
+html[data-tl-theme="comic-after-midnight"] .hljs-number,
+html[data-tl-theme="comic-after-midnight"] .hljs-literal { color: #fff34d; }
+html[data-tl-theme="comic-after-midnight"] .hljs-comment { color: #8f7fc6; font-style: italic; }
+html[data-tl-theme="comic-after-midnight"] .hljs-title,
+html[data-tl-theme="comic-after-midnight"] .hljs-function { color: #7dff5a; }
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile_body blockquote { border-left-color: #ff3cf0; }
+html[data-tl-theme="comic-after-midnight"] .mx_NewRoomIntro > h2 {
+  font-family: "Chewy", var(--ewt-comic);
+  font-weight: 400;
+  font-size: 2.2em;
+  color: #ffe0fd;
+  text-shadow: 0 0 2px #fff, 0 0 8px #ff3cf0, 0 0 18px #ff3cf0, 0 0 30px #39fff5;
+}
+/* bubbles */
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line {
+  background: rgba(18, 0, 46, 0.92);
+  border: 1px solid #3d1d85;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] .mx_EventTile_line {
+  background: rgba(42, 0, 80, 0.92);
+  border-color: #39fff5;
+  box-shadow: var(--ewt-glow-c);
+}
+
+/* ------------------------------------------------------------------ composer */
+html[data-tl-theme="comic-after-midnight"] .mx_MessageComposer { background: rgba(7, 0, 26, 0.92); }
+html[data-tl-theme="comic-after-midnight"] .mx_MessageComposer_wrapper { border-top-color: #3d1d85; }
+html[data-tl-theme="comic-after-midnight"] .mx_SendMessageComposer {
+  background: #140033;
+  border: 1px solid #ff3cf0;
+  border-radius: 12px;
+  padding: 6px 10px;
+  box-shadow: 0 0 8px rgba(255, 60, 240, 0.45);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_SendMessageComposer:focus-within {
+  border-color: #39fff5;
+  box-shadow: var(--ewt-glow-c);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_BasicMessageComposer_input {
+  --placeholder: "Say something to the dancefloor…" !important;
+}
+
+/* ------------------------------------------------------------------ buttons, inputs */
+html[data-tl-theme="comic-after-midnight"] button[class*="_button_"][data-kind="primary"],
+html[data-tl-theme="comic-after-midnight"] .mx_AccessibleButton_kind_primary {
+  background: #ff3cf0;
+  color: #000000;
+  box-shadow: var(--ewt-glow-m);
+  font-weight: 700;
+}
+html[data-tl-theme="comic-after-midnight"] button[class*="_button_"][data-kind="secondary"],
+html[data-tl-theme="comic-after-midnight"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-theme="comic-after-midnight"] .mx_AccessibleButton_kind_secondary {
+  background: transparent;
+  color: #ffd6fb;
+  border: 1px solid #ff3cf0;
+  box-shadow: 0 0 6px rgba(255, 60, 240, 0.5), inset 0 0 6px rgba(255, 60, 240, 0.25);
+}
+html[data-tl-theme="comic-after-midnight"] button[class*="_button_"][data-kind="secondary"]:hover,
+html[data-tl-theme="comic-after-midnight"] .mx_AccessibleButton_kind_primary_outline:hover {
+  background: #ff3cf0;
+  color: #000000;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_Field,
+html[data-tl-theme="comic-after-midnight"] input[class*="_control_"],
+html[data-tl-theme="comic-after-midnight"] textarea[class*="_control_"] {
+  background: #12002e;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_Field:focus-within,
+html[data-tl-theme="comic-after-midnight"] input[class*="_control_"]:focus {
+  box-shadow: var(--ewt-glow-c);
+}
+
+/* ------------------------------------------------------------------ dialogs, menus, tooltips */
+html[data-tl-theme="comic-after-midnight"] .mx_Dialog {
+  background: #140033;
+  border: 1px solid #ff3cf0;
+  box-shadow: 0 0 18px rgba(255, 60, 240, 0.45), 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_Dialog_title {
+  font-family: "Chewy", var(--ewt-comic);
+  font-weight: 400;
+  font-size: 1.6em;
+  color: #ffe0fd;
+  text-shadow: 0 0 6px #ff3cf0, 0 0 16px #ff3cf0;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_ContextualMenu,
+html[data-tl-theme="comic-after-midnight"] [role="menu"] {
+  background: #140033;
+  border: 1px solid #5b2bbf;
+  box-shadow: 0 0 12px rgba(91, 43, 191, 0.7);
+}
+html[data-tl-theme="comic-after-midnight"] [role="tooltip"] {
+  background: #000000;
+  color: #f2eeff;
+  border: 1px solid #39fff5;
+  box-shadow: var(--ewt-glow-c);
+  --cpd-color-text-primary: #f2eeff;
+  --cpd-color-text-on-solid-primary: #f2eeff;
+  --cpd-color-bg-action-primary-rest: #000000;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_TabbedView_tabLabel_active {
+  background: #2a0050;
+  box-shadow: inset 3px 0 0 #ff3cf0;
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------------ badges */
+html[data-tl-theme="comic-after-midnight"] [class*="_notificationBadge_"],
+html[data-tl-theme="comic-after-midnight"] .mx_NotificationBadge_count {
+  background: #ff3cf0;
+  color: #000000;
+  font-weight: 700;
+  box-shadow: var(--ewt-glow-m);
+}
+
+/* ------------------------------------------------------------------ auth */
+html[data-tl-theme="comic-after-midnight"] .mx_AuthPage {
+  background: #07001a url("assets/tile-stars-deep.png") repeat !important;
+}
+html[data-tl-theme="comic-after-midnight"] .mx_AuthPage_modal {
+  background: rgba(20, 0, 51, 0.94);
+  border: 1px solid #ff3cf0;
+  box-shadow: 0 0 24px rgba(255, 60, 240, 0.5);
+}
+html[data-tl-theme="comic-after-midnight"] .mx_AuthBody h1 {
+  font-family: "Chewy", var(--ewt-comic);
+  font-weight: 400;
+  color: #ffe0fd;
+  text-shadow: 0 0 6px #ff3cf0, 0 0 16px #ff3cf0, 0 0 28px #39fff5;
+}
+
+/* ------------------------------------------------------------------ iframes, focus */
+html[data-tl-theme="comic-after-midnight"] .mx_AppTile,
+html[data-tl-theme="comic-after-midnight"] .mx_CallView {
+  border: 1px solid #ff3cf0;
+  box-shadow: var(--ewt-glow-m);
+}
+html[data-tl-theme="comic-after-midnight"] :focus-visible {
+  outline: 2px solid #fff34d;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(255, 243, 77, 0.8);
+}
+
+/* sparkle trail (enhancer) */
+html[data-tl-theme="comic-after-midnight"] .ewt-sparkle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  background: url("assets/sparkle.gif") center / 16px 16px no-repeat;
+  animation: ewt-am-sparkle 0.9s ease-in forwards;
+}
+@keyframes ewt-am-sparkle {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(24px) scale(0.4); }
+}

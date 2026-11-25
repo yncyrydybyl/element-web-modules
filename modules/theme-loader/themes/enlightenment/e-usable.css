@@ -1,0 +1,112 @@
+/* e-usable — the E look tuned for long chat days.
+ * E-current greys, brighter text, visible borders, solid 2px focus rings (+ subtle glow), one glossy header,
+ * no pulses, no text glow, no textures behind text, 36–40px hit targets.
+ */
+html[data-tl-theme="e-usable"] {
+  --e-wall: #1C1C1C;
+  --e-gap: 0px;
+  --e-win-border: 0 0 0 1px #101010;
+
+  --e-bar-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(180deg, #3D3D3D 0%, #2F2F2F 50%, #2A2A2A 51%, #262626 100%);
+  --e-bar-fg: #FFFFFF;
+  --e-bar-line: #101010;
+
+  --e-shelf-bg: #1C1C1C;
+  --e-list-bg: #333333;
+  --e-list-fg: #EDEDED;
+  --e-list-sep: transparent;
+  --e-hover-bg: #3A3A3A;
+  --e-sel-bg: #454545;
+  --e-sel-fg: #FFFFFF;
+  --e-sel-bar: #4DA6FF;
+  --e-sel-bar-w: 3px;
+  --e-sel-bar-glow: 0 0 6px rgba(77, 166, 255, 0.5);
+  --e-row-radius: 4px;
+
+  --e-well-bg: #262626;
+  --e-well-border: #7A7A7A;
+  --e-well-radius: 4px;
+
+  --e-btn-bg: #4A4A4A;
+  --e-btn-bg-hover: #555555;
+  --e-btn-bg-active: #3E3E3E;
+  --e-btn-fg: #F2F2F2;
+  --e-btn-border: 1px solid #7A7A7A;
+  --e-btn-radius: 4px;
+  --e-pri-bg: #4DA6FF;
+  --e-pri-bg-hover: #6BB5FF;
+  --e-pri-fg: #0A0A0A;
+
+  --e-focus: #4DA6FF;
+  --e-focus-glow: 0 0 0 4px rgba(77, 166, 255, 0.25);
+
+  --e-menu-bg: #333333;
+  --e-menu-border: #6A6A6A;
+  --e-menu-sel: rgba(77, 166, 255, 0.22);
+  --e-menu-sel-fg: #FFFFFF;
+  --e-menu-radius: 4px;
+  --e-tip-bg: #1C1C1C;
+  --e-tip-fg: #EDEDED;
+  --e-tip-border: #6A6A6A;
+
+  --e-scroll-thumb: #6A6A6A;
+  --e-scroll-thumb-hover: #4DA6FF;
+  --e-scroll-track: transparent;
+  --e-scroll-w: 10px;
+
+  --e-bubble-own: #283445;
+  --e-bubble-other: #353535;
+  --e-highlight-bar: #FF9933;
+  --e-readmarker: #4DA6FF;
+
+  --e-code-bg: #1F1F1F;
+  --e-code-fg: #EDEDED;
+  --e-code-border: #555555;
+  --e-hl-keyword: #FFA8A8;
+  --e-hl-string: #5EF0B0;
+  --e-hl-comment: #6FC2C2;
+  --e-hl-number: #E6E65C;
+  --e-hl-class: #9CC4EE;
+  --e-hl-function: #C49BFF;
+  --e-hl-tag: #FFB060;
+  --e-hl-attr: #FFCC66;
+
+  --e-badge-bg: #555555;
+  --e-badge-fg: #EDEDED;
+  --e-badge-hl-bg: #FF6B5E;
+  --e-badge-hl-fg: #1C1C1C;
+
+  --e-dialog-anim: none;
+  --e-dialog-bg: #383838;
+  --e-backdrop: rgba(0, 0, 0, 0.6);
+}
+
+/* bigger hit targets, readable line height */
+html[data-tl-theme="e-usable"] .mx_RoomListItemView {
+  font-size: 14px;
+}
+html[data-tl-theme="e-usable"] .mx_EventTile_body {
+  line-height: 1.5;
+}
+html[data-tl-theme="e-usable"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="e-usable"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-theme="e-usable"] .mx_Dialog_buttons button {
+  min-height: 36px;
+}
+html[data-tl-theme="e-usable"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: transparent;
+  box-shadow: inset 3px 0 0 #4DA6FF, 0 0 8px rgba(77, 166, 255, 0.3);
+}
+html[data-tl-theme="e-usable"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  background: rgba(255, 153, 51, 0.08);
+}
+/* cards and right-panel sections get visible borders */
+html[data-tl-theme="e-usable"] .mx_RightPanel [class*="_header_"]:first-child {
+  border-bottom: 1px solid #101010;
+}
+html[data-tl-theme="e-usable"] .mx_TimelineSeparator hr {
+  border-color: #555555;
+  background: #555555;
+}

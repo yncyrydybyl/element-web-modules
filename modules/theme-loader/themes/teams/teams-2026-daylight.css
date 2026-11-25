@@ -1,0 +1,49 @@
+/* teams-2026-daylight — 2026 light by day, 2026 dark at night (rules in the light/dark files),
+   dawn: cool lavender neutrals, dusk: amber "night light" neutrals. */
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="dawn"] {
+  --tm-titlebar: #e9e9f3;
+  --tm-rail: #e9e9f3;
+  --tm-list: #f3f3f9;
+  --tm-canvas: #fcfcff;
+  --tm-hover: #f0f0f8;
+  --tm-row-hover: #e6e6f1;
+  --tm-bubble-other: #f1f1f8;
+  --tm-stroke2: #e1e1ec;
+  --tm-auth-bg: linear-gradient(160deg, #dce0fa 0%, #fcfcff 60%, #fde7d9 100%);
+}
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="dusk"] {
+  --tm-titlebar: #efe6da;
+  --tm-rail: #efe6da;
+  --tm-list: #f8f1e7;
+  --tm-canvas: #fffbf5;
+  --tm-surface: #fffdf9;
+  --tm-surface2: #fbf5ec;
+  --tm-hover: #f6eee3;
+  --tm-row-hover: #efe5d8;
+  --tm-row-selected: #fffdf9;
+  --tm-pressed: #eadfd0;
+  --tm-bubble-other: #f6efe6;
+  --tm-bubble-own: #ece7f6;
+  --tm-code-bg: #f6efe6;
+  --tm-search-bg: #fffdf9;
+  --tm-search-border: #e6dccf;
+  --tm-fg1: #2a2522;
+  --tm-fg2: #463f39;
+  --tm-fg3: #635c55;
+  --tm-stroke1: #d6cabb;
+  --tm-stroke2: #e6dccf;
+  --tm-auth-bg: linear-gradient(160deg, #fde3c8 0%, #fffbf5 50%, #e8e3f6 100%);
+}
+/* sun / moon glyph next to the title */
+html[data-tl-theme="teams-2026-daylight"] { --tm-title-text: "Microsoft Teams  \2600"; }
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="dawn"] { --tm-title-text: "Microsoft Teams  \1F305"; }
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="dusk"] { --tm-title-text: "Microsoft Teams  \1F307"; }
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="night"] { --tm-title-text: "Microsoft Teams  \263E"; }
+/* phase changes fade (loader sets data-tl-phase-fading for ~2 s) */
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase-fading] .mx_MatrixChat,
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase-fading] .mx_SpacePanel,
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase-fading] .mx_RoomListPanel,
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase-fading] .mx_RoomView,
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase-fading] .mx_EventTile_line {
+  transition: background-color 2s, color 2s;
+}

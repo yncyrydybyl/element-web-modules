@@ -1,0 +1,139 @@
+/* teams-classic-2020 — Northstar-era Teams: #464775 top bar, #33344A rail, brand #6264A7,
+   grey canvas with white cards (radius 3), dense. */
+html[data-tl-theme="teams-classic-2020"] {
+  --tm-b60: #464775; --tm-b70: #585a96; --tm-b80: #6264a7; --tm-b90: #8b8cc7;
+  --tm-b100: #a6a7dc; --tm-b110: #bdbde6; --tm-b120: #bdbde6; --tm-b140: #e2e2f6;
+  --tm-b150: #e5e5f1; --tm-b160: #f4f4fc;
+  --tm-brand: #6264a7;
+  --tm-brand-hover: #585a96;
+  --tm-brand-pressed: #464775;
+  --tm-brand-fg: #6264a7;
+  --tm-brand-icon: #6264a7;
+  --tm-brand-tint: #e5e5f1;
+  --tm-logo: url("assets/teams-logo-2019.svg");
+  --tm-title-text: "";
+  --tm-copilot: none;
+
+  --tm-titlebar: #464775;
+  --tm-titlebar-fg: #ffffff;
+  --tm-search-bg: #f0f0f0;
+  --tm-search-border: transparent;
+  --tm-search-fg: #605e5c;
+  --tm-rail: #33344a;
+  --tm-rail-fg: #c8c6c4;
+  --tm-rail-fg-hover: #ffffff;
+  --tm-rail-fg-active: #ffffff;
+  --tm-rail-icon-active: #ffffff;
+  --tm-rail-pill: #a6a7dc;
+  --tm-rail-selected: #464775;
+  --tm-list: #f3f2f1;
+  --tm-canvas: #f3f2f1;
+  --tm-timeline-bg: #f3f2f1;
+  --tm-header-bg: #ffffff;
+  --tm-header-border: #e1dfdd;
+  --tm-rightpanel-bg: #ffffff;
+  --tm-surface: #ffffff;
+  --tm-surface2: #faf9f8;
+  --tm-row-selected: #ffffff;
+  --tm-row-hover: #edebe9;
+  --tm-hover: #edebe9;
+  --tm-pressed: #e1dfdd;
+  --tm-bubble-other: #ffffff;
+  --tm-bubble-own: #e5e5f1;
+  --tm-bubble-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --tm-code-bg: #f3f2f1;
+  --tm-input-bg: #f3f2f1;
+  --tm-chip-bg: #ffffff;
+
+  --tm-fg1: #252423;
+  --tm-fg2: #484644;
+  --tm-fg3: #605e5c;
+  --tm-fg4: #8a8886;
+  --tm-stroke1: #c8c6c4;
+  --tm-stroke2: #e1dfdd;
+  --tm-stroke-access: #605e5c;
+  --tm-critical: #c4314b;
+  --tm-critical-fg: #a4262c;
+  --tm-success: #237b4b;
+  --tm-presence: #92c353;
+
+  --tm-radius-m: 3px;
+  --tm-radius-l: 3px;
+  --tm-radius-bubble: 3px;
+  --tm-radius-btn: 3px;
+  --tm-radius-composer: 3px;
+  --tm-radius-dialog: 3px;
+  --tm-font-display: "TL Segoe", "Segoe UI", system-ui, sans-serif;
+  --tm-font: "TL Segoe", "Segoe UI", system-ui, sans-serif, "Segoe UI Emoji";
+  --tm-shadow16: 0 3px 8px rgba(0, 0, 0, 0.2);
+  --tm-shadow64: 0 6px 24px rgba(0, 0, 0, 0.25);
+  --tm-auth-bg: linear-gradient(180deg, #464775 0 220px, #f3f2f1 220px);
+}
+html[data-tl-theme="teams-classic-2020"] .mx_MatrixChat::before {
+  background-position: 18px 50%;
+  background-size: 22px 22px;
+}
+html[data-tl-theme="teams-classic-2020"] .mx_RoomListPanel > [role="search"] {
+  width: min(640px, 46vw);
+}
+html[data-tl-theme="teams-classic-2020"] .mx_RoomListPanel > [role="search"] > button {
+  border-radius: 3px;
+}
+/* classic: the presence ring sits on the purple bar */
+html[data-tl-theme="teams-classic-2020"] .mx_SpacePanel .mx_UserMenu [class*="_avatarWrapper_"]::after {
+  box-shadow: 0 0 0 2px #464775;
+}
+/* rail: tile-style highlight */
+html[data-tl-theme="teams-classic-2020"] .mx_SpacePanel .mx_SpaceButton_active::before {
+  top: 0;
+  bottom: 0;
+  border-radius: 0;
+  width: 4px;
+}
+html[data-tl-theme="teams-classic-2020"] .mx_SpacePanel .mx_ThreadsActivityCentreButton,
+html[data-tl-theme="teams-classic-2020"] .mx_SpacePanel .mx_QuickSettingsButton,
+html[data-tl-theme="teams-classic-2020"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_icon svg {
+  color: #c8c6c4;
+}
+/* denser list + names Bold when unread */
+html[data-tl-theme="teams-classic-2020"] .mx_RoomListPanel > header[class*="_header_"] h1 {
+  font: 700 18px/24px var(--tm-font);
+}
+html[data-tl-theme="teams-classic-2020"] .mx_RoomListItemView [class*="_roomName_"] {
+  font-size: 13px;
+}
+html[data-tl-theme="teams-classic-2020"] .mx_RoomHeader {
+  height: 48px;
+  min-height: 48px;
+}
+html[data-tl-theme="teams-classic-2020"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after {
+  content: "Chat     Files     +";
+  white-space: pre;
+  font-weight: 400;
+  box-shadow: none;
+  background: linear-gradient(var(--tm-brand), var(--tm-brand)) no-repeat 0 100% / 32px 3px;
+}
+/* classic: red unread counters */
+html[data-tl-theme="teams-classic-2020"],
+html[data-tl-theme="teams-classic-2020"] body,
+html[data-tl-theme="teams-classic-2020"] [class*="cpd-theme-"] {
+  --cpd-color-bg-badge-accent: #c4314b;
+  --cpd-color-bg-accent-rest: #6264a7;
+}
+html[data-tl-theme="teams-classic-2020"] .mx_EventTile_body,
+html[data-tl-theme="teams-classic-2020"] .mx_EventTile_content {
+  font-size: 14px;
+}
+/* filled Northstar inputs */
+html[data-tl-theme="teams-classic-2020"] .mx_Field {
+  border-color: transparent;
+  border-bottom-color: transparent;
+}
+html[data-tl-theme="teams-classic-2020"] .mx_Field label,
+html[data-tl-theme="teams-classic-2020"] .mx_Field input::placeholder,
+html[data-tl-theme="teams-classic-2020"] .mx_Field textarea::placeholder {
+  color: #484644;
+}
+html[data-tl-theme="teams-classic-2020"] .mx_Field:focus-within label {
+  color: #464775;
+}

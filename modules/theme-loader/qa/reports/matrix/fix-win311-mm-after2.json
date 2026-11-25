@@ -1,0 +1,7052 @@
+{
+ "run": "fix-win311-mm-after2",
+ "base": "http://localhost:5400",
+ "started": "2026-11-15T15:01:30.900Z",
+ "mobileDist": "c523634b52fe",
+ "mode": "matrix",
+ "mobileModule": true,
+ "themes": 4,
+ "finished": "2026-11-15T15:04:20.151Z",
+ "results": [
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "composer input x 463-1308 y 434-456 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "room list items 11, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "room name 742px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "dialog 738px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "composer input x 12-598 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "room name 470px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "composer input x 403-1306 y 360-382 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "room list items 8, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "room name 798px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "dialog 738px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "composer input x 12-430 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "room name 302px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "composer input x 11-599 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "room name 470px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "composer input x 12-291 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "room name 116px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "composer input x 11-431 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "room name 302px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "composer input x 12-267 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "room name 92px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "composer input x 11-292 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "room name 116px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "composer input x 12-237 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "room name 62px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "composer input x 11-268 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "room name 92px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "composer input x 12-197 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x480",
+   "status": "fail",
+   "detail": "room name 22px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-usable--320x480.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "composer input x 11-238 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "room name 62px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "composer input x 11-198 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x480",
+   "status": "fail",
+   "detail": "room name 22px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-default--320x480.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "composer input x 463-1308 y 522-544 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "room list items 11, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "room name 742px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "dialog 738px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "dialog 478,78,962,490 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "composer input x 403-1306 y 448-470 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "room list items 10, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "room name 798px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "dialog 738px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 1234), visible tab panel 700px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "dialog 478,90,962,478 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "composer input x 12-598 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "room name 470px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 1235), visible tab panel 700px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "dialog 5,85,757,483 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "composer input x 11-599 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "room name 470px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 768), visible tab panel 727px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "dialog 5,98,757,470 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer input x 12-430 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room name 302px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 768), visible tab panel 725px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 5,78,589,490 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer input x 11-431 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room name 302px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 600), visible tab panel 559px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 5,91,589,477 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer input x 12-291 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "room name 116px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 600), visible tab panel 557px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 5,69,403,499 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer input x 11-292 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "room name 116px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 414), visible tab panel 373px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 5,91,403,477 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer input x 12-267 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "room name 92px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 414), visible tab panel 371px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 5,62,379,506 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer input x 11-268 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "room name 92px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 390), visible tab panel 349px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 5,84,379,484 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "composer input x 12-237 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "room name 62px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 390), visible tab panel 347px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "dialog 5,46,349,522 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "composer input x 11-238 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "room name 62px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 360), visible tab panel 319px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "dialog 5,61,349,507 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer input x 12-197 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "fail",
+   "detail": "room name 22px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-usable--320x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 360), visible tab panel 317px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 5,46,309,522 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer input x 11-198 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "fail",
+   "detail": "room name 22px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-default--320x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 320), visible tab panel 279px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 5,61,309,507 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 320), visible tab panel 277px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "composer input x 463-1308 y 798-820 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "8 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "room list items 11, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "room name 742px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "dialog 738px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "composer input x 12-598 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "8 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "room name 470px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "composer input x 403-1306 y 724-746 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "8 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "room list items 11, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "room name 798px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "composer input x 12-430 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "7 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "room name 302px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "dialog 738px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "composer input x 11-599 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "9 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "room name 470px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "composer input x 12-291 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "7 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "room name 116px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "composer input x 11-431 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "9 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "room name 302px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "composer input x 12-267 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "room name 92px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "composer input x 11-292 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "7 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "room name 116px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "composer input x 12-237 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "room name 62px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "composer input x 11-268 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "7 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "room name 92px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "composer input x 12-197 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x844",
+   "status": "fail",
+   "detail": "room name 22px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-usable--320x844.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "composer input x 11-238 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "7 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "room name 62px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-16",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "win311-usable",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "composer input x 11-198 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x844",
+   "status": "fail",
+   "detail": "room name 22px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-default--320x844.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-16",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "win311-default",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "composer input x 421-1290 y 332-354 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "room list items 8, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "room name 732px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "dialog 738px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "composer input x 11-599 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "room name 470px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "composer input x 11-431 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "room name 302px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "composer input x 11-292 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "room name 116px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "composer input x 11-268 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "room name 92px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "composer input x 11-238 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "room name 62px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "composer input x 11-198 y 439-461 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x480",
+   "status": "fail",
+   "detail": "room name 22px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-2030--320x480.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "composer input x 571-1302 y 356-378 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "room list items 8, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "room name 790px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "composer input x 421-1290 y 420-442 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "room list items 10, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "room name 732px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x480",
+   "status": "pass",
+   "detail": "dialog 742px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "dialog 738px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "dialog 478,70,962,498 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "composer input x 180-594 y 434-456 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "room name 460px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x480",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 1235), visible tab panel 700px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "composer input x 180-426 y 434-456 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "room name 292px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "composer input x 11-599 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "room name 470px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x480",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "composer input x 180-287 y 434-456 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "room name 106px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "dialog 5,85,757,483 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x480",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 768), visible tab panel 725px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "composer input x 180-263 y 434-456 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "room name 82px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer input x 11-431 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "4 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room name 302px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "short height: composer true, 4 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x480",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "composer input x 180-233 y 434-456 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "room name 52px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 5,79,589,489 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x480",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 600), visible tab panel 557px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "composer input x 180-193 y 434-456 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x480",
+   "status": "fail",
+   "detail": "room name 12px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-cyberpunk--320x480.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x480",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer input x 11-292 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "room name 116px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 5,64,403,505 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 414), visible tab panel 371px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer input x 11-268 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "room name 92px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "composer input x 571-1302 y 444-466 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "room list items 10, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "room name 790px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 5,64,379,505 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "dialog 742px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 390), visible tab panel 347px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "dialog 476,71,964,497 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 1237), visible tab panel 700px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "composer input x 11-238 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "room name 62px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "composer input x 180-594 y 522-544 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "room name 460px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "dialog 5,47,349,521 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "dialog 5,80,757,488 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 360), visible tab panel 317px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 768), visible tab panel 721px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer input x 11-198 y 527-549 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "fail",
+   "detail": "room name 22px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-2030--320x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer input x 180-426 y 522-544 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "room name 292px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 5,32,309,536 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "dialog 5,80,589,488 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 320), visible tab panel 277px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 600), visible tab panel 553px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer input x 180-287 y 522-544 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "room name 106px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "dialog 5,64,403,504 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 414), visible tab panel 367px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "composer input x 421-1290 y 696-718 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "7 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "room list items 11, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "room name 732px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer input x 180-263 y 522-544 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "room name 82px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "dialog 738px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "composer input x 11-599 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "8 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "room name 470px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "dialog 5,64,379,504 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 390), visible tab panel 343px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "composer input x 11-431 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "7 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "room name 302px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "composer input x 180-233 y 522-544 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "room name 52px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "composer input x 11-292 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "room name 116px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "dialog 5,41,349,527 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "composer input x 11-268 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "room name 92px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 360), visible tab panel 313px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer input x 180-193 y 522-544 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "3 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "fail",
+   "detail": "room name 12px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-cyberpunk--320x568.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-12",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "short height: composer true, 3 bodies",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "composer input x 11-238 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "room name 62px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-06",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "dialog 5,32,309,536 inVp true scrolls false close true primary true",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "composer input x 11-198 y 803-825 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "5 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x844",
+   "status": "fail",
+   "detail": "room name 22px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-2030--320x844.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-07",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x568",
+   "status": "pass",
+   "detail": "settings inViewport true (right 320), visible tab panel 273px",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-16",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "win311-2030",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "composer input x 571-1302 y 720-742 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "8 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "room list items 11, back control false",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "room name 790px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x844",
+   "status": "pass",
+   "detail": "dialog 742px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "composer input x 180-594 y 798-820 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "8 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "room name 460px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "768x844",
+   "status": "pass",
+   "detail": "dialog 752px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "composer input x 180-426 y 798-820 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "7 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "room name 292px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "600x844",
+   "status": "pass",
+   "detail": "dialog 584px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "composer input x 180-287 y 798-820 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "room name 106px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "414x844",
+   "status": "pass",
+   "detail": "dialog 398px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "composer input x 180-263 y 798-820 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "room name 82px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "390x844",
+   "status": "pass",
+   "detail": "dialog 374px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "composer input x 180-233 y 798-820 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "6 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "room name 52px wide",
+   "shot": null
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "360x844",
+   "status": "pass",
+   "detail": "dialog 344px",
+   "shot": null
+  },
+  {
+   "case": "VP-01",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "composer input x 180-193 y 798-820 h22",
+   "shot": null
+  },
+  {
+   "case": "VP-02",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "5 message bodies visible",
+   "shot": null
+  },
+  {
+   "case": "VP-03",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "room list items 0, back control true, mt=narrow view=room",
+   "shot": null
+  },
+  {
+   "case": "VP-04",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "horizontal overflow 0px",
+   "shot": null
+  },
+  {
+   "case": "VP-05",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x844",
+   "status": "fail",
+   "detail": "room name 12px wide",
+   "shot": "recordings/tests/VP-01/fix-win311-mm-after2/win311-cyberpunk--320x844.png"
+  },
+  {
+   "case": "VP-10",
+   "prio": "P1",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "composer/heading/theme button not covered or cut",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "320x844",
+   "status": "pass",
+   "detail": "dialog 304px",
+   "shot": null
+  },
+  {
+   "case": "VP-16",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "win311-cyberpunk",
+   "viewport": "1440x900",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  }
+ ]
+}

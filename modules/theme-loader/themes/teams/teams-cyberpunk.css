@@ -1,0 +1,461 @@
+/* teams-cyberpunk — Teams wired into Night City: neon violet/cyan/pink, chamfered panels,
+   Orbitron HUD lettering, Share Tech Mono metadata, one scanline overlay, glitch on the room title.
+   Body text stays Segoe/Selawik for readability; reduced motion switches every effect off. */
+html[data-tl-theme="teams-cyberpunk"] {
+  --tm-violet: #a66bff;
+  --tm-cyan: #00f0ff;
+  --tm-pink: #ff2e97;
+  --tm-yellow: #fcee0a;
+  --tm-b80: #a66bff; --tm-b90: #b98aff; --tm-b100: #c9a4ff; --tm-b140: #3a2a66; --tm-b150: #2c1f52; --tm-b160: #241447;
+  --tm-brand: #a66bff;
+  --tm-brand-hover: #b98aff;
+  --tm-brand-pressed: #8f4dff;
+  --tm-brand-fg: #00f0ff;
+  --tm-brand-icon: #00f0ff;
+  --tm-brand-tint: #241447;
+  --tm-on-brand: #0b0614;
+  --tm-chip-selected-fg: #00f0ff;
+  --tm-logo: url("assets/teams-logo-2025.svg");
+  --tm-title-text: "TEAMS // NIGHT CITY  ·  NET LINK STABLE";
+  --tm-copilot: none;
+
+  --tm-titlebar: #07040d;
+  --tm-titlebar-fg: #00f0ff;
+  --tm-rail: #07040d;
+  --tm-rail-fg: #7c70a8;
+  --tm-rail-fg-hover: #00f0ff;
+  --tm-rail-fg-active: #00f0ff;
+  --tm-rail-icon-active: #00f0ff;
+  --tm-rail-pill: #a66bff;
+  --tm-list: #0f0a1c;
+  --tm-canvas: #0b0614;
+  --tm-surface: #140c24;
+  --tm-surface2: #1a1030;
+  --tm-row-selected: #1d1236;
+  --tm-row-hover: #170e2b;
+  --tm-hover: #1d1236;
+  --tm-pressed: #2a1a4d;
+  --tm-bubble-other: #140c24;
+  --tm-bubble-own: #241447;
+  --tm-code-bg: #07040d;
+  --tm-search-bg: #0f0a1c;
+  --tm-search-border: #3a2a66;
+  --tm-search-fg: #a59ad0;
+  --tm-chip-bg: #0f0a1c;
+
+  --tm-fg1: #e9e4ff;
+  --tm-fg2: #cbc2ef;
+  --tm-fg3: #a59ad0;
+  --tm-fg4: #8a7fb5;
+  --tm-fg-disabled: #4f4670;
+  --tm-stroke1: #3a2a66;
+  --tm-stroke2: #2a1d4d;
+  --tm-stroke-access: #7c70a8;
+  --tm-critical: #ff3b5c;
+  --tm-critical-fg: #ff6f87;
+  --tm-critical-tint: #2a0b18;
+  --tm-success: #2dff9a;
+  --tm-success-tint: #06261a;
+  --tm-presence: #2dff9a;
+  --tm-mention-bg: #2a0b22;
+  --tm-mention-bar: #fcee0a;
+
+  --tm-radius-s: 0;
+  --tm-radius-m: 0;
+  --tm-radius-l: 0;
+  --tm-radius-bubble: 0;
+  --tm-radius-btn: 0;
+  --tm-radius-composer: 0;
+  --tm-radius-dialog: 0;
+  --tm-bubble-border: 1px solid #2a1d4d;
+  --tm-bubble-own-border: 1px solid #5b3aa8;
+  --tm-bubble-shadow: none;
+  --tm-sh-a: rgba(0, 0, 0, 0.5);
+  --tm-sh-k: rgba(0, 0, 0, 0.6);
+  --tm-shadow16: 0 0 0 1px #3a2a66, 0 0 18px rgba(166, 107, 255, 0.35);
+  --tm-shadow64: 0 0 0 1px #a66bff, 0 0 40px rgba(166, 107, 255, 0.45);
+  --tm-shadow8: 0 0 0 1px #3a2a66, 0 0 12px rgba(0, 240, 255, 0.25);
+  --tm-focus-outer: #00f0ff;
+  --tm-focus-inner: #0b0614;
+  --tm-scroll-thumb: #a66bff;
+  --tm-bubble-hover-filter: brightness(1.15);
+  --tm-display: "Orbitron", "TL Segoe", sans-serif;
+  --tm-font-display: "Orbitron", "TL Segoe", sans-serif;
+  --tm-hud: "Share Tech Mono", "TL Cascadia", monospace;
+  --tm-mono: "Share Tech Mono", "TL Cascadia", monospace;
+  --tm-name-color: #00f0ff;
+  --tm-backdrop: rgba(7, 4, 13, 0.75);
+  --tm-auth-bg: linear-gradient(180deg, #07040d 0%, #1a0b33 45%, #ff2e97 72%, #fcee0a 74%, #0b0614 74.4%, #0b0614 100%);
+  --tm-chamfer: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  --tm-chamfer-s: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+html[data-tl-theme="teams-cyberpunk"],
+html[data-tl-theme="teams-cyberpunk"] body,
+html[data-tl-theme="teams-cyberpunk"] [class*="cpd-theme-"] {
+  --cpd-color-bg-decorative-1: #00f0ff; --cpd-color-text-decorative-1: #07040d;
+  --cpd-color-bg-decorative-2: #a66bff; --cpd-color-text-decorative-2: #07040d;
+  --cpd-color-bg-decorative-3: #ff2e97; --cpd-color-text-decorative-3: #07040d;
+  --cpd-color-bg-decorative-4: #fcee0a; --cpd-color-text-decorative-4: #07040d;
+  --cpd-color-bg-decorative-5: #2dff9a; --cpd-color-text-decorative-5: #07040d;
+  --cpd-color-bg-decorative-6: #ff8a3d; --cpd-color-text-decorative-6: #07040d;
+  --cpd-color-gray-300: #1d1236;
+  --cpd-color-gray-400: #2a1d4d;
+  --cpd-color-bg-badge-accent: #ff2e97;
+  --cpd-color-alpha-gray-300: rgba(166, 107, 255, 0.12);
+}
+/* shell: violet grid + one scanline overlay */
+html[data-tl-theme="teams-cyberpunk"] body,
+html[data-tl-theme="teams-cyberpunk"] .mx_MatrixChat,
+html[data-tl-theme="teams-cyberpunk"] .mx_MatrixChat_wrapper {
+  background:
+    linear-gradient(rgba(166, 107, 255, 0.07) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgba(166, 107, 255, 0.07) 1px, transparent 1px) 0 0 / 40px 40px,
+    #0b0614;
+}
+html[data-tl-theme="teams-cyberpunk"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2500;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_MatrixChat::before {
+  background: var(--tm-logo) no-repeat 20px 50% / 24px 24px, #07040d;
+  border-bottom: 1px solid #a66bff;
+  box-shadow: 0 0 16px rgba(166, 107, 255, 0.45);
+  animation: tm-flicker 2.4s steps(1) 1;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_MatrixChat::after {
+  font: 700 12px/48px "Orbitron", sans-serif;
+  letter-spacing: 0.18em;
+  color: #00f0ff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
+}
+@keyframes tm-flicker {
+  0%, 12%, 16%, 40%, 44%, 100% { opacity: 1; }
+  14%, 42% { opacity: 0.4; }
+}
+/* panels: neon hairlines */
+html[data-tl-theme="teams-cyberpunk"] .mx_SpacePanel {
+  border-right: 1px solid #2a1d4d;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListPanel {
+  border-inline-end: 1px solid #3a2a66;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_Separator[data-separator],
+html[data-tl-theme="teams-cyberpunk"] .mx_MatrixChat > div > [class*="_separator_"] {
+  background: #a66bff;
+  box-shadow: 0 0 8px #a66bff;
+}
+/* rail */
+html[data-tl-theme="teams-cyberpunk"] .mx_SpacePanel .mx_SpaceButton::after {
+  font: 400 10px/14px "Share Tech Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_SpacePanel .mx_SpaceButton_active::before {
+  width: 3px;
+  border-radius: 0;
+  top: 8px;
+  bottom: 8px;
+  box-shadow: 0 0 10px #a66bff, 0 0 2px #a66bff;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_SpacePanel .mx_SpaceButton .mx_SpaceButton_avatarWrapper > [class*="_avatar_"] {
+  border-radius: 0;
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_SpacePanel .mx_SpaceButton_active .mx_SpaceButton_avatarWrapper > [class*="_avatar_"] {
+  box-shadow: none;
+  filter: drop-shadow(0 0 6px #a66bff);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_SpacePanel .mx_SpaceButton_active .mx_SpaceButton_icon {
+  filter: drop-shadow(0 0 6px #00f0ff);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_SpacePanel .mx_ThreadsActivityCentreButton,
+html[data-tl-theme="teams-cyberpunk"] .mx_SpacePanel .mx_QuickSettingsButton {
+  color: #00f0ff;
+}
+/* avatars: hexagons */
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTile [class*="_slotAvatar_"] [class*="_avatar_"],
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListItemView [class*="_avatar_"],
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomHeader > [class*="_avatar_"],
+html[data-tl-theme="teams-cyberpunk"] .mx_MemberTileView_avatar [class*="_avatar_"] {
+  border-radius: 0;
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+}
+/* list */
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListPanel > header[class*="_header_"] h1 {
+  font: 800 16px/24px "Orbitron", sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e9e4ff;
+  text-shadow: 0 0 10px rgba(166, 107, 255, 0.8);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListPanel [class*="_chat-filter_"] {
+  border-radius: 0;
+  clip-path: var(--tm-chamfer-s);
+  font: 400 12px/16px "Share Tech Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-color: #3a2a66;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListPanel [class*="_chat-filter_"][aria-selected="true"] {
+  background: #241447;
+  border-color: #00f0ff;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListPanel [role="gridcell"] > button[class*="_header_"] {
+  font: 400 11px/16px "Share Tech Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #ff2e97;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListItemView > [class*="_container_"] {
+  clip-path: var(--tm-chamfer-s);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListItemView_selected > [class*="_container_"] {
+  background: linear-gradient(90deg, rgba(166, 107, 255, 0.28), rgba(166, 107, 255, 0.06));
+  box-shadow: inset 2px 0 0 #a66bff;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"] {
+  color: #00f0ff;
+}
+/* header: HUD */
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomHeader {
+  background: linear-gradient(180deg, #120a22, #0b0614);
+  border-bottom: 1px solid #3a2a66;
+  box-shadow: 0 1px 0 rgba(166, 107, 255, 0.25), 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomHeader .mx_RoomHeader_heading {
+  font: 700 18px/24px "Orbitron", sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e9e4ff;
+  text-shadow: 0 0 10px rgba(166, 107, 255, 0.7);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomHeader .mx_RoomHeader_infoWrapper:hover .mx_RoomHeader_heading {
+  text-decoration: none;
+  animation: tm-glitch 380ms steps(2) 2;
+}
+@keyframes tm-glitch {
+  0% { text-shadow: 2px 0 #ff2e97, -2px 0 #00f0ff; transform: translate(0); }
+  25% { text-shadow: -3px 0 #ff2e97, 3px 0 #00f0ff; transform: translate(1px, -1px); clip-path: inset(10% 0 40% 0); }
+  50% { text-shadow: 3px 0 #ff2e97, -1px 0 #00f0ff; transform: translate(-1px, 1px); clip-path: inset(50% 0 5% 0); }
+  75% { text-shadow: -2px 0 #ff2e97, 2px 0 #00f0ff; transform: translate(1px, 0); clip-path: none; }
+  100% { text-shadow: 0 0 10px rgba(166, 107, 255, 0.7); transform: none; }
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after {
+  content: "// CHAT";
+  font: 400 13px/20px "Share Tech Mono", monospace;
+  letter-spacing: 0.12em;
+  color: #00f0ff;
+  box-shadow: inset 0 -2px 0 #00f0ff;
+  text-shadow: 0 0 6px rgba(0, 240, 255, 0.7);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomHeader button[class*="_icon-button_"] {
+  color: #00f0ff;
+  clip-path: var(--tm-chamfer-s);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomHeader button[class*="_icon-button_"]:hover {
+  background: #241447;
+  color: #fcee0a;
+}
+/* timeline: chamfered cards, mono metadata */
+/* chamfers are painted with gradients, not clip-path: the action bar and reply previews live
+   outside the line box and must not be clipped */
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_stateBubbleContainer_"]) > .mx_EventTile_line {
+  --cy-bg: var(--tm-bubble-other);
+  border: 0;
+  background:
+    linear-gradient(135deg, transparent 7px, #00f0ff 7px 8.5px, transparent 8.5px) top left / 22px 22px no-repeat,
+    linear-gradient(135deg, transparent 10px, var(--cy-bg) 10px) top left / 51% 100% no-repeat,
+    linear-gradient(-45deg, transparent 10px, var(--cy-bg) 10px) bottom right / 51% 100% no-repeat;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomView_body .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]):not([class*="_stateBubbleContainer_"]) > .mx_EventTile_line {
+  --cy-bg: #23134a;
+  background:
+    linear-gradient(-45deg, transparent 7px, #a66bff 7px 8.5px, transparent 8.5px) bottom right / 22px 22px no-repeat,
+    linear-gradient(135deg, transparent 10px, var(--cy-bg) 10px) top left / 51% 100% no-repeat,
+    linear-gradient(-45deg, transparent 10px, var(--cy-bg) 10px) bottom right / 51% 100% no-repeat;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomView_body .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  box-shadow: inset 3px 0 0 #fcee0a !important;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTile .mx_DisambiguatedProfile_displayName {
+  font: 600 11px/16px "Orbitron", sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(0, 240, 255, 0.5);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTile .mx_Username_color2,
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTile .mx_Username_color5 { color: #a66bff; }
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTile .mx_Username_color3,
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTile .mx_Username_color6 { color: #ff2e97; }
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTile .mx_Username_color4 { color: #fcee0a; }
+html[data-tl-theme="teams-cyberpunk"] .mx_MessageTimestamp,
+html[data-tl-theme="teams-cyberpunk"] .mx_DateSeparator h2,
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTile[class*="_stateInfo_"],
+html[data-tl-theme="teams-cyberpunk"] .mx_GenericEventListSummary {
+  font-family: "Share Tech Mono", monospace;
+  letter-spacing: 0.04em;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_DateSeparator h2 {
+  color: #ff2e97;
+  text-transform: uppercase;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTileBubble,
+html[data-tl-theme="teams-cyberpunk"] .mx_NewRoomIntro [class*="_container_"] {
+  border-radius: 0;
+  clip-path: var(--tm-chamfer);
+  border-color: #3a2a66;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_NewRoomIntro h2,
+html[data-tl-theme="teams-cyberpunk"] .mx_Dialog_title,
+html[data-tl-theme="teams-cyberpunk"] .mx_Dialog_header h1,
+html[data-tl-theme="teams-cyberpunk"] .mx_BaseCard_header h2,
+html[data-tl-theme="teams-cyberpunk"] .mx_SettingsTab h2,
+html[data-tl-theme="teams-cyberpunk"] .mx_SettingsSection h2 {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_ReactionsRow .mx_ReactionsRowButton {
+  border-radius: 0;
+  clip-path: var(--tm-chamfer-s);
+  background: #140c24;
+  border-color: #3a2a66;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_MessageActionBar {
+  border-color: #a66bff;
+  background: #0f0a1c;
+}
+/* code: synthwave */
+html[data-tl-theme="teams-cyberpunk"] .mx_EventTile_body pre {
+  border-color: #3a2a66;
+  box-shadow: inset 2px 0 0 #ff2e97;
+}
+html[data-tl-theme="teams-cyberpunk"] .hljs-keyword,
+html[data-tl-theme="teams-cyberpunk"] .hljs-selector-tag,
+html[data-tl-theme="teams-cyberpunk"] .hljs-built_in { color: #ff2e97; }
+html[data-tl-theme="teams-cyberpunk"] .hljs-string,
+html[data-tl-theme="teams-cyberpunk"] .hljs-attr { color: #00f0ff; }
+html[data-tl-theme="teams-cyberpunk"] .hljs-number,
+html[data-tl-theme="teams-cyberpunk"] .hljs-literal { color: #fcee0a; }
+html[data-tl-theme="teams-cyberpunk"] .hljs-title,
+html[data-tl-theme="teams-cyberpunk"] .hljs-title.function_,
+html[data-tl-theme="teams-cyberpunk"] .hljs-function { color: #c9a4ff; }
+html[data-tl-theme="teams-cyberpunk"] .hljs-comment { color: #7c70a8; font-style: italic; }
+/* composer: terminal */
+html[data-tl-theme="teams-cyberpunk"] .mx_MessageComposer_wrapper {
+  border: 1px solid #3a2a66;
+  border-image: linear-gradient(90deg, #a66bff, #3a2a66 40%, #3a2a66 60%, #00f0ff) 1;
+  background: #07040d;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_MessageComposer_wrapper:focus-within {
+  border-color: #a66bff;
+  box-shadow: inset 0 -2px 0 #00f0ff, inset 0 0 18px rgba(166, 107, 255, 0.25);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_MessageComposer_row::before {
+  content: ">";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  font: 700 16px/1 "Share Tech Mono", monospace;
+  color: #00f0ff;
+  text-shadow: 0 0 6px #00f0ff;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_MessageComposer_e2eIconWrapper {
+  left: 16px;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_MessageComposer_row {
+  padding-inline-start: 34px;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_BasicMessageComposer_input {
+  font-family: "Share Tech Mono", monospace;
+  caret-color: #00f0ff;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_MessageComposer_sendMessage {
+  background-color: #ff2e97;
+  filter: drop-shadow(0 0 6px #ff2e97);
+}
+/* buttons / inputs */
+html[data-tl-theme="teams-cyberpunk"] [class*="_button_"][data-kind],
+html[data-tl-theme="teams-cyberpunk"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="teams-cyberpunk"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-theme="teams-cyberpunk"] .mx_Dialog button {
+  clip-path: var(--tm-chamfer-s);
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+html[data-tl-theme="teams-cyberpunk"] [class*="_button_"][data-kind="primary"]:hover,
+html[data-tl-theme="teams-cyberpunk"] .mx_AccessibleButton_kind_primary:hover {
+  box-shadow: 0 0 16px rgba(166, 107, 255, 0.8);
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_Field {
+  background: #07040d;
+  border-color: #3a2a66;
+  border-bottom-color: #00f0ff;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_Field:focus-within {
+  box-shadow: inset 0 -2px 0 #00f0ff, 0 0 12px rgba(0, 240, 255, 0.35);
+}
+/* dialogs / menus: corner brackets */
+html[data-tl-theme="teams-cyberpunk"] .mx_Dialog {
+  border: 1px solid #a66bff;
+  background:
+    linear-gradient(#00f0ff, #00f0ff) top left / 18px 2px no-repeat,
+    linear-gradient(#00f0ff, #00f0ff) top left / 2px 18px no-repeat,
+    linear-gradient(#00f0ff, #00f0ff) bottom right / 18px 2px no-repeat,
+    linear-gradient(#00f0ff, #00f0ff) bottom right / 2px 18px no-repeat,
+    #140c24;
+}
+html[data-tl-theme="teams-cyberpunk"] [role="menu"],
+html[data-tl-theme="teams-cyberpunk"] .mx_ContextualMenu {
+  border: 1px solid #a66bff;
+}
+html[data-tl-theme="teams-cyberpunk"] [role="tooltip"] {
+  background: #07040d;
+  color: #00f0ff;
+  border: 1px solid #00f0ff;
+  font-family: "Share Tech Mono", monospace;
+}
+/* right panel HUD */
+html[data-tl-theme="teams-cyberpunk"] .mx_RightPanel {
+  border-inline-start: 1px solid #a66bff;
+  box-shadow: -8px 0 24px rgba(166, 107, 255, 0.12);
+}
+/* badges */
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListItemView [class*="_notificationDecoration_"] [class*="_counter_"],
+html[data-tl-theme="teams-cyberpunk"] .mx_RoomListItemView [class*="_notificationDecoration_"] [class*="_unread-counter_"] {
+  border-radius: 0;
+  clip-path: var(--tm-chamfer-s);
+  box-shadow: 0 0 8px #ff2e97;
+  font-family: "Share Tech Mono", monospace;
+}
+/* auth: neon horizon */
+html[data-tl-theme="teams-cyberpunk"] .mx_AuthPage_modal {
+  border: 1px solid #a66bff;
+  box-shadow: 0 0 40px rgba(166, 107, 255, 0.5);
+  clip-path: var(--tm-chamfer);
+  border-radius: 0;
+}
+html[data-tl-theme="teams-cyberpunk"] .mx_AuthPage .mx_Login_submit,
+html[data-tl-theme="teams-cyberpunk"] .mx_AuthPage button[type="submit"] {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.14em;
+}
+/* the loader UI stays plain and readable */
+html[data-tl-theme="teams-cyberpunk"] .tl-ui,
+html[data-tl-theme="teams-cyberpunk"] .tl-ui * {
+  letter-spacing: normal;
+  text-transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="teams-cyberpunk"] body::after {
+    display: none;
+  }
+}
