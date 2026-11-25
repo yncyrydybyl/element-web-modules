@@ -3,7 +3,7 @@
 #   - Synapse v1.162.0 on http://127.0.0.1:${PM_HS_PORT:-18476}, server name pm.test, users alice
 #     (alice-pass) and a dozen others, in two spaces (Engineering, Camp 2026), a big lobby, DMs,
 #     a WhatsApp-style puppet and a bot, with some messages, replies and mentions
-#   - Element Web ${PM_ELEMENT:-v1.12.33} on http://127.0.0.1:${PM_EL_PORT:-5806}, lib/ mounted at /modules/people-map
+#   - Element Web ${PM_ELEMENT:-v1.12.36} on http://127.0.0.1:${PM_EL_PORT:-5806}, lib/ mounted at /modules/people-map
 # State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -48,7 +48,7 @@ JSON
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" -v "$PWD/lib:/modules/people-map:ro,z" \
-      "ghcr.io/element-hq/element-web:${PM_ELEMENT:-v1.12.33}" >/dev/null
+      "ghcr.io/element-hq/element-web:${PM_ELEMENT:-v1.12.36}" >/dev/null
     for _ in $(seq 30); do curl -sf "http://127.0.0.1:$EL_PORT/modules/people-map/index.js" >/dev/null && break; sleep 1; done
     if [ "$fresh" = 1 ]; then
       for u in $USERS; do

@@ -2,7 +2,7 @@
 # Throwaway test stack, nothing shared is touched (adapted from modules/marcade/e2e/stack.sh):
 #   - Synapse v1.162.0 on http://127.0.0.1:${TR_HS_PORT:-18458}, server name tr.test,
 #     users alice and bob (passwords alice-pass / bob-pass), a room "Lunch" with a message from bob
-#   - Element Web v1.12.32 on http://127.0.0.1:${TR_EL_PORT:-5793}, lib/ mounted at /modules/text-reactions
+#   - Element Web v1.12.36 on http://127.0.0.1:${TR_EL_PORT:-5793}, lib/ mounted at /modules/text-reactions
 # State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -41,7 +41,7 @@ JSON
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" -v "$PWD/lib:/modules/text-reactions:ro,z" \
-      ghcr.io/element-hq/element-web:v1.12.32 >/dev/null
+      ghcr.io/element-hq/element-web:v1.12.36 >/dev/null
     for _ in $(seq 30); do curl -sf "http://127.0.0.1:$EL_PORT/modules/text-reactions/index.js" >/dev/null && break; sleep 1; done
     # A room with a message from bob for alice to react to.
     login() { curl -sf -X POST "http://127.0.0.1:$HS_PORT/_matrix/client/v3/login" -d "{\"type\":\"m.login.password\",\"identifier\":{\"type\":\"m.id.user\",\"user\":\"$1\"},\"password\":\"$1-pass\"}" | jq -r .access_token; }

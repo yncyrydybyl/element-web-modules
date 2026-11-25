@@ -2,7 +2,7 @@
 # Throwaway test stack, nothing shared is touched (adapted from modules/teamwork/e2e/stack.sh):
 #   - Synapse v1.162.0 on http://127.0.0.1:${FH_HS_PORT:-18483}, server name files.test,
 #     users alice, bob and carol (passwords <name>-pass)
-#   - Element Web v1.12.33 on http://127.0.0.1:${FH_EL_PORT:-5814}, lib/ mounted at /modules/files-hub
+#   - Element Web v1.12.36 on http://127.0.0.1:${FH_EL_PORT:-5814}, lib/ mounted at /modules/files-hub
 # Rooms and uploads are made from the browser (encrypted rooms need Element's crypto).
 # State lives in e2e/.run/ (git-ignored).    e2e/stack.sh up | down
 set -euo pipefail
@@ -43,7 +43,7 @@ JSON
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" -v "$PWD/lib:/modules/files-hub:ro,z" \
-      ghcr.io/element-hq/element-web:v1.12.33 >/dev/null
+      ghcr.io/element-hq/element-web:v1.12.36 >/dev/null
     for _ in $(seq 30); do curl -sf "http://127.0.0.1:$EL_PORT/modules/files-hub/index.js" >/dev/null && break; sleep 1; done
     echo "Synapse http://127.0.0.1:$HS_PORT  Element http://127.0.0.1:$EL_PORT  (alice / alice-pass, bob / bob-pass, carol / carol-pass)" ;;
   down) podman rm -f "$EL" "$HS" >/dev/null 2>&1 || true ;;

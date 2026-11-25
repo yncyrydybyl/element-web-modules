@@ -2,7 +2,7 @@
 # Throwaway test stack, nothing shared is touched (adapted from modules/teamwork/e2e/stack.sh):
 #   - Synapse v1.162.0 on http://127.0.0.1:${TWL_HS_PORT:-18484}, server name welcome.test, users alice,
 #     bob and carol (passwords <name>-pass)
-#   - Element Web v1.12.33 on http://127.0.0.1:${TWL_EL_PORT:-5815}, lib/ mounted at /modules/teams-welcome,
+#   - Element Web v1.12.36 on http://127.0.0.1:${TWL_EL_PORT:-5815}, lib/ mounted at /modules/teams-welcome,
 #     with an example module config (organisation "Contoso", two spaces to join)
 #   - alice creates the two public spaces #contoso:welcome.test and #engineering:welcome.test, each with
 #     one room, so a fresh user can join them from the guide
@@ -79,7 +79,7 @@ JSON
     podman rm -f "$EL" >/dev/null 2>&1 || true
     podman run -d --name "$EL" -p "127.0.0.1:$EL_PORT:$EL_PORT" -e ELEMENT_WEB_PORT="$EL_PORT" \
       -v "$RUN/element-config.json:/app/config.json:ro,z" -v "$PWD/lib:/modules/teams-welcome:ro,z" \
-      ghcr.io/element-hq/element-web:v1.12.33 >/dev/null
+      ghcr.io/element-hq/element-web:v1.12.36 >/dev/null
     for _ in $(seq 30); do curl -sf "http://127.0.0.1:$EL_PORT/modules/teams-welcome/index.js" >/dev/null && break; sleep 1; done
     echo "Synapse http://127.0.0.1:$HS_PORT  Element http://127.0.0.1:$EL_PORT  (alice / alice-pass, bob / bob-pass, carol / carol-pass)" ;;
   down) podman rm -f "$EL" "$HS" >/dev/null 2>&1 || true ;;

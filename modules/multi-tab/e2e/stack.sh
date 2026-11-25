@@ -4,7 +4,7 @@
 #     (passwords alice-pass / bob-pass), a space "MT Team" with ${MT_ROOMS:-30} unencrypted rooms "Room N"
 #     (one message from bob each) and ${MT_ENC_ROOMS:-10} megolm rooms "Enc N", alice and bob joined everywhere
 #   - logging proxy (e2e/proxy.mjs) on http://127.0.0.1:${MT_PROXY_PORT:-18461} -> Synapse, log in e2e/.run/proxy-18461.jsonl
-#   - Element Web ${MT_ELEMENT:-v1.12.33} on http://127.0.0.1:${MT_EL_PORT:-5795}, lib/ mounted at /modules/multi-tab,
+#   - Element Web ${MT_ELEMENT:-v1.12.36} on http://127.0.0.1:${MT_EL_PORT:-5795}, lib/ mounted at /modules/multi-tab,
 #     loaded via the image's /modules auto-loader (only if lib/index.js exists and MT_STOCK is unset), base_url -> proxy
 #   - the same Element on http://127.0.0.1:${MT_EL_STOCK_PORT:-5796} WITHOUT the module, base_url -> proxy
 # Room ids are written to e2e/.run/stack.json. State lives in e2e/.run/ (git-ignored).
@@ -17,7 +17,7 @@ EL_PORT=${MT_EL_PORT:-5795}
 EL2_PORT=${MT_EL_STOCK_PORT:-5796}
 ROOMS=${MT_ROOMS:-30}
 ENC_ROOMS=${MT_ENC_ROOMS:-10}
-IMG="ghcr.io/element-hq/element-web:${MT_ELEMENT:-v1.12.33}"
+IMG="ghcr.io/element-hq/element-web:${MT_ELEMENT:-v1.12.36}"
 HS=mt-e2e-synapse
 EL=mt-e2e-element
 EL2=mt-e2e-element-stock
