@@ -1,0 +1,233 @@
+/* sketch-designed — level 1: Excalidraw discipline. Clean Assistant chrome on islands, drawn content. */
+
+html[data-tl-theme="sketch-designed"] {
+    --sk-ink: #1e1e1e;
+    --sk-line: #1e1e1e;
+    --sk-accent: #6965db;
+    --sk-focus: #6965db;
+    --sk-display: "Excalifont", "Assistant", sans-serif;
+    --sk-content: "Excalifont", "Assistant", sans-serif;
+    --sk-frame-1: url("assets/frame-d1.svg");
+    --sk-frame-2: url("assets/frame-d2.svg");
+    --sk-frame-3: url("assets/frame-d3.svg");
+    --sk-pill: url("assets/pill-s1.svg");
+    --sk-circle: url("assets/circle-1.svg");
+    --sk-underline: url("assets/underline-1.svg");
+    --sk-highlight: #ffec99;
+    --sk-sel-line: #6965db;
+    --sk-avatar-line: transparent;
+    --sk-island-shadow: 0 0 0.9310142993927002px 0 rgba(0, 0, 0, 0.17), 0 0 3.1270833015441895px 0 rgba(0, 0, 0, 0.08),
+        0 7px 14px 0 rgba(0, 0, 0, 0.05);
+
+    --sk-et-bubble-self-background: #e3e2fe;
+    --sk-et-bubble-other-background: #f8f9fa;
+    --sk-et-bubble-corner-radius: 10px;
+    --cpd-color-bg-action-secondary-hovered: #f1f0ff;
+    --cpd-color-bg-action-tertiary-hovered: #f1f0ff;
+    --cpd-color-bg-subtle-tertiary: #f5f5f5;
+    --cpd-color-border-interactive-secondary: #ced4da;
+    --cpd-color-separator-primary: #e9ecef;
+    --cpd-color-bg-badge-accent: #6965db;
+    --cpd-color-bg-accent-hovered: #5b57d1;
+    --cpd-color-bg-accent-pressed: #4a47b1;
+    --cpd-color-bg-critical-subtle: #ffc9c9;
+    --cpd-color-bg-success-subtle: #ebfbee;
+    --cpd-color-bg-info-subtle: #e7f5ff;
+    --cpd-color-text-info-primary: #1971c2;
+    --cpd-color-icon-tertiary: #868e96;
+    --cpd-color-green-900: #6965db;
+    --cpd-color-green-800: #5b57d1;
+}
+
+/* the Excalifont has a smaller apparent size: nudge content up a bit */
+html[data-tl-theme="sketch-designed"] :is(.mx_EventTile_body, .mx_RoomListItemView, .mx_DisambiguatedProfile) {
+    font-size: 1.06em;
+    letter-spacing: 0.01em;
+}
+
+/* --- shell: plain white canvas --------------------------------------------- */
+html[data-tl-theme="sketch-designed"] .mx_MatrixChat {
+    background: #ffffff;
+}
+
+/* --- islands: space panel, room list, composer ------------------------------ */
+html[data-tl-theme="sketch-designed"] .mx_SpacePanel {
+    background: #ffffff;
+    margin: 8px 0 8px 8px;
+    border-radius: 10px;
+    box-shadow: var(--sk-island-shadow);
+    height: auto;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_LeftPanel {
+    background: #ffffff;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_RoomListPanel {
+    background: #f8f9fa;
+    margin: 8px;
+    border-radius: 10px;
+    box-shadow: var(--sk-island-shadow);
+    overflow: hidden;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_MessageComposer_wrapper {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: var(--sk-island-shadow);
+    margin: 0 8px 8px;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_MessageComposer_wrapper::after {
+    opacity: 0.8;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_MessageComposer {
+    border-top: none;
+    background: transparent;
+}
+
+/* --- selected room: hachure + Excalidraw selection box with handles --------- */
+html[data-tl-theme="sketch-designed"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"]) {
+    background:
+        url("assets/hachure.svg") 0 0 / 22px 22px repeat,
+        #e7f5ff;
+    background-blend-mode: soft-light, normal;
+}
+
+html[data-tl-theme="sketch-designed"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"])::before {
+    content: "";
+    position: absolute;
+    inset: 2px 3px;
+    pointer-events: none;
+    border: 1px solid #6965db;
+    border-radius: 2px;
+    z-index: 2;
+}
+
+html[data-tl-theme="sketch-designed"] :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"])::after {
+    -webkit-mask: none;
+    mask: none;
+    inset: -2px -1px;
+    background:
+        url("assets/handle.svg") 0 0 / 9px 9px no-repeat,
+        url("assets/handle.svg") 100% 0 / 9px 9px no-repeat,
+        url("assets/handle.svg") 0 100% / 9px 9px no-repeat,
+        url("assets/handle.svg") 100% 100% / 9px 9px no-repeat;
+    z-index: 3;
+}
+
+/* selected space: violet selection box */
+html[data-tl-theme="sketch-designed"] .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+    background: #e3e2fe;
+    outline: 1px solid #6965db;
+    outline-offset: 1px;
+}
+
+/* --- timeline -------------------------------------------------------------- */
+html[data-tl-theme="sketch-designed"] .mx_EventTile [class*="_layoutBubble_"],
+html[data-tl-theme="sketch-designed"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"]) {
+    position: relative;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    background: #1e1e1e;
+    opacity: 0.85;
+    -webkit-mask: url("assets/frame-d3.svg") 0 0 / 100% 100% no-repeat;
+    mask: url("assets/frame-d3.svg") 0 0 / 100% 100% no-repeat;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_EventTile[class*="_layoutBubble_"]:nth-child(3n+1) [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    -webkit-mask-image: url("assets/frame-d1.svg");
+    mask-image: url("assets/frame-d1.svg");
+}
+
+html[data-tl-theme="sketch-designed"] .mx_EventTile[class*="_layoutBubble_"]:nth-child(3n+2) [class*="_line_"]:not([class*="_lineMedia_"])::after {
+    -webkit-mask-image: url("assets/frame-d2.svg");
+    mask-image: url("assets/frame-d2.svg");
+}
+
+/* sender names in Excalidraw stroke colours (tokens), slightly larger */
+html[data-tl-theme="sketch-designed"] .mx_DisambiguatedProfile {
+    font-size: 1.05em;
+}
+
+/* day separator: hand-drawn arrow + grey Excalifont, the Excalidraw hint idiom */
+html[data-tl-theme="sketch-designed"] .mx_TimelineSeparator,
+html[data-tl-theme="sketch-designed"] .mx_DateSeparator {
+    font-family: "Excalifont", sans-serif;
+    color: #868e96;
+}
+
+html[data-tl-theme="sketch-designed"] :is(.mx_TimelineSeparator, .mx_DateSeparator) > hr {
+    border: 0;
+    height: 10px;
+    background: url("assets/underline-1.svg") center / 100% 8px no-repeat;
+    opacity: 0.35;
+}
+
+/* code blocks: island-grey */
+html[data-tl-theme="sketch-designed"] :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) {
+    background: #f8f9fa;
+    border-color: transparent;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_EventTile_body code:not(pre code) {
+    background: #f1f0ff;
+    color: #4a47b1;
+}
+
+/* --- dialogs + menus: islands -------------------------------------------- */
+html[data-tl-theme="sketch-designed"] :is(.mx_Dialog, .mx_ContextualMenu, [role="menu"]) {
+    box-shadow: var(--sk-island-shadow);
+}
+
+/* chrome stays clean (Excalidraw): no drawn outline on dialogs/menus/toasts, just the island */
+html[data-tl-theme="sketch-designed"] :is(.mx_Dialog, .mx_ContextualMenu, [role="menu"], .mx_Toast_toast)::after {
+    content: none;
+}
+
+html[data-tl-theme="sketch-designed"] :is(.mx_ContextualMenu, [role="menu"], .mx_Dialog) {
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_Dialog_background {
+    background: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+}
+
+/* Tooltips: dark pills (Excalidraw) */
+html[data-tl-theme="sketch-designed"] [role="tooltip"] {
+    font-family: "Assistant", sans-serif;
+}
+
+/* Buttons: primary violet with a slightly translucent drawn outline */
+html[data-tl-theme="sketch-designed"] {
+    --sk-btn-line: rgba(30, 30, 30, 0.7);
+}
+
+/* badges: count inside a red drawn circle */
+html[data-tl-theme="sketch-designed"] [class*="_notificationBadge_"] {
+    --cpd-color-bg-critical-primary: #e03131;
+}
+
+/* auth: Excalidraw welcome screen feel */
+html[data-tl-theme="sketch-designed"] .mx_AuthPage {
+    background: #ffffff;
+}
+
+html[data-tl-theme="sketch-designed"] .mx_AuthPage_modal {
+    box-shadow: var(--sk-island-shadow);
+    border-radius: 10px;
+}
+
+/* hint annotations from the enhancer */
+html[data-tl-theme="sketch-designed"] .sk-hint {
+    font-family: "Excalifont", sans-serif;
+    color: #9a9a9a;
+}

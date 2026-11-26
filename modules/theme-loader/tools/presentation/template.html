@@ -1,0 +1,373 @@
+<title>Element Theme Atlas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Antonio:wght@400;700&family=Comic+Neue:wght@400;700&family=Caveat:wght@400;700&family=Patrick+Hand&family=Architects+Daughter&family=Kalam&family=Gochi+Hand&family=Rock+Salt&family=Reenie+Beanie&family=Balsamiq+Sans:wght@400;700&family=Noto+Sans:wght@400;600&family=Orbitron:wght@500&family=Share+Tech+Mono&family=Bangers&family=VT323&family=Rajdhani:wght@500&family=Gaegu&family=Shadows+Into+Light&family=Pixelify+Sans&display=swap">
+<style>
+/* Layout: an atlas — overview bands on top, then one band per family with a card grid of live mini-mockups. */
+:root {
+  --bg: #f4f5f3; --panel: #ffffff; --ink: #1b1f1d; --ink-2: #57605b; --line: #dfe3df;
+  --accent: #0d7a5f; --accent-ink: #ffffff;
+  --easy: #1f7a3d; --effort: #9a6200; --no: #b3261e;
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121513; --panel: #1b1f1d; --ink: #e8ece9; --ink-2: #a2aba6; --line: #2c322f;
+  --accent: #3fc79d; --accent-ink: #0b1310; --easy: #5fd08a; --effort: #f0b445; --no: #ff8a80; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121513; --panel: #1b1f1d; --ink: #e8ece9; --ink-2: #a2aba6; --line: #2c322f;
+  --accent: #3fc79d; --accent-ink: #0b1310; --easy: #5fd08a; --effort: #f0b445; --no: #ff8a80; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 40px 80px; display: grid; gap: 56px }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.1 }
+h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -0.02em }
+h2 { font-size: clamp(1.6rem, 3vw, 2.2rem) }
+h3 { font-size: 1.1rem }
+p { margin: 0; max-width: 68ch }
+a { color: var(--accent) }
+.eyebrow { font: 500 12px/1 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2) }
+.lede { font-size: 1.1rem; color: var(--ink-2) }
+header.top { display: grid; gap: 18px }
+.stats { display: flex; flex-wrap: wrap; gap: 28px; font-family: var(--font-mono); color: var(--ink-2) }
+.stats b { display: block; font: 700 2rem/1 var(--font-display); color: var(--ink) }
+nav.fams { display: flex; flex-wrap: wrap; gap: 8px }
+nav.fams a { text-decoration: none; color: var(--ink); border: 1px solid var(--line); background: var(--panel);
+  padding: 6px 12px; border-radius: 999px; font-size: 13px }
+nav.fams a:hover, nav.fams a:focus-visible { border-color: var(--accent); outline: none }
+section { display: grid; gap: 20px; min-width: 0 }
+.layers { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px }
+.layer { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 6px; align-content: start }
+.layer .eyebrow { color: var(--accent) }
+.tablebox { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line) }
+th { font: 500 11.5px var(--font-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--ink-2); white-space: nowrap }
+tr:last-child td { border-bottom: 0 }
+.pill { display: inline-block; font: 500 11px/1 var(--font-mono); padding: 4px 7px; border-radius: 999px; white-space: nowrap; border: 1px solid currentColor }
+.pill.easy { color: var(--easy) } .pill.effort { color: var(--effort) } .pill.no { color: var(--no) }
+.map { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; overflow-x: auto }
+.map svg { display: block; width: 100%; min-width: 560px; height: auto }
+.map text { fill: var(--ink-2); font: 11px var(--font-mono) }
+.map .grid { stroke: var(--line) }
+.map circle { stroke: var(--panel); stroke-width: 2; cursor: pointer }
+.map circle:hover { stroke: var(--ink) }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--ink-2) }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: var(--c); vertical-align: -1px }
+.family { border-top: 1px solid var(--line); padding-top: 36px }
+.famhead { display: grid; gap: 10px }
+.limits { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 13.5px; max-width: 90ch }
+.sources { font-size: 12.5px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px 14px }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; scroll-margin-top: 20px }
+.card:target { outline: 2px solid var(--accent); outline-offset: 2px }
+.card .body { padding: 14px 16px 16px; display: grid; gap: 10px; align-content: start }
+.chips { display: flex; flex-wrap: wrap; gap: 6px }
+.chip { font: 500 11px/1 var(--font-mono); padding: 4px 7px; border-radius: 5px; background: var(--bg); color: var(--ink-2) }
+.tagline { color: var(--ink-2); font-size: 13.5px }
+.meters { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font: 11px var(--font-mono); color: var(--ink-2); align-items: center }
+.meter { height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden }
+.meter i { display: block; height: 100% ; background: var(--accent) }
+.sig { margin: 0; padding-left: 16px; font-size: 13px }
+.fonts { font: 12px var(--font-mono); color: var(--ink-2); overflow-wrap: anywhere }
+details { font-size: 13.5px }
+summary { cursor: pointer; color: var(--accent); font-weight: 600 }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.phases { display: flex; gap: 4px; flex-wrap: wrap }
+.phases button { font: 500 11px var(--font-mono); border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 5px; padding: 3px 7px; cursor: pointer }
+.phases button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent) }
+.shot { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; object-position: top left; border-bottom: 1px solid var(--line) }
+
+/* ---------- mini Element mockup, driven by per-variant custom properties ---------- */
+.mock { --r: 6px; aspect-ratio: 16 / 10; display: grid; grid-template-columns: 9% 30% 1fr; background: var(--m-bg);
+  color: var(--m-text); font-family: var(--m-font); font-size: 10.5px; position: relative; overflow: hidden; border-bottom: 1px solid var(--line) }
+.mock > * { min-width: 0 }
+.m-rail { background: var(--m-rail); display: flex; flex-direction: column; align-items: center; gap: 7px; padding-top: 10px; border-right: 1px solid var(--m-border) }
+.m-rail i { width: 58%; aspect-ratio: 1; border-radius: var(--r); background: var(--m-muted); opacity: .45 }
+.m-rail i:first-child { background: var(--m-accent); opacity: 1 }
+.m-list { background: var(--m-sidebar); border-right: 1px solid var(--m-border); padding: 9px 7px; display: flex; flex-direction: column; gap: 4px }
+.m-list b { font-family: var(--m-display); font-size: 12px; padding: 0 3px 4px }
+.m-room { display: flex; align-items: center; gap: 5px; padding: 4px 5px; border-radius: var(--r); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.m-room::before { content: ""; flex: none; width: 13px; height: 13px; border-radius: var(--av-r, 50%); background: var(--m-muted); opacity: .5 }
+.m-room.on { background: var(--m-accent); color: var(--m-on) }
+.m-room.on::before { background: var(--m-on); opacity: .8 }
+.m-room .badge { margin-left: auto; background: var(--m-critical); color: #fff; border-radius: 999px; font-size: 8.5px; padding: 0 5px }
+.m-main { display: grid; grid-template-rows: auto 1fr auto; background: var(--m-surface) }
+.m-head { padding: 8px 10px; border-bottom: 1px solid var(--m-border); font-family: var(--m-display); font-size: 12px; display: flex; justify-content: space-between }
+.m-head small { color: var(--m-muted); font-family: var(--m-font) }
+.m-tl { padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; justify-content: flex-end }
+.m-msg { max-width: 82%; padding: 5px 8px; border-radius: var(--r); background: var(--m-other); border: 1px solid var(--m-border) }
+.m-msg em { display: block; font-style: normal; font-weight: 700; color: var(--m-accent); font-size: 9.5px }
+.m-msg.own { align-self: flex-end; background: var(--m-own) }
+.m-msg code { font-family: var(--m-mono); font-size: 9.5px; color: var(--m-success) }
+.m-comp { margin: 0 10px 9px; padding: 6px 8px; border: 1px solid var(--m-border); border-radius: var(--r); color: var(--m-muted); display: flex; align-items: center; justify-content: space-between; background: var(--m-bg) }
+.m-comp span { width: 16px; height: 16px; border-radius: var(--r); background: var(--m-accent) }
+/* shape families */
+.mock[data-border="bevel"] { --r: 0 }
+.mock[data-border="bevel"] .m-msg, .mock[data-border="bevel"] .m-comp, .mock[data-border="bevel"] .m-rail i {
+  border: 0; box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #000, inset 2px 2px 0 rgba(255,255,255,.5), inset -2px -2px 0 rgba(0,0,0,.35) }
+.mock[data-border="bevel"] .m-head { background: var(--m-accent); color: var(--m-on) }
+.mock[data-border="bevel"] .m-head small { color: var(--m-on) }
+.mock[data-border="sketch"] .m-msg, .mock[data-border="sketch"] .m-comp, .mock[data-border="sketch"] .m-room.on {
+  border: 1.6px solid var(--m-text); border-radius: 14px 4px 12px 5px / 5px 12px 4px 14px }
+.mock[data-border="sketch"] .m-head, .mock[data-border="sketch"] .m-list, .mock[data-border="sketch"] .m-rail { border-style: dashed }
+.mock[data-border="pill"] .m-room, .mock[data-border="pill"] .m-comp { border-radius: 999px }
+.mock[data-border="elbow"] { grid-template-columns: 14% 26% 1fr }
+.mock[data-border="elbow"] .m-rail { border-radius: 0 0 0 0; background: var(--m-rail); border-right: 0; margin: 8px 0 8px 8px; border-top-left-radius: 26px; border-bottom-left-radius: 26px }
+.mock[data-border="elbow"] .m-rail i { border-radius: 999px; width: 70%; aspect-ratio: 2.2 }
+.mock[data-border="elbow"] .m-room { border-radius: 999px 0 0 999px }
+.mock[data-border="elbow"] .m-head { border-bottom: 5px solid var(--m-accent); border-radius: 0 0 0 14px }
+.mock[data-border="glow"] .m-room.on, .mock[data-border="glow"] .m-comp, .mock[data-border="glow"] .m-msg.own { box-shadow: 0 0 8px var(--m-accent), inset 0 1px 0 rgba(255,255,255,.18) }
+.mock[data-border="none"] .m-msg, .mock[data-border="none"] .m-comp, .mock[data-border="none"] .m-head, .mock[data-border="none"] .m-list, .mock[data-border="none"] .m-rail { border-color: transparent }
+.mock[data-chamfer] .m-msg, .mock[data-chamfer] .m-comp { clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px); border-radius: 0 }
+/* textures */
+.mock::after { content: ""; position: absolute; inset: 0; pointer-events: none }
+.mock[data-texture~="scanlines"]::after { background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px) }
+.mock[data-texture~="halftone"]::after { background: radial-gradient(rgba(0,0,0,.14) 1px, transparent 1.4px) 0 0 / 6px 6px }
+.mock[data-texture~="brushed"] .m-rail, .mock[data-texture~="brushed"] .m-list { background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, rgba(0,0,0,.05) 1px 2px), linear-gradient(180deg, rgba(255,255,255,.12), rgba(0,0,0,.18)) }
+.mock[data-texture~="ruled"] .m-tl { background: repeating-linear-gradient(180deg, transparent 0 15px, color-mix(in srgb, var(--m-accent) 25%, transparent) 15px 16px) }
+.mock[data-texture~="grid"] .m-main { background-image: linear-gradient(color-mix(in srgb, var(--m-text) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--m-text) 10%, transparent) 1px, transparent 1px); background-size: 12px 12px }
+.mock[data-texture~="tiles"] { background-image: radial-gradient(var(--m-accent) 1.5px, transparent 2px); background-size: 10px 10px }
+.mock[data-texture~="glossy"] .m-head, .mock[data-texture~="glossy"] .m-room.on { background-image: linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0) 55%) }
+.mock[data-texture~="noise"]::after { opacity: .22; background-image: radial-gradient(rgba(0,0,0,.25) .5px, transparent .8px); background-size: 3px 3px }
+.mock[data-texture~="blur"] .m-list, .mock[data-texture~="blur"] .m-rail { background: color-mix(in srgb, var(--m-sidebar) 70%, transparent); backdrop-filter: blur(6px) }
+.mock[data-texture~="aurora"] { background-image: radial-gradient(60% 80% at 80% 10%, color-mix(in srgb, var(--m-accent) 40%, transparent), transparent), radial-gradient(50% 60% at 10% 90%, color-mix(in srgb, var(--m-success) 30%, transparent), transparent) }
+.mock[data-texture~="aurora"] .m-main { background: transparent }
+@media (prefers-reduced-motion: no-preference) { .mock[data-motion="boil"] .m-msg { animation: boil .6s steps(3) infinite } }
+@keyframes boil { 33% { transform: rotate(.4deg) } 66% { transform: rotate(-.4deg) translateX(.5px) } }
+.mock[data-wordart] .m-head { font-family: "Comic Neue", "Comic Sans MS", cursive; font-weight: 700; font-size: 14px;
+  background-image: linear-gradient(90deg, #ff0040, #ffd000, #00d26a, #00a2ff, #b400ff); -webkit-background-clip: text; background-clip: text; color: transparent }
+.mock[data-wordart] .m-head small { color: var(--m-muted); -webkit-text-fill-color: var(--m-muted) }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">element-web-themes · style guides · element.datanauten.de</div>
+    <h1>Element Theme Atlas</h1>
+    <p class="lede">Every theme we're building for Element Web: what it looks like, how far it can go, and how each part of the interface gets styled. Each card shows a screenshot of the real theme, running on element.datanauten.de's Element Web 1.12.33 with the theme loader module.</p>
+    <div class="stats" id="stats"></div>
+    <nav class="fams" id="famnav" aria-label="Theme families"></nav>
+  </header>
+
+  <section aria-labelledby="h-how">
+    <div class="eyebrow">How it works</div>
+    <h2 id="h-how">Three layers, one module</h2>
+    <p>Element's built-in <code>custom_themes</code> can only change colours and one font. A theme-loader module goes further: Element ships all of its CSS inside cascade layers, so our plain stylesheet overrides any Element rule without fighting specificity.</p>
+    <div class="layers">
+      <div class="layer"><div class="eyebrow">Layer 1 · tokens</div><h3>Colour and type</h3><p>About 120 Compound <code>--cpd-*</code> tokens set from 12 seed colours. Covers most of the modern UI, including the badges Element forces into light mode.</p></div>
+      <div class="layer"><div class="eyebrow">Layer 2 · stylesheet</div><h3>Shape, texture, layout</h3><p>Unlayered CSS scoped to <code>html[data-tl-theme]</code>: bevels, sketch borders, LCARS elbows, grid re-layouts, fonts bundled with the module (production only allows self-hosted fonts).</p></div>
+      <div class="layer"><div class="eyebrow">Layer 3 · enhancer</div><h3>Overlays and behaviour</h3><p>Optional script per family: Win 3.11 title bars, LCARS frames, marquees, the daylight clock. It adds its own elements next to Element's and never moves the ones Element's React code owns.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-can">
+    <div class="eyebrow">Analysis</div>
+    <h2 id="h-can">What can be themed, and what can't</h2>
+    <div class="tablebox"><table id="cantable"><thead><tr><th>Surface</th><th>Rating</th><th>Approach</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="h-map">
+    <div class="eyebrow">The variant space</div>
+    <h2 id="h-map">Seriousness against hype</h2>
+    <p>Each family starts with a faithful "pure" translation, then moves toward usability (right) or excitement (up). Click a dot to jump to its card.</p>
+    <div class="map"><svg id="map" viewBox="0 0 900 420" role="img" aria-label="Scatter plot of all variants by seriousness and hype"></svg></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <div id="families" style="display:grid;gap:56px"></div>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const CAN = [
+  ["Colours of the modern UI (Compound tokens)", "easy", "Override ~120 --cpd-* tokens on html, body and [class*=cpd-theme-] islands"],
+  ["Fonts", "easy", "Self-hosted woff2; !important on font tokens beats Element's inline FontWatcher value"],
+  ["Shapes, borders, shadows, spacing", "easy", "Unlayered CSS beats every layered Element rule"],
+  ["Layout of the main shell", "effort", "CSS grid/order/:has() on stable mx_ shells; never move React-owned nodes"],
+  ["Timeline tiles, room list, badges (hashed CSS-module classes)", "effort", "Substring selectors like [class*=\"_stateOwnEvent_\"]; screenshot suite per release"],
+  ["Icons", "effort", "Recolour easily (currentColor); swapping individual icons needs mask hacks"],
+  ["Default avatars", "easy", "Decorative tokens + --cpd-avatar-radius"],
+  ["Code highlighting", "easy", "Own .hljs-* palette per theme"],
+  ["Emoji", "effort", "Ship another emoji font via --emoji-font-family"],
+  ["Photos, video, blurhash", "effort", "CSS filters and frames only (sepia, dither, sketch filter)"],
+  ["Maps (location)", "effort", "Canvas filter; real restyle needs a server-side map style"],
+  ["Spinner before modules load", "effort", "Cached theme applied first thing in load(); the first frames stay Element's"],
+  ["Element Call, Jitsi, widgets (iframes)", "no", "Only receive light/dark; we can only style the frame around them"],
+  ["Chat effects (confetti, snow)", "no", "Canvas with hard-coded colours; hide or filter"],
+  ["Notification favicon, desktop notification avatars", "no", "Canvas with hard-coded palette"],
+];
+const RATING = { easy: "Easy", effort: "With effort", no: "Not possible" };
+const REGIONS = ["shell","spaces","roomlist","header","timeline","names-avatars","composer","rightpanel","buttons","inputs","dialogs","menus","settings","auth","scrollbars","focus","badges","code","iframes","icons","motion"];
+const GFONTS = ["Antonio","Comic Neue","Caveat","Patrick Hand","Architects Daughter","Kalam","Gochi Hand","Rock Salt","Reenie Beanie","Balsamiq Sans","Noto Sans","Orbitron","Share Tech Mono","Bangers","VT323","Rajdhani","Gaegu","Shadows Into Light","IBM Plex Sans","IBM Plex Mono","Pixelify Sans"];
+const el = (tag, attrs = {}, html = "") => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (html) e.innerHTML = html; return e; };
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+function fontStack(desc, fallback) {
+  const s = String(desc || "");
+  const hits = GFONTS.map(f => [f, s.indexOf(f)]).filter(([, i]) => i >= 0).sort((a, b) => a[1] - b[1]);
+  const pre = [];
+  if (/comic sans/i.test(s)) pre.push('"Comic Sans MS"', '"Comic Neue"');
+  if (/segoe/i.test(s)) pre.push('"Segoe UI Variable"', '"Segoe UI"');
+  if (/selawik/i.test(s)) pre.push("Selawik");
+  if (/iA Writer|Plex/i.test(s) && !hits.length) pre.push('"IBM Plex Sans"');
+  if (/sans serif|ms sans|w95|pixel|system font/i.test(s) && !hits.length) pre.push('"Pixelify Sans"');
+  const order = (s.search(/comic sans|segoe|selawik/i) >= 0 && (!hits.length || s.search(/comic sans|segoe|selawik/i) < hits[0][1])) ? [...pre, ...hits.map(h => `"${h[0]}"`)] : [...hits.map(h => `"${h[0]}"`), ...pre];
+  return [...order, fallback].join(", ");
+}
+
+function normalize(v) {
+  if (v.phases && Array.isArray(v.phases.schedule)) {
+    const { schedule, ...rest } = v.phases;
+    v.schedule = v.schedule || schedule; v.phases = rest;
+  }
+  if (v.phases) for (const k of Object.keys(v.phases)) if (typeof v.phases[k] !== "object" || Array.isArray(v.phases[k])) delete v.phases[k];
+  return v;
+}
+
+function phaseNow(v) {
+  if (!v.schedule) return null;
+  const now = new Date(), mins = now.getHours() * 60 + now.getMinutes();
+  const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+  const sorted = [...v.schedule].sort((a, b) => toMin(a.from) - toMin(b.from));
+  let cur = sorted[sorted.length - 1];
+  for (const s of sorted) if (toMin(s.from) <= mins) cur = s;
+  return cur.phase;
+}
+
+function mockFor(fam, v, palette) {
+  const p = palette || v.palette || {};
+  const shape = v.shape || {}, tex = String(v.texture || "").toLowerCase(), all = (JSON.stringify(v.signature || []) + v.tagline + tex + v.stage).toLowerCase();
+  const m = el("div", { class: "mock", "aria-hidden": "true" });
+  const set = (k, val) => val && m.style.setProperty(k, val);
+  set("--m-bg", p.bg); set("--m-surface", p.surface || p.bg); set("--m-sidebar", p.sidebar || p.surface); set("--m-rail", p.rail || p.sidebar);
+  set("--m-text", p.text); set("--m-muted", p.muted); set("--m-accent", p.accent); set("--m-on", p.onAccent || "#fff");
+  set("--m-border", p.border); set("--m-own", p.own || p.surface); set("--m-other", p.other || p.surface);
+  set("--m-critical", p.critical || "#d33"); set("--m-success", p.success || "#2a7");
+  const ui = fontStack(v.fonts?.ui, "system-ui, sans-serif");
+  set("--m-font", ui); set("--m-display", fontStack(v.fonts?.display, ui)); set("--m-mono", fontStack(v.fonts?.mono, "ui-monospace, monospace"));
+  const r = String(shape.radius || "6px").match(/[\d.]+(px|rem|%)?/);
+  if (r) set("--r", r[0].endsWith("rem") ? (parseFloat(r[0]) * 16) + "px" : (r[0].match(/px|%/) ? r[0] : r[0] + "px"));
+  const b = String(shape.border || "").toLowerCase();
+  const border = ["bevel","sketch","pill","elbow","glow","none","hairline"].find(k => b.includes(k)) || "hairline";
+  m.dataset.border = border;
+  const t = [];
+  if (/scanline|crt/.test(tex)) t.push("scanlines");
+  if (/halftone/.test(tex)) t.push("halftone");
+  if (/brushed|metal/.test(tex)) t.push("brushed");
+  if (/ruled|notebook/.test(tex)) t.push("ruled");
+  if (/grid|blueprint|graph/.test(tex)) t.push("grid");
+  if (/tile|starfield|geocities/.test(tex)) t.push("tiles");
+  if (/gloss|edje|gel/.test(tex)) t.push("glossy");
+  if (/paper|napkin|chalk|noise|grain/.test(tex)) t.push("noise");
+  if (/blur|glass|acrylic|mica/.test(tex)) t.push("blur");
+  if (/aurora|gradient/.test(tex)) t.push("aurora");
+  m.dataset.texture = t.join(" ");
+  if (/chamfer|cyberpunk/.test(all)) m.dataset.chamfer = "";
+  if (/wordart/.test(all) && fam.family === "comic") m.dataset.wordart = "";
+  if (/boil/.test(String(v.motion).toLowerCase())) m.dataset.motion = "boil";
+  m.innerHTML = `
+    <div class="m-rail"><i></i><i></i><i></i><i></i></div>
+    <div class="m-list"><b>Theme Lab</b>
+      <div class="m-room on">Design review</div><div class="m-room">General <span class="badge">3</span></div>
+      <div class="m-room">Release train</div><div class="m-room">Mira, Jonas</div><div class="m-room">Sandbox</div></div>
+    <div class="m-main">
+      <div class="m-head">Design review <small>4 members</small></div>
+      <div class="m-tl">
+        <div class="m-msg"><em>Jonas</em>Can we ship the new header today?</div>
+        <div class="m-msg own">Yes, after the <code>edgecheck</code> run.</div>
+        <div class="m-msg"><em>Lena</em>Thread: 12 replies</div></div>
+      <div class="m-comp">Send a message…<span></span></div></div>`;
+  return m;
+}
+
+function card(fam, v) {
+  const c = el("article", { class: "card", id: v.id });
+  const shot = DATA.shots?.[v.id];
+  let mockHolder = el("div");
+  if (shot) mockHolder.appendChild(el("img", { class: "shot", src: shot, alt: `Screenshot of ${v.name}`, loading: "lazy" }));
+  else mockHolder.appendChild(mockFor(fam, v, v.phases ? v.phases[phaseNow(v)] : null));
+  c.appendChild(mockHolder);
+  const body = el("div", { class: "body" });
+  body.innerHTML = `<h3>${esc(v.name)}</h3>
+    <div class="chips"><span class="chip">${esc(v.stage)}</span><span class="chip">${esc(v.mode)}</span>${v.difficulty ? `<span class="chip">effort: ${esc(v.difficulty)}</span>` : ""}<span class="chip">${esc(v.id)}</span></div>
+    <p class="tagline">${esc(v.tagline)}</p>
+    <div class="meters"><span>serious</span><div class="meter"><i style="width:${(v.seriousness ?? 0) * 10}%"></i></div><span>hype</span><div class="meter"><i style="width:${(v.hype ?? 0) * 10}%"></i></div></div>`;
+  if (v.phases && !shot) {
+    const box = el("div", { class: "phases", role: "group", "aria-label": "Daylight phase" });
+    const current = phaseNow(v);
+    for (const ph of Object.keys(v.phases)) {
+      const sched = (v.schedule || []).find(s => s.phase === ph);
+      const btn = el("button", { type: "button", "aria-pressed": String(ph === current) }, `${esc(ph)}${sched ? " " + esc(sched.from) : ""}${ph === current ? " · now" : ""}`);
+      btn.addEventListener("click", () => {
+        mockHolder.replaceChildren(mockFor(fam, v, v.phases[ph]));
+        box.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === btn)));
+      });
+      box.appendChild(btn);
+    }
+    body.appendChild(box);
+  }
+  body.insertAdjacentHTML("beforeend", `
+    <div class="fonts">${esc(v.fonts?.ui)}${v.fonts?.mono ? " · mono: " + esc(v.fonts.mono) : ""}</div>
+    <ul class="sig">${(v.signature || []).map(s => `<li>${esc(s)}</li>`).join("")}</ul>
+    ${v.enhancer ? `<details><summary>Enhancer</summary><p>${esc(v.enhancer)}</p></details>` : ""}`);
+  c.appendChild(body);
+  return c;
+}
+
+function render() {
+  const fams = DATA.families;
+  fams.forEach(f => f.variants.forEach(normalize));
+  const variants = fams.flatMap(f => f.variants.map(v => ({ ...v, fam: f })));
+  document.getElementById("stats").innerHTML =
+    `<span><b>${variants.length}</b>variants</span><span><b>${fams.length}</b>families</span>` +
+    `<span><b>${variants.filter(v => v.mode === "daylight").length}</b>follow the clock</span><span><b>${REGIONS.length}</b>UI regions each</span>`;
+  const nav = document.getElementById("famnav");
+  fams.forEach(f => nav.appendChild(el("a", { href: "#fam-" + f.family }, `${esc(f.name)} · ${f.variants.length}`)));
+
+  const tb = document.querySelector("#cantable tbody");
+  CAN.forEach(([s, r, a]) => tb.insertAdjacentHTML("beforeend", `<tr><td>${esc(s)}</td><td><span class="pill ${r}">${RATING[r]}</span></td><td>${esc(a)}</td></tr>`));
+
+  // scatter
+  const svg = document.getElementById("map"), W = 900, H = 420, L = 50, B = 40, T = 14, R = 16;
+  const x = s => L + (s / 10) * (W - L - R), y = h => H - B - (h / 10) * (H - B - T);
+  let g = "";
+  for (let i = 0; i <= 10; i += 2) {
+    g += `<line class="grid" x1="${x(i)}" x2="${x(i)}" y1="${T}" y2="${H - B}"/><text x="${x(i)}" y="${H - B + 16}" text-anchor="middle">${i}</text>`;
+    g += `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(i)}" y2="${y(i)}"/><text x="${L - 8}" y="${y(i) + 4}" text-anchor="end">${i}</text>`;
+  }
+  g += `<text x="${(W + L) / 2}" y="${H - 6}" text-anchor="middle">seriousness →</text><text x="14" y="${(H - B) / 2}" transform="rotate(-90 14 ${(H - B) / 2})" text-anchor="middle">hype →</text>`;
+  const seen = {};
+  variants.forEach(v => {
+    const k = `${v.seriousness},${v.hype}`; const n = (seen[k] = (seen[k] || 0) + 1) - 1;
+    const ang = n * 2.4, rad = n ? 7 + n * 1.6 : 0;
+    const cx = x(v.seriousness ?? 0) + Math.cos(ang) * rad, cy = y(v.hype ?? 0) + Math.sin(ang) * rad;
+    g += `<a href="#${esc(v.id)}"><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="6.5" fill="${esc(v.palette?.accent || "#888")}"><title>${esc(v.name)} · ${esc(v.stage)} · S${v.seriousness} H${v.hype}</title></circle></a>`;
+  });
+  svg.innerHTML = g;
+  const lg = document.getElementById("legend");
+  lg.innerHTML = "Dot colour is each variant's own accent colour. Families: " + fams.map(f => `<a href="#fam-${f.family}">${esc(f.name)}</a>`).join(" · ");
+
+  const host = document.getElementById("families");
+  fams.forEach(f => {
+    const s = el("section", { class: "family", id: "fam-" + f.family, "aria-labelledby": "h-" + f.family });
+    s.innerHTML = `<div class="famhead"><div class="eyebrow">${f.variants.length} variants</div><h2 id="h-${f.family}">${esc(f.name)}</h2>
+      <p>${esc(f.concept)}</p>
+      ${f.limits?.length ? `<details><summary>Limits and workarounds (${f.limits.length})</summary><ul class="limits">${f.limits.map(l => `<li>${esc(l)}</li>`).join("")}</ul></details>` : ""}
+      ${f.sources?.length ? `<div class="sources">${f.sources.slice(0, 10).map(x => `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a>`).join("")}</div>` : ""}</div>`;
+    const grid = el("div", { class: "cards" });
+    f.variants.forEach(v => grid.appendChild(card(f, v)));
+    s.appendChild(grid);
+    const d = el("details");
+    d.innerHTML = `<summary>What is styled how: ${REGIONS.length} regions × ${f.variants.length} variants</summary>`;
+    const tbx = el("div", { class: "tablebox" });
+    tbx.innerHTML = `<table><thead><tr><th>Region</th>${f.variants.map(v => `<th>${esc(v.name)}</th>`).join("")}</tr></thead><tbody>${REGIONS.map(r =>
+      `<tr><td><b>${r}</b></td>${f.variants.map(v => `<td style="min-width:200px">${esc(v.regions?.[r] || "—")}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+    d.appendChild(tbx);
+    s.appendChild(d);
+    host.appendChild(s);
+  });
+}
+render();
+</script>

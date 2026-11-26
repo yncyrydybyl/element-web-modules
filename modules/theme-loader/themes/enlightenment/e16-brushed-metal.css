@@ -1,0 +1,383 @@
+/* e16-brushed-metal — E16 BrushedMetal-Tigert (Tigert / Rasterman, the DR16 default theme).
+ * Sampled from e16-themes BrushedMetal-Tigert pixmaps:
+ *   active title #A7A7A6 (top #FEFEFE/#E0E3DA, bottom #4B4C4A/#121212), inactive #767675,
+ *   sticky turquoise #93B0AE, bronze gems #927C64/#A99682, metal ≈ #C8C8C6,
+ *   turquoise desktop #3C5A5A / #1D5A5A→#818180, Edoc #346F6E with links #88DDDD, fonts X11 Lucida.
+ * Chrome = black on light metal (tokens re-declared in e16-metal-tokens.css); timeline = white on teal.
+ */
+html[data-tl-theme="e16-brushed-metal"] {
+  --t-metal: linear-gradient(rgba(204, 205, 203, 0.62), rgba(204, 205, 203, 0.62)), url("assets/brushed-aluminium.png") 0 0 / 256px 128px, #C8C8C6;
+  --t-title: linear-gradient(180deg, #FEFEFE 0, #FEFEFE 1px, #E0E3DA 1px, #C4C6C2 3px, #ADADAB 30%, #A7A7A6 55%, #9C9C9B 80%, #4B4C4A calc(100% - 1px), #121212 100%);
+  --t-title-inactive: linear-gradient(180deg, #B4B4B4 0, #B4B4B4 1px, #9EA19A 1px, #8A8A89 30%, #767675 55%, #6E6E6D 80%, #353534 calc(100% - 1px), #0C0C0C 100%);
+  --t-bevel-out: inset 1px 1px 0 #F1F3F4, inset -1px -1px 0 #5A5F64;
+  --t-bevel-in: inset 1px 1px 0 #5A5F64, inset -1px -1px 0 #F1F3F4;
+  --t-frame: 0 0 0 1px #FEFEFE, 0 0 0 4px #A7A7A6, 0 0 0 5px #121212;
+
+  --e-wall:
+    linear-gradient(180deg, rgba(29, 90, 90, 0.55) 0%, rgba(52, 111, 110, 0.25) 55%, rgba(129, 129, 128, 0.35) 100%),
+    url("assets/tigert-turquoise-bg.jpg") 0 0 / 512px 512px,
+    #3C5A5A;
+  --e-gap: 7px;
+  --e-win-radius: 0px;
+  --e-win-border: var(--t-frame);
+  --e-win-shadow: 2px 3px 0 6px rgba(0, 0, 0, 0.25);
+
+  --e-bar-bg: var(--t-title);
+  --e-bar-fg: #000000;
+  --e-bar-line: #121212;
+  --e-bar-shadow: none;
+  --e-bar-font: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", sans-serif;
+  --e-bar-weight: 700;
+  --e-bar-text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+
+  --e-shelf-bg: var(--t-metal);
+  --e-list-bg: var(--t-metal);
+  --e-list-fg: #000000;
+  --e-list-sep: rgba(142, 147, 152, 0.55);
+  --e-hover-bg: rgba(255, 255, 255, 0.35);
+  --e-sel-bg: #93B0AE;
+  --e-sel-fg: #000000;
+  --e-sel-bar: #1D5A5A;
+  --e-sel-bar-w: 3px;
+  --e-sel-glow: var(--t-bevel-in);
+  --e-row-radius: 0px;
+
+  --e-well-bg: #EDEEEE;
+  --e-well-border: #3B3F44;
+  --e-well-shadow: var(--t-bevel-in);
+  --e-well-radius: 0px;
+
+  --e-btn-bg: linear-gradient(180deg, #DDE0E2 0%, #CFD3D6 40%, #8E9398 100%);
+  --e-btn-bg-hover: linear-gradient(180deg, #EEF0F1 0%, #DADDE0 40%, #9EA3A8 100%);
+  --e-btn-bg-active: linear-gradient(180deg, #8E9398 0%, #CFD3D6 100%);
+  --e-btn-fg: #000000;
+  --e-btn-border: 1px solid #2B2F33;
+  --e-btn-shadow: var(--t-bevel-out);
+  --e-btn-shadow-active: var(--t-bevel-in);
+  --e-btn-radius: 0px;
+  --e-pri-bg: linear-gradient(180deg, #C5DCDA 0%, #9BB9B7 45%, #6F9694 100%);
+  --e-pri-bg-hover: linear-gradient(180deg, #D6E8E6 0%, #ABC8C6 45%, #7FA6A4 100%);
+  --e-pri-fg: #000000;
+  --e-pri-shadow: 0 0 0 1px #2B2F33, inset 1px 1px 0 #F1F3F4, inset -1px -1px 0 #3E5E5C;
+
+  --e-focus: #88DDDD;
+  --e-focus-style: solid;
+
+  --e-menu-bg: var(--t-metal);
+  --e-menu-border: #121212;
+  --e-menu-sel: #346F6E;
+  --e-menu-sel-fg: #FFFFFF;
+  --e-menu-radius: 0px;
+  --e-menu-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+  --e-tip-bg: #E7E3D2;
+  --e-tip-fg: #000000;
+  --e-tip-border: #121212;
+
+  --e-scroll-thumb: #A7A7A6;
+  --e-scroll-thumb-hover: #93B0AE;
+  --e-scroll-track: #8E9398;
+  --e-scroll-w: 14px;
+
+  --e-bubble-own: #2C6563;
+  --e-bubble-other: #26504F;
+  --e-highlight-bar: #F2D29B;
+  --e-readmarker: #88DDDD;
+
+  --e-code-bg: #0E2A2A;
+  --e-code-fg: #CFE3E2;
+  --e-code-border: #000000;
+  --e-hl-keyword: #88DDDD;
+  --e-hl-string: #D9C08A;
+  --e-hl-comment: #7FA3A1;
+  --e-hl-number: #F2D29B;
+  --e-hl-class: #A9C8FF;
+  --e-hl-function: #9FE8E3;
+  --e-hl-tag: #F5A9A0;
+  --e-hl-attr: #D7B8F5;
+
+  --e-badge-bg: #C8C8C6;
+  --e-badge-fg: #000000;
+  --e-badge-hl-bg: #A0281E;
+  --e-badge-hl-fg: #FFFFFF;
+
+  --e-avatar-ring: 0 0 0 1px #000, inset 1px 1px 0 rgba(255, 255, 255, 0.6);
+  --e-dialog-anim: none;
+  --e-dialog-bg: var(--t-metal);
+  --e-dialog-bar-h: 23px;
+  --e-backdrop: rgba(29, 90, 90, 0.6);
+  --e-auth-bg: var(--e-wall);
+  --e-clock-face: radial-gradient(circle at 40% 30%, #F4F5F5, #C8C8C6 60%, #8E9398 100%);
+  --e-clock-rim: #2B2F33;
+  --e-clock-tick: #2B2F33;
+  --e-clock-hand: #121212;
+  --e-clock-sec: #A0281E;
+  --e-clock-glow: none;
+}
+
+/* timeline: deep teal desktop panel with white text */
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomView_body,
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomView_messagePanel {
+  background:
+    linear-gradient(rgba(31, 71, 70, 0.94), rgba(31, 71, 70, 0.94)),
+    url("assets/tigert-turquoise-bg.jpg") 0 0 / 512px 512px,
+    #1F4746;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomView {
+  background: #1F4746;
+}
+
+/* metal regions: brushed aluminium, black Lucida text, dotted black focus */
+html[data-tl-theme="e16-brushed-metal"] .mx_SpacePanel,
+html[data-tl-theme="e16-brushed-metal"] .mx_LeftPanel,
+html[data-tl-theme="e16-brushed-metal"] .mx_RightPanel,
+html[data-tl-theme="e16-brushed-metal"] .mx_RightPanel .mx_BaseCard,
+html[data-tl-theme="e16-brushed-metal"] .mx_MessageComposer,
+html[data-tl-theme="e16-brushed-metal"] .mx_Dialog,
+html[data-tl-theme="e16-brushed-metal"] .mx_ContextualMenu,
+html[data-tl-theme="e16-brushed-metal"] [role="menu"] {
+  --e-focus: #000000;
+  --e-focus-style: dotted;
+  color: var(--cpd-color-text-primary);
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", sans-serif;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_RightPanel,
+html[data-tl-theme="e16-brushed-metal"] .mx_RightPanel .mx_BaseCard,
+html[data-tl-theme="e16-brushed-metal"] .mx_RightPanel .mx_ThreadView,
+html[data-tl-theme="e16-brushed-metal"] .mx_RightPanel .mx_RoomView_MessageList,
+html[data-tl-theme="e16-brushed-metal"] .mx_RightPanel .mx_RoomView_messagePanel {
+  background: var(--t-metal);
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_RightPanel .mx_RoomView_body {
+  background: transparent;
+}
+
+/* inactive windows: title bars drop to #767675 when another window has focus (enhance.ts sets data-e-active) */
+html[data-tl-theme="e16-brushed-metal"]:has([data-e-active]) .mx_RoomView:not([data-e-active]) .mx_RoomHeader,
+html[data-tl-theme="e16-brushed-metal"]:has([data-e-active]) .mx_RightPanel:not([data-e-active]) [class*="_header_"]:first-child,
+html[data-tl-theme="e16-brushed-metal"]:has([data-e-active]) .mx_LeftPanel:not([data-e-active])::before {
+  background: var(--t-title-inactive);
+}
+
+/* left panel gets its own E16 title bar ("Rooms") */
+html[data-tl-theme="e16-brushed-metal"] .mx_LeftPanel {
+  position: relative;
+  padding-top: 21px;
+  box-sizing: border-box;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_LeftPanel::before {
+  content: "ROOMS" / "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 21px;
+  background:
+    url("assets/e16-btn-menu.svg") 3px 50% / 15px 15px no-repeat,
+    url("assets/e16-btn-close.svg") calc(100% - 3px) 50% / 15px 15px no-repeat,
+    url("assets/e16-btn-max.svg") calc(100% - 20px) 50% / 15px 15px no-repeat,
+    url("assets/e16-btn-min.svg") calc(100% - 37px) 50% / 15px 15px no-repeat,
+    var(--t-title);
+  color: #000;
+  font: 400 10px/21px "Silkscreen", "DejaVu Sans", sans-serif;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* room header = E16 title bar with gem buttons */
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader {
+  --e-glyphs-w: 51px;
+  height: 40px;
+  min-height: 40px;
+  padding-block: 0;
+  padding-left: 30px;
+  border-bottom: 0;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  background: url("assets/e16-btn-menu.svg") 0 0 / 16px 16px no-repeat;
+  pointer-events: none;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader::after {
+  height: 16px;
+  background:
+    url("assets/e16-btn-min.svg") 0 0 / 16px 16px no-repeat,
+    url("assets/e16-btn-max.svg") 17px 0 / 16px 16px no-repeat,
+    url("assets/e16-btn-close.svg") 34px 0 / 16px 16px no-repeat;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader > .mx_BaseAvatar {
+  zoom: 0.6;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader_heading {
+  font-size: 13px;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomHeader [class*="_icon-button_"] {
+  color: #1A1A1A;
+  --cpd-color-icon-secondary: #1A1A1A;
+  --cpd-color-icon-tertiary: #1A1A1A;
+}
+
+/* square everything, avatars with black outline + white bevel */
+html[data-tl-theme="e16-brushed-metal"] [class*="_avatar_"][data-type="round"],
+html[data-tl-theme="e16-brushed-metal"] .mx_BaseAvatar {
+  --cpd-avatar-radius: 0;
+  border-radius: 0;
+}
+html[data-tl-theme="e16-brushed-metal"] [class*="_avatar_"] img {
+  border-radius: 0;
+}
+
+/* room list rows: etched separators, Lucida 13px */
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomListItemView {
+  font-size: 13px;
+  box-shadow: inset 0 -1px 0 rgba(142, 147, 152, 0.7), inset 0 1px 0 rgba(254, 254, 254, 0.7);
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_RoomListPanel header h1 {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+html[data-tl-theme="e16-brushed-metal"] [class*="_chat-filter_"] {
+  font-size: 12px;
+}
+
+/* pager: space buttons as bevelled squares with a teal "desktop" inside */
+html[data-tl-theme="e16-brushed-metal"] .mx_SpaceButton .mx_SpaceButton_selectionWrapper {
+  background: linear-gradient(180deg, #2B5655, #1D3F3F);
+  box-shadow: 0 0 0 1px #121212, var(--t-bevel-in);
+  border-radius: 0;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_SpaceButton:hover .mx_SpaceButton_selectionWrapper {
+  background: linear-gradient(180deg, #3B6E6D, #26504F);
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: linear-gradient(180deg, #346F6E, #1D5A5A);
+  box-shadow: 0 0 0 1px #121212, 0 0 0 3px #FFFFFF, 0 0 0 4px #121212;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_SpaceButton .mx_BaseAvatar,
+html[data-tl-theme="e16-brushed-metal"] .mx_SpaceButton .mx_BaseAvatar img {
+  border-radius: 0;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_SpacePanel .mx_SpaceButton_icon,
+html[data-tl-theme="e16-brushed-metal"] .mx_SpacePanel .mx_SpaceButton_new .mx_SpaceButton_icon::before {
+  background-color: #E4E6E7;
+}
+
+/* composer = E16 iconbox: metal bar, sunken white entry */
+html[data-tl-theme="e16-brushed-metal"] .mx_MessageComposer {
+  background: var(--t-metal);
+  border-top: 0;
+  box-shadow: inset 0 1px 0 #FEFEFE, inset 0 2px 0 #121212;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_SendMessageComposer,
+html[data-tl-theme="e16-brushed-metal"] .mx_WysiwygComposer_Editor {
+  border: 1px solid #3B3F44;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_BasicMessageComposer_input {
+  color: #000000;
+}
+
+/* timeline accents */
+html[data-tl-theme="e16-brushed-metal"] .mx_TimelineSeparator hr {
+  border-color: rgba(136, 221, 221, 0.35);
+  background: rgba(136, 221, 221, 0.35);
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  background: rgba(242, 210, 155, 0.10);
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_EventTile_body a,
+html[data-tl-theme="e16-brushed-metal"] .mx_EventTile_body a:visited {
+  color: #88DDDD;
+}
+
+/* dialogs: E16 dialog window (title bar 23px with gems), body brushed aluminium */
+html[data-tl-theme="e16-brushed-metal"] .mx_Dialog_border[class*="_glass_"] {
+  box-shadow: var(--t-frame), 4px 4px 0 6px rgba(0, 0, 0, 0.3);
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_Dialog > .mx_Dialog_header,
+html[data-tl-theme="e16-brushed-metal"] .mx_Dialog > div > .mx_Dialog_header {
+  justify-content: center;
+  padding: 0 30px;
+  background:
+    url("assets/e16-btn-menu.svg") 4px 50% / 15px 15px no-repeat,
+    var(--t-title);
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_Dialog_title,
+html[data-tl-theme="e16-brushed-metal"] .mx_Dialog_header h1,
+html[data-tl-theme="e16-brushed-metal"] .mx_Dialog_header h2 {
+  font-size: 13px !important;
+  text-align: center;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_Dialog_cancelButton {
+  top: 4px;
+  right: 4px;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  background: url("assets/e16-btn-close.svg") 0 0 / 15px 15px no-repeat;
+  color: transparent;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_Dialog_cancelButton svg {
+  opacity: 0;
+}
+
+/* settings tabs: bevelled metal tab buttons */
+html[data-tl-theme="e16-brushed-metal"] .mx_TabbedView_tabLabel {
+  background: var(--e-btn-bg);
+  box-shadow: 0 0 0 1px #2B2F33, var(--t-bevel-out);
+  margin-bottom: 3px;
+  color: #000;
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_TabbedView_tabLabel_active {
+  background: #93B0AE;
+  box-shadow: 0 0 0 1px #2B2F33, var(--t-bevel-in);
+}
+
+/* scrollbars: sunken trough + bevelled thumb with grip */
+html[data-tl-theme="e16-brushed-metal"] ::-webkit-scrollbar-track {
+  background: #8E9398;
+  box-shadow: inset 1px 1px 0 #5A5F64, inset -1px -1px 0 #D9DCDE;
+}
+html[data-tl-theme="e16-brushed-metal"] ::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(180deg, transparent calc(50% - 4px), #5A5F64 calc(50% - 4px), #5A5F64 calc(50% - 3px), #F1F3F4 calc(50% - 3px), #F1F3F4 calc(50% - 2px), transparent calc(50% - 2px), transparent calc(50% - 1px), #5A5F64 calc(50% - 1px), #5A5F64 50%, #F1F3F4 50%, #F1F3F4 calc(50% + 1px), transparent calc(50% + 1px), transparent calc(50% + 2px), #5A5F64 calc(50% + 2px), #5A5F64 calc(50% + 3px), #F1F3F4 calc(50% + 3px), #F1F3F4 calc(50% + 4px), transparent calc(50% + 4px)),
+    linear-gradient(90deg, #DDE0E2, #A7A7A6);
+  box-shadow: inset 1px 1px 0 #F1F3F4, inset -1px -1px 0 #5A5F64, 0 0 0 1px #2B2F33;
+}
+
+/* badges: square bevel pills */
+html[data-tl-theme="e16-brushed-metal"] [class*="_notificationBadge_"],
+html[data-tl-theme="e16-brushed-metal"] .mx_NotificationBadge:not(.mx_NotificationBadge_dot) {
+  border-radius: 0;
+  box-shadow: 0 0 0 1px #121212, inset 1px 1px 0 rgba(255, 255, 255, 0.7), inset -1px -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* tooltips square pale yellow metal */
+html[data-tl-theme="e16-brushed-metal"] [role="tooltip"],
+html[data-tl-theme="e16-brushed-metal"] [class*="_tooltip_"] {
+  border-radius: 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* auth: Tigert title artwork above the form window */
+html[data-tl-theme="e16-brushed-metal"] .mx_AuthPage_modal {
+  background: var(--t-metal);
+  box-shadow: var(--t-frame), 4px 4px 0 6px rgba(0, 0, 0, 0.3);
+}
+html[data-tl-theme="e16-brushed-metal"] .mx_AuthPage::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: 240px;
+  height: 64px;
+  transform: translateX(-50%);
+  background: url("assets/tigert-title.png") 50% 50% / contain no-repeat;
+  pointer-events: none;
+}

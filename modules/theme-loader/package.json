@@ -1,0 +1,37 @@
+{
+    "name": "@datanauten/element-web-module-theme-loader",
+    "version": "0.1.1",
+    "description": "Element Web module: loads the element-web-themes families (tokens, CSS, fonts, enhancers, daylight schedules) with a Themes settings tab and a quick switcher",
+    "private": true,
+    "type": "module",
+    "main": "lib/index.js",
+    "license": "AGPL-3.0-only",
+    "packageManager": "pnpm@10.29.3",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "build": "node build/build.mjs",
+        "build:demo": "node build/build.mjs --show-demo",
+        "check": "node build/check.mjs",
+        "lint:types": "tsc --noEmit",
+        "dev": "bash dev/start.sh",
+        "dev:fg": "node dev/server.mjs",
+        "dev:stop": "bash dev/stop.sh",
+        "dev:status": "bash dev/status.sh",
+        "test:e2e": "node e2e/run.cjs",
+        "test": "vitest run",
+        "test:watch": "vitest"
+    },
+    "devDependencies": {
+        "@element-hq/element-web-module-api": "2.3.0",
+        "@types/node": "^24.19.2",
+        "@types/react": "^19.3.0",
+        "esbuild": "^0.25.0",
+        "postcss": "^8.5.0",
+        "postcss-selector-parser": "^7.1.0",
+        "typescript": "^5.9.3",
+        "jsdom": "^27.4.0",
+        "vitest": "^4.1.12"
+    }
+}

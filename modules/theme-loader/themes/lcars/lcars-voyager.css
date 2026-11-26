@@ -1,0 +1,32 @@
+/* LCARS · Voyager (2375): silver-blue frame, command gold, frost and science blue. */
+html[data-tl-theme="lcars-voyager"] {
+  --lc-c1: #ffbb33;   /* command gold: band B block, accent */
+  --lc-c2: #ffe1ca;   /* pumpkin seed */
+  --lc-c3: #828cad;   /* silver: band A / main frame */
+  --lc-c4: #74788b;   /* pewter */
+  --lc-c5: #e98181;   /* salmon */
+  --lc-c6: #cc9966;   /* flat dark earth */
+  --lc-c7: #99ccff;   /* frost */
+  --lc-c8: #55a7ff;   /* andorian blue */
+  --lc-text: #ffe1ca;
+  --lc-muted: #99ccff;
+  --lc-accent: #ffbb33;
+  --lc-crit: #ff3300;
+  --lc-ok: #94b300;
+  --lc-link: #55a7ff;
+  --lc-panel: #0d0f16;
+  --lc-line: #2c3040;
+}
+/* Voyager frames are dominated by silver: re-key the space stack and room pills */
+html[data-tl-theme="lcars-voyager"] .mx_SpacePanel > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+1) > .mx_SpaceButton { --lc-sp: #828cad; }
+html[data-tl-theme="lcars-voyager"] .mx_SpacePanel > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+2) > .mx_SpaceButton { --lc-sp: #ffe1ca; }
+html[data-tl-theme="lcars-voyager"] .mx_SpacePanel > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+3) > .mx_SpaceButton { --lc-sp: #74788b; }
+html[data-tl-theme="lcars-voyager"] .mx_SpacePanel > .mx_SpaceTreeLevel::after { background: #828cad; }
+html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="0"], html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="5"] { --lc-pill: #828cad; }
+html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="1"], html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="6"] { --lc-pill: #99ccff; }
+html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="2"], html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="7"] { --lc-pill: #cc9966; }
+html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="3"], html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="8"] { --lc-pill: #ffe1ca; }
+html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="4"], html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel [data-item-index$="9"] { --lc-pill: #e98181; }
+/* soft phosphor on frame labels (text-shadow only, cheap) */
+html[data-tl-theme="lcars-voyager"] .mx_RoomHeader_heading,
+html[data-tl-theme="lcars-voyager"] .mx_RoomListPanel > header h1 { text-shadow: 0 0 6px rgba(255, 187, 51, 0.45); }

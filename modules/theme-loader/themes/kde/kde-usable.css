@@ -1,0 +1,81 @@
+/* Breeze · Usable — Breeze Light tuned for long chat sessions: no titlebar, compact zebra rows,
+   AA text everywhere, thick focus rings, strong mention rows, permanent scrollbars, 100 ms motion. */
+html[data-tl-theme="kde-usable"] {
+  --kde-muted: #535d67;
+  --kde-inactive: #535d67;
+  --kde-accent-text: #1e6fa5;
+  --kde-link: #1e6fa5;
+  --kde-solid: #1e5774;
+  --kde-outline: #9aa0a6;
+  --kde-button-outline: #9aa0a6;
+  --kde-separator: #c6c8c9;
+  --kde-focus: #1e6fa5;
+  --kde-focus-w: 3px;
+  --kde-band-h: 44px;
+  --kde-rail-w: 52px;
+  --kde-dur: 100ms;
+  --kde-negative-text: #b0303e;
+  --kde-wallpaper: none;
+  --kde-shadow-card: 0 0 0 1px rgb(0 0 0 / .06);
+}
+html[data-tl-theme="kde-usable"],
+html[data-tl-theme="kde-usable"] body,
+html[data-tl-theme="kde-usable"] [class*="cpd-theme-"] {
+  --cpd-font-size-body-md: 0.90625rem;   /* 14.5px */
+  --cpd-font-size-body-sm: 0.84375rem;   /* 13.5px */
+  --cpd-font-size-body-xs: 0.75rem;
+}
+html[data-tl-theme="kde-usable"] .mx_EventTile_body { line-height: 1.45; font-size: 14.5px; }
+/* timeline: compact cards on View with Qt zebra rows */
+html[data-tl-theme="kde-usable"] .mx_RoomView,
+html[data-tl-theme="kde-usable"] .mx_RoomView_body,
+html[data-tl-theme="kde-usable"] .mx_RoomView_timeline,
+html[data-tl-theme="kde-usable"] .mx_MainSplit { background: #ffffff; }
+html[data-tl-theme="kde-usable"] .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_shape"])::before {
+  inset-inline-end: 16px; inset-block: 10px 0; border-radius: 0; box-shadow: none; background: transparent;
+}
+html[data-tl-theme="kde-usable"] .mx_RoomView_MessageList > li:nth-child(even) > .mx_EventTile[class*="_layoutGroup_"]::before,
+html[data-tl-theme="kde-usable"] .mx_RoomView_MessageList > .mx_EventTile[class*="_layoutGroup_"]:nth-child(even)::before { background: #f7f7f7 !important; }
+html[data-tl-theme="kde-usable"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"])::before { background: #eef7fc !important; }
+html[data-tl-theme="kde-usable"] .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):hover::before { box-shadow: inset 0 0 0 1px var(--kde-accent); }
+html[data-tl-theme="kde-usable"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateHighlighted_"]:not([class*="_stateInfo_"])::before {
+  background: var(--kde-mention-bg) !important; box-shadow: inset 4px 0 0 var(--kde-neutral);
+}
+html[data-tl-theme="kde-usable"] .mx_MessageTimestamp { color: #5c6670; }
+/* room list */
+html[data-tl-theme="kde-usable"] .mx_RoomListItemView { height: 44px; }
+html[data-tl-theme="kde-usable"] .mx_RoomListItemView [class*="_avatar_"] { --cpd-avatar-size: 28px !important; }
+html[data-tl-theme="kde-usable"] [data-testid="virtuoso-item-list"] > div:nth-child(even) .mx_RoomListItemView > [class*="_container_"] { background: #e8e9ea; }
+html[data-tl-theme="kde-usable"] .mx_RoomListItemView:has([class*="_unread-counter_"]) > [class*="_container_"],
+html[data-tl-theme="kde-usable"] .mx_RoomListItemView:has([class*="_notificationBadge_"]) > [class*="_container_"] { box-shadow: inset 2px 0 0 var(--kde-accent); }
+html[data-tl-theme="kde-usable"] .mx_RoomListItemView:focus-visible > [class*="_container_"] { box-shadow: inset 4px 0 0 var(--kde-focus); }
+html[data-tl-theme="kde-usable"] [class*="_unread-counter_"]:not([data-kind="critical"]) {
+  background: #1e5774 !important; color: #fff !important; border-radius: 9px; padding: 0 6px; min-width: 18px; font: 600 12px/18px var(--cpd-font-family-sans);
+}
+html[data-tl-theme="kde-usable"] [data-kind="critical"][class*="_unread-counter_"],
+html[data-tl-theme="kde-usable"] [class*="_notificationBadge_"][data-kind="critical"] { background: #b0303e !important; }
+/* header + composer */
+html[data-tl-theme="kde-usable"] .mx_RoomHeader .mx_RoomHeader_heading { font-weight: 600; font-size: 15px; }
+html[data-tl-theme="kde-usable"] .mx_MessageComposer_row { min-height: 44px; }
+html[data-tl-theme="kde-usable"] .mx_Field { border-color: #9aa0a6; }
+html[data-tl-theme="kde-usable"] .mx_Field:focus-within { border-color: #1e6fa5; box-shadow: 0 0 0 2px #1e6fa5; }
+/* primary = clear filled default button */
+html[data-tl-theme="kde-usable"] [class*="_button_"][data-kind="primary"]:not([class*="_destructive_"]):not([class*="_icon-button_"]),
+html[data-tl-theme="kde-usable"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="kde-usable"] .mx_Dialog_buttons button.mx_Dialog_primary,
+html[data-tl-theme="kde-usable"] .mx_Dialog_buttons .mx_Dialog_primary { background: #1e6fa5 !important; border-color: #1e6fa5 !important; color: #fff !important; }
+html[data-tl-theme="kde-usable"] [class*="_button_"][data-kind="primary"]:not([class*="_icon-button_"]) > svg { color: #fff !important; }
+html[data-tl-theme="kde-usable"] [class*="_button_"][data-kind]:not([class*="_icon-button_"]),
+html[data-tl-theme="kde-usable"] .mx_Dialog_buttons button { min-height: 32px; }
+/* focus: 3px + white gap */
+html[data-tl-theme="kde-usable"] :focus-visible { box-shadow: 0 0 0 2px #fff; outline-offset: 2px !important; }
+/* permanent 10px scrollbars with a visible groove */
+html[data-tl-theme="kde-usable"] ::-webkit-scrollbar { width: 10px; height: 10px; background: #e3e5e7; }
+html[data-tl-theme="kde-usable"] ::-webkit-scrollbar-track { background: #e3e5e7; }
+html[data-tl-theme="kde-usable"] ::-webkit-scrollbar-thumb { background: #9aa0a6; border-radius: 5px; border: 2px solid #e3e5e7; }
+html[data-tl-theme="kde-usable"] * { scrollbar-width: auto; scrollbar-color: #9aa0a6 #e3e5e7; }
+html[data-tl-theme="kde-usable"] .mx_AutoHideScrollbar,
+html[data-tl-theme="kde-usable"] [class*="_scrollbar_"] { scrollbar-width: auto !important; }
+@media (prefers-contrast: more) {
+  html[data-tl-theme="kde-usable"] { --kde-outline: #6b7178; --kde-separator: #6b7178; --kde-muted: #3d454d; }
+}

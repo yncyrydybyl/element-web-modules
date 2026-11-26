@@ -1,0 +1,1212 @@
+{
+ "run": "vp-devices-prod-mm",
+ "base": "https://element.datanauten.de",
+ "started": "2026-11-15T14:15:53.341Z",
+ "mobileDist": "a854631618c4",
+ "mode": "devices",
+ "mobileModule": true,
+ "themes": 3,
+ "finished": "2026-11-15T14:25:48.863Z",
+ "results": [
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":null,\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "tl=null mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "room 390px, back → 11 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm/element-default--iphone15.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "5/9 targets < 44px: Open room settings 32x32, Video call 38x44, Threads 38x44, Room info 38x44, More options 42x46",
+   "shot": "recordings/tests/MOB-08/vp-devices-prod-mm/element-default--iphone15.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "390x504: composer 453-495 inVp true, 3 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm/element-default--iphone15.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm/element-default--iphone15-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "panel 796/390px, close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm/element-default--iphone15.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "374px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "panel 366px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm/element-default--iphone15.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/element-default--iphone15.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":null,\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "tl=null mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "room 320px, back → 5 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm/element-default--se.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "5/9 targets < 44px: Open room settings 32x32, Video call 38x44, Threads 38x44, Room info 38x44, More options 42x46",
+   "shot": "recordings/tests/MOB-08/vp-devices-prod-mm/element-default--se.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "320x228: composer 177-219 inVp true, 0 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm/element-default--se.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm/element-default--se-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "panel 528/320px, close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm/element-default--se.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "304px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "inViewport false, tab panel 296px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm/element-default--se.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/element-default--se.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "{\"mobile\":\"coarse\",\"pointer\":\"coarse\",\"orient\":\"landscape\",\"compact\":true,\"tl\":null,\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "tl=null mt=coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "room 844px, back → 6 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm/element-default--iphone15-land.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "6/10 targets < 44px: Open room settings 32x32, Video call 38x44, Threads 38x44, Room info 38x44, _icon-button_1215g_8 40x44",
+   "shot": "recordings/tests/MOB-08/vp-devices-prod-mm/element-default--iphone15-land.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "844x190: composer 148-172 inVp true, 3 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm/element-default--iphone15-land.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm/element-default--iphone15-land-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "panel 844/844px, close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm/element-default--iphone15-land.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "820px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "inViewport false, tab panel 820px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm/element-default--iphone15-land.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/element-default--iphone15-land.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "element-default",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "tl=null mt=null",
+   "shot": null
+  },
+  {
+   "case": "MOD-07",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "element-default",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/element-default--desktop-hidpi.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "element-default",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"teams-2026-light\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "tl=teams-2026-light mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "room 390px, back → 11 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "5/9 targets < 44px: Open room settings 32x32, Video call 38x44, Threads 38x44, Room info 38x44, More options 42x46",
+   "shot": "recordings/tests/MOB-08/vp-devices-prod-mm/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "390x504: composer 458-484 inVp true, 5 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm/teams-2026-light--iphone15-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "panel 796/390px, close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "374px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "panel 366px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"teams-2026-light\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "tl=teams-2026-light mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "room 320px, back → 6 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm/teams-2026-light--se.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "5/9 targets < 44px: Open room settings 32x32, Video call 38x44, Threads 38x44, Room info 38x44, More options 42x46",
+   "shot": "recordings/tests/MOB-08/vp-devices-prod-mm/teams-2026-light--se.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "320x228: composer 172-218 inVp true, 2 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm/teams-2026-light--se.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm/teams-2026-light--se-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "panel 518/320px, close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm/teams-2026-light--se.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "304px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "inViewport false, tab panel 296px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm/teams-2026-light--se.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/teams-2026-light--se.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "{\"mobile\":\"coarse\",\"pointer\":\"coarse\",\"orient\":\"landscape\",\"compact\":true,\"tl\":\"teams-2026-light\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "tl=teams-2026-light mt=coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "room 844px, back → 5 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm/teams-2026-light--iphone15-land.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "6/10 targets < 44px: Open room settings 32x32, Video call 38x44, Threads 38x44, Room info 38x44, _icon-button_1215g_8 40x44",
+   "shot": "recordings/tests/MOB-08/vp-devices-prod-mm/teams-2026-light--iphone15-land.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "844x190: composer 144-170 inVp true, 1 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm/teams-2026-light--iphone15-land.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm/teams-2026-light--iphone15-land-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "panel 844/844px, close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm/teams-2026-light--iphone15-land.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "820px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "inViewport false, tab panel 820px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm/teams-2026-light--iphone15-land.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/teams-2026-light--iphone15-land.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "tl=teams-2026-light mt=null",
+   "shot": null
+  },
+  {
+   "case": "MOD-07",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/teams-2026-light--desktop-hidpi.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"lcars-tng\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "tl=lcars-tng mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "room opened but composer not in viewport",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "6/7 targets < 44px: Open room settings 36x36, Back to room list 26x30, More room actions 26x30, Video call 36x30, Threads 36x30",
+   "shot": "recordings/tests/MOB-08/vp-devices-prod-mm/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "390x504: composer none inVp false, 5 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm/lcars-tng--iphone15-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "panel 386/390px, close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "374px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "panel 344px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "{\"inVp\":true,\"item\":false}",
+   "shot": "recordings/tests/VP-09/vp-devices-prod-mm/lcars-tng--iphone15.png"
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"lcars-tng\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "tl=lcars-tng mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "exception: locator.tap: Timeout 6000ms exceeded.",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm/lcars-tng--se.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "6/9 targets < 44px: Open room settings 36x36, Back to room list 26x30, More room actions 26x30, Video call 36x30, Threads 36x30",
+   "shot": "recordings/tests/MOB-08/vp-devices-prod-mm/lcars-tng--se.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "exception: locator.tap: Timeout 6000ms exceeded.",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm/lcars-tng--se.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "{\"room\":true,\"draft\":\"\"}",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm/lcars-tng--se-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "panel 316/320px, close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm/lcars-tng--se.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "{\"inVp\":true,\"w\":304,\"close\":false}",
+   "shot": "recordings/tests/MOB-06/vp-devices-prod-mm/lcars-tng--se.png"
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "panel 274px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm/lcars-tng--se.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/lcars-tng--se.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "{\"mobile\":\"coarse\",\"pointer\":\"coarse\",\"orient\":\"landscape\",\"compact\":true,\"tl\":\"lcars-tng\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "tl=lcars-tng mt=coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "room 844px, back → 6 rooms",
+   "shot": "recordings/tests/MOB-02/vp-devices-prod-mm/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "6/10 targets < 44px: Open room settings 36x36, Back to room list 38x30, More room actions 38x30, Video call 46x30, Threads 46x30",
+   "shot": "recordings/tests/MOB-08/vp-devices-prod-mm/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "844x190: composer 115-139 inVp true, 0 bodies",
+   "shot": "recordings/tests/MOB-03/vp-devices-prod-mm/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-devices-prod-mm/lcars-tng--iphone15-land-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "fail",
+   "detail": "panel 838/844px, close/back false",
+   "shot": "recordings/tests/MOB-04/vp-devices-prod-mm/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "828px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "panel 798px",
+   "shot": "recordings/tests/MOB-05/vp-devices-prod-mm/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/lcars-tng--iphone15-land.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "844x390@3t iphone15-land",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "tl=lcars-tng mt=null",
+   "shot": null
+  },
+  {
+   "case": "MOD-07",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "lcars-tng",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-devices-prod-mm/lcars-tng--desktop-hidpi.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "lcars-tng",
+   "viewport": "1440x900@2 desktop-hidpi",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  }
+ ]
+}

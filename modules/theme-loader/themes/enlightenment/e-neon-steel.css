@@ -1,0 +1,268 @@
+/* e-neon-steel — "Ganymede Neon Steel": E16 BlueSteel slate (#2D3243/#41475A) + Ganymede cobalt bevels
+ * (#3263E5 / #0B1B5A) as brushed steel, lit by neon cyan #33E0FF and E magenta #FF3399, lime #99FF33 presence.
+ */
+html[data-tl-theme="e-neon-steel"] {
+  --n-steel: linear-gradient(rgba(45, 50, 67, 0.45), rgba(37, 42, 57, 0.45)), url("assets/brush-overlay.png") 0 0 / 256px 128px, linear-gradient(180deg, #41475A 0%, #2D3243 55%, #252A39 100%);
+  --n-bevel: inset 1px 1px 0 #3263E5, inset -1px -1px 0 #0B1B5A;
+  --e-wall:
+    radial-gradient(ellipse 80% 60% at 70% 0%, rgba(43, 43, 106, 0.55), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(50, 99, 229, 0.18), transparent 70%),
+    #0D111C;
+  --e-gap: 5px;
+  --e-win-radius: 0px;
+  --e-win-border: 0 0 0 1px #05070C, 0 0 0 2px rgba(50, 99, 229, 0.35);
+  --e-win-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+
+  --e-bar-bg: var(--n-steel);
+  --e-bar-fg: #E6F0FF;
+  --e-bar-line: #05070C;
+  --e-bar-shadow: var(--n-bevel);
+  --e-bar-font: "Exo 2", "IBM Plex Sans", sans-serif;
+  --e-bar-weight: 700;
+  --e-bar-text-shadow: 0 0 8px rgba(51, 224, 255, 0.35);
+
+  --e-shelf-bg: linear-gradient(90deg, #161C2B, #111725);
+  --e-list-bg: #161C2B;
+  --e-list-fg: #D6E2F5;
+  --e-list-sep: rgba(140, 153, 186, 0.06);
+  --e-hover-bg: #1C2436;
+  --e-sel-bg: #1A2547;
+  --e-sel-fg: #FFFFFF;
+  --e-sel-bar: #33E0FF;
+  --e-sel-bar-w: 3px;
+  --e-sel-bar-glow: 0 0 8px rgba(51, 224, 255, 0.9), 0 0 16px rgba(51, 224, 255, 0.4);
+  --e-sel-text-shadow: 0 0 8px rgba(51, 224, 255, 0.6);
+  --e-row-radius: 0px;
+
+  --e-well-bg: #0A0D16;
+  --e-well-border: #3263E5;
+  --e-well-shadow: inset 1px 1px 0 #0B1B5A, inset 0 0 8px rgba(0, 0, 0, 0.6);
+  --e-well-radius: 0px;
+
+  --e-btn-bg: linear-gradient(180deg, #4A5168 0%, #41475A 50%, #343A4C 51%, #2D3243 100%);
+  --e-btn-bg-hover: linear-gradient(180deg, #555D78 0%, #4B5268 50%, #3C4358 51%, #353B4E 100%);
+  --e-btn-bg-active: linear-gradient(180deg, #252A39, #2D3243);
+  --e-btn-fg: #D6E2F5;
+  --e-btn-border: 1px solid #05070C;
+  --e-btn-shadow: var(--n-bevel);
+  --e-btn-shadow-active: inset -1px -1px 0 #3263E5, inset 1px 1px 0 #0B1B5A;
+  --e-btn-radius: 0px;
+  --e-pri-bg: #33E0FF;
+  --e-pri-bg-hover: #66E8FF;
+  --e-pri-fg: #03141A;
+  --e-pri-shadow: 0 0 12px rgba(51, 224, 255, 0.55);
+
+  --e-focus: #33E0FF;
+  --e-focus-glow: 0 0 10px rgba(51, 224, 255, 0.5);
+
+  --e-menu-bg: #161C2B;
+  --e-menu-border: #3263E5;
+  --e-menu-sel: rgba(51, 224, 255, 0.14);
+  --e-menu-sel-fg: #FFFFFF;
+  --e-menu-radius: 0px;
+  --e-tip-bg: #05070C;
+  --e-tip-fg: #D6E2F5;
+  --e-tip-border: #33E0FF;
+
+  --e-scroll-thumb: #3263E5;
+  --e-scroll-thumb-hover: #33E0FF;
+  --e-scroll-track: #0A0D16;
+  --e-scroll-w: 6px;
+
+  --e-bubble-own: #1A2547;
+  --e-bubble-other: #161C2B;
+  --e-highlight-bar: #FF3399;
+  --e-readmarker: #33E0FF;
+
+  --e-code-bg: #05070C;
+  --e-code-fg: #CFE3F5;
+  --e-code-border: #1C2A38;
+  --e-code-overlay: repeating-linear-gradient(180deg, rgba(51, 224, 255, 0.045) 0 1px, transparent 1px 3px);
+  --e-hl-keyword: #FF3399;
+  --e-hl-string: #99FF33;
+  --e-hl-comment: #5C6A8A;
+  --e-hl-number: #FFB547;
+  --e-hl-class: #5EA0FF;
+  --e-hl-function: #33E0FF;
+  --e-hl-tag: #FF3399;
+  --e-hl-attr: #B57BFF;
+
+  --e-badge-bg: #2D3243;
+  --e-badge-fg: #D6E2F5;
+  --e-badge-hl-bg: #FF3399;
+  --e-badge-hl-fg: #0D111C;
+
+  --e-avatar-ring: inset 0 0 0 1px rgba(50, 99, 229, 0.8);
+  --e-icon-hover-filter: drop-shadow(0 0 4px rgba(51, 224, 255, 0.95));
+  --e-dialog-bg: #161C2B;
+  --e-dialog-anim: e-neon-on 260ms steps(1, end);
+  --e-backdrop: rgba(5, 7, 12, 0.7);
+  --e-clock-fg: #33E0FF;
+  --e-clock-font: "Share Tech Mono", monospace;
+}
+
+@keyframes e-neon-on {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  35% { opacity: 0.25; }
+  50% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* chamfered header right corner + chrome trio */
+html[data-tl-theme="e-neon-steel"] .mx_RoomHeader {
+  --e-glyphs-w: 58px;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+html[data-tl-theme="e-neon-steel"] .mx_RoomHeader::after {
+  height: 14px;
+  background:
+    radial-gradient(circle at 50% 40%, #E6ECF5 0 25%, #8E99B0 55%, #2D3243 75%, transparent 78%) 0 0 / 14px 14px no-repeat,
+    radial-gradient(circle at 50% 40%, #E6ECF5 0 25%, #8E99B0 55%, #2D3243 75%, transparent 78%) 20px 0 / 14px 14px no-repeat,
+    radial-gradient(circle at 50% 40%, #FFD0E6 0 25%, #FF3399 55%, #5A0F33 75%, transparent 78%) 40px 0 / 14px 14px no-repeat;
+}
+html[data-tl-theme="e-neon-steel"] .mx_RoomHeader_heading {
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* type: Exo 2 headings, Share Tech Mono timestamps */
+html[data-tl-theme="e-neon-steel"] .mx_RoomListPanel header h1,
+html[data-tl-theme="e-neon-steel"] .mx_DisambiguatedProfile_displayName,
+html[data-tl-theme="e-neon-steel"] .mx_EventTile_body h1,
+html[data-tl-theme="e-neon-steel"] .mx_EventTile_body h2,
+html[data-tl-theme="e-neon-steel"] .mx_EventTile_body h3 {
+  font-family: "Exo 2", "IBM Plex Sans", sans-serif;
+  font-weight: 700;
+}
+html[data-tl-theme="e-neon-steel"] .mx_MessageTimestamp {
+  font-family: "Share Tech Mono", "DejaVu Sans Mono", monospace;
+  color: #8C99BA;
+}
+
+/* pager: space tiles with cobalt bevel, cyan neon outline when active */
+html[data-tl-theme="e-neon-steel"] .mx_SpaceButton .mx_SpaceButton_selectionWrapper {
+  border-radius: 0;
+}
+html[data-tl-theme="e-neon-steel"] .mx_SpaceButton .mx_BaseAvatar,
+html[data-tl-theme="e-neon-steel"] .mx_SpaceButton .mx_BaseAvatar img {
+  border-radius: 0;
+}
+html[data-tl-theme="e-neon-steel"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: #1A2547;
+  box-shadow: 0 0 0 1px #33E0FF, 0 0 10px rgba(51, 224, 255, 0.6);
+}
+
+/* square avatars with cobalt bevel */
+html[data-tl-theme="e-neon-steel"] [class*="_avatar_"][data-type="round"],
+html[data-tl-theme="e-neon-steel"] .mx_BaseAvatar {
+  --cpd-avatar-radius: 0;
+  border-radius: 0;
+}
+html[data-tl-theme="e-neon-steel"] [class*="_avatar_"] img {
+  border-radius: 0;
+}
+
+/* selected room cyan glow (bold) */
+html[data-tl-theme="e-neon-steel"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  font-weight: 600;
+}
+
+/* composer steel bar */
+html[data-tl-theme="e-neon-steel"] .mx_MessageComposer {
+  background: var(--n-steel);
+  box-shadow: var(--n-bevel);
+  border-top: 1px solid #05070C;
+}
+
+/* dialogs chamfered */
+html[data-tl-theme="e-neon-steel"] .mx_Dialog_border[class*="_glass_"] {
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+
+/* presence dots lime */
+html[data-tl-theme="e-neon-steel"] [class*="_presence_"][class*="_online_"],
+html[data-tl-theme="e-neon-steel"] .mx_DecoratedRoomAvatar_icon_online::before {
+  background-color: #99FF33;
+  box-shadow: 0 0 6px rgba(153, 255, 51, 0.8);
+}
+
+/* ================================================================== bold pass: cyberpunk-industrial
+ * dark grid floor + magenta/cyan haze, heavy bevelled steel frames on every window, neon tubes along the
+ * frames (cyan / magenta alternating), chamfered title bars, hazard stripes on the shelf. */
+html[data-tl-theme="e-neon-steel"] {
+  --n-frame-steel: linear-gradient(135deg, #8E99B0 0%, #4A5168 22%, #2D3243 50%, #4A5168 78%, #8E99B0 100%);
+  --e-wall:
+    repeating-linear-gradient(0deg, rgba(51, 224, 255, 0.07) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, rgba(51, 224, 255, 0.07) 0 1px, transparent 1px 48px),
+    radial-gradient(ellipse 60% 50% at 85% 10%, rgba(255, 51, 153, 0.35), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 10% 95%, rgba(51, 224, 255, 0.28), transparent 70%),
+    linear-gradient(180deg, #070A12 0%, #0B0F1A 60%, #05070C 100%);
+  /* slow neon flicker of the haze (opacity only, on the decoration layer) */
+  --e-deco: radial-gradient(ellipse 40% 30% at 70% 0%, rgba(255, 51, 153, 0.35), transparent 70%), radial-gradient(ellipse 35% 30% at 20% 100%, rgba(51, 224, 255, 0.3), transparent 70%);
+  --e-deco-anim: e-neon-hum 4s steps(2, end) infinite;
+  --e-gap: 12px;
+  --e-win-border: 0 0 0 1px #05070C;
+  --e-win-shadow: 0 0 0 7px #05070C;
+  --e-list-bg: rgba(18, 24, 38, 0.94);
+  --e-rp-bg: rgba(18, 24, 38, 0.95);
+  --e-timeline-bg: rgba(11, 15, 24, 0.94);
+  --e-roomview-bg: transparent;
+  --e-lp-title: "// ROOMS" / "";
+  --e-lp-title-h: 26px;
+  --e-lp-title-font: 700 12px/1 "Exo 2", sans-serif;
+  --e-hover-bg: rgba(51, 224, 255, 0.10);
+  --e-sel-bg: linear-gradient(90deg, rgba(51, 224, 255, 0.28), rgba(255, 51, 153, 0.18));
+  --e-sel-glow: inset 0 0 0 1px rgba(51, 224, 255, 0.7), 0 0 14px rgba(51, 224, 255, 0.45);
+  --e-clock-fg: #33E0FF;
+}
+@keyframes e-neon-hum {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+html[data-tl-theme="e-neon-steel"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="e-neon-steel"] body {
+  background: #05070C;
+}
+/* heavy steel frames + neon tubes */
+html[data-tl-theme="e-neon-steel"] .mx_SpacePanel,
+html[data-tl-theme="e-neon-steel"] .mx_LeftPanel,
+html[data-tl-theme="e-neon-steel"] .mx_RoomView,
+html[data-tl-theme="e-neon-steel"] .mx_RightPanel {
+  border: 5px solid transparent;
+  border-image: var(--n-frame-steel) 1;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 1px #05070C, 0 0 0 3px #33E0FF, 0 0 14px 2px rgba(51, 224, 255, 0.7), inset 0 0 0 1px #05070C;
+}
+html[data-tl-theme="e-neon-steel"] .mx_SpacePanel,
+html[data-tl-theme="e-neon-steel"] .mx_RoomView {
+  box-shadow: 0 0 0 1px #05070C, 0 0 0 3px #FF3399, 0 0 14px 2px rgba(255, 51, 153, 0.7), inset 0 0 0 1px #05070C;
+}
+/* hazard stripe at the bottom of the shelf */
+html[data-tl-theme="e-neon-steel"] .mx_SpacePanel {
+  background:
+    repeating-linear-gradient(135deg, #FFB547 0 8px, #05070C 8px 16px) 0 100% / 100% 10px no-repeat,
+    linear-gradient(90deg, #161C2B, #111725);
+}
+/* title bars: steel with a neon underline, chamfered corners */
+html[data-tl-theme="e-neon-steel"] .mx_LeftPanel::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  border-bottom: 2px solid #33E0FF;
+  box-shadow: 0 2px 10px rgba(51, 224, 255, 0.6);
+  color: #E6F0FF;
+}
+html[data-tl-theme="e-neon-steel"] .mx_RoomHeader {
+  border-bottom: 2px solid #FF3399;
+  box-shadow: var(--n-bevel), 0 2px 12px rgba(255, 51, 153, 0.55);
+}
+html[data-tl-theme="e-neon-steel"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  color: #FFFFFF;
+}
+html[data-tl-theme="e-neon-steel"] .mx_MessageComposer {
+  border-top: 2px solid #33E0FF;
+  box-shadow: var(--n-bevel), 0 -2px 12px rgba(51, 224, 255, 0.45);
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="e-neon-steel"] .mx_MatrixChat::before { animation: none; }
+}

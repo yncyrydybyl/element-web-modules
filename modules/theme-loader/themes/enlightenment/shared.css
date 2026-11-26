@@ -1,0 +1,848 @@
+/* Enlightenment family — shared structure.
+ * Every variant sets the --e-* variables below (in <variant>.css) and inherits these region rules.
+ * Scope: html[data-tl-family="enlightenment"] (CONTRACT §3).
+ */
+
+/* ------------------------------------------------------------------ defaults */
+html[data-tl-family="enlightenment"] {
+  --e-wall: var(--cpd-color-bg-canvas-default);   /* desktop behind the windows */
+  --e-gap: 0px;                                     /* desktop visible between windows */
+  --e-win-radius: 0px;
+  --e-win-border: 0 0 0 1px rgba(0, 0, 0, 0.9);
+  --e-win-shadow: none;
+
+  --e-bar-bg: var(--cpd-color-bg-subtle-primary);   /* title bars (header, cards, dialogs) */
+  --e-bar-fg: var(--cpd-color-text-primary);
+  --e-bar-line: rgba(0, 0, 0, 0.8);
+  --e-bar-shadow: none;
+  --e-bar-font: var(--cpd-font-family-sans);
+  --e-bar-weight: 700;
+  --e-bar-text-shadow: none;
+  --e-glyph-color: var(--cpd-color-icon-secondary);
+  --e-glyphs: none;                                 /* decorative min/max/close trio on room header */
+  --e-glyphs-w: 0px;
+
+  --e-shelf-bg: var(--cpd-color-bg-subtle-primary); /* space panel + composer bar */
+  --e-list-bg: var(--cpd-color-bg-subtle-secondary);
+  --e-list-sep: transparent;
+  --e-list-fg: var(--cpd-color-text-primary);
+  --e-hover-bg: var(--cpd-color-bg-action-tertiary-hovered);
+  --e-sel-bg: var(--cpd-color-bg-action-tertiary-selected);
+  --e-sel-fg: var(--cpd-color-text-primary);
+  --e-sel-bar: var(--cpd-color-text-action-accent);
+  --e-sel-bar-w: 3px;
+  --e-sel-glow: none;
+  --e-sel-text-shadow: none;
+
+  --e-well-bg: var(--cpd-color-bg-canvas-default);  /* inputs / composer entry */
+  --e-well-border: var(--cpd-color-border-interactive-secondary);
+  --e-well-shadow: none;
+  --e-well-radius: 2px;
+
+  --e-btn-bg: var(--cpd-color-bg-action-secondary-rest);
+  --e-btn-bg-hover: var(--cpd-color-bg-action-secondary-hovered);
+  --e-btn-bg-active: var(--cpd-color-bg-action-secondary-pressed);
+  --e-btn-fg: var(--cpd-color-text-primary);
+  --e-btn-border: 1px solid var(--cpd-color-border-interactive-secondary);
+  --e-btn-shadow: none;
+  --e-btn-shadow-active: none;
+  --e-btn-radius: 2px;
+  --e-pri-bg: var(--cpd-color-bg-action-primary-rest);
+  --e-pri-bg-hover: var(--cpd-color-bg-action-primary-hovered);
+  --e-pri-fg: var(--cpd-color-text-on-solid-primary);
+  --e-pri-shadow: none;
+
+  --e-focus: var(--cpd-color-border-focused);
+  --e-focus-style: solid;
+  --e-focus-glow: 0 0 0 0 transparent;
+
+  --e-menu-bg: var(--cpd-color-bg-canvas-default-level-1);
+  --e-menu-border: rgba(0, 0, 0, 0.9);
+  --e-menu-sel: var(--cpd-color-bg-action-tertiary-selected);
+  --e-menu-sel-fg: var(--cpd-color-text-primary);
+  --e-menu-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  --e-menu-radius: 2px;
+  --e-tip-bg: var(--cpd-color-bg-subtle-primary);
+  --e-tip-fg: var(--cpd-color-text-primary);
+  --e-tip-border: rgba(0, 0, 0, 0.8);
+
+  --e-scroll-thumb: var(--cpd-color-gray-600);
+  --e-scroll-thumb-hover: var(--cpd-color-text-action-accent);
+  --e-scroll-track: transparent;
+  --e-scroll-w: 10px;
+
+  --e-own-bg: transparent;
+  --e-own-border: transparent;
+  --e-bubble-own: var(--cpd-color-bg-accent-subtle);
+  --e-bubble-other: var(--cpd-color-bg-subtle-secondary);
+  --e-highlight-bar: var(--cpd-color-text-critical-primary);
+  --e-readmarker: var(--cpd-color-text-action-accent);
+
+  --e-code-bg: var(--cpd-color-bg-subtle-primary);
+  --e-code-fg: var(--cpd-color-text-primary);
+  --e-code-border: rgba(0, 0, 0, 0.6);
+  --e-code-overlay: none;
+  /* syntax colours (E colourclasses, overridden for light phases) */
+  --e-hl-keyword: #FF9999;
+  --e-hl-string: #33FF99;
+  --e-hl-comment: #339999;
+  --e-hl-number: #DCDC30;
+  --e-hl-class: #77AADD;
+  --e-hl-function: #B57BFF;
+  --e-hl-tag: #FF9933;
+  --e-hl-attr: #FFBB33;
+
+  --e-badge-bg: var(--cpd-color-bg-badge-default);
+  --e-badge-fg: var(--cpd-color-text-primary);
+  --e-badge-hl-bg: var(--cpd-color-bg-critical-primary);
+  --e-badge-hl-fg: var(--cpd-color-text-on-solid-primary);
+  --e-pulse: rgba(51, 153, 255, 0.8);
+  --e-pulse-0: rgba(51, 153, 255, 0);
+
+  --e-avatar-ring: none;
+  --e-icon-hover-filter: none;
+  --e-dialog-anim: e-zoom-in 150ms ease-out;
+  --e-dialog-bg: var(--cpd-color-bg-canvas-default-level-1);
+  --e-backdrop: rgba(0, 0, 0, 0.55);
+  --e-auth-bg: var(--e-wall);
+}
+
+/* ------------------------------------------------------------------ keyframes */
+@keyframes e-zoom-in { from { transform: scale(0.92); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes e-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes e-pulse {
+  0% { box-shadow: 0 0 0 0 var(--e-pulse); }
+  100% { box-shadow: 0 0 0 10px var(--e-pulse-0); }
+}
+
+/* ------------------------------------------------------------------ shell & windows */
+html[data-tl-family="enlightenment"] body,
+html[data-tl-family="enlightenment"] .mx_MatrixChat_wrapper,
+html[data-tl-family="enlightenment"] .mx_MatrixChat {
+  background: var(--e-wall);
+  background-attachment: fixed;
+}
+html[data-tl-family="enlightenment"] .mx_MatrixChat > div:first-child {
+  padding: var(--e-gap);
+  box-sizing: border-box;
+  gap: var(--e-gap);
+}
+html[data-tl-family="enlightenment"] .mx_SpacePanel,
+html[data-tl-family="enlightenment"] .mx_LeftPanel,
+html[data-tl-family="enlightenment"] .mx_RoomView,
+html[data-tl-family="enlightenment"] .mx_RightPanel {
+  border-radius: var(--e-win-radius);
+  box-shadow: var(--e-win-border), var(--e-win-shadow);
+  overflow: hidden;
+}
+html[data-tl-family="enlightenment"] .mx_Separator {
+  background: transparent;
+}
+html[data-tl-family="enlightenment"] .mx_SpacePanel {
+  background: var(--e-shelf-bg);
+}
+html[data-tl-family="enlightenment"] .mx_LeftPanel {
+  background: var(--e-list-bg);
+  color: var(--e-list-fg);
+}
+html[data-tl-family="enlightenment"] .mx_LeftPanel_roomListContainer,
+html[data-tl-family="enlightenment"] .mx_RoomListPanel {
+  background: transparent;
+  color: var(--e-list-fg);
+}
+html[data-tl-family="enlightenment"] .mx_RightPanel {
+  background: var(--e-rp-bg, var(--e-list-bg));
+}
+html[data-tl-family="enlightenment"] .mx_RightPanel .mx_BaseCard {
+  background: transparent;
+}
+
+/* wallpaper decoration layers (E logo, aurora curtains, embers…): animated by transform only */
+html[data-tl-family="enlightenment"] .mx_MatrixChat {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+html[data-tl-family="enlightenment"] .mx_MatrixChat::before,
+html[data-tl-family="enlightenment"] .mx_MatrixChat::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+html[data-tl-family="enlightenment"] .mx_MatrixChat::before {
+  inset: var(--e-deco-inset, 0);
+  background: var(--e-deco, none);
+  -webkit-mask: var(--e-deco-mask, none);
+  mask: var(--e-deco-mask, none);
+  opacity: var(--e-deco-opacity, 1);
+  animation: var(--e-deco-anim, none);
+}
+html[data-tl-family="enlightenment"] .mx_MatrixChat::after {
+  inset: var(--e-deco2-inset, 0);
+  background: var(--e-deco2, none);
+  opacity: var(--e-deco2-opacity, 1);
+  animation: var(--e-deco2-anim, none);
+}
+html[data-tl-family="enlightenment"] .mx_MatrixChat > div:first-child {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* generic E title bar on the left panel (e16, e17, e-current, ember, neon) */
+html[data-tl-family="enlightenment"] .mx_LeftPanel {
+  position: relative;
+  padding-top: var(--e-lp-title-h, 0px);
+  box-sizing: border-box;
+}
+html[data-tl-family="enlightenment"] .mx_LeftPanel::before {
+  content: var(--e-lp-title, none);
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--e-lp-title-h, 0px);
+  background: var(--e-lp-title-bg, var(--e-bar-bg));
+  color: var(--e-bar-fg);
+  font: var(--e-lp-title-font, 700 12px/1 var(--e-bar-font));
+  line-height: var(--e-lp-title-h, 0px);
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-shadow: var(--e-bar-text-shadow);
+  border-bottom: 1px solid var(--e-bar-line);
+  box-shadow: var(--e-bar-shadow);
+  box-sizing: border-box;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ title bars */
+html[data-tl-family="enlightenment"] .mx_RoomHeader {
+  background: var(--e-bar-bg);
+  color: var(--e-bar-fg);
+  border-bottom: 1px solid var(--e-bar-line);
+  box-shadow: var(--e-bar-shadow);
+  position: relative;
+  padding-right: calc(var(--cpd-space-4x, 16px) + var(--e-glyphs-w));
+}
+html[data-tl-family="enlightenment"] .mx_RoomHeader_heading {
+  font-family: var(--e-bar-font);
+  font-weight: var(--e-bar-weight);
+  color: var(--e-bar-fg);
+  text-shadow: var(--e-bar-text-shadow);
+}
+html[data-tl-family="enlightenment"] .mx_RoomHeader::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: var(--e-glyphs-w);
+  height: 16px;
+  transform: translateY(-50%);
+  background: var(--e-glyphs);
+  pointer-events: none;
+}
+html[data-tl-family="enlightenment"] .mx_RightPanel [class*="_header_"]:first-child,
+html[data-tl-family="enlightenment"] .mx_BaseCard_header {
+  background: var(--e-bar-bg);
+  color: var(--e-bar-fg);
+  border-bottom: 1px solid var(--e-bar-line);
+  box-shadow: var(--e-bar-shadow);
+}
+html[data-tl-family="enlightenment"] .mx_BaseCard_header h2,
+html[data-tl-family="enlightenment"] .mx_BaseCard_header [class*="_heading_"] {
+  font-family: var(--e-bar-font);
+  font-weight: var(--e-bar-weight);
+  color: var(--e-bar-fg);
+  text-shadow: var(--e-bar-text-shadow);
+}
+
+/* ------------------------------------------------------------------ space panel (shelf / pager) */
+html[data-tl-family="enlightenment"] .mx_SpaceButton .mx_SpaceButton_selectionWrapper {
+  border-radius: var(--e-btn-radius);
+  transition: background-color 120ms, box-shadow 120ms, transform 120ms;
+}
+html[data-tl-family="enlightenment"] .mx_SpaceButton:hover .mx_SpaceButton_selectionWrapper {
+  background: var(--e-hover-bg);
+}
+html[data-tl-family="enlightenment"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: var(--e-sel-bg);
+  box-shadow: inset 0 0 0 2px var(--e-sel-bar), var(--e-sel-glow);
+}
+
+/* ------------------------------------------------------------------ room list */
+html[data-tl-family="enlightenment"] .mx_RoomListPanel [role="search"] button,
+html[data-tl-family="enlightenment"] #room-list-search-button {
+  background: var(--e-well-bg);
+  border: 1px solid var(--e-well-border);
+  border-radius: var(--e-well-radius);
+  box-shadow: var(--e-well-shadow);
+  color: var(--cpd-color-text-secondary);
+}
+html[data-tl-family="enlightenment"] .mx_RoomListPanel header h1 {
+  font-family: var(--e-bar-font);
+}
+html[data-tl-family="enlightenment"] [class*="_chat-filter_"] {
+  border-radius: var(--e-btn-radius);
+  background: var(--e-btn-bg);
+  color: var(--e-btn-fg);
+  border: var(--e-btn-border);
+  box-shadow: var(--e-btn-shadow);
+}
+html[data-tl-family="enlightenment"] [class*="_chat-filter_"][aria-selected="true"] {
+  background: var(--e-pri-bg);
+  color: var(--e-pri-fg);
+  box-shadow: var(--e-pri-shadow);
+  border-color: transparent;
+}
+html[data-tl-family="enlightenment"] .mx_RoomListItemView {
+  border-radius: 0;
+  box-shadow: inset 0 -1px 0 var(--e-list-sep);
+  color: var(--e-list-fg);
+  position: relative;
+}
+html[data-tl-family="enlightenment"] .mx_RoomListItemView [class*="_container_"] {
+  border-radius: var(--e-row-radius, 0px);
+  background-color: transparent;
+}
+html[data-tl-family="enlightenment"] .mx_RoomListItemView:hover [class*="_container_"],
+html[data-tl-family="enlightenment"] .mx_RoomListItemView[class*="_keyboardActive_"] [class*="_container_"] {
+  background-color: var(--e-hover-bg);
+}
+html[data-tl-family="enlightenment"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_container_"] {
+  background: var(--e-sel-bg);
+  color: var(--e-sel-fg);
+  box-shadow: var(--e-sel-glow);
+}
+html[data-tl-family="enlightenment"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_container_"]::before {
+  background: var(--e-sel-bar);
+  border-radius: 0;
+  width: var(--e-sel-bar-w);
+  top: 0;
+  bottom: 0;
+  box-shadow: var(--e-sel-bar-glow, none);
+}
+html[data-tl-family="enlightenment"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  color: var(--e-sel-fg);
+  text-shadow: var(--e-sel-text-shadow);
+}
+
+/* ------------------------------------------------------------------ timeline */
+html[data-tl-family="enlightenment"] .mx_RoomView {
+  background: var(--e-roomview-bg, var(--cpd-color-bg-canvas-default));
+}
+html[data-tl-family="enlightenment"] .mx_RoomView_body {
+  background: var(--e-timeline-bg, var(--cpd-color-bg-canvas-default));
+}
+html[data-tl-family="enlightenment"] .mx_RoomView_messagePanel {
+  background: transparent;
+}
+html[data-tl-family="enlightenment"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line,
+html[data-tl-family="enlightenment"] .mx_EventTile[class*="_stateHighlighted_"] [class*="_slotBody_"] {
+  box-shadow: inset 3px 0 0 var(--e-highlight-bar);
+}
+html[data-tl-family="enlightenment"] [class*="_readMarker_"] hr,
+html[data-tl-family="enlightenment"] .mx_MessagePanel_myReadMarker hr {
+  border-color: var(--e-readmarker);
+  background: var(--e-readmarker);
+}
+/* bubbles */
+html[data-tl-family="enlightenment"] .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line {
+  background: var(--e-bubble-other);
+}
+html[data-tl-family="enlightenment"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] .mx_EventTile_line {
+  background: var(--e-bubble-own);
+}
+
+/* ------------------------------------------------------------------ composer (bottom shelf) */
+html[data-tl-family="enlightenment"] .mx_MessageComposer {
+  background: var(--e-shelf-bg);
+  border-top: 1px solid var(--e-bar-line);
+}
+html[data-tl-family="enlightenment"] .mx_MessageComposer_row {
+  align-items: center;
+}
+html[data-tl-family="enlightenment"] .mx_SendMessageComposer,
+html[data-tl-family="enlightenment"] .mx_WysiwygComposer_Editor,
+html[data-tl-family="enlightenment"] .mx_EditMessageComposer .mx_BasicMessageComposer {
+  background: var(--e-well-bg);
+  border: 1px solid var(--e-well-border);
+  border-radius: var(--e-well-radius);
+  box-shadow: var(--e-well-shadow);
+  padding-inline: 10px;
+  margin-block: 7px;
+}
+html[data-tl-family="enlightenment"] .mx_BasicMessageComposer_input {
+  color: var(--cpd-color-text-primary);
+}
+
+/* ------------------------------------------------------------------ buttons & inputs */
+html[data-tl-family="enlightenment"] .mx_AccessibleButton_kind_primary,
+html[data-tl-family="enlightenment"] [class*="_button_"][data-kind="primary"] {
+  background: var(--e-pri-bg);
+  color: var(--e-pri-fg);
+  border-radius: var(--e-btn-radius);
+  box-shadow: var(--e-pri-shadow);
+  border: 1px solid transparent;
+}
+html[data-tl-family="enlightenment"] .mx_AccessibleButton_kind_primary:hover,
+html[data-tl-family="enlightenment"] [class*="_button_"][data-kind="primary"]:hover {
+  background: var(--e-pri-bg-hover);
+}
+html[data-tl-family="enlightenment"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-family="enlightenment"] .mx_AccessibleButton_kind_secondary,
+html[data-tl-family="enlightenment"] [class*="_button_"][data-kind="secondary"] {
+  background: var(--e-btn-bg);
+  color: var(--e-btn-fg);
+  border: var(--e-btn-border);
+  border-radius: var(--e-btn-radius);
+  box-shadow: var(--e-btn-shadow);
+}
+html[data-tl-family="enlightenment"] .mx_AccessibleButton_kind_primary_outline:hover,
+html[data-tl-family="enlightenment"] .mx_AccessibleButton_kind_secondary:hover,
+html[data-tl-family="enlightenment"] [class*="_button_"][data-kind="secondary"]:hover {
+  background: var(--e-btn-bg-hover);
+}
+html[data-tl-family="enlightenment"] .mx_AccessibleButton_kind_primary_outline:active,
+html[data-tl-family="enlightenment"] .mx_AccessibleButton_kind_secondary:active,
+html[data-tl-family="enlightenment"] [class*="_button_"][data-kind="secondary"]:active {
+  background: var(--e-btn-bg-active);
+  box-shadow: var(--e-btn-shadow-active);
+}
+html[data-tl-family="enlightenment"] .mx_AccessibleButton_kind_danger,
+html[data-tl-family="enlightenment"] [class*="_button_"][class*="_destructive_"] {
+  border-radius: var(--e-btn-radius);
+}
+html[data-tl-family="enlightenment"] .mx_Field input,
+html[data-tl-family="enlightenment"] .mx_Field select,
+html[data-tl-family="enlightenment"] .mx_Field textarea,
+html[data-tl-family="enlightenment"] input[class*="_control_"],
+html[data-tl-family="enlightenment"] textarea[class*="_control_"] {
+  background: var(--e-well-bg);
+  box-shadow: var(--e-well-shadow);
+  border-radius: var(--e-well-radius);
+}
+html[data-tl-family="enlightenment"] .mx_Field {
+  border-radius: var(--e-well-radius);
+  background: var(--e-well-bg);
+}
+
+/* ------------------------------------------------------------------ focus */
+html[data-tl-family="enlightenment"] :focus-visible {
+  outline: 2px var(--e-focus-style) var(--e-focus);
+  outline-offset: 1px;
+  box-shadow: var(--e-focus-glow);
+}
+html[data-tl-family="enlightenment"] .mx_BasicMessageComposer_input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+html[data-tl-family="enlightenment"] .mx_SendMessageComposer:focus-within {
+  border-color: var(--e-focus);
+  box-shadow: var(--e-well-shadow), 0 0 0 1px var(--e-focus), var(--e-focus-glow);
+}
+
+/* ------------------------------------------------------------------ dialogs */
+html[data-tl-family="enlightenment"] .mx_Dialog_background {
+  background: var(--e-backdrop);
+  opacity: 1;
+}
+/* Element's glass frame becomes the E window border */
+html[data-tl-family="enlightenment"] .mx_Dialog_border[class*="_glass_"] {
+  padding: 0;
+  background: transparent;
+  outline: 0;
+  backdrop-filter: none;
+  border-radius: var(--e-win-radius);
+  box-shadow: var(--e-win-border), var(--e-menu-shadow);
+  animation: var(--e-dialog-anim);
+}
+html[data-tl-family="enlightenment"] .mx_Dialog_border[class*="_glass_"] > :first-child {
+  border-radius: var(--e-win-radius);
+}
+html[data-tl-family="enlightenment"] .mx_Dialog {
+  background: var(--e-dialog-bg);
+  border-radius: var(--e-win-radius);
+}
+html[data-tl-family="enlightenment"] .mx_Dialog:not(.mx_Dialog_border .mx_Dialog) {
+  box-shadow: var(--e-win-border), var(--e-menu-shadow);
+}
+/* full-bleed title bar (Element pads dialogs 32px 40px) */
+html[data-tl-family="enlightenment"] .mx_Dialog > .mx_Dialog_header,
+html[data-tl-family="enlightenment"] .mx_Dialog > div > .mx_Dialog_header {
+  background: var(--e-bar-bg);
+  color: var(--e-bar-fg);
+  margin: calc(-1 * var(--cpd-space-8x, 32px)) calc(-1 * var(--cpd-space-10x, 40px)) var(--cpd-space-5x, 20px);
+  padding: 0 52px 0 14px;
+  min-height: var(--e-dialog-bar-h, 34px);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--e-bar-line);
+  box-shadow: var(--e-bar-shadow);
+}
+html[data-tl-family="enlightenment"] .mx_Dialog_title,
+html[data-tl-family="enlightenment"] .mx_Dialog_header h1,
+html[data-tl-family="enlightenment"] .mx_Dialog_header h2 {
+  font-family: var(--e-bar-font);
+  font-weight: var(--e-bar-weight);
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--e-bar-fg);
+  text-shadow: var(--e-bar-text-shadow);
+  margin: 0;
+}
+html[data-tl-family="enlightenment"] .mx_UserSettingsDialog_title,
+html[data-tl-family="enlightenment"] .mx_UserSettingsDialog_title .mx_UserSettingsDialog_title_strong {
+  color: var(--e-bar-fg);
+}
+html[data-tl-family="enlightenment"] .mx_Dialog_cancelButton {
+  top: calc((var(--e-dialog-bar-h, 34px) - 24px) / 2);
+  right: 10px;
+  inset-inline-end: 10px;
+  background-color: transparent;
+  color: var(--e-bar-fg);
+}
+html[data-tl-family="enlightenment"] .mx_Dialog_buttons button,
+html[data-tl-family="enlightenment"] .mx_Dialog_buttons .mx_AccessibleButton {
+  border-radius: var(--e-btn-radius);
+}
+html[data-tl-family="enlightenment"] .mx_Dialog_buttons button:not(.mx_Dialog_primary):not(.danger),
+html[data-tl-family="enlightenment"] .mx_Dialog button.mx_Dialog_nonDialogButton {
+  background: var(--e-btn-bg);
+  color: var(--e-btn-fg);
+  border: var(--e-btn-border);
+  box-shadow: var(--e-btn-shadow);
+}
+html[data-tl-family="enlightenment"] .mx_Dialog_buttons button.mx_Dialog_primary,
+html[data-tl-family="enlightenment"] .mx_Dialog button.mx_Dialog_primary {
+  background: var(--e-pri-bg);
+  color: var(--e-pri-fg);
+  border: 1px solid transparent;
+  box-shadow: var(--e-pri-shadow);
+}
+
+/* ------------------------------------------------------------------ menus & tooltips */
+html[data-tl-family="enlightenment"] .mx_ContextualMenu,
+html[data-tl-family="enlightenment"] [role="menu"] {
+  background: var(--e-menu-bg);
+  border: 1px solid var(--e-menu-border);
+  border-radius: var(--e-menu-radius);
+  box-shadow: var(--e-menu-shadow);
+}
+html[data-tl-family="enlightenment"] .mx_IconizedContextMenu_option:hover,
+html[data-tl-family="enlightenment"] .mx_IconizedContextMenu_option:focus-visible,
+html[data-tl-family="enlightenment"] [role="menu"] [role^="menuitem"]:hover,
+html[data-tl-family="enlightenment"] [role="menu"] [role^="menuitem"]:focus-visible {
+  background: var(--e-menu-sel);
+  color: var(--e-menu-sel-fg);
+}
+html[data-tl-family="enlightenment"] [role="tooltip"],
+html[data-tl-family="enlightenment"] [class*="_tooltip_"] {
+  background: var(--e-tip-bg);
+  color: var(--e-tip-fg);
+  border: 1px solid var(--e-tip-border);
+  border-radius: var(--e-menu-radius);
+}
+html[data-tl-family="enlightenment"] [class*="_tooltip_"] svg,
+html[data-tl-family="enlightenment"] [role="tooltip"] [class*="_arrow_"] {
+  fill: var(--e-tip-bg);
+}
+
+/* ------------------------------------------------------------------ settings */
+html[data-tl-family="enlightenment"] .mx_TabbedView_tabLabel {
+  border-radius: var(--e-btn-radius);
+}
+html[data-tl-family="enlightenment"] .mx_TabbedView_tabLabel_active {
+  background: var(--e-sel-bg);
+  color: var(--e-sel-fg);
+  box-shadow: inset var(--e-sel-bar-w) 0 0 var(--e-sel-bar), var(--e-sel-glow);
+}
+html[data-tl-family="enlightenment"] .mx_TabbedView_tabLabel_active .mx_TabbedView_tabLabel_text,
+html[data-tl-family="enlightenment"] .mx_TabbedView_tabLabel_active svg {
+  color: var(--e-sel-fg);
+}
+
+/* ------------------------------------------------------------------ auth */
+html[data-tl-family="enlightenment"] .mx_AuthPage {
+  /* Element sets the welcome photo inline; the E desktop replaces it */
+  background: var(--e-auth-bg) !important;
+}
+html[data-tl-family="enlightenment"] .mx_AuthPage_modalBlur {
+  display: none;
+}
+html[data-tl-family="enlightenment"] .mx_AuthPage_modal.mx_AuthPage_modal_withBlur .mx_AuthPage_modalContent,
+html[data-tl-family="enlightenment"] .mx_AuthPage_modalContent {
+  background: var(--e-dialog-bg);
+  color: var(--cpd-color-text-primary);
+}
+html[data-tl-family="enlightenment"] .mx_AuthPage_modal {
+  border-radius: var(--e-win-radius);
+  box-shadow: var(--e-win-border), var(--e-menu-shadow);
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ scrollbars */
+html[data-tl-family="enlightenment"] * {
+  scrollbar-color: var(--e-scroll-thumb) var(--e-scroll-track);
+}
+html[data-tl-family="enlightenment"] ::-webkit-scrollbar {
+  width: var(--e-scroll-w);
+  height: var(--e-scroll-w);
+  background: var(--e-scroll-track);
+}
+html[data-tl-family="enlightenment"] ::-webkit-scrollbar-thumb {
+  background: var(--e-scroll-thumb);
+  border-radius: 0;
+}
+html[data-tl-family="enlightenment"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--e-scroll-thumb-hover);
+}
+
+/* ------------------------------------------------------------------ badges */
+html[data-tl-family="enlightenment"] [class*="_notificationBadge_"],
+html[data-tl-family="enlightenment"] .mx_NotificationBadge:not(.mx_NotificationBadge_dot) {
+  background: var(--e-badge-bg);
+  color: var(--e-badge-fg);
+}
+html[data-tl-family="enlightenment"] [class*="_notificationBadge_"][class*="_highlighted_"],
+html[data-tl-family="enlightenment"] [class*="_notificationBadge_"][data-highlighted="true"],
+html[data-tl-family="enlightenment"] .mx_NotificationBadge_level_highlight {
+  background: var(--e-badge-hl-bg);
+  color: var(--e-badge-hl-fg);
+}
+
+/* ------------------------------------------------------------------ code */
+html[data-tl-family="enlightenment"] .mx_EventTile_body pre,
+html[data-tl-family="enlightenment"] .mx_EventTile_pre_container,
+html[data-tl-family="enlightenment"] .markdown-body pre {
+  background: var(--e-code-bg);
+  background-image: var(--e-code-overlay);
+  color: var(--e-code-fg);
+  border: 1px solid var(--e-code-border);
+  border-radius: var(--e-well-radius);
+}
+html[data-tl-family="enlightenment"] .mx_EventTile_pre_container pre,
+html[data-tl-family="enlightenment"] pre code,
+html[data-tl-family="enlightenment"] pre code span {
+  background: transparent;
+  border: 0;
+}
+html[data-tl-family="enlightenment"] pre,
+html[data-tl-family="enlightenment"] code,
+html[data-tl-family="enlightenment"] .mx_EventTile_pre_container,
+html[data-tl-family="enlightenment"] kbd {
+  font-family: var(--cpd-font-family-mono);
+}
+html[data-tl-family="enlightenment"] .hljs { background: transparent; color: var(--e-code-fg); }
+html[data-tl-family="enlightenment"] .hljs-keyword,
+html[data-tl-family="enlightenment"] .hljs-selector-tag,
+html[data-tl-family="enlightenment"] .hljs-built_in,
+html[data-tl-family="enlightenment"] .hljs-literal { color: var(--e-hl-keyword); }
+html[data-tl-family="enlightenment"] .hljs-string,
+html[data-tl-family="enlightenment"] .hljs-regexp,
+html[data-tl-family="enlightenment"] .hljs-addition { color: var(--e-hl-string); }
+html[data-tl-family="enlightenment"] .hljs-comment,
+html[data-tl-family="enlightenment"] .hljs-quote { color: var(--e-hl-comment); font-style: italic; }
+html[data-tl-family="enlightenment"] .hljs-number,
+html[data-tl-family="enlightenment"] .hljs-symbol { color: var(--e-hl-number); }
+html[data-tl-family="enlightenment"] .hljs-title,
+html[data-tl-family="enlightenment"] .hljs-title.class_,
+html[data-tl-family="enlightenment"] .hljs-type { color: var(--e-hl-class); }
+html[data-tl-family="enlightenment"] .hljs-title.function_,
+html[data-tl-family="enlightenment"] .hljs-function,
+html[data-tl-family="enlightenment"] .hljs-params { color: var(--e-hl-function); }
+html[data-tl-family="enlightenment"] .hljs-tag,
+html[data-tl-family="enlightenment"] .hljs-name,
+html[data-tl-family="enlightenment"] .hljs-deletion,
+html[data-tl-family="enlightenment"] .hljs-meta { color: var(--e-hl-tag); }
+html[data-tl-family="enlightenment"] .hljs-attr,
+html[data-tl-family="enlightenment"] .hljs-attribute,
+html[data-tl-family="enlightenment"] .hljs-variable,
+html[data-tl-family="enlightenment"] .hljs-property { color: var(--e-hl-attr); }
+
+/* ------------------------------------------------------------------ icons & avatars */
+html[data-tl-family="enlightenment"] [class*="_icon-button_"]:hover:not([aria-disabled="true"]) svg,
+html[data-tl-family="enlightenment"] .mx_MessageComposer_button:hover svg {
+  filter: var(--e-icon-hover-filter);
+}
+html[data-tl-family="enlightenment"] .mx_BaseAvatar {
+  box-shadow: var(--e-avatar-ring);
+}
+
+/* ------------------------------------------------------------------ iframes */
+html[data-tl-family="enlightenment"] .mx_AppTile,
+html[data-tl-family="enlightenment"] .mx_CallView {
+  box-shadow: var(--e-win-border);
+  border-radius: var(--e-win-radius);
+}
+
+/* ------------------------------------------------------------------ the loader UI stays readable */
+html[data-tl-family="enlightenment"] .tl-ui {
+  text-shadow: none;
+}
+
+/* ------------------------------------------------------------------ accessibility floors */
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="enlightenment"] *,
+  html[data-tl-family="enlightenment"] *::before,
+  html[data-tl-family="enlightenment"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media (forced-colors: active) {
+  html[data-tl-family="enlightenment"] * {
+    background-image: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------ shelf clock gadget (enhance.ts) */
+html[data-tl-family="enlightenment"] {
+  --e-clock-face: radial-gradient(circle at 50% 35%, #3A3A3A, #151515 70%);
+  --e-clock-rim: #0E0E0E;
+  --e-clock-tick: rgba(255, 255, 255, 0.45);
+  --e-clock-hand: #E6E6E6;
+  --e-clock-sec: #3399FF;
+  --e-clock-glow: drop-shadow(0 0 2px rgba(51, 153, 255, 0.9));
+  --e-clock-fg: #C8C8C8;
+  --e-clock-font: var(--cpd-font-family-sans);
+}
+html[data-tl-family="enlightenment"][data-e-clock] .mx_SpaceTreeLevel {
+  padding-bottom: 64px;
+}
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  pointer-events: none;
+}
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock svg { overflow: visible; }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock-face { fill: var(--e-clock-rim); stroke: var(--e-clock-rim); stroke-width: 1; }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock svg { background: var(--e-clock-face); border-radius: 50%; box-shadow: 0 0 0 1px var(--e-clock-rim), inset 0 1px 0 rgba(255, 255, 255, 0.12); }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock-face { fill: transparent; }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock-tick { stroke: var(--e-clock-tick); stroke-width: 1.2; }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock-hand { stroke: var(--e-clock-hand); stroke-linecap: round; filter: var(--e-clock-glow); }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock-h { stroke-width: 2.6; }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock-m { stroke-width: 1.8; }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock-s { stroke: var(--e-clock-sec); stroke-width: 1; }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock-pin { fill: var(--e-clock-sec); }
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-clock-digits {
+  font-family: var(--e-clock-font);
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  color: var(--e-clock-fg);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  gap: 1px;
+}
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-flip-card {
+  display: inline-block;
+  min-width: 9px;
+  padding: 3px 1px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--e-clock-fg);
+  background: linear-gradient(180deg, #2E2520 0 49%, #0A0806 49% 51%, #241D19 51% 100%);
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px #0A0806, inset 0 1px 0 rgba(255, 220, 160, 0.15);
+}
+html[data-tl-family="enlightenment"] #tl-overlay-root .e-flip-colon { color: var(--e-clock-fg); font-size: 13px; align-self: center; }
+
+/* ------------------------------------------------------------------ Element's literal colours → tokens */
+html[data-tl-family="enlightenment"] .mx_Dialog {
+  color: var(--cpd-color-text-primary);
+}
+html[data-tl-family="enlightenment"] .text-muted,
+html[data-tl-family="enlightenment"] .mx_CreateRoomDialog p,
+html[data-tl-family="enlightenment"] .mx_CreateRoomDialog .mx_Field_input label,
+html[data-tl-family="enlightenment"] .mx_CreateRoomDialog_labelledCheckbox,
+html[data-tl-family="enlightenment"] .mx_CreateSubspaceDialog .mx_JoinRuleDropdown + p,
+html[data-tl-family="enlightenment"] .mx_HomePage_default h2,
+html[data-tl-family="enlightenment"] .mx_UploadBar .mx_UploadBar_filename {
+  color: var(--cpd-color-text-secondary);
+}
+html[data-tl-family="enlightenment"] .mx_Dropdown_menu .mx_Dropdown_option_highlight,
+html[data-tl-family="enlightenment"] .mx_GenericDropdownMenu_Option:hover,
+html[data-tl-family="enlightenment"] .mx_Autocomplete_Completion.selected,
+html[data-tl-family="enlightenment"] .mx_Autocomplete_Completion:hover,
+html[data-tl-family="enlightenment"] .mx_ReadReceiptGroup_person:hover {
+  background: var(--e-menu-sel);
+  color: var(--e-menu-sel-fg);
+}
+html[data-tl-family="enlightenment"] .mx_NonUrgentToastContainer_toast {
+  background: var(--e-menu-bg);
+  color: var(--cpd-color-text-primary);
+}
+html[data-tl-family="enlightenment"] .markdown-body {
+  background: transparent;
+  color: inherit;
+}
+html[data-tl-family="enlightenment"] .mx_EventTile_content .markdown-body table tr,
+html[data-tl-family="enlightenment"] .mx_EventTile_content .markdown-body table tr:nth-child(2n) {
+  background: transparent;
+}
+html[data-tl-family="enlightenment"] .mx_EventTile_content .markdown-body table th,
+html[data-tl-family="enlightenment"] .mx_EventTile_content .markdown-body table td {
+  border-color: var(--cpd-color-border-interactive-secondary);
+}
+html[data-tl-family="enlightenment"] .mx_SyntaxHighlight {
+  color: var(--e-code-fg) !important;
+}
+html[data-tl-family="enlightenment"] .mx_HomePage_default_buttons .mx_AccessibleButton {
+  background: var(--e-pri-bg);
+  color: var(--e-pri-fg);
+  box-shadow: var(--e-pri-shadow);
+  border-radius: var(--e-btn-radius);
+}
+html[data-tl-family="enlightenment"] .mx_HomePage_default_buttons .mx_AccessibleButton::before {
+  background-color: var(--e-pri-fg);
+}
+html[data-tl-family="enlightenment"] .mx_AuthHeader {
+  background: var(--e-list-bg);
+  border-right: 1px solid var(--e-bar-line);
+}
+html[data-tl-family="enlightenment"] .mx_AuthBody {
+  background: var(--e-dialog-bg);
+  color: var(--cpd-color-text-primary);
+}
+html[data-tl-family="enlightenment"] .mx_AuthFooter a,
+html[data-tl-family="enlightenment"] .mx_AuthFooter a:link,
+html[data-tl-family="enlightenment"] .mx_AuthFooter a:visited {
+  color: var(--cpd-color-text-primary);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* ------------------------------------------------------------------ other datanauten modules (production)
+   On element.datanauten.de ~8 module buttons join the room header (Apps, room-checker badge, Saved, Activity,
+   Tags, Files, My apps, Themes). In a narrow room view (e.g. teams-welcome guide docked) the row became wider
+   than the header and its last buttons slid under the drawn min/max/close glyphs. Tighten when narrow. */
+/* the header itself is the query container (not its parent: containment there re-anchors absolutely
+   positioned frame parts); so only its children change, its own gap is compensated with negative margins */
+html[data-tl-family="enlightenment"] .mx_RoomHeader { container: tl-room-header / inline-size; }
+@container tl-room-header (max-width: 760px) {
+  html[data-tl-family="enlightenment"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -6px !important; }
+  html[data-tl-family="enlightenment"] .mx_RoomHeader .mx_FacePile { display: none !important; }
+  html[data-tl-family="enlightenment"] .mx_RoomHeader > button[class*="_icon-button_"],
+  html[data-tl-family="enlightenment"] .mx_RoomHeader > div > button[class*="_icon-button_"],
+  html[data-tl-family="enlightenment"] .mx_RoomHeader > :is(.mcm-apps, .rc-badge, .tw-header-button, .act-header-button, .tm-header-button, .fh-header-button, .uaw-header-button, .tl-header-button) {
+    width: 28px !important; min-width: 28px; padding-inline: 0 !important;
+  }
+}
+/* the drawn min/max/close glyphs are the header's own ::after (a container query can't reach it): drop them, and
+   the room they reserve, whenever the room view is known to be narrow (teams-welcome guide docked, small window) */
+html[data-tl-family="enlightenment"].twl-docked .mx_RoomHeader::after { display: none; }
+html[data-tl-family="enlightenment"].twl-docked .mx_RoomHeader { padding-right: var(--cpd-space-4x, 16px); }
+@media (max-width: 1100px) {
+  html[data-tl-family="enlightenment"] .mx_RoomHeader::after { display: none; }
+  html[data-tl-family="enlightenment"] .mx_RoomHeader { padding-right: var(--cpd-space-4x, 16px); }
+}
+
+/* phones: the desktop gaps between the "windows" plus Element's 18 px list padding left the message column
+   < 40 px wide at 320–360 px (e-aurora showed no readable message, VP-02/VP-12). Tighten them. */
+@media (max-width: 480px) {
+  html[data-tl-family="enlightenment"][data-tl-theme] { --e-gap: 2px; }
+  html[data-tl-family="enlightenment"] .mx_RoomView_MessageList { padding-left: 6px; padding-right: 6px; }
+}

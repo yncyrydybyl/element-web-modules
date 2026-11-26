@@ -1,0 +1,54 @@
+/* win311-hotdog — the exact "Hotdog Stand" scheme from Windows 3.1 CONTROL.INI (style guide §4.3).
+   Hotdog Stand=FFFF,FFFF,FF,FFFFFF,FFFFFF,0,0,FF,FFFFFF,FF,FF,0,C0C0C0,C0C0C0,808080,0,808080,0,FFFFFF,FFFFFF,FFFFFF */
+html[data-tl-theme="win311-hotdog"] {
+  --w-desktop: #ffff00;
+  --w-workspace: #ffff00;
+  --w-window: #ff0000;
+  --w-text: #ffffff;
+  --w-menu: #ffffff;
+  --w-menutext: #000000;
+  --w-title: #000000;
+  --w-title-inactive: #ff0000;
+  --w-titletext: #ffffff;
+  --w-titletext-inactive: #ffffff;
+  --w-border: #ff0000;
+  --w-border-inactive: #ff0000;
+  --w-frame: #000000;
+  --w-scrollbar: #c0c0c0;
+  --w-graytext: #808080;
+  --w-hilight: #000000;
+  --w-hilighttext: #ffffff;
+  /* extras */
+  --w-muted: #ffff00;
+  --w-accent-text: #ffff00;
+  --w-link: #ffff00;
+  --w-critical: #ffff00;
+  --w-critical-bg: #000000;
+  --w-success: #00ff00;
+  --w-own-name: #ffff00;
+  --w-mention-bg: #ffff00;
+  --w-mention-text: #000000;
+  --w-code-bg: #000000;
+  --w-code-text: #ffff00;
+  --w-hl-keyword: #00ffff; --w-hl-string: #ff00ff; --w-hl-comment: #c0c0c0; --w-hl-number: #00ff00; --w-hl-delete: #ff0000;
+  --w-dec-1: #ffffff; --w-dec-2: #ffff00; --w-dec-3: #ffffff; --w-dec-4: #ffff00; --w-dec-5: #ffffff; --w-dec-6: #ffff00;
+  --w-group-icon: url("assets/icon-group-hotdog.svg");
+  --w-sel: #000000;
+  --w-strip-text: #000000;
+  --w-seltext: #ffffff;
+}
+html[data-tl-theme="win311-hotdog"] {
+  /* the composer's edit field follows the scheme: red Window, white text */
+  & .mx_EventTile[class*="_stateHighlighted_"] .mx_EventTile_line { --w-link: #000000; }
+  & .mx_EventTile_body code:not(pre code) { background: #000000 !important; color: #ffff00 !important; }
+  & .mx_Pill, & [class*="_pill_"] { outline: 1px solid #000000; }
+  /* optional fun: mention badges wobble like a mustard bottle (reduced motion disables it in shared.css) */
+  & .mx_RoomListItemView [class*="_notificationBadge_"][class*="_highlight"], & .mx_RoomListItemView [class*="_mention"] {
+    animation: w311-mustard 1.6s steps(4) infinite;
+  }
+}
+@keyframes w311-mustard { 0%, 70% { transform: none; } 80% { transform: rotate(-12deg); } 90% { transform: rotate(10deg); } }
+/* menus are white in this scheme: keep destructive items readable there */
+html[data-tl-theme="win311-hotdog"] :is(.mx_ContextualMenu, [role="menu"], .mx_IconizedContextMenu) {
+  --cpd-color-text-critical-primary: #ff0000; --cpd-color-icon-critical-primary: #ff0000; --w-critical: #ff0000;
+}

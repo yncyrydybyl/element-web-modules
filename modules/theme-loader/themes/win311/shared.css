@@ -1,0 +1,1197 @@
+/* ==========================================================================================================
+   win311 — shared chrome for all Windows 3.11 variants.
+   Every variant file only fills the 21 Control-Panel colour slots (--w-*) plus a few extras; this file maps
+   them to Compound tokens and draws the Win 3.1 chrome (VGA.DRV bevel grammar: 1px black frame, 1px white
+   top/left, 2px #808080 bottom/right; pressed = 1px grey top/left, content +1,+1).
+   Layout: Element = Program Manager application window; left panel, room timeline and right panel are MDI
+   child windows; their existing headers become title bars (control-menu box left, ▼▲ right, no ✕).
+   ========================================================================================================== */
+
+html[data-tl-family="win311"] {
+  /* ---- defaults = "Windows Default" (verified in PCjs); variant files override ---------------------- */
+  --w-desktop: #c0c0c0;
+  --w-desktop-image: none;
+  --w-workspace: #ffffff;
+  --w-window: #ffffff;
+  --w-text: #000000;
+  --w-menu: #ffffff;
+  --w-menutext: #000000;
+  --w-title: #000080;
+  --w-title-inactive: #ffffff;
+  --w-titletext: #ffffff;
+  --w-titletext-inactive: #000000;
+  --w-border: #c0c0c0;
+  --w-border-inactive: #c0c0c0;
+  --w-frame: #000000;
+  --w-scrollbar: #c0c0c0;
+  --w-scroll-shaft: var(--w-scrollbar);
+  --w-face: #c0c0c0;
+  --w-shadow: #808080;
+  --w-hi: #ffffff;
+  --w-btntext: #000000;
+  --w-graytext: #808080;
+  --w-hilight: #000080;
+  --w-hilighttext: #ffffff;
+  /* extras (not Control-Panel slots) */
+  --w-muted: var(--w-graytext);
+  --w-accent-text: var(--w-hilight);
+  --w-link: #008000;               /* WinHelp jump links were green + underlined */
+  --w-critical: #800000;
+  --w-critical-bg: #800000;
+  --w-success: #008000;
+  --w-own: var(--w-window);
+  --w-own-name: var(--w-hilight);
+  --w-mention-bg: var(--w-hilight);
+  --w-mention-text: var(--w-hilighttext);
+  --w-code-bg: var(--w-window);
+  --w-code-text: var(--w-text);
+  --w-input-bg: var(--w-window);
+  --w-input-text: var(--w-text);
+  --w-input-border: var(--w-frame);
+  --w-hover: transparent;           /* Windows 3.1 had no hover */
+  --w-sel: var(--w-hilight);        /* selection inside a window (list labels) */
+  --w-seltext: var(--w-hilighttext);
+  --w-group-icon: url("assets/icon-group.svg");
+  --w-title-glow: none;
+  --w-dec-1: #800000; --w-dec-2: #008000; --w-dec-3: #808000;
+  --w-dec-4: #000080; --w-dec-5: #800080; --w-dec-6: #008080;
+  --w-font: "W95FA", "Arial", sans-serif;
+  --w-font-sys: "W95FA", "Arial", sans-serif;
+  --w-font-mono: "PxPlus IBM VGA 8x16", "Courier New", monospace;
+  --w-mono-size: 16px;
+  --w-size: 12.5px;            /* W95FA native pixel size (80 units = 1px): crisp, = MS Sans Serif 8pt */
+  --w-line: 16px;
+  --w-title-h: 18px;
+  --w-band: 3px;                    /* sizing border (BorderWidth 3) */
+  --w-gap: 6px;                     /* AppWorkspace gap between MDI windows */
+  --w-strip-h: 78px;                /* minimized group icon strip (spaces) */
+  --w-bevel: inset 1px 1px 0 var(--w-hi), inset -1px -1px 0 var(--w-shadow), inset -2px -2px 0 var(--w-shadow);
+  --w-bevel-pressed: inset 1px 1px 0 var(--w-shadow);
+  --w-sunken: inset 1px 1px 0 var(--w-shadow), inset -1px -1px 0 var(--w-hi);
+
+}
+
+/* ---- Compound tokens: on html, body and the forced-theme islands (Element declares its tokens on body) ---- */
+html[data-tl-family="win311"],
+html[data-tl-family="win311"] body,
+html[data-tl-family="win311"] [class*="cpd-theme-"] {
+  --cpd-font-family-sans: var(--w-font) !important;
+  --cpd-font-family-mono: var(--w-font-mono) !important;
+  --cpd-font-size-body-lg: var(--w-size);
+  --cpd-font-size-body-md: var(--w-size);
+  --cpd-font-size-body-sm: var(--w-size);
+  --cpd-font-size-body-xs: var(--w-size);
+  --cpd-font-size-heading-sm: var(--w-size);
+  --cpd-font-size-heading-md: var(--w-size);
+  --cpd-font-size-heading-lg: var(--w-size);
+  --cpd-font-size-heading-xl: var(--w-size);
+  --cpd-font-line-height-regular: 1.125;
+  --cpd-font-line-height-tight: 1.125;
+  --cpd-font-weight-medium: 400;
+  --cpd-font-weight-semibold: 700;
+  --cpd-font-letter-spacing-body-lg: 0; --cpd-font-letter-spacing-body-md: 0;
+  --cpd-font-letter-spacing-body-sm: 0; --cpd-font-letter-spacing-body-xs: 0;
+  --cpd-font-letter-spacing-heading-sm: 0; --cpd-font-letter-spacing-heading-md: 0;
+  --cpd-font-letter-spacing-heading-lg: 0; --cpd-font-letter-spacing-heading-xl: 0;
+  --cpd-font-feature-settings: normal;
+
+  --cpd-color-theme-bg: var(--w-window);
+  --cpd-color-bg-canvas-default: var(--w-window);
+  --cpd-color-bg-canvas-default-level-1: var(--w-window);
+  --cpd-color-bg-canvas-disabled: var(--w-face);
+  --cpd-color-bg-subtle-primary: var(--w-face);
+  --cpd-color-bg-subtle-secondary: var(--w-window);
+  --cpd-color-bg-subtle-secondary-level-0: var(--w-window);
+  --cpd-color-bg-subtle-tertiary: var(--w-face);
+  --cpd-color-bg-action-primary-rest: var(--w-hilight);
+  --cpd-color-bg-action-primary-hovered: var(--w-hilight);
+  --cpd-color-bg-action-primary-pressed: var(--w-hilight);
+  --cpd-color-bg-action-primary-disabled: var(--w-shadow);
+  --cpd-color-bg-action-secondary-rest: var(--w-face);
+  --cpd-color-bg-action-secondary-hovered: var(--w-face);
+  --cpd-color-bg-action-secondary-pressed: var(--w-face);
+  --cpd-color-bg-action-tertiary-rest: transparent;
+  --cpd-color-bg-action-tertiary-hovered: var(--w-hover);
+  --cpd-color-bg-action-tertiary-selected: var(--w-hilight);
+  --cpd-color-bg-accent-rest: var(--w-hilight);
+  --cpd-color-bg-accent-hovered: var(--w-hilight);
+  --cpd-color-bg-accent-pressed: var(--w-hilight);
+  --cpd-color-bg-accent-selected: var(--w-hilight);
+  --cpd-color-bg-critical-primary: var(--w-critical-bg);
+  --cpd-color-bg-critical-hovered: var(--w-critical-bg);
+  --cpd-color-bg-critical-subtle: var(--w-window);
+  --cpd-color-bg-critical-subtle-hovered: var(--w-face);
+  --cpd-color-bg-success-subtle: var(--w-window);
+  --cpd-color-bg-info-subtle: var(--w-window);
+  --cpd-color-bg-badge-default: var(--w-face);
+  --cpd-color-bg-badge-accent: var(--w-hilight);
+  --cpd-color-bg-badge-info: var(--w-hilight);
+  --cpd-color-bg-badge-critical: var(--w-critical-bg);
+  --cpd-color-bg-decorative-1: var(--w-face); --cpd-color-bg-decorative-2: var(--w-face);
+  --cpd-color-bg-decorative-3: var(--w-face); --cpd-color-bg-decorative-4: var(--w-face);
+  --cpd-color-bg-decorative-5: var(--w-face); --cpd-color-bg-decorative-6: var(--w-face);
+  --cpd-color-text-decorative-1: var(--w-dec-1); --cpd-color-text-decorative-2: var(--w-dec-2);
+  --cpd-color-text-decorative-3: var(--w-dec-3); --cpd-color-text-decorative-4: var(--w-dec-4);
+  --cpd-color-text-decorative-5: var(--w-dec-5); --cpd-color-text-decorative-6: var(--w-dec-6);
+  --cpd-color-text-primary: var(--w-text);
+  --cpd-color-text-secondary: var(--w-muted);
+  --cpd-color-text-placeholder: var(--w-muted);
+  --cpd-color-text-disabled: var(--w-graytext);
+  --cpd-color-text-action-primary: var(--w-text);
+  --cpd-color-text-action-secondary: var(--w-text);
+  --cpd-color-text-action-accent: var(--w-accent-text);
+  --cpd-color-text-link-external: var(--w-link);
+  --cpd-color-text-on-solid-primary: var(--w-hilighttext);
+  --cpd-color-text-critical-primary: var(--w-critical);
+  --cpd-color-text-success-primary: var(--w-success);
+  --cpd-color-text-info-primary: var(--w-accent-text);
+  --cpd-color-icon-primary: var(--w-text);
+  --cpd-color-icon-secondary: var(--w-text);
+  --cpd-color-icon-tertiary: var(--w-muted);
+  --cpd-color-icon-quaternary: var(--w-muted);
+  --cpd-color-icon-disabled: var(--w-graytext);
+  --cpd-color-icon-accent-primary: var(--w-accent-text);
+  --cpd-color-icon-accent-tertiary: var(--w-accent-text);
+  --cpd-color-icon-critical-primary: var(--w-critical);
+  --cpd-color-icon-success-primary: var(--w-success);
+  --cpd-color-icon-info-primary: var(--w-accent-text);
+  --cpd-color-icon-on-solid-primary: var(--w-hilighttext);
+  --cpd-color-border-interactive-primary: var(--w-frame);
+  --cpd-color-border-interactive-secondary: var(--w-frame);
+  --cpd-color-border-interactive-hovered: var(--w-frame);
+  --cpd-color-border-focused: var(--w-text);
+  --cpd-color-border-disabled: var(--w-graytext);
+  --cpd-color-border-critical-primary: var(--w-critical);
+  --cpd-color-border-critical-subtle: var(--w-critical);
+  --cpd-color-border-success-subtle: var(--w-success);
+  --cpd-color-border-accent-subtle: var(--w-frame);
+  --cpd-color-separator-primary: var(--w-frame);
+  --cpd-color-separator-secondary: var(--w-frame);
+  --cpd-color-gray-100: var(--w-window); --cpd-color-gray-200: var(--w-window);
+  --cpd-color-gray-300: var(--w-face); --cpd-color-gray-400: var(--w-face);
+  --cpd-color-gray-500: var(--w-face); --cpd-color-gray-600: var(--w-shadow);
+  --cpd-color-gray-700: var(--w-shadow); --cpd-color-gray-800: var(--w-shadow);
+  --cpd-color-gray-900: var(--w-muted); --cpd-color-gray-1000: var(--w-muted);
+  --cpd-color-gray-1100: var(--w-text); --cpd-color-gray-1200: var(--w-text);
+  --cpd-color-gray-1300: var(--w-text); --cpd-color-gray-1400: var(--w-text);
+  --cpd-color-alpha-gray-100: transparent; --cpd-color-alpha-gray-200: var(--w-hover);
+  --cpd-color-alpha-gray-300: var(--w-hover); --cpd-color-alpha-gray-400: var(--w-face);
+  --cpd-color-bg-subtle-primary-level-0: var(--w-face);
+  --cpd-avatar-radius: 0;
+  --transition-short: 0s;
+  --transition-standard: 0s;
+  --emoji-font-family: "Twemoji";
+
+}
+html[data-tl-family="win311"] { color-scheme: light; background: var(--w-desktop); }
+
+html[data-tl-family="win311"][data-tl-base="dark"] { color-scheme: dark; }
+
+html[data-tl-family="win311"] body {
+  background: var(--w-desktop);
+  color: var(--w-text);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  text-rendering: optimizeSpeed;
+}
+
+/* ===================================== Scrollbars (17px, Win 3.1) ===================================== */
+html[data-tl-family="win311"] {
+  & *, & *::before { scrollbar-width: auto; scrollbar-color: auto; }
+  & ::-webkit-scrollbar { width: 17px; height: 17px; background: var(--w-scroll-shaft); }
+  & ::-webkit-scrollbar-track { background: var(--w-scroll-shaft); box-shadow: inset 1px 0 0 var(--w-frame); }
+  & ::-webkit-scrollbar-track:horizontal { box-shadow: inset 0 1px 0 var(--w-frame); }
+  & ::-webkit-scrollbar-thumb {
+    min-height: 17px; min-width: 17px;
+    background: var(--w-face);
+    border: 1px solid var(--w-frame);
+    box-shadow: var(--w-bevel);
+  }
+  & ::-webkit-scrollbar-button { display: block; width: 17px; height: 17px; background-repeat: no-repeat; }
+  & ::-webkit-scrollbar-button:vertical:start:increment,
+  & ::-webkit-scrollbar-button:vertical:end:decrement,
+  & ::-webkit-scrollbar-button:horizontal:start:increment,
+  & ::-webkit-scrollbar-button:horizontal:end:decrement { display: none; }
+  & ::-webkit-scrollbar-button:vertical:start:decrement { background-image: url("assets/scroll-up.svg"); }
+  & ::-webkit-scrollbar-button:vertical:start:decrement:active { background-image: url("assets/scroll-up-pressed.svg"); }
+  & ::-webkit-scrollbar-button:vertical:end:increment { background-image: url("assets/scroll-down.svg"); }
+  & ::-webkit-scrollbar-button:vertical:end:increment:active { background-image: url("assets/scroll-down-pressed.svg"); }
+  & ::-webkit-scrollbar-button:horizontal:start:decrement { background-image: url("assets/scroll-left.svg"); }
+  & ::-webkit-scrollbar-button:horizontal:end:increment { background-image: url("assets/scroll-right.svg"); }
+  & ::-webkit-scrollbar-corner { background: var(--w-face); }
+  /* Element hides scrollbars until hover (AutoHideScrollbar) — Windows 3.1 never did */
+  & .mx_AutoHideScrollbar, & [class*="_scrollbar_"] { scrollbar-color: auto; scrollbar-gutter: auto; }
+}
+
+/* ===================================== Focus: dotted rectangle ======================================== */
+html[data-tl-family="win311"] {
+  & :focus-visible { outline: 1px dotted var(--w-text) !important; outline-offset: -3px; }
+  & input:focus-visible, & textarea:focus-visible, & [contenteditable]:focus-visible { outline: none !important; }
+}
+
+/* ===================================== Application window (Program Manager) ============================ */
+html[data-tl-family="win311"] .mx_MatrixChat_wrapper {
+  overflow: clip;   /* scrollIntoView must never scroll the desktop */
+  background: var(--w-desktop) var(--w-desktop-image);
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+html[data-tl-family="win311"] .mx_MatrixChat {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: visible;
+  border: 1px solid var(--w-frame);
+  /* sizing band + outer black line */
+  box-shadow: 0 0 0 var(--w-band) var(--w-border), 0 0 0 calc(var(--w-band) + 1px) var(--w-frame);
+  padding-top: calc(var(--w-title-h) + 1px + 20px + 1px);
+  background: var(--w-workspace);
+
+  /* application title bar */
+  &::before {
+    content: var(--w-app-title, "Element");
+    position: absolute; z-index: 5;
+    top: 0; left: 0; right: 0; height: var(--w-title-h);
+    border-bottom: 1px solid var(--w-frame);
+    background:
+      url("assets/ctl-app.svg") left top / 18px 18px no-repeat,
+      url("assets/btn-max.svg") right top / 19px 18px no-repeat,
+      url("assets/btn-min.svg") right 19px top / 19px 18px no-repeat,
+      var(--w-title);
+    color: var(--w-titletext);
+    font: 700 var(--w-size)/var(--w-title-h) var(--w-font-sys);
+    text-align: center;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    padding: 0 44px 0 24px;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+  /* menu bar (static fallback; the enhancer puts interactive menus on top) */
+  &::after {
+    content: "File   Options   Window   Help";
+    position: absolute; z-index: 5;
+    top: calc(var(--w-title-h) + 1px); left: 0; right: 0; height: 20px;
+    border-bottom: 1px solid var(--w-frame);
+    background: var(--w-menu);
+    color: var(--w-menutext);
+    font: 400 var(--w-size)/20px var(--w-font);
+    white-space: pre;
+    padding: 0 8px;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+}
+/* enhancer mounted → it draws real menus; hide the static label text */
+html[data-tl-family="win311"][data-w311-menus] .mx_MatrixChat::after { content: ""; }
+
+/* The resizable panel group = the AppWorkspace */
+html[data-tl-family="win311"] .mx_MatrixChat > [data-group] {
+  overflow: clip !important;
+  background: var(--w-workspace);
+  box-sizing: border-box;
+  padding: var(--w-gap);
+  position: relative;
+}
+
+/* separators: invisible gaps (still draggable) */
+html[data-tl-family="win311"] .mx_MatrixChat > [data-group] > .mx_Separator {
+  background: transparent !important;
+  width: var(--w-gap);
+  & * { background: transparent !important; }
+}
+
+/* ===================================== MDI child windows =============================================== */
+/* left panel window + right-hand window when it isn't a room (home, space home, settings…) */
+html[data-tl-family="win311"] {
+  & #left-panel > .mx_LeftPanel_panel,
+  & [data-group] > [data-panel]:not(#left-panel) > .mx_LeftPanel_panel:not(:has(.mx_MainSplit)),
+  & .mx_MainSplit > .mx_RoomView_body,
+  & .mx_RightPanel {
+    box-sizing: border-box;
+    border: 1px solid var(--w-frame);
+    box-shadow: 0 0 0 var(--w-band) var(--w-border-inactive), 0 0 0 calc(var(--w-band) + 1px) var(--w-frame);
+    margin: calc(var(--w-band) + 1px);
+    background: var(--w-window);
+    overflow: clip !important;
+  }
+  & .mx_MainSplit { background: var(--w-workspace); gap: 0; }
+  & .mx_MainSplit > .mx_RoomView_body { margin-right: calc(var(--w-band) + 1px + var(--w-gap) / 2); }
+  & .mx_RightPanel_ResizeWrapper {
+    background: transparent; box-sizing: border-box;
+    padding: calc(var(--w-band) + 1px) calc(var(--w-band) + 1px) calc(var(--w-band) + 1px) calc(var(--w-band) + 1px + var(--w-gap) / 2);
+  }
+  & .mx_RightPanel_ResizeWrapper > .mx_RightPanel { margin: 0 !important; height: 100%; border-radius: 0; }
+  & .mx_RightPanel { border-radius: 0; }
+  & .mx_RoomView, & .mx_RoomView_wrapper, & .mx_LeftPanel_panel, & .mx_LeftPanel { background: transparent; }
+  & .mx_RoomView_wrapper, & .mx_RoomView { background: var(--w-workspace); }
+  & .mx_RoomView canvas { display: none; }
+  & .mx_LeftPanel, & .mx_LeftPanel_outerWrapper, & .mx_LeftPanel_wrapper { background: var(--w-window); }
+}
+/* active window → active border colour */
+html[data-tl-family="win311"] {
+  & #left-panel > .mx_LeftPanel_panel:focus-within,
+  & .mx_RightPanel:focus-within,
+  & [data-group]:not(:has(#left-panel :focus, .mx_RightPanel :focus)) .mx_MainSplit > .mx_RoomView_body {
+    box-shadow: 0 0 0 var(--w-band) var(--w-border), 0 0 0 calc(var(--w-band) + 1px) var(--w-frame);
+  }
+}
+
+/* ---- title bars: shared recipe -------------------------------------------------------------------- */
+html[data-tl-family="win311"] {
+  & .mx_RoomListPanel > header[class*="_header_"],
+  & .mx_RoomHeader,
+  & .mx_RightPanel .mx_BaseCard_header {
+    position: relative;
+    box-sizing: border-box;
+    height: calc(var(--w-title-h) + 1px) !important;
+    min-height: 0 !important;
+    max-height: none;
+    padding: 0 40px 0 20px !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--w-frame) !important;
+    background: var(--w-title-inactive) !important;
+    color: var(--w-titletext-inactive);
+    gap: 1px !important;
+    flex: 0 0 auto;
+    &::before {   /* control-menu box (MDI child: short bar) */
+      content: ""; position: absolute; left: 0; top: 0; width: 18px; height: 18px;
+      background: url("assets/ctl-mdi.svg") 0 0 / 18px 18px no-repeat;
+      border-right: 1px solid var(--w-frame);
+      pointer-events: none;
+    }
+    &::after {    /* ▼ ▲ */
+      content: ""; position: absolute; right: 0; top: 0; width: 38px; height: 18px;
+      background:
+        url("assets/btn-min.svg") 0 0 / 19px 18px no-repeat,
+        url("assets/btn-max.svg") 19px 0 / 19px 18px no-repeat;
+      pointer-events: none;
+    }
+    & h1, & h2, & .mx_RoomHeader_heading, & .mx_BaseCard_header_title_heading {
+      text-shadow: var(--w-title-glow);
+      font: 700 var(--w-size)/var(--w-title-h) var(--w-font-sys) !important;
+      color: inherit !important;
+      letter-spacing: 0;
+    }
+  }
+}
+/* active title */
+html[data-tl-family="win311"] {
+  & #left-panel:focus-within .mx_RoomListPanel > header[class*="_header_"],
+  & .mx_RightPanel:focus-within .mx_BaseCard_header,
+  & [data-group]:not(:has(#left-panel :focus, .mx_RightPanel :focus)) .mx_RoomHeader {
+    background: var(--w-title) !important;
+    color: var(--w-titletext);
+  }
+}
+
+/* ---- room list window ("Rooms" program group) ------------------------------------------------------ */
+html[data-tl-family="win311"] .mx_RoomListPanel {
+  background: var(--w-window);
+  gap: 0;
+  & > header[class*="_header_"] { order: -2; }
+  & > header[class*="_header_"] { display: flex; align-items: center; }
+  & > header[class*="_header_"] [class*="_container_"] { width: 100%; height: 18px; gap: 2px; justify-content: center; align-items: center; position: relative; padding: 0 !important; margin: 0 !important; }
+  & > header[class*="_header_"] [class*="_container_"] > div:not([class*="_title_"]) { gap: 1px; flex: 0 0 auto; }
+  & > header[class*="_header_"] [class*="_title_"] { flex: 1 1 auto; justify-content: center; min-width: 0; gap: 2px; }
+  & > header[class*="_header_"] h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  & > header[class*="_header_"] button {
+    width: 18px !important; height: 18px !important; min-width: 0; padding: 0; border-radius: 0;
+    background: var(--w-face) !important; box-shadow: var(--w-bevel); border: 1px solid var(--w-frame);
+    box-sizing: border-box; color: var(--w-btntext) !important;
+    & svg, & [class*="_indicator-icon_"] { width: 12px !important; height: 12px !important; color: var(--w-btntext); }
+  }
+  /* search → File-Manager style edit field */
+  & > [role="search"] {
+    order: -1; padding: 4px 6px; margin: 0; border-bottom: 1px solid var(--w-frame); background: var(--w-face);
+    & button[class*="_search_"] {
+      height: 22px; border-radius: 0; border: 1px solid var(--w-frame); background: var(--w-input-bg);
+      color: var(--w-muted); box-shadow: none; padding: 0 6px; font: var(--cpd-font-body-md-regular);
+      & svg { width: 14px; height: 14px; color: var(--w-text); }
+      & kbd { font: inherit; color: var(--w-muted); }
+    }
+    & button[class*="_icon-button_"], & > button:not([class*="_search_"]) {
+      border-radius: 0; background: var(--w-face); box-shadow: var(--w-bevel); border: 1px solid var(--w-frame);
+    }
+  }
+  /* filters → small push buttons (latched = pressed) */
+  & [class*="_roomListPrimaryFilters_"] { padding: 4px 6px; background: var(--w-face); border-bottom: 1px solid var(--w-frame); }
+  & [class*="_roomListPrimaryFilters_"] [role="listbox"] { gap: 4px; }
+  & [class*="_chat-filter_"] {
+    border-radius: 2px; border: 1px solid var(--w-frame); background: var(--w-face); color: var(--w-btntext);
+    box-shadow: var(--w-bevel); padding: 1px 8px 2px; font: var(--cpd-font-body-md-regular); min-height: 0; height: 22px;
+    &[aria-selected="true"] { box-shadow: var(--w-bevel-pressed); padding: 2px 7px 1px 9px; background: var(--w-face); color: var(--w-btntext); text-decoration: underline; }
+  }
+}
+
+/* room items: 32px program icon + label; selected = label inverted (Program Manager) */
+html[data-tl-family="win311"] .mx_RoomListItemView {
+  border-radius: 0 !important;
+  background: transparent !important;
+  min-height: 40px;
+  padding: 3px 6px !important;
+  margin: 0;
+  & [class*="_container_"] { gap: 8px; align-items: center; }
+  & [class*="_avatar_"] { width: 32px !important; height: 32px !important; font-size: 16px !important; }
+  & [class*="_content_"] { border: 0 !important; min-height: 0; }
+  & [class*="_roomName_"] { font: var(--cpd-font-body-md-regular); color: var(--w-text); padding: 0 2px; line-height: 18px; }
+  & [class*="_messagePreview_"] { color: var(--w-muted); font: var(--cpd-font-body-md-regular); }
+  &[aria-selected="true"] [class*="_roomName_"], &[class*="_selected_"] [class*="_roomName_"], &.mx_RoomListItemView_selected [class*="_roomName_"],
+  &[aria-current="page"] [class*="_roomName_"], &[aria-current="true"] [class*="_roomName_"] { background: var(--w-sel); color: var(--w-seltext); }
+  & [class*="_container_"], & [class*="_content_"] { background: transparent !important; border-radius: 0 !important; }
+  &::before, &::after, & [class*="_container_"]::before { display: none !important; }
+  &:hover { background: var(--w-hover) !important; }
+  &:focus-visible { outline: 1px dotted var(--w-text) !important; outline-offset: -2px; }
+  /* bold = unread */
+  &[class*="_bold_"] [class*="_roomName_"] { font-weight: 700; }
+  & [class*="_hoverMenu_"] button { border-radius: 0; }
+}
+html[data-tl-family="win311"] .mx_RoomListItemView[aria-selected="true"] { box-shadow: none !important; }
+html[data-tl-family="win311"] [class*="_roomList_"] [class*="_listItem_"],
+html[data-tl-family="win311"] [class*="_roomList_"] > div > div > div { border-radius: 0; }
+
+/* ===================================== Room window ===================================================== */
+html[data-tl-family="win311"] .mx_RoomHeader {
+  /* the room avatar = control-menu box (opens room settings) */
+  & > .mx_BaseAvatar {
+    position: absolute !important; left: 0; top: 0; z-index: 1;
+    width: 18px !important; height: 18px !important; border-radius: 0 !important;
+    opacity: 0; margin: 0 !important;
+  }
+  & .mx_RoomHeader_infoWrapper { flex: 1 1 auto; min-width: 0; justify-content: center; padding: 0; }
+  & .mx_RoomHeader_info { justify-content: center; align-items: center; gap: 4px; }
+  & .mx_RoomHeader_heading { justify-content: center; }
+  & .mx_RoomHeader_heading > *:not(.mx_RoomHeader_truncated) svg { width: 14px; height: 14px; }
+  & .mx_RoomHeader_truncated { white-space: nowrap; }
+  & .mx_RoomHeader_topic, & .mx_RoomHeader_info > *:not(.mx_RoomHeader_heading) { display: none; }
+  /* header buttons → small caption-style push buttons */
+  & > button, & > .mx_AccessibleButton, & > div > .mx_FacePile {
+    flex: 0 0 auto;
+    width: 22px !important; height: 18px !important; min-width: 0 !important; padding: 0 !important;
+    border-radius: 0 !important; border: 1px solid var(--w-frame) !important;
+    background: var(--w-face) !important; box-shadow: var(--w-bevel);
+    color: var(--w-btntext) !important; box-sizing: border-box;
+    display: inline-flex; align-items: center; justify-content: center;
+    & svg, & [class*="_indicator-icon_"] { width: 13px !important; height: 13px !important; color: var(--w-btntext) !important; }
+    &:active { box-shadow: var(--w-bevel-pressed); }
+  }
+  & > div:has(> .mx_FacePile) { display: flex; align-items: center; height: 18px; font: var(--cpd-font-body-md-regular); }
+  & .mx_FacePile { width: auto !important; padding: 0 4px 0 2px !important; gap: 2px;
+    & [class*="_stacked-avatars_"] > *:nth-child(n+2) { display: none; }
+    & [class*="_avatar_"] { width: 12px !important; height: 12px !important; font-size: 9px !important; }
+  }
+}
+
+/* timeline */
+html[data-tl-family="win311"] {
+  & .mx_RoomView_body { background: var(--w-window); }
+  & .mx_RoomView_messagePanel, & .mx_RoomView_timeline { background: var(--w-window); }
+  & .mx_RoomView_MessageList { padding: 0 8px 4px; }
+  & .mx_EventTile { --EventTile_group_line-spacing-block-start: 1px; --EventTile_group_line-spacing-block-end: 1px; }
+  & .mx_EventTile_line, & .mx_EventTile .mx_EventTile_line { border-radius: 0 !important; }
+  & .mx_EventTile:hover .mx_EventTile_line,
+  & .mx_EventTile[class*="_stateActionBarFocused_"] .mx_EventTile_line,
+  & .mx_EventTile[class*="_stateSelected_"] .mx_EventTile_line { background: var(--w-hover) !important; }
+  & .mx_DisambiguatedProfile_displayName { font-weight: 700; }
+  & .mx_EventTile[class*="_stateOwnEvent_"] .mx_DisambiguatedProfile_displayName { color: var(--w-own-name) !important; }
+  & .mx_MessageTimestamp { color: var(--w-muted); font: var(--cpd-font-body-md-regular); }
+  & .mx_EventTile[class*="_stateHighlighted_"] .mx_EventTile_line {
+    background: var(--w-mention-bg) !important; color: var(--w-mention-text);
+    box-shadow: none !important; border: 0 !important;
+    & a, & .mx_EventTile_body { color: var(--w-mention-text) !important; }
+  }
+  & .mx_EventTile[class*="_stateHighlighted_"] { --cpd-color-text-primary: var(--w-mention-text); }
+  /* date separator = rule with label */
+  & .mx_TimelineSeparator, & [class*="_timelineSeparator_"], & .mx_DateSeparator {
+    color: var(--w-text); font: 700 var(--w-size)/var(--w-line) var(--w-font-sys);
+    & hr, & [role="separator"] { border-color: var(--w-frame) !important; background: var(--w-frame); height: 1px; }
+  }
+  & a { color: var(--w-link); }
+  & .mx_EventTile_body a, & .markdown-body a { color: var(--w-link) !important; text-decoration: underline; }
+  & blockquote, & .mx_EventTile_body blockquote { border-left: 2px solid var(--w-frame) !important; color: var(--w-text); }
+  /* read receipts, reactions as small push buttons */
+  & .mx_ReactionsRowButton {
+    border-radius: 2px !important; border: 1px solid var(--w-frame) !important; background: var(--w-face) !important;
+    box-shadow: var(--w-bevel); color: var(--w-btntext);
+    &.mx_ReactionsRowButton_selected { box-shadow: var(--w-bevel-pressed); text-decoration: underline; }
+  }
+  & .mx_ReadReceiptGroup .mx_BaseAvatar { border-radius: 0 !important; }
+  /* message action bar = toolbar of push buttons */
+  & .mx_MessageActionBar {
+    border-radius: 0 !important; border: 1px solid var(--w-frame) !important; background: var(--w-face) !important;
+    box-shadow: var(--w-bevel) !important; padding: 2px !important; gap: 2px;
+    & .mx_MessageActionBar_iconButton, & [class*="_icon-button_"], & > button, & > div[role="button"] {
+      border-radius: 0 !important; background: var(--w-face) !important; color: var(--w-btntext) !important;
+      &:hover { box-shadow: var(--w-bevel); }
+    }
+  }
+  /* new-room intro / generic buttons in the timeline */
+  & .mx_NewRoomIntro h2 { font: 700 var(--w-size)/var(--w-line) var(--w-font-sys); }
+  & .mx_NewRoomIntro .mx_BaseAvatar { width: 32px !important; height: 32px !important; }
+  & .mx_EventTileBubble, & .mx_cryptoEvent, & [class*="_eventTileBubble_"] {
+    border-radius: 0 !important; border: 1px solid var(--w-frame); background: var(--w-window) !important;
+  }
+  & .mx_GenericEventListSummary_avatars .mx_BaseAvatar { border-radius: 0 !important; }
+  & .mx_RoomView_statusArea { background: var(--w-window); }
+  & .mx_JumpToBottomButton_scrollDown, & .mx_TopUnreadMessagesBar_scrollUp {
+    border-radius: 0 !important; background: var(--w-face) !important; box-shadow: var(--w-bevel);
+    border: 1px solid var(--w-frame) !important;
+  }
+  & .mx_JumpToBottomButton_badge, & .mx_TopUnreadMessagesBar_markAsRead { border-radius: 0 !important; }
+}
+
+/* bubble layout → square boxes */
+html[data-tl-family="win311"] {
+  & .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line,
+  & [data-layout="bubble"] .mx_EventTile .mx_EventTile_line {
+    border-radius: 0 !important;
+    border: 1px solid var(--w-frame);
+    background: var(--w-window) !important;
+    box-shadow: 2px 2px 0 var(--w-shadow);
+  }
+  & .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] .mx_EventTile_line,
+  & [data-layout="bubble"] .mx_EventTile[class*="_stateOwnEvent_"] .mx_EventTile_line { background: var(--w-own) !important; }
+}
+
+/* code */
+html[data-tl-family="win311"] {
+  & pre, & code, & .mx_EventTile_pre_container, & .hljs {
+    font-family: var(--w-font-mono) !important; font-size: var(--w-mono-size) !important; line-height: 16px;
+  }
+  & .mx_EventTile_pre_container, & .mx_EventTile_body pre {
+    border-radius: 0 !important; border: 1px solid var(--w-frame) !important;
+    background: var(--w-code-bg) !important; color: var(--w-code-text) !important;
+  }
+  & .mx_EventTile_body code:not(pre code), & .markdown-body code:not(pre code) {
+    border-radius: 0; background: var(--w-face) !important; color: var(--w-btntext) !important; padding: 0 2px;
+  }
+  & .hljs, & pre code, & .mx_EventTile_pre_container code { background: transparent !important; color: var(--w-code-text) !important; }
+  & .mx_EventTile_lineNumbers, & .mx_EventTile_lineNumber { color: var(--w-muted) !important; background: transparent !important; font-family: var(--w-font-mono) !important; }
+  & .hljs-keyword, & .hljs-selector-tag, & .hljs-built_in, & .hljs-name, & .hljs-tag { color: var(--w-hl-keyword, #000080); }
+  & .hljs-string, & .hljs-attr, & .hljs-template-variable, & .hljs-addition { color: var(--w-hl-string, #800000); }
+  & .hljs-comment, & .hljs-quote, & .hljs-meta { color: var(--w-hl-comment, #808080); font-style: normal; }
+  & .hljs-number, & .hljs-literal, & .hljs-type, & .hljs-title, & .hljs-variable { color: var(--w-hl-number, #008080); }
+  & .hljs-deletion, & .hljs-symbol { color: var(--w-hl-delete, #800080); }
+}
+
+/* ===================================== Composer ======================================================== */
+html[data-tl-family="win311"] .mx_MessageComposer {
+  background: var(--w-face);
+  border-top: 1px solid var(--w-frame);
+  padding: 6px 8px !important;
+  margin: 0 !important;
+  box-sizing: border-box;   /* Element sizes it at width 100%: the padding must not push "More options" off the edge */
+  & .mx_MessageComposer_wrapper { padding: 0 !important; margin: 0; }
+  & .mx_MessageComposer_row { gap: 6px; align-items: center; }
+  & .mx_SendMessageComposer, & .mx_WysiwygComposer_Editor, & .mx_BasicMessageComposer {
+    background: var(--w-input-bg);
+    border: 1px solid var(--w-input-border) !important;
+    border-radius: 0 !important;
+    color: var(--w-input-text);
+    min-height: 24px;
+  }
+  & .mx_BasicMessageComposer_input { padding: 2px 4px !important; color: var(--w-input-text); }
+  & .mx_MessageComposer_actions { gap: 3px; }
+  & .mx_MessageComposer_button, & .mx_MessageComposer_actions > button, & .mx_MessageComposer_actions > .mx_AccessibleButton {
+    width: 26px !important; height: 24px !important; min-width: 0; border-radius: 2px !important;
+    border: 1px solid var(--w-frame) !important; background: var(--w-face) !important; box-shadow: var(--w-bevel);
+    color: var(--w-btntext) !important; display: inline-flex; align-items: center; justify-content: center; padding: 0 !important;
+    &::before { background-color: var(--w-btntext) !important; }
+    & svg, & [class*="_indicator-icon_"] { width: 16px !important; height: 16px !important; color: var(--w-btntext) !important; }
+    &:active { box-shadow: var(--w-bevel-pressed); }
+  }
+  /* Send = default push button (heavy ring) */
+  & .mx_MessageComposer_actions > .mx_MessageComposer_sendMessage, & .mx_MessageComposer_sendMessage, & .mx_MessageComposer_sendMessageWrapper button {
+    width: auto !important; min-width: 0; padding: 0 8px !important; height: 24px !important; border-radius: 3px !important; flex: 0 0 auto;
+    background: var(--w-face) !important; border: 2px solid var(--w-frame) !important; box-shadow: var(--w-bevel) !important;
+    color: var(--w-btntext) !important;
+    &::before { display: none !important; }
+    &::after { content: "Send"; font: 400 var(--w-size)/18px var(--w-font); color: var(--w-btntext); }
+    & svg { display: none; }
+  }
+  & .mx_MessageComposerFormatBar { border-radius: 0; border: 1px solid var(--w-frame); background: var(--w-face); box-shadow: var(--w-bevel); }
+  & .mx_MessageComposer_e2eIconWrapper svg { width: 14px; height: 14px; }
+}
+html[data-tl-family="win311"] {
+  & .mx_ReplyPreview, & .mx_MessageComposer_replaced_wrapper, & .mx_EditMessageComposer {
+    border-radius: 0 !important; border: 1px solid var(--w-frame) !important; background: var(--w-window) !important;
+  }
+  & .mx_Autocomplete {
+    border-radius: 0 !important; border: 1px solid var(--w-frame) !important; background: var(--w-menu) !important;
+    box-shadow: none !important;
+    & .mx_Autocomplete_Completion_block, & .mx_Autocomplete_Completion_pill { border-radius: 0; color: var(--w-menutext); }
+    & .mx_Autocomplete_Completion.selected, & [aria-selected="true"] { background: var(--w-hilight) !important; color: var(--w-hilighttext) !important;
+      & * { color: var(--w-hilighttext) !important; } }
+    & .mx_Autocomplete_provider_name { font-weight: 700; }
+  }
+}
+
+/* ===================================== Right panel ===================================================== */
+html[data-tl-family="win311"] .mx_RightPanel {
+  & .mx_BaseCard { background: var(--w-window); padding: 0 !important; border-radius: 0; }
+  & .mx_BaseCard_header {
+    justify-content: center;
+    & > * { flex: 0 0 auto; }
+    & .mx_BaseCard_header_title { flex: 1 1 auto; justify-content: center; text-align: center; min-width: 0; }
+    & .mx_BaseCard_header_title_heading { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    & button, & .mx_AccessibleButton, & [class*="_icon-button_"] {
+      width: 18px !important; height: 18px !important; min-width: 0; padding: 0 !important; border-radius: 0 !important;
+      background: var(--w-face) !important; box-shadow: var(--w-bevel); border: 1px solid var(--w-frame) !important;
+      color: var(--w-btntext) !important; box-sizing: border-box;
+      & svg, & [class*="_indicator-icon_"] { width: 12px !important; height: 12px !important; color: var(--w-btntext) !important; }
+    }
+    /* the ✕ close button: Windows 3.1 has none — keep it but disguise it as the ▼ (minimise) */
+    & .mx_BaseCard_close, & button[aria-label="Close"] {
+      position: absolute !important; right: 19px; top: 0; z-index: 2; width: 19px !important;
+      background: url("assets/btn-min.svg") 0 0 / 19px 18px no-repeat !important; border: 0 !important; box-shadow: none !important;
+      & svg { opacity: 0; }
+    }
+  }
+  & .mx_BaseCard_header + * { padding-top: 6px; }
+}
+
+/* member / generic list rows */
+html[data-tl-family="win311"] {
+  & .mx_MemberTileView, & [class*="_memberTile_"], & .mx_EntityTile { border-radius: 0 !important; }
+  & .mx_MemberTileView:hover, & .mx_EntityTile:hover { background: var(--w-hover) !important; }
+  & .mx_MemberListHeaderView, & [class*="_memberListHeader_"] { background: var(--w-window); }
+}
+
+/* ===================================== Spaces / bottom strip ========================================== */
+html[data-tl-family="win311"] .mx_SpacePanel {
+  background: var(--w-workspace) !important;
+  color: var(--w-text);
+  & .mx_SpaceButton { border-radius: 0 !important; }
+  & .mx_SpaceButton .mx_SpaceButton_selectionWrapper { border-radius: 0 !important; background: transparent !important; }
+  & .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper { box-shadow: none; }
+  & .mx_BaseAvatar, & .mx_SpaceButton_avatarWrapper, & .mx_SpaceButton_icon { border-radius: 0 !important; }
+  & .mx_SpaceButton_icon { background: var(--w-face) !important; box-shadow: var(--w-bevel); border: 1px solid var(--w-frame); }
+  & .mx_SpaceButton_icon::before { background-color: var(--w-btntext) !important; }
+  /* inline-SVG icons (Home since 1.12.x, activity / files-hub module items) draw with currentColor */
+  & .mx_SpaceButton_icon { color: var(--w-btntext) !important; }
+  & .mx_SpaceButton_icon svg { color: var(--w-btntext) !important; fill: currentColor; }
+  & .mx_SpaceButton_name { color: var(--w-text); font: var(--cpd-font-body-md-regular); }
+  & .mx_SpaceButton_active .mx_SpaceButton_name { background: var(--w-sel); color: var(--w-seltext); }
+  & .mx_SpacePanel_toggleCollapse { display: none; }
+  & [class*="_icon-button_"], & .mx_QuickSettingsButton {
+    border-radius: 0 !important; background: var(--w-face) !important; box-shadow: var(--w-bevel);
+    border: 1px solid var(--w-frame); color: var(--w-btntext) !important;
+  }
+  & .mx_UserMenu [class*="_avatar_"] { border-radius: 0 !important; outline: 1px solid var(--w-frame); }
+  & .mx_SpaceItem_new .mx_SpaceButton_icon { background: var(--w-face) !important; }
+}
+
+/* Pure layout (all but usable): spaces = minimized program-group icons along the bottom of the workspace */
+html[data-tl-family="win311"]:not([data-tl-theme="win311-usable"]) {
+  & .mx_MatrixChat > [data-group] { padding-bottom: var(--w-strip-h); }
+  & .mx_MatrixChat > [data-group] > .mx_SpacePanel {
+    position: absolute !important;
+    left: var(--w-gap); right: var(--w-gap); bottom: 0;
+    height: var(--w-strip-h) !important; width: auto !important;
+    flex-direction: row !important;
+    align-items: stretch;
+    padding: 4px 0 0 !important;
+    gap: 2px;
+    border: 0 !important;
+    overflow: hidden;
+    z-index: 2;
+    & .mx_UserMenu { order: 10; margin: 0 !important; padding: 0 !important; display: flex; align-items: center; }
+    & .mx_SpaceTreeLevel[role="tree"] {
+      display: flex !important; flex-direction: row !important; flex: 1 1 auto;
+      overflow-x: auto !important; overflow-y: hidden !important; padding: 0 !important; margin: 0 !important; gap: 4px;
+      height: 100%; mask-image: none !important;
+      max-width: none !important;   /* Element caps the tree at 250px = 3 group icons; module items (Activity, Files) were cut off */
+    }
+    & .mx_SpaceItem { flex: 0 0 auto; margin: 0 !important; padding: 0 !important; width: 84px; }
+    & .mx_SpaceItem .mx_SpaceTreeLevel { display: none !important; }   /* nested spaces collapsed */
+    & .mx_SpaceButton {
+      display: flex !important; flex-direction: column !important; align-items: center !important;
+      width: 84px !important; height: 70px !important; padding: 2px 0 0 !important; margin: 0 !important;
+      gap: 2px; box-sizing: border-box;
+    }
+    & .mx_SpaceButton_toggleCollapse, & .mx_SpaceButton_menuButton, & .mx_SpaceButton_notificationBadge:empty { display: none !important; }
+    & .mx_SpaceButton_selectionWrapper { width: 32px !important; height: 32px !important; padding: 0 !important; flex: 0 0 auto; position: relative; }
+    /* draw every space as a minimized group icon: the avatar sits in the group window's client area */
+    & .mx_SpaceButton_avatarWrapper, & .mx_SpaceButton_icon {
+      width: 32px !important; height: 32px !important; margin: 0 !important;
+      background: var(--w-group-icon) 0 0 / 32px 32px no-repeat !important;
+      box-shadow: none !important; border: 0 !important;
+    }
+    & .mx_SpaceButton_icon::before { opacity: 0; }
+    & .mx_SpaceButton_avatarWrapper { position: relative; }
+    & .mx_SpaceButton_avatarWrapper [class*="_avatar_"] {
+      position: absolute !important; left: 6px; top: 12px; width: 20px !important; height: 13px !important; font-size: 9px !important;
+      line-height: 13px; outline: 1px solid var(--w-frame);
+    }
+    & .mx_SpaceButton::after {
+      content: attr(aria-label);
+      display: block; max-width: 82px; text-align: center; white-space: normal; overflow: hidden;
+      line-height: var(--w-line); max-height: calc(var(--w-line) * 2); padding: 0 2px; word-break: break-word;
+      font: 400 var(--w-size)/var(--w-line) var(--w-font); color: var(--w-strip-text, var(--w-text));
+    }
+    & .mx_SpaceButton_active::after { background: var(--w-sel); color: var(--w-seltext); }
+    /* label under the icon, two lines max */
+    & .mx_SpaceButton_name {
+      display: block !important; position: static !important; max-width: 82px; width: auto; text-align: center;
+      white-space: normal; overflow: hidden; line-height: 16px; max-height: 32px; padding: 0 2px; opacity: 1 !important;
+      word-break: break-word;
+    }
+    & .mx_SpaceButton_narrow .mx_SpaceButton_name { display: block !important; }
+    & .mx_ThreadsActivityCentre_container, & .mx_QuickSettingsButton { order: 11; align-self: center; margin: 0 4px !important; }
+    & .mx_ThreadsActivityCentre_container { padding: 0 !important; height: auto; }
+  }
+}
+
+/* ===================================== Buttons (Win 3.1 push buttons) ================================= */
+html[data-tl-family="win311"] {
+  & .mx_RoomHeader > *, & .mx_MessageComposer_actions, & .mx_MessageActionBar, & .mx_SpacePanel [class*="_icon-button_"],
+  & .mx_SpacePanel .mx_QuickSettingsButton, & .mx_RoomListPanel > header, & .mx_RoomListPanel > [role="search"], & .mx_BaseCard_header,
+  & .mx_MessageComposerFormatBar, & .mx_ReactionsRowButton, & .mx_JumpToBottomButton {
+    --cpd-color-icon-primary: var(--w-btntext); --cpd-color-icon-secondary: var(--w-btntext);
+    --cpd-color-icon-tertiary: var(--w-btntext); --cpd-color-text-primary: var(--w-btntext);
+  }
+  & .mx_RoomListPanel > header h1 { --cpd-color-text-primary: currentColor; }
+  & .mx_AccessibleButton_kind_primary, & .mx_AccessibleButton_kind_primary_outline,
+  & .mx_AccessibleButton_kind_secondary, & .mx_AccessibleButton_kind_danger, & .mx_AccessibleButton_kind_danger_outline,
+  & .mx_Dialog_buttons button, & .mx_Dialog_primary, & .mx_Dialog button:not([class*="_icon-button_"]):not(.mx_AccessibleButton_kind_link):not(.mx_AccessibleButton_kind_link_inline):not([role="tab"]):not([role="switch"]):not([role="checkbox"]):not(.mx_Dialog_cancelButton),
+  & button[class*="_button_"][data-kind]:not([class*="_icon-only_"]) {
+    border-radius: 3px !important;
+    border: 1px solid var(--w-frame) !important;
+    background: var(--w-face) !important;
+    color: var(--w-btntext) !important;
+    box-shadow: var(--w-bevel) !important;
+    font: 400 var(--w-size)/18px var(--w-font) !important;
+    padding: 2px 12px 3px !important;
+    min-height: 24px;
+    text-shadow: none;
+    & svg { color: var(--w-btntext) !important; }
+    &:active:not(:disabled) { box-shadow: var(--w-bevel-pressed) !important; padding: 3px 11px 2px 13px !important; }
+    &:disabled, &[aria-disabled="true"] { color: var(--w-graytext) !important; text-shadow: 1px 1px 0 var(--w-hi); opacity: 1; }
+  }
+  /* default button: heavy ring */
+  & .mx_AccessibleButton_kind_primary, & .mx_Dialog_primary, & button[class*="_button_"][data-kind="primary"] {
+    border-width: 2px !important; padding: 1px 11px 2px !important;
+  }
+  & .mx_AccessibleButton_kind_danger, & .mx_AccessibleButton_kind_danger_outline,
+  & button[class*="_button_"][data-kind="primary"][class*="_destructive_"], & button[class*="_button_"][data-kind][class*="_destructive_"] {
+    color: var(--w-critical) !important;
+  }
+  & .mx_AccessibleButton_kind_link, & .mx_AccessibleButton_kind_link_inline, & .mx_AccessibleButton_kind_link_sm {
+    color: var(--w-link) !important; text-decoration: underline;
+  }
+  & button[class*="_button_"][class*="_icon-only_"] { border-radius: 0 !important; padding: 2px !important; min-width: 0; }
+  & button[class*="_button_"][data-kind="tertiary"] { box-shadow: none !important; border-color: transparent !important; background: transparent !important; }
+  & [class*="_icon-button_"] { border-radius: 0 !important; }
+}
+
+/* ===================================== Inputs ========================================================= */
+html[data-tl-family="win311"] {
+  & input[type="text"], & input[type="search"], & input[type="password"], & input[type="email"], & input[type="url"],
+  & input[type="number"], & input[type="tel"], & input:not([type]), & textarea, & select,
+  & .mx_Field input, & .mx_Field textarea, & .mx_Field select, & [class*="_control_"][class*="_field_"] input {
+    border-radius: 0 !important; background: var(--w-input-bg) !important; color: var(--w-input-text) !important;
+    font: 400 var(--w-size)/var(--w-line) var(--w-font) !important;
+  }
+  & .mx_Field { border-radius: 0 !important; border: 1px solid var(--w-input-border) !important; background: var(--w-input-bg); }
+  & .mx_Field input, & .mx_Field textarea, & .mx_Field select { border: 0 !important; }
+  & .mx_Field label { background: var(--w-input-bg) !important; color: var(--w-input-text) !important; border-radius: 0; }
+  & .mx_Field:focus-within { border-color: var(--w-frame) !important; outline: 1px dotted var(--w-text); outline-offset: 1px; }
+  & [class*="_control_"]:is(input, textarea), & input[class*="_control_"] {
+    border-radius: 0 !important; border: 1px solid var(--w-input-border) !important; background: var(--w-input-bg) !important;
+    color: var(--w-input-text) !important; box-shadow: none !important;
+  }
+  /* native check boxes / option buttons (no Compound ui sibling) */
+  & input[type="checkbox"]:not([role="switch"]):not(:has(+ [class*="_ui_"])) {
+    appearance: none; width: 13px !important; height: 13px !important; margin: 2px; border-radius: 0 !important;
+    background: url("assets/check-off.svg") 0 0 / 13px 13px no-repeat !important; border: 0 !important;
+    &:checked { background-image: url("assets/check-on.svg") !important; }
+  }
+  & input[type="radio"]:not(:has(+ [class*="_ui_"])) {
+    appearance: none; width: 12px !important; height: 12px !important; border-radius: 0 !important; border: 0 !important;
+    background: url("assets/radio-off.svg") 0 0 / 12px 12px no-repeat !important;
+    &:checked { background-image: url("assets/radio-on.svg") !important; }
+  }
+  /* Compound check boxes, radios and toggles: style the visual sibling (the input itself is transparent) */
+  & input[type="checkbox"] + [class*="_ui_"], & input[role="switch"] + [class*="_ui_"] {
+    width: 13px !important; height: 13px !important; min-width: 0 !important; border-radius: 0 !important;
+    border: 0 !important; box-shadow: none !important; outline: 0 !important;
+    background: url("assets/check-off.svg") 0 0 / 13px 13px no-repeat !important;
+    &::before, &::after { display: none !important; }
+    & svg { display: none !important; }
+  }
+  & input[type="checkbox"]:checked + [class*="_ui_"], & input[role="switch"]:checked + [class*="_ui_"] {
+    background-image: url("assets/check-on.svg") !important;
+  }
+  & input[type="radio"] + [class*="_ui_"] {
+    width: 12px !important; height: 12px !important; border-radius: 0 !important; border: 0 !important; box-shadow: none !important;
+    background: url("assets/radio-off.svg") 0 0 / 12px 12px no-repeat !important;
+    &::before, &::after { display: none !important; }
+  }
+  & input[type="radio"]:checked + [class*="_ui_"] { background-image: url("assets/radio-on.svg") !important; }
+  & input:focus-visible + [class*="_ui_"] { outline: 1px dotted var(--w-text) !important; outline-offset: 1px; }
+  & [class*="_toggle_"]:has(input[role="switch"]), & [class*="_container_"]:has(> input[role="switch"]) { width: auto !important; min-width: 13px; }
+  /* legacy toggle switch → check box */
+  & .mx_ToggleSwitch {
+    border-radius: 0 !important; width: 13px !important; height: 13px !important; min-width: 0 !important;
+    background: url("assets/check-off.svg") 0 0 / 13px 13px no-repeat !important; border: 0 !important; box-shadow: none !important;
+    &.mx_ToggleSwitch_on { background-image: url("assets/check-on.svg") !important; }
+    & .mx_ToggleSwitch_ball { display: none; }
+  }
+}
+
+/* ===================================== Dialogs ======================================================== */
+html[data-tl-family="win311"] {
+  & .mx_Dialog_background { background: transparent !important; opacity: 1 !important; }
+  & .mx_Dialog {
+    border-radius: 0 !important;
+    background: var(--w-window) !important;
+    color: var(--w-text);
+    border: 1px solid var(--w-frame);
+    /* modal frame: thick inner border in the title colour, outer black line */
+    box-shadow: 0 0 0 4px var(--w-title), 0 0 0 5px var(--w-frame) !important;
+    padding: 0 16px 16px !important;
+    position: relative;
+  }
+  & .mx_Dialog_border { background: transparent !important; border-radius: 0 !important; padding: 5px !important; box-shadow: none !important; }
+  & .mx_Dialog_header {
+    margin: 0 -16px 12px !important; padding: 0 24px !important; min-height: 0 !important; height: var(--w-title-h);
+    background: var(--w-title) url("assets/ctl-mdi.svg") 0 0 / 18px 18px no-repeat;
+    border-bottom: 1px solid var(--w-frame); position: relative;
+    & .mx_Dialog_title, & h1, & h2 {
+      font: 700 var(--w-size)/var(--w-title-h) var(--w-font-sys) !important; color: var(--w-titletext) !important;
+      text-align: center; margin: 0 !important; padding: 0 !important; width: 100%;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+  }
+  & .mx_Dialog_cancelButton {
+    width: 18px !important; height: 18px !important; top: 5px !important; left: 5px !important; right: auto !important;
+    background: transparent !important; mask: none !important; border-radius: 0 !important; z-index: 3; opacity: 0;
+    position: absolute !important;
+  }
+  /* the dialog's title bar sits at the very top of the client area */
+  & .mx_Dialog:has(> .mx_Dialog_header), & .mx_Dialog:has(> div > .mx_Dialog_header) { padding-top: 0 !important; }
+  & .mx_Dialog_buttons { gap: 8px; }
+  & .mx_CompoundDialog, & .mx_CompoundDialog .mx_CompoundDialog_header { border-radius: 0 !important; }
+  & [role="dialog"]:not(.mx_Dialog) { border-radius: 0 !important; }
+  /* Radix/Compound dialogs */
+  & [class*="_dialog_"][role="dialog"], & [class*="_drawer_"][role="dialog"] {
+    border-radius: 0 !important; border: 1px solid var(--w-frame) !important; background: var(--w-window) !important;
+    box-shadow: 0 0 0 4px var(--w-title), 0 0 0 5px var(--w-frame) !important;
+  }
+  & [class*="_overlay_"] { background: transparent !important; }
+}
+
+/* settings dialogs = Control Panel */
+html[data-tl-family="win311"] {
+  & .mx_TabbedView_tabLabels { background: var(--w-window); border-right: 1px solid var(--w-frame); padding-right: 6px; }
+  & .mx_TabbedView_tabLabel {
+    border-radius: 0 !important; color: var(--w-text) !important; background: transparent !important; padding: 3px 6px !important;
+    & .mx_TabbedView_tabLabel_text { padding: 0 2px; }
+    & svg { color: var(--w-text) !important; }
+    & .mx_TabbedView_maskedIcon::before { background-color: var(--w-text) !important; }
+  }
+  & .mx_TabbedView_tabLabel_active { background: transparent !important;
+    & .mx_TabbedView_tabLabel_text { background: var(--w-sel); color: var(--w-seltext) !important; }
+  }
+  & .mx_SettingsTab, & .mx_SettingsSection { color: var(--w-text); }
+  & .mx_SettingsSection, & .mx_SettingsSubsection {
+    border-radius: 0;
+  }
+  & .mx_SettingsSection_title, & .mx_SettingsSubsection_heading, & .mx_SettingsTab_heading,
+  & .mx_SettingsSection h2, & .mx_SettingsSubsectionHeading h3 { font: 700 var(--w-size)/var(--w-line) var(--w-font-sys) !important; }
+  & .mx_SettingsSubsection_content, & [class*="_separator_"]:not(.mx_Separator) { border-color: var(--w-frame) !important; }
+  & .mx_ThemeChoicePanel_themeSelector, & .mx_StyledRadioButton { border-radius: 0 !important; }
+}
+
+/* ===================================== Menus, tooltips, toasts ======================================== */
+html[data-tl-family="win311"] {
+  & .mx_ContextualMenu, & [role="menu"], & [class*="_menu_"][role="menu"], & .mx_IconizedContextMenu {
+    border-radius: 0 !important; border: 1px solid var(--w-frame) !important;
+    background: var(--w-menu) !important; color: var(--w-menutext) !important;
+    box-shadow: none !important; padding: 0 !important;
+  }
+  & [role="menuitem"], & [role="menuitemcheckbox"], & [role="menuitemradio"], & .mx_IconizedContextMenu_item {
+    border-radius: 0 !important; color: var(--w-menutext) !important; background: transparent !important;
+    font: 400 var(--w-size)/18px var(--w-font) !important; padding-block: 2px !important;
+    & svg { color: var(--w-menutext) !important; }
+    & * { color: inherit; }
+    &:hover, &:focus, &:focus-visible, &[data-highlighted], &[aria-selected="true"] {
+      background: var(--w-hilight) !important; color: var(--w-hilighttext) !important; outline: none !important;
+      & svg { color: var(--w-hilighttext) !important; }
+      & * { color: var(--w-hilighttext) !important; }
+    }
+  }
+  & [role="menu"] [role="separator"], & .mx_IconizedContextMenu_optionList::before { background: var(--w-frame) !important; border-color: var(--w-frame) !important; }
+  & .mx_ContextualMenu_chevron_top, & .mx_ContextualMenu_chevron_bottom, & .mx_ContextualMenu_chevron_left, & .mx_ContextualMenu_chevron_right { display: none !important; }
+  /* tooltips: 1992 had none → a plain help-hint box */
+  & [role="tooltip"], & [class*="_tooltip_"] {
+    border-radius: 0 !important; background: var(--w-window) !important; color: var(--w-text) !important;
+    border: 1px solid var(--w-frame) !important; box-shadow: none !important;
+    font: 400 var(--w-size)/18px var(--w-font) !important; padding: 1px 4px !important;
+    /* floating-ui shifts tooltips 5 px in from the edge: never wider than the viewport minus that (VP-04 at 320) */
+    box-sizing: border-box; max-width: min(580px, calc(100vw - 10px)) !important;
+    & * { color: var(--w-text) !important; }
+    & svg[class*="_arrow_"], & [class*="_arrow_"] { display: none !important; }
+  }
+  & .mx_Toast_toast, & [class*="_toast_"] {
+    border-radius: 0 !important; background: var(--w-window) !important; color: var(--w-text) !important;
+    border: 1px solid var(--w-frame) !important; box-shadow: 0 0 0 3px var(--w-border), 0 0 0 4px var(--w-frame) !important;
+  }
+  & .mx_Toast_title, & .mx_Toast_title h2 { font: 700 var(--w-size)/var(--w-line) var(--w-font-sys) !important; }
+  & .mx_UserMenu_contextMenu .mx_UserMenu_contextMenu_header { border-radius: 0; }
+}
+
+/* ===================================== Badges ========================================================= */
+html[data-tl-family="win311"] {
+  /* room list unread count: "(3)" the 1992 way; with a mention it becomes an inverted box */
+  & [class*="_unread-counter_"] {
+    border-radius: 0 !important; background: transparent !important; color: var(--w-text) !important;
+    font: 700 var(--w-size)/var(--w-line) var(--w-font-sys) !important; padding: 0 !important; min-width: 0 !important; height: auto !important;
+    &::before { content: "("; } &::after { content: ")"; }
+  }
+  & [class*="_notificationDecoration_"] svg { color: var(--w-text) !important; }
+  & [class*="_notificationDecoration_"] > div:has(svg) [class*="_unread-counter_"] {
+    background: var(--w-sel) !important; color: var(--w-seltext) !important; padding: 0 3px !important;
+    &::before, &::after { content: none; }
+  }
+  & .mx_RoomListItemView[class*="_selected_"] [class*="_unread-counter_"] { color: inherit !important; }
+  & [class*="_badge_"]:not([class*="_notification"]):not([class*="Badge_"]) {
+    border-radius: 0 !important; background: var(--w-window) !important; color: var(--w-text) !important;
+    border: 1px solid var(--w-frame) !important; font: 400 var(--w-size)/16px var(--w-font) !important; padding: 0 4px !important;
+    & svg { color: var(--w-text) !important; }
+  }
+  & [class*="_notificationBadge_"], & .mx_NotificationBadge, & [class*="_badge_"][class*="_notification"], & .mx_SpaceButton_notificationBadge .mx_NotificationBadge {
+    border-radius: 0 !important; font: 700 var(--w-size)/16px var(--w-font-sys) !important;
+    min-width: 16px; height: 18px !important; box-shadow: none !important;
+    background: var(--w-hilight) !important; color: var(--w-hilighttext) !important; padding: 0 3px !important;
+  }
+  & [class*="_unreadDot_"], & [class*="_dot_"][class*="_notification"], & .mx_NotificationBadge_dot {
+    border-radius: 0 !important; width: 6px !important; height: 6px !important; background: var(--w-text) !important;
+  }
+}
+
+/* ===================================== Avatars & icons ================================================ */
+html[data-tl-family="win311"] {
+  & .mx_BaseAvatar, & [class*="_avatar_"], & [class*="_avatar_"] img, & .mx_BaseAvatar img {
+    border-radius: 0 !important;
+  }
+  & [class*="_avatar_"][data-type="round"], & [class*="_avatar_"][data-type="square"] { --cpd-avatar-radius: 0; }
+  & .mx_RoomListItemView [class*="_avatar_"], & .mx_EventTile [class*="_avatar_"]:not([class*="_stacked"] *),
+  & .mx_MemberTileView [class*="_avatar_"] {
+    outline: 1px solid var(--w-frame); outline-offset: -1px; image-rendering: pixelated;
+  }
+  & [class*="_avatar_"] { font-family: var(--w-font-sys) !important; font-weight: 700 !important; }
+  /* spinner → hourglass */
+  & .mx_Spinner .mx_Spinner_icon, & [class*="_spinner_"] svg, & .mx_InlineSpinner_icon {
+    background: url("assets/cursor-hourglass.svg") center / 14px 17px no-repeat !important;
+    mask: none !important; -webkit-mask: none !important; animation: none !important;
+    & * { display: none; }
+  }
+}
+
+/* ===================================== Auth / welcome ================================================= */
+html[data-tl-family="win311"] {
+  & .mx_AuthPage { background: var(--w-desktop) var(--w-desktop-image) !important; }
+  & .mx_AuthPage_modal {
+    border-radius: 0 !important; background: var(--w-window) !important;
+    border: 1px solid var(--w-frame); box-shadow: 0 0 0 4px var(--w-title), 0 0 0 5px var(--w-frame) !important;
+    padding-top: var(--w-title-h); position: relative;
+    &::before {
+      content: "Element Setup"; position: absolute; top: 0; left: 0; right: 0; height: var(--w-title-h);
+      background: var(--w-title) url("assets/ctl-mdi.svg") 0 0 / 18px 18px no-repeat; color: var(--w-titletext);
+      font: 700 var(--w-size)/var(--w-title-h) var(--w-font-sys); text-align: center; border-bottom: 1px solid var(--w-frame);
+    }
+  }
+  & .mx_AuthPage_modalBlur { display: none; }
+  & .mx_AuthHeader, & .mx_AuthBody { border-radius: 0 !important; background: var(--w-window) !important; }
+  & .mx_AuthFooter { background: transparent !important; }
+  & .mx_AuthFooter, & .mx_AuthFooter a { color: var(--w-desktop-text, #000000) !important; }
+  & .mx_Welcome, & .mx_HomePage { background: var(--w-window); color: var(--w-text); }
+  & .mx_ErrorView, & .mx_SplashPage { background: var(--w-desktop) !important; }
+}
+
+/* ===================================== Calls & widgets: MDI frames ==================================== */
+html[data-tl-family="win311"] {
+  & .mx_AppTile, & .mx_AppTileFullWidth, & .mx_CallView, & .mx_LegacyCallView {
+    border-radius: 0 !important; border: 1px solid var(--w-frame) !important;
+    box-shadow: 0 0 0 3px var(--w-border), 0 0 0 4px var(--w-frame);
+  }
+  & .mx_AppTileMenuBar {
+    background: var(--w-title) !important; color: var(--w-titletext) !important; min-height: var(--w-title-h);
+    font: 700 var(--w-size)/var(--w-title-h) var(--w-font-sys); border-radius: 0 !important;
+    & svg { color: var(--w-titletext) !important; }
+  }
+  & .mx_ImageView { background: rgb(0 0 0 / 0.85) !important; }
+}
+
+/* ===================================== Theme picker (.tl-ui) must stay usable ========================= */
+html[data-tl-family="win311"] .tl-ui { --w-hover: var(--w-face); }
+
+/* ===================================== Reduced motion ================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="win311"] *, html[data-tl-family="win311"] *::before, html[data-tl-family="win311"] *::after {
+    animation: none !important; transition: none !important;
+  }
+}
+
+/* ===================================== Enhancer overlays (menu bar, system menu, About) =============== */
+html[data-tl-family="win311"] #tl-overlay-root {
+  & .w311-menubar {
+    position: fixed; height: 20px; display: flex; align-items: stretch; padding: 0 2px;
+    pointer-events: auto; background: transparent; box-sizing: border-box; z-index: 1;
+  }
+  & .w311-menubar-item {
+    all: unset; padding: 0 7px; font: 400 var(--w-size)/20px var(--w-font); color: var(--w-menutext); cursor: default;
+    &:hover { background: transparent; }
+    &[aria-expanded="true"], &:focus-visible { background: var(--w-hilight); color: var(--w-hilighttext); outline: none; }
+  }
+  & .w311-ctlbox {
+    all: unset; position: fixed; width: 18px; height: 18px; pointer-events: auto; cursor: default;
+    &[aria-expanded="true"] { background: url("assets/ctl-app-pressed.svg") 0 0 / 18px 18px no-repeat; }
+    &:focus-visible { outline: 1px dotted var(--w-titletext); outline-offset: -3px; }
+  }
+  & .w311-menu {
+    position: fixed; min-width: 160px; padding: 0; z-index: 2;
+    background: var(--w-menu); color: var(--w-menutext); border: 1px solid var(--w-frame);
+    pointer-events: auto; display: flex; flex-direction: column;
+  }
+  & .w311-menu-item {
+    all: unset; display: flex; justify-content: space-between; gap: 24px; padding: 1px 12px 1px 18px;
+    font: 400 var(--w-size)/16px var(--w-font); color: var(--w-menutext); cursor: default; white-space: nowrap;
+    &:hover:not(:disabled), &:focus { background: var(--w-hilight); color: var(--w-hilighttext); outline: none; }
+    &:disabled { color: var(--w-graytext); }
+  }
+  & .w311-menu-sep { height: 0; border-top: 1px solid var(--w-frame); margin: 1px 0; }
+  & .w311-about {
+    position: fixed; left: 50%; top: 40%; transform: translate(-50%, -50%); width: 380px; pointer-events: auto;
+    background: var(--w-window); color: var(--w-text); border: 1px solid var(--w-frame);
+    box-shadow: 0 0 0 4px var(--w-title), 0 0 0 5px var(--w-frame); font: 400 var(--w-size)/var(--w-line) var(--w-font);
+    z-index: 3;
+  }
+  & .w311-about-title {
+    position: relative; height: var(--w-title-h); background: var(--w-title); color: var(--w-titletext);
+    font: 700 var(--w-size)/var(--w-title-h) var(--w-font-sys); text-align: center; border-bottom: 1px solid var(--w-frame);
+  }
+  & .w311-about-ctl {
+    position: absolute; left: 0; top: 0; width: 18px; height: 18px;
+    background: url("assets/ctl-mdi.svg") 0 0 / 18px 18px no-repeat; border-right: 1px solid var(--w-frame);
+  }
+  & .w311-about-body { display: grid; grid-template-columns: 40px 1fr auto; gap: 10px; padding: 12px; align-items: start; }
+  & .w311-about-icon { width: 32px; height: 32px; image-rendering: pixelated; }
+  & .w311-about-text p { margin: 0 0 8px; }
+  & .w311-about-text hr { border: 0; border-top: 1px solid var(--w-frame); margin: 4px 0 8px; }
+  & .w311-about-ok {
+    all: unset; min-width: 60px; text-align: center; padding: 2px 10px 3px; border: 2px solid var(--w-frame); border-radius: 3px;
+    background: var(--w-face); color: var(--w-btntext); box-shadow: var(--w-bevel); cursor: default;
+    &:active { box-shadow: var(--w-bevel-pressed); }
+    &:focus-visible { outline: 1px dotted var(--w-btntext); outline-offset: -4px; }
+  }
+}
+
+/* scrollIntoView() inside the timeline must never move the whole desktop */
+html[data-tl-family="win311"] #matrixchat { overflow: clip !important; }
+
+/* space strip / panel tool buttons: square, black glyphs */
+html[data-tl-family="win311"] .mx_SpacePanel :is([class*="_icon-button_"], .mx_QuickSettingsButton) {
+  border-radius: 0 !important; background: var(--w-face) !important; box-shadow: var(--w-bevel) !important;
+  border: 1px solid var(--w-frame) !important;
+  & *, &::before, &::after { border-radius: 0 !important; }
+  & svg { color: var(--w-btntext) !important; fill: currentColor; }
+}
+/* menu-like lists inside panels (room summary card, user info) use window colours, not menu colours */
+html[data-tl-family="win311"] :is(.mx_BaseCard, .mx_RightPanel, .mx_UserInfo) [role="menuitem"]:not([role="menu"] *) {
+  color: var(--w-text) !important;
+  & svg, & * { color: var(--w-text) !important; }
+  &:hover, &:focus-visible, &[data-highlighted] { background: var(--w-sel) !important; color: var(--w-seltext) !important;
+    & svg, & * { color: var(--w-seltext) !important; } }
+}
+html[data-tl-family="win311"] .mx_Pill { border-radius: 0 !important; }
+html[data-tl-family="win311"] .mx_AtRoomPill { background: var(--w-critical-bg) !important; color: #ffffff !important; }
+html[data-tl-family="win311"] .mx_MessageComposer {
+  & .mx_SendMessageComposer { flex: 1 1 auto; min-width: 0; }
+  & .mx_MessageComposer_actions { flex: 0 0 auto; margin-right: 4px; }
+}
+html[data-tl-family="win311"] .mx_MessageComposer .mx_MessageComposer_sendMessageWrapper {
+  width: auto !important; min-width: 0 !important; height: auto !important; overflow: visible !important; flex: 0 0 auto; margin: 0 0 0 3px !important;
+}
+
+/* ===================================== Other datanauten modules (production) ===========================
+   element.datanauten.de also loads teams-welcome, speed-start, room-checker, keyboard-shortcuts, space-room-map,
+   people-map, activity, files-hub, … They use Compound tokens (so colours follow) but draw modern rounded cards
+   and pills. Here they become Win 3.1 windows and push buttons, keyed on the modules' stable class prefixes. */
+html[data-tl-family="win311"] {
+  /* floating module windows: welcome guide (docked right), startup card, full-screen overlays */
+  & :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+    border-radius: 0 !important;
+    background: var(--w-window) !important;
+    color: var(--w-text);
+    border: 1px solid var(--w-frame) !important;
+    box-shadow: 0 0 0 var(--w-band) var(--w-border), 0 0 0 calc(var(--w-band) + 1px) var(--w-frame) !important;
+  }
+  & #teams-welcome-root .twl-panel-frame { top: 8px; right: 8px; bottom: 8px; }
+  & :is(.ks-backdrop, .srm-backdrop, .pm-backdrop, .rc-backdrop) { background: transparent !important; }
+  /* the guide's header becomes an active title bar */
+  & .twl-guide-panel .twl-header {
+    background: var(--w-title); color: var(--w-titletext);
+    padding: 3px 6px 4px 10px; border-bottom: 1px solid var(--w-frame);
+    & .twl-title { font: 700 var(--w-size)/var(--w-title-h) var(--w-font-sys) !important; color: var(--w-titletext); }
+    & .twl-subtitle { color: var(--w-titletext); opacity: .85; }
+  }
+  & .twl-guide-panel .twl-intro { padding-top: 8px; }
+  & :is(.twl-icon-button, .ks-close, .srm-close, .pm-close, .rc-close, .fh-close) {
+    border-radius: 0 !important; background: var(--w-face) !important; color: var(--w-btntext) !important;
+    border: 1px solid var(--w-frame) !important; box-shadow: var(--w-bevel) !important;
+  }
+  & .twl-steps { border-bottom: 1px solid var(--w-frame) !important; }
+  & .twl-step-tab { border-radius: 0 !important; }
+  & .twl-step-tab.twl-active { background: var(--w-sel) !important; color: var(--w-seltext) !important;
+    & * { color: var(--w-seltext) !important; } }
+  & :is(.twl-glossary, .twl-success, .twl-card, .twl-addon, .twl-note) { border-radius: 0 !important; }
+  & .twl-glossary { background: var(--w-face) !important; color: var(--w-btntext); box-shadow: var(--w-sunken); }
+  /* module push buttons and filter chips → Win 3.1 push buttons */
+  & :is(.twl-button, .drm-button, .ks-button, .rc-button, .pm-button, .fh-button,
+        .act-chip, .fh-chip, .pm-chip, .rc-chip, .srm-tab, .rc-tab) {
+    border-radius: 3px !important; border: 1px solid var(--w-frame) !important;
+    background: var(--w-face) !important; color: var(--w-btntext) !important; box-shadow: var(--w-bevel) !important;
+    font-family: var(--w-font) !important;
+    &:is(.twl-primary, [class$="--primary"]) { border-width: 2px !important; }
+    &:is([aria-pressed="true"], [aria-selected="true"], [aria-checked="true"]) {
+      background: var(--w-sel) !important; color: var(--w-seltext) !important; box-shadow: var(--w-bevel-pressed) !important; }
+    &:disabled { color: var(--w-graytext) !important; }
+    &:active:not(:disabled) { box-shadow: var(--w-bevel-pressed) !important; }
+  }
+  & .speed-start-card_meter { border-radius: 0 !important; background: var(--w-window) !important; border: 1px solid var(--w-frame); }
+  & .speed-start-card_fill { background: var(--w-hilight) !important; }
+}
+
+/* ===================================== Phones (mobile-themes module) ================================== */
+/* With the mobile-themes module (it sets html[data-mt-mobile]) the room view is a single maximized MDI child.
+   Win 3.1 merges a maximized child's title into the application title ("Element – [Room]", kept) and drops its
+   frame; the menu bar (its items are all reachable elsewhere: header palette button / Alt+Shift+T, the control
+   box's "Switch To…", room info) goes too. Before, the 20 px menu bar plus the child's 18 px title-bar strip sat
+   on top of the module's 56 px room header and covered its back button and the room name (VP-03/05/10). */
+html[data-tl-family="win311"][data-mt-mobile] {
+  & .mx_MatrixChat_wrapper { padding: 0; }
+  & .mx_MatrixChat { box-shadow: none !important; padding-top: calc(var(--w-title-h) + 1px) !important; }
+  & .mx_MatrixChat::after { display: none; }
+  & #tl-overlay-root .w311-menubar { display: none; }
+  & .mx_MatrixChat > [data-group] { padding: 0; }
+  & #left-panel > .mx_LeftPanel_panel,
+  & [data-group] > [data-panel]:not(#left-panel) > .mx_LeftPanel_panel:not(:has(.mx_MainSplit)),
+  & .mx_MainSplit > .mx_RoomView_body,
+  & .mx_RightPanel {
+    margin: 0 !important; border: 0; box-shadow: none !important;
+  }
+  & .mx_RightPanel_ResizeWrapper { padding: 0; }
+  /* child title-bar decorations (control-menu box, ▼▲) on the module's toolbar-style header: gone. The module
+     reuses .mx_RoomHeader::after as a flex row break for its "⋯" row, so only neutralise our absolute box. */
+  & .mx_RoomHeader::before { display: none; }
+  /* the room avatar is an invisible 18 px control-menu box at the header's top-left corner on desktop; the module
+     sizes it to a 44 px target, so it became an invisible 44 px box on top of the module's back button. There is no
+     control box on the toolbar, so drop it and leave the width to the room name. */
+  & .mx_RoomHeader > .mx_BaseAvatar { display: none !important; }
+  & .mx_RoomHeader::after { position: static; width: auto; height: 0; background: none; }
+  &:not([data-mt-header-more]) .mx_RoomHeader::after { content: none; }
+}

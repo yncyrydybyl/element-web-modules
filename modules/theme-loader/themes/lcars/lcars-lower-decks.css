@@ -1,0 +1,84 @@
+/* LCARS · Lower Decks (USS Cerritos, 2380): cartoon LCARS, Cerritos oranges on navy glass, ink outlines. */
+html[data-tl-theme="lcars-lower-decks"] {
+  --lc-bg: #0e1326;
+  --lc-surface: #1a2140;
+  --lc-panel: #1a2140;
+  --lc-line: #2b3560;
+  --lc-c1: #ff7700;   /* orange */
+  --lc-c2: #ffcc99;   /* honey */
+  --lc-c3: #ff9911;   /* daybreak */
+  --lc-c4: #ffaa44;   /* harvest gold */
+  --lc-c5: #ff4400;   /* october sunset */
+  --lc-c6: #ffeecc;   /* butter */
+  --lc-c7: #5588ee;   /* PADD alpha blue */
+  --lc-c8: #cc5500;   /* pumpkin pie */
+  --lc-text: #ffeecc;
+  --lc-muted: #e8b07a;
+  --lc-accent: #ff9911;
+  --lc-on: #0e1326;
+  --lc-crit: #ff4400;
+  --lc-ok: #9bd45a;
+  --lc-link: #66ccff;
+
+  --lc-ink: #05070f;
+  --lc-ink-w: 3px;
+  --lc-cel: 3px 3px 0 #05070f;
+  --lc-arm: 120px;
+  --lc-band: 80px;
+  --lc-bar: 22px;
+  --lc-bbar: 22px;
+  --lc-gap: 8px;
+  --lc-ro: 70px;
+  --lc-ri: 28px;
+  --lc-pill-h: 40px;
+  --lc-label-weight: 600;
+  --lc-body-weight: 500;
+}
+/* ink outlines around frame blocks */
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel::before,
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel::after,
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel .mx_SpaceButton,
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel > .mx_SpaceTreeLevel::after,
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel .mx_ThreadsActivityCentre_container,
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel .mx_QuickSettingsButton {
+  box-shadow: inset 0 0 0 3px #05070f, 3px 3px 0 #05070f !important;
+}
+/* full fat pills in the room list (round both ends) */
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomListItemView { border-radius: 999px !important; padding-left: 18px !important; }
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomListItemView.mx_RoomListItemView_selected { background: #ffeecc !important; }
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomListItemView.mx_RoomListItemView_selected::after { background: #ffeecc; animation: lc-wiggle 0.5s ease-in-out 1; box-shadow: var(--lc-cel); }
+@keyframes lc-wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-8deg); } 75% { transform: rotate(8deg); } }
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="0"], html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="5"] { --lc-pill: #ffcc99; }
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="1"], html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="6"] { --lc-pill: #ff7700; }
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="2"], html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="7"] { --lc-pill: #ffaa44; }
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="3"], html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="8"] { --lc-pill: #ff9911; }
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="4"], html[data-tl-theme="lcars-lower-decks"] .mx_RoomListPanel [data-item-index$="9"] { --lc-pill: #66ccff; }
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+2) > .mx_SpaceButton { --lc-sp: #ffaa44; }
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+4) > .mx_SpaceButton { --lc-sp: #66ccff; }
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel > .mx_SpaceTreeLevel::after { background: #cc5500; }
+/* deadpan labels */
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel .mx_ThreadsActivityCentre_container::after { content: "47 · GOSSIP"; }
+html[data-tl-theme="lcars-lower-decks"] .mx_SpacePanel .mx_QuickSettingsButton::after { content: "DO NOT TOUCH"; }
+html[data-tl-theme="lcars-lower-decks"] .mx_MessageComposer_sendMessage::after { content: "SEND IT!"; }
+html[data-tl-theme="lcars-lower-decks"] .mx_MessageComposer_actions > .mx_MessageComposer_buttonMenu::after { content: "STUFF"; }
+/* own messages: honey cards with ink */
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomView_body[data-layout="group"] .mx_EventTile[class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) > .mx_EventTile_line {
+  background: #2a2a3e !important;
+  box-shadow: inset 6px 0 0 #ffcc99, 0 0 0 2px #05070f !important;
+  border-radius: 0 18px 18px 0 !important;
+}
+html[data-tl-theme="lcars-lower-decks"] .mx_EventTile [class*="_slotAvatar_"] [class*="_avatar_"] { outline: 3px solid #05070f; box-shadow: 3px 3px 0 #05070f; }
+html[data-tl-theme="lcars-lower-decks"] .mx_Username_color1 { color: #ff9911 !important; }
+html[data-tl-theme="lcars-lower-decks"] .mx_Username_color2 { color: #66ccff !important; }
+html[data-tl-theme="lcars-lower-decks"] .mx_Username_color3 { color: #ffaa44 !important; }
+html[data-tl-theme="lcars-lower-decks"] .mx_Username_color4 { color: #ffcc99 !important; }
+html[data-tl-theme="lcars-lower-decks"] .mx_Username_color5 { color: #88eeff !important; }
+html[data-tl-theme="lcars-lower-decks"] .mx_Username_color6 { color: #ff7744 !important; }
+html[data-tl-theme="lcars-lower-decks"] .mx_RoomHeader .mx_RoomHeader_heading { font-weight: 700 !important; text-shadow: 3px 3px 0 #05070f; }
+html[data-tl-theme="lcars-lower-decks"] .mx_SendMessageComposer { border: 3px solid #05070f !important; border-left: 16px solid #ffaa44 !important; box-shadow: 3px 3px 0 #05070f; background: #1a2140 !important; }
+html[data-tl-theme="lcars-lower-decks"] .mx_EventTile pre, html[data-tl-theme="lcars-lower-decks"] .mx_EventTile_pre_container { background: #1a2140 !important; border: 2px solid #05070f !important; border-left: 8px solid #5588ee !important; }
+/* press squash */
+html[data-tl-theme="lcars-lower-decks"] button:active,
+html[data-tl-theme="lcars-lower-decks"] .mx_AccessibleButton:active { animation: lc-squash 120ms ease-out 1; }
+@keyframes lc-squash { 0% { transform: scale(0.96); } 100% { transform: scale(1); } }
+html[data-tl-theme="lcars-lower-decks"] .mx_Dialog { --lc-dlg: #ff7700; --lc-dlg2: #ffaa44; box-shadow: 0 0 0 3px #05070f, 6px 6px 0 #05070f !important; }

@@ -1,0 +1,261 @@
+/* sketch-unreadable — level 8: a toddler with crayons redrew Element. UNREADABLE BY DESIGN.
+   Escape hatch: the loader UI (.tl-ui, the dialog containing it, the header button and the quick
+   switcher) is reset to plain, straight, readable text at the end of this file. Reduced motion is honoured. */
+
+html[data-tl-theme="sketch-unreadable"] {
+    --sk-ink: #7a7a7a;
+    --sk-line: #f03e3e;
+    --sk-accent: #f03e3e;
+    --sk-focus: #f03e3e;
+    --sk-display: "Rock Salt", cursive;
+    --sk-content: "Reenie Beanie", "Zeyada", cursive;
+    --sk-frame-1: url("assets/frame-x1.svg");
+    --sk-frame-2: url("assets/frame-x2.svg");
+    --sk-frame-3: url("assets/frame-x3.svg");
+    --sk-pill: url("assets/frame-x1.svg");
+    --sk-circle: url("assets/circle-3.svg");
+    --sk-underline: url("assets/underline-3.svg");
+    --sk-highlight: rgba(250, 176, 5, 0.6);
+    --sk-sel-line: #1c7ed6;
+    --sk-avatar-line: #37b24d;
+    --sk-btn-line: #ae3ec9;
+    --sk-crayon-1: #f03e3e;
+    --sk-crayon-2: #1c7ed6;
+    --sk-crayon-3: #37b24d;
+    --sk-crayon-4: #f59f00;
+    --sk-crayon-5: #ae3ec9;
+
+    --sk-et-bubble-self-background: #d3f9d8;
+    --sk-et-bubble-other-background: #fff3bf;
+}
+
+/* --- shell: construction paper + crayon scrawl ------------------------------- */
+html[data-tl-theme="sketch-unreadable"] .mx_MatrixChat {
+    background:
+        url("assets/scribble-out.svg") 12% 18% / 380px 90px no-repeat,
+        url("assets/circle-3.svg") 85% 75% / 220px 220px no-repeat,
+        url("assets/paper-grain.svg") 0 0 / 240px 240px,
+        #f4e9d8;
+}
+
+html[data-tl-theme="sketch-unreadable"] :is(.mx_LeftPanel, .mx_RoomListPanel, .mx_RoomView, .mx_RoomView_body, .mx_RoomHeader, .mx_MessageComposer, .mx_RightPanel) {
+    background: transparent;
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_SpacePanel {
+    background: #a5d8ff;
+    transform: rotate(-1.5deg) translateX(-3px);
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_LeftPanel {
+    background: #ffd8a8;
+    transform: rotate(1.6deg) translate(4px, 6px);
+    border: 6px solid #f59f00;
+    border-radius: 40px 10px 60px 14px / 14px 50px 10px 70px;
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_RoomHeader {
+    transform: rotate(-2deg) translateY(4px);
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_RoomHeader_heading {
+    font-size: 2em;
+    color: #f03e3e;
+    filter: url(#sk-rough-3);
+}
+
+/* --- three illegible scripts cycling per tile, rotated, displaced --------------------- */
+html[data-tl-theme="sketch-unreadable"] .mx_EventTile_body {
+    display: block;
+    font-size: 1.35em;
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+    filter: url(#sk-rough-3);
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(3n) .mx_EventTile_body {
+    font-family: "Zeyada", cursive;
+    letter-spacing: -0.04em;
+    font-size: 1.5em;
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(3n+1) .mx_EventTile_body {
+    font-family: "La Belle Aurore", cursive;
+    font-size: 1.15em;
+    letter-spacing: 0.12em;
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(4n+1) .mx_EventTile_body {
+    transform: rotate(-3.5deg) translateX(10px);
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(4n+2) .mx_EventTile_body {
+    transform: rotate(2.5deg) translateX(-14px);
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(4n+3) .mx_EventTile_body {
+    transform: rotate(-1deg) translate(24px, -6px);
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(4n) .mx_EventTile_body {
+    transform: rotate(4deg) translateY(4px);
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_DisambiguatedProfile {
+    font-family: "Rock Salt", cursive;
+    font-size: 0.9em;
+    transform: rotate(-6deg);
+    display: inline-block;
+}
+
+/* fat crayon outlines, fill coloured outside the lines */
+html[data-tl-theme="sketch-unreadable"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"]),
+html[data-tl-theme="sketch-unreadable"] .mx_EventTile:not([class*="_layoutBubble_"]) .mx_EventTile_line {
+    border: 5px solid var(--sk-crayon, #f03e3e);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    box-shadow: 9px 7px 0 -2px color-mix(in srgb, var(--sk-crayon, #f03e3e) 30%, transparent);
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(5n+1) { --sk-crayon: var(--sk-crayon-2); }
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(5n+2) { --sk-crayon: var(--sk-crayon-3); }
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(5n+3) { --sk-crayon: var(--sk-crayon-4); }
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:nth-child(5n+4) { --sk-crayon: var(--sk-crayon-5); }
+
+/* stick-figure avatars */
+html[data-tl-theme="sketch-unreadable"] :is(.mx_EventTile [class*="_avatar_"], .mx_RoomListItemView [class*="_avatar_"], .mx_RoomHeader [class*="_avatar_"]) {
+    background: #fff6e6 !important;
+    color: transparent !important;
+    position: relative;
+    overflow: visible;
+}
+
+html[data-tl-theme="sketch-unreadable"] :is(.mx_EventTile [class*="_avatar_"], .mx_RoomListItemView [class*="_avatar_"], .mx_RoomHeader [class*="_avatar_"]) img {
+    opacity: 0;
+}
+
+html[data-tl-theme="sketch-unreadable"] :is(.mx_EventTile [class*="_avatar_"], .mx_RoomListItemView [class*="_avatar_"], .mx_RoomHeader [class*="_avatar_"])::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    background: var(--sk-crayon, #37b24d);
+    -webkit-mask: url("assets/stick-figure.svg") center / contain no-repeat;
+    mask: url("assets/stick-figure.svg") center / contain no-repeat;
+}
+
+/* room list: scattered words */
+html[data-tl-theme="sketch-unreadable"] .mx_RoomListItemView {
+    font-family: "Zeyada", cursive;
+    font-size: 1.3em;
+    transform: rotate(var(--sk-tilt, -3deg)) translateX(var(--sk-dx, 0));
+}
+
+html[data-tl-theme="sketch-unreadable"] :nth-child(3n+1) > .mx_RoomListItemView,
+html[data-tl-theme="sketch-unreadable"] .mx_RoomListItemView:nth-child(3n+1) {
+    --sk-tilt: 4deg;
+    --sk-dx: 14px;
+    --sk-crayon: #1c7ed6;
+}
+
+html[data-tl-theme="sketch-unreadable"] :nth-child(3n+2) > .mx_RoomListItemView,
+html[data-tl-theme="sketch-unreadable"] .mx_RoomListItemView:nth-child(3n+2) {
+    --sk-tilt: -1deg;
+    --sk-dx: -8px;
+    --sk-crayon: #ae3ec9;
+}
+
+/* composer: crayon box, but typing stays possible (input text normal size) */
+html[data-tl-theme="sketch-unreadable"] .mx_MessageComposer_wrapper {
+    background: #fff6e6;
+    border: 6px solid #37b24d;
+    border-radius: 30px 8px 40px 12px / 12px 40px 8px 30px;
+    transform: rotate(-1.2deg);
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_BasicMessageComposer_input {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 1.4em;
+}
+
+/* dialogs + menus (except the one containing the loader UI) */
+html[data-tl-theme="sketch-unreadable"] .mx_Dialog:not(:has(.tl-ui)) {
+    background: #fff6e6;
+    border: 6px solid #ae3ec9 !important;
+    border-radius: 60px 10px 80px 20px / 20px 70px 10px 60px;
+    transform: rotate(-2.5deg);
+}
+
+html[data-tl-theme="sketch-unreadable"] :is(.mx_ContextualMenu, [role="menu"]) {
+    background: #fff3bf;
+    transform: rotate(3deg);
+    font-family: "Zeyada", cursive;
+    font-size: 1.2em;
+}
+
+html[data-tl-theme="sketch-unreadable"] [role="tooltip"] {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 1.4em;
+    transform: rotate(-4deg);
+}
+
+html[data-tl-theme="sketch-unreadable"] :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) {
+    background: #fff3bf;
+    transform: rotate(-2deg);
+}
+
+/* overlapping tiles: the one under the pointer comes to the front, so threads/reactions stay clickable */
+html[data-tl-theme="sketch-unreadable"] .mx_RoomView_MessageList > .mx_EventTile:is(:hover, :focus-within) {
+    z-index: 5;
+}
+
+/* --- boil + jitter (enhancer adds html.sk-boil only when allowed) -------------------- */
+@keyframes sk-boil-u {
+    0% { filter: url(#sk-boil-0); }
+    33% { filter: url(#sk-boil-1); }
+    66% { filter: url(#sk-boil-2); }
+}
+
+@keyframes sk-jitter-u {
+    0% { translate: 0 0; }
+    25% { translate: 1px -1px; }
+    50% { translate: -1px 1px; }
+    75% { translate: 1px 1px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html[data-tl-theme="sketch-unreadable"].sk-boil :is(.mx_RoomHeader_heading, .mx_SpacePanel, .mx_MessageComposer_wrapper, .mx_RoomListPanel header) {
+        animation: sk-boil-u 0.375s steps(1) infinite;
+    }
+
+    html[data-tl-theme="sketch-unreadable"].sk-boil .mx_RoomListItemView:hover {
+        animation: sk-jitter-u 0.25s steps(1) infinite;
+    }
+}
+
+/* ==========================================================================
+   ESCAPE HATCH — the loader UI stays readable, straight and clickable.
+   ========================================================================== */
+html[data-tl-theme="sketch-unreadable"] :is(.mx_Dialog:has(.tl-ui), .tl-ui, .tl-switcher, .tl-header-button) {
+    --cpd-font-family-sans: "Excalifont", "Assistant", system-ui, sans-serif !important;
+    font-family: "Excalifont", "Assistant", system-ui, sans-serif !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    letter-spacing: normal;
+    color: #1e1e1e;
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_Dialog:has(.tl-ui) {
+    background: #ffffff;
+    border: 4px solid #37b24d !important;
+    border-radius: 12px;
+    --cpd-color-text-primary: #1e1e1e;
+    --cpd-color-text-secondary: #555555;
+}
+
+html[data-tl-theme="sketch-unreadable"] .mx_Dialog:has(.tl-ui) * {
+    font-family: inherit;
+}
+
+html[data-tl-theme="sketch-unreadable"] .tl-ui :is(pre, code) {
+    font-family: var(--cpd-font-family-mono);
+}

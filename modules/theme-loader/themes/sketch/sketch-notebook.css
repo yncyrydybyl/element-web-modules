@@ -1,0 +1,281 @@
+/* sketch-notebook — level 3: college-ruled paper, blue ballpoint, red margin.
+   Also used by sketch-daylight in its dawn/day/dusk phases (selector prefix below). */
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) {
+    --sk-ink: #22336b;
+    --sk-line: #22336b;
+    --sk-accent: #2a4cad;
+    --sk-focus: #2a4cad;
+    --sk-paper: #fdfbf4;
+    --sk-rule: rgba(120, 165, 214, 0.55);
+    --sk-margin: rgba(226, 110, 108, 0.75);
+    --sk-pitch: 28px;
+    --sk-display: "Caveat", "Patrick Hand", cursive;
+    --sk-content: "Patrick Hand", "Kalam", cursive;
+    --sk-frame-1: url("assets/frame-s1.svg");
+    --sk-frame-2: url("assets/frame-s2.svg");
+    --sk-frame-3: url("assets/frame-s3.svg");
+    --sk-pill: url("assets/frame-s2.svg");
+    --sk-circle: url("assets/circle-1.svg");
+    --sk-underline: url("assets/underline-2.svg");
+    --sk-highlight: rgba(255, 241, 118, 0.9);
+    --sk-sel-line: #c62828;
+    --sk-avatar-line: rgba(34, 51, 107, 0.7);
+    --sk-btn-line: #22336b;
+
+    --sk-et-bubble-self-background: #eef3ff;
+    --sk-et-bubble-other-background: #fffdf7;
+    --sk-et-group-line-height: 28px;
+    --sk-et-bubble-line-height: 26px;
+    --cpd-color-bg-subtle-tertiary: #f4efe2;
+    --cpd-color-separator-primary: rgba(34, 51, 107, 0.2);
+    --cpd-color-bg-action-tertiary-hovered: rgba(255, 241, 118, 0.45);
+    --cpd-color-bg-action-secondary-hovered: rgba(255, 241, 118, 0.45);
+    --cpd-color-border-interactive-secondary: rgba(34, 51, 107, 0.45);
+    --cpd-color-green-900: #2a4cad;
+    --cpd-color-green-800: #22336b;
+}
+
+/* handwriting reads small: scale content up */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :is(.mx_EventTile_body, .mx_RoomListItemView, .mx_BasicMessageComposer_input) {
+    font-size: 1.2em;
+    letter-spacing: 0.015em;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :is(.mx_RoomHeader_heading, .mx_Dialog_title, .mx_SettingsTab_heading) {
+    font-size: 1.55em;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+/* --- shell: paper + grain ----------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_MatrixChat {
+    background: url("assets/paper-grain.svg") 0 0 / 240px 240px, var(--sk-paper);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :is(.mx_LeftPanel, .mx_RoomListPanel, .mx_SpacePanel) {
+    background: transparent;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_SpacePanel {
+    background: color-mix(in srgb, #e9e1cc 70%, transparent);
+    border-right: 1px solid rgba(34, 51, 107, 0.15);
+}
+
+/* --- room view: ruled paper with red margin + spiral binding --------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomView {
+    position: relative;
+    padding-left: 22px;
+    background: transparent;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomView::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 26px;
+    pointer-events: none;
+    z-index: 2;
+    background:
+        radial-gradient(circle at 13px 14px, #c9c2b0 0 4px, rgba(0, 0, 0, 0.35) 4.5px, transparent 5.5px) 0 0 / 26px 28px repeat-y,
+        repeating-linear-gradient(180deg, transparent 0 6px, #8d8a85 6px 8px, #d8d5cf 8px 10px, transparent 10px 28px) 0 0 / 10px 28px repeat-y,
+        linear-gradient(90deg, rgba(0, 0, 0, 0.08), transparent 26px);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomView_messagePanel {
+    background-color: #fffdf7;
+    background-image:
+        linear-gradient(90deg, transparent 64px, var(--sk-margin) 64px 65.5px, transparent 65.5px 68px, var(--sk-margin) 68px 69.5px, transparent 69.5px),
+        repeating-linear-gradient(180deg, transparent 0 calc(var(--sk-pitch) - 1px), var(--sk-rule) calc(var(--sk-pitch) - 1px) var(--sk-pitch));
+    background-attachment: local;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomView_body {
+    background: transparent;
+}
+
+@media (prefers-contrast: more) {
+    html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomView_messagePanel {
+        background-image: none;
+    }
+}
+
+/* tiles: transparent so the ruling shows through, hover = highlighter wash */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_EventTile {
+    --sk-et-state-hover-background: rgba(255, 241, 118, 0.22);
+    --sk-et-state-selected-background: rgba(255, 241, 118, 0.3);
+}
+
+/* sender names as margin notes */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_DisambiguatedProfile {
+    font-family: "Caveat", cursive;
+    font-size: 1.75em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_MessageTimestamp {
+    font-family: "Caveat", cursive;
+    font-size: 1.05em;
+    color: #8a6a3a;
+}
+
+/* day separators: written date with a pencil line */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :is(.mx_TimelineSeparator, .mx_DateSeparator) {
+    font-family: "Caveat", cursive;
+    font-size: 1.3em;
+    color: #c62828;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :is(.mx_TimelineSeparator, .mx_DateSeparator) > hr {
+    border: 0;
+    height: 2px;
+    background: rgba(198, 40, 40, 0.35);
+}
+
+/* bubbles as index cards */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"]:not([class*="_lineMedia_"]) {
+    box-shadow: 1px 2px 0 rgba(34, 51, 107, 0.12);
+    border-radius: 3px;
+}
+
+/* --- room list: index tabs ------------------------------------------------ */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomListItemView {
+    --sk-tab: #9fb7e8;
+    background: #fffdf7;
+    margin: 0 10px 0 4px;
+    border-radius: 3px 0 0 3px;
+    box-shadow: inset -7px 0 0 var(--sk-tab), 0 1px 0 rgba(34, 51, 107, 0.1);
+    transition: transform 0.15s;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :nth-child(5n+2) > .mx_RoomListItemView,
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomListItemView:nth-child(5n+2) {
+    --sk-tab: #f4a6a6;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :nth-child(5n+3) > .mx_RoomListItemView,
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomListItemView:nth-child(5n+3) {
+    --sk-tab: #b5dfa8;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :nth-child(5n+4) > .mx_RoomListItemView,
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomListItemView:nth-child(5n+4) {
+    --sk-tab: #ffe08a;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :nth-child(5n) > .mx_RoomListItemView,
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomListItemView:nth-child(5n) {
+    --sk-tab: #d3b8ef;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomListItemView:hover {
+    background: #fff8d6;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"]) {
+    background: #ffffff;
+    transform: translateX(8px);
+    box-shadow: inset -7px 0 0 var(--sk-tab), 2px 2px 0 rgba(34, 51, 107, 0.15);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :is(.mx_RoomListItemView_selected, .mx_RoomListItemView[aria-selected="true"])::after {
+    -webkit-mask-image: url("assets/circle-2.svg");
+    mask-image: url("assets/circle-2.svg");
+    inset: -3px 6px -3px -2px;
+}
+
+/* --- header: page heading ------------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_RoomHeader {
+    background: transparent;
+    border-bottom: 2px solid rgba(198, 40, 40, 0.35);
+}
+
+/* --- composer: a sticky note on the page ------------------------------------ */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_MessageComposer {
+    background: transparent;
+    border-top: none;
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_MessageComposer_wrapper {
+    background: linear-gradient(180deg, #fff59d, #fff176);
+    border-radius: 2px;
+    box-shadow: 0 10px 10px -8px rgba(60, 40, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.12);
+    transform: rotate(-0.25deg);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_MessageComposer_wrapper::after {
+    opacity: 0;
+}
+
+/* --- dialogs: torn-out page with tape ------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_Dialog {
+    background-color: #fffdf7;
+    background-image: repeating-linear-gradient(180deg, transparent 0 27px, rgba(120, 165, 214, 0.35) 27px 28px);
+    border-radius: 2px;
+    box-shadow: 3px 5px 0 rgba(34, 51, 107, 0.12), 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_Dialog::after {
+    -webkit-mask: none;
+    mask: none;
+    inset: -13px auto auto 50%;
+    width: 120px;
+    height: 28px;
+    translate: -50% 0;
+    rotate: -2.5deg;
+    background: rgba(255, 250, 200, 0.75);
+    border-left: 2px dashed rgba(0, 0, 0, 0.08);
+    border-right: 2px dashed rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* menus: index cards */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :is(.mx_ContextualMenu, [role="menu"]) {
+    background: #fffdf7;
+    box-shadow: 2px 3px 0 rgba(34, 51, 107, 0.15);
+}
+
+/* --- code: graph paper ----------------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) :is(.mx_EventTile_pre_container, .mx_EventTile_body pre) {
+    background-color: #fbfdff;
+    background-image:
+        linear-gradient(rgba(120, 165, 214, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 165, 214, 0.25) 1px, transparent 1px);
+    background-size: 14px 14px;
+    border-color: transparent;
+}
+
+/* --- badges: red-pen circle ------------------------------------------------ */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) [class*="_notificationBadge_"] {
+    --cpd-color-bg-critical-primary: #c62828;
+}
+
+/* --- auth: notebook cover ---------------------------------------------------- */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_AuthPage {
+    background: repeating-linear-gradient(45deg, #2d3f73 0 6px, #2a3a6a 6px 12px);
+}
+
+/* --- page flip on room change (enhancer adds .sk-flip for 380ms) ------------- */
+@keyframes sk-flip {
+    0% { transform: perspective(1400px) rotateY(-5deg); transform-origin: left center; opacity: 0.6; }
+    100% { transform: none; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html[data-tl-family="sketch"].sk-flip:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]) .mx_RoomView_body {
+        animation: sk-flip 0.36s ease-out;
+    }
+}
+
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]) .sk-hint {
+    font-family: "Caveat", cursive;
+    color: #8a6a3a;
+}
+
+/* the display-name span carries its own size: let it follow the margin-note size */
+html[data-tl-family="sketch"]:is([data-tl-theme="sketch-notebook"], [data-tl-theme="sketch-daylight"]:not([data-tl-phase="night"])) .mx_DisambiguatedProfile > * {
+    font-size: inherit;
+}

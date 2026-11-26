@@ -1,0 +1,1355 @@
+/* ==========================================================================
+   paper — Low-UI white & black paper. Shared rules for all 7 variants.
+   Palettes live in <variant>.css as --p-* custom properties; everything here
+   reads them. Levels:
+     L1 calm      paper-white, paper-black, paper-daylight
+     L3 quiet     paper-white-quiet, paper-black-quiet
+     L5 invisible paper-white-invisible, paper-black-invisible
+   Style guide: docs/styleguides/paper.md
+   ========================================================================== */
+
+/* ---------- 1. Tokens (html, body and every forced cpd-theme island) ---------- */
+html[data-tl-family="paper"],
+html[data-tl-family="paper"] body,
+html[data-tl-family="paper"] [class*="cpd-theme-"] {
+  --cpd-color-theme-bg: var(--p-paper);
+  --cpd-color-bg-canvas-default: var(--p-paper);
+  --cpd-color-bg-canvas-default-level-1: var(--p-paper);
+  --cpd-color-bg-canvas-disabled: var(--p-wash);
+  --cpd-color-bg-subtle-primary: var(--p-wash);
+  --cpd-color-bg-subtle-secondary: var(--p-paper);
+  --cpd-color-bg-subtle-secondary-level-0: var(--p-paper);
+  --cpd-color-bg-subtle-tertiary: var(--p-paper);
+
+  --cpd-color-bg-action-primary-rest: var(--p-ink);
+  --cpd-color-bg-action-primary-hovered: color-mix(in srgb, var(--p-ink) 85%, var(--p-paper));
+  --cpd-color-bg-action-primary-pressed: color-mix(in srgb, var(--p-ink) 75%, var(--p-paper));
+  --cpd-color-bg-action-primary-disabled: var(--p-line);
+  --cpd-color-bg-action-secondary-rest: var(--p-paper);
+  --cpd-color-bg-action-secondary-hovered: var(--p-wash);
+  --cpd-color-bg-action-secondary-pressed: var(--p-wash2);
+  --cpd-color-bg-action-tertiary-rest: var(--p-paper);
+  --cpd-color-bg-action-tertiary-hovered: var(--p-wash);
+  --cpd-color-bg-action-tertiary-selected: var(--p-wash2);
+
+  --cpd-color-bg-accent-rest: var(--p-accent);
+  --cpd-color-bg-accent-hovered: color-mix(in srgb, var(--p-accent) 85%, var(--p-ink));
+  --cpd-color-bg-accent-pressed: color-mix(in srgb, var(--p-accent) 75%, var(--p-ink));
+  --cpd-color-bg-accent-selected: var(--p-wash2);
+  --cpd-color-bg-accent-subtle: var(--p-wash);
+
+  --cpd-color-bg-critical-primary: var(--p-critical);
+  --cpd-color-bg-critical-hovered: color-mix(in srgb, var(--p-critical) 85%, var(--p-ink));
+  --cpd-color-bg-critical-subtle: var(--p-paper);
+  --cpd-color-bg-critical-subtle-hovered: var(--p-wash);
+  --cpd-color-bg-success-subtle: var(--p-paper);
+  --cpd-color-bg-success-rest: var(--p-success);
+  --cpd-color-bg-success-hovered: var(--p-success);
+  --cpd-color-bg-success-pressed: var(--p-success);
+  --cpd-color-bg-info-subtle: var(--p-paper);
+
+  --cpd-color-bg-decorative-1: var(--p-wash2);
+  --cpd-color-bg-decorative-2: var(--p-wash2);
+  --cpd-color-bg-decorative-3: var(--p-wash2);
+  --cpd-color-bg-decorative-4: var(--p-wash2);
+  --cpd-color-bg-decorative-5: var(--p-wash2);
+  --cpd-color-bg-decorative-6: var(--p-wash2);
+  --cpd-color-text-decorative-1: var(--p-ink);
+  --cpd-color-text-decorative-2: var(--p-ink);
+  --cpd-color-text-decorative-3: var(--p-ink);
+  --cpd-color-text-decorative-4: var(--p-ink);
+  --cpd-color-text-decorative-5: var(--p-ink);
+  --cpd-color-text-decorative-6: var(--p-ink);
+
+  --cpd-color-bg-badge-default: var(--p-paper);
+  --cpd-color-bg-badge-accent: var(--p-paper);
+  --cpd-color-bg-badge-info: var(--p-paper);
+  --cpd-color-bg-badge-primary: var(--p-ink);
+  --cpd-color-bg-badge-secondary: var(--p-wash);
+  --cpd-color-bg-badge-critical: var(--p-paper);
+  --cpd-color-text-badge-accent: var(--p-ink);
+  --cpd-color-text-badge-info: var(--p-ink);
+
+  --cpd-color-text-primary: var(--p-ink);
+  --cpd-color-text-secondary: var(--p-muted);
+  --cpd-color-text-disabled: var(--p-muted);
+  --cpd-color-text-action-primary: var(--p-ink);
+  --cpd-color-text-action-accent: var(--p-accent);
+  --cpd-color-text-action-success: var(--p-success);
+  --cpd-color-text-link-external: var(--p-accent);
+  --cpd-color-text-critical-primary: var(--p-critical);
+  --cpd-color-text-success-primary: var(--p-success);
+  --cpd-color-text-info-primary: var(--p-ink);
+  --cpd-color-text-warning-primary: var(--p-critical);
+  --cpd-color-text-on-solid-primary: var(--p-paper);
+
+  --cpd-color-icon-primary: var(--p-ink);
+  --cpd-color-icon-secondary: var(--p-muted);
+  --cpd-color-icon-tertiary: var(--p-muted);
+  --cpd-color-icon-quaternary: var(--p-muted);
+  --cpd-color-icon-disabled: var(--p-line);
+  --cpd-color-icon-primary-alpha: var(--p-ink);
+  --cpd-color-icon-secondary-alpha: var(--p-muted);
+  --cpd-color-icon-tertiary-alpha: var(--p-muted);
+  --cpd-color-icon-quaternary-alpha: var(--p-muted);
+  --cpd-color-icon-accent-primary: var(--p-ink);
+  --cpd-color-icon-accent-tertiary: var(--p-muted);
+  --cpd-color-icon-critical-primary: var(--p-critical);
+  --cpd-color-icon-success-primary: var(--p-success);
+  --cpd-color-icon-info-primary: var(--p-muted);
+  --cpd-color-icon-warning-primary: var(--p-critical);
+  --cpd-color-icon-on-solid-primary: var(--p-paper);
+
+  --cpd-color-border-disabled: var(--p-line);
+  --cpd-color-border-focused: var(--p-focus);
+  --cpd-color-border-interactive-primary: var(--p-muted);
+  --cpd-color-border-interactive-secondary: var(--p-line);
+  --cpd-color-border-interactive-hovered: var(--p-ink);
+  --cpd-color-border-interactive-pressed: var(--p-ink);
+  --cpd-color-border-critical-primary: var(--p-critical);
+  --cpd-color-border-critical-hovered: var(--p-critical);
+  --cpd-color-border-critical-subtle: var(--p-critical);
+  --cpd-color-border-success-subtle: var(--p-line);
+  --cpd-color-border-success-primary: var(--p-success);
+  --cpd-color-border-info-subtle: var(--p-line);
+  --cpd-color-border-accent-subtle: var(--p-line);
+  --cpd-color-border-accent-primary: var(--p-accent);
+  --cpd-color-separator-primary: var(--p-line);
+  --cpd-color-separator-secondary: var(--p-line);
+
+  /* base palette entries Element uses directly */
+  --cpd-color-gray-100: var(--p-paper);
+  --cpd-color-gray-200: var(--p-paper);
+  --cpd-color-gray-300: var(--p-wash);
+  --cpd-color-gray-400: var(--p-line);
+  --cpd-color-gray-500: var(--p-line);
+  --cpd-color-gray-600: var(--p-line);
+  --cpd-color-gray-700: var(--p-muted);
+  --cpd-color-gray-800: var(--p-muted);
+  --cpd-color-gray-900: var(--p-muted);
+  --cpd-color-gray-1000: var(--p-muted);
+  --cpd-color-gray-1100: var(--p-ink);
+  --cpd-color-gray-1200: var(--p-ink);
+  --cpd-color-gray-1300: var(--p-ink);
+  --cpd-color-gray-1400: var(--p-ink);
+  --cpd-color-alpha-gray-100: color-mix(in srgb, var(--p-ink) 3%, transparent);
+  --cpd-color-alpha-gray-200: color-mix(in srgb, var(--p-ink) 5%, transparent);
+  --cpd-color-alpha-gray-300: color-mix(in srgb, var(--p-ink) 8%, transparent);
+  --cpd-color-alpha-gray-400: color-mix(in srgb, var(--p-ink) 12%, transparent);
+  --cpd-color-green-900: var(--p-accent);
+  --cpd-color-green-1100: var(--p-accent);
+  --cpd-color-green-300: var(--p-wash);
+  --cpd-color-green-500: var(--p-line);
+  --cpd-color-green-700: var(--p-muted);
+  --cpd-color-gradient-subtle-stop1: transparent;
+  --cpd-color-gradient-subtle-stop2: transparent;
+  --cpd-color-gradient-subtle-stop3: transparent;
+  --cpd-color-gradient-subtle-stop4: transparent;
+  --cpd-color-gradient-subtle-stop5: transparent;
+  --cpd-color-gradient-info-stop1: var(--p-paper);
+  --cpd-color-gradient-critical-stop1: var(--p-paper);
+
+  --cpd-font-family-sans: "iA Writer Quattro S", "IBM Plex Sans", system-ui, sans-serif !important;
+  --cpd-font-family-mono: "iA Writer Mono S", "IBM Plex Mono", ui-monospace, monospace !important;
+  --cpd-font-letter-spacing-body-md: 0;
+  --cpd-font-letter-spacing-body-sm: 0;
+  --cpd-font-letter-spacing-body-xs: 0;
+  --cpd-font-letter-spacing-body-lg: 0;
+
+  color-scheme: var(--p-scheme, light);
+}
+
+/* ---------- 2. Shell: one sheet, no tints, no shadows ---------- */
+html[data-tl-family="paper"] body,
+html[data-tl-family="paper"] .mx_MatrixChat_wrapper,
+html[data-tl-family="paper"] .mx_MatrixChat,
+html[data-tl-family="paper"] .mx_SpacePanel,
+html[data-tl-family="paper"] .mx_LeftPanel,
+html[data-tl-family="paper"] .mx_LeftPanel_outerWrapper,
+html[data-tl-family="paper"] .mx_RoomListPanel,
+html[data-tl-family="paper"] .mx_RoomHeader,
+html[data-tl-family="paper"] .mx_RoomView,
+html[data-tl-family="paper"] .mx_RoomView_body,
+html[data-tl-family="paper"] .mx_MessageComposer,
+html[data-tl-family="paper"] .mx_RightPanel,
+html[data-tl-family="paper"] .mx_BaseCard {
+  background: var(--p-paper);
+  box-shadow: none;
+}
+html[data-tl-family="paper"] .mx_MatrixChat,
+html[data-tl-family="paper"] .mx_RoomView_body,
+html[data-tl-family="paper"] .mx_RoomView_MessageList {
+  color: var(--p-ink);
+}
+html[data-tl-family="paper"] ::selection {
+  background: var(--p-mention);
+  color: var(--p-ink);
+}
+
+/* Space panel: grayscale, ink bar for the active space */
+html[data-tl-family="paper"] .mx_SpacePanel {
+  border-inline-end: 1px solid var(--p-line);
+}
+html[data-tl-family="paper"] .mx_SpacePanel .mx_BaseAvatar,
+html[data-tl-family="paper"] .mx_SpacePanel [class*="_avatar_"] {
+  filter: grayscale(1);
+  opacity: 0.85;
+}
+html[data-tl-family="paper"] .mx_SpaceButton .mx_SpaceButton_selectionWrapper {
+  background: transparent;
+  box-shadow: none;
+}
+html[data-tl-family="paper"] .mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: transparent;
+  box-shadow: inset 2px 0 0 var(--p-ink);
+}
+html[data-tl-family="paper"] .mx_SpaceButton_active .mx_SpaceButton_avatarWrapper [class*="_avatar_"],
+html[data-tl-family="paper"] .mx_SpaceButton_active .mx_BaseAvatar {
+  opacity: 1;
+}
+html[data-tl-family="paper"] .mx_SpaceButton_new .mx_SpaceButton_icon,
+html[data-tl-family="paper"] .mx_SpaceButton .mx_SpaceButton_icon {
+  background: transparent;
+}
+
+/* ---------- 3. Room list: a plain column of names ---------- */
+html[data-tl-family="paper"] .mx_LeftPanel {
+  border-inline-end: 1px solid var(--p-line);
+}
+html[data-tl-family="paper"] .mx_RoomListPanel [role="search"] button {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--p-line);
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--p-muted);
+}
+html[data-tl-family="paper"] .mx_RoomListPanel header h1 {
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.06em;
+  font-size: 17px;
+}
+/* filter chips → text tabs */
+html[data-tl-family="paper"] [class*="_roomListPrimaryFilters_"] [role="option"] {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--p-muted);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.05em;
+  font-size: 15px;
+  padding-inline: 6px;
+}
+html[data-tl-family="paper"] [class*="_roomListPrimaryFilters_"] [role="option"]:hover {
+  color: var(--p-ink);
+  background: transparent;
+}
+html[data-tl-family="paper"] [class*="_roomListPrimaryFilters_"] [role="option"][aria-selected="true"] {
+  color: var(--p-ink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+html[data-tl-family="paper"] .mx_RoomListItemView {
+  background: transparent;
+  border-radius: 0;
+}
+html[data-tl-family="paper"] .mx_RoomListItemView [class*="_container_"] {
+  background: transparent;
+  border-radius: 0;
+}
+html[data-tl-family="paper"] .mx_RoomListItemView [class*="_container_"]::before {
+  background: var(--p-ink);
+  width: 2px;
+  border-radius: 0;
+}
+html[data-tl-family="paper"] .mx_RoomListItemView .mx_RoomAvatarView,
+html[data-tl-family="paper"] .mx_RoomListItemView .mx_BaseAvatar,
+html[data-tl-family="paper"] .mx_RoomListItemView [class*="_avatar_"] {
+  display: none;
+}
+html[data-tl-family="paper"] .mx_RoomListItemView [class*="_roomName_"] {
+  font-size: 15px;
+  color: var(--p-ink);
+}
+html[data-tl-family="paper"] .mx_RoomListItemView:hover [class*="_container_"],
+html[data-tl-family="paper"] .mx_RoomListItemView[class*="_keyboardActive_"] [class*="_container_"] {
+  background: var(--p-wash);
+}
+html[data-tl-family="paper"] .mx_RoomListItemView_selected [class*="_container_"] {
+  background: transparent;
+}
+html[data-tl-family="paper"] .mx_RoomListItemView_selected [class*="_roomName_"] {
+  font-weight: 700;
+}
+/* unread counters (compound) → muted tabular digits; mentions keep the '@' icon in ink */
+html[data-tl-family="paper"] [class*="_unread-counter_"] {
+  background: transparent;
+  color: var(--p-muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  padding: 0;
+  min-width: 0;
+}
+html[data-tl-family="paper"] [class*="_notificationDecoration_"] svg {
+  color: var(--p-ink);
+}
+/* unread rooms: bold + • glyph (state never by colour alone) */
+html[data-tl-family="paper"] .mx_RoomListItemView:has([class*="_notificationDecoration_"] [class*="_notificationBadge_"][class*="_visible_"]) [class*="_roomName_"],
+html[data-tl-family="paper"] .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"] {
+  font-weight: 700;
+}
+html[data-tl-family="paper"] [class*="_roomListItem_"] [class*="_bold_"] {
+  font-weight: 700;
+}
+/* section headers */
+html[data-tl-family="paper"] [class*="_roomListSectionHeader_"] [class*="_title_"],
+html[data-tl-family="paper"] [class*="_header_"] [class*="_title_"] {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- 4. Badges → plain digits ---------- */
+html[data-tl-family="paper"] [class*="_notificationBadge_"] {
+  --roomtile-default-badge-bg-color: transparent;
+  background: transparent !important;
+  color: var(--p-muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  box-shadow: none;
+  min-width: 0;
+}
+html[data-tl-family="paper"] [class*="_notificationBadge_"][class*="_highlight_"] {
+  color: var(--p-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+html[data-tl-family="paper"] [class*="_notificationBadge_"][class*="_highlight_"] [class*="_count_"]::before {
+  content: "@";
+  margin-inline-end: 1px;
+}
+html[data-tl-family="paper"] [class*="_notificationBadge_"][class*="_dot_"] {
+  background: transparent !important;
+  width: auto;
+  height: auto;
+}
+html[data-tl-family="paper"] [class*="_notificationBadge_"][class*="_dot_"]::after {
+  content: "•";
+  color: var(--p-ink);
+  font-size: 18px;
+  line-height: 1;
+}
+html[data-tl-family="paper"] .mx_NotificationBadge,
+html[data-tl-family="paper"] .mx_SpacePanel [class*="_notificationBadge_"] {
+  background: transparent;
+  color: var(--p-ink);
+}
+
+/* ---------- 5. Room header ---------- */
+html[data-tl-family="paper"] .mx_RoomHeader {
+  border-bottom: 1px solid var(--p-line);
+}
+html[data-tl-family="paper"] .mx_RoomHeader .mx_RoomHeader_heading {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+html[data-tl-family="paper"] .mx_RoomHeader > .mx_BaseAvatar,
+html[data-tl-family="paper"] .mx_RoomHeader > [class*="_avatar_"],
+html[data-tl-family="paper"] .mx_FacePile [class*="_avatar_"] {
+  filter: grayscale(1);
+}
+html[data-tl-family="paper"] .mx_RoomHeader > .mx_BaseAvatar,
+html[data-tl-family="paper"] .mx_RoomHeader > [class*="_avatar_"] {
+  display: none;
+}
+html[data-tl-family="paper"] .mx_RoomHeader [class*="_icon-button_"] {
+  color: var(--p-muted);
+}
+html[data-tl-family="paper"] .mx_RoomHeader [class*="_icon-button_"]:hover {
+  color: var(--p-ink);
+}
+
+/* ---------- 6. Timeline: a book column ---------- */
+html[data-tl-family="paper"] .mx_RoomView_MessageList {
+  width: 100%;
+  max-width: calc(68ch + 160px);
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+html[data-tl-family="paper"] .mx_EventTile .mx_EventTile_line,
+html[data-tl-family="paper"] .mx_EventTile [class*="_line_"] {
+  font-size: 17px;
+  line-height: 1.6;
+  background: transparent;
+  box-shadow: none;
+}
+html[data-tl-family="paper"] .mx_EventTile .mx_EventTile_body,
+html[data-tl-family="paper"] .mx_EventTile .mx_MTextBody {
+  max-width: 68ch;
+}
+html[data-tl-family="paper"] .mx_EventTile:not([class*="_stateContinuation_"]):not(.mx_EventTile_continuation) {
+  margin-top: 1.1em;
+}
+html[data-tl-family="paper"] .mx_EventTile:hover .mx_EventTile_line,
+html[data-tl-family="paper"] .mx_EventTile:hover [class*="_line_"],
+html[data-tl-family="paper"] .mx_EventTile:focus-within [class*="_line_"],
+html[data-tl-family="paper"] .mx_EventTile[class*="_stateActionBarFocused_"] [class*="_line_"],
+html[data-tl-family="paper"] .mx_EventTile[class*="_stateSelected_"] [class*="_line_"] {
+  background: var(--p-wash);
+}
+/* mentions: a soft marker wash + left rule, never colour alone */
+html[data-tl-family="paper"] .mx_EventTile[class*="_stateHighlighted_"] [class*="_line_"],
+html[data-tl-family="paper"] .mx_EventTile_highlight .mx_EventTile_line {
+  background: var(--p-mention);
+  box-shadow: inset 2px 0 0 var(--p-ink);
+}
+/* sender names: small caps, ink */
+html[data-tl-family="paper"] .mx_DisambiguatedProfile,
+html[data-tl-family="paper"] [class*="_disambiguatedProfile_"] {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--p-ink);
+}
+html[data-tl-family="paper"] [class*="_disambiguatedProfile_mxid_"],
+html[data-tl-family="paper"] .mx_DisambiguatedProfile_mxid {
+  color: var(--p-muted);
+  font-weight: 400;
+}
+html[data-tl-family="paper"] [class*="mx_Username_color"] {
+  color: var(--p-ink);
+}
+/* avatars: grayscale everywhere */
+html[data-tl-family="paper"] .mx_EventTile .mx_BaseAvatar,
+html[data-tl-family="paper"] .mx_EventTile [class*="_avatar_"],
+html[data-tl-family="paper"] .mx_RightPanel [class*="_avatar_"],
+html[data-tl-family="paper"] .mx_UserMenu [class*="_avatar_"] {
+  filter: grayscale(1);
+}
+html[data-tl-family="paper"] [class*="_avatar_"]:not(.tl-ui *),
+html[data-tl-family="paper"] .mx_BaseAvatar:not(.tl-ui *) {
+  filter: grayscale(1);
+}
+/* timestamps, receipts */
+html[data-tl-family="paper"] .mx_MessageTimestamp {
+  color: var(--p-muted);
+  font-variant-numeric: tabular-nums;
+}
+/* bubbles → indented paragraphs (bubble layout keeps its geometry, loses its fill) */
+html[data-tl-family="paper"] .mx_EventTile[data-layout="bubble"] .mx_EventTile_line,
+html[data-tl-family="paper"] .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"] {
+  background: transparent;
+  border-radius: 0;
+}
+html[data-tl-family="paper"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] [class*="_line_"],
+html[data-tl-family="paper"] .mx_EventTile[data-layout="bubble"][data-self="true"] .mx_EventTile_line {
+  background: transparent;
+  box-shadow: inset -2px 0 0 var(--p-line);
+}
+html[data-tl-family="paper"] .mx_EventTile[class*="_layoutBubble_"]:not([class*="_stateOwnEvent_"]) [class*="_line_"] {
+  box-shadow: inset 2px 0 0 var(--p-line);
+}
+/* date separator: centred small caps, no rules */
+html[data-tl-family="paper"] .mx_TimelineSeparator,
+html[data-tl-family="paper"] [class*="_timelineSeparator_"] {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+  color: var(--p-muted);
+  margin-block: 28px 12px;
+}
+html[data-tl-family="paper"] .mx_TimelineSeparator > hr,
+html[data-tl-family="paper"] [class*="_timelineSeparator_"] > hr {
+  border-color: transparent;
+}
+html[data-tl-family="paper"] .mx_MessagePanel_myReadMarker hr,
+html[data-tl-family="paper"] [class*="_readMarker_"] hr {
+  border-color: var(--p-line);
+}
+/* links in messages */
+html[data-tl-family="paper"] .mx_EventTile_body a,
+html[data-tl-family="paper"] .mx_MTextBody a {
+  color: var(--p-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+/* reactions: outline pills of hairline */
+html[data-tl-family="paper"] .mx_ReactionsRowButton {
+  background: transparent;
+  border: 1px solid var(--p-line);
+  border-radius: 2px;
+}
+html[data-tl-family="paper"] .mx_ReactionsRowButton_selected {
+  border-color: var(--p-ink);
+  background: transparent;
+}
+/* user / room pills: ink outline, no colour */
+@layer tl-important {
+  html[data-tl-family="paper"] .mx_Pill,
+  html[data-tl-family="paper"] .mx_Pill .mx_Pill_text {
+    background: transparent !important;
+    color: var(--p-ink) !important;
+  }
+}
+html[data-tl-family="paper"] .mx_Pill {
+  border: 1px solid var(--p-line);
+  border-radius: 2px;
+  font-weight: 700;
+}
+html[data-tl-family="paper"] .mx_UserPill_me,
+html[data-tl-family="paper"] .mx_AtRoomPill {
+  border-color: var(--p-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+html[data-tl-family="paper"] .mx_Pill .mx_BaseAvatar,
+html[data-tl-family="paper"] .mx_Pill [class*="_avatar_"] {
+  filter: grayscale(1);
+}
+html[data-tl-family="paper"] .mx_EventTile [class*="_line_"],
+html[data-tl-family="paper"] .mx_EventTile .mx_EventTile_line {
+  border-radius: 0;
+}
+/* message action bar */
+html[data-tl-family="paper"] .mx_MessageActionBar,
+html[data-tl-family="paper"] [class*="_toolbar_"]:has([class*="_toolbar_item_"]) {
+  background: var(--p-paper);
+  border: 1px solid var(--p-line);
+  border-radius: 2px;
+  box-shadow: none;
+}
+html[data-tl-family="paper"] .mx_MessageActionBar :is(button, [role="button"]),
+html[data-tl-family="paper"] [class*="_toolbar_item_"] {
+  color: var(--p-muted);
+  --cpd-color-icon-accent-primary: var(--p-muted);
+}
+html[data-tl-family="paper"] .mx_MessageActionBar :is(button, [role="button"]):hover,
+html[data-tl-family="paper"] [class*="_toolbar_item_"]:hover {
+  color: var(--p-ink);
+  background: var(--p-wash);
+}
+/* replies / quotes */
+html[data-tl-family="paper"] .mx_ReplyChain,
+html[data-tl-family="paper"] .mx_EventTile_body blockquote {
+  border-inline-start: 2px solid var(--p-line) !important;
+  color: var(--p-muted);
+  background: transparent;
+}
+/* info banners / room intro buttons */
+html[data-tl-family="paper"] .mx_NewRoomIntro .mx_BaseAvatar,
+html[data-tl-family="paper"] .mx_NewRoomIntro [class*="_avatar_"] {
+  filter: grayscale(1);
+}
+html[data-tl-family="paper"] .mx_EventTileBubble,
+html[data-tl-family="paper"] [class*="_eventTileBubble_"],
+html[data-tl-family="paper"] [class*="_encryptionEvent_"] {
+  background: transparent;
+  border: 1px solid var(--p-line);
+  border-radius: 2px;
+}
+
+/* ---------- 7. Code ---------- */
+html[data-tl-family="paper"] pre,
+html[data-tl-family="paper"] code,
+html[data-tl-family="paper"] .mx_EventTile_pre_container,
+html[data-tl-family="paper"] .hljs {
+  font-family: "iA Writer Mono S", "IBM Plex Mono", ui-monospace, monospace;
+}
+html[data-tl-family="paper"] .mx_EventTile_body pre,
+html[data-tl-family="paper"] .mx_EventTile_pre_container,
+html[data-tl-family="paper"] .markdown-body pre {
+  background: var(--p-wash) !important;
+  border: 0;
+  border-radius: 2px;
+  color: var(--p-ink);
+}
+html[data-tl-family="paper"] .mx_EventTile_body code:not(pre code) {
+  background: var(--p-wash);
+  border-radius: 2px;
+  color: var(--p-ink);
+}
+html[data-tl-family="paper"] .hljs,
+html[data-tl-family="paper"] .hljs *,
+html[data-tl-family="paper"] pre code[class*="language-"],
+html[data-tl-family="paper"] pre code [class^="hljs-"] {
+  background: transparent;
+  color: var(--p-ink);
+}
+html[data-tl-family="paper"] pre code .hljs-keyword,
+html[data-tl-family="paper"] pre code .hljs-built_in,
+html[data-tl-family="paper"] pre code .hljs-selector-tag,
+html[data-tl-family="paper"] pre code .hljs-section,
+html[data-tl-family="paper"] pre code .hljs-title {
+  font-weight: 700;
+}
+html[data-tl-family="paper"] pre code .hljs-string,
+html[data-tl-family="paper"] pre code .hljs-number,
+html[data-tl-family="paper"] pre code .hljs-literal,
+html[data-tl-family="paper"] pre code .hljs-attr {
+  color: var(--p-muted);
+}
+html[data-tl-family="paper"] pre code .hljs-comment,
+html[data-tl-family="paper"] pre code .hljs-quote {
+  color: var(--p-muted);
+  font-style: italic;
+}
+
+/* ---------- 8. Composer ---------- */
+html[data-tl-family="paper"] .mx_MessageComposer {
+  border-top: 1px solid var(--p-line);
+}
+html[data-tl-family="paper"] .mx_MessageComposer_wrapper,
+html[data-tl-family="paper"] .mx_MessageComposer_row,
+html[data-tl-family="paper"] .mx_SendMessageComposer,
+html[data-tl-family="paper"] .mx_BasicMessageComposer,
+html[data-tl-family="paper"] .mx_WysiwygComposer_Editor {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+html[data-tl-family="paper"] .mx_MessageComposer_wrapper {
+  width: 100%;
+  max-width: calc(68ch + 160px);
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+html[data-tl-family="paper"] .mx_BasicMessageComposer_input {
+  font-size: 17px;
+  line-height: 1.6;
+  caret-color: var(--p-caret);
+  caret-shape: block;
+}
+html[data-tl-family="paper"] .mx_BasicMessageComposer_input[aria-placeholder]::before,
+html[data-tl-family="paper"] .mx_BasicMessageComposer_inputEmpty > :first-child::before {
+  color: var(--p-muted);
+}
+html[data-tl-family="paper"] .mx_MessageComposer_actions,
+html[data-tl-family="paper"] .mx_MessageComposer_button {
+  color: var(--p-muted);
+}
+html[data-tl-family="paper"] .mx_MessageComposer_e2eIcon,
+html[data-tl-family="paper"] .mx_MessageComposer_e2eIconWrapper {
+  filter: grayscale(1);
+}
+
+/* ---------- 9. Buttons & inputs ---------- */
+html[data-tl-family="paper"] [class*="_button_"][data-kind="primary"],
+html[data-tl-family="paper"] .mx_AccessibleButton_kind_primary {
+  background: transparent;
+  color: var(--p-ink);
+  border: 1px solid var(--p-ink);
+  border-radius: 2px;
+}
+html[data-tl-family="paper"] [class*="_button_"][data-kind="primary"]:hover,
+html[data-tl-family="paper"] .mx_AccessibleButton_kind_primary:hover {
+  background: var(--p-ink);
+  color: var(--p-paper);
+}
+html[data-tl-family="paper"] [class*="_button_"][data-kind="primary"][data-kind][class*="_destructive_"],
+html[data-tl-family="paper"] .mx_AccessibleButton_kind_danger {
+  background: transparent;
+  color: var(--p-critical);
+  border: 1px solid var(--p-critical);
+  border-radius: 2px;
+}
+html[data-tl-family="paper"] [class*="_button_"][data-kind="secondary"],
+html[data-tl-family="paper"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-family="paper"] .mx_AccessibleButton_kind_secondary {
+  background: transparent;
+  color: var(--p-ink);
+  border: 1px solid var(--p-line);
+  border-radius: 2px;
+}
+html[data-tl-family="paper"] [class*="_button_"][data-kind="tertiary"],
+html[data-tl-family="paper"] .mx_AccessibleButton_kind_link,
+html[data-tl-family="paper"] .mx_AccessibleButton_kind_link_inline {
+  color: var(--p-accent);
+  background: transparent;
+}
+html[data-tl-family="paper"] .mx_Field input,
+html[data-tl-family="paper"] .mx_Field textarea,
+html[data-tl-family="paper"] .mx_Field select,
+html[data-tl-family="paper"] .mx_Field {
+  border-radius: 0;
+}
+html[data-tl-family="paper"] .mx_Field {
+  border: 0;
+  border-bottom: 1px solid var(--p-line);
+}
+html[data-tl-family="paper"] .mx_Field:focus-within {
+  border-bottom: 2px solid var(--p-focus);
+}
+html[data-tl-family="paper"] .mx_Field label,
+html[data-tl-family="paper"] .mx_Field_labelAlwaysTopLeft label {
+  background: var(--p-paper);
+  color: var(--p-muted);
+}
+html[data-tl-family="paper"] [class*="_control_"][class*="_input_"],
+html[data-tl-family="paper"] input[class*="_control_"],
+html[data-tl-family="paper"] textarea[class*="_control_"] {
+  background: transparent;
+  border-radius: 0;
+  border-color: var(--p-line);
+}
+html[data-tl-family="paper"] input[type="checkbox"],
+html[data-tl-family="paper"] input[type="radio"] {
+  accent-color: var(--p-ink);
+}
+
+/* ---------- 10. Dialogs, menus, tooltips ---------- */
+html[data-tl-family="paper"] .mx_Dialog_background {
+  background: var(--p-paper);
+  opacity: 0.85 !important;
+}
+html[data-tl-family="paper"] .mx_Dialog,
+html[data-tl-family="paper"] [role="dialog"][class*="_dialog_"],
+html[data-tl-family="paper"] .mx_CompoundDialog {
+  background: var(--p-paper);
+  border: 1px solid color-mix(in srgb, var(--p-ink) 20%, var(--p-paper));
+  border-radius: 2px;
+  box-shadow: none;
+  color: var(--p-ink);
+}
+html[data-tl-family="paper"] .mx_Dialog_border {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+html[data-tl-family="paper"] .mx_Dialog_title {
+  font-weight: 700;
+}
+html[data-tl-family="paper"] .mx_ContextualMenu,
+html[data-tl-family="paper"] [role="menu"],
+html[data-tl-family="paper"] .mx_IconizedContextMenu {
+  background: var(--p-paper);
+  border: 1px solid var(--p-line);
+  border-radius: 2px;
+  box-shadow: none;
+}
+html[data-tl-family="paper"] [role="menu"] [role="menuitem"]:hover,
+html[data-tl-family="paper"] [role="menu"] [role="menuitemcheckbox"]:hover,
+html[data-tl-family="paper"] .mx_IconizedContextMenu_option:hover {
+  background: var(--p-wash);
+}
+html[data-tl-family="paper"] [role="tooltip"],
+html[data-tl-family="paper"] [class*="_tooltip_"] {
+  background: var(--p-ink);
+  color: var(--p-paper);
+  border-radius: 2px;
+  box-shadow: none;
+}
+html[data-tl-family="paper"] [role="tooltip"] *,
+html[data-tl-family="paper"] [class*="_tooltip_"] * {
+  color: var(--p-paper);
+}
+html[data-tl-family="paper"] .mx_ToastContainer .mx_Toast_toast {
+  background: var(--p-paper);
+  border: 1px solid var(--p-line);
+  border-radius: 2px;
+  box-shadow: none;
+  color: var(--p-ink);
+}
+
+/* Settings: tab labels as a text list */
+html[data-tl-family="paper"] .mx_TabbedView_tabLabel {
+  border-radius: 0;
+  background: transparent;
+  border-inline-start: 2px solid transparent;
+}
+html[data-tl-family="paper"] .mx_TabbedView_tabLabel:hover {
+  background: var(--p-wash);
+}
+html[data-tl-family="paper"] .mx_TabbedView_tabLabel_active {
+  background: transparent;
+  border-inline-start-color: var(--p-ink);
+  color: var(--p-ink);
+  font-weight: 700;
+}
+html[data-tl-family="paper"] .mx_TabbedView_tabLabel_active .mx_TabbedView_maskedIcon,
+html[data-tl-family="paper"] .mx_TabbedView_tabLabel_active svg {
+  color: var(--p-ink);
+}
+/* toggles: outline switches */
+html[data-tl-family="paper"] .mx_ToggleSwitch {
+  background: transparent;
+  border: 1px solid var(--p-muted);
+}
+html[data-tl-family="paper"] .mx_ToggleSwitch.mx_ToggleSwitch_on {
+  background: var(--p-ink);
+  border-color: var(--p-ink);
+}
+html[data-tl-family="paper"] .mx_ToggleSwitch_ball {
+  background: var(--p-muted);
+}
+html[data-tl-family="paper"] .mx_ToggleSwitch_on .mx_ToggleSwitch_ball {
+  background: var(--p-paper);
+}
+
+/* Auth: bare paper column */
+html[data-tl-family="paper"] .mx_AuthPage,
+html[data-tl-family="paper"] .mx_AuthPage_modal + *,
+html[data-tl-family="paper"] .mx_Welcome {
+  background: var(--p-paper) !important;
+  background-image: none !important;
+}
+html[data-tl-family="paper"] .mx_AuthPage_modalBlur,
+html[data-tl-family="paper"] .mx_AuthPage::before,
+html[data-tl-family="paper"] .mx_AuthPage::after {
+  display: none;
+}
+html[data-tl-family="paper"] .mx_AuthFooter {
+  opacity: 1;
+  background: transparent;
+}
+html[data-tl-family="paper"] .mx_AuthFooter a:is(:link, :visited, :hover) {
+  color: var(--p-muted);
+}
+html[data-tl-family="paper"] .mx_AuthPage_modal,
+html[data-tl-family="paper"] .mx_AuthPage_modalContent,
+html[data-tl-family="paper"] .mx_AuthBody,
+html[data-tl-family="paper"] .mx_AuthHeader {
+  background: var(--p-paper);
+  box-shadow: none;
+  border-radius: 0;
+}
+html[data-tl-family="paper"] .mx_AuthPage_modal {
+  border: 1px solid var(--p-line);
+  box-shadow: none !important;
+}
+html[data-tl-family="paper"] .mx_AuthHeaderLogo img,
+html[data-tl-family="paper"] .mx_AuthPage .mx_AuthHeaderLogo {
+  filter: grayscale(1);
+}
+
+/* Widgets / calls: strip the frame, keep the iframe */
+html[data-tl-family="paper"] .mx_AppTile,
+html[data-tl-family="paper"] .mx_AppTileMenuBar,
+html[data-tl-family="paper"] .mx_AppsDrawer {
+  background: var(--p-paper);
+  border-color: var(--p-line);
+  box-shadow: none;
+}
+html[data-tl-family="paper"] .mx_AppTileMenuBar_title {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.05em;
+  color: var(--p-ink);
+}
+
+/* Images: quiet but true colour (identity cues stay) */
+html[data-tl-family="paper"] .mx_MImageBody img {
+  border-radius: 2px;
+}
+
+/* ---------- 11. Scrollbars ---------- */
+html[data-tl-family="paper"] * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--p-line) transparent;
+}
+
+/* ---------- 12. Focus: always visible ---------- */
+html[data-tl-family="paper"] :focus-visible {
+  outline: 2px solid var(--p-focus) !important;
+  outline-offset: 3px;
+  box-shadow: none;
+}
+html[data-tl-family="paper"] .mx_RoomListItemView:focus-visible {
+  outline-offset: -2px;
+}
+/* the composer is always focused: mark it with a 2px underline + the block caret instead of a box */
+html[data-tl-family="paper"] .mx_BasicMessageComposer_input:focus-visible,
+html[data-tl-family="paper"] .mx_WysiwygComposer_Editor_content:focus-visible {
+  outline: none !important;
+  box-shadow: 0 2px 0 0 var(--p-focus);
+}
+
+/* ---------- 13. Motion ---------- */
+html[data-tl-family="paper"] .mx_EventTile [class*="_line_"],
+html[data-tl-family="paper"] .mx_RoomListItemView [class*="_container_"] {
+  transition: background-color 150ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="paper"] *,
+  html[data-tl-family="paper"] *::before,
+  html[data-tl-family="paper"] *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   L3 QUIET + L5 INVISIBLE (shared: no lines, periphery fades, hover/focus reveal)
+   ========================================================================== */
+html[data-tl-theme="paper-white-quiet"] .mx_SpacePanel,
+html[data-tl-theme="paper-black-quiet"] .mx_SpacePanel,
+html[data-tl-theme="paper-white-invisible"] .mx_SpacePanel,
+html[data-tl-theme="paper-black-invisible"] .mx_SpacePanel,
+html[data-tl-theme="paper-white-quiet"] .mx_LeftPanel,
+html[data-tl-theme="paper-black-quiet"] .mx_LeftPanel,
+html[data-tl-theme="paper-white-invisible"] .mx_LeftPanel,
+html[data-tl-theme="paper-black-invisible"] .mx_LeftPanel,
+html[data-tl-theme="paper-white-quiet"] .mx_RoomHeader,
+html[data-tl-theme="paper-black-quiet"] .mx_RoomHeader,
+html[data-tl-theme="paper-white-invisible"] .mx_RoomHeader,
+html[data-tl-theme="paper-black-invisible"] .mx_RoomHeader,
+html[data-tl-theme="paper-white-quiet"] .mx_MessageComposer,
+html[data-tl-theme="paper-black-quiet"] .mx_MessageComposer,
+html[data-tl-theme="paper-white-invisible"] .mx_MessageComposer,
+html[data-tl-theme="paper-black-invisible"] .mx_MessageComposer,
+html[data-tl-theme="paper-white-quiet"] .mx_RoomListPanel [role="search"] button,
+html[data-tl-theme="paper-black-quiet"] .mx_RoomListPanel [role="search"] button,
+html[data-tl-theme="paper-white-invisible"] .mx_RoomListPanel [role="search"] button,
+html[data-tl-theme="paper-black-invisible"] .mx_RoomListPanel [role="search"] button {
+  border-color: transparent;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_Separator,
+html[data-tl-theme="paper-black-quiet"] .mx_Separator {
+  opacity: 0;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_Separator:hover,
+html[data-tl-theme="paper-black-quiet"] .mx_Separator:hover {
+  opacity: 1;
+}
+/* periphery recedes until reached for — by colour, not opacity, so text stays ≥4.5:1 */
+html[data-tl-theme="paper-white-quiet"] :is(.mx_SpacePanel, .mx_LeftPanel):not(:hover):not(:focus-within),
+html[data-tl-theme="paper-black-quiet"] :is(.mx_SpacePanel, .mx_LeftPanel):not(:hover):not(:focus-within) {
+  --p-ink: var(--p-muted);
+  --cpd-color-text-primary: var(--p-muted);
+  --cpd-color-icon-primary: var(--p-muted);
+  --cpd-color-icon-secondary: var(--p-muted);
+  color: var(--p-muted);
+}
+html[data-tl-theme="paper-white-quiet"] :is(.mx_SpacePanel, .mx_LeftPanel):not(:hover):not(:focus-within) :is(img, [class*="_avatar_"]),
+html[data-tl-theme="paper-black-quiet"] :is(.mx_SpacePanel, .mx_LeftPanel):not(:hover):not(:focus-within) :is(img, [class*="_avatar_"]) {
+  opacity: .5;
+}
+/* header: room name only at rest */
+html[data-tl-theme="paper-white-quiet"] .mx_RoomHeader > :not(.mx_RoomHeader_infoWrapper),
+html[data-tl-theme="paper-black-quiet"] .mx_RoomHeader > :not(.mx_RoomHeader_infoWrapper),
+html[data-tl-theme="paper-white-invisible"] .mx_RoomHeader > :not(.mx_RoomHeader_infoWrapper):not(.tl-ui),
+html[data-tl-theme="paper-black-invisible"] .mx_RoomHeader > :not(.mx_RoomHeader_infoWrapper):not(.tl-ui) {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_RoomHeader:is(:hover, :focus-within) > *,
+html[data-tl-theme="paper-black-quiet"] .mx_RoomHeader:is(:hover, :focus-within) > *,
+html[data-tl-theme="paper-white-invisible"] .mx_RoomHeader:is(:hover, :focus-within) > *,
+html[data-tl-theme="paper-black-invisible"] .mx_RoomHeader:is(:hover, :focus-within) > * {
+  opacity: 1;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_RoomHeader .tl-ui,
+html[data-tl-theme="paper-black-quiet"] .mx_RoomHeader .tl-ui {
+  opacity: 0.6;
+}
+/* timeline: avatars hidden, timestamps + action bar on hover/focus */
+html[data-tl-theme="paper-white-quiet"] .mx_EventTile [class*="_slotAvatar_"],
+html[data-tl-theme="paper-black-quiet"] .mx_EventTile [class*="_slotAvatar_"],
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile [class*="_slotAvatar_"],
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile [class*="_slotAvatar_"],
+html[data-tl-theme="paper-white-quiet"] .mx_EventTile .mx_EventTile_avatar,
+html[data-tl-theme="paper-black-quiet"] .mx_EventTile .mx_EventTile_avatar,
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile .mx_EventTile_avatar,
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile .mx_EventTile_avatar {
+  visibility: hidden;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_EventTile .mx_MessageTimestamp,
+html[data-tl-theme="paper-black-quiet"] .mx_EventTile .mx_MessageTimestamp,
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile .mx_MessageTimestamp,
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile .mx_MessageTimestamp,
+html[data-tl-theme="paper-white-quiet"] .mx_EventTile .mx_ReadReceiptGroup,
+html[data-tl-theme="paper-black-quiet"] .mx_EventTile .mx_ReadReceiptGroup,
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile .mx_ReadReceiptGroup,
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile .mx_ReadReceiptGroup {
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_EventTile:is(:hover, :focus-within) :is(.mx_MessageTimestamp, .mx_ReadReceiptGroup),
+html[data-tl-theme="paper-black-quiet"] .mx_EventTile:is(:hover, :focus-within) :is(.mx_MessageTimestamp, .mx_ReadReceiptGroup),
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile:is(:hover, :focus-within) :is(.mx_MessageTimestamp, .mx_ReadReceiptGroup),
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile:is(:hover, :focus-within) :is(.mx_MessageTimestamp, .mx_ReadReceiptGroup) {
+  opacity: 1;
+}
+/* hover wash off: quiet uses weight/ink, not fills */
+html[data-tl-theme="paper-white-quiet"] .mx_EventTile:hover [class*="_line_"],
+html[data-tl-theme="paper-black-quiet"] .mx_EventTile:hover [class*="_line_"],
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile:hover [class*="_line_"],
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile:hover [class*="_line_"] {
+  background: transparent;
+}
+/* iA focus mode: older tiles recede to the muted ink (still ≥4.5:1); the newest
+   four (enhancer: data-tl-recent), hovered and focused tiles stay at full ink */
+html[data-tl-theme="paper-white-quiet"] .mx_RoomView_MessageList > li.mx_EventTile:not([data-tl-recent]):not(:hover):not(:focus-within),
+html[data-tl-theme="paper-black-quiet"] .mx_RoomView_MessageList > li.mx_EventTile:not([data-tl-recent]):not(:hover):not(:focus-within) {
+  --cpd-color-text-primary: var(--p-muted);
+  --p-ink: var(--p-muted);
+  color: var(--p-muted);
+  transition: color 200ms ease;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_RoomView_MessageList > li.mx_EventTile:not([data-tl-recent]):not(:hover):not(:focus-within) :is(img, video, .mx_MImageBody),
+html[data-tl-theme="paper-black-quiet"] .mx_RoomView_MessageList > li.mx_EventTile:not([data-tl-recent]):not(:hover):not(:focus-within) :is(img, video, .mx_MImageBody) {
+  opacity: .55;
+}
+/* composer: caret only until focused */
+html[data-tl-theme="paper-white-quiet"] .mx_MessageComposer_actions,
+html[data-tl-theme="paper-black-quiet"] .mx_MessageComposer_actions,
+html[data-tl-theme="paper-white-invisible"] .mx_MessageComposer_actions,
+html[data-tl-theme="paper-black-invisible"] .mx_MessageComposer_actions,
+html[data-tl-theme="paper-white-quiet"] .mx_MessageComposer_e2eIconWrapper,
+html[data-tl-theme="paper-black-quiet"] .mx_MessageComposer_e2eIconWrapper,
+html[data-tl-theme="paper-white-invisible"] .mx_MessageComposer_e2eIconWrapper,
+html[data-tl-theme="paper-black-invisible"] .mx_MessageComposer_e2eIconWrapper {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+html[data-tl-family="paper"] .mx_MessageComposer:hover :is(.mx_MessageComposer_actions, .mx_MessageComposer_e2eIconWrapper),
+html[data-tl-family="paper"] .mx_MessageComposer :is(.mx_MessageComposer_actions, .mx_MessageComposer_e2eIconWrapper):focus-within,
+html[data-tl-family="paper"] .mx_MessageComposer:has(.mx_BasicMessageComposer_input:not(.mx_BasicMessageComposer_inputEmpty)) :is(.mx_MessageComposer_actions, .mx_MessageComposer_e2eIconWrapper) {
+  opacity: 1;
+}
+/* room list: icons only with their row */
+html[data-tl-theme="paper-white-quiet"] .mx_RoomListPanel header button,
+html[data-tl-theme="paper-black-quiet"] .mx_RoomListPanel header button,
+html[data-tl-theme="paper-white-invisible"] .mx_RoomListPanel header button,
+html[data-tl-theme="paper-black-invisible"] .mx_RoomListPanel header button {
+  opacity: 0;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_RoomListPanel header:is(:hover, :focus-within) button,
+html[data-tl-theme="paper-black-quiet"] .mx_RoomListPanel header:is(:hover, :focus-within) button,
+html[data-tl-theme="paper-white-invisible"] .mx_RoomListPanel header:is(:hover, :focus-within) button,
+html[data-tl-theme="paper-black-invisible"] .mx_RoomListPanel header:is(:hover, :focus-within) button {
+  opacity: 1;
+}
+/* dialogs and menus lose most of their edge */
+html[data-tl-theme="paper-white-quiet"] .mx_Dialog,
+html[data-tl-theme="paper-black-quiet"] .mx_Dialog {
+  border-color: color-mix(in srgb, var(--p-ink) 12%, var(--p-paper));
+  border-radius: 0;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_EventTile_body pre,
+html[data-tl-theme="paper-black-quiet"] .mx_EventTile_body pre,
+html[data-tl-theme="paper-white-quiet"] .mx_EventTile_pre_container,
+html[data-tl-theme="paper-black-quiet"] .mx_EventTile_pre_container {
+  background: transparent !important;
+  border-inline-start: 1px solid var(--p-line);
+  border-radius: 0;
+}
+/* inputs: no border at rest */
+html[data-tl-theme="paper-white-quiet"] .mx_Field,
+html[data-tl-theme="paper-black-quiet"] .mx_Field {
+  border-bottom-color: transparent;
+}
+html[data-tl-theme="paper-white-quiet"] .mx_Field:hover,
+html[data-tl-theme="paper-black-quiet"] .mx_Field:hover {
+  border-bottom-color: var(--p-muted);
+}
+/* scrollbars only on hover */
+html[data-tl-theme="paper-white-quiet"] *,
+html[data-tl-theme="paper-black-quiet"] * {
+  scrollbar-color: transparent transparent;
+}
+html[data-tl-theme="paper-white-quiet"] :hover,
+html[data-tl-theme="paper-black-quiet"] :hover {
+  scrollbar-color: var(--p-line) transparent;
+}
+/* badges: unread only by weight/glyph, mentions keep '@' */
+html[data-tl-theme="paper-white-quiet"] [class*="_notificationBadge_"]:not([class*="_highlight_"]) [class*="_count_"],
+html[data-tl-theme="paper-black-quiet"] [class*="_notificationBadge_"]:not([class*="_highlight_"]) [class*="_count_"] {
+  opacity: 0;
+}
+html[data-tl-theme="paper-white-quiet"] [class*="_notificationBadge_"]:not([class*="_highlight_"])::after,
+html[data-tl-theme="paper-black-quiet"] [class*="_notificationBadge_"]:not([class*="_highlight_"])::after {
+  content: "•";
+  position: absolute;
+  color: var(--p-ink);
+}
+
+/* ==========================================================================
+   L5 INVISIBLE only
+   ========================================================================== */
+/* off-canvas navigation: space rail + room list slide out; revealed by the
+   8px edge strip / Alt+Shift+P (enhancer → html[data-tl-reveal]) or keyboard focus */
+html[data-tl-theme="paper-white-invisible"] .mx_MatrixChat > [data-group],
+html[data-tl-theme="paper-black-invisible"] .mx_MatrixChat > [data-group] {
+  position: relative;
+}
+html[data-tl-theme="paper-white-invisible"] .mx_MatrixChat > [data-group] > .mx_SpacePanel,
+html[data-tl-theme="paper-black-invisible"] .mx_MatrixChat > [data-group] > .mx_SpacePanel,
+html[data-tl-theme="paper-white-invisible"] .mx_MatrixChat > [data-group] > #left-panel,
+html[data-tl-theme="paper-black-invisible"] .mx_MatrixChat > [data-group] > #left-panel {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  z-index: 20;
+  transform: translateX(calc(-100% - 400px));
+  background: var(--p-paper);
+  border: 0;
+}
+html[data-tl-theme="paper-white-invisible"] .mx_MatrixChat > [data-group] > #left-panel,
+html[data-tl-theme="paper-black-invisible"] .mx_MatrixChat > [data-group] > #left-panel {
+  width: 320px;
+  inset-inline-start: 68px;
+  z-index: 19;
+}
+html[data-tl-theme="paper-white-invisible"] .mx_MatrixChat > [data-group] > .mx_Separator,
+html[data-tl-theme="paper-black-invisible"] .mx_MatrixChat > [data-group] > .mx_Separator {
+  display: none;
+}
+html[data-tl-theme="paper-white-invisible"][data-tl-reveal] .mx_MatrixChat > [data-group] > :is(.mx_SpacePanel, #left-panel),
+html[data-tl-theme="paper-black-invisible"][data-tl-reveal] .mx_MatrixChat > [data-group] > :is(.mx_SpacePanel, #left-panel),
+html[data-tl-theme="paper-white-invisible"] .mx_MatrixChat > [data-group]:has(> .mx_SpacePanel:focus-within, > #left-panel:focus-within) > :is(.mx_SpacePanel, #left-panel),
+html[data-tl-theme="paper-black-invisible"] .mx_MatrixChat > [data-group]:has(> .mx_SpacePanel:focus-within, > #left-panel:focus-within) > :is(.mx_SpacePanel, #left-panel) {
+  transform: none;
+}
+html[data-tl-theme="paper-white-invisible"][data-tl-reveal] .mx_MatrixChat > [data-group] > #left-panel,
+html[data-tl-theme="paper-black-invisible"][data-tl-reveal] .mx_MatrixChat > [data-group] > #left-panel,
+html[data-tl-theme="paper-white-invisible"] .mx_MatrixChat > [data-group]:has(> .mx_SpacePanel:focus-within, > #left-panel:focus-within) > #left-panel,
+html[data-tl-theme="paper-black-invisible"] .mx_MatrixChat > [data-group]:has(> .mx_SpacePanel:focus-within, > #left-panel:focus-within) > #left-panel {
+  box-shadow: 1px 0 0 var(--p-line), 24px 0 48px color-mix(in srgb, var(--p-paper) 90%, transparent);
+}
+/* header: muted small-caps name only */
+html[data-tl-theme="paper-white-invisible"] .mx_RoomHeader .mx_RoomHeader_heading,
+html[data-tl-theme="paper-black-invisible"] .mx_RoomHeader .mx_RoomHeader_heading {
+  font-size: 15px;
+  font-weight: 400;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+  color: var(--p-muted);
+}
+html[data-tl-theme="paper-white-invisible"] .mx_RoomHeader,
+html[data-tl-theme="paper-black-invisible"] .mx_RoomHeader {
+  justify-content: center;
+}
+/* timeline: names muted, no tile washes, no separators */
+html[data-tl-theme="paper-white-invisible"] .mx_DisambiguatedProfile,
+html[data-tl-theme="paper-black-invisible"] .mx_DisambiguatedProfile,
+html[data-tl-theme="paper-white-invisible"] [class*="_disambiguatedProfile_"],
+html[data-tl-theme="paper-black-invisible"] [class*="_disambiguatedProfile_"] {
+  color: var(--p-muted);
+  font-weight: 400;
+}
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile[class*="_stateHighlighted_"] [class*="_line_"],
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile[class*="_stateHighlighted_"] [class*="_line_"] {
+  background: transparent;
+  box-shadow: none;
+  font-weight: 700;
+}
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile_body pre,
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile_body pre,
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile_pre_container,
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile_pre_container,
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile_body code,
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile_body code {
+  background: transparent !important;
+}
+html[data-tl-theme="paper-white-invisible"] pre code .hljs-string,
+html[data-tl-theme="paper-black-invisible"] pre code .hljs-string,
+html[data-tl-theme="paper-white-invisible"] pre code .hljs-comment,
+html[data-tl-theme="paper-black-invisible"] pre code .hljs-comment {
+  color: var(--p-ink);
+}
+/* links: ink + underline (no accent colour) */
+html[data-tl-theme="paper-white-invisible"] .mx_EventTile_body a,
+html[data-tl-theme="paper-black-invisible"] .mx_EventTile_body a {
+  color: var(--p-ink);
+}
+/* icons invisible at rest; hit targets unchanged */
+html[data-tl-theme="paper-white-invisible"] :is(.mx_RoomView, .mx_RightPanel) :is(button, [role="button"]):not(:hover):not(:focus-visible):not(.tl-ui):not(.tl-ui *) > svg,
+html[data-tl-theme="paper-black-invisible"] :is(.mx_RoomView, .mx_RightPanel) :is(button, [role="button"]):not(:hover):not(:focus-visible):not(.tl-ui):not(.tl-ui *) > svg,
+html[data-tl-theme="paper-white-invisible"] :is(.mx_RoomView, .mx_RightPanel) :is(button, [role="button"]):not(:hover):not(:focus-visible):not(.tl-ui):not(.tl-ui *) [class*="_indicator-icon_"],
+html[data-tl-theme="paper-black-invisible"] :is(.mx_RoomView, .mx_RightPanel) :is(button, [role="button"]):not(:hover):not(:focus-visible):not(.tl-ui):not(.tl-ui *) [class*="_indicator-icon_"] {
+  opacity: 0.08;
+}
+/* chrome at ~3%: buttons, dialogs, menus, inputs */
+html[data-tl-theme="paper-white-invisible"] .mx_Dialog,
+html[data-tl-theme="paper-black-invisible"] .mx_Dialog,
+html[data-tl-theme="paper-white-invisible"] .mx_ContextualMenu,
+html[data-tl-theme="paper-black-invisible"] .mx_ContextualMenu,
+html[data-tl-theme="paper-white-invisible"] [role="menu"],
+html[data-tl-theme="paper-black-invisible"] [role="menu"] {
+  border-color: var(--p-line);
+  border-radius: 0;
+}
+html[data-tl-theme="paper-white-invisible"] .mx_Dialog_background,
+html[data-tl-theme="paper-black-invisible"] .mx_Dialog_background {
+  opacity: 0.92 !important;
+}
+html[data-tl-theme="paper-white-invisible"] .mx_Dialog:has(.tl-ui),
+html[data-tl-theme="paper-black-invisible"] .mx_Dialog:has(.tl-ui) {
+  border-color: var(--p-muted);
+}
+html[data-tl-theme="paper-white-invisible"] [class*="_button_"][data-kind]:not(:hover):not(:focus-visible):not(.tl-ui *),
+html[data-tl-theme="paper-black-invisible"] [class*="_button_"][data-kind]:not(:hover):not(:focus-visible):not(.tl-ui *),
+html[data-tl-theme="paper-white-invisible"] .mx_AccessibleButton_hasKind:not(:hover):not(:focus-visible):not(.tl-ui *),
+html[data-tl-theme="paper-black-invisible"] .mx_AccessibleButton_hasKind:not(:hover):not(:focus-visible):not(.tl-ui *) {
+  border-color: var(--p-line);
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--p-line);
+}
+html[data-tl-theme="paper-white-invisible"] .mx_Field,
+html[data-tl-theme="paper-black-invisible"] .mx_Field {
+  border-bottom-color: var(--p-line);
+}
+html[data-tl-theme="paper-white-invisible"] .mx_ReactionsRowButton,
+html[data-tl-theme="paper-black-invisible"] .mx_ReactionsRowButton {
+  border-color: var(--p-line);
+}
+/* badges: none; unread by weight, mentions by '@' */
+html[data-tl-theme="paper-white-invisible"] [class*="_notificationBadge_"]:not([class*="_highlight_"]),
+html[data-tl-theme="paper-black-invisible"] [class*="_notificationBadge_"]:not([class*="_highlight_"]) {
+  opacity: 0;
+}
+html[data-tl-theme="paper-white-invisible"] [class*="_notificationBadge_"][class*="_highlight_"],
+html[data-tl-theme="paper-black-invisible"] [class*="_notificationBadge_"][class*="_highlight_"] {
+  text-decoration: none;
+}
+html[data-tl-theme="paper-white-invisible"] [class*="_notificationBadge_"][class*="_highlight_"] [class*="_count_"],
+html[data-tl-theme="paper-black-invisible"] [class*="_notificationBadge_"][class*="_highlight_"] [class*="_count_"] {
+  font-size: 0;
+}
+html[data-tl-theme="paper-white-invisible"] [class*="_notificationBadge_"][class*="_highlight_"] [class*="_count_"]::before,
+html[data-tl-theme="paper-black-invisible"] [class*="_notificationBadge_"][class*="_highlight_"] [class*="_count_"]::before {
+  font-size: 14px;
+}
+/* scrollbars: none in the timeline */
+html[data-tl-theme="paper-white-invisible"] .mx_RoomView_messagePanel,
+html[data-tl-theme="paper-black-invisible"] .mx_RoomView_messagePanel {
+  scrollbar-width: none;
+}
+/* focus: ink, always, and above everything */
+html[data-tl-theme="paper-white-invisible"] :focus-visible,
+html[data-tl-theme="paper-black-invisible"] :focus-visible {
+  outline: 2px solid var(--p-ink) !important;
+  outline-offset: 3px;
+}
+
+/* ---------- Loader UI (.tl-ui) stays fully usable in every stage ---------- */
+html[data-tl-family="paper"] .tl-ui,
+html[data-tl-family="paper"] .tl-ui * {
+  opacity: 1;
+  visibility: visible;
+}
+html[data-tl-theme="paper-white-invisible"] .mx_RoomHeader > .tl-ui,
+html[data-tl-theme="paper-black-invisible"] .mx_RoomHeader > .tl-ui {
+  opacity: 0.5;
+}
+
+/* ---------- Accessibility fallbacks for the quiet / invisible stages ---------- */
+@media (hover: none) {
+  html[data-tl-family="paper"] .mx_SpacePanel,
+  html[data-tl-family="paper"] .mx_LeftPanel,
+  html[data-tl-family="paper"] .mx_RoomHeader > *,
+  html[data-tl-family="paper"] .mx_MessageComposer_actions,
+  html[data-tl-family="paper"] .mx_MessageComposer_e2eIconWrapper,
+  html[data-tl-family="paper"] .mx_MessageTimestamp,
+  html[data-tl-family="paper"] .mx_RoomListPanel header button {
+    opacity: 1 !important;
+  }
+}
+@media (hover: none) {
+  /* touch: no hover strip, no keyboard focus → navigation goes back into the layout */
+  html[data-tl-theme="paper-white-invisible"] .mx_MatrixChat > [data-group] > :is(.mx_SpacePanel, #left-panel),
+  html[data-tl-theme="paper-black-invisible"] .mx_MatrixChat > [data-group] > :is(.mx_SpacePanel, #left-panel) {
+    position: relative;
+    inset-inline-start: auto;
+    transform: none;
+  }
+}
+@media (prefers-contrast: more) {
+  html[data-tl-family="paper"] {
+    --p-muted: var(--p-muted-hc);
+    --p-line: var(--p-muted-hc);
+  }
+  html[data-tl-family="paper"] .mx_SpacePanel,
+  html[data-tl-family="paper"] .mx_LeftPanel,
+  html[data-tl-family="paper"] .mx_RoomHeader > *,
+  html[data-tl-family="paper"] .mx_MessageComposer_actions,
+  html[data-tl-family="paper"] .mx_MessageTimestamp,
+  html[data-tl-family="paper"] .mx_RoomView_MessageList > li.mx_EventTile {
+    opacity: 1 !important;
+  }
+}
+@media (forced-colors: active) {
+  html[data-tl-family="paper"] * {
+    background-image: none !important;
+  }
+}
+
+/* ---------- Daylight: slow paper cross-fade between phases ---------- */
+html[data-tl-theme="paper-daylight"][data-tl-phase-fading] body,
+html[data-tl-theme="paper-daylight"][data-tl-phase-fading] .mx_MatrixChat * {
+  transition: background-color 2s ease, color 2s ease, border-color 2s ease;
+}
+
+/* Home page tiles (send DM / explore / create): Element paints white text on the accent */
+html[data-tl-family="paper"] .mx_HomePage_default_buttons .mx_AccessibleButton {
+  background-color: transparent;
+  color: var(--p-ink);
+  border: 1px solid var(--p-line);
+  border-radius: 2px;
+}
+html[data-tl-family="paper"] .mx_HomePage_default_buttons .mx_AccessibleButton::before {
+  background-color: var(--p-ink);
+}
+html[data-tl-family="paper"] .mx_HomePage_default_buttons .mx_AccessibleButton:hover {
+  background-color: var(--p-wash);
+}
+
+/* ---- Other datanauten modules (production) -----------------------------------------------------------------
+   teams-welcome guide, speed-start card and the full-screen overlays (room-checker, keyboard-shortcuts,
+   space-room-map, people-map) were floating cards with 16px radius and a heavy drop shadow — the one glossy
+   object on the page. Here they are sheets of the same paper with a hairline edge, like dialogs. */
+html[data-tl-family="paper"] :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+  background: var(--p-paper) !important;
+  color: var(--p-ink);
+  border: 1px solid color-mix(in srgb, var(--p-ink) 20%, var(--p-paper)) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+html[data-tl-family="paper"] :is(.ks-backdrop, .srm-backdrop, .pm-backdrop, .rc-backdrop) {
+  background: color-mix(in srgb, var(--p-paper) 85%, transparent) !important;
+}
+html[data-tl-family="paper"] :is(.twl-success, .twl-glossary, .twl-card, .twl-addon) { border-radius: 2px !important; }
+/* Room header with ~8 extra module buttons on production: last buttons clipped in a narrow room view.
+   Hide the face pile and tighten the row (header = query container). */
+html[data-tl-family="paper"] .mx_RoomHeader { container: tl-room-header / inline-size; }
+@container tl-room-header (max-width: 620px) {
+  html[data-tl-family="paper"] .mx_RoomHeader .mx_FacePile { display: none !important; }
+  html[data-tl-family="paper"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -4px !important; }
+}
+
+/* ---- L5 invisible: a discoverable way back to the navigation ----------------------------------------------
+   The space rail + room list (and with them the user menu → settings) live off-canvas; the only mouse route was
+   an invisible 8px edge strip. Draw a hairline on the left edge and a small paper tab "›" in the middle; hovering
+   or clicking it reveals the navigation (enhancer), keyboard: Tab into it or Alt+Shift+P. Hidden while revealed. */
+html[data-tl-theme="paper-white-invisible"] #tl-overlay-root .tl-paper-strip::before,
+html[data-tl-theme="paper-black-invisible"] #tl-overlay-root .tl-paper-strip::before {
+  content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; width: 2px;
+  background: color-mix(in srgb, var(--p-ink) 14%, transparent);
+}
+html[data-tl-theme="paper-white-invisible"] #tl-overlay-root .tl-paper-strip::after,
+html[data-tl-theme="paper-black-invisible"] #tl-overlay-root .tl-paper-strip::after {
+  content: "›"; position: absolute; inset-inline-start: 0; top: 50%; translate: 0 -50%;
+  width: 16px; height: 48px; display: grid; place-items: center; cursor: pointer;
+  font: 400 18px/1 var(--cpd-font-family-sans); color: var(--p-muted);
+  background: var(--p-paper); border: 1px solid color-mix(in srgb, var(--p-ink) 18%, var(--p-paper)); border-inline-start: 0;
+  border-radius: 0 6px 6px 0;
+}
+html[data-tl-theme="paper-white-invisible"] #tl-overlay-root .tl-paper-strip:hover::after,
+html[data-tl-theme="paper-black-invisible"] #tl-overlay-root .tl-paper-strip:hover::after { color: var(--p-ink); }
+html[data-tl-theme="paper-white-invisible"][data-tl-reveal] #tl-overlay-root .tl-paper-strip,
+html[data-tl-theme="paper-black-invisible"][data-tl-reveal] #tl-overlay-root .tl-paper-strip { display: none; }
+
+/* tooltips: floating-ui places them at left 0 and shifts them 5 px in from the edge, so a tooltip as wide as the
+   viewport (this family's larger tooltip font, e.g. the composer's "not end-to-end encrypted") overflowed the page
+   by 5 px at 320 px (VP-04). Cap the width to the viewport minus that padding. */
+html[data-tl-family="paper"] [class*="_tooltip_"] { box-sizing: border-box; max-width: min(580px, calc(100vw - 10px)) !important; }

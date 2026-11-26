@@ -1,0 +1,253 @@
+{
+ "run": "vp-dev-mob04-check",
+ "base": "http://localhost:5400",
+ "started": "2026-11-15T14:17:01.519Z",
+ "mobileDist": "a854631618c4",
+ "mode": "devices",
+ "mobileModule": true,
+ "themes": 1,
+ "finished": "2026-11-15T14:17:23.253Z",
+ "results": [
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"teams-2026-light\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "tl=teams-2026-light mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-01",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "{\"mobile\":\"narrow coarse\",\"pointer\":\"coarse\",\"orient\":\"portrait\",\"compact\":true,\"tl\":\"teams-2026-light\",\"styles\":1}",
+   "shot": null
+  },
+  {
+   "case": "MOD-06",
+   "prio": "P0",
+   "area": "modules",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "tl=teams-2026-light mt=narrow coarse",
+   "shot": null
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "room 390px, back → 11 rooms",
+   "shot": "recordings/tests/MOB-02/vp-dev-mob04-check/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "MOB-02",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "room 320px, back → 6 rooms",
+   "shot": "recordings/tests/MOB-02/vp-dev-mob04-check/teams-2026-light--se.png"
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "5/9 targets < 44px: Open room settings 32x32, Video call 38x44, Threads 38x44, Room info 38x44, More options 42x46",
+   "shot": "recordings/tests/MOB-08/vp-dev-mob04-check/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-08",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "5/9 targets < 44px: Open room settings 32x32, Video call 38x44, Threads 38x44, Room info 38x44, More options 42x46",
+   "shot": "recordings/tests/MOB-08/vp-dev-mob04-check/teams-2026-light--se.png"
+  },
+  {
+   "case": "MOB-10",
+   "prio": "P2",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "composer 16px",
+   "shot": null
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "320x228: composer 172-218 inVp true, 1 bodies",
+   "shot": "recordings/tests/MOB-03/vp-dev-mob04-check/teams-2026-light--se.png"
+  },
+  {
+   "case": "MOB-03",
+   "prio": "P0",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "390x504: composer 458-484 inVp true, 4 bodies",
+   "shot": "recordings/tests/MOB-03/vp-dev-mob04-check/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-dev-mob04-check/teams-2026-light--se-rotated.png"
+  },
+  {
+   "case": "VP-13",
+   "prio": "P2",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": "recordings/tests/VP-13/vp-dev-mob04-check/teams-2026-light--iphone15-rotated.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "panel 518/320px (layout innerWidth 518), close/back false",
+   "shot": "recordings/tests/MOB-04/vp-dev-mob04-check/teams-2026-light--se.png"
+  },
+  {
+   "case": "MOB-04",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "fail",
+   "detail": "panel 796/390px (layout innerWidth 796), close/back false",
+   "shot": "recordings/tests/MOB-04/vp-dev-mob04-check/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "304px",
+   "shot": null
+  },
+  {
+   "case": "MOB-06",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "374px",
+   "shot": null
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "fail",
+   "detail": "inViewport false, tab panel 296px",
+   "shot": "recordings/tests/MOB-05/vp-dev-mob04-check/teams-2026-light--se.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-dev-mob04-check/teams-2026-light--se.png"
+  },
+  {
+   "case": "MOB-05",
+   "prio": "P1",
+   "area": "mobile",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "panel 366px",
+   "shot": "recordings/tests/MOB-05/vp-dev-mob04-check/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "VP-14",
+   "prio": "P3",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "screenshot for visual review",
+   "shot": "recordings/tests/VP-14/vp-dev-mob04-check/teams-2026-light--iphone15.png"
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "320x568@2t se",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  },
+  {
+   "case": "VP-09",
+   "prio": "P0",
+   "area": "viewport",
+   "theme": "teams-2026-light",
+   "viewport": "390x844@3t iphone15",
+   "status": "pass",
+   "detail": "",
+   "shot": null
+  }
+ ],
+ "supersedes": "vp-devices-dev-mm"
+}

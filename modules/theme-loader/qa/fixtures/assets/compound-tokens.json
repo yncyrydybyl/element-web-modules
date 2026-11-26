@@ -1,0 +1,7 @@
+{
+  "--cpd-color-bg-canvas-default": "#ffffff",
+  "--cpd-color-text-primary": "#1b1d22",
+  "--cpd-color-text-action-accent": "#007a61",
+  "--cpd-color-bg-action-primary-rest": "#1b1d22",
+  "--cpd-font-family-sans": "Inter, sans-serif"
+}

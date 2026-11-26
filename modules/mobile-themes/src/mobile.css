@@ -1,0 +1,765 @@
+/*
+ * mobile-themes: the one scoped stylesheet (injected as <style id="mt-mobile-style">).
+ *
+ * Rules:
+ *  - every selector starts with html[data-mt-mobile] / [data-mt-compact] / [data-mt-view] (all absent on desktop, so
+ *    nothing here can affect desktop)
+ *  - unlayered: beats Element's @layer CSS without !important (research/01 §0). !important is used where we override
+ *    inline styles (react-resizable-panels, re-resizable) or must win against theme CSS (also unlayered) for the
+ *    pane layout; `@layer mt-important` (declared before Element's CSS by index.ts) only where Element itself uses a
+ *    layered !important
+ *  - hashed shared-components classes only via [class*="_localName_"] substrings, never the hash
+ *  - each block names its issue id (MOB-xx, docs/MOBILE-ISSUES.md)
+ *
+ * Attributes: data-mt-mobile (narrow|coarse|forced), data-mt-compact (phone-sized), data-mt-pointer,
+ * data-mt-orientation, data-mt-view (list|room|panel, shell.ts), data-mt-keyboard, data-mt-header-more.
+ * Shell selectors are written html[data-mt-compact][data-mt-view…] on purpose: the extra attribute raises the
+ * specificity above theme CSS (html[data-tl-theme] …, also unlayered, sometimes !important), so the pane layout and
+ * the header stay usable under every theme.
+ * Variables: --mt-vv-h / --mt-vv-top (visual viewport, keyboard.ts).
+ */
+
+html[data-mt-mobile] {
+    --mt-active: 1;
+    --mt-sa-t: env(safe-area-inset-top, 0px);
+    --mt-sa-r: env(safe-area-inset-right, 0px);
+    --mt-sa-b: env(safe-area-inset-bottom, 0px);
+    --mt-sa-l: env(safe-area-inset-left, 0px);
+    --mt-app-h: var(--mt-vv-h, 100dvh);
+    --mt-target: 44px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+html[data-mt-keyboard] {
+    --mt-sa-b: 0px;
+}
+
+/* ===================================================================== MOB-28 / MOB-18 app box = visual viewport */
+/* #matrixchat follows the visual viewport (keyboard.ts) and becomes the containing block for the fixed panes below
+   (contain: layout), so the panes shrink with the keyboard too. */
+html[data-mt-mobile] #matrixchat {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    top: var(--mt-vv-top, 0px);
+    height: var(--mt-app-h) !important;
+    overflow: hidden !important;
+    contain: layout;
+}
+html[data-mt-mobile] .mx_MatrixChat_wrapper,
+html[data-mt-mobile] .mx_MatrixChat {
+    height: 100%;
+}
+
+/* ===================================================================== MOB-10/09/11/12/27 single-pane shell */
+/* The three panes are stacked; only visibility changes, so the room keeps its size and scroll position. */
+html[data-mt-compact][data-mt-view] .mx_MatrixChat > [data-group] {
+    position: relative !important; /* containing block of the stacked panes: follows whatever offsets a theme adds */
+    padding-top: var(--mt-sa-t);
+    padding-left: var(--mt-sa-l);
+    padding-right: var(--mt-sa-r);
+    box-sizing: border-box;
+}
+html[data-mt-compact][data-mt-view] .mx_MatrixChat > [data-group] > .mx_Separator {
+    display: none !important; /* MOB-27 */
+}
+/* list pane: space panel + room list in normal flow, full width */
+html[data-mt-compact][data-mt-view] #left-panel {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+}
+html[data-mt-compact][data-mt-view] #left-panel > .mx_LeftPanel_panel,
+html[data-mt-compact][data-mt-view] #left-panel .mx_LeftPanel_outerWrapper,
+html[data-mt-compact][data-mt-view] #left-panel .mx_LeftPanel_wrapper,
+html[data-mt-compact][data-mt-view] #left-panel .mx_LeftPanel {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+}
+/* room pane: over the list, always full size (absolute in the group, not fixed: themes such as win311 offset the
+   app below their own title bars, and the pane must follow) */
+html[data-mt-compact][data-mt-view] .mx_MatrixChat > [data-group] > [data-panel]:not(#left-panel) {
+    position: absolute !important;
+    top: var(--mt-sa-t);
+    left: var(--mt-sa-l);
+    right: var(--mt-sa-r);
+    bottom: 0;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    flex: none !important;
+    z-index: 20;
+    background-color: var(--cpd-color-bg-canvas-default);
+}
+html[data-mt-compact][data-mt-view="list"] .mx_MatrixChat > [data-group] > [data-panel]:not(#left-panel) {
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+html[data-mt-compact][data-mt-view="list"] .mx_MatrixChat > [data-group] > [data-panel]:not(#left-panel) * {
+    visibility: hidden !important;
+}
+html[data-mt-compact][data-mt-view="room"] .mx_MatrixChat > [data-group] > .mx_SpacePanel,
+html[data-mt-compact][data-mt-view="room"] #left-panel,
+html[data-mt-compact][data-mt-view="panel"] .mx_MatrixChat > [data-group] > .mx_SpacePanel,
+html[data-mt-compact][data-mt-view="panel"] #left-panel {
+    visibility: hidden !important;
+}
+/* panel pane (MOB-11): the right panel leaves the split and covers the room */
+html[data-mt-compact][data-mt-view] .mx_RightPanel_ResizeWrapper {
+    position: absolute !important; /* in the room pane (positioned), so it covers exactly the room */
+    inset: 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    z-index: 30;
+    background-color: var(--cpd-color-bg-canvas-default);
+}
+html[data-mt-compact][data-mt-view] .mx_RightPanel_ResizeWrapper .mx_RightPanel {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 100%;
+    border-left: 0;
+}
+html[data-mt-compact][data-mt-view] .mx_RightPanel_ResizeWrapper [class*="mx_ResizeHandle"] {
+    display: none !important; /* MOB-27 */
+}
+html[data-mt-compact][data-mt-view="list"] .mx_RightPanel_ResizeWrapper {
+    visibility: hidden !important;
+}
+html[data-mt-compact][data-mt-view] .mx_MainSplit_timeline {
+    width: auto !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+}
+html[data-mt-compact][data-mt-view] .mx_RoomView_MessageList,
+html[data-mt-compact][data-mt-view] .mx_MessageComposer {
+    padding-bottom: var(--mt-sa-b);
+}
+
+/* ===================================================================== MOB-13 room header */
+/* Back button (module API header button, shell.ts) first; Element's call/threads/info stay; module buttons go into
+   a "⋯" row. */
+/* MOB-23: 44 px targets in the phone header and composer. In the mt-important layer because several themes size
+   header buttons with (unlayered) !important (win311 caption buttons 22x18, lcars pills 26x30); layered !important
+   beats them. Visual size of icons is unchanged, only the hit box grows. */
+@layer mt-important {
+    html[data-mt-compact][data-mt-view] .mx_RoomHeader > button:not(.mx_RoomHeader_infoWrapper):not(.mx_BaseAvatar),
+    html[data-mt-compact][data-mt-view] .mx_RoomHeader > .mx_AccessibleButton,
+    html[data-mt-compact][data-mt-view] .mx_RoomHeader .mt-ui {
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+    html[data-mt-compact][data-mt-view] .mx_RoomHeader .mt-ui {
+        width: 44px !important;
+        height: 44px !important;
+    }
+    html[data-mt-mobile][data-mt-pointer="coarse"] .mx_MessageComposer button,
+    html[data-mt-mobile][data-mt-pointer="coarse"] .mx_MessageComposer [role="button"],
+    html[data-mt-compact] .mx_MessageComposer button,
+    html[data-mt-compact] .mx_MessageComposer [role="button"] {
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+    /* room avatar (opens room settings): 36 px picture inside a 44 px box; some themes size it with !important */
+    html[data-mt-compact][data-mt-view] .mx_RoomHeader > .mx_BaseAvatar {
+        --cpd-avatar-size: 36px !important;
+        width: 36px !important;
+        height: 36px !important;
+        box-sizing: content-box !important;
+        border: 4px solid transparent !important;
+        /* back in the flow: a theme that turns the avatar into an invisible absolute hotspot (win311's control-menu
+           box) would otherwise lie on top of the back button */
+        position: static !important;
+        opacity: 1 !important;
+    }
+}
+
+/* desktop (and tablets): our header buttons never show. In the mt-important layer (declared before Element's CSS)
+   so that no theme rule, even an unlayered !important one such as `.mx_RoomHeader > button { display: flex }`, can
+   reveal them */
+@layer mt-important {
+    html:not([data-mt-compact][data-mt-view]) .mt-ui {
+        display: none !important;
+    }
+}
+html[data-mt-compact][data-mt-view] .mx_RoomHeader {
+    padding-inline: 4px 8px !important;
+    gap: 2px !important;
+    flex-wrap: nowrap !important; /* wraps only for the "⋯" row, see below */
+    height: auto !important;
+    min-height: 56px !important; /* !important: some themes (win311) shrink the header to a title bar */
+    max-height: none !important;
+    overflow: visible !important;
+    row-gap: 0 !important;
+    flex-shrink: 0 !important;
+    transition: none !important;
+}
+html[data-mt-compact][data-mt-view][data-mt-pointer="coarse"] .mx_RoomHeader:hover {
+    background-color: var(--cpd-color-bg-canvas-default);
+}
+html[data-mt-compact][data-mt-view] .mx_RoomHeader .mt-ui {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: var(--mt-target) !important;
+    height: var(--mt-target) !important;
+    min-width: var(--mt-target);
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--cpd-color-icon-secondary, currentColor);
+    cursor: pointer;
+}
+html[data-mt-compact][data-mt-view] .mx_RoomHeader .mt-ui:focus-visible {
+    outline: 2px solid var(--cpd-color-border-focused, #0467dd);
+    outline-offset: -2px;
+}
+html[data-mt-compact][data-mt-view] .mx_RoomHeader .mt-back {
+    order: -10;
+    color: var(--cpd-color-icon-primary, currentColor);
+}
+html[data-mt-compact][data-mt-view] .mx_RoomHeader > .mx_BaseAvatar {
+    order: -9;
+    --cpd-avatar-size: 36px !important;
+    box-sizing: content-box !important;
+    border: 4px solid transparent !important; /* 44 px target, 36 px avatar */
+    background-clip: content-box;
+    flex: 0 0 auto;
+}
+html[data-mt-compact][data-mt-view] .mx_RoomHeader > .mx_RoomHeader_infoWrapper {
+    order: -8;
+    flex: 1 1 0 !important;
+    min-width: 4em !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: var(--mt-target);
+    align-self: center;
+}
+html[data-mt-compact][data-mt-view] .mx_RoomHeader .mx_RoomHeader_heading,
+html[data-mt-compact][data-mt-view] .mx_RoomHeader .mx_RoomHeader_truncated {
+    min-width: 0 !important;
+    width: auto !important;
+}
+/* Element's own icon buttons (compound IconButton) */
+html[data-mt-compact][data-mt-view] .mx_RoomHeader > [class*="_icon-button_"] {
+    order: 1;
+    width: 44px !important;
+    height: var(--mt-target) !important;
+    flex: 0 0 auto;
+}
+/* The last icon button is "Room info", which the room name (infoWrapper) also opens. On a phone the header holds
+   back, avatar, video, voice, threads, info and "⋯": without dropping the duplicate the name shrinks to a letter. */
+html[data-mt-compact][data-mt-view] .mx_RoomHeader > [class*="_icon-button_"]:not(:has(~ [class*="_icon-button_"])) {
+    display: none !important;
+}
+html[data-mt-compact][data-mt-view] .mx_RoomHeader .mt-more {
+    order: 2;
+}
+/* module header buttons (any plain button that isn't Element's or ours): hidden until "⋯" */
+html[data-mt-compact][data-mt-view] .mx_RoomHeader > button:not([class*="_icon-button_"]):not(.mx_BaseAvatar):not(.mx_RoomHeader_infoWrapper):not(.mt-ui) {
+    display: none !important;
+}
+html[data-mt-compact][data-mt-view] .mx_RoomHeader:not(:has(> button:not([class*="_icon-button_"]):not(.mx_BaseAvatar):not(.mx_RoomHeader_infoWrapper):not(.mt-ui))) .mt-more {
+    display: none;
+}
+html[data-mt-compact][data-mt-view][data-mt-header-more] .mx_RoomHeader {
+    flex-wrap: wrap !important;
+}
+html[data-mt-compact][data-mt-view][data-mt-header-more] .mx_RoomHeader::after {
+    content: "";
+    order: 3;
+    flex-basis: 100%;
+    height: 0;
+}
+html[data-mt-compact][data-mt-view][data-mt-header-more] .mx_RoomHeader > button:not([class*="_icon-button_"]):not(.mx_BaseAvatar):not(.mx_RoomHeader_infoWrapper):not(.mt-ui) {
+    display: inline-flex !important;
+    order: 4;
+    min-width: var(--mt-target);
+    min-height: var(--mt-target);
+    align-items: center;
+    justify-content: center;
+}
+html[data-mt-compact][data-mt-view][data-mt-header-more] .mx_RoomHeader .mt-more {
+    background: var(--cpd-color-bg-subtle-secondary, rgba(127, 127, 127, 0.15));
+}
+/* facepile: members are one tap away in room info */
+html[data-mt-compact][data-mt-view] .mx_RoomHeader > div:has(> .mx_FacePile),
+html[data-mt-compact][data-mt-view] .mx_RoomHeader > .mx_FacePile {
+    display: none !important;
+}
+
+/* right panel card header (MOB-23): bigger back/close */
+html[data-mt-compact][data-mt-view] .mx_BaseCard_header {
+    padding-inline: 4px 8px !important;
+    min-height: 56px;
+}
+html[data-mt-compact][data-mt-view] .mx_BaseCard_header > [class*="_icon-button_"] {
+    --cpd-icon-button-size: var(--mt-target) !important;
+    width: var(--mt-target) !important;
+    height: var(--mt-target) !important;
+}
+
+/* ===================================================================== MOB-14 timeline */
+html[data-mt-compact] .mx_RoomView_MessageList {
+    padding-inline: 0 !important;
+}
+html[data-mt-compact] .mx_EventTile pre,
+html[data-mt-compact] [class*="_eventTile_"] pre {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+html[data-mt-compact] .mx_EventTile_body,
+html[data-mt-compact] .mx_EventTile_content,
+html[data-mt-compact] .mx_EventTile_line {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+html[data-mt-compact] .mx_EventTile_body table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+/* generic notices (e.g. "encryption not enabled") use the full width instead of one word per line */
+html[data-mt-compact] .mx_EventTileBubble,
+html[data-mt-compact] [class*="_eventTileBubble_"] {
+    width: auto !important;
+    max-width: calc(100% - 16px) !important;
+    min-width: 0 !important;
+    margin-inline: 8px !important;
+    box-sizing: border-box;
+}
+html[data-mt-compact] .mx_EventTile .mx_MImageBody,
+html[data-mt-compact] .mx_EventTile .mx_MVideoBody {
+    max-width: 100%;
+}
+html[data-mt-compact] .mx_EventTile img,
+html[data-mt-compact] .mx_EventTile video {
+    max-width: 100%;
+}
+
+/* ===================================================================== MOB-21 / MOB-25 hover on touch */
+/* The hover action bar sticks after a tap on touch devices; the long-press menu (touch.ts) replaces it. Keyboard
+   focus (data-whatinput=keyboard) still shows it. */
+html[data-mt-mobile][data-mt-pointer="coarse"]:not([data-whatinput="keyboard"]) .mx_MessageActionBar {
+    display: none !important;
+}
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_EventTile,
+html[data-mt-mobile][data-mt-pointer="coarse"] [class*="_eventTile_"] {
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    --event-tile-hover-background: transparent;
+}
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_EventTile:not(.mx_EventTile_selected):not(.mx_EventTile_actionBarFocused):hover > .mx_EventTile_line,
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_EventTile:not(.mx_EventTile_selected):not(.mx_EventTile_actionBarFocused):hover::before {
+    background-color: transparent !important;
+}
+/* the add-reaction button is hover-only: always show it next to existing reactions on touch */
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_ReactionsRow,
+html[data-mt-mobile][data-mt-pointer="coarse"] [class*="_reactionsRow_"] {
+    --event-tile-add-reaction-visibility: visible;
+}
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_ReactionsRow_addReactionButton {
+    visibility: visible !important;
+}
+/* sticky hover in the room list */
+html[data-mt-mobile][data-mt-pointer="coarse"] #left-panel [class*="_roomListItem_"]:hover:not([aria-selected="true"]):not(:focus-visible) {
+    background-color: transparent;
+}
+
+/* ===================================================================== MOB-22 context menus on phones */
+/* Element positions menus at the press point; on a phone they become a bottom sheet clamped to the viewport. */
+html[data-mt-compact] .mx_ContextualMenu_wrapper:has(.mx_MessageContextMenu, .mx_IconizedContextMenu) .mx_ContextualMenu {
+    position: fixed !important;
+    left: max(8px, var(--mt-sa-l)) !important;
+    right: max(8px, var(--mt-sa-r)) !important;
+    top: auto !important;
+    bottom: calc(var(--mt-sa-b) + 8px) !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: calc(var(--mt-app-h) - 32px) !important;
+    overflow-y: auto !important;
+    border-radius: 16px !important;
+}
+html[data-mt-compact] .mx_ContextualMenu_wrapper:has(.mx_MessageContextMenu, .mx_IconizedContextMenu) .mx_ContextualMenu_chevron_left,
+html[data-mt-compact] .mx_ContextualMenu_wrapper:has(.mx_MessageContextMenu, .mx_IconizedContextMenu) .mx_ContextualMenu_chevron_right,
+html[data-mt-compact] .mx_ContextualMenu_wrapper:has(.mx_MessageContextMenu, .mx_IconizedContextMenu) .mx_ContextualMenu_chevron_top,
+html[data-mt-compact] .mx_ContextualMenu_wrapper:has(.mx_MessageContextMenu, .mx_IconizedContextMenu) .mx_ContextualMenu_chevron_bottom {
+    display: none !important;
+}
+html[data-mt-compact] .mx_ContextualMenu_wrapper:has(.mx_MessageContextMenu, .mx_IconizedContextMenu) .mx_ContextualMenu_background {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+html[data-mt-compact] .mx_IconizedContextMenu .mx_IconizedContextMenu_item,
+html[data-mt-compact] .mx_ContextualMenu [role="menuitem"],
+html[data-mt-compact] .mx_ContextualMenu [role="menuitemcheckbox"],
+html[data-mt-compact] .mx_ContextualMenu [role="menuitemradio"] {
+    min-height: var(--mt-target);
+}
+/* every other contextual menu: at least stay inside the viewport */
+html[data-mt-mobile] .mx_ContextualMenu {
+    max-width: calc(100vw - 16px);
+    max-height: calc(var(--mt-app-h) - 16px);
+    overflow-y: auto;
+}
+
+/* ===================================================================== MOB-15 / 16 / 24 dialogs */
+html[data-mt-mobile] .mx_Dialog_wrapper {
+    top: var(--mt-vv-top, 0px) !important;
+    height: var(--mt-app-h) !important;
+}
+html[data-mt-compact] .mx_Dialog {
+    max-width: calc(100vw - 16px) !important;
+    max-height: calc(var(--mt-app-h) - 16px - var(--mt-sa-t) - var(--mt-sa-b)) !important;
+    padding: 20px 16px !important;
+    box-sizing: border-box !important;
+}
+html[data-mt-compact] .mx_Dialog_wrapper.mx_CompoundDialog .mx_Dialog,
+html[data-mt-compact] .mx_Dialog_lightbox .mx_Dialog,
+html[data-mt-compact] .mx_SpotlightDialog_wrapper .mx_Dialog,
+html[data-mt-compact] .mx_Dialog_wrapper.mx_Dialog_spinner .mx_Dialog {
+    padding: 0 !important;
+}
+html[data-mt-compact] .mx_Dialog_lightbox .mx_Dialog {
+    max-width: 100vw !important;
+    max-height: var(--mt-app-h) !important;
+}
+html[data-mt-compact] .mx_Dialog > *,
+html[data-mt-compact] .mx_Dialog_fixedWidth,
+html[data-mt-compact] .mx_CreateRoomDialog.mx_Dialog_fixedWidth,
+html[data-mt-compact] .mx_SetupEncryptionBody,
+html[data-mt-compact] .mx_RoomUpgradeWarningDialog,
+html[data-mt-compact] .mx_InviteDialog_multiInviterErrorWrapper .mx_Dialog {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+}
+html[data-mt-compact] .mx_Dialog_fixedWidth,
+html[data-mt-compact] .mx_CreateRoomDialog.mx_Dialog_fixedWidth {
+    width: calc(100vw - 48px) !important;
+}
+html[data-mt-compact] .mx_Dialog .mx_Field,
+html[data-mt-compact] .mx_Dialog input,
+html[data-mt-compact] .mx_Dialog textarea {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+html[data-mt-compact] .mx_Dialog_buttons {
+    flex-wrap: wrap;
+}
+html[data-mt-compact] .mx_Dialog_cancelButton {
+    /* MOB-23 / upstream #22915: 20 px close target → 44 px hit area, same icon */
+    width: 28px !important;
+    height: 28px !important;
+    top: 10px !important;
+    right: 10px !important;
+}
+html[data-mt-compact] .mx_Dialog_cancelButton::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+}
+html[data-mt-compact] .mx_Dialog_header {
+    padding-inline-end: 40px !important;
+}
+
+/* compound's "glass" frame around dialogs adds 12 px padding on each side: thinner on phones, none for full-screen */
+html[data-mt-compact] .mx_Dialog_border {
+    padding: 4px !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+}
+html[data-mt-compact] .mx_Dialog_border:has(.mx_UserSettingsDialog, .mx_RoomSettingsDialog, .mx_SpaceSettingsDialog, .mx_SpacePreferencesDialog) {
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* settings dialogs (user / room / space settings): full screen, tabs as a horizontal scroller with labels */
+html[data-mt-compact] .mx_Dialog_wrapper:has(.mx_UserSettingsDialog, .mx_RoomSettingsDialog, .mx_SpaceSettingsDialog, .mx_SpacePreferencesDialog) {
+    align-items: flex-start !important;
+}
+html[data-mt-compact] .mx_Dialog:has(> .mx_SettingsDialog),
+html[data-mt-compact] .mx_Dialog:has(.mx_UserSettingsDialog, .mx_RoomSettingsDialog, .mx_SpaceSettingsDialog, .mx_SpacePreferencesDialog) {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+    height: calc(var(--mt-app-h) - var(--mt-sa-t)) !important;
+    max-height: none !important;
+    margin-top: var(--mt-sa-t);
+    border-radius: 0 !important;
+    padding: 12px max(12px, var(--mt-sa-r)) calc(4px + var(--mt-sa-b)) max(12px, var(--mt-sa-l)) !important;
+    display: flex !important;
+    flex-direction: column;
+}
+html[data-mt-compact] .mx_UserSettingsDialog,
+html[data-mt-compact] .mx_RoomSettingsDialog,
+html[data-mt-compact] .mx_SpaceSettingsDialog,
+html[data-mt-compact] .mx_SpacePreferencesDialog,
+html[data-mt-compact] .mx_SettingsDialog {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column;
+    min-height: 0;
+}
+html[data-mt-compact] .mx_Dialog .mx_TabbedView,
+html[data-mt-compact] .mx_Dialog .mx_TabbedView_tabsOnLeft {
+    position: relative !important;
+    inset: auto !important;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex !important;
+    flex-direction: column !important;
+    width: auto !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+html[data-mt-compact] .mx_Dialog .mx_TabbedView_tabsOnLeft .mx_TabbedView_tabLabels {
+    position: static !important;
+    width: auto !important;
+    max-width: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    gap: 4px;
+    margin: 0 0 8px !important;
+    padding: 2px 0 6px !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    flex: 0 0 auto;
+    border-bottom: 1px solid var(--cpd-color-separator-primary, rgba(127, 127, 127, 0.25));
+}
+html[data-mt-compact] .mx_Dialog .mx_TabbedView_tabsOnLeft .mx_TabbedView_tabLabels::-webkit-scrollbar {
+    display: none;
+}
+html[data-mt-compact] .mx_Dialog .mx_TabbedView_tabsOnLeft .mx_TabbedView_tabLabel {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-height: 40px;
+    padding: 0 14px !important;
+    margin: 0 !important;
+    justify-content: flex-start !important;
+    white-space: nowrap;
+    scroll-snap-align: start;
+}
+html[data-mt-compact] .mx_Dialog .mx_TabbedView_tabsOnLeft .mx_TabbedView_tabLabel svg {
+    margin-right: 6px !important;
+    width: 18px;
+    height: 18px;
+}
+html[data-mt-compact] .mx_Dialog .mx_TabbedView_tabsOnLeft .mx_TabbedView_tabLabel_text {
+    display: inline !important; /* MOB-24: labels instead of tooltip-only icons */
+}
+html[data-mt-compact] .mx_Dialog .mx_TabbedView_tabsOnLeft .mx_TabbedView_tabPanel {
+    margin: 0 !important;
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+}
+html[data-mt-compact] .mx_Dialog .mx_TabbedView_tabPanelContent {
+    min-width: 0;
+    overflow-x: hidden;
+}
+html[data-mt-compact] .mx_Dialog .mx_SettingsTab,
+html[data-mt-compact] .mx_Dialog .mx_TabbedView .mx_SettingsTab {
+    min-width: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    max-width: 100% !important;
+}
+html[data-mt-compact] .mx_Dialog .mx_SettingsTab * {
+    max-width: 100%;
+}
+html[data-mt-compact] .mx_Dialog .mx_SettingsDialog_toastContainer {
+    bottom: calc(8px + var(--mt-sa-b));
+    left: 0;
+    width: 100% !important;
+}
+/* two-column rows inside settings (profile + avatar, buttons) wrap instead of overflowing */
+html[data-mt-compact] .mx_Dialog .mx_ProfileSettings_profile,
+html[data-mt-compact] .mx_Dialog .mx_RoomProfileSettings_profile,
+html[data-mt-compact] .mx_Dialog .mx_UserProfileSettings_profile,
+html[data-mt-compact] .mx_Dialog .mx_SettingsTab_section,
+html[data-mt-compact] .mx_Dialog .mx_SettingsSubsection_content,
+html[data-mt-compact] .mx_Dialog .mx_UserProfileSettings_profile_buttons,
+html[data-mt-compact] .mx_Dialog .mx_ProfileSettings_buttons {
+    flex-wrap: wrap;
+    min-width: 0;
+}
+html[data-mt-compact] .mx_Dialog .mx_ProfileSettings_profile_controls,
+html[data-mt-compact] .mx_Dialog .mx_RoomProfileSettings_profile_controls,
+html[data-mt-compact] .mx_Dialog .mx_UserProfileSettings_profile_controls {
+    flex: 1 1 100%;
+    min-width: 0;
+    margin-inline-end: 0 !important;
+}
+/* MOB-24: tooltips never appear on a tap, but focus tooltips (first settings tab, header buttons after a tap) stick
+   on touch and cover content; the labels they repeat are visible in mobile mode anyway */
+html[data-mt-mobile][data-mt-pointer="coarse"] [role="tooltip"][class*="_tooltip_"],
+html[data-mt-mobile][data-mt-pointer="coarse"] [data-radix-popper-content-wrapper]:has(> [role="tooltip"]) {
+    display: none !important;
+}
+
+/* spotlight / search (MOB-20, MOB-32) */
+html[data-mt-compact] .mx_SpotlightDialog_wrapper .mx_Dialog {
+    width: calc(100vw - 16px) !important;
+    height: min(80%, calc(var(--mt-app-h) - 16px)) !important;
+    max-height: none !important;
+}
+html[data-mt-compact] .mx_SpotlightDialog_wrapper {
+    align-items: flex-start !important;
+    padding-top: calc(8px + var(--mt-sa-t));
+}
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_SpotlightDialog_keyboardPrompt,
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_SpotlightDialog_hint,
+html[data-mt-mobile][data-mt-pointer="coarse"] kbd {
+    display: none !important;
+}
+/* emoji picker: fits the width, slightly larger cells */
+html[data-mt-compact] .mx_EmojiPicker,
+html[data-mt-compact] [class*="_emojiPicker_"] {
+    max-width: calc(100vw - 16px) !important;
+    max-height: calc(var(--mt-app-h) - 80px) !important;
+}
+
+/* ===================================================================== MOB-17 login / welcome / auth */
+html[data-mt-compact] .mx_AuthPage {
+    height: var(--mt-app-h) !important;
+    min-height: 0 !important;
+    padding: var(--mt-sa-t) var(--mt-sa-r) var(--mt-sa-b) var(--mt-sa-l);
+    box-sizing: border-box;
+}
+html[data-mt-compact] .mx_AuthPage_modal {
+    width: calc(100% - 16px) !important;
+    max-width: 500px !important;
+    margin: 8px auto !important;
+    box-sizing: border-box;
+}
+html[data-mt-compact] .mx_AuthPage_modalContent,
+html[data-mt-compact] .mx_AuthBody,
+html[data-mt-compact] .mx_Welcome,
+html[data-mt-compact] .mx_DefaultWelcome {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+html[data-mt-compact] .mx_AuthBody {
+    padding: 20px 16px !important;
+    border-radius: inherit !important;
+}
+html[data-mt-compact] .mx_AuthPage_modalContent {
+    flex-direction: column;
+}
+html[data-mt-compact] .mx_AuthHeader {
+    width: auto !important;
+    padding: 16px 0 0 !important;
+    border: 0 !important;
+}
+html[data-mt-compact] .mx_DefaultWelcome .mx_DefaultWelcome_buttons a,
+html[data-mt-compact] .mx_DefaultWelcome_buttons .mx_ButtonParent {
+    width: auto !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: var(--mt-target);
+}
+html[data-mt-compact] .mx_Welcome .mx_AuthBody_language {
+    width: auto !important;
+}
+
+/* ===================================================================== MOB-29 inputs ≥ 16 px (no iOS focus zoom) */
+html[data-mt-mobile] input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]),
+html[data-mt-mobile] textarea,
+html[data-mt-mobile] select,
+html[data-mt-mobile] [contenteditable="true"],
+html[data-mt-mobile] .mx_BasicMessageComposer_input,
+html[data-mt-mobile] .mx_WysiwygComposer_Editor_content {
+    font-size: max(16px, 1em) !important;
+}
+
+/* ===================================================================== MOB-23 touch targets ≥ 44 px */
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_MessageComposer_actions > *,
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_MessageComposer_button,
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_MessageComposer_sendMessage {
+    min-width: 40px;
+    min-height: var(--mt-target);
+}
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_ReactionsRow > *,
+html[data-mt-mobile][data-mt-pointer="coarse"] [class*="_reactionsRow_"] > * {
+    min-height: 32px;
+}
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_SpacePanel .mx_SpaceButton {
+    min-height: var(--mt-target);
+}
+html[data-mt-mobile][data-mt-pointer="coarse"] #left-panel [class*="_roomListItem_"] {
+    min-height: 52px;
+}
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_RoomListPanel [class*="_iconButton_"],
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_RoomListPanel [class*="_icon-button_"] {
+    min-width: 40px;
+    min-height: 40px;
+}
+html[data-mt-mobile][data-mt-pointer="coarse"] .mx_ThreadSummary,
+html[data-mt-mobile][data-mt-pointer="coarse"] [class*="_threadSummary_"] {
+    min-height: var(--mt-target);
+}
+
+/* ===================================================================== MOB-28 keyboard up: less chrome */
+html[data-mt-keyboard] .mx_RoomView_statusArea,
+html[data-mt-keyboard] .mx_PinnedMessageBanner,
+html[data-mt-keyboard] .mx_AuxPanel,
+html[data-mt-keyboard] .mx_RoomView_auxPanel {
+    display: none !important;
+}
+html[data-mt-keyboard][data-mt-orientation="portrait"] .mx_RoomHeader {
+    min-height: 48px !important;
+}
+html[data-mt-keyboard][data-mt-orientation="portrait"] .mx_RoomHeader > .mx_BaseAvatar {
+    display: none !important;
+}
+html[data-mt-keyboard][data-mt-orientation="landscape"] .mx_RoomView .mx_RoomHeader {
+    display: none !important;
+}
+html[data-mt-keyboard] .mx_MessageComposer {
+    padding-bottom: 0 !important;
+}
+
+/* ===================================================================== MOB-34 teams-welcome onboarding (deployment) */
+/* when docked, teams-welcome reserves ~490 px on the right of #matrixchat: on a phone that leaves no app */
+html[data-mt-compact].twl-docked #matrixchat {
+    margin-right: 0 !important;
+}
+html[data-mt-compact] #teams-welcome-root .twl-panel-frame {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    inset: var(--mt-sa-t) 0 0 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+}
+
+/* ===================================================================== motion */
+@media (prefers-reduced-motion: no-preference) {
+    html[data-mt-compact][data-mt-view] .mx_MatrixChat > [data-group] > [data-panel]:not(#left-panel),
+    html[data-mt-compact][data-mt-view] .mx_RightPanel_ResizeWrapper {
+        transition: opacity 120ms ease-out;
+    }
+}
+html[data-mt-compact][data-mt-view="list"] .mx_MatrixChat > [data-group] > [data-panel]:not(#left-panel) {
+    opacity: 0;
+}

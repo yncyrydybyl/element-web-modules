@@ -1,0 +1,789 @@
+{
+  "family": "sketch",
+  "name": "Hand-drawn / Sketch",
+  "variants": [
+    {
+      "id": "sketch-designed",
+      "name": "Sketch · Designed",
+      "stage": "level-1",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 8,
+      "hype": 4,
+      "description": "Level 1 of the sketch ladder. A well-designed sketch UI after Excalidraw: clean Assistant chrome on floating islands, messages/names/room list in Excalifont, light rough.js outlines, violet #6965DB selection-box focus, hand-drawn hint arrows. Fully readable.",
+      "css": [
+        "shared.css",
+        "sketch-designed.css"
+      ],
+      "fonts": [
+        {
+          "family": "Assistant",
+          "file": "assets/assistant-var.woff2",
+          "weight": "200 800",
+          "style": "normal"
+        },
+        {
+          "family": "Excalifont",
+          "file": "assets/excalifont-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#ffffff",
+        "--cpd-color-bg-canvas-default": "#ffffff",
+        "--cpd-color-bg-subtle-secondary": "#f8f9fa",
+        "--cpd-color-bg-subtle-primary": "#f1f0ff",
+        "--cpd-color-bg-action-primary-rest": "#6965db",
+        "--cpd-color-bg-accent-rest": "#6965db",
+        "--cpd-color-bg-critical-primary": "#e03131",
+        "--cpd-color-text-primary": "#1e1e1e",
+        "--cpd-color-text-secondary": "#5c5c5c",
+        "--cpd-color-text-action-accent": "#5b57d1",
+        "--cpd-color-text-link-external": "#5b57d1",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-text-critical-primary": "#e03131",
+        "--cpd-color-text-success-primary": "#2b7a3b",
+        "--cpd-color-icon-primary": "#1e1e1e",
+        "--cpd-color-icon-secondary": "#5c5c5c",
+        "--cpd-color-icon-accent-primary": "#6965db",
+        "--cpd-color-border-interactive-primary": "#1e1e1e",
+        "--cpd-color-border-focused": "#6965db",
+        "--cpd-font-family-sans": "'Assistant', 'Excalifont', system-ui, sans-serif",
+        "--cpd-font-family-mono": "'Comic Shanns Mono', 'Cascadia Code', monospace",
+        "--cpd-color-text-decorative-1": "#e03131",
+        "--cpd-color-bg-decorative-1": "#ffc9c9",
+        "--cpd-color-text-decorative-2": "#2b7a3b",
+        "--cpd-color-bg-decorative-2": "#b2f2bb",
+        "--cpd-color-text-decorative-3": "#1971c2",
+        "--cpd-color-bg-decorative-3": "#a5d8ff",
+        "--cpd-color-text-decorative-4": "#b35c00",
+        "--cpd-color-bg-decorative-4": "#ffec99",
+        "--cpd-color-text-decorative-5": "#9c36b5",
+        "--cpd-color-bg-decorative-5": "#eebefa",
+        "--cpd-color-text-decorative-6": "#0b7285",
+        "--cpd-color-bg-decorative-6": "#99e9f2",
+        "--cpd-color-bg-action-primary-hovered": "#5b57d1",
+        "--cpd-color-bg-action-tertiary-selected": "#e3e2fe"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "sketch-wireframe",
+      "name": "Sketch · Wireframe",
+      "stage": "level-2",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 7,
+      "hype": 3,
+      "description": "Level 2. Balsamiq-style wireframe: Balsamiq Sans, greyscale everything except link blue, double-stroke rough frames, X-box image placeholders, hatched skeletons, yellow note callouts. Palette approximated (Balsamiq publishes no hex). Fully readable.",
+      "css": [
+        "shared.css",
+        "sketch-wireframe.css"
+      ],
+      "fonts": [
+        {
+          "family": "Balsamiq Sans",
+          "file": "assets/balsamiq-sans-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Balsamiq Sans",
+          "file": "assets/balsamiq-sans-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Balsamiq Sans",
+          "file": "assets/balsamiq-sans-400-italic.woff2",
+          "weight": "400",
+          "style": "italic"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#fbfbfb",
+        "--cpd-color-bg-canvas-default": "#fbfbfb",
+        "--cpd-color-bg-subtle-secondary": "#efefef",
+        "--cpd-color-bg-subtle-primary": "#e2e2e2",
+        "--cpd-color-bg-action-primary-rest": "#1a1a1a",
+        "--cpd-color-bg-accent-rest": "#0a64d6",
+        "--cpd-color-bg-critical-primary": "#d0021b",
+        "--cpd-color-text-primary": "#1a1a1a",
+        "--cpd-color-text-secondary": "#666666",
+        "--cpd-color-text-action-accent": "#0a64d6",
+        "--cpd-color-text-link-external": "#0a64d6",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-text-critical-primary": "#d0021b",
+        "--cpd-color-text-success-primary": "#2f7a25",
+        "--cpd-color-icon-primary": "#1a1a1a",
+        "--cpd-color-icon-secondary": "#666666",
+        "--cpd-color-icon-accent-primary": "#0a64d6",
+        "--cpd-color-border-interactive-primary": "#2b2b2b",
+        "--cpd-color-border-focused": "#0a64d6",
+        "--cpd-font-family-sans": "'Balsamiq Sans', 'Comic Sans MS', sans-serif",
+        "--cpd-font-family-mono": "'Comic Shanns Mono', 'Cascadia Code', monospace",
+        "--cpd-color-text-decorative-1": "#1a1a1a",
+        "--cpd-color-bg-decorative-1": "#e2e2e2",
+        "--cpd-color-text-decorative-2": "#1a1a1a",
+        "--cpd-color-bg-decorative-2": "#e2e2e2",
+        "--cpd-color-text-decorative-3": "#1a1a1a",
+        "--cpd-color-bg-decorative-3": "#e2e2e2",
+        "--cpd-color-text-decorative-4": "#1a1a1a",
+        "--cpd-color-bg-decorative-4": "#e2e2e2",
+        "--cpd-color-text-decorative-5": "#1a1a1a",
+        "--cpd-color-bg-decorative-5": "#e2e2e2",
+        "--cpd-color-text-decorative-6": "#1a1a1a",
+        "--cpd-color-bg-decorative-6": "#e2e2e2"
+      },
+      "enhance": false,
+      "schedule": null
+    },
+    {
+      "id": "sketch-notebook",
+      "name": "Sketch · Notebook",
+      "stage": "level-3",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 6,
+      "hype": 5,
+      "description": "Level 3. Ruled notebook paper (28px pitch, text sits on the lines), red margin with names/timestamps as margin notes, spiral binding, index-tab room list, highlighter mentions, taped torn-out dialogs. Patrick Hand + Caveat. Fully readable; ruling hidden under prefers-contrast: more.",
+      "css": [
+        "shared.css",
+        "sketch-notebook.css"
+      ],
+      "fonts": [
+        {
+          "family": "Patrick Hand",
+          "file": "assets/patrick-hand-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Caveat",
+          "file": "assets/caveat-var.woff2",
+          "weight": "400 700",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#fdfbf4",
+        "--cpd-color-bg-canvas-default": "#fdfbf4",
+        "--cpd-color-bg-subtle-secondary": "#f4efe2",
+        "--cpd-color-bg-subtle-primary": "#e9e1cc",
+        "--cpd-color-bg-action-primary-rest": "#22336b",
+        "--cpd-color-bg-accent-rest": "#2a4cad",
+        "--cpd-color-bg-critical-primary": "#c62828",
+        "--cpd-color-text-primary": "#22336b",
+        "--cpd-color-text-secondary": "#62605a",
+        "--cpd-color-text-action-accent": "#2a4cad",
+        "--cpd-color-text-link-external": "#2a4cad",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-text-critical-primary": "#c62828",
+        "--cpd-color-text-success-primary": "#2e7d32",
+        "--cpd-color-icon-primary": "#22336b",
+        "--cpd-color-icon-secondary": "#62605a",
+        "--cpd-color-icon-accent-primary": "#2a4cad",
+        "--cpd-color-border-interactive-primary": "#22336b",
+        "--cpd-color-border-focused": "#2a4cad",
+        "--cpd-font-family-sans": "'Patrick Hand', 'Kalam', cursive",
+        "--cpd-font-family-mono": "'Comic Shanns Mono', 'Cascadia Code', monospace",
+        "--cpd-color-text-decorative-1": "#22336b",
+        "--cpd-color-bg-decorative-1": "#dfe6fb",
+        "--cpd-color-text-decorative-2": "#c62828",
+        "--cpd-color-bg-decorative-2": "#fbdada",
+        "--cpd-color-text-decorative-3": "#2e7d32",
+        "--cpd-color-bg-decorative-3": "#dcefdc",
+        "--cpd-color-text-decorative-4": "#6a3d9a",
+        "--cpd-color-bg-decorative-4": "#ece2f6",
+        "--cpd-color-text-decorative-5": "#9a5b00",
+        "--cpd-color-bg-decorative-5": "#fbecd2",
+        "--cpd-color-text-decorative-6": "#00796b",
+        "--cpd-color-bg-decorative-6": "#d6efec"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "sketch-whiteboard",
+      "name": "Sketch · Whiteboard",
+      "stage": "level-4",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 5,
+      "hype": 6,
+      "description": "Level 4. Office whiteboard: enamel board in an aluminium frame with a marker-tray composer, ghost-erased smudges, colour-coded marker senders, sticky-note menus and tooltips, Permanent Marker titles. Kalam body. High readability.",
+      "css": [
+        "shared.css",
+        "sketch-whiteboard.css"
+      ],
+      "fonts": [
+        {
+          "family": "Kalam",
+          "file": "assets/kalam-300.woff2",
+          "weight": "300",
+          "style": "normal"
+        },
+        {
+          "family": "Kalam",
+          "file": "assets/kalam-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Kalam",
+          "file": "assets/kalam-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Permanent Marker",
+          "file": "assets/permanent-marker-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#f7f7f5",
+        "--cpd-color-bg-canvas-default": "#f7f7f5",
+        "--cpd-color-bg-subtle-secondary": "#eef0f2",
+        "--cpd-color-bg-subtle-primary": "#c9ced6",
+        "--cpd-color-bg-action-primary-rest": "#1b1b1b",
+        "--cpd-color-bg-accent-rest": "#1f5bd6",
+        "--cpd-color-bg-critical-primary": "#d62828",
+        "--cpd-color-text-primary": "#1b1b1b",
+        "--cpd-color-text-secondary": "#5f6368",
+        "--cpd-color-text-action-accent": "#1f5bd6",
+        "--cpd-color-text-link-external": "#1f5bd6",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-text-critical-primary": "#d62828",
+        "--cpd-color-text-success-primary": "#127a5c",
+        "--cpd-color-icon-primary": "#1b1b1b",
+        "--cpd-color-icon-secondary": "#5f6368",
+        "--cpd-color-icon-accent-primary": "#1f5bd6",
+        "--cpd-color-border-interactive-primary": "#1b1b1b",
+        "--cpd-color-border-focused": "#1f5bd6",
+        "--cpd-font-family-sans": "'Kalam', 'Patrick Hand', cursive",
+        "--cpd-font-family-mono": "'Comic Shanns Mono', 'Cascadia Code', monospace",
+        "--cpd-color-text-decorative-1": "#1b1b1b",
+        "--cpd-color-bg-decorative-1": "#e6e6e6",
+        "--cpd-color-text-decorative-2": "#1f5bd6",
+        "--cpd-color-bg-decorative-2": "#dbe6fb",
+        "--cpd-color-text-decorative-3": "#d62828",
+        "--cpd-color-bg-decorative-3": "#fadada",
+        "--cpd-color-text-decorative-4": "#127a5c",
+        "--cpd-color-bg-decorative-4": "#d3efe5",
+        "--cpd-color-text-decorative-5": "#7b2cbf",
+        "--cpd-color-bg-decorative-5": "#ecdcf8",
+        "--cpd-color-text-decorative-6": "#a85800",
+        "--cpd-color-bg-decorative-6": "#fde6c8"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "sketch-chalkboard",
+      "name": "Sketch · Chalkboard",
+      "stage": "level-4",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 5,
+      "hype": 6,
+      "description": "Level 4, dark. School chalkboard: green slate in a wooden frame, chalk-tray composer, chalk-dust overlay, eraser smears, Cabin Sketch headings with chalk grain (headings only), Gaegu body. High readability.",
+      "css": [
+        "shared.css",
+        "sketch-chalkboard.css"
+      ],
+      "fonts": [
+        {
+          "family": "Gaegu",
+          "file": "assets/gaegu-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Gaegu",
+          "file": "assets/gaegu-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cabin Sketch",
+          "file": "assets/cabin-sketch-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cabin Sketch",
+          "file": "assets/cabin-sketch-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#2e3b32",
+        "--cpd-color-bg-canvas-default": "#2e3b32",
+        "--cpd-color-bg-subtle-secondary": "#27332b",
+        "--cpd-color-bg-subtle-primary": "#6b4f32",
+        "--cpd-color-bg-action-primary-rest": "#f2f2ea",
+        "--cpd-color-bg-accent-rest": "#f7e37a",
+        "--cpd-color-bg-critical-primary": "#f4a6b8",
+        "--cpd-color-text-primary": "#f2f2ea",
+        "--cpd-color-text-secondary": "#b9c2b5",
+        "--cpd-color-text-action-accent": "#f7e37a",
+        "--cpd-color-text-link-external": "#f7e37a",
+        "--cpd-color-text-on-solid-primary": "#2e3b32",
+        "--cpd-color-text-critical-primary": "#f4a6b8",
+        "--cpd-color-text-success-primary": "#b8e6a1",
+        "--cpd-color-icon-primary": "#f2f2ea",
+        "--cpd-color-icon-secondary": "#b9c2b5",
+        "--cpd-color-icon-accent-primary": "#f7e37a",
+        "--cpd-color-border-interactive-primary": "#e8e8de",
+        "--cpd-color-border-focused": "#f7e37a",
+        "--cpd-font-family-sans": "'Gaegu', 'Patrick Hand', cursive",
+        "--cpd-font-family-mono": "'Comic Shanns Mono', 'Cascadia Code', monospace",
+        "--cpd-color-text-decorative-1": "#f2f2ea",
+        "--cpd-color-bg-decorative-1": "#46584c",
+        "--cpd-color-text-decorative-2": "#f7e37a",
+        "--cpd-color-bg-decorative-2": "#57563a",
+        "--cpd-color-text-decorative-3": "#f4a6b8",
+        "--cpd-color-bg-decorative-3": "#5a4650",
+        "--cpd-color-text-decorative-4": "#a9d6f5",
+        "--cpd-color-bg-decorative-4": "#3e5463",
+        "--cpd-color-text-decorative-5": "#b8e6a1",
+        "--cpd-color-bg-decorative-5": "#46593f",
+        "--cpd-color-text-decorative-6": "#f9c38b",
+        "--cpd-color-bg-decorative-6": "#5b4c3a"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "sketch-blueprint",
+      "name": "Sketch · Blueprint",
+      "stage": "level-5",
+      "mode": "dark",
+      "base": "dark",
+      "seriousness": 6,
+      "hype": 6,
+      "description": "Level 5, dark. Blueprint: white technical lines on cyanotype blue, 20/100px grid, room header as an engineering title block, dimension lines on panels, crop marks, stencil-caps Architects Daughter, yellow redline accent. High readability.",
+      "css": [
+        "shared.css",
+        "sketch-blueprint.css"
+      ],
+      "fonts": [
+        {
+          "family": "Architects Daughter",
+          "file": "assets/architects-daughter-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#123f73",
+        "--cpd-color-bg-canvas-default": "#123f73",
+        "--cpd-color-bg-subtle-secondary": "#0f3561",
+        "--cpd-color-bg-subtle-primary": "#0b2b50",
+        "--cpd-color-bg-action-primary-rest": "#ffd166",
+        "--cpd-color-bg-accent-rest": "#ffd166",
+        "--cpd-color-bg-critical-primary": "#ff8a7a",
+        "--cpd-color-text-primary": "#eaf2ff",
+        "--cpd-color-text-secondary": "#a9c1e0",
+        "--cpd-color-text-action-accent": "#ffd166",
+        "--cpd-color-text-link-external": "#ffd166",
+        "--cpd-color-text-on-solid-primary": "#0b2b50",
+        "--cpd-color-text-critical-primary": "#ff8a7a",
+        "--cpd-color-text-success-primary": "#7be0b0",
+        "--cpd-color-icon-primary": "#eaf2ff",
+        "--cpd-color-icon-secondary": "#a9c1e0",
+        "--cpd-color-icon-accent-primary": "#ffd166",
+        "--cpd-color-border-interactive-primary": "#e8f1ff",
+        "--cpd-color-border-focused": "#ffd166",
+        "--cpd-font-family-sans": "'Architects Daughter', 'Kalam', cursive",
+        "--cpd-font-family-mono": "'Comic Shanns Mono', 'Cascadia Code', monospace",
+        "--cpd-color-text-decorative-1": "#eaf2ff",
+        "--cpd-color-bg-decorative-1": "#24578f",
+        "--cpd-color-text-decorative-2": "#eaf2ff",
+        "--cpd-color-bg-decorative-2": "#24578f",
+        "--cpd-color-text-decorative-3": "#eaf2ff",
+        "--cpd-color-bg-decorative-3": "#24578f",
+        "--cpd-color-text-decorative-4": "#eaf2ff",
+        "--cpd-color-bg-decorative-4": "#24578f",
+        "--cpd-color-text-decorative-5": "#eaf2ff",
+        "--cpd-color-bg-decorative-5": "#24578f",
+        "--cpd-color-text-decorative-6": "#eaf2ff",
+        "--cpd-color-bg-decorative-6": "#24578f"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "sketch-napkin",
+      "name": "Sketch · Napkin",
+      "stage": "level-6",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 4,
+      "hype": 7,
+      "description": "Level 6. Napkin doodle: embossed quilted napkin, coffee rings, cheap ballpoint with ink bleed, everything rotated ±0.4-0.8°, wobbly rough frames, Gochi Hand. Medium readability by design.",
+      "css": [
+        "shared.css",
+        "sketch-napkin.css"
+      ],
+      "fonts": [
+        {
+          "family": "Gochi Hand",
+          "file": "assets/gochi-hand-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Shadows Into Light Two",
+          "file": "assets/shadows-into-light-two-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#f3ece0",
+        "--cpd-color-bg-canvas-default": "#f3ece0",
+        "--cpd-color-bg-subtle-secondary": "#ebe2d1",
+        "--cpd-color-bg-subtle-primary": "#c8a97e",
+        "--cpd-color-bg-action-primary-rest": "#22408c",
+        "--cpd-color-bg-accent-rest": "#22408c",
+        "--cpd-color-bg-critical-primary": "#b3261e",
+        "--cpd-color-text-primary": "#22408c",
+        "--cpd-color-text-secondary": "#5d6380",
+        "--cpd-color-text-action-accent": "#22408c",
+        "--cpd-color-text-link-external": "#22408c",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-text-critical-primary": "#b3261e",
+        "--cpd-color-text-success-primary": "#33682f",
+        "--cpd-color-icon-primary": "#22408c",
+        "--cpd-color-icon-secondary": "#5d6380",
+        "--cpd-color-icon-accent-primary": "#22408c",
+        "--cpd-color-border-interactive-primary": "#22408c",
+        "--cpd-color-border-focused": "#22408c",
+        "--cpd-font-family-sans": "'Gochi Hand', 'Patrick Hand', cursive",
+        "--cpd-font-family-mono": "'Comic Shanns Mono', 'Cascadia Code', monospace",
+        "--cpd-color-text-decorative-1": "#22408c",
+        "--cpd-color-bg-decorative-1": "#dfe3f2",
+        "--cpd-color-text-decorative-2": "#b3261e",
+        "--cpd-color-bg-decorative-2": "#f4dcd8",
+        "--cpd-color-text-decorative-3": "#33682f",
+        "--cpd-color-bg-decorative-3": "#dde9d8",
+        "--cpd-color-text-decorative-4": "#6f4e37",
+        "--cpd-color-bg-decorative-4": "#ece0d4",
+        "--cpd-color-text-decorative-5": "#5a2d82",
+        "--cpd-color-bg-decorative-5": "#e8dcf0",
+        "--cpd-color-text-decorative-6": "#0f6e75",
+        "--cpd-color-bg-decorative-6": "#d5ebec"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "sketch-scribble",
+      "name": "Sketch · Scribble",
+      "stage": "level-7",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 2,
+      "hype": 8,
+      "description": "Level 7. Messy scribble: boiling lines (3-frame Squigglevision at 8fps), crooked rotated panels and tiles, cross-hatch shadows, Shantell Sans with Informality/Bounce axes, Rock Salt headings, hover jitter. Medium-low readability by design; boil off under reduced motion.",
+      "css": [
+        "shared.css",
+        "sketch-scribble.css"
+      ],
+      "fonts": [
+        {
+          "family": "Shantell Sans",
+          "file": "assets/shantell-sans-var.woff2",
+          "weight": "300 800",
+          "style": "normal"
+        },
+        {
+          "family": "Rock Salt",
+          "file": "assets/rock-salt-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#fffdf8",
+        "--cpd-color-bg-canvas-default": "#fffdf8",
+        "--cpd-color-bg-subtle-secondary": "#f5f1e8",
+        "--cpd-color-bg-subtle-primary": "#ebe5d6",
+        "--cpd-color-bg-action-primary-rest": "#2b2b2b",
+        "--cpd-color-bg-accent-rest": "#b83d0b",
+        "--cpd-color-bg-critical-primary": "#c92a2a",
+        "--cpd-color-text-primary": "#2b2b2b",
+        "--cpd-color-text-secondary": "#6b6b6b",
+        "--cpd-color-text-action-accent": "#b83d0b",
+        "--cpd-color-text-link-external": "#b83d0b",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-text-critical-primary": "#c92a2a",
+        "--cpd-color-text-success-primary": "#237032",
+        "--cpd-color-icon-primary": "#2b2b2b",
+        "--cpd-color-icon-secondary": "#6b6b6b",
+        "--cpd-color-icon-accent-primary": "#b83d0b",
+        "--cpd-color-border-interactive-primary": "#2b2b2b",
+        "--cpd-color-border-focused": "#b83d0b",
+        "--cpd-font-family-sans": "'Shantell Sans', 'Gochi Hand', cursive",
+        "--cpd-font-family-mono": "'Comic Shanns Mono', 'Cascadia Code', monospace",
+        "--cpd-color-text-decorative-1": "#c92a2a",
+        "--cpd-color-bg-decorative-1": "#ffe3e3",
+        "--cpd-color-text-decorative-2": "#1864ab",
+        "--cpd-color-bg-decorative-2": "#d0ebff",
+        "--cpd-color-text-decorative-3": "#237032",
+        "--cpd-color-bg-decorative-3": "#d3f9d8",
+        "--cpd-color-text-decorative-4": "#b35c00",
+        "--cpd-color-bg-decorative-4": "#ffe8cc",
+        "--cpd-color-text-decorative-5": "#862e9c",
+        "--cpd-color-bg-decorative-5": "#f3d9fa",
+        "--cpd-color-text-decorative-6": "#0b7285",
+        "--cpd-color-bg-decorative-6": "#c5f6fa"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "sketch-unreadable",
+      "name": "Sketch · Unreadable",
+      "stage": "level-8",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 0,
+      "hype": 9,
+      "description": "Level 8 — UNREADABLE BY DESIGN. Construction paper, fat crayon outlines coloured outside the lines, three illegible scripts cycling per tile, rotated/drifting text with displacement filters on text, stick-figure avatars, boiling everything. The theme picker stays readable as an escape hatch; reduced motion is honoured.",
+      "css": [
+        "shared.css",
+        "sketch-unreadable.css"
+      ],
+      "fonts": [
+        {
+          "family": "Reenie Beanie",
+          "file": "assets/reenie-beanie-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Zeyada",
+          "file": "assets/zeyada-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "La Belle Aurore",
+          "file": "assets/la-belle-aurore-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Rock Salt",
+          "file": "assets/rock-salt-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Excalifont",
+          "file": "assets/excalifont-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#f4e9d8",
+        "--cpd-color-bg-canvas-default": "#f4e9d8",
+        "--cpd-color-bg-subtle-secondary": "#ffd8a8",
+        "--cpd-color-bg-subtle-primary": "#a5d8ff",
+        "--cpd-color-bg-action-primary-rest": "#7a7a7a",
+        "--cpd-color-bg-accent-rest": "#f03e3e",
+        "--cpd-color-bg-critical-primary": "#f03e3e",
+        "--cpd-color-text-primary": "#7a7a7a",
+        "--cpd-color-text-secondary": "#a3a3a3",
+        "--cpd-color-text-action-accent": "#f03e3e",
+        "--cpd-color-text-link-external": "#f03e3e",
+        "--cpd-color-text-on-solid-primary": "#fff6e6",
+        "--cpd-color-text-critical-primary": "#f03e3e",
+        "--cpd-color-text-success-primary": "#37b24d",
+        "--cpd-color-icon-primary": "#7a7a7a",
+        "--cpd-color-icon-secondary": "#a3a3a3",
+        "--cpd-color-icon-accent-primary": "#f03e3e",
+        "--cpd-color-border-interactive-primary": "#f03e3e",
+        "--cpd-color-border-focused": "#f03e3e",
+        "--cpd-font-family-sans": "'Reenie Beanie', 'Zeyada', cursive",
+        "--cpd-font-family-mono": "'Zeyada', cursive",
+        "--cpd-color-text-decorative-1": "#f03e3e",
+        "--cpd-color-bg-decorative-1": "#ffe3e3",
+        "--cpd-color-text-decorative-2": "#1c7ed6",
+        "--cpd-color-bg-decorative-2": "#d0ebff",
+        "--cpd-color-text-decorative-3": "#37b24d",
+        "--cpd-color-bg-decorative-3": "#d3f9d8",
+        "--cpd-color-text-decorative-4": "#f59f00",
+        "--cpd-color-bg-decorative-4": "#fff3bf",
+        "--cpd-color-text-decorative-5": "#ae3ec9",
+        "--cpd-color-bg-decorative-5": "#f3d9fa",
+        "--cpd-color-text-decorative-6": "#f76707",
+        "--cpd-color-bg-decorative-6": "#ffe8cc"
+      },
+      "enhance": true,
+      "schedule": null
+    },
+    {
+      "id": "sketch-daylight",
+      "name": "Sketch · Daylight",
+      "stage": "level-3",
+      "mode": "daylight",
+      "base": "light",
+      "seriousness": 6,
+      "hype": 5,
+      "description": "Level 3, follows the local clock. Dawn: notebook with cool morning tint. Day: sketch-notebook. Dusk: warm paper under a desk-lamp vignette. Night: sketch-chalkboard. 2s fades between phases. Fully readable.",
+      "css": [
+        "shared.css",
+        "sketch-notebook.css",
+        "sketch-chalkboard.css",
+        "sketch-daylight.css"
+      ],
+      "fonts": [
+        {
+          "family": "Patrick Hand",
+          "file": "assets/patrick-hand-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Caveat",
+          "file": "assets/caveat-var.woff2",
+          "weight": "400 700",
+          "style": "normal"
+        },
+        {
+          "family": "Gaegu",
+          "file": "assets/gaegu-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Gaegu",
+          "file": "assets/gaegu-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Cabin Sketch",
+          "file": "assets/cabin-sketch-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        },
+        {
+          "family": "Cabin Sketch",
+          "file": "assets/cabin-sketch-700.woff2",
+          "weight": "700",
+          "style": "normal"
+        },
+        {
+          "family": "Comic Shanns Mono",
+          "file": "assets/comic-shanns-mono-400.woff2",
+          "weight": "400",
+          "style": "normal"
+        }
+      ],
+      "tokens": {
+        "--cpd-color-theme-bg": "#fdfbf4",
+        "--cpd-color-bg-canvas-default": "#fdfbf4",
+        "--cpd-color-bg-subtle-secondary": "#f4efe2",
+        "--cpd-color-bg-subtle-primary": "#e9e1cc",
+        "--cpd-color-bg-action-primary-rest": "#22336b",
+        "--cpd-color-bg-accent-rest": "#2a4cad",
+        "--cpd-color-bg-critical-primary": "#c62828",
+        "--cpd-color-text-primary": "#22336b",
+        "--cpd-color-text-secondary": "#62605a",
+        "--cpd-color-text-action-accent": "#2a4cad",
+        "--cpd-color-text-link-external": "#2a4cad",
+        "--cpd-color-text-on-solid-primary": "#ffffff",
+        "--cpd-color-text-critical-primary": "#c62828",
+        "--cpd-color-text-success-primary": "#2e7d32",
+        "--cpd-color-icon-primary": "#22336b",
+        "--cpd-color-icon-secondary": "#62605a",
+        "--cpd-color-icon-accent-primary": "#2a4cad",
+        "--cpd-color-border-interactive-primary": "#22336b",
+        "--cpd-color-border-focused": "#2a4cad",
+        "--cpd-font-family-sans": "'Patrick Hand', 'Kalam', cursive",
+        "--cpd-font-family-mono": "'Comic Shanns Mono', 'Cascadia Code', monospace"
+      },
+      "enhance": true,
+      "schedule": [
+        {
+          "from": "06:00",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "09:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "18:00",
+          "phase": "dusk",
+          "base": "light"
+        },
+        {
+          "from": "21:00",
+          "phase": "night",
+          "base": "dark"
+        }
+      ]
+    }
+  ]
+}

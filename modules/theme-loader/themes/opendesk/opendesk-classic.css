@@ -1,0 +1,79 @@
+/* openDesk · Souveräner Arbeitsplatz 2023 — the early openDesk / Sovereign Workplace look (deployment v0.3–0.5,
+   Aug–Dec 2023): theme.yaml primary #5e27dd with primary65/35/15, the secondary palette (#52c1ff, #ff529e,
+   #ffc700, #00ffcd), the white 2023 wordmark on a violet Nordeck banner, black Element text, Element 1.11-era
+   flatter panels with a lavender row highlight instead of a filled pill. */
+html[data-tl-theme="opendesk-classic"] {
+  --od-bar-h: 56px;
+  --od-bar: #5e27dd;
+  --od-bar-text: #ffffff;
+  --od-bar-border: #5e27dd;
+  --od-wordmark: url("assets/od-classic-wordmark-white.svg");
+  --od-canvas: #f5f5f5;
+  --od-sidebar: #f5f5f5;
+  --od-rail: #ebedf1;
+  --od-rail-border: #dfe2e7;
+  --od-text: #000000;               /* openDesk 2023 Element: --cpd-color-text-primary = theme.colors.black */
+  --od-heading: #000000;
+  --od-muted: #4a4f57;
+  --od-subtle: #5c626b;
+  --od-primary: #5e27dd;            /* 2023 primary */
+  --od-primary-hover: #4b1fb1;
+  --od-primary-pressed: #38178a;
+  --od-accent-text: #5e27dd;
+  --od-tint: #e7dffa;               /* primary15 */
+  --od-tint-strong: #c7b3f3;        /* primary35 */
+  --od-tint-soft: #f3effc;
+  --od-hover: rgb(94 39 221 / .07);
+  --od-sel-bg: #e7dffa;             /* row highlight, not a filled pill */
+  --od-sel-text: #000000;
+  --od-border: #adb3bc;             /* secondaryGrey */
+  --od-border-strong: #7b828c;
+  --od-separator: #e3e5e8;
+  --od-own: #f3effc;
+  --od-mention: #fff6cc;
+  --od-mention-bar: #ffc700;        /* secondaryYellow */
+  --od-critical: #c8005a;           /* secondaryRed #ff529e, darkened for white text */
+  --od-critical-text: #b0004f;
+  --od-info: #0c3ff3;
+  --od-focus: #5e27dd;
+  --od-radius: 2px;
+  --od-radius-tile: 4px;
+  --od-radius-dialog: 4px;
+  --od-radius-chip: 4px;
+  --od-heading-weight: 600;
+  --od-hue-1: #5e27dd; --od-hue-2: #52c1ff; --od-hue-3: #ff529e;
+  --od-hue-4: #00ffcd; --od-hue-5: #ffc700; --od-hue-6: #adb3bc;
+  --od-avatar-tint: 45%;
+  --od-name-1: #5e27dd; --od-name-2: #0b6a9e; --od-name-3: #b0004f;
+  --od-name-4: #007a62; --od-name-5: #7d5c00; --od-name-6: #4a4f57;
+  --od-home-icon: none;
+}
+/* the 2023 banner: violet band, white wordmark, "Chat" label */
+html[data-tl-theme="opendesk-classic"] #tl-overlay-root .od-topbar__grid:hover,
+html[data-tl-theme="opendesk-classic"] #tl-overlay-root .od-topbar__grid[aria-expanded="true"] { background: rgb(255 255 255 / .14); }
+html[data-tl-theme="opendesk-classic"] #tl-overlay-root .od-topbar__wordmark { width: 96px; height: 18px; }
+html[data-tl-theme="opendesk-classic"] #tl-overlay-root .od-topbar__app { color: #fff; border-left-color: rgb(255 255 255 / .4); font-weight: 400; }
+html[data-tl-theme="opendesk-classic"] body > div:not(#matrixchat) > nav:has(> a > img) > button:hover { background: rgb(255 255 255 / .14) !important; }
+/* rail: square space tiles; the 2023 portal had flat colour tiles */
+html[data-tl-theme="opendesk-classic"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon,
+html[data-tl-theme="opendesk-classic"] .mx_SpacePanel .mx_SpaceButton[aria-label="Startseite"] .mx_SpaceButton_icon {
+  background: #5e27dd !important; box-shadow: none;
+}
+html[data-tl-theme="opendesk-classic"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon > svg,
+html[data-tl-theme="opendesk-classic"] .mx_SpacePanel .mx_SpaceButton[aria-label="Startseite"] .mx_SpaceButton_icon > svg { visibility: visible; color: #fff; }
+html[data-tl-theme="opendesk-classic"] .mx_SpacePanel .mx_SpaceItem:has(> .mx_SpaceButton_active)::before { background: #00b894; width: 4px; border-radius: 0; }
+/* rows: Element 1.11-like lavender highlight with a violet edge */
+html[data-tl-theme="opendesk-classic"] { --od-row-marker: block; }
+html[data-tl-theme="opendesk-classic"] .mx_RoomListItemView:is(.mx_RoomListItemView_selected, [aria-selected="true"]) [class*="_unread-counter_"] {
+  background: #5e27dd !important; color: #fff !important;
+}
+html[data-tl-theme="opendesk-classic"] .mx_RoomListPanel button[class*="_header_"] [class*="_title_"] { text-transform: none; letter-spacing: 0; font-size: 13px; }
+/* chips + tags in the secondary colours */
+html[data-tl-theme="opendesk-classic"] [class*="_chat-filter_"][aria-selected="true"] { background: #52c1ff; border-color: #52c1ff; color: #000; }
+html[data-tl-theme="opendesk-classic"] [class*="_unread-counter_"]:not([data-kind="critical"]) { background: #5e27dd !important; }
+html[data-tl-theme="opendesk-classic"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"]:not([class*="_stateInfo_"]) .mx_EventTile_line { box-shadow: inset 3px 0 0 #52c1ff; }
+html[data-tl-theme="opendesk-classic"] .mx_EventTile_pre_container { border-left: 4px solid #00ffcd; }
+html[data-tl-theme="opendesk-classic"] [class*="_timelineSeparator_"] h2 { border-radius: 2px; background: #f5f5f5; }
+html[data-tl-theme="opendesk-classic"] .mx_RoomHeader { border-bottom: 2px solid #e7dffa; }
+html[data-tl-theme="opendesk-classic"] .mx_AuthPage,
+html[data-tl-theme="opendesk-classic"] .mx_AuthPage[style] { background: linear-gradient(135deg, #5e27dd 0%, #9673e9 100%) !important; }

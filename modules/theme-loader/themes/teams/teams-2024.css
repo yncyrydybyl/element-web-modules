@@ -1,0 +1,33 @@
+/* teams-2024 — "new Teams" 2.0 at launch: first Fluent 2 client, 2019 logo, 4px radii everywhere,
+   bubbles with shadow2, flat list, no Copilot, static Mica-like lavender wash on the chrome. */
+html[data-tl-theme="teams-2024"] {
+  --tm-logo: url("assets/teams-logo-2019.svg");
+  --tm-radius-bubble: 4px;
+  --tm-radius-l: 4px;
+  --tm-radius-composer: 4px;
+  --tm-radius-dialog: 4px;
+  --tm-bubble-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.14);
+  --tm-bubble-other: #ffffff;
+  --tm-timeline-bg: #f5f5f5;
+  --tm-canvas: #ffffff;
+  --tm-titlebar: #ebebeb;
+  --tm-titlebar-bg: linear-gradient(90deg, #ebebf3 0%, #ebebeb 40%, #eeecf4 100%);
+  --tm-rail: #ebebeb;
+  --tm-list: #f5f5f5;
+  --tm-search-bg: #ffffff;
+  --tm-search-border: #e0e0e0;
+  --tm-title-text: "";
+  --tm-copilot: none;
+}
+html[data-tl-theme="teams-2024"] .mx_SpacePanel {
+  background: linear-gradient(180deg, #ebebf3 0%, #ebebeb 50%);
+}
+/* no section headings feel: denser, lighter section labels */
+html[data-tl-theme="teams-2024"] .mx_RoomListPanel [role="gridcell"] > button[class*="_header_"] {
+  font-weight: 400;
+  color: var(--tm-fg3);
+}
+html[data-tl-theme="teams-2024"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after {
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--tm-brand);
+}

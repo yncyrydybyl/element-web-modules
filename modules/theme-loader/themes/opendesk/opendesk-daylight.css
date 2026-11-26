@@ -1,0 +1,46 @@
+/* openDesk · Daylight — the suite by the office clock.
+   dawn  06:00  lavender morning (primary-50 canvas, primary-100 own messages)
+   day   09:00  openDesk Light (shared.css defaults)
+   dusk  17:30  "Feierabend": navy #203257 suite bar + space column, blue-grey secondary-100 canvas
+   night 21:00  openDesk Dark (opendesk-dark.css, loaded for this variant too) */
+
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="dawn"] {
+  --od-canvas: #f7f5ff;
+  --od-sidebar: #f3f0fe;
+  --od-rail: #f7f5ff;
+  --od-bar: #f7f5ff;
+  --od-bar-border: #dcd2fe;
+  --od-rail-border: #dcd2fe;
+  --od-separator: #e6e0fb;
+  --od-own: #ece7fe;
+  --od-surface-alt: #fbfaff;
+}
+
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="dusk"] {
+  --od-canvas: #eeeff2;             /* secondary-100 */
+  --od-sidebar: #e8eaee;
+  --od-surface-alt: #f4f5f7;
+  --od-rail: #203257;               /* secondary-900 */
+  --od-rail-text: #eeeff2;
+  --od-rail-border: #203257;
+  --od-rail-hover: rgb(255 255 255 / .10);
+  --od-rail-active: rgb(255 255 255 / .16);
+  --od-bar: #203257;
+  --od-bar-text: #ffffff;
+  --od-bar-border: #203257;
+  --od-wordmark: url("assets/od-wordmark-inverted.svg");
+  --od-separator: #d3d7de;
+  --od-own: #eeeaff;
+  --od-tooltip: #121f3c;
+}
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="dusk"] #tl-overlay-root .od-topbar__grid:hover,
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="dusk"] #tl-overlay-root .od-topbar__grid[aria-expanded="true"] { background: rgb(255 255 255 / .12); }
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="dusk"] #tl-overlay-root .od-topbar__clock { color: #d3d7de; }
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="dusk"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper { box-shadow: inset 0 0 0 1px rgb(255 255 255 / .3); }
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="dusk"] .mx_SpacePanel .mx_SpaceItem:has(> .mx_SpaceButton_active)::before { background: #c8b9fd; }
+html[data-tl-theme="opendesk-daylight"][data-tl-phase="dusk"] body > div:not(#matrixchat) > nav:has(> a > img) > button:hover { background: rgb(255 255 255 / .12) !important; }
+
+/* phase change: the loader's 2 s fade only on the large surfaces */
+html[data-tl-theme="opendesk-daylight"][data-tl-phase-fading] :is(body, .mx_SpacePanel, .mx_RoomListPanel, .mx_LeftPanel, .mx_RoomView, .mx_RoomHeader, #tl-overlay-root .od-topbar) {
+  transition: background-color 2s, color 2s, border-color 2s;
+}

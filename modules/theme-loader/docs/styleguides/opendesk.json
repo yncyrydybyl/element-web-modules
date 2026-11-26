@@ -1,0 +1,622 @@
+{
+ "family": "opendesk",
+ "name": "openDesk",
+ "concept": "Element as the chat app of openDesk, the sovereign office suite of ZenDiS for the German public sector. The pure variants copy the shipped openDesk CE theme (primary #571EFA, navy #203257, portal grey, Open Sans, the suite top bar and app switcher) so Element blends in with portal, Nextcloud and OX; daylight follows the office clock; usable targets BITV 2.0; classic reconstructs the 2023 Sovereign Workplace look; 2028 imagines opendesk.eu's marketing language in the product; Hyperdesk is the neon night take.",
+ "sources": [
+  {
+   "title": "openDesk deployment repo v1.19.3 — helmfile/environments/default/theme.yaml.gotmpl (colours, logos, app icons)",
+   "url": "https://gitlab.opencode.de/bmi/opendesk/deployment/opendesk/-/blob/v1.19.3/helmfile/environments/default/theme.yaml.gotmpl"
+  },
+  {
+   "title": "openDesk Element values (custom_themes openDesk / openDesk Dark, banner module)",
+   "url": "https://gitlab.opencode.de/bmi/opendesk/deployment/opendesk/-/blob/v1.19.3/helmfile/apps/element/values-element.yaml.gotmpl"
+  },
+  {
+   "title": "openDesk deployment v0.3.0 (Sep 2023) theme.yaml — 2023 primary #5e27dd, white header wordmark",
+   "url": "https://gitlab.opencode.de/bmi/opendesk/deployment/opendesk/-/blob/v0.3.0/helmfile/environments/default/theme.yaml"
+  },
+  {
+   "title": "openDesk deployment v0.5.66 (Dec 2023) Element values — Nordeck opendesk banner module",
+   "url": "https://gitlab.opencode.de/bmi/opendesk/deployment/opendesk/-/blob/v0.5.66/helmfile/apps/element/values-element.gotmpl"
+  },
+  {
+   "title": "opendesk.eu design tokens (assets/css/output.css: primary/secondary/neutral ramps, Space Grotesk + Open Sans)",
+   "url": "https://www.opendesk.eu/assets/css/output.css"
+  },
+  {
+   "title": "Live openDesk CE v1.19.3 at od.blackpony.club: portal, Keycloak login, Nextcloud, OX, Element (screenshots in research/opendesk/)",
+   "url": "https://portal.od.blackpony.club/"
+  },
+  {
+   "title": "Open Sans (OFL 1.1, via @fontsource-variable/open-sans 5.2.5)",
+   "url": "https://fonts.google.com/specimen/Open+Sans"
+  },
+  {
+   "title": "Space Grotesk (OFL 1.1, via @fontsource-variable/space-grotesk 5.2.5)",
+   "url": "https://fonts.google.com/specimen/Space+Grotesk"
+  }
+ ],
+ "limits": [
+  "Calls/widgets (Element Call, Jitsi, NeoBoard) are iframes: they only follow the light/dark base.",
+  "On a real openDesk deployment the suite bar is openDesk's own banner module (io.element.element-web-modules.banner); the theme restyles it but its app menu content comes from the Intercom Service (ICS), not from the theme.",
+  "The theme's own suite bar/app switcher appears only where no banner module is configured; its app links come from config (de.datanauten.theme_loader.opendesk.apps) or openDesk's default host names on chat.<domain>.",
+  "openDesk's custom home page (custom-home.html) and Keycloak login are outside Element; only Element's own auth screens are themed.",
+  "Brand fonts: openDesk products use Open Sans (portal) / Inter (Element); Space Grotesk is only the marketing site's display face (used for 2028 and Hyperdesk).",
+  "The 2023 'classic' look is reconstructed from the v0.3–0.5 deployment theme values and logos; no full 2023 Element screenshots were available."
+ ],
+ "variants": [
+  {
+   "id": "opendesk-light",
+   "name": "openDesk · Light",
+   "stage": "pure",
+   "mode": "light",
+   "seriousness": 9,
+   "hype": 3,
+   "tagline": "Element as the chat app of the openDesk suite — portal canvas, navy text, violet #571EFA, Open Sans.",
+   "palette": {
+    "bg": "#f5f5f5",
+    "surface": "#ffffff",
+    "sidebar": "#f5f5f5",
+    "rail": "#ffffff",
+    "text": "#203257",
+    "muted": "#4d5b79",
+    "accent": "#571efa",
+    "onAccent": "#ffffff",
+    "border": "#d3d7de",
+    "own": "#f7f5ff",
+    "other": "#ffffff",
+    "critical": "#d92d2d",
+    "success": "#13866f"
+   },
+   "phases": null,
+   "fonts": {
+    "ui": "Open Sans (bundled, variable 300–800, latin + latin-ext)",
+    "display": "Open Sans 700",
+    "mono": "Element default (Inconsolata)"
+   },
+   "shape": {
+    "radius": "4px controls, 8px tiles/rows, 12px dialogs",
+    "border": "hairline",
+    "shadow": "0 1px 2px rgb(19 31 48/.06) tiles; 0 16px 48px rgb(19 31 48/.22) dialogs",
+    "density": "normal"
+   },
+   "texture": "none",
+   "motion": "150ms colour fades",
+   "signature": [
+    "64px white suite bar: app grid + openDesk wordmark → portal, 'Chat' label (or openDesk's own banner, restyled)",
+    "Selected room = filled #571EFA pill with white text (Nextcloud navigation)",
+    "Home space = the openDesk duotone chat app tile",
+    "Navy #203257 text on #f5f5f5 / white, Open Sans",
+    "Portal buttons: filled violet 4px, outline secondary; Keycloak-style 12px dialogs"
+   ],
+   "regions": {
+    "shell": "#f5f5f5 portal canvas, 64px white suite bar (app grid + openDesk wordmark → portal, 'Chat' label) with #d9dbdf hairline",
+    "spaces": "white column, Home = openDesk duotone chat app tile, selected space = primary-100 #ece7fe tile + 3px violet edge",
+    "roomlist": "Nextcloud-navigation grey #f5f5f5, 8px rounded rows, selected room = filled #571EFA pill with white text, uppercase section labels",
+    "header": "white, Open Sans 700 17px navy title, 4px icon buttons with violet hover tint",
+    "timeline": "white, own messages primary-50 #f7f5ff, mentions #fff7d6 with secondaryYellow bar, pill date separators",
+    "names-avatars": "round avatars tinted from the openDesk secondary palette (violet, sky, pink, mint, yellow, grey), names darkened for AA",
+    "composer": "8px outlined field (#99a1b2), violet focus ring, filled #571EFA 4px send button",
+    "rightpanel": "white with hairline separator, 8px rounded menu items",
+    "buttons": "portal/Keycloak: filled #571EFA 4px primary (hover #4519c2), outline secondary with violet text, red destructive",
+    "inputs": "4px outlined fields, violet border + 1px ring on focus",
+    "dialogs": "Keycloak card: white, 12px radius, soft navy shadow, navy backdrop 45%",
+    "menus": "white 8px popovers with navy shadow, primary-50 hover; navy #203257 tooltips",
+    "settings": "tab list like Nextcloud navigation: selected tab = filled violet pill",
+    "auth": "Keycloak login look: blurred isometric app-tile field background, white 12px card, openDesk logo",
+    "scrollbars": "thin, navy 35%",
+    "focus": "2px #571EFA outline, offset 1px",
+    "badges": "violet unread pills, red highlight pills",
+    "code": "#f4f5f7 8px blocks, violet keywords / blue functions / magenta strings",
+    "iframes": "light base",
+    "icons": "Compound icons tinted navy/violet; openDesk duotone app icons in the app switcher and Home tile",
+    "motion": "150ms colour fades only"
+   },
+   "difficulty": "medium",
+   "enhancer": "Suite top bar with app grid → 'Applications' popover (openDesk app tiles, links from config); skipped when openDesk's banner module is configured."
+  },
+  {
+   "id": "opendesk-dark",
+   "name": "openDesk · Dark",
+   "stage": "pure",
+   "mode": "dark",
+   "seriousness": 9,
+   "hype": 3,
+   "tagline": "openDesk Dark: navy neutral-900 surfaces, lavender accents, violet actions.",
+   "palette": {
+    "bg": "#0f1a2a",
+    "surface": "#131f30",
+    "sidebar": "#0f1a2a",
+    "rail": "#0a121e",
+    "text": "#f0f1f3",
+    "muted": "#b7bbc2",
+    "accent": "#6a45fb",
+    "onAccent": "#ffffff",
+    "border": "#364768",
+    "own": "#1b1a40",
+    "other": "#131f30",
+    "critical": "#d63b3b",
+    "success": "#3ac3a5"
+   },
+   "phases": null,
+   "fonts": {
+    "ui": "Open Sans",
+    "display": "Open Sans 700",
+    "mono": "Element default"
+   },
+   "shape": {
+    "radius": "4px / 8px / 12px",
+    "border": "hairline",
+    "shadow": "1px #283242 rings, deep black popups",
+    "density": "normal"
+   },
+   "texture": "none",
+   "motion": "150ms colour fades",
+   "signature": [
+    "Navy #0a121e suite bar with the inverted (white) wordmark",
+    "Accent text #aa98fb (openDesk Dark uses primary65 #9673e9)",
+    "Selected room = #571EFA pill",
+    "Lavender focus ring",
+    "Login over a darkened app-tile field"
+   ],
+   "regions": {
+    "shell": "#0f1a2a canvas, #0a121e suite bar with white wordmark",
+    "spaces": "white column, Home = openDesk duotone chat app tile, selected space = primary-100 #ece7fe tile + 3px violet edge",
+    "roomlist": "Nextcloud-navigation grey #f5f5f5, 8px rounded rows, selected room = filled #571EFA pill with white text, uppercase section labels",
+    "header": "white, Open Sans 700 17px navy title, 4px icon buttons with violet hover tint",
+    "timeline": "#131f30, own messages #1b1a40, mentions #3a3214 + yellow bar",
+    "names-avatars": "round avatars tinted from the openDesk secondary palette (violet, sky, pink, mint, yellow, grey), names darkened for AA",
+    "composer": "8px outlined field (#99a1b2), violet focus ring, filled #571EFA 4px send button",
+    "rightpanel": "white with hairline separator, 8px rounded menu items",
+    "buttons": "portal/Keycloak: filled #571EFA 4px primary (hover #4519c2), outline secondary with violet text, red destructive",
+    "inputs": "4px outlined fields, violet border + 1px ring on focus",
+    "dialogs": "Keycloak card: white, 12px radius, soft navy shadow, navy backdrop 45%",
+    "menus": "white 8px popovers with navy shadow, primary-50 hover; navy #203257 tooltips",
+    "settings": "tab list like Nextcloud navigation: selected tab = filled violet pill",
+    "auth": "app-tile field darkened 84% navy, dark card, white logo",
+    "scrollbars": "thin, navy 35%",
+    "focus": "2px #571EFA outline, offset 1px",
+    "badges": "violet unread pills, red highlight pills",
+    "code": "#f4f5f7 8px blocks, violet keywords / blue functions / magenta strings",
+    "iframes": "dark base",
+    "icons": "Compound icons tinted navy/violet; openDesk duotone app icons in the app switcher and Home tile",
+    "motion": "150ms colour fades only"
+   },
+   "difficulty": "easy",
+   "enhancer": "same as Light"
+  },
+  {
+   "id": "opendesk-daylight",
+   "name": "openDesk · Daylight",
+   "stage": "pure",
+   "mode": "daylight",
+   "seriousness": 9,
+   "hype": 4,
+   "tagline": "The suite by the office clock: lavender morning, portal day, navy Feierabend, openDesk Dark night.",
+   "palette": {
+    "bg": "#f5f5f5",
+    "surface": "#ffffff",
+    "sidebar": "#f5f5f5",
+    "rail": "#ffffff",
+    "text": "#203257",
+    "muted": "#4d5b79",
+    "accent": "#571efa",
+    "onAccent": "#ffffff",
+    "border": "#d3d7de",
+    "own": "#f7f5ff",
+    "other": "#ffffff",
+    "critical": "#d92d2d",
+    "success": "#13866f"
+   },
+   "phases": {
+    "schedule": [
+     {
+      "from": "06:00",
+      "phase": "dawn",
+      "base": "light"
+     },
+     {
+      "from": "09:00",
+      "phase": "day",
+      "base": "light"
+     },
+     {
+      "from": "17:30",
+      "phase": "dusk",
+      "base": "light"
+     },
+     {
+      "from": "21:00",
+      "phase": "night",
+      "base": "dark"
+     }
+    ],
+    "dawn": {
+     "bg": "#f7f5ff",
+     "surface": "#ffffff",
+     "sidebar": "#f3f0fe",
+     "rail": "#f7f5ff",
+     "text": "#203257",
+     "muted": "#4d5b79",
+     "accent": "#571efa",
+     "onAccent": "#ffffff",
+     "border": "#dcd2fe",
+     "own": "#ece7fe",
+     "other": "#ffffff",
+     "critical": "#d92d2d",
+     "success": "#13866f"
+    },
+    "day": {
+     "bg": "#f5f5f5",
+     "surface": "#ffffff",
+     "sidebar": "#f5f5f5",
+     "rail": "#ffffff",
+     "text": "#203257",
+     "muted": "#4d5b79",
+     "accent": "#571efa",
+     "onAccent": "#ffffff",
+     "border": "#d3d7de",
+     "own": "#f7f5ff",
+     "other": "#ffffff",
+     "critical": "#d92d2d",
+     "success": "#13866f"
+    },
+    "dusk": {
+     "bg": "#eeeff2",
+     "surface": "#ffffff",
+     "sidebar": "#e8eaee",
+     "rail": "#203257",
+     "text": "#203257",
+     "muted": "#4d5b79",
+     "accent": "#571efa",
+     "onAccent": "#ffffff",
+     "border": "#d3d7de",
+     "own": "#eeeaff",
+     "other": "#ffffff",
+     "critical": "#d92d2d",
+     "success": "#13866f"
+    },
+    "night": {
+     "bg": "#0f1a2a",
+     "surface": "#131f30",
+     "sidebar": "#0f1a2a",
+     "rail": "#0a121e",
+     "text": "#f0f1f3",
+     "muted": "#b7bbc2",
+     "accent": "#6a45fb",
+     "onAccent": "#ffffff",
+     "border": "#364768",
+     "own": "#1b1a40",
+     "other": "#131f30",
+     "critical": "#d63b3b",
+     "success": "#3ac3a5"
+    }
+   },
+   "fonts": {
+    "ui": "Open Sans",
+    "display": "Open Sans 700",
+    "mono": "Element default"
+   },
+   "shape": {
+    "radius": "4px / 8px / 12px",
+    "border": "hairline",
+    "shadow": "as Light",
+    "density": "normal"
+   },
+   "texture": "none",
+   "motion": "2s colour fade on the large surfaces at phase changes (off under reduced motion)",
+   "signature": [
+    "Dawn: primary-50 lavender canvas and suite bar",
+    "Day: openDesk Light",
+    "Dusk: navy #203257 suite bar and space column with white wordmark",
+    "Night: openDesk Dark",
+    "Fade only on big surfaces"
+   ],
+   "regions": {
+    "shell": "per phase (dawn lavender, day portal grey, dusk navy bar + rail, night navy)",
+    "spaces": "white column, Home = openDesk duotone chat app tile, selected space = primary-100 #ece7fe tile + 3px violet edge",
+    "roomlist": "Nextcloud-navigation grey #f5f5f5, 8px rounded rows, selected room = filled #571EFA pill with white text, uppercase section labels",
+    "header": "white, Open Sans 700 17px navy title, 4px icon buttons with violet hover tint",
+    "timeline": "white, own messages primary-50 #f7f5ff, mentions #fff7d6 with secondaryYellow bar, pill date separators",
+    "names-avatars": "round avatars tinted from the openDesk secondary palette (violet, sky, pink, mint, yellow, grey), names darkened for AA",
+    "composer": "8px outlined field (#99a1b2), violet focus ring, filled #571EFA 4px send button",
+    "rightpanel": "white with hairline separator, 8px rounded menu items",
+    "buttons": "portal/Keycloak: filled #571EFA 4px primary (hover #4519c2), outline secondary with violet text, red destructive",
+    "inputs": "4px outlined fields, violet border + 1px ring on focus",
+    "dialogs": "Keycloak card: white, 12px radius, soft navy shadow, navy backdrop 45%",
+    "menus": "white 8px popovers with navy shadow, primary-50 hover; navy #203257 tooltips",
+    "settings": "tab list like Nextcloud navigation: selected tab = filled violet pill",
+    "auth": "Keycloak login look: blurred isometric app-tile field background, white 12px card, openDesk logo",
+    "scrollbars": "thin, navy 35%",
+    "focus": "2px #571EFA outline, offset 1px",
+    "badges": "violet unread pills, red highlight pills",
+    "code": "#f4f5f7 8px blocks, violet keywords / blue functions / magenta strings",
+    "iframes": "light base",
+    "icons": "Compound icons tinted navy/violet; openDesk duotone app icons in the app switcher and Home tile",
+    "motion": "150ms colour fades only"
+   },
+   "difficulty": "medium",
+   "enhancer": "same as Light"
+  },
+  {
+   "id": "opendesk-usable",
+   "name": "openDesk · Barrierefrei",
+   "stage": "usable",
+   "mode": "light",
+   "seriousness": 10,
+   "hype": 2,
+   "tagline": "openDesk for long public-sector workdays: BITV 2.0 / WCAG 2.2 AA+, strong focus, bigger text.",
+   "palette": {
+    "bg": "#f5f5f5",
+    "surface": "#ffffff",
+    "sidebar": "#f5f5f5",
+    "rail": "#ffffff",
+    "text": "#131f30",
+    "muted": "#3e4859",
+    "accent": "#4519c2",
+    "onAccent": "#ffffff",
+    "border": "#637089",
+    "own": "#f7f5ff",
+    "other": "#ffffff",
+    "critical": "#b42020",
+    "success": "#0d6b58"
+   },
+   "phases": null,
+   "fonts": {
+    "ui": "Open Sans 15px body",
+    "display": "Open Sans 700",
+    "mono": "Element default"
+   },
+   "shape": {
+    "radius": "4px / 8px / 12px",
+    "border": "hairline, 5:1 control outlines",
+    "shadow": "as Light",
+    "density": "normal (bigger targets)"
+   },
+   "texture": "none",
+   "motion": "none (0ms transitions)",
+   "signature": [
+    "3px #0c3ff3 (secondaryBlueHighcontrast) focus ring with white gap",
+    "Underlined links",
+    "Unread rooms carry a 4px violet bar + bold name (not colour alone)",
+    "Darker violet #4519c2 (9.6:1 with white)",
+    "Compact 48px suite bar"
+   ],
+   "regions": {
+    "shell": "#f5f5f5 portal canvas, 64px white suite bar (app grid + openDesk wordmark → portal, 'Chat' label) with #d9dbdf hairline",
+    "spaces": "white column, Home = openDesk duotone chat app tile, selected space = primary-100 #ece7fe tile + 3px violet edge",
+    "roomlist": "as Light, 15px names, unread bar",
+    "header": "white, Open Sans 700 17px navy title, 4px icon buttons with violet hover tint",
+    "timeline": "white, own messages primary-50 #f7f5ff, mentions #fff7d6 with secondaryYellow bar, pill date separators",
+    "names-avatars": "round avatars tinted from the openDesk secondary palette (violet, sky, pink, mint, yellow, grey), names darkened for AA",
+    "composer": "8px outlined field (#99a1b2), violet focus ring, filled #571EFA 4px send button",
+    "rightpanel": "white with hairline separator, 8px rounded menu items",
+    "buttons": "filled #4519c2, outline secondary 5:1",
+    "inputs": "4px outlined fields, violet border + 1px ring on focus",
+    "dialogs": "Keycloak card: white, 12px radius, soft navy shadow, navy backdrop 45%",
+    "menus": "white 8px popovers with navy shadow, primary-50 hover; navy #203257 tooltips",
+    "settings": "tab list like Nextcloud navigation: selected tab = filled violet pill",
+    "auth": "Keycloak login look: blurred isometric app-tile field background, white 12px card, openDesk logo",
+    "scrollbars": "permanent, wide",
+    "focus": "3px #0c3ff3 outline, 2px offset, white gap",
+    "badges": "violet unread pills, red highlight pills",
+    "code": "#f4f5f7 8px blocks, violet keywords / blue functions / magenta strings",
+    "iframes": "light base",
+    "icons": "Compound icons tinted navy/violet; openDesk duotone app icons in the app switcher and Home tile",
+    "motion": "150ms colour fades only"
+   },
+   "difficulty": "easy",
+   "enhancer": "same as Light (48px bar)"
+  },
+  {
+   "id": "opendesk-classic",
+   "name": "openDesk · Souveräner Arbeitsplatz 2023",
+   "stage": "past",
+   "mode": "light",
+   "seriousness": 8,
+   "hype": 4,
+   "tagline": "The 2023 Sovereign Workplace / early openDesk: violet banner, #5e27dd, the secondary colour palette.",
+   "palette": {
+    "bg": "#f5f5f5",
+    "surface": "#ffffff",
+    "sidebar": "#f5f5f5",
+    "rail": "#ebedf1",
+    "text": "#000000",
+    "muted": "#4a4f57",
+    "accent": "#5e27dd",
+    "onAccent": "#ffffff",
+    "border": "#adb3bc",
+    "own": "#f3effc",
+    "other": "#ffffff",
+    "critical": "#c8005a",
+    "success": "#13866f"
+   },
+   "phases": null,
+   "fonts": {
+    "ui": "Open Sans",
+    "display": "Open Sans 600",
+    "mono": "Element default"
+   },
+   "shape": {
+    "radius": "2px controls, 4px tiles",
+    "border": "hairline",
+    "shadow": "flat",
+    "density": "normal"
+   },
+   "texture": "none",
+   "motion": "150ms colour fades",
+   "signature": [
+    "Violet #5e27dd 56px banner with the white 2023 wordmark",
+    "Black Element text (2023 Element custom theme: text-primary = black)",
+    "Lavender primary15 row highlight with a violet edge marker",
+    "Secondary chips: sky #52c1ff filters, mint #00ffcd code edge, pink-red highlights",
+    "Square-ish 2–4px corners"
+   ],
+   "regions": {
+    "shell": "violet #5e27dd banner, #f5f5f5 canvas",
+    "spaces": "white column, Home = openDesk duotone chat app tile, selected space = primary-100 #ece7fe tile + 3px violet edge",
+    "roomlist": "#f5f5f5, selected = #e7dffa row + 4px violet marker",
+    "header": "white, Open Sans 700 17px navy title, 4px icon buttons with violet hover tint",
+    "timeline": "white, own messages primary-50 #f7f5ff, mentions #fff7d6 with secondaryYellow bar, pill date separators",
+    "names-avatars": "round avatars tinted from the openDesk secondary palette (violet, sky, pink, mint, yellow, grey), names darkened for AA",
+    "composer": "8px outlined field (#99a1b2), violet focus ring, filled #571EFA 4px send button",
+    "rightpanel": "white with hairline separator, 8px rounded menu items",
+    "buttons": "portal/Keycloak: filled #571EFA 4px primary (hover #4519c2), outline secondary with violet text, red destructive",
+    "inputs": "4px outlined fields, violet border + 1px ring on focus",
+    "dialogs": "Keycloak card: white, 12px radius, soft navy shadow, navy backdrop 45%",
+    "menus": "white 8px popovers with navy shadow, primary-50 hover; navy #203257 tooltips",
+    "settings": "tab list like Nextcloud navigation: selected tab = filled violet pill",
+    "auth": "violet gradient #5e27dd → #9673e9",
+    "scrollbars": "thin, navy 35%",
+    "focus": "2px #571EFA outline, offset 1px",
+    "badges": "violet unread pills, red highlight pills",
+    "code": "#f4f5f7 8px blocks, violet keywords / blue functions / magenta strings",
+    "iframes": "light base",
+    "icons": "Compound icons tinted navy/violet; openDesk duotone app icons in the app switcher and Home tile",
+    "motion": "150ms colour fades only"
+   },
+   "difficulty": "easy",
+   "enhancer": "same as Light (violet bar)"
+  },
+  {
+   "id": "opendesk-2028",
+   "name": "openDesk · 2028",
+   "stage": "future",
+   "mode": "light",
+   "seriousness": 7,
+   "hype": 7,
+   "tagline": "Speculative: opendesk.eu's marketing language in the product — Space Grotesk, floating panels, gradients.",
+   "palette": {
+    "bg": "#f7f5ff",
+    "surface": "#ffffff",
+    "sidebar": "#ffffff",
+    "rail": "#f7f5ff",
+    "text": "#121f3c",
+    "muted": "#4d5b79",
+    "accent": "#571efa",
+    "onAccent": "#ffffff",
+    "border": "#dcd2fe",
+    "own": "#f1edff",
+    "other": "#ffffff",
+    "critical": "#d92d2d",
+    "success": "#0b7d6c"
+   },
+   "phases": null,
+   "fonts": {
+    "ui": "Open Sans",
+    "display": "Space Grotesk 600 (bundled)",
+    "mono": "Element default"
+   },
+   "shape": {
+    "radius": "10px controls, 14px tiles, 18px panels, 22px dialogs, pills",
+    "border": "none",
+    "shadow": "0 12px 32px rgb(33 12 92/.08) floating panels",
+    "density": "airy"
+   },
+   "texture": "lavender → sky → mint radial canvas",
+   "motion": "150ms fades",
+   "signature": [
+    "Room list and room view as floating 18px cards on a lavender/sky/mint canvas",
+    "Frosted suite bar with date/time",
+    "Violet → blue gradient on primary actions, selected room and unread pills",
+    "Capsule composer with gradient hairline on focus",
+    "Space Grotesk headings"
+   ],
+   "regions": {
+    "shell": "radial lavender/sky/mint canvas, frosted 64px bar with clock",
+    "spaces": "white column, Home = openDesk duotone chat app tile, selected space = primary-100 #ece7fe tile + 3px violet edge",
+    "roomlist": "Nextcloud-navigation grey #f5f5f5, 8px rounded rows, selected room = filled #571EFA pill with white text, uppercase section labels",
+    "header": "white, Open Sans 700 17px navy title, 4px icon buttons with violet hover tint",
+    "timeline": "white floating card, own messages #f1edff 14px",
+    "names-avatars": "round avatars tinted from the openDesk secondary palette (violet, sky, pink, mint, yellow, grey), names darkened for AA",
+    "composer": "8px outlined field (#99a1b2), violet focus ring, filled #571EFA 4px send button",
+    "rightpanel": "white with hairline separator, 8px rounded menu items",
+    "buttons": "gradient pills",
+    "inputs": "4px outlined fields, violet border + 1px ring on focus",
+    "dialogs": "Keycloak card: white, 12px radius, soft navy shadow, navy backdrop 45%",
+    "menus": "white 8px popovers with navy shadow, primary-50 hover; navy #203257 tooltips",
+    "settings": "tab list like Nextcloud navigation: selected tab = filled violet pill",
+    "auth": "Keycloak login look: blurred isometric app-tile field background, white 12px card, openDesk logo",
+    "scrollbars": "thin, navy 35%",
+    "focus": "2px #571EFA outline, offset 1px",
+    "badges": "violet unread pills, red highlight pills",
+    "code": "#f4f5f7 8px blocks, violet keywords / blue functions / magenta strings",
+    "iframes": "light base",
+    "icons": "Compound icons tinted navy/violet; openDesk duotone app icons in the app switcher and Home tile",
+    "motion": "150ms colour fades only"
+   },
+   "difficulty": "medium",
+   "enhancer": "suite bar + clock"
+  },
+  {
+   "id": "opendesk-hyperdesk",
+   "name": "openDesk · Hyperdesk",
+   "stage": "exciting",
+   "mode": "dark",
+   "seriousness": 4,
+   "hype": 9,
+   "tagline": "openDesk at night, turned up: neon app-tile wallpaper, violet glow, mint signal colour.",
+   "palette": {
+    "bg": "#0c0820",
+    "surface": "#150d34",
+    "sidebar": "#0e0924",
+    "rail": "#080516",
+    "text": "#f3f0ff",
+    "muted": "#c3b9f2",
+    "accent": "#00ffcd",
+    "onAccent": "#0c0820",
+    "border": "#8e75fa",
+    "own": "#2a1a5c",
+    "other": "#150d34",
+    "critical": "#e0245e",
+    "success": "#00ffcd"
+   },
+   "phases": null,
+   "fonts": {
+    "ui": "Open Sans",
+    "display": "Space Grotesk 700 uppercase",
+    "mono": "Element default"
+   },
+   "shape": {
+    "radius": "6px / 10px / 14px",
+    "border": "glow",
+    "shadow": "violet glow 0 0 24px rgb(106 61 255/.45), mint hairlines",
+    "density": "normal"
+   },
+   "texture": "login app-tile field in luminosity blend under violet/mint light, 56px neon grid in the room view",
+   "motion": "slow drifting gradient line under the suite bar (static under reduced motion)",
+   "signature": [
+    "App-tile wallpaper from the openDesk login as a night scene",
+    "Mint #00ffcd signal colour for links, unread pills, focus",
+    "Selected room = violet→pink gradient with glow",
+    "All-caps Space Grotesk headings and filters",
+    "Breathing gradient line under the suite bar"
+   ],
+   "regions": {
+    "shell": "#0c0820 with tile wallpaper and glows, translucent panels",
+    "spaces": "white column, Home = openDesk duotone chat app tile, selected space = primary-100 #ece7fe tile + 3px violet edge",
+    "roomlist": "Nextcloud-navigation grey #f5f5f5, 8px rounded rows, selected room = filled #571EFA pill with white text, uppercase section labels",
+    "header": "white, Open Sans 700 17px navy title, 4px icon buttons with violet hover tint",
+    "timeline": "62–78% violet-black over a 56px neon grid",
+    "names-avatars": "round avatars tinted from the openDesk secondary palette (violet, sky, pink, mint, yellow, grey), names darkened for AA",
+    "composer": "8px outlined field (#99a1b2), violet focus ring, filled #571EFA 4px send button",
+    "rightpanel": "white with hairline separator, 8px rounded menu items",
+    "buttons": "portal/Keycloak: filled #571EFA 4px primary (hover #4519c2), outline secondary with violet text, red destructive",
+    "inputs": "4px outlined fields, violet border + 1px ring on focus",
+    "dialogs": "Keycloak card: white, 12px radius, soft navy shadow, navy backdrop 45%",
+    "menus": "white 8px popovers with navy shadow, primary-50 hover; navy #203257 tooltips",
+    "settings": "tab list like Nextcloud navigation: selected tab = filled violet pill",
+    "auth": "tile field darkened, glowing white logo",
+    "scrollbars": "thin, navy 35%",
+    "focus": "2px #571EFA outline, offset 1px",
+    "badges": "violet unread pills, red highlight pills",
+    "code": "#f4f5f7 8px blocks, violet keywords / blue functions / magenta strings",
+    "iframes": "dark base",
+    "icons": "Compound icons tinted navy/violet; openDesk duotone app icons in the app switcher and Home tile",
+    "motion": "9s gradient drift on one line; nothing per tile"
+   },
+   "difficulty": "medium",
+   "enhancer": "suite bar + clock"
+  }
+ ]
+}

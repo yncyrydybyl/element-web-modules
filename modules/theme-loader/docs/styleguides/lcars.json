@@ -1,0 +1,613 @@
+{
+  "family": "lcars",
+  "name": "LCARS (Star Trek)",
+  "concept": "Element rebuilt as a Starfleet LCARS console after Michael Okuda's design: the room list becomes the left frame, elbows sweep into a header bar on top and a composer bar at the bottom, and the timeline sits in a black content well. Variants move along canon eras (TNG 2369 -> Voyager 2375 -> Picard 2401), a usable everyday frame, a hype red alert, a cartoon Lower Decks take and a ship's-clock daylight variant.",
+  "sources": [
+    {
+      "title": "trekcolors R package: named LCARS series palettes 2357/2369/2375/2379 (MIT)",
+      "url": "https://github.com/leonawicz/trekcolors/blob/master/data-raw/data.R"
+    },
+    {
+      "title": "TheLCARS.com colour reference incl. Picard, Lower Decks, Voyager sets (reference only, EULA forbids copying code)",
+      "url": "https://www.thelcars.com/colors.php"
+    },
+    {
+      "title": "TheLCARS.com Picard theme demo (visual reference)",
+      "url": "https://www.thelcars.com/themes/picard.html"
+    },
+    {
+      "title": "TheLCARS.com Lower Decks theme demo with show still (visual reference)",
+      "url": "https://www.thelcars.com/themes/lower-decks.html"
+    },
+    {
+      "title": "TheLCARS.com Voyager theme demo (visual reference)",
+      "url": "https://www.thelcars.com/themes/voyager.html"
+    },
+    {
+      "title": "TheLCARS.com licence",
+      "url": "https://www.thelcars.com/license/"
+    },
+    {
+      "title": "Wikipedia: LCARS",
+      "url": "https://en.wikipedia.org/wiki/LCARS"
+    },
+    {
+      "title": "Antonio font (OFL-1.1)",
+      "url": "https://github.com/google/fonts/tree/main/ofl/antonio"
+    },
+    {
+      "title": "Dave Blass on the Titan-A and updating LCARS (Picard S3)",
+      "url": "https://dailystartreknews.com/read/production-designer-dave-blass-talks-about-designing-the-titan-and-updating-lcars"
+    },
+    {
+      "title": "joernweissenborn/lcars (MIT CSS framework, structure reference)",
+      "url": "https://github.com/joernweissenborn/lcars"
+    }
+  ],
+  "limits": [
+    "Element Call / Jitsi / widget iframes only know light/dark: they stay Element dark inside an LCARS-coloured frame bar",
+    "Message bodies keep their original case; only chrome labels are uppercased (text-transform on user content would hurt readability and copy/paste is unaffected anyway)",
+    "The room list is virtualized (react-virtuoso): colour cycling uses [data-item-index$='N'] instead of :nth-child, row height must stay constant",
+    "Header and left panel are separate DOM subtrees: the top-left elbow is drawn as two touching pieces (frame top cap + header bar inner corner) and can misalign while the left panel is being resized; the enhancer re-measures via ResizeObserver",
+    "Icon-to-text label swaps depend on stable mx_ classes; buttons only identified by aria-label are left as recoloured icons (aria-label is localised)",
+    "Antonio is condensed: pure variants use it for message bodies at 17px+ which is readable but not great for long texts; lcars-usable switches content to Inter",
+    "Swiss 911 Ultra Compressed (canon) is commercial and not shipped; local() is not attempted",
+    "Emoji (Twemoji) and user avatars/images stay full colour",
+    "LCARS and Star Trek are CBS/Paramount property; internal use only, no show audio is shipped (beeps are synthesized)"
+  ],
+  "variants": [
+    {
+      "id": "lcars-tng",
+      "name": "LCARS · TNG",
+      "stage": "pure",
+      "mode": "dark",
+      "seriousness": 7,
+      "hype": 7,
+      "tagline": "Enterprise-D, 2369: orange, peach, lilac and periwinkle elbows on black.",
+      "palette": {
+        "bg": "#000000",
+        "surface": "#000000",
+        "sidebar": "#FF9900",
+        "rail": "#CC99CC",
+        "text": "#FFCC99",
+        "muted": "#9999CC",
+        "accent": "#FF9900",
+        "onAccent": "#000000",
+        "border": "#9999FF",
+        "own": "#FFCC66",
+        "other": "#FFCC99",
+        "critical": "#CC6666",
+        "success": "#99CC99"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Antonio (OFL, bundled, variable 100-700)",
+        "display": "Antonio 500-700 caps (Swiss 911 Ultra Compressed is canon, commercial, not shipped)",
+        "mono": "Inconsolata (Element-bundled)"
+      },
+      "shape": {
+        "radius": "elbow outer 64px / inner 24px; pills 999px",
+        "border": "elbow",
+        "shadow": "none",
+        "density": "normal"
+      },
+      "texture": "none",
+      "motion": "stepwise colour cycling on the data cascade, blinking endcap on the selected room, button press brightness flash; optional two-tone chirp on press (off by default)",
+      "signature": [
+        "elbow sweeps joining the room-list frame to header and composer bars",
+        "half-pill room buttons in cycling 2369 colours with black right-aligned caps labels",
+        "segmented header bar with 6px black gaps and round endcaps",
+        "arbitrary numeric codes on every block (01-HOME, 47-1138, LCARS 40274)",
+        "no icons, no borders, no shadows, no gradients: flat colour on pure black"
+      ],
+      "regions": {
+        "shell": "pure black canvas inside one big LCARS frame: left vertical frame (spaces+room list) sweeps via a top-left elbow into the header bar and via a bottom-left elbow into the composer bar; content well = timeline",
+        "spaces": "vertical block stack in the frame: one rectangular colour block per space, black right/bottom-aligned caps label with a two-digit number (01 HOME, 02 …), 4px black gaps, active block = accent colour",
+        "roomlist": "stack of half-pill buttons (round end left, flat end butting into the frame), colours cycled by data-item-index last digit, black caps label right-aligned; selected = full accent pill with blinking endcap; unread count as black numeral block at the left end",
+        "header": "horizontal top bar continuing the top-left elbow; segmented colour bars with black gaps; room name in large Antonio caps right-aligned in the black area above the bar; call/info buttons = half-pills with text labels at the bar end; topic in small caps in muted colour",
+        "timeline": "black content well, no bubbles: each sender run gets a thin coloured left bar; sender names in caps palette colours; body text in the text colour; timestamps as right-aligned numerals; date separators as short segmented bars with the date in caps",
+        "names-avatars": "username colours mapped to 6 frame colours via --cpd-color-text-decorative-1..6; avatars square (--cpd-avatar-radius 0) with a 2px palette frame; default avatars = flat palette block with black initials",
+        "composer": "bottom elbow bar holds a black input slot with text-colour caret; send = half-pill 'TRANSMIT', attach 'DATA', emoji 'SYMBOLS', more '+' pill; labels via CSS on stable classes",
+        "rightpanel": "mirrored frame: right vertical bar with top-right/bottom-right elbows, card headers as caps bars, member list as pill rows",
+        "buttons": "primary = full pill accent fill, black caps label bottom-right aligned; secondary = pill in frame colour 2; destructive = red pill; no borders, no shadows; press = brightness(1.2)",
+        "inputs": "black slot with 2px frame-colour underline bar and rounded left cap; focused = accent bar; labels caps above",
+        "dialogs": "full-overlay mini frame: top-left elbow carrying the title in caps, bottom bar with pills ACKNOWLEDGE / CANCEL; backdrop pure black at 85%",
+        "menus": "context menus as vertical pill stacks on black with a coloured left bar; tooltips as small black boxes with a 2px accent bar and caps text",
+        "settings": "tab list rendered as the left block stack (numbered blocks), active tab accent; panel content on black with caps section bars",
+        "auth": "login as a standalone frame: big elbow, 'LIBRARY COMPUTER ACCESS AND RETRIEVAL SYSTEM' caps headline, 'USER AUTHORIZATION' field slots, pill buttons",
+        "scrollbars": "thin vertical bar in a frame colour, rounded thumb pill, black track",
+        "focus": "3px accent outline with 2px black offset (pill-shaped via outline radius); never removed",
+        "badges": "notification counts as black numerals on accent block (pure) / pill; mentions in critical red; unread dot = small square",
+        "code": "code blocks as data panels: black, 1px frame-colour border-left 6px, Inconsolata, hljs mapped to palette colours",
+        "iframes": "calls/widgets stay Element dark; framed by a frame-colour bar with caps label",
+        "icons": "LCARS has no icons: in the main frame key buttons swap icons for caps text labels; remaining compound icons recoloured black on pills / palette colour on black",
+        "motion": "stepwise colour changes (steps(), no easing), selected endcap blink 1s steps(2), optional data cascade; all off with prefers-reduced-motion"
+      },
+      "difficulty": "hard",
+      "enhancer": "elbow/endcap overlay pieces where pseudo-elements cannot reach, per-room deterministic codes (data-tl-code from room id hash), stardate clock in the header bar, data-cascade number block, optional WebAudio chirps (off by default, toggle pill 'AUDIO')"
+    },
+    {
+      "id": "lcars-voyager",
+      "name": "LCARS · Voyager",
+      "stage": "past",
+      "mode": "dark",
+      "seriousness": 7,
+      "hype": 7,
+      "tagline": "Delta Quadrant, 2375: grey-blue frames, gold and sky-blue accents, the late-90s broadcast LCARS.",
+      "palette": {
+        "bg": "#000000",
+        "surface": "#000000",
+        "sidebar": "#828CAD",
+        "rail": "#FFBB33",
+        "text": "#FFE1CA",
+        "muted": "#99CCFF",
+        "accent": "#FFBB33",
+        "onAccent": "#000000",
+        "border": "#74788B",
+        "own": "#FFBB33",
+        "other": "#99CCFF",
+        "critical": "#FF3300",
+        "success": "#94B300"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Antonio (bundled)",
+        "display": "Antonio 600 caps",
+        "mono": "Inconsolata"
+      },
+      "shape": {
+        "radius": "elbow outer 64px / inner 24px; pills 999px",
+        "border": "elbow",
+        "shadow": "none",
+        "density": "normal"
+      },
+      "texture": "none (optional faint CRT phosphor bloom on the frame: text-shadow 0 0 2px, no filters)",
+      "motion": "as TNG; the data cascade uses gold/sky/grey rows, a 'SIGNAL DECAY' readout ticks stepwise",
+      "signature": [
+        "silver-blue (#828CAD) frame instead of orange: the cooler late-DS9/VOY look",
+        "gold (#FFBB33) top block and accent pills",
+        "science blue (#2288FF) and frost (#99CCFF) small segments in the bars",
+        "label/readout table in the header area (DECRYPTION KEY · SCAN PATTERN · SIGNAL DECAY)",
+        "stardate 5xxxx header readout"
+      ],
+      "regions": {
+        "shell": "pure black canvas inside one big LCARS frame: left vertical frame (spaces+room list) sweeps via a top-left elbow into the header bar and via a bottom-left elbow into the composer bar; content well = timeline",
+        "spaces": "block stack in silver-blue with the active space gold; numbered labels",
+        "roomlist": "half-pills cycling silver-blue / frost / tan (#CC9966) / pumpkin-seed (#FFE1CA) / salmon (#E98181); selected gold",
+        "header": "horizontal top bar continuing the top-left elbow; segmented colour bars with black gaps; room name in large Antonio caps right-aligned in the black area above the bar; call/info buttons = half-pills with text labels at the bar end; topic in small caps in muted colour",
+        "timeline": "black content well, no bubbles: each sender run gets a thin coloured left bar; sender names in caps palette colours; body text in the text colour; timestamps as right-aligned numerals; date separators as short segmented bars with the date in caps",
+        "names-avatars": "username colours mapped to 6 frame colours via --cpd-color-text-decorative-1..6; avatars square (--cpd-avatar-radius 0) with a 2px palette frame; default avatars = flat palette block with black initials",
+        "composer": "bottom elbow bar holds a black input slot with text-colour caret; send = half-pill 'TRANSMIT', attach 'DATA', emoji 'SYMBOLS', more '+' pill; labels via CSS on stable classes",
+        "rightpanel": "mirrored frame: right vertical bar with top-right/bottom-right elbows, card headers as caps bars, member list as pill rows",
+        "buttons": "primary = full pill accent fill, black caps label bottom-right aligned; secondary = pill in frame colour 2; destructive = red pill; no borders, no shadows; press = brightness(1.2)",
+        "inputs": "black slot with 2px frame-colour underline bar and rounded left cap; focused = accent bar; labels caps above",
+        "dialogs": "full-overlay mini frame: top-left elbow carrying the title in caps, bottom bar with pills ACKNOWLEDGE / CANCEL; backdrop pure black at 85%",
+        "menus": "context menus as vertical pill stacks on black with a coloured left bar; tooltips as small black boxes with a 2px accent bar and caps text",
+        "settings": "tab list rendered as the left block stack (numbered blocks), active tab accent; panel content on black with caps section bars",
+        "auth": "login as a standalone frame: big elbow, 'LIBRARY COMPUTER ACCESS AND RETRIEVAL SYSTEM' caps headline, 'USER AUTHORIZATION' field slots, pill buttons",
+        "scrollbars": "thin vertical bar in a frame colour, rounded thumb pill, black track",
+        "focus": "3px accent outline with 2px black offset (pill-shaped via outline radius); never removed",
+        "badges": "notification counts as black numerals on accent block (pure) / pill; mentions in critical red; unread dot = small square",
+        "code": "code blocks as data panels: black, 1px frame-colour border-left 6px, Inconsolata, hljs mapped to palette colours",
+        "iframes": "calls/widgets stay Element dark; framed by a frame-colour bar with caps label",
+        "icons": "LCARS has no icons: in the main frame key buttons swap icons for caps text labels; remaining compound icons recoloured black on pills / palette colour on black",
+        "motion": "stepwise colour changes (steps(), no easing), selected endcap blink 1s steps(2), optional data cascade; all off with prefers-reduced-motion"
+      },
+      "difficulty": "medium",
+      "enhancer": "same enhancer as TNG with a Voyager readout set; stardate base 2375"
+    },
+    {
+      "id": "lcars-picard",
+      "name": "LCARS · Picard",
+      "stage": "future",
+      "mode": "dark",
+      "seriousness": 7,
+      "hype": 8,
+      "tagline": "Starfleet 2401: slate-grey hairline frames, outlined buttons, cyan data glass and orange-red alerts.",
+      "palette": {
+        "bg": "#000000",
+        "surface": "#0B1018",
+        "sidebar": "#6D748C",
+        "rail": "#2F3749",
+        "text": "#D2D5DF",
+        "muted": "#9EA5BA",
+        "accent": "#37A6D1",
+        "onAccent": "#000000",
+        "border": "#52596E",
+        "own": "#41C4F7",
+        "other": "#D2D5DF",
+        "critical": "#E7442A",
+        "success": "#6CC4A4"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Antonio 300-400 (bundled), lighter weight, wider tracking .06em",
+        "display": "Antonio 300 caps",
+        "mono": "Inconsolata"
+      },
+      "shape": {
+        "radius": "elbow outer 48px / inner 32px, frame arms 12-16px thick; buttons 2px radius rectangles",
+        "border": "hairline",
+        "shadow": "none (glass panels: rgba(28,60,85,.35) fill)",
+        "density": "airy"
+      },
+      "texture": "glass: dark blue translucent panels (#1C3C55 at 35%) behind data blocks",
+      "motion": "smooth 200ms fades (the only LCARS variant with easing), a slow scanning hairline in the header; reduced motion: static",
+      "signature": [
+        "thin slate frames (12-16px) with 1px hairline rounded outlines around the content well",
+        "outlined (stroked) buttons with numbers instead of filled pills; orange-red outline for alerts",
+        "cyan #37A6D1 / #41C4F7 data text and selection",
+        "small orange-red (#E7442A) indicator squares and bars as the only warm colour",
+        "light-weight Antonio with wide tracking, lots of black space"
+      ],
+      "regions": {
+        "shell": "black canvas framed by thin slate-grey elbows (12-16px arms) plus a 1px hairline rounded rectangle around the content well",
+        "spaces": "column of outlined rectangles (1px #6D748C, number right-aligned), active one cyan-outlined with a filled orange-red marker square",
+        "roomlist": "outlined rectangles (1px), caps label right-aligned in ghost grey; selected = solid #37A6D1 fill with black text; unread = small orange-red square",
+        "header": "thin double bar (2px + 8px) in slate greys with a black slot carrying a red indicator; room name in light Antonio caps, cyan",
+        "timeline": "black well with glass cards only on hover/selection; sender names in cyan/ghost/light-orange-red; hairline separators",
+        "names-avatars": "username colours mapped to 6 frame colours via --cpd-color-text-decorative-1..6; avatars square (--cpd-avatar-radius 0) with a 2px palette frame; default avatars = flat palette block with black initials",
+        "composer": "hairline-outlined slot inside a thin slate bar; TRANSMIT button outlined cyan",
+        "rightpanel": "mirrored frame: right vertical bar with top-right/bottom-right elbows, card headers as caps bars, member list as pill rows",
+        "buttons": "outlined 1px rectangles, caps; primary = cyan fill; destructive = orange-red outline/fill",
+        "inputs": "black slot with 2px frame-colour underline bar and rounded left cap; focused = accent bar; labels caps above",
+        "dialogs": "full-overlay mini frame: top-left elbow carrying the title in caps, bottom bar with pills ACKNOWLEDGE / CANCEL; backdrop pure black at 85%",
+        "menus": "context menus as vertical pill stacks on black with a coloured left bar; tooltips as small black boxes with a 2px accent bar and caps text",
+        "settings": "tab list rendered as the left block stack (numbered blocks), active tab accent; panel content on black with caps section bars",
+        "auth": "login as a standalone frame: big elbow, 'LIBRARY COMPUTER ACCESS AND RETRIEVAL SYSTEM' caps headline, 'USER AUTHORIZATION' field slots, pill buttons",
+        "scrollbars": "thin vertical bar in a frame colour, rounded thumb pill, black track",
+        "focus": "3px accent outline with 2px black offset (pill-shaped via outline radius); never removed",
+        "badges": "notification counts as black numerals on accent block (pure) / pill; mentions in critical red; unread dot = small square",
+        "code": "code blocks as data panels: black, 1px frame-colour border-left 6px, Inconsolata, hljs mapped to palette colours",
+        "iframes": "calls/widgets stay Element dark; framed by a frame-colour bar with caps label",
+        "icons": "LCARS has no icons: in the main frame key buttons swap icons for caps text labels; remaining compound icons recoloured black on pills / palette colour on black",
+        "motion": "stepwise colour changes (steps(), no easing), selected endcap blink 1s steps(2), optional data cascade; all off with prefers-reduced-motion"
+      },
+      "difficulty": "medium",
+      "enhancer": "header scan line + keypad/number readout block, deterministic room codes; no cascade (too busy for this era)"
+    },
+    {
+      "id": "lcars-usable",
+      "name": "LCARS · Usable",
+      "stage": "usable",
+      "mode": "dark",
+      "seriousness": 9,
+      "hype": 5,
+      "tagline": "The LCARS frame you can work in all day: readable timeline, normal density, Element affordances intact.",
+      "palette": {
+        "bg": "#000000",
+        "surface": "#0A0A0F",
+        "sidebar": "#FF9966",
+        "rail": "#CC99CC",
+        "text": "#F2EDE4",
+        "muted": "#B4B4D6",
+        "accent": "#FF9900",
+        "onAccent": "#000000",
+        "border": "#4A4A66",
+        "own": "#FFCC66",
+        "other": "#9999CC",
+        "critical": "#FF6666",
+        "success": "#99CC99"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Inter (Element-bundled) for body/timeline/inputs",
+        "display": "Antonio caps for frame labels, header room name, buttons",
+        "mono": "Inconsolata"
+      },
+      "shape": {
+        "radius": "elbow outer 40px / inner 16px, frame 16px wide; pills 999px",
+        "border": "elbow",
+        "shadow": "none",
+        "density": "normal"
+      },
+      "texture": "none",
+      "motion": "no blinking, no cascade; hover/press brightness only; reduced motion removes even that",
+      "signature": [
+        "slim LCARS frame (elbows + header/composer bars) around an otherwise normal Element",
+        "room list as compact pill rows with avatars and previews kept",
+        "Antonio caps only for chrome labels; Inter mixed case for content",
+        "icons kept (recoloured), text labels only on send",
+        "AA contrast everywhere (text #F2EDE4 on black ~17:1, muted #B4B4D6 ~11:1)"
+      ],
+      "regions": {
+        "shell": "slim frame (16px arms) with elbows; content well black; layout of Element otherwise unchanged",
+        "spaces": "rounded-square blocks in frame colours with icons/avatars kept; active block accent",
+        "roomlist": "pill rows (Element row height kept), avatar + name + preview in mixed case Inter, frame-colour left cap; selected = accent left cap + #1A1A24 fill",
+        "header": "bar segment above the header row; room name Antonio caps 22px; icons kept",
+        "timeline": "Inter 15px mixed case, group/bubble/IRC layouts kept; sender names in palette colours (caps Antonio), thin left bar only on own messages",
+        "names-avatars": "username colours mapped to 6 frame colours via --cpd-color-text-decorative-1..6; avatars square (--cpd-avatar-radius 0) with a 2px palette frame; default avatars = flat palette block with black initials",
+        "composer": "black slot with rounded border in border colour inside the bottom bar; send = accent pill 'SEND'",
+        "rightpanel": "mirrored frame: right vertical bar with top-right/bottom-right elbows, card headers as caps bars, member list as pill rows",
+        "buttons": "primary = full pill accent fill, black caps label bottom-right aligned; secondary = pill in frame colour 2; destructive = red pill; no borders, no shadows; press = brightness(1.2)",
+        "inputs": "black slot with 2px frame-colour underline bar and rounded left cap; focused = accent bar; labels caps above",
+        "dialogs": "full-overlay mini frame: top-left elbow carrying the title in caps, bottom bar with pills ACKNOWLEDGE / CANCEL; backdrop pure black at 85%",
+        "menus": "context menus as vertical pill stacks on black with a coloured left bar; tooltips as small black boxes with a 2px accent bar and caps text",
+        "settings": "tab list rendered as the left block stack (numbered blocks), active tab accent; panel content on black with caps section bars",
+        "auth": "login as a standalone frame: big elbow, 'LIBRARY COMPUTER ACCESS AND RETRIEVAL SYSTEM' caps headline, 'USER AUTHORIZATION' field slots, pill buttons",
+        "scrollbars": "thin vertical bar in a frame colour, rounded thumb pill, black track",
+        "focus": "3px accent outline with 2px black offset (pill-shaped via outline radius); never removed",
+        "badges": "notification counts as black numerals on accent block (pure) / pill; mentions in critical red; unread dot = small square",
+        "code": "code blocks as data panels: black, 1px frame-colour border-left 6px, Inconsolata, hljs mapped to palette colours",
+        "iframes": "calls/widgets stay Element dark; framed by a frame-colour bar with caps label",
+        "icons": "all icons kept, recoloured to palette",
+        "motion": "no decorative animation"
+      },
+      "difficulty": "medium",
+      "enhancer": null
+    },
+    {
+      "id": "lcars-red-alert",
+      "name": "LCARS · Red Alert",
+      "stage": "exciting",
+      "mode": "dark",
+      "seriousness": 3,
+      "hype": 10,
+      "tagline": "Red alert, all hands: the frame pulses red, alarm bars sweep the header, mentions klaxon.",
+      "palette": {
+        "bg": "#000000",
+        "surface": "#120000",
+        "sidebar": "#CC4444",
+        "rail": "#882211",
+        "text": "#FFD6CC",
+        "muted": "#CC8877",
+        "accent": "#FF2200",
+        "onAccent": "#000000",
+        "border": "#882211",
+        "own": "#FF6644",
+        "other": "#FFAA99",
+        "critical": "#FF2200",
+        "success": "#D9D5B8"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Antonio 500 (bundled)",
+        "display": "Antonio 700 caps",
+        "mono": "Inconsolata"
+      },
+      "shape": {
+        "radius": "elbow outer 64px / inner 24px; pills 999px",
+        "border": "elbow",
+        "shadow": "none",
+        "density": "normal"
+      },
+      "texture": "none",
+      "motion": "frame and bars pulse #CC4444 <-> #550000 with steps(2) at 1s (2 Hz max, below the 3 flashes/s WCAG limit), 'RED ALERT' blocks in the header blink alternately; reduced motion: static red frame, no blink",
+      "signature": [
+        "all frame pieces in reds (#CC4444, #FF2200 mars, #882211 tamarillo)",
+        "pulsing frame at 1s steps(2)",
+        "giant 'RED ALERT' caps label in the header bar, flanked by alternating alarm segments",
+        "mentions/highlights get a full-width pulsing red bar",
+        "optional klaxon-style two-tone synth on mention (off by default)"
+      ],
+      "regions": {
+        "shell": "pure black canvas inside one big LCARS frame: left vertical frame (spaces+room list) sweeps via a top-left elbow into the header bar and via a bottom-left elbow into the composer bar; content well = timeline",
+        "spaces": "red block stack, active block bright mars red",
+        "roomlist": "half-pills in alternating #CC4444 / #882211 / #FFAA99; unread rooms pulse",
+        "header": "pulsing segmented bar with a 'RED ALERT' label block and alternating flashing segments",
+        "timeline": "black well, body text #FFD6CC; highlighted (mention) tiles get a pulsing red left bar",
+        "names-avatars": "username colours mapped to 6 frame colours via --cpd-color-text-decorative-1..6; avatars square (--cpd-avatar-radius 0) with a 2px palette frame; default avatars = flat palette block with black initials",
+        "composer": "bottom elbow bar holds a black input slot with text-colour caret; send = half-pill 'TRANSMIT', attach 'DATA', emoji 'SYMBOLS', more '+' pill; labels via CSS on stable classes",
+        "rightpanel": "mirrored frame: right vertical bar with top-right/bottom-right elbows, card headers as caps bars, member list as pill rows",
+        "buttons": "primary = full pill accent fill, black caps label bottom-right aligned; secondary = pill in frame colour 2; destructive = red pill; no borders, no shadows; press = brightness(1.2)",
+        "inputs": "black slot with 2px frame-colour underline bar and rounded left cap; focused = accent bar; labels caps above",
+        "dialogs": "full-overlay mini frame: top-left elbow carrying the title in caps, bottom bar with pills ACKNOWLEDGE / CANCEL; backdrop pure black at 85%",
+        "menus": "context menus as vertical pill stacks on black with a coloured left bar; tooltips as small black boxes with a 2px accent bar and caps text",
+        "settings": "tab list rendered as the left block stack (numbered blocks), active tab accent; panel content on black with caps section bars",
+        "auth": "login as a standalone frame: big elbow, 'LIBRARY COMPUTER ACCESS AND RETRIEVAL SYSTEM' caps headline, 'USER AUTHORIZATION' field slots, pill buttons",
+        "scrollbars": "thin vertical bar in a frame colour, rounded thumb pill, black track",
+        "focus": "3px accent outline with 2px black offset (pill-shaped via outline radius); never removed",
+        "badges": "notification counts as black numerals on accent block (pure) / pill; mentions in critical red; unread dot = small square",
+        "code": "code blocks as data panels: black, 1px frame-colour border-left 6px, Inconsolata, hljs mapped to palette colours",
+        "iframes": "calls/widgets stay Element dark; framed by a frame-colour bar with caps label",
+        "icons": "LCARS has no icons: in the main frame key buttons swap icons for caps text labels; remaining compound icons recoloured black on pills / palette colour on black",
+        "motion": "pulse 1s steps(2) on frame, header segments, unread pills; static under prefers-reduced-motion"
+      },
+      "difficulty": "medium",
+      "enhancer": "header 'RED ALERT' overlay and alarm segments; optional synthesized klaxon on mention (off by default)"
+    },
+    {
+      "id": "lcars-lower-decks",
+      "name": "LCARS · Lower Decks",
+      "stage": "comic",
+      "mode": "dark",
+      "seriousness": 3,
+      "hype": 9,
+      "tagline": "USS Cerritos, 2380: cartoon LCARS in oranges on navy glass, thick ink outlines, deadpan labels.",
+      "palette": {
+        "bg": "#0E1326",
+        "surface": "#1A2140",
+        "sidebar": "#FF7700",
+        "rail": "#FFAA44",
+        "text": "#FFEECC",
+        "muted": "#E8B07A",
+        "accent": "#FF9911",
+        "onAccent": "#0E1326",
+        "border": "#05070F",
+        "own": "#FFCC99",
+        "other": "#FFAA44",
+        "critical": "#FF4400",
+        "success": "#9BD45A"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Antonio 600 (bundled)",
+        "display": "Antonio 700 caps, slightly larger",
+        "mono": "Inconsolata"
+      },
+      "shape": {
+        "radius": "elbow outer 72px / inner 28px; pills 999px",
+        "border": "elbow + 3px ink outline (#05070F)",
+        "shadow": "flat cel offset 3px 3px 0 #05070F on pills",
+        "density": "airy"
+      },
+      "texture": "flat cel shading: navy screen glass (#0E1326 -> #1A2140 panels), no gradients",
+      "motion": "bouncy squash on button press (scale .96 then 1, 120ms), selected room endcap wiggles once; reduced motion: none",
+      "signature": [
+        "warm Cerritos palette: orange #FF7700, daybreak #FF9911, harvest gold #FFAA44, honey #FFCC99, butter #FFEECC, october sunset #FF4400",
+        "dark navy screen background instead of pure black, PADD blues (#5588EE, #66CCFF) for secondary readouts",
+        "thick dark ink outlines and cel-offset shadows around every LCARS piece",
+        "deadpan joke labels mixed into the numeric codes (e.g. 'DO NOT TOUCH', 'PROBABLY FINE', '47 · ENSIGN USE ONLY')",
+        "chunkier, rounder elbows and fatter pills than TNG"
+      ],
+      "regions": {
+        "shell": "navy glass canvas (#0E1326) inside an orange LCARS frame with 3px ink outlines",
+        "spaces": "fat orange/gold blocks with ink outline, joke-or-number labels; active block butter",
+        "roomlist": "fat full pills with ink outline + cel shadow, cycling Cerritos oranges; selected butter #FFEECC",
+        "header": "horizontal top bar continuing the top-left elbow; segmented colour bars with black gaps; room name in large Antonio caps right-aligned in the black area above the bar; call/info buttons = half-pills with text labels at the bar end; topic in small caps in muted colour",
+        "timeline": "navy well; own messages in honey-tinted cards with ink outline; sender names caps in oranges and PADD blues",
+        "names-avatars": "username colours mapped to 6 frame colours via --cpd-color-text-decorative-1..6; avatars square (--cpd-avatar-radius 0) with a 2px palette frame; default avatars = flat palette block with black initials",
+        "composer": "bottom elbow bar holds a black input slot with text-colour caret; send = half-pill 'TRANSMIT', attach 'DATA', emoji 'SYMBOLS', more '+' pill; labels via CSS on stable classes",
+        "rightpanel": "mirrored frame: right vertical bar with top-right/bottom-right elbows, card headers as caps bars, member list as pill rows",
+        "buttons": "fat outlined pills with cel shadow; press = squash",
+        "inputs": "black slot with 2px frame-colour underline bar and rounded left cap; focused = accent bar; labels caps above",
+        "dialogs": "full-overlay mini frame: top-left elbow carrying the title in caps, bottom bar with pills ACKNOWLEDGE / CANCEL; backdrop pure black at 85%",
+        "menus": "context menus as vertical pill stacks on black with a coloured left bar; tooltips as small black boxes with a 2px accent bar and caps text",
+        "settings": "tab list rendered as the left block stack (numbered blocks), active tab accent; panel content on black with caps section bars",
+        "auth": "login as a standalone frame: big elbow, 'LIBRARY COMPUTER ACCESS AND RETRIEVAL SYSTEM' caps headline, 'USER AUTHORIZATION' field slots, pill buttons",
+        "scrollbars": "thin vertical bar in a frame colour, rounded thumb pill, black track",
+        "focus": "3px accent outline with 2px black offset (pill-shaped via outline radius); never removed",
+        "badges": "notification counts as black numerals on accent block (pure) / pill; mentions in critical red; unread dot = small square",
+        "code": "code blocks as data panels: black, 1px frame-colour border-left 6px, Inconsolata, hljs mapped to palette colours",
+        "iframes": "calls/widgets stay Element dark; framed by a frame-colour bar with caps label",
+        "icons": "LCARS has no icons: in the main frame key buttons swap icons for caps text labels; remaining compound icons recoloured black on pills / palette colour on black",
+        "motion": "press squash, one-shot wiggle; nothing looping"
+      },
+      "difficulty": "medium",
+      "enhancer": "joke-label pool mixed into deterministic codes; optional cartoon 'boop' sound (off by default)"
+    },
+    {
+      "id": "lcars-daylight",
+      "name": "LCARS · Ship's Clock",
+      "stage": "pure",
+      "mode": "daylight",
+      "seriousness": 7,
+      "hype": 7,
+      "tagline": "Follows the ship's duty shifts: full LCARS by day, reduced lighting in the evening, dim amber at night.",
+      "palette": {
+        "bg": "#000000",
+        "surface": "#000000",
+        "sidebar": "#FF9900",
+        "rail": "#CC99CC",
+        "text": "#FFCC99",
+        "muted": "#9999CC",
+        "accent": "#FF9900",
+        "onAccent": "#000000",
+        "border": "#9999FF",
+        "own": "#FFCC66",
+        "other": "#FFCC99",
+        "critical": "#CC6666",
+        "success": "#99CC99"
+      },
+      "phases": {
+        "day": {
+          "bg": "#000000",
+          "surface": "#000000",
+          "sidebar": "#FF9900",
+          "rail": "#CC99CC",
+          "text": "#FFCC99",
+          "muted": "#9999CC",
+          "accent": "#FF9900",
+          "onAccent": "#000000",
+          "border": "#9999FF",
+          "own": "#FFCC66",
+          "other": "#FFCC99",
+          "critical": "#CC6666",
+          "success": "#99CC99"
+        },
+        "evening": {
+          "bg": "#000000",
+          "surface": "#000000",
+          "sidebar": "#D9862B",
+          "rail": "#A982A9",
+          "text": "#E6BB8F",
+          "muted": "#8282AA",
+          "accent": "#D9862B",
+          "onAccent": "#000000",
+          "border": "#7272A6",
+          "own": "#D9B058",
+          "other": "#E6BB8F",
+          "critical": "#B35A5A",
+          "success": "#82AA82"
+        },
+        "night": {
+          "bg": "#000000",
+          "surface": "#000000",
+          "sidebar": "#A0641A",
+          "rail": "#8A5A2A",
+          "text": "#C9893F",
+          "muted": "#8A6A43",
+          "accent": "#B36B00",
+          "onAccent": "#000000",
+          "border": "#4A3010",
+          "own": "#C9893F",
+          "other": "#B07A3A",
+          "critical": "#B0442E",
+          "success": "#8A8A3A"
+        }
+      },
+      "schedule": [
+        {
+          "from": "07:00",
+          "phase": "day",
+          "base": "dark"
+        },
+        {
+          "from": "18:00",
+          "phase": "evening",
+          "base": "dark"
+        },
+        {
+          "from": "22:00",
+          "phase": "night",
+          "base": "dark"
+        }
+      ],
+      "fonts": {
+        "ui": "Antonio (bundled)",
+        "display": "Antonio caps",
+        "mono": "Inconsolata"
+      },
+      "shape": {
+        "radius": "elbow outer 64px / inner 24px; pills 999px",
+        "border": "elbow",
+        "shadow": "none",
+        "density": "normal"
+      },
+      "texture": "none",
+      "motion": "2s colour fade between phases; cascade only in day phase; night has no blinking at all",
+      "signature": [
+        "shift readout in the header: 'ALPHA SHIFT' (day) / 'BETA SHIFT · REDUCED LIGHTING' (evening) / 'GAMMA SHIFT · NIGHT CONDITION' (night)",
+        "evening = same layout at ~80% luminance and lower saturation",
+        "night = monochrome dim amber frame (#A0641A / #B36B00, black labels >= 4.3:1) to protect night vision",
+        "phase change animates like a ship lighting change (2s fade)",
+        "everything else as lcars-tng"
+      ],
+      "regions": {
+        "shell": "pure black canvas inside one big LCARS frame: left vertical frame (spaces+room list) sweeps via a top-left elbow into the header bar and via a bottom-left elbow into the composer bar; content well = timeline",
+        "spaces": "vertical block stack in the frame: one rectangular colour block per space, black right/bottom-aligned caps label with a two-digit number (01 HOME, 02 …), 4px black gaps, active block = accent colour",
+        "roomlist": "stack of half-pill buttons (round end left, flat end butting into the frame), colours cycled by data-item-index last digit, black caps label right-aligned; selected = full accent pill with blinking endcap; unread count as black numeral block at the left end",
+        "header": "as TNG plus a shift label block (ALPHA / BETA / GAMMA SHIFT) left of the room name",
+        "timeline": "black content well, no bubbles: each sender run gets a thin coloured left bar; sender names in caps palette colours; body text in the text colour; timestamps as right-aligned numerals; date separators as short segmented bars with the date in caps",
+        "names-avatars": "username colours mapped to 6 frame colours via --cpd-color-text-decorative-1..6; avatars square (--cpd-avatar-radius 0) with a 2px palette frame; default avatars = flat palette block with black initials",
+        "composer": "bottom elbow bar holds a black input slot with text-colour caret; send = half-pill 'TRANSMIT', attach 'DATA', emoji 'SYMBOLS', more '+' pill; labels via CSS on stable classes",
+        "rightpanel": "mirrored frame: right vertical bar with top-right/bottom-right elbows, card headers as caps bars, member list as pill rows",
+        "buttons": "primary = full pill accent fill, black caps label bottom-right aligned; secondary = pill in frame colour 2; destructive = red pill; no borders, no shadows; press = brightness(1.2)",
+        "inputs": "black slot with 2px frame-colour underline bar and rounded left cap; focused = accent bar; labels caps above",
+        "dialogs": "full-overlay mini frame: top-left elbow carrying the title in caps, bottom bar with pills ACKNOWLEDGE / CANCEL; backdrop pure black at 85%",
+        "menus": "context menus as vertical pill stacks on black with a coloured left bar; tooltips as small black boxes with a 2px accent bar and caps text",
+        "settings": "tab list rendered as the left block stack (numbered blocks), active tab accent; panel content on black with caps section bars",
+        "auth": "login as a standalone frame: big elbow, 'LIBRARY COMPUTER ACCESS AND RETRIEVAL SYSTEM' caps headline, 'USER AUTHORIZATION' field slots, pill buttons",
+        "scrollbars": "thin vertical bar in a frame colour, rounded thumb pill, black track",
+        "focus": "3px accent outline with 2px black offset (pill-shaped via outline radius); never removed",
+        "badges": "notification counts as black numerals on accent block (pure) / pill; mentions in critical red; unread dot = small square",
+        "code": "code blocks as data panels: black, 1px frame-colour border-left 6px, Inconsolata, hljs mapped to palette colours",
+        "iframes": "calls/widgets stay Element dark; framed by a frame-colour bar with caps label",
+        "icons": "LCARS has no icons: in the main frame key buttons swap icons for caps text labels; remaining compound icons recoloured black on pills / palette colour on black",
+        "motion": "2s phase fade, blink/cascade only in day phase; all off under reduced motion"
+      },
+      "difficulty": "medium",
+      "enhancer": "TNG enhancer + onPhase() updates the shift label; chirps stay off at night even if enabled"
+    }
+  ]
+}

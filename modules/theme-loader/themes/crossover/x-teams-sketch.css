@@ -1,0 +1,484 @@
+/* ==========================================================================
+   x-teams-sketch — "Teams, as the PM drew it"
+   Grammar: Microsoft Teams 2026 (68px app bar with labels, chat list, tabbed
+   header Chat | Shared | +, message cards, own messages right + tinted).
+   Material: Balsamiq wireframe (2px hand-drawn strokes, hatching, Balsamiq Sans),
+   Teams brandTeamsV21 #654CF5 used like a PM's purple marker.
+   Reuses @sketch (fonts, rough frames, hachure, underline, circles).
+   ========================================================================== */
+
+html[data-tl-theme="x-teams-sketch"] {
+  --xt-paper: #fdfdfb;
+  --xt-panel: #ffffff;
+  --xt-canvas: #f2f2f2;
+  --xt-rail: #e6e6e6;
+  --xt-ink: #222222;           /* 15.6:1 */
+  --xt-muted: #5e5e5e;         /* 6.4:1 */
+  --xt-marker: #654cf5;        /* 5.4:1 */
+  --xt-marker-soft: #e8e8ff;
+  --xt-crit: #d62828;
+  --xt-ok: #147a5c;
+  --xt-note: #fff59d;
+  --xt-r1: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --xt-r2: 15px 255px 15px 225px / 225px 15px 255px 15px;
+  --xt-r3: 225px 25px 255px 15px / 25px 255px 15px 225px;
+  --xt-hatch: repeating-linear-gradient(-41deg, transparent 0 6px, rgb(34 34 34 / .16) 6px 7.5px);
+  --xt-hatch-marker: repeating-linear-gradient(-41deg, transparent 0 6px, rgb(101 76 245 / .28) 6px 8px);
+  --xt-frame: url("@sketch/assets/frame-d1.svg");
+  --xt-font: "Balsamiq Sans", "Comic Neue", "Segoe Print", sans-serif;
+  --xt-hand: "Architects Daughter", "Balsamiq Sans", cursive;
+  --xt-mono: "Comic Shanns Mono", ui-monospace, monospace;
+  color-scheme: light;
+}
+
+/* ---------- tokens ---------- */
+html[data-tl-theme="x-teams-sketch"],
+html[data-tl-theme="x-teams-sketch"] body,
+html[data-tl-theme="x-teams-sketch"] [class*="cpd-theme-"] {
+  --cpd-color-theme-bg: var(--xt-panel);
+  --cpd-color-bg-canvas-default: var(--xt-panel);
+  --cpd-color-bg-canvas-default-level-1: var(--xt-panel);
+  --cpd-color-bg-subtle-primary: #ebebeb;
+  --cpd-color-bg-subtle-secondary: var(--xt-canvas);
+  --cpd-color-bg-subtle-secondary-level-0: var(--xt-canvas);
+  --cpd-color-bg-subtle-tertiary: #f7f7f7;
+  --cpd-color-bg-action-primary-rest: var(--xt-marker);
+  --cpd-color-bg-action-primary-hovered: #5a40db;
+  --cpd-color-bg-action-primary-pressed: #4d3aba;
+  --cpd-color-bg-action-secondary-rest: var(--xt-panel);
+  --cpd-color-bg-action-secondary-hovered: #f4f4f4;
+  --cpd-color-bg-action-tertiary-hovered: #f4f4f4;
+  --cpd-color-bg-action-tertiary-selected: var(--xt-marker-soft);
+  --cpd-color-bg-accent-rest: var(--xt-marker);
+  --cpd-color-bg-accent-hovered: #5a40db;
+  --cpd-color-bg-accent-pressed: #4d3aba;
+  --cpd-color-bg-accent-selected: var(--xt-marker-soft);
+  --cpd-color-bg-accent-subtle: var(--xt-marker-soft);
+  --cpd-color-bg-critical-primary: var(--xt-crit);
+  --cpd-color-bg-critical-subtle: #fde8e8;
+  --cpd-color-bg-badge-accent: var(--xt-marker-soft);
+  --cpd-color-text-badge-accent: var(--xt-marker);
+  --cpd-color-text-primary: var(--xt-ink);
+  --cpd-color-text-secondary: var(--xt-muted);
+  --cpd-color-text-action-primary: var(--xt-ink);
+  --cpd-color-text-action-accent: var(--xt-marker);
+  --cpd-color-text-link-external: var(--xt-marker);
+  --cpd-color-text-critical-primary: var(--xt-crit);
+  --cpd-color-text-success-primary: var(--xt-ok);
+  --cpd-color-text-info-primary: var(--xt-marker);
+  --cpd-color-text-on-solid-primary: #fff;
+  --cpd-color-text-decorative-1: var(--xt-ink);
+  --cpd-color-text-decorative-2: var(--xt-ink);
+  --cpd-color-text-decorative-3: var(--xt-ink);
+  --cpd-color-text-decorative-4: var(--xt-ink);
+  --cpd-color-text-decorative-5: var(--xt-ink);
+  --cpd-color-text-decorative-6: var(--xt-ink);
+  --cpd-color-bg-decorative-1: #e6e6e6;
+  --cpd-color-bg-decorative-2: #e6e6e6;
+  --cpd-color-bg-decorative-3: #e6e6e6;
+  --cpd-color-bg-decorative-4: #e6e6e6;
+  --cpd-color-bg-decorative-5: #e6e6e6;
+  --cpd-color-bg-decorative-6: #e6e6e6;
+  --cpd-color-icon-primary: var(--xt-ink);
+  --cpd-color-icon-secondary: var(--xt-ink);
+  --cpd-color-icon-tertiary: var(--xt-muted);
+  --cpd-color-icon-accent-primary: var(--xt-marker);
+  --cpd-color-icon-accent-tertiary: var(--xt-marker);
+  --cpd-color-icon-critical-primary: var(--xt-crit);
+  --cpd-color-icon-success-primary: var(--xt-ok);
+  --cpd-color-border-focused: var(--xt-marker);
+  --cpd-color-border-interactive-primary: var(--xt-ink);
+  --cpd-color-border-interactive-secondary: var(--xt-ink);
+  --cpd-color-border-interactive-hovered: var(--xt-marker);
+  --cpd-color-border-accent-primary: var(--xt-marker);
+  --cpd-color-separator-primary: var(--xt-ink);
+  --cpd-color-separator-secondary: #bdbdbd;
+  --cpd-color-gray-300: #ebebeb;
+  --cpd-color-gray-400: #bdbdbd;
+  --cpd-color-gray-800: var(--xt-muted);
+  --cpd-color-gray-900: var(--xt-muted);
+  --cpd-color-gray-1400: var(--xt-ink);
+  --cpd-color-green-900: var(--xt-marker);
+  --cpd-color-green-1100: var(--xt-marker);
+  --cpd-font-family-sans: "Balsamiq Sans", "Comic Neue", sans-serif !important;
+  --cpd-font-family-mono: "Comic Shanns Mono", ui-monospace, monospace !important;
+}
+
+/* ---------- shell: grey wireframe canvas, white panels with rough strokes ---------- */
+html[data-tl-theme="x-teams-sketch"] {
+  & body, & .mx_MatrixChat_wrapper, & .mx_MatrixChat { background: var(--xt-canvas); }
+  & .mx_MatrixChat_wrapper {
+    box-sizing: border-box;
+    padding-top: 48px;
+    position: relative;
+    /* the sketched Teams top bar: ‹ › arrows, search box, "…" and the PM's avatar */
+    &::before {
+      content: "‹  ›";
+      position: absolute; left: 0; right: 0; top: 0; height: 48px;
+      box-sizing: border-box;
+      padding: 0 0 0 82px;
+      font: 700 22px/46px var(--xt-font);
+      color: var(--xt-ink);
+      background:
+        url("@sketch/assets/frame-s1.svg") center 8px / 42% 32px no-repeat,
+        var(--xt-canvas);
+      pointer-events: none;
+    }
+    &::after {
+      content: "Search (Ctrl+E)";
+      position: absolute; left: 29%; width: 42%; top: 8px; height: 32px;
+      font: 400 15px/32px var(--xt-font);
+      color: var(--xt-muted);
+      text-align: center;
+      pointer-events: none;
+    }
+  }
+  & .mx_MatrixChat > [data-group] { gap: 0; padding: 0 8px 8px 0; box-sizing: border-box; }
+  & .mx_MatrixChat > [data-group] > .mx_Separator { background: transparent !important; width: 8px; }
+  & .mx_MatrixChat > [data-group] > .mx_Separator * { background: transparent !important; }
+  & #left-panel > .mx_LeftPanel_panel,
+  & .mx_MainSplit > .mx_RoomView_body,
+  & .mx_RightPanel {
+    background: var(--xt-panel) var(--xt-frame) 0 0 / 100% 100% no-repeat;
+    border-radius: 0;
+  }
+  & .mx_LeftPanel, & .mx_LeftPanel_outerWrapper, & .mx_LeftPanel_wrapper, & .mx_RoomListPanel,
+  & .mx_RoomView, & .mx_RoomView_wrapper, & .mx_MainSplit { background: transparent; }
+  & .mx_RoomView_body { padding: 4px; box-sizing: border-box; }
+  & ::selection { background: #fff176; color: var(--xt-ink); }
+  & * { scrollbar-width: thin; scrollbar-color: var(--xt-ink) transparent; }
+  & :focus-visible { outline: 2px solid var(--xt-marker) !important; outline-offset: 2px; border-radius: 6px; }
+}
+
+/* ---------- space panel = Teams app bar, sketched ---------- */
+html[data-tl-theme="x-teams-sketch"] .mx_SpacePanel {
+  width: 68px !important;
+  background: var(--xt-canvas);
+  border: 0;
+  padding: 0 !important;
+  & .mx_SpacePanel_toggleCollapse { display: none; }
+  & .mx_SpaceItem { width: 68px !important; padding: 0 !important; margin: 0 !important; }
+  & .mx_SpaceButton {
+    position: relative;
+    width: 68px !important; height: 60px;
+    margin: 0 !important; padding: 6px 4px 4px !important;
+    display: flex !important; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    border-radius: 0 !important;
+    color: var(--xt-ink);
+  }
+  & .mx_SpaceButton::after {
+    content: attr(aria-label);
+    max-width: 60px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    font: 400 11px/14px var(--xt-font);
+    color: var(--xt-ink);
+  }
+  & .mx_SpaceButton[aria-label="Home"]::after { content: "Chat"; }
+  & .mx_SpaceButton_new::after { content: "Apps"; }
+  & .mx_SpaceButton_selectionWrapper { width: 32px; height: 32px; padding: 0 !important; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+  & .mx_SpaceButton [class*="_avatar_"] {
+    --cpd-avatar-radius: 8px;
+    filter: grayscale(1) contrast(1.2);
+    box-shadow: 0 0 0 2px var(--xt-ink);
+    border-radius: var(--xt-r2) !important;
+  }
+  & .mx_SpaceButton_icon { background: transparent !important; color: var(--xt-ink); }
+  & .mx_SpaceButton_icon::before { background-color: var(--xt-ink) !important; }
+  /* selected: purple marker pill on the left edge + hatched tile */
+  & .mx_SpaceButton_active { background: var(--xt-hatch-marker); }
+  & .mx_SpaceButton_active::after { color: var(--xt-marker); font-weight: 700; }
+  & .mx_SpaceButton_active::before {
+    content: ""; position: absolute; left: 3px; top: 14px; bottom: 14px; width: 4px;
+    background: var(--xt-marker); border-radius: 4px 2px 5px 1px;
+  }
+  & .mx_UserMenu { margin: 6px 0 !important; justify-content: center; }
+  & .mx_UserMenu [class*="_avatar_"] { filter: grayscale(1); box-shadow: 0 0 0 2px var(--xt-ink); border-radius: 50% 45% 55% 48% / 52% 50% 48% 50% !important; }
+  & .mx_QuickSettingsButton, & .mx_ThreadsActivityCentreButton { color: var(--xt-ink) !important; background: transparent !important; }
+  & .mx_QuickSettingsButton::before { background-color: var(--xt-ink) !important; }
+}
+
+/* ---------- room list = Teams chat list ---------- */
+html[data-tl-theme="x-teams-sketch"] .mx_RoomListPanel {
+  padding: 6px;
+  & > header h1 { font: 700 22px/1.2 var(--xt-font); }
+  & > header button { border-radius: var(--xt-r1) !important; }
+  & [role="search"] button[class*="_search_"] {
+    background: var(--xt-panel);
+    border: 2px solid var(--xt-ink);
+    border-radius: var(--xt-r1);
+    color: var(--xt-muted);
+  }
+  & [class*="_chat-filter_"] {
+    background: var(--xt-panel);
+    border: 2px solid var(--xt-ink);
+    border-radius: var(--xt-r3);
+    color: var(--xt-ink);
+    font: 400 14px/1 var(--xt-font);
+  }
+  & [class*="_chat-filter_"][aria-selected="true"] { background: var(--xt-marker-soft); border-color: var(--xt-marker); color: var(--xt-marker); font-weight: 700; }
+}
+html[data-tl-theme="x-teams-sketch"] .mx_RoomListItemView {
+  border-radius: 0;
+  background: transparent;
+  & [class*="_container_"] { border-radius: var(--xt-r1); border: 2px solid transparent; }
+  & [class*="_container_"]::before { display: none; }
+  & [class*="_roomName_"] { color: var(--xt-ink); font-size: 15px; }
+  & [class*="_avatar_"] {
+    filter: grayscale(1) contrast(1.2);
+    border-radius: 50% 45% 55% 48% / 52% 50% 48% 50% !important;
+    box-shadow: 0 0 0 2px var(--xt-ink);
+  }
+  &:hover [class*="_container_"] { background: #f4f4f4; }
+  &.mx_RoomListItemView_selected [class*="_container_"] { background: var(--xt-hatch), var(--xt-panel); border-color: var(--xt-ink); }
+  &.mx_RoomListItemView_selected [class*="_roomName_"] { font-weight: 700; }
+  /* unread: purple count in a hand-drawn circle */
+  & [class*="_unread-counter_"] {
+    background: url("@sketch/assets/circle-1.svg") center / 100% 100% no-repeat;
+    color: var(--xt-marker);
+    font-weight: 700;
+    min-width: 22px; height: 22px; padding: 0 4px;
+  }
+}
+
+/* ---------- room header = Teams chat header with Chat | Shared | + tabs ---------- */
+html[data-tl-theme="x-teams-sketch"] .mx_RoomHeader {
+  border-bottom: 2px solid var(--xt-ink);
+  background: transparent;
+  margin: 0 8px;
+  gap: 10px;
+  & .mx_RoomHeader_heading { font: 700 19px/1.2 var(--xt-font); }
+  & .mx_RoomHeader_infoWrapper { flex: 0 1 auto; }
+  & > [class*="_avatar_"] { filter: grayscale(1); box-shadow: 0 0 0 2px var(--xt-ink); border-radius: 50% 45% 55% 48% / 52% 50% 48% 50% !important; }
+  /* the tab strip, drawn after the room name */
+  & .mx_RoomHeader_infoWrapper::after {
+    content: "Chat      Shared      +";
+    white-space: pre;
+    margin-left: 18px;
+    padding: 0 2px 6px;
+    font: 400 15px/1 var(--xt-font);
+    color: var(--xt-ink);
+    background:
+      linear-gradient(var(--xt-marker), var(--xt-marker)) 0 100% / 34px 3px no-repeat;
+    align-self: flex-end;
+  }
+  & [class*="_icon-button_"] { color: var(--xt-ink) !important; border-radius: var(--xt-r3) !important; }
+  & [class*="_icon-button_"]:hover { background: #f4f4f4 !important; box-shadow: 0 0 0 2px var(--xt-ink); }
+  & .mx_FacePile [class*="_avatar_"] { filter: grayscale(1); }
+  & .mx_RoomHeader_infoWrapper + .tl-header-button { margin-left: auto; }
+}
+
+/* ---------- timeline = Teams cards ---------- */
+html[data-tl-theme="x-teams-sketch"] {
+  & .mx_RoomView_MessageList { padding-inline: 12px; }
+  & .mx_EventTile:not([class*="_stateInfo_"]):has(.mx_MTextBody, .mx_MImageBody, .mx_MFileBody, .mx_MPollBody, .mx_MVideoBody, .mx_MAudioBody) > [class*="_line_"] {
+    background: var(--xt-panel);
+    border: 2px solid var(--xt-ink);
+    border-radius: var(--xt-r1);
+    padding: 6px 12px !important;
+    max-width: min(640px, 100%);
+    box-sizing: border-box;
+  }
+  & .mx_EventTile:nth-child(3n+1) > [class*="_line_"] { border-radius: var(--xt-r2); }
+  & .mx_EventTile:nth-child(3n+2) > [class*="_line_"] { border-radius: var(--xt-r3); }
+  & .mx_EventTile[class*="_stateContinuation_"] > [class*="_line_"] { margin-top: 2px; }
+  & .mx_EventTile[class*="_stateOwnEvent_"]:has(.mx_MTextBody, .mx_MImageBody, .mx_MFileBody, .mx_MPollBody) > [class*="_line_"] { background: var(--xt-marker-soft); }
+  & .mx_EventTile:hover > [class*="_line_"] { box-shadow: 3px 3px 0 rgb(34 34 34 / .15); }
+  & .mx_EventTile[class*="_stateHighlighted_"] > [class*="_line_"] {
+    background: linear-gradient(100deg, transparent 1%, #fff176 3% 96%, transparent 99%), var(--xt-panel);
+    border-color: var(--xt-crit);
+  }
+  & .mx_EventTile[class*="_layoutBubble_"] [class*="_line_"] { border-radius: var(--xt-r1) !important; }
+  & .mx_EventTile [class*="_avatar_"] {
+    filter: grayscale(1) contrast(1.2);
+    border-radius: 50% 45% 55% 48% / 52% 50% 48% 50% !important;
+    box-shadow: 0 0 0 2px var(--xt-ink);
+  }
+  & .mx_DisambiguatedProfile { font-weight: 700; color: var(--xt-ink); }
+  & .mx_MessageTimestamp { color: var(--xt-muted); }
+  & .mx_EventTile_body a { color: var(--xt-marker); text-decoration: underline wavy; text-underline-offset: 3px; }
+  & .mx_ReplyChain, & .mx_EventTile_body blockquote { border-left: 3px solid var(--xt-ink) !important; border-radius: 0; }
+  & .mx_Pill { border-radius: var(--xt-r3); border: 1.5px solid var(--xt-ink); }
+  & .mx_ReactionsRowButton { border: 2px solid var(--xt-ink); border-radius: var(--xt-r3); background: var(--xt-panel); }
+  & .mx_ReactionsRowButton_selected { background: var(--xt-marker-soft); border-color: var(--xt-marker); }
+  & .mx_MessageActionBar, & [class*="_toolbar_"]:has([class*="_toolbar_item_"]) {
+    background: var(--xt-panel); border: 2px solid var(--xt-ink); border-radius: var(--xt-r1); box-shadow: 3px 3px 0 rgb(34 34 34 / .15);
+  }
+  & .mx_TimelineSeparator { font: 400 15px/1 var(--xt-hand); color: var(--xt-muted); }
+  & .mx_TimelineSeparator > hr { border-bottom: 2px dashed #bdbdbd; }
+  & .mx_EventTile_body pre, & .mx_EventTile_pre_container {
+    background-color: #fbfbfb !important;
+    background-image:
+      linear-gradient(rgb(101 76 245 / .1) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(101 76 245 / .1) 1px, transparent 1px) !important;
+    background-size: 16px 16px !important;
+    border: 2px solid var(--xt-ink);
+    border-radius: var(--xt-r2);
+  }
+  & pre code [class^="hljs-"] { color: var(--xt-ink); }
+  & pre code .hljs-keyword, & pre code .hljs-built_in { color: var(--xt-marker); font-weight: 700; }
+  & pre code .hljs-string { color: var(--xt-ok); }
+  & pre code .hljs-comment { color: var(--xt-muted); font-style: italic; }
+  /* media while loading: Balsamiq "X box" placeholder */
+  & .mx_MImageBody_thumbnail_container, & .mx_MImageBody_placeholder {
+    background:
+      linear-gradient(to top right, transparent calc(50% - 1px), var(--xt-ink) 50%, transparent calc(50% + 1px)),
+      linear-gradient(to bottom right, transparent calc(50% - 1px), var(--xt-ink) 50%, transparent calc(50% + 1px)),
+      var(--xt-panel);
+  }
+  & .mx_MImageBody img { filter: grayscale(.85) contrast(1.1); border: 2px solid var(--xt-ink); border-radius: var(--xt-r3); }
+}
+
+/* ---------- composer = Teams compose box, sketched ---------- */
+html[data-tl-theme="x-teams-sketch"] .mx_MessageComposer {
+  background: transparent;
+  padding: 6px 12px 10px;
+  & .mx_MessageComposer_wrapper {
+    box-sizing: border-box;
+    width: calc(100% - 6px);
+    background: var(--xt-panel);
+    border: 2px solid var(--xt-ink);
+    border-radius: var(--xt-r1);
+    padding: 6px 10px;
+  }
+  & .mx_MessageComposer_wrapper:focus-within { border-color: var(--xt-marker); box-shadow: inset 0 -3px 0 var(--xt-marker); }
+  & .mx_BasicMessageComposer_input { font-size: 16px; }
+  & .mx_BasicMessageComposer_input:focus-visible { outline: none !important; box-shadow: 0 2px 0 0 var(--xt-marker); }
+  & .mx_MessageComposer_actions .mx_MessageComposer_button, & .mx_MessageComposer_actions [class*="_icon-button_"] { color: var(--xt-ink) !important; }
+  & .mx_MessageComposer_sendMessage {
+    background: url("@sketch/assets/send-circled.svg") center / 100% 100% no-repeat !important;
+    color: var(--xt-marker) !important;
+  }
+}
+
+/* ---------- right panel ---------- */
+html[data-tl-theme="x-teams-sketch"] .mx_RightPanel {
+  & .mx_BaseCard { background: transparent; }
+  & .mx_BaseCard_header { border-bottom: 2px solid var(--xt-ink); }
+  & [class*="_avatar_"] { filter: grayscale(1); }
+}
+
+/* ---------- buttons & inputs ---------- */
+html[data-tl-theme="x-teams-sketch"] {
+  & [class*="_button_"][data-kind], & .mx_AccessibleButton_hasKind:not(.mx_AccessibleButton_kind_link):not(.mx_AccessibleButton_kind_link_inline) {
+    border: 2px solid var(--xt-ink) !important;
+    border-radius: var(--xt-r1) !important;
+    font-family: var(--xt-font);
+    font-weight: 700;
+  }
+  & [class*="_button_"][data-kind="primary"], & .mx_AccessibleButton_kind_primary { background: var(--xt-marker) !important; color: #fff !important; }
+  & [class*="_button_"][data-kind="secondary"], & .mx_AccessibleButton_kind_primary_outline, & .mx_AccessibleButton_kind_secondary { background: var(--xt-panel) !important; color: var(--xt-ink) !important; }
+  & .mx_AccessibleButton_kind_danger, & [class*="_button_"][class*="_destructive_"] { background: var(--xt-crit) !important; color: #fff !important; }
+  & [class*="_button_"][data-kind]:hover, & .mx_AccessibleButton_hasKind:hover { animation: xt-wobble 120ms ease-in-out 1; }
+  & .mx_Field { border: 2px solid var(--xt-ink); border-radius: var(--xt-r3); background: var(--xt-panel); }
+  & .mx_Field:focus-within { border-color: var(--xt-marker); }
+  & .mx_Field label { background: var(--xt-panel) !important; }
+  & .mx_ToggleSwitch { border: 2px solid var(--xt-ink); background: var(--xt-panel); border-radius: 999px 900px 950px 999px; }
+  & .mx_ToggleSwitch_on { background: var(--xt-marker-soft); }
+  & .mx_ToggleSwitch_on .mx_ToggleSwitch_ball { background: var(--xt-marker); }
+  & input[type="checkbox"], & input[type="radio"] { accent-color: var(--xt-marker); }
+}
+@keyframes xt-wobble {
+  0%, 100% { translate: 0 0; }
+  33% { translate: 1px -1px; }
+  66% { translate: -1px 1px; }
+}
+
+/* ---------- dialogs: wireframe sheet, slight tilt, flat offset shadow ---------- */
+html[data-tl-theme="x-teams-sketch"] {
+  & .mx_Dialog_border { background: transparent; padding: 0; border-radius: 0; box-shadow: none; backdrop-filter: none; }
+  & .mx_Dialog {
+    background: var(--xt-panel) url("@sketch/assets/frame-d2.svg") 0 0 / 100% 100% no-repeat;
+    border: 0;
+    border-radius: 6px;
+    box-shadow: 4px 4px 0 rgb(0 0 0 / .12);
+    rotate: -.4deg;
+  }
+  & .mx_Dialog_title { font: 700 22px/1.2 var(--xt-font); }
+  & .mx_Dialog_background { background: var(--xt-canvas); opacity: .8 !important; }
+  & .mx_TabbedView_tabLabel { border-radius: var(--xt-r1); border: 2px solid transparent; }
+  & .mx_TabbedView_tabLabel_active { background: var(--xt-hatch-marker), var(--xt-panel); border-color: var(--xt-marker); color: var(--xt-marker); font-weight: 700; }
+  & .mx_TabbedView_tabLabel_active svg, & .mx_TabbedView_tabLabel_active .mx_TabbedView_maskedIcon { color: var(--xt-marker); }
+}
+
+/* ---------- menus & tooltips ---------- */
+html[data-tl-theme="x-teams-sketch"] {
+  & .mx_ContextualMenu, & [role="menu"], & .mx_IconizedContextMenu {
+    background: var(--xt-panel); border: 2px solid var(--xt-ink); border-radius: var(--xt-r1); box-shadow: 3px 3px 0 rgb(0 0 0 / .12);
+  }
+  & [role="menuitem"]:hover, & .mx_IconizedContextMenu_option:hover { background: var(--xt-hatch), var(--xt-panel); }
+  & [role="tooltip"], & [class*="_tooltip_"] { background: var(--xt-note); color: var(--xt-ink); border: 1.5px solid var(--xt-ink); border-radius: 2px; font-family: var(--xt-hand); }
+  & [role="tooltip"] *, & [class*="_tooltip_"] * { color: var(--xt-ink); }
+}
+
+/* ---------- badges ---------- */
+html[data-tl-theme="x-teams-sketch"] {
+  & [class*="_notificationBadge_"] {
+    background: var(--xt-panel) url("@sketch/assets/circle-2.svg") center / 100% 100% no-repeat !important;
+    color: var(--xt-marker) !important;
+    font-weight: 700;
+  }
+  & [class*="_notificationBadge_"][class*="_highlight_"] { color: var(--xt-crit) !important; }
+}
+
+/* ---------- empty states: the PM's sticky notes ---------- */
+html[data-tl-theme="x-teams-sketch"] {
+  & .mx_NewRoomIntro { position: relative; }
+  & .mx_NewRoomIntro::after {
+    content: "v2: presence dots? → ask design";
+    position: absolute; right: 8px; top: 0;
+    padding: 10px 12px;
+    background: var(--xt-note);
+    box-shadow: 2px 3px 0 rgb(0 0 0 / .12);
+    rotate: 3deg;
+    font: 400 15px/1.2 var(--xt-hand);
+    color: var(--xt-ink);
+    pointer-events: none;
+  }
+  & .mx_HomePage::after, & [class*="_emptyState_"]::after {
+    content: "TODO ask legal";
+    display: inline-block; margin: 16px;
+    padding: 10px 12px; background: var(--xt-note); rotate: -2deg;
+    font: 400 15px/1.2 var(--xt-hand); color: var(--xt-ink);
+  }
+}
+
+/* ---------- auth: a Balsamiq mockup screen ---------- */
+html[data-tl-theme="x-teams-sketch"] {
+  & .mx_AuthPage { background: var(--xt-canvas) !important; }
+  & .mx_AuthPage_modalBlur { display: none; }
+  & .mx_AuthPage_modal {
+    position: relative;
+    background: var(--xt-panel) url("@sketch/assets/frame-d3.svg") 0 0 / 100% 100% no-repeat;
+    border-radius: 0; box-shadow: 4px 4px 0 rgb(0 0 0 / .12) !important;
+  }
+  & .mx_AuthPage_modal::after {
+    content: "use SSO here";
+    position: absolute; right: -36px; top: 8px;
+    padding: 10px 12px; background: var(--xt-note); rotate: 4deg;
+    font: 400 16px/1.2 var(--xt-hand); color: var(--xt-ink);
+    box-shadow: 2px 3px 0 rgb(0 0 0 / .12);
+  }
+  & .mx_AuthPage_modalContent { background: transparent !important; }
+  & .mx_AuthHeaderLogo img { filter: grayscale(1) contrast(1.3); }
+  & .mx_AuthFooter { background: transparent; opacity: 1; }
+  & .mx_AuthFooter a { color: var(--xt-ink) !important; }
+}
+
+/* ---------- widgets ---------- */
+html[data-tl-theme="x-teams-sketch"] {
+  & .mx_AppTile { border: 2px solid var(--xt-ink); border-radius: var(--xt-r1); }
+  & .mx_AppTileMenuBar { background: var(--xt-panel); }
+}
+
+/* pills: Element sets their colours with layered !important */
+@layer tl-important {
+  html[data-tl-theme="x-teams-sketch"] .mx_Pill,
+  html[data-tl-theme="x-teams-sketch"] .mx_Pill .mx_Pill_text { background: var(--xt-panel) !important; color: var(--xt-ink) !important; }
+  html[data-tl-theme="x-teams-sketch"] .mx_UserPill_me,
+  html[data-tl-theme="x-teams-sketch"] .mx_AtRoomPill,
+  html[data-tl-theme="x-teams-sketch"] .mx_UserPill_me .mx_Pill_text,
+  html[data-tl-theme="x-teams-sketch"] .mx_AtRoomPill .mx_Pill_text { background: #fff176 !important; }
+}
+
+@media (max-width: 600px) {
+  html[data-tl-theme="x-teams-sketch"] .mx_RoomHeader .mx_RoomHeader_infoWrapper::after { display: none; }
+}

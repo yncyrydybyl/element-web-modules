@@ -1,0 +1,8 @@
+/* LCARS · TNG (2369 series): shared.css defaults are the TNG palette. */
+html[data-tl-theme="lcars-tng"] {
+  --lc-c1: #ff9900; --lc-c2: #ffcc99; --lc-c3: #cc99cc; --lc-c4: #9999cc;
+  --lc-c5: #cc6666; --lc-c6: #ffcc66; --lc-c7: #9999ff; --lc-c8: #ff9966;
+  --lc-text: #ffcc99;
+  --lc-muted: #9999cc;
+  --lc-accent: #ff9900;
+}

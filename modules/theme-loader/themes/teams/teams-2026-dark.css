@@ -1,0 +1,78 @@
+/* teams-2026-dark — Fluent teamsDarkColor neutrals, brand70 fills, brand100 text.
+   Also used by teams-2026-daylight in the night phase. */
+html[data-tl-theme="teams-2026-dark"],
+html[data-tl-theme="teams-usable-dark"],
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="night"] {
+  --tm-brand: #4f52b2;
+  --tm-brand-hover: #444791;
+  --tm-brand-pressed: #383966;
+  --tm-brand-fg: #7f85f5;
+  --tm-brand-icon: #7f85f5;
+  --tm-brand-tint: #2f2f4a;
+  --tm-brand-tint2: #333357;
+  --tm-on-brand: #ffffff;
+  --tm-chip-selected-fg: #c5cbfa;
+
+  --tm-titlebar: #141414;
+  --tm-rail: #141414;
+  --tm-list: #1f1f1f;
+  --tm-canvas: #242424;
+  --tm-surface: #292929;
+  --tm-surface2: #2e2e2e;
+  --tm-row-selected: #333333;
+  --tm-row-hover: #2e2e2e;
+  --tm-hover: #333333;
+  --tm-pressed: #3d3d3d;
+  --tm-bubble-other: #2e2e2e;
+  --tm-bubble-own: #2f2f4a;
+  --tm-code-bg: #1f1f1f;
+  --tm-search-bg: #292929;
+  --tm-search-border: #3d3d3d;
+  --tm-search-fg: #adadad;
+
+  --tm-fg1: #ffffff;
+  --tm-fg2: #d6d6d6;
+  --tm-fg3: #adadad;
+  --tm-fg4: #999999;
+  --tm-fg-disabled: #5c5c5c;
+  --tm-stroke1: #666666;
+  --tm-stroke2: #3d3d3d;
+  --tm-stroke-access: #adadad;
+  --tm-critical: #c4314b;
+  --tm-critical-fg: #f1707b;
+  --tm-critical-tint: #3e1f25;
+  --tm-mention-bg: #3a2228;
+  --tm-success: #54b054;
+  --tm-success-tint: #052505;
+  --tm-presence: #92c353;
+
+  --tm-focus-outer: #ffffff;
+  --tm-focus-inner: #000000;
+  --tm-sh-a: rgba(0, 0, 0, 0.24);
+  --tm-sh-k: rgba(0, 0, 0, 0.28);
+  --tm-scroll-thumb: #5c5c5c;
+  --tm-bubble-hover-filter: brightness(1.08);
+  --tm-auth-bg: linear-gradient(135deg, #29274f 0%, #1f1f1f 55%, #2f2a5e 100%);
+  --tm-backdrop: rgba(0, 0, 0, 0.6);
+  --tm-list-separator: #141414;
+  --tm-header-border: #1f1f1f;
+}
+html[data-tl-theme="teams-2026-dark"],
+html[data-tl-theme="teams-2026-dark"] body,
+html[data-tl-theme="teams-2026-dark"] [class*="cpd-theme-"],
+html[data-tl-theme="teams-usable-dark"],
+html[data-tl-theme="teams-usable-dark"] body,
+html[data-tl-theme="teams-usable-dark"] [class*="cpd-theme-"],
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="night"],
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="night"] body,
+html[data-tl-theme="teams-2026-daylight"][data-tl-phase="night"] [class*="cpd-theme-"] {
+  --cpd-color-bg-decorative-1: #002c4e; --cpd-color-text-decorative-1: #9abfdc;
+  --cpd-color-bg-decorative-2: #4c0d55; --cpd-color-text-decorative-2: #d9a7e0;
+  --cpd-color-bg-decorative-3: #02494c; --cpd-color-text-decorative-3: #9bd9db;
+  --cpd-color-bg-decorative-4: #712d09; --cpd-color-text-decorative-4: #efc4ad;
+  --cpd-color-bg-decorative-5: #294903; --cpd-color-text-decorative-5: #bdd99b;
+  --cpd-color-bg-decorative-6: #6d2064; --cpd-color-text-decorative-6: #edbbe7;
+  --cpd-color-gray-300: #333333;
+  --cpd-color-gray-400: #3d3d3d;
+  --cpd-color-alpha-gray-300: rgba(255, 255, 255, 0.08);
+}

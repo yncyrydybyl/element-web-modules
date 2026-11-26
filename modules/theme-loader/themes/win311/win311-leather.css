@@ -1,0 +1,47 @@
+/* win311-leather — "Black Leather Jacket" from Windows 3.1 CONTROL.INI (style guide §4.4).
+   Black Leather Jacket=0,C0C0C0,FFFFFF,0,C0C0C0,0,800040,808080,FFFFFF,808080,808080,0,10E0E0E0,C0C0C0,808080,0,808080,0,FFFFFF,0,FFFFFF
+   Deliberate deviation: Window #000000 / WindowText #FFFFFF so it works as the family's dark mode. */
+html[data-tl-theme="win311-leather"] {
+  --w-desktop: #000000;
+  --w-desktop-text: #ffffff;
+  --w-workspace: #c0c0c0;
+  --w-window: #000000;
+  --w-text: #ffffff;
+  --w-menu: #c0c0c0;
+  --w-menutext: #000000;
+  --w-title: #400080;
+  --w-title-inactive: #808080;
+  --w-titletext: #ffffff;
+  --w-titletext-inactive: #000000;
+  --w-border: #808080;
+  --w-border-inactive: #808080;
+  --w-frame: #000000;
+  --w-scrollbar: #e0e0e0;
+  --w-scroll-shaft: url("assets/dither-leather.svg") 0 0 / 2px 2px repeat;   /* 0x10E0E0E0 = dithered */
+  --w-graytext: #808080;
+  --w-hilight: #000000;
+  --w-hilighttext: #ffffff;
+  /* extras */
+  --w-muted: #c0c0c0;
+  --w-accent-text: #00ffff;
+  --w-link: #00ff00;
+  --w-critical: #ff0000;
+  --w-critical-bg: #800000;
+  --w-success: #00ff00;
+  --w-own-name: #00ffff;
+  --w-mention-bg: #ffffff;
+  --w-mention-text: #000000;
+  --w-code-bg: #000000;
+  --w-code-text: #c0c0c0;
+  --w-input-border: #c0c0c0;
+  --w-hl-keyword: #00ffff; --w-hl-string: #ffff00; --w-hl-comment: #808080; --w-hl-number: #00ff00; --w-hl-delete: #ff00ff;
+  --w-dec-1: #ff0000; --w-dec-2: #00ff00; --w-dec-3: #ffff00; --w-dec-4: #00ffff; --w-dec-5: #ff00ff; --w-dec-6: #c0c0c0;
+  --w-sel: #ffffff;
+  --w-strip-text: #000000;
+  --w-seltext: #000000;
+}
+/* MDI frames: the inner black line vanishes on black windows — draw it in the border grey instead */
+html[data-tl-theme="win311-leather"] {
+  & .mx_MainSplit > .mx_RoomView_body, & #left-panel > .mx_LeftPanel_panel, & .mx_RightPanel { border-color: #c0c0c0; }
+  & .mx_EventTile_pre_container, & .mx_EventTile_body pre { border-color: #808080 !important; }
+}

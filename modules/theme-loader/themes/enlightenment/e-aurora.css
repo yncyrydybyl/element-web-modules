@@ -1,0 +1,286 @@
+/* e-aurora — "Edje Aurora": E17 glass windows floating in a living polar aurora.
+ * The aurora wallpaper (animated by transform only, on a pseudo-element) dominates; every region is a
+ * translucent glass window with coloured edges; text sits on near-solid plates (contrast kept).
+ * ramp: teal #2EE6C5 → cyan #33A1FF → violet #9B6BFF → magenta #FF5FC8 · base #121418 · text #DDE3EA
+ */
+html[data-tl-theme="e-aurora"] {
+  --a-ramp: linear-gradient(90deg, #2EE6C5, #33A1FF 35%, #9B6BFF 68%, #FF5FC8);
+  --a-ramp-v: linear-gradient(180deg, #2EE6C5, #33A1FF 35%, #9B6BFF 68%, #FF5FC8);
+  /* night sky */
+  --e-wall:
+    radial-gradient(ellipse 120% 60% at 50% 110%, #0B1E2A 0%, transparent 60%),
+    linear-gradient(180deg, #060A18 0%, #0A1024 45%, #070912 100%);
+  /* aurora curtains (transform-animated layer) */
+  --e-deco:
+    radial-gradient(ellipse 18% 55% at 14% 30%, rgba(46, 230, 197, 0.95), transparent 70%),
+    radial-gradient(ellipse 14% 60% at 26% 35%, rgba(46, 230, 197, 0.7), transparent 70%),
+    radial-gradient(ellipse 20% 50% at 40% 28%, rgba(51, 161, 255, 0.85), transparent 70%),
+    radial-gradient(ellipse 16% 62% at 55% 36%, rgba(120, 140, 255, 0.75), transparent 70%),
+    radial-gradient(ellipse 18% 55% at 70% 30%, rgba(155, 107, 255, 0.9), transparent 70%),
+    radial-gradient(ellipse 16% 50% at 86% 34%, rgba(255, 95, 200, 0.8), transparent 70%),
+    radial-gradient(ellipse 60% 25% at 50% 80%, rgba(46, 230, 197, 0.25), transparent 70%);
+  --e-deco-inset: -10% -18% -30% -18%;
+  --e-deco-anim: e-aurora-sway 36s ease-in-out infinite alternate;
+  --e-deco2:
+    radial-gradient(1px 1px at 10% 12%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 32% 6%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 58% 14%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 77% 8%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 91% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 45% 22%, #fff 50%, transparent 51%);
+  --e-deco2-opacity: 0.7;
+
+  --e-gap: 10px;
+  --e-win-radius: 12px;
+  --e-win-border: 0 0 0 1px rgba(46, 230, 197, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --e-win-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 22px rgba(51, 161, 255, 0.18);
+
+  --e-bar-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 50%, transparent 51%),
+    rgba(12, 16, 28, 0.42);
+  --e-bar-fg: #F2F7FF;
+  --e-bar-line: rgba(255, 255, 255, 0.08);
+  --e-bar-shadow: none;
+  --e-bar-font: "Titillium Web", "DejaVu Sans", sans-serif;
+  --e-bar-weight: 700;
+  --e-bar-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+
+  --e-shelf-bg: rgba(10, 14, 26, 0.5);
+  --e-list-bg: rgba(10, 12, 20, 0.42);
+  --e-rp-bg: rgba(10, 12, 20, 0.5);
+  --e-timeline-bg: rgba(10, 12, 20, 0.38);
+  --e-roomview-bg: transparent;
+  --e-list-fg: #E6ECF3;
+  --e-list-sep: rgba(255, 255, 255, 0.04);
+  --e-hover-bg: rgba(51, 161, 255, 0.12);
+  --e-sel-bg: linear-gradient(90deg, rgba(46, 230, 197, 0.42), rgba(155, 107, 255, 0.42));
+  --e-sel-fg: #FFFFFF;
+  --e-sel-bar: var(--a-ramp-v);
+  --e-sel-bar-w: 3px;
+  --e-sel-bar-glow: 0 0 10px rgba(46, 230, 197, 0.8);
+  --e-sel-glow: 0 0 18px rgba(155, 107, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  --e-sel-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --e-row-radius: 8px;
+
+  --e-well-bg: rgba(8, 10, 16, 0.92);
+  --e-well-border: rgba(46, 230, 197, 0.35);
+  --e-well-radius: 10px;
+  --e-well-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+
+  --e-btn-bg: rgba(35, 40, 50, 0.9);
+  --e-btn-bg-hover: rgba(45, 52, 66, 0.95);
+  --e-btn-bg-active: rgba(28, 32, 41, 0.95);
+  --e-btn-fg: #DDE3EA;
+  --e-btn-border: 1px solid rgba(255, 255, 255, 0.10);
+  --e-btn-radius: 999px;
+  --e-pri-bg: linear-gradient(90deg, #2EE6C5, #33A1FF 50%, #9B6BFF);
+  --e-pri-bg-hover: linear-gradient(90deg, #52EDD2, #4DB0FF 50%, #AD84FF);
+  --e-pri-fg: #06121F;
+  --e-pri-shadow: 0 0 16px rgba(51, 161, 255, 0.55);
+
+  --e-focus: #33A1FF;
+  --e-focus-glow: 0 0 0 4px rgba(51, 161, 255, 0.28);
+
+  --e-menu-bg: rgba(16, 19, 28, 0.96);
+  --e-menu-border: rgba(46, 230, 197, 0.45);
+  --e-menu-sel: linear-gradient(90deg, rgba(46, 230, 197, 0.25), rgba(155, 107, 255, 0.25));
+  --e-menu-sel-fg: #FFFFFF;
+  --e-menu-radius: 10px;
+  --e-menu-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 18px rgba(155, 107, 255, 0.25);
+  --e-tip-bg: rgba(10, 12, 18, 0.96);
+  --e-tip-fg: #E6ECF3;
+  --e-tip-border: rgba(46, 230, 197, 0.7);
+
+  --e-scroll-thumb: rgba(120, 140, 255, 0.6);
+  --e-scroll-thumb-hover: #9B6BFF;
+  --e-scroll-w: 7px;
+
+  --e-bubble-own: rgba(36, 54, 88, 0.95);
+  --e-bubble-other: rgba(26, 29, 35, 0.95);
+  --e-highlight-bar: #FF5FC8;
+  --e-readmarker: #2EE6C5;
+
+  --e-code-bg: rgba(8, 10, 16, 0.95);
+  --e-code-fg: #DDE3EA;
+  --e-code-border: rgba(46, 230, 197, 0.25);
+  --e-hl-keyword: #B08CFF;
+  --e-hl-string: #2EE6C5;
+  --e-hl-comment: #6B7585;
+  --e-hl-number: #FFD166;
+  --e-hl-class: #7CC4FF;
+  --e-hl-function: #33A1FF;
+  --e-hl-tag: #FF5FC8;
+  --e-hl-attr: #FFD166;
+
+  --e-badge-bg: #2A3140;
+  --e-badge-fg: #DDE3EA;
+  --e-badge-hl-bg: #FF5FC8;
+  --e-badge-hl-fg: #121418;
+  --e-pulse: rgba(255, 95, 200, 0.8);
+  --e-pulse-0: rgba(255, 95, 200, 0);
+
+  --e-icon-hover-filter: drop-shadow(0 0 4px rgba(51, 161, 255, 0.9));
+  --e-dialog-bg: rgba(18, 21, 30, 0.97);
+  --e-backdrop: rgba(4, 6, 14, 0.55);
+  --e-auth-bg: radial-gradient(ellipse 30% 60% at 20% 20%, rgba(46, 230, 197, 0.7), transparent 70%), radial-gradient(ellipse 30% 60% at 55% 15%, rgba(51, 161, 255, 0.6), transparent 70%), radial-gradient(ellipse 30% 60% at 85% 20%, rgba(255, 95, 200, 0.55), transparent 70%), linear-gradient(180deg, #060A18, #070912);
+  --e-clock-face: radial-gradient(circle at 50% 35%, rgba(35, 40, 50, 0.9), rgba(8, 10, 16, 0.95) 70%);
+  --e-clock-rim: rgba(46, 230, 197, 0.6);
+  --e-clock-sec: #FF5FC8;
+  --e-clock-hand: #2EE6C5;
+  --e-clock-glow: drop-shadow(0 0 2px rgba(46, 230, 197, 0.9));
+}
+
+@keyframes e-aurora-sway {
+  0% { transform: translate3d(-4%, 0, 0) scale(1, 1); }
+  50% { transform: translate3d(3%, -2%, 0) scale(1.08, 0.94); }
+  100% { transform: translate3d(6%, 1%, 0) scale(0.96, 1.06); }
+}
+html[data-tl-theme="e-aurora"] .mx_MatrixChat::before {
+  filter: blur(18px);
+  will-change: transform;
+}
+html[data-tl-theme="e-aurora"] .mx_MatrixChat_wrapper,
+html[data-tl-theme="e-aurora"] body {
+  background: #060A18;
+}
+
+/* coloured window edges: an aurora ramp along the top of every window */
+html[data-tl-theme="e-aurora"] .mx_LeftPanel {
+  background: var(--a-ramp) 0 0 / 100% 2px no-repeat, rgba(10, 12, 20, 0.42);
+}
+html[data-tl-theme="e-aurora"] .mx_RightPanel {
+  background: var(--a-ramp) 0 0 / 100% 2px no-repeat, rgba(10, 12, 20, 0.5);
+}
+html[data-tl-theme="e-aurora"] .mx_SpacePanel {
+  background: var(--a-ramp-v) 100% 0 / 2px 100% no-repeat, rgba(10, 14, 26, 0.5);
+}
+html[data-tl-theme="e-aurora"] .mx_RoomHeader {
+  background:
+    var(--a-ramp) 0 0 / 100% 2px no-repeat,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 50%, transparent 51%),
+    rgba(10, 14, 26, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+html[data-tl-theme="e-aurora"] .mx_RoomHeader_heading {
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+/* composer: aurora edge on top */
+html[data-tl-theme="e-aurora"] .mx_MessageComposer {
+  background: rgba(10, 14, 26, 0.55);
+  border-top: 0;
+  box-shadow: inset 0 1px 0 rgba(46, 230, 197, 0.6), 0 -8px 20px rgba(51, 161, 255, 0.12);
+}
+
+/* Ibar magnify + glowing ring */
+html[data-tl-theme="e-aurora"] .mx_SpaceButton .mx_SpaceButton_avatarWrapper {
+  transition: transform 140ms ease-out;
+}
+html[data-tl-theme="e-aurora"] .mx_SpaceButton:hover .mx_SpaceButton_avatarWrapper {
+  transform: scale(1.22);
+}
+html[data-tl-theme="e-aurora"] .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper {
+  background: transparent;
+  border-radius: 14px;
+  box-shadow: 0 0 0 2px #2EE6C5, 0 0 14px rgba(46, 230, 197, 0.75), 0 0 26px rgba(155, 107, 255, 0.45);
+}
+html[data-tl-theme="e-aurora"] .mx_RoomListItemView.mx_RoomListItemView_selected [class*="_ellipsis_"] {
+  font-weight: 700;
+}
+
+/* avatars: aurora ring on hover */
+html[data-tl-theme="e-aurora"] .mx_EventTile:hover [class*="_slotAvatar_"] .mx_BaseAvatar {
+  box-shadow: 0 0 0 2px #121418, 0 0 0 3px #2EE6C5, 0 0 10px rgba(155, 107, 255, 0.6);
+}
+
+/* mentions glow magenta */
+html[data-tl-theme="e-aurora"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  background: linear-gradient(90deg, rgba(255, 95, 200, 0.16), transparent 60%);
+}
+html[data-tl-theme="e-aurora"] [class*="_notificationBadge_"][class*="_highlighted_"],
+html[data-tl-theme="e-aurora"] .mx_NotificationBadge_level_highlight {
+  box-shadow: 0 0 10px rgba(255, 95, 200, 0.7);
+  animation: e-pulse 1.4s ease-out 3;
+}
+
+/* dialogs: glass with the aurora hairline */
+html[data-tl-theme="e-aurora"] .mx_Dialog > .mx_Dialog_header,
+html[data-tl-theme="e-aurora"] .mx_Dialog > div > .mx_Dialog_header {
+  background: rgba(26, 30, 42, 0.95);
+  border-bottom: 0;
+  position: relative;
+}
+html[data-tl-theme="e-aurora"] .mx_Dialog > .mx_Dialog_header::before,
+html[data-tl-theme="e-aurora"] .mx_Dialog > div > .mx_Dialog_header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--a-ramp);
+}
+html[data-tl-theme="e-aurora"] .mx_TabbedView_tabLabel_active {
+  box-shadow: var(--e-sel-glow);
+}
+
+/* scrollbars: gradient thumb */
+html[data-tl-theme="e-aurora"] ::-webkit-scrollbar-thumb {
+  background: var(--a-ramp-v);
+  border-radius: 999px;
+}
+
+/* type */
+html[data-tl-theme="e-aurora"] .mx_RoomListPanel header h1,
+html[data-tl-theme="e-aurora"] .mx_DisambiguatedProfile_displayName,
+html[data-tl-theme="e-aurora"] .mx_EventTile_body h1,
+html[data-tl-theme="e-aurora"] .mx_EventTile_body h2,
+html[data-tl-theme="e-aurora"] .mx_EventTile_body h3 {
+  font-family: "Titillium Web", "DejaVu Sans", sans-serif;
+  font-weight: 700;
+}
+html[data-tl-theme="e-aurora"] [class*="_chat-filter_"][aria-selected="true"] {
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-theme="e-aurora"] .mx_MatrixChat::before { animation: none; }
+}
+
+/* solid text plates: every message line and room row sits on a near-opaque plate over the aurora */
+html[data-tl-theme="e-aurora"] .mx_RoomView_MessageList > li:not(.mx_NewRoomIntro):not([class*="_readMarker_"]) .mx_EventTile_line,
+html[data-tl-theme="e-aurora"] .mx_RoomView_MessageList .mx_GenericEventListSummary > .mx_EventTile_line,
+html[data-tl-theme="e-aurora"] .mx_EventTile .mx_EventTile_line {
+  background: rgba(12, 14, 20, 0.9);
+  border-radius: 8px;
+}
+html[data-tl-theme="e-aurora"] .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line {
+  background: var(--e-bubble-other);
+}
+html[data-tl-theme="e-aurora"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] .mx_EventTile_line {
+  background: var(--e-bubble-own);
+}
+html[data-tl-theme="e-aurora"] .mx_EventTile [class*="_slotSender_"],
+html[data-tl-theme="e-aurora"] .mx_EventTile .mx_DisambiguatedProfile {
+  background: rgba(12, 14, 20, 0.9);
+  border-radius: 6px;
+  padding-inline: 6px;
+}
+html[data-tl-theme="e-aurora"] .mx_TimelineSeparator,
+html[data-tl-theme="e-aurora"] .mx_NewRoomIntro {
+  background: rgba(12, 14, 20, 0.88);
+  border-radius: 10px;
+}
+html[data-tl-theme="e-aurora"] .mx_RoomListItemView [class*="_container_"] {
+  background: rgba(12, 14, 20, 0.86);
+  margin-block: 2px;
+}
+html[data-tl-theme="e-aurora"] .mx_RoomListPanel [role="search"],
+html[data-tl-theme="e-aurora"] .mx_RoomListPanel header,
+html[data-tl-theme="e-aurora"] [class*="_roomListPrimaryFilters_"] {
+  background: rgba(12, 14, 20, 0.78);
+}
+html[data-tl-theme="e-aurora"] .mx_RightPanel .mx_BaseCard > * {
+  background-color: rgba(12, 14, 20, 0.8);
+}
+html[data-tl-theme="e-aurora"] .mx_RoomListItemView {
+  box-shadow: none;
+}

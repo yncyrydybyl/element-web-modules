@@ -1,0 +1,4 @@
+/* Family-wide rules: every selector starts with html[data-tl-family="_demo"] (CONTRACT §3). */
+html[data-tl-family="_demo"] .mx_RoomHeader {
+  border-bottom: 2px dashed var(--cpd-color-text-action-accent);
+}

@@ -1,0 +1,292 @@
+/* KDE 4 Oxygen (2008–2014) — Oxygen.colors; radial-lit window, glossy jelly buttons, the #6ed6ff glow,
+   dark glass Plasma panel ("Air"/"Oxygen"), Oxygen font + colourful Oxygen icons. */
+html[data-tl-theme="kde-oxygen"] {
+  --kde-window: #d6d2d0;
+  --kde-window-alt: #dad9d8;
+  --kde-view: #ffffff;
+  --kde-view-alt: #f8f7f6;
+  --kde-button: #dfdcd9;
+  --kde-header: #dcd9d7;
+  --kde-header-text: #221f1e;
+  --kde-rail: #181513;
+  --kde-rail-text: #e7fdff;
+  --kde-text: #221f1e;
+  --kde-muted: #5e5a57;
+  --kde-inactive: #5a5653;
+  --kde-accent: #43ace8;
+  --kde-accent-text: #0057ae;
+  --kde-solid: #1f6aa8;
+  --kde-on-solid: #ffffff;
+  --kde-link: #0057ae;
+  --kde-visited: #644a9b;
+  --kde-outline: #b3aeaa;
+  --kde-button-outline: #a9a4a0;
+  --kde-separator: #bfbab6;
+  --kde-sel: rgb(67 172 232 / .3);
+  --kde-hover: rgb(110 214 255 / .25);
+  --kde-pressed: #c9c4c1;
+  --kde-default-btn: #dfdcd9;
+  --kde-default-pen: #3aa7dd;
+  --kde-negative: #bf0303;
+  --kde-negative-text: #a00000;
+  --kde-critical-solid: #a80000;
+  --kde-neutral: #b08000;
+  --kde-positive: #006e28;
+  --kde-positive-text: #006e28;
+  --kde-own: #eef7fd;
+  --kde-card: transparent;
+  --kde-mention-bg: #fff6d9;
+  --kde-tooltip: #181513;
+  --kde-tooltip-text: #e7fdff;
+  --kde-code-bg: #f8f7f6;
+  --kde-scroll: #bdb8b4;
+  --kde-radius: 4px;
+  --kde-radius-card: 4px;
+  --kde-radius-check: 3px;
+  --kde-glow: 0 0 0 1px #6ed6ff, 0 0 6px 1px #6ed6ff;
+  --kde-shadow-btn: inset 0 1px rgb(255 255 255 / .85), 0 1px 2px rgb(0 0 0 / .25);
+  --kde-shadow-card: none;
+  --kde-shadow-popup: 0 4px 12px rgb(0 0 0 / .3);
+  --kde-shadow-dialog: 0 8px 24px rgb(0 0 0 / .35);
+  --kde-focus: #3aa7dd;
+  --kde-dur: 250ms;
+  --kde-name-1: #0057ae; --kde-name-2: #7f3f8a; --kde-name-3: #005a20;
+  --kde-name-4: #a00000; --kde-name-5: #8a6400; --kde-name-6: #644a9b;
+  --kde-hue-1: #43ace8; --kde-hue-2: #924c9d; --kde-hue-3: #37a42c;
+  --kde-hue-4: #e20800; --kde-hue-5: #e8a02b; --kde-hue-6: #644a9b;
+  --kde-hl-keyword: #1f1c1b; --kde-hl-control: #1f1c1b; --kde-hl-func: #644a9b; --kde-hl-string: #bf0303;
+  --kde-hl-number: #b08000; --kde-hl-comment: #898887; --kde-hl-type: #0057ae; --kde-hl-pre: #006e28;
+  --kde-hl-attr: #0057ae; --kde-hl-var: #0057ae;
+  --kde-wallpaper: radial-gradient(ellipse at 50% 20%, #8fd3ff 0%, #2e86c8 40%, #0e3a66 100%);
+  --kde-tb-bg: transparent;
+  --kde-home-color: transparent;
+  /* colourful Oxygen icons */
+  --kde-ico-send: url("assets/oxygen-mail-send.png");
+  --kde-ico-attach: url("assets/oxygen-mail-attachment.png");
+  --kde-ico-emoji: url("assets/oxygen-face-smile.png");
+  --kde-ico-more: url("assets/oxygen-configure.png");
+  --kde-ico-video: url("assets/oxygen-camera-web.png");
+  --kde-ico-call: url("assets/oxygen-call-start.png");
+  --kde-ico-threads: url("assets/oxygen-view-conversation-balloon.png");
+  --kde-ico-info: url("assets/oxygen-help-about.png");
+  --kde-ico-search: url("assets/oxygen-edit-find.png");
+  --kde-ico-add: url("assets/oxygen-list-add.png");
+  --kde-ico-settings: url("assets/oxygen-configure.png");
+  --kde-ico-reply: url("assets/oxygen-mail-reply-sender.png");
+  --kde-ico-edit: url("assets/oxygen-document-edit.png");
+  --kde-ico-delete: url("assets/oxygen-edit-delete.png");
+  --kde-ico-react: url("assets/oxygen-face-smile.png");
+  --kde-ico-notify: url("assets/oxygen-preferences-desktop-notification.png");
+  --kde-icon-size: 22px;
+}
+
+/* colour icons: paint the PNG instead of masking currentColor */
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_sendMessage::after,
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_actions .mx_EmojiButton::after,
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_actions [aria-label="Attachment"]::after,
+html[data-tl-theme="kde-oxygen"] .mx_RoomHeader [aria-label="Video call"]::after,
+html[data-tl-theme="kde-oxygen"] .mx_RoomHeader [aria-label="Voice call"]::after,
+html[data-tl-theme="kde-oxygen"] .mx_RoomHeader [aria-label="Threads"]::after,
+html[data-tl-theme="kde-oxygen"] .mx_RoomHeader [class*="_icon-button_"][aria-label="Room info"]::after,
+html[data-tl-theme="kde-oxygen"] .mx_RoomHeader [aria-label="Notifications"]::after,
+html[data-tl-theme="kde-oxygen"] .mx_SpacePanel .mx_QuickSettingsButton::after,
+html[data-tl-theme="kde-oxygen"] .mx_SpacePanel .mx_ThreadsActivityCentreButton::after,
+html[data-tl-theme="kde-oxygen"] .mx_SpacePanel .mx_SpaceButton_new .mx_SpaceButton_icon::after,
+html[data-tl-theme="kde-oxygen"] .mx_MessageActionBar [aria-label]::after {
+  background: var(--kde-ico) center / contain no-repeat !important; mask: none !important;
+}
+/* monochrome-only buttons keep a mask but in text colour */
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_actions .mx_MessageComposer_buttonMenu,
+html[data-tl-theme="kde-oxygen"] .mx_RoomListPanel header [aria-label="Room Options"],
+html[data-tl-theme="kde-oxygen"] .mx_MessageActionBar [aria-label="Options"] { --kde-ico: url("assets/breeze-overflow-menu.svg"); }
+html[data-tl-theme="kde-oxygen"] .mx_MessageActionBar [aria-label="Options"]::after { background: currentColor !important; mask: var(--kde-ico) center / contain no-repeat !important; }
+
+/* ---------------- window: lit from the top centre */
+html[data-tl-theme="kde-oxygen"] body,
+html[data-tl-theme="kde-oxygen"] .mx_MatrixChat > :not(.mx_LeftPanel):not(.mx_SpacePanel):not(.mx_ResizeHandle):not(.mx_LeftPanel_outerWrapper) {
+  background: radial-gradient(ellipse 60% 260px at 50% 0, #ecebe9, rgb(236 235 233 / 0)), linear-gradient(#dcd9d7, #d6d2d0 320px) fixed;
+}
+html[data-tl-theme="kde-oxygen"] .mx_RoomView,
+html[data-tl-theme="kde-oxygen"] .mx_MainSplit,
+html[data-tl-theme="kde-oxygen"] .mx_RoomView_body { background: transparent; }
+html[data-tl-theme="kde-oxygen"] .mx_RoomView_timeline {
+  background: var(--kde-view); margin: 0 6px; border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / .22), 0 1px 0 rgb(255 255 255 / .7);
+}
+/* toolbars blend into the window (no colour band) */
+html[data-tl-theme="kde-oxygen"] .mx_RoomHeader,
+html[data-tl-theme="kde-oxygen"] .mx_RoomHeader:hover {
+  background: transparent; border-bottom: 0; box-shadow: none;
+}
+html[data-tl-theme="kde-oxygen"] .mx_RoomHeader .mx_RoomHeader_heading { font-weight: 700; }
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer { background: transparent; border-top: 0; }
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_wrapper { padding-inline: 40px 6px; }
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_row {
+  background: #fff; border-radius: 4px; padding-inline: 8px;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / .28), 0 1px 0 rgb(255 255 255 / .8);
+}
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_row:focus-within { box-shadow: inset 0 1px 2px rgb(0 0 0 / .28), 0 0 0 1px #3aa7dd, 0 0 6px 1px #6ed6ff; }
+
+/* ---------------- timeline: flat white view, etched separators, no cards */
+html[data-tl-theme="kde-oxygen"] .mx_EventTile[class*="_layoutGroup_"]:not([class*="_stateInfo_"]):not([class*="_shape"])::before {
+  inset-inline: 8px; inset-block: 6px auto; height: 2px; background: none; border-radius: 0; box-shadow: none;
+  border-top: 1px solid #d3cfcc; border-bottom: 1px solid #fff;
+}
+html[data-tl-theme="kde-oxygen"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateContinuation_"]::before { display: none; }
+html[data-tl-theme="kde-oxygen"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateOwnEvent_"] .mx_EventTile_line { background: var(--kde-own) !important; }
+html[data-tl-theme="kde-oxygen"] .mx_EventTile[class*="_layoutGroup_"]:hover .mx_EventTile_line { background: rgb(110 214 255 / .14) !important; }
+html[data-tl-theme="kde-oxygen"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateHighlighted_"]::before {
+  display: block; inset-block: 12px 1px; height: auto; border: 0; background: var(--kde-mention-bg) !important;
+  box-shadow: inset 3px 0 0 #b08000 !important; border-radius: 4px;
+}
+html[data-tl-theme="kde-oxygen"] .mx_EventTile[class*="_layoutGroup_"][class*="_stateHighlighted_"][class*="_stateContinuation_"]::before { inset-block-start: 1px; }
+
+/* ---------------- dark glass Plasma panel (space column) */
+html[data-tl-theme="kde-oxygen"] .mx_SpacePanel {
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / .14), rgb(255 255 255 / .04) 45%, rgb(255 255 255 / 0) 55%),
+    linear-gradient(rgb(40 36 33 / .94), rgb(20 17 15 / .96));
+  border-right: 1px solid #000; box-shadow: inset -1px 0 0 rgb(255 255 255 / .12);
+}
+html[data-tl-theme="kde-oxygen"] .mx_SpacePanel .mx_SpaceButton:hover .mx_SpaceButton_selectionWrapper { background: rgb(110 214 255 / .18); }
+html[data-tl-theme="kde-oxygen"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active .mx_SpaceButton_selectionWrapper,
+html[data-tl-theme="kde-oxygen"] .mx_SpacePanel .mx_SpaceButton.mx_SpaceButton_active.mx_SpaceButton_narrow .mx_SpaceButton_selectionWrapper {
+  background: radial-gradient(ellipse at 50% 100%, rgb(110 214 255 / .55), rgb(110 214 255 / 0) 70%);
+  border-color: transparent; box-shadow: 0 0 8px rgb(110 214 255 / .5);
+}
+html[data-tl-theme="kde-oxygen"] .mx_SpacePanel .mx_SpaceItem:has(> .mx_SpaceButton_active)::before { background: #6ed6ff; box-shadow: 0 0 6px #6ed6ff; }
+html[data-tl-theme="kde-oxygen"] .mx_SpacePanel .mx_SpaceButton[aria-label="Home"] .mx_SpaceButton_icon::after {
+  width: 32px; height: 32px; background: url("assets/oxygen-start-here-kde.png") center / contain no-repeat; mask: none;
+}
+
+/* ---------------- room list: dense white list with zebra rows and glossy selection */
+html[data-tl-theme="kde-oxygen"] .mx_RoomListPanel { background: transparent; }
+html[data-tl-theme="kde-oxygen"] .mx_RoomListPanel > [role="search"] { background: transparent; border-bottom: 0; }
+html[data-tl-theme="kde-oxygen"] .mx_RoomListPanel [class*="_list_"]:has([role="treegrid"], [role="listbox"][aria-label="Room list"]) {
+  background: var(--kde-view); margin: 0 4px 6px 6px; border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / .22), 0 1px 0 rgb(255 255 255 / .7);
+}
+html[data-tl-theme="kde-oxygen"] .mx_RoomListPanel [class*="_stickyBackground_"],
+html[data-tl-theme="kde-oxygen"] .mx_RoomListPanel button[class*="_header_"] { background: transparent; }
+html[data-tl-theme="kde-oxygen"] .mx_RoomListItemView { height: 40px; }
+html[data-tl-theme="kde-oxygen"] [data-testid="virtuoso-item-list"] > div:nth-child(even) .mx_RoomListItemView > [class*="_container_"] { background: var(--kde-view-alt); }
+html[data-tl-theme="kde-oxygen"] .mx_RoomListItemView:hover > [class*="_container_"] { background: rgb(110 214 255 / .2) !important; }
+html[data-tl-theme="kde-oxygen"] .mx_RoomListItemView.mx_RoomListItemView_selected > [class*="_container_"],
+html[data-tl-theme="kde-oxygen"] .mx_RoomListItemView[aria-selected="true"] > [class*="_container_"] {
+  background: linear-gradient(#5bbaf0, #3e9fe0) !important; border-color: #2e86c8; border-radius: 3px;
+  box-shadow: inset 0 1px rgb(255 255 255 / .45);
+}
+html[data-tl-theme="kde-oxygen"] .mx_RoomListItemView[aria-selected="true"] [class*="_roomName_"],
+html[data-tl-theme="kde-oxygen"] .mx_RoomListItemView[aria-selected="true"] [class*="_unread-counter_"] { color: #fff !important; }
+
+/* ---------------- glossy jelly buttons */
+html[data-tl-theme="kde-oxygen"] [class*="_button_"][data-kind="secondary"]:not([class*="_icon-button_"]),
+html[data-tl-theme="kde-oxygen"] [class*="_button_"][data-kind="primary"]:not([class*="_icon-button_"]),
+html[data-tl-theme="kde-oxygen"] .mx_AccessibleButton_kind_primary,
+html[data-tl-theme="kde-oxygen"] .mx_AccessibleButton_kind_primary_outline,
+html[data-tl-theme="kde-oxygen"] .mx_AccessibleButton_kind_primary_sm,
+html[data-tl-theme="kde-oxygen"] .mx_AccessibleButton_kind_secondary,
+html[data-tl-theme="kde-oxygen"] .mx_AccessibleButton_kind_danger,
+html[data-tl-theme="kde-oxygen"] .mx_AccessibleButton_kind_danger_outline,
+html[data-tl-theme="kde-oxygen"] .mx_Dialog_buttons button:not([class*="_icon-button_"]),
+html[data-tl-theme="kde-oxygen"] .mx_Dialog_buttons button.mx_Dialog_primary,
+html[data-tl-theme="kde-oxygen"] [class*="_chat-filter_"],
+html[data-tl-theme="kde-oxygen"] [class*="_reactionsRowButton_"] {
+  background: linear-gradient(#f6f5f4, #dcd8d5 60%, #d3cfcc) !important;
+  border: 1px solid #a9a4a0 !important;
+  box-shadow: inset 0 1px rgb(255 255 255 / .9), 0 1px 2px rgb(0 0 0 / .25);
+  text-shadow: 0 1px rgb(255 255 255 / .6);
+}
+html[data-tl-theme="kde-oxygen"] [class*="_button_"][data-kind]:not([aria-disabled="true"]):not([class*="_icon-button_"]):hover,
+html[data-tl-theme="kde-oxygen"] .mx_AccessibleButton_hasKind:not(.mx_AccessibleButton_disabled):not([class*="kind_link"]):not([class*="kind_icon"]):hover,
+html[data-tl-theme="kde-oxygen"] .mx_Dialog_buttons button:not([disabled]):hover,
+html[data-tl-theme="kde-oxygen"] [class*="_chat-filter_"]:hover,
+html[data-tl-theme="kde-oxygen"] [class*="_reactionsRowButton_"]:hover {
+  border-color: #6ed6ff !important;
+  box-shadow: inset 0 1px rgb(255 255 255 / .9), 0 0 0 1px #6ed6ff, 0 0 6px 1px #6ed6ff;
+}
+html[data-tl-theme="kde-oxygen"] [class*="_button_"][data-kind="primary"]:not([class*="_icon-button_"]):not([class*="_destructive_"]),
+html[data-tl-theme="kde-oxygen"] .mx_Dialog_buttons button.mx_Dialog_primary {
+  border-color: #3aa7dd !important;
+  box-shadow: inset 0 1px rgb(255 255 255 / .9), 0 0 4px rgb(58 167 221 / .7);
+}
+html[data-tl-theme="kde-oxygen"] [class*="_button_"][data-kind]:not([class*="_icon-button_"]):active,
+html[data-tl-theme="kde-oxygen"] .mx_AccessibleButton_hasKind:not([class*="kind_link"]):active,
+html[data-tl-theme="kde-oxygen"] .mx_Dialog_buttons button:active,
+html[data-tl-theme="kde-oxygen"] [class*="_chat-filter_"][aria-selected="true"],
+html[data-tl-theme="kde-oxygen"] [class*="_reactionsRowButtonSelected_"] {
+  background: linear-gradient(#cdc8c5, #e2dfdc) !important; box-shadow: inset 0 1px 3px rgb(0 0 0 / .35) !important;
+}
+html[data-tl-theme="kde-oxygen"] [class*="_icon-button_"]:not([aria-disabled="true"]):hover,
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_button:hover,
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_sendMessage:hover,
+html[data-tl-theme="kde-oxygen"] .mx_RoomHeader .tl-header-button:hover {
+  background: radial-gradient(circle, rgb(110 214 255 / .45), rgb(110 214 255 / 0) 70%) !important; border-color: transparent !important;
+}
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_sendMessage {
+  width: auto !important; padding: 0 10px 0 30px; height: 30px;
+  background: linear-gradient(#f6f5f4, #dcd8d5 60%, #d3cfcc) !important; border: 1px solid #a9a4a0 !important;
+  box-shadow: inset 0 1px rgb(255 255 255 / .9), 0 1px 2px rgb(0 0 0 / .25);
+}
+html[data-tl-theme="kde-oxygen"] .mx_MessageComposer_sendMessage::after { inset: 0 auto 0 6px; }
+
+/* ---------------- line edits = sunken holes */
+html[data-tl-theme="kde-oxygen"] .mx_Field,
+html[data-tl-theme="kde-oxygen"] .mx_RoomListPanel > [role="search"] button[class*="_search_"] {
+  background: #fff; border: 1px solid #bdb8b4; box-shadow: inset 0 1px 2px rgb(0 0 0 / .25), 0 1px 0 rgb(255 255 255 / .7);
+}
+html[data-tl-theme="kde-oxygen"] .mx_Field:focus-within { border-color: #3aa7dd; box-shadow: inset 0 1px 2px rgb(0 0 0 / .25), 0 0 6px 1px #6ed6ff; }
+html[data-tl-theme="kde-oxygen"] .mx_RoomListPanel > [role="search"] button[class*="_search_"]::before { background: url("assets/oxygen-edit-find.png") center / contain no-repeat; mask: none; }
+
+/* ---------------- menus, selection, tooltips */
+html[data-tl-theme="kde-oxygen"] .mx_IconizedContextMenu .mx_AccessibleButton:hover,
+html[data-tl-theme="kde-oxygen"] [role="menu"] [role^="menuitem"]:hover,
+html[data-tl-theme="kde-oxygen"] [role="menu"] [role^="menuitem"]:focus,
+html[data-tl-theme="kde-oxygen"] .mx_TabbedView_tabLabel_active,
+html[data-tl-theme="kde-oxygen"] .mx_TabbedView_tabLabel_active:hover,
+html[data-tl-theme="kde-oxygen"] .mx_Autocomplete_Completion.selected,
+html[data-tl-theme="kde-oxygen"] .mx_Pill {
+  background: linear-gradient(#5bbaf0, #3e9fe0) !important; color: #fff !important; border-color: #2e86c8 !important;
+  box-shadow: inset 0 1px rgb(255 255 255 / .4);
+}
+html[data-tl-theme="kde-oxygen"] [role="menu"] [role^="menuitem"]:hover *,
+html[data-tl-theme="kde-oxygen"] .mx_IconizedContextMenu .mx_AccessibleButton:hover *,
+html[data-tl-theme="kde-oxygen"] .mx_TabbedView_tabLabel_active * { color: #fff !important; }
+html[data-tl-theme="kde-oxygen"] .mx_TabbedView_tabLabel_active .mx_TabbedView_maskedIcon::before { background-color: #fff; }
+html[data-tl-theme="kde-oxygen"] [role="tooltip"],
+html[data-tl-theme="kde-oxygen"] [class*="_tooltip_"]:not([class*="_tooltip-"]) {
+  border: 1px solid #000 !important; border-radius: 6px; opacity: .94; box-shadow: 0 3px 10px rgb(0 0 0 / .45);
+}
+html[data-tl-theme="kde-oxygen"] .mx_Dialog { background: radial-gradient(ellipse 70% 180px at 50% 0, #ecebe9, rgb(236 235 233 / 0)), linear-gradient(#dcd9d7, #d6d2d0 260px); border-radius: 6px; }
+
+/* ---------------- scrollbars: rounded gradient handle in an inset groove */
+html[data-tl-theme="kde-oxygen"] ::-webkit-scrollbar { width: 12px; height: 12px; }
+html[data-tl-theme="kde-oxygen"] ::-webkit-scrollbar-track { background: #e7e5e3; border-radius: 6px; box-shadow: inset 0 1px 2px rgb(0 0 0 / .2); }
+html[data-tl-theme="kde-oxygen"] ::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #efedeb, #cbc6c3); border: 1px solid #a9a4a0; border-radius: 6px; }
+html[data-tl-theme="kde-oxygen"] ::-webkit-scrollbar-thumb:hover { background: linear-gradient(90deg, #efedeb, #cbc6c3); box-shadow: 0 0 4px #6ed6ff; border-color: #3aa7dd; }
+html[data-tl-theme="kde-oxygen"] * { scrollbar-color: #bdb8b4 #e7e5e3; }
+
+/* ---------------- focus: outline + glow */
+html[data-tl-theme="kde-oxygen"] :focus-visible { box-shadow: 0 0 6px 1px #6ed6ff; outline-offset: 2px !important; }
+
+/* ---------------- badges */
+html[data-tl-theme="kde-oxygen"] [data-kind="critical"][class*="_unread-counter_"],
+html[data-tl-theme="kde-oxygen"] [class*="_notificationBadge_"][data-kind="critical"] { background: linear-gradient(#e84040, #a80000) !important; box-shadow: inset 0 1px rgb(255 255 255 / .4); }
+
+/* ---------------- titlebar: window-coloured gradient, bold title, jelly circle buttons */
+html[data-tl-theme="kde-oxygen"] #tl-overlay-root .kde-titlebar {
+  background: linear-gradient(#e2dfdd, #dcd9d7); font-weight: 700; color: #221f1e; text-shadow: 0 1px rgb(255 255 255 / .7);
+}
+html[data-tl-theme="kde-oxygen"] #tl-overlay-root .kde-titlebar__app i.kde-titlebar__icon { background: url("assets/oxygen-view-conversation-balloon.png") center / contain no-repeat; mask: none; }
+html[data-tl-theme="kde-oxygen"] #tl-overlay-root .kde-titlebar__btn {
+  width: 18px; height: 18px; color: #4b4743;
+  background: radial-gradient(circle at 50% 30%, #fff, #d6d2d0 70%, #b8b3af);
+  box-shadow: 0 1px 2px rgb(0 0 0 / .35), inset 0 -1px 1px rgb(0 0 0 / .1);
+}
+html[data-tl-theme="kde-oxygen"] #tl-overlay-root .kde-titlebar__btn::before { width: 8px; height: 8px; }
+html[data-tl-theme="kde-oxygen"] #tl-overlay-root .kde-titlebar__btn--help::before {
+  width: 8px; height: 10px; background: none; color: inherit; content: "?"; font: 700 10px/10px sans-serif; text-align: center;
+}
+html[data-tl-theme="kde-oxygen"] #tl-overlay-root .kde-titlebar__btn:hover { background: radial-gradient(circle at 50% 30%, #fff, #d6d2d0 70%, #b8b3af); box-shadow: 0 0 6px 1px #6ed6ff; }
+html[data-tl-theme="kde-oxygen"] #tl-overlay-root .kde-titlebar__btn--close:hover { color: #bf0303; box-shadow: 0 0 6px 1px #ff8a6e; }
+html[data-tl-theme="kde-oxygen"] #tl-overlay-root .kde-clock { color: #e7fdff; text-shadow: 0 0 4px rgb(110 214 255 / .6); }

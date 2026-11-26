@@ -1,0 +1,66 @@
+/* paper-daylight — four papers keyed to the local clock (data-tl-phase). Rules in shared.css. */
+html[data-tl-theme="paper-daylight"],
+html[data-tl-theme="paper-daylight"][data-tl-phase="day"] {
+  --p-paper: #FFFFFF;
+  --p-ink: #1A1A1A;
+  --p-muted: #6B6B6B;
+  --p-accent: #0B6BCB;
+  --p-on-accent: #FFFFFF;
+  --p-line: #E8E8E4;
+  --p-wash: #F5F5F2;
+  --p-wash2: #EDEDEA;
+  --p-mention: #FFF3B0;
+  --p-critical: #B3261E;
+  --p-success: #2E7D32;
+  --p-caret: #1AA3FF;
+  --p-focus: #0B6BCB;
+  --p-scheme: light;
+  --p-muted-hc: #3D3D3D;
+}
+html[data-tl-theme="paper-daylight"][data-tl-phase="dawn"] {
+  --p-paper: #F7F1E3;
+  --p-ink: #2A2620;
+  --p-muted: #6A6256;
+  --p-accent: #0A5FB4;
+  --p-line: #E8DFCC;
+  --p-wash: #F0E8D6;
+  --p-wash2: #E9DFCA;
+  --p-mention: #FBE7A1;
+  --p-critical: #A8321E;
+  --p-success: #2E6B2E;
+  --p-caret: #0A5FB4;
+  --p-focus: #0A5FB4;
+  --p-muted-hc: #3F3A32;
+}
+html[data-tl-theme="paper-daylight"][data-tl-phase="dusk"] {
+  --p-paper: #F1E7D0;
+  --p-ink: #3B2F22;
+  --p-muted: #6E5E49;
+  --p-accent: #8A4B12;
+  --p-line: #E2D5B9;
+  --p-wash: #EADFC4;
+  --p-wash2: #E7DBC0;
+  --p-mention: #F3D98F;
+  --p-critical: #9E2A1C;
+  --p-success: #3D6328;
+  --p-caret: #8A4B12;
+  --p-focus: #8A4B12;
+  --p-muted-hc: #4A3C2C;
+}
+html[data-tl-theme="paper-daylight"][data-tl-phase="night"] {
+  --p-paper: #0E0E0E;
+  --p-ink: #E8E6E1;
+  --p-muted: #9A9893;
+  --p-accent: #6CB6FF;
+  --p-on-accent: #0E0E0E;
+  --p-line: #242424;
+  --p-wash: #181818;
+  --p-wash2: #202020;
+  --p-mention: #3A3320;
+  --p-critical: #FF7B72;
+  --p-success: #5FD08A;
+  --p-caret: #6CB6FF;
+  --p-focus: #6CB6FF;
+  --p-scheme: dark;
+  --p-muted-hc: #C9C7C2;
+}

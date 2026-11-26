@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- self-made after E16 BrushedMetal-Tigert title buttons; CC0 -->
+  <defs>
+    <linearGradient id="well" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a5f64"/><stop offset="1" stop-color="#e4e6e7"/></linearGradient>
+    <radialGradient id="gem" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#f6eee3"/><stop offset=".35" stop-color="#a99682"/><stop offset=".8" stop-color="#6f5e4c"/><stop offset="1" stop-color="#3b322a"/></radialGradient>
+  </defs>
+  <circle cx="8" cy="8" r="7.5" fill="url(#well)"/>
+  <circle cx="8" cy="8" r="5.6" fill="url(#gem)" stroke="#282623" stroke-width=".8"/>
+  <path d="M5.5 6.5l2.5 3 2.5-3" fill="none" stroke="#282623" stroke-width="1.4" stroke-linecap="square"/>
+</svg>

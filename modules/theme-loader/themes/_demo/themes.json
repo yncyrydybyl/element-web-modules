@@ -1,0 +1,60 @@
+{
+  "family": "_demo",
+  "name": { "en": "Loader demo", "de": "Loader-Demo" },
+  "variants": [
+    {
+      "id": "demo-mint-light",
+      "name": { "en": "Demo · Mint (tokens only)", "de": "Demo · Minze (nur Tokens)" },
+      "stage": "pure",
+      "mode": "light",
+      "base": "light",
+      "seriousness": 8,
+      "hype": 1,
+      "description": "Pipeline proof: a light palette made only of Compound tokens, no CSS file.",
+      "tokens": {
+        "--cpd-color-theme-bg": "#f2fbf6",
+        "--cpd-color-bg-canvas-default": "#f7fdf9",
+        "--cpd-color-bg-subtle-secondary": "#dff3e8",
+        "--cpd-color-bg-subtle-primary": "#c9ead8",
+        "--cpd-color-text-primary": "#12352a",
+        "--cpd-color-text-secondary": "#3f6b5c",
+        "--cpd-color-text-action-accent": "#0b7a55",
+        "--cpd-color-bg-accent-rest": "#0b7a55",
+        "--cpd-color-bg-action-primary-rest": "#0b7a55",
+        "--cpd-color-icon-accent-primary": "#0b7a55",
+        "--cpd-color-border-interactive-secondary": "#9ccdb5"
+      }
+    },
+    {
+      "id": "demo-night-owl",
+      "name": { "en": "Demo · Night owl (font, enhancer, daylight)", "de": "Demo · Nachteule (Font, Enhancer, Tageslicht)" },
+      "stage": "exciting",
+      "mode": "daylight",
+      "base": "dark",
+      "seriousness": 5,
+      "hype": 6,
+      "description": "Pipeline proof: dark at night, light by day, self-hosted Fira Code, CSS with an asset URL, an enhancer badge that follows the phase.",
+      "css": ["shared.css", "demo-night-owl.css"],
+      "fonts": [{ "family": "TL Demo Fira Code", "file": "assets/fira-code-400.woff2", "weight": "400", "style": "normal" }],
+      "tokens": {
+        "--cpd-font-family-sans": "\"TL Demo Fira Code\", monospace",
+        "--cpd-color-bg-canvas-default": "#1b1530",
+        "--cpd-color-bg-subtle-secondary": "#251d41",
+        "--cpd-color-bg-subtle-primary": "#2f2552",
+        "--cpd-color-text-primary": "#efe9ff",
+        "--cpd-color-text-secondary": "#b6a9dc",
+        "--cpd-color-text-action-accent": "#ffb454",
+        "--cpd-color-bg-accent-rest": "#ff9d1f",
+        "--cpd-color-bg-action-primary-rest": "#ff9d1f",
+        "--cpd-color-icon-accent-primary": "#ffb454"
+      },
+      "enhance": true,
+      "schedule": [
+        { "from": "06:00", "phase": "dawn", "base": "dark" },
+        { "from": "09:00", "phase": "day", "base": "light" },
+        { "from": "18:00", "phase": "dusk", "base": "dark" },
+        { "from": "21:00", "phase": "night", "base": "dark" }
+      ]
+    }
+  ]
+}

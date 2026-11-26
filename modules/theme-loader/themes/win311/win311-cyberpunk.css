@@ -1,0 +1,123 @@
+/* win311-cyberpunk — "VGA Night City" (style guide §4.7): only the 16 VGA colours, magenta title bars, cyan frames,
+   Norton-Commander-blue room list, PxPlus IBM VGA everywhere, a DOS-prompt composer and a CRT overlay. */
+html[data-tl-theme="win311-cyberpunk"] {
+  --w-desktop: #000000;
+  --w-desktop-text: #00ffff;
+  --w-desktop-image: none;
+  --w-workspace: #000000;
+  --w-window: #000000;
+  --w-text: #c0c0c0;
+  --w-menu: #000080;
+  --w-menutext: #00ffff;
+  --w-title: #ff00ff;
+  --w-title-inactive: #000080;
+  --w-titletext: #000000;
+  --w-titletext-inactive: #00ffff;
+  --w-border: #00ffff;
+  --w-border-inactive: #008080;
+  --w-frame: #00ffff;
+  --w-scrollbar: #000080;
+  --w-face: #000000;
+  --w-shadow: #008080;
+  --w-hi: #00ffff;
+  --w-btntext: #00ffff;
+  --w-graytext: #808080;
+  --w-hilight: #00ffff;
+  --w-hilighttext: #000000;
+  --w-muted: #808080;
+  --w-accent-text: #ff00ff;
+  --w-link: #00ff00;
+  --w-critical: #ff0000;
+  --w-critical-bg: #ff0000;
+  --w-success: #00ff00;
+  --w-own-name: #ff00ff;
+  --w-mention-bg: #ff00ff;
+  --w-mention-text: #000000;
+  --w-code-bg: #000000;
+  --w-code-text: #00ff00;
+  --w-input-bg: #000000;
+  --w-input-text: #00ff00;
+  --w-input-border: #00ffff;
+  --w-hl-keyword: #ff00ff; --w-hl-string: #ffff00; --w-hl-comment: #808080; --w-hl-number: #00ffff; --w-hl-delete: #ff0000;
+  --w-dec-1: #ff00ff; --w-dec-2: #00ffff; --w-dec-3: #00ff00; --w-dec-4: #ffff00; --w-dec-5: #ff0000; --w-dec-6: #ffffff;
+  --w-sel: #00ffff;
+  --w-seltext: #000000;
+  --w-group-icon: url("assets/icon-group-neon.svg");
+  --w-font: "PxPlus IBM VGA 8x16", "W95FA", monospace;
+  --w-font-sys: "PxPlus IBM VGA 8x16", "W95FA", monospace;
+  --w-size: 16px;
+  --w-line: 18px;
+  --w-bevel: inset 0 0 0 0 transparent;
+  --w-bevel-pressed: inset 0 0 0 1px #00ffff;
+  --w-title-glow: 0 0 6px #ff00ff;
+  --w-hover: #000080;
+}
+
+html[data-tl-theme="win311-cyberpunk"] {
+  /* the room list is a Norton Commander panel */
+  & .mx_LeftPanel, & .mx_LeftPanel_outerWrapper, & .mx_LeftPanel_wrapper, & .mx_RoomListPanel,
+  & .mx_RoomListPanel [class*="_roomListPrimaryFilters_"], & .mx_RoomListPanel > [role="search"] { background: #000080 !important; }
+  & .mx_RoomListItemView [class*="_roomName_"] { color: #00ffff; }
+  & .mx_RoomListItemView[class*="_selected_"], & .mx_RoomListItemView.mx_RoomListItemView_selected { background: #00ffff !important;
+    & [class*="_roomName_"] { background: transparent !important; color: #000000 !important; }
+  }
+  & .mx_RoomListPanel [class*="_sectionHeader_"], & .mx_RoomListPanel [class*="_header_"] h2 { color: #ffff00 !important; }
+  /* double box-drawing frames + upper-case title bars */
+  & .mx_MatrixChat { border: 3px double #00ffff; box-shadow: none; }
+  & #left-panel > .mx_LeftPanel_panel, & .mx_MainSplit > .mx_RoomView_body, & .mx_RightPanel,
+  & [data-group] > [data-panel]:not(#left-panel) > .mx_LeftPanel_panel:not(:has(.mx_MainSplit)) {
+    border: 3px double var(--w-border-inactive) !important; box-shadow: none !important;
+  }
+  & #left-panel > .mx_LeftPanel_panel:focus-within, & .mx_RightPanel:focus-within,
+  & [data-group]:not(:has(#left-panel :focus, .mx_RightPanel :focus)) .mx_MainSplit > .mx_RoomView_body { border-color: #00ffff !important; box-shadow: 0 0 10px rgb(0 255 255 / 0.35) !important; }
+  & .mx_MatrixChat::before, & .mx_RoomHeader_heading, & .mx_RoomListPanel > header h1, & .mx_BaseCard_header_title_heading,
+  & .mx_Dialog_title { text-transform: uppercase; }
+  & .mx_MatrixChat::before { text-shadow: 0 0 6px #ff00ff; animation: w311-glitch 20s steps(1) infinite; }
+  /* caption glyphs: cyan outline versions via filter on the bitmaps */
+  & .mx_MatrixChat::before, & .mx_RoomHeader::before, & .mx_RoomHeader::after, & .mx_RoomListPanel > header::before,
+  & .mx_RoomListPanel > header::after, & .mx_BaseCard_header::before, & .mx_BaseCard_header::after { filter: invert(1) hue-rotate(180deg); }
+  & .mx_MatrixChat::before { filter: none; }
+  /* buttons: black, 1px cyan, inverted when pressed; primary magenta */
+  & .mx_AccessibleButton_kind_primary, & .mx_Dialog_primary, & button[class*="_button_"][data-kind="primary"]:not([class*="_icon-only_"]) {
+    color: #ff00ff !important; border-color: #ff00ff !important;
+  }
+  & .mx_AccessibleButton_kind_secondary:hover, & button[class*="_button_"][data-kind]:not([class*="_icon-only_"]):hover { background: #00ffff !important; color: #000000 !important; }
+  /* DOS prompt composer */
+  & .mx_SendMessageComposer { display: flex !important; flex-direction: row !important; align-items: center; }
+  /* PxPlus has no bold: VGA text mode had none either */
+  & *, & *::before, & *::after { font-weight: 400 !important; }
+  & .mx_RoomListPanel [role="listbox"], & .mx_RoomListPanel [role="treegrid"], & .mx_RoomListPanel [role="row"],
+  & .mx_RoomListPanel [class*="_roomList_"], & .mx_RoomListPanel [class*="_list_"] { background: #000080 !important; }
+  & .mx_RoomListPanel [class*="_sectionHeader_"], & .mx_RoomListPanel [class*="SectionHeader"] { background: #000080 !important; color: #ffff00 !important; }
+  & .mx_SendMessageComposer::before {
+    content: var(--w-dos-prompt, "C:\\ELEMENT>"); color: #00ff00; white-space: nowrap; padding-left: 4px;
+    font: 400 16px/18px var(--w-font-mono); text-shadow: 0 0 4px #00ff00;
+  }
+  & .mx_BasicMessageComposer { flex: 1 1 auto; border: 0 !important; min-width: 0; }
+  & .mx_BasicMessageComposer_input { caret-color: #00ff00; caret-shape: block; color: #00ff00 !important; }
+  & .mx_MessageComposer { background: #000000; border-top: 1px solid #00ffff; }
+  & .mx_MessageComposer_sendMessage::after { content: "[ENTER]" !important; color: #00ff00 !important; }
+  /* scrollbar: ░ shaft, magenta thumb */
+  & ::-webkit-scrollbar-track { background: repeating-conic-gradient(#000080 0 25%, #000000 0 50%) 0 0 / 2px 2px; box-shadow: inset 1px 0 0 #00ffff; }
+  & ::-webkit-scrollbar-thumb { background: #ff00ff; border-color: #ff00ff; }
+  & ::-webkit-scrollbar-button { filter: invert(1) hue-rotate(180deg); }
+  /* names glow a little */
+  & .mx_DisambiguatedProfile_displayName { text-shadow: 0 0 4px currentColor; }
+  & .mx_Dialog { background: #000080 !important; box-shadow: 0 0 0 4px #000000, 0 0 0 7px #00ffff !important; border: 3px double #00ffff; }
+  & .mx_Dialog_header { background: #ff00ff !important; }
+  & .mx_Dialog .mx_Field, & .mx_Dialog input { background: #000000 !important; }
+}
+
+/* CRT: scanlines + vignette, one fixed overlay; pointer-events none so the picker stays usable */
+html[data-tl-theme="win311-cyberpunk"] body::after {
+  content: ""; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 0.22) 2px 3px),
+    radial-gradient(ellipse at center, transparent 62%, rgb(0 0 0 / 0.55) 100%);
+}
+@keyframes w311-glitch {
+  0%, 96%, 100% { transform: none; clip-path: none; }
+  96.5% { transform: translateX(3px); clip-path: inset(0 0 50% 0); }
+  97% { transform: translateX(-4px); clip-path: inset(40% 0 0 0); }
+  97.5% { transform: none; }
+}

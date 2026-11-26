@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es2022",
+        "jsx": "react",
+        "lib": ["ESNext", "dom", "dom.iterable"],
+        "types": ["node"],
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "bundler",
+        "module": "ESNext",
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true
+    },
+    "include": ["src", "themes/*/enhance.ts"]
+}

@@ -1,0 +1,113 @@
+/* win311-daylight — "Control Panel Clock" (style guide §4.5): shipped CONTROL.INI schemes by local time.
+   dawn 06–09 Ocean · day 09–18 Windows Default · dusk 18–21 Plasma Power Saver · night 21–06 Black Leather Jacket.
+   Scheme switches are instant, as if Control Panel ▸ Color ▸ OK was pressed (the loader's 2 s fade is disabled). */
+
+/* dawn — Ocean=808000,408000,FFFFFF,0,FFFFFF,0,804000,C0C0C0,FFFFFF,C0C0C0,C0C0C0,0,C0C0C0,C0C0C0,808080,0,0,808000,0,0,FFFFFF */
+html[data-tl-theme="win311-daylight"][data-tl-phase="dawn"] {
+  --w-desktop: #008080;
+  --w-desktop-text: #ffffff;
+  --w-workspace: #008040;
+  --w-window: #ffffff;
+  --w-text: #000000;
+  --w-title: #004080;
+  --w-title-inactive: #c0c0c0;
+  --w-titletext: #ffffff;
+  --w-titletext-inactive: #000000;
+  --w-graytext: #000000;
+  --w-muted: #404040;
+  --w-hilight: #008080;
+  --w-hilighttext: #000000;
+  --w-accent-text: #004080;
+  --w-own-name: #004080;
+  --w-sel: #008080;
+  --w-seltext: #000000;
+}
+
+/* day — Windows Default (shared.css defaults) */
+
+/* dusk — Plasma Power Saver=0,FF0000,0,FFFFFF,FF00FF,0,800000,C0C0C0,0,80,FFFFFF,C0C0C0,FF0000,C0C0C0,808080,0,C0C0C0,FFFFFF,0,0,FFFFFF
+   deviation: TitleText forced to #FFFFFF (the scheme's black on navy is ~1.3:1) */
+html[data-tl-theme="win311-daylight"][data-tl-phase="dusk"] {
+  --w-desktop: #000000;
+  --w-desktop-text: #ffffff;
+  --w-workspace: #0000ff;
+  --w-window: #000000;
+  --w-text: #ffffff;
+  --w-menu: #ff00ff;
+  --w-menutext: #000000;
+  --w-title: #000080;
+  --w-title-inactive: #c0c0c0;
+  --w-titletext: #ffffff;
+  --w-titletext-inactive: #000000;
+  --w-border: #800000;
+  --w-border-inactive: #ffffff;
+  --w-frame: #c0c0c0;
+  --w-scrollbar: #0000ff;
+  --w-graytext: #c0c0c0;
+  --w-muted: #c0c0c0;
+  --w-hilight: #ffffff;
+  --w-hilighttext: #000000;
+  --w-accent-text: #ff00ff;
+  --w-link: #00ff00;
+  --w-critical: #ff0000;
+  --w-success: #00ff00;
+  --w-own-name: #ff00ff;
+  --w-mention-bg: #ffffff;
+  --w-mention-text: #000000;
+  --w-code-bg: #000000;
+  --w-code-text: #ffffff;
+  --w-input-border: #c0c0c0;
+  --w-hl-keyword: #00ffff; --w-hl-string: #ffff00; --w-hl-comment: #c0c0c0; --w-hl-number: #00ff00; --w-hl-delete: #ff00ff;
+  --w-dec-1: #ff0000; --w-dec-2: #00ff00; --w-dec-3: #ffff00; --w-dec-4: #00ffff; --w-dec-5: #ff00ff; --w-dec-6: #c0c0c0;
+  --w-sel: #ffffff;
+  --w-seltext: #000000;
+}
+
+/* night — Black Leather Jacket (dark windows, as win311-leather) */
+html[data-tl-theme="win311-daylight"][data-tl-phase="night"] {
+  --w-desktop: #000000;
+  --w-desktop-text: #ffffff;
+  --w-workspace: #c0c0c0;
+  --w-window: #000000;
+  --w-text: #ffffff;
+  --w-menu: #c0c0c0;
+  --w-menutext: #000000;
+  --w-title: #400080;
+  --w-title-inactive: #808080;
+  --w-titletext: #ffffff;
+  --w-titletext-inactive: #000000;
+  --w-border: #808080;
+  --w-border-inactive: #808080;
+  --w-frame: #000000;
+  --w-scrollbar: #e0e0e0;
+  --w-scroll-shaft: url("assets/dither-leather.svg") 0 0 / 2px 2px repeat;
+  --w-graytext: #808080;
+  --w-hilight: #000000;
+  --w-hilighttext: #ffffff;
+  --w-muted: #c0c0c0;
+  --w-accent-text: #00ffff;
+  --w-link: #00ff00;
+  --w-critical: #ff0000;
+  --w-critical-bg: #800000;
+  --w-success: #00ff00;
+  --w-own-name: #00ffff;
+  --w-mention-bg: #ffffff;
+  --w-mention-text: #000000;
+  --w-code-bg: #000000;
+  --w-code-text: #c0c0c0;
+  --w-input-border: #c0c0c0;
+  --w-hl-keyword: #00ffff; --w-hl-string: #ffff00; --w-hl-comment: #808080; --w-hl-number: #00ff00; --w-hl-delete: #ff00ff;
+  --w-dec-1: #ff0000; --w-dec-2: #00ff00; --w-dec-3: #ffff00; --w-dec-4: #00ffff; --w-dec-5: #ff00ff; --w-dec-6: #c0c0c0;
+  --w-strip-text: #000000;
+  --w-sel: #ffffff;
+  --w-seltext: #000000;
+}
+html[data-tl-theme="win311-daylight"][data-tl-phase="night"],
+html[data-tl-theme="win311-daylight"][data-tl-phase="dusk"] {
+  & .mx_MainSplit > .mx_RoomView_body, & #left-panel > .mx_LeftPanel_panel, & .mx_RightPanel { border-color: #c0c0c0; }
+  & .mx_EventTile_pre_container, & .mx_EventTile_body pre { border-color: #808080 !important; }
+}
+/* instant scheme switch */
+html[data-tl-theme="win311-daylight"][data-tl-phase-fading],
+html[data-tl-theme="win311-daylight"][data-tl-phase-fading] body,
+html[data-tl-theme="win311-daylight"][data-tl-phase-fading] * { transition: none !important; }

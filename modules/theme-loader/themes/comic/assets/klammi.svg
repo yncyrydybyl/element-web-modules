@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120" width="80" height="120">
+<!-- "Klammi", the comic family's self-drawn office helper. Original work, CC0 1.0. Not Clippit. -->
+<path d="M30 112 V30 a16 16 0 0 1 32 0 V92 a10 10 0 0 1 -20 0 V40" fill="none" stroke="#8A8F98" stroke-width="7"
+ stroke-linecap="round"/>
+<path d="M30 112 V30 a16 16 0 0 1 32 0 V92 a10 10 0 0 1 -20 0 V40" fill="none" stroke="#E6E9EE" stroke-width="2.5"
+ stroke-linecap="round"/>
+<ellipse cx="34" cy="44" rx="9" ry="11" fill="#fff" stroke="#000" stroke-width="2"/>
+<ellipse cx="56" cy="44" rx="9" ry="11" fill="#fff" stroke="#000" stroke-width="2"/>
+<circle class="pupil" cx="37" cy="47" r="4"/><circle class="pupil" cx="59" cy="47" r="4"/>
+<path d="M24 28 q10 -8 18 -2 M48 26 q8 -6 18 2" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+</svg>

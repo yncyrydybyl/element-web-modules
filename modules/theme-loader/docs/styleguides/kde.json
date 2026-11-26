@@ -1,0 +1,655 @@
+{
+  "family": "kde",
+  "name": "KDE Plasma / Qt",
+  "concept": "Element as a native KDE application on Plasma, modelled on NeoChat (KDE's own Matrix client): unified header band with circular window buttons, a space column beside a Kirigami room list, white Breeze cards on the Window canvas and exact Breeze widget rules from breezehelper.cpp. Pure variants are faithful Breeze Light/Dark/Daylight; the time axis goes back to KDE 4 Oxygen and forward to the VDG's Ocean design system; usable strips decoration for long sessions, glass turns it into a blurred, glowing Plasma showcase.",
+  "sources": [
+    {
+      "title": "Breeze colour schemes (BreezeLight/Dark/Classic.colors)",
+      "url": "https://invent.kde.org/plasma/breeze/-/tree/master/colors"
+    },
+    {
+      "title": "Breeze kstyle helper and metrics",
+      "url": "https://invent.kde.org/plasma/breeze/-/tree/master/kstyle"
+    },
+    {
+      "title": "Breeze wallpaper 'Hanabi' (CC-BY-SA-4.0)",
+      "url": "https://invent.kde.org/plasma/breeze/-/tree/master/wallpapers/Next"
+    },
+    {
+      "title": "Breeze icons v6.32.0 (LGPL-3.0-or-later)",
+      "url": "https://github.com/KDE/breeze-icons/tree/v6.32.0"
+    },
+    {
+      "title": "Oxygen colour scheme",
+      "url": "https://invent.kde.org/plasma/oxygen"
+    },
+    {
+      "title": "Oxygen icons (LGPL-3.0)",
+      "url": "https://github.com/KDE/oxygen-icons"
+    },
+    {
+      "title": "Ocean design system (colour schemes, component specs, icons, window decoration)",
+      "url": "https://invent.kde.org/abetts/ocean-design"
+    },
+    {
+      "title": "Ocean Design for Plasma – May updates",
+      "url": "https://planet.kde.org/andres-betts-2026-05-22-ocean-design-for-plasma-may-updates/"
+    },
+    {
+      "title": "What even is Ocean?",
+      "url": "https://planet.kde.org/andres-betts-2026-05-31-what-even-is-ocean/"
+    },
+    {
+      "title": "Union summer 2026 update",
+      "url": "https://planet.kde.org/arjen-hiemstra-2026-08-05-union-summer-2026-update/"
+    },
+    {
+      "title": "NeoChat (screenshots)",
+      "url": "https://apps.kde.org/neochat/"
+    },
+    {
+      "title": "KDE Human Interface Guidelines",
+      "url": "https://develop.kde.org/hig/"
+    },
+    {
+      "title": "Noto Sans (OFL-1.1)",
+      "url": "https://github.com/notofonts/latin-greek-cyrillic"
+    },
+    {
+      "title": "Inter (OFL-1.1)",
+      "url": "https://github.com/google/fonts/tree/main/ofl/inter"
+    },
+    {
+      "title": "Oxygen font (OFL-1.1)",
+      "url": "https://github.com/google/fonts/tree/main/ofl/oxygen"
+    },
+    {
+      "title": "Hack (MIT + Bitstream Vera)",
+      "url": "https://github.com/source-foundry/Hack"
+    }
+  ],
+  "limits": [
+    "Element Call and widgets are iframes: only light/dark base follows (glass and breeze-dark = dark, others light).",
+    "The window titlebar is decorative (browser tab); only maximise works (fullscreen). Hidden in standalone/desktop display-mode.",
+    "Compound icons are inline SVG: Breeze/Ocean/Oxygen icons are swapped per button via aria-label/mx_ class masks; other locales and unknown buttons keep recoloured Compound icons.",
+    "Plasma's per-user accent colour and real 'accent from wallpaper' cannot be read; fixed #3daee9 (glass: fixed violet #7f6df2).",
+    "Data-URL default avatars in notifications/favicon keep Element's palette.",
+    "Kirigami column paging (sliding page rows) is approximated by Element's own responsive layout; React-owned DOM is not moved.",
+    "backdrop-filter is expensive: glass limits blur to ~6 large panes and falls back to opaque Breeze Dark without support."
+  ],
+  "variants": [
+    {
+      "id": "kde-breeze-light",
+      "name": "Breeze · Light",
+      "stage": "pure",
+      "mode": "light",
+      "seriousness": 9,
+      "hype": 3,
+      "tagline": "Element as a native Plasma 6 app — NeoChat's layout in exact Breeze Light.",
+      "palette": {
+        "bg": "#eff0f1",
+        "surface": "#ffffff",
+        "sidebar": "#eff0f1",
+        "rail": "#e3e5e7",
+        "text": "#232629",
+        "muted": "#5c6670",
+        "accent": "#3daee9",
+        "onAccent": "#232629",
+        "border": "#c6c8c9",
+        "own": "#e2f3fc",
+        "other": "#ffffff",
+        "critical": "#da4453",
+        "success": "#27ae60"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Noto Sans (bundled, var 400–700)",
+        "display": "Noto Sans 600/700 (Kirigami Heading)",
+        "mono": "Hack (bundled)"
+      },
+      "shape": {
+        "radius": "5px",
+        "border": "hairline",
+        "shadow": "0 1px 1px rgb(0 0 0/.125) controls; 0 4px 14px rgb(0 0 0/.25) popups",
+        "density": "normal"
+      },
+      "texture": "none",
+      "motion": "Breeze hover fades 150ms, KWin-style fade/scale popups",
+      "signature": [
+        "Unified #dee0e2 titlebar+header band with circular chevron window buttons (red circle close on hover)",
+        "Light-grey Window canvas with white 5px View message cards (NeoChat)",
+        "Plasma-blue #3daee9 selection at 30% alpha plus 1px outline on rooms, spaces, menus, settings tabs",
+        "Breeze push buttons: 1px outline, 12.5% hairline shadow, outline turns #3daee9 on hover; tinted check boxes with blue tick",
+        "Kirigami 'Favourite ———— ⌃' section headers, ring-initials avatars, plain unread counts, KDE-logo home button"
+      ],
+      "regions": {
+        "shell": "Window #eff0f1 canvas; 30px Breeze titlebar overlay in Header #dee0e2; one 48px Header band across space column, room list and room header (unified, no separator)",
+        "spaces": "52px icon column #e3e5e7, KDE logo on Home, selected space = 30% accent tile r5 + 3px accent edge line (Plasma task-manager indicator), Plasma digital clock at bottom",
+        "roomlist": "Kirigami sidebar on Window: 52px rows, 32px round avatars, bold unread names, 'Favourite ——— ⌃' section rules, selection 30% accent + 1px #3daee9 outline r5",
+        "header": "Header band #dee0e2, room name 15px 600, flat 34px tool buttons with Breeze icons that gain an outline/fill on hover",
+        "timeline": "Window #eff0f1 canvas, messages as View #ffffff cards r5 with hairline shadow; own card tinted 15% accent; mention card neutral tint + 3px #f67400 bar; IRC = flat View with #f7f7f7 zebra rows",
+        "names-avatars": "Round avatars; initials = HIG hue text + 1px ring on 15% tint; bold usernames in darkened HIG hues",
+        "composer": "View #ffffff strip under a 1px separator; Breeze line edit (r5, #c6c8c9 outline, accent border on focus); flat tool buttons attach/emoji/voice; send = document-send tool button",
+        "rightpanel": "Window page with Kirigami headings, hairline group frames, flat list delegates with 30% accent selection",
+        "buttons": "Breeze push button: Button bg, 1px #d1d1d2 outline, r5, 0 1px 1px rgb(0 0 0/.125); hover/focus pen #3daee9; pressed mix 30% accent; default button accent-tinted; destructive = #da4453 text + outline",
+        "inputs": "View fill, 1px #c6c8c9 outline r5, 6px padding; focus = 1px #3daee9 border + 2px focus-visible ring; check box r4 with 30% accent fill and blue tick; toggle = Breeze switch (accent track)",
+        "dialogs": "Window sheet r5, title in Header band, 0 4px 14px rgb(0 0 0/.25) + outline; KDE button order (Help left, OK/Apply/Cancel right, default tinted)",
+        "menus": "View popup r5, 4px margins, item highlight 30% accent + outline, separators hairline; tooltips Tooltip colours r5 with soft shadow",
+        "settings": "System-Settings layout: left icon+label sidebar (30% accent selection), pages on Window, group boxes as hairline frames, Breeze tabs with 3px accent underline",
+        "auth": "Plasma lock-screen feel: Hanabi wallpaper light behind a centred Breeze card (r5), Noto Sans, big clock heading",
+        "scrollbars": "8px groove-less pill, text colour at 50%, turns #3daee9 on hover; hidden arrows",
+        "focus": "2px #3daee9 outline at 1px offset (thicker than pure Breeze 1px for WCAG)",
+        "badges": "Unread counts as plain right-aligned numbers; highlight/mention = #da4453 pill white text; dots in accent",
+        "code": "Hack 13px on View alternate #f7f7f7 r5 with outline; KSyntaxHighlighting Breeze Light colours",
+        "iframes": "Element base light; widget/call frame styled as Breeze group box (r5, outline)",
+        "icons": "Breeze 22px monochrome (LGPL) via mask-image + currentColor on known buttons; Compound icons recoloured elsewhere",
+        "motion": "150ms ease-out outline/fill fades (Breeze hover animation), popups fade+scale .96→1 150ms, menus slide 4px; off under reduced motion"
+      },
+      "difficulty": "medium",
+      "enhancer": "Breeze titlebar overlay (chevrons, title mirrors document.title, maximise toggles fullscreen) + Plasma digital clock in the space column"
+    },
+    {
+      "id": "kde-breeze-dark",
+      "name": "Breeze · Dark",
+      "stage": "pure",
+      "mode": "dark",
+      "seriousness": 9,
+      "hype": 3,
+      "tagline": "The same native-Plasma Element in Breeze Dark.",
+      "palette": {
+        "bg": "#202326",
+        "surface": "#141618",
+        "sidebar": "#202326",
+        "rail": "#1b1e20",
+        "text": "#fcfcfc",
+        "muted": "#a1a9b1",
+        "accent": "#3daee9",
+        "onAccent": "#141618",
+        "border": "#4c4e51",
+        "own": "#1c3442",
+        "other": "#141618",
+        "critical": "#da4453",
+        "success": "#27ae60"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Noto Sans (bundled, var 400–700)",
+        "display": "Noto Sans 600/700 (Kirigami Heading)",
+        "mono": "Hack (bundled)"
+      },
+      "shape": {
+        "radius": "5px",
+        "border": "hairline",
+        "shadow": "0 1px 2px rgb(0 0 0/.35) controls; 0 4px 16px rgb(0 0 0/.5) popups",
+        "density": "normal"
+      },
+      "texture": "none",
+      "motion": "as Breeze Light",
+      "signature": [
+        "Unified #292c30 titlebar+header band with circular chevron window buttons (red circle close on hover)",
+        "Window #202326 canvas with #141618 5px View message cards (NeoChat)",
+        "Plasma-blue #3daee9 selection at 30% alpha plus 1px outline on rooms, spaces, menus, settings tabs",
+        "Breeze push buttons: 1px outline, 12.5% hairline shadow, outline turns #3daee9 on hover; tinted check boxes with blue tick",
+        "Kirigami 'Favourite ———— ⌃' section headers, ring-initials avatars, plain unread counts, KDE-logo home button"
+      ],
+      "regions": {
+        "shell": "Window #202326 canvas; 30px Breeze titlebar overlay in Header #292c30; one 48px Header band across space column, room list and room header (unified, no separator)",
+        "spaces": "52px icon column #1b1e20, KDE logo on Home, selected space = 30% accent tile r5 + 3px accent edge line (Plasma task-manager indicator), Plasma digital clock at bottom",
+        "roomlist": "Kirigami sidebar on Window: 52px rows, 32px round avatars, bold unread names, 'Favourite ——— ⌃' section rules, selection 30% accent + 1px #3daee9 outline r5",
+        "header": "Header band #292c30, room name 15px 600, flat 34px tool buttons with Breeze icons that gain an outline/fill on hover",
+        "timeline": "Window #202326 canvas, messages as View #141618 cards r5 with hairline shadow; own card tinted 15% accent; mention card neutral tint + 3px #f67400 bar; IRC = flat View with #1d1f22 zebra rows",
+        "names-avatars": "Round avatars; initials = HIG hue text + 1px ring on 15% tint; bold usernames in darkened HIG hues",
+        "composer": "View #141618 strip under a 1px separator; Breeze line edit (r5, #4c4e51 outline, accent border on focus); flat tool buttons attach/emoji/voice; send = document-send tool button",
+        "rightpanel": "Window page with Kirigami headings, hairline group frames, flat list delegates with 30% accent selection",
+        "buttons": "Breeze push button: Button bg, 1px #535659 outline, r5, 0 1px 1px rgb(0 0 0/.125); hover/focus pen #3daee9; pressed mix 30% accent; default button accent-tinted; destructive = #da4453 text + outline",
+        "inputs": "View fill, 1px #4c4e51 outline r5, 6px padding; focus = 1px #3daee9 border + 2px focus-visible ring; check box r4 with 30% accent fill and blue tick; toggle = Breeze switch (accent track)",
+        "dialogs": "Window sheet r5, title in Header band, 0 4px 14px rgb(0 0 0/.25) + outline; KDE button order (Help left, OK/Apply/Cancel right, default tinted)",
+        "menus": "View popup r5, 4px margins, item highlight 30% accent + outline, separators hairline; tooltips Tooltip colours r5 with soft shadow",
+        "settings": "System-Settings layout: left icon+label sidebar (30% accent selection), pages on Window, group boxes as hairline frames, Breeze tabs with 3px accent underline",
+        "auth": "Plasma lock-screen feel: Hanabi wallpaper dark behind a centred Breeze card (r5), Noto Sans, big clock heading",
+        "scrollbars": "8px groove-less pill, text colour at 50%, turns #3daee9 on hover; hidden arrows",
+        "focus": "2px #3daee9 outline at 1px offset (thicker than pure Breeze 1px for WCAG)",
+        "badges": "Unread counts as plain right-aligned numbers; highlight/mention = #da4453 pill white text; dots in accent",
+        "code": "Hack 13px on View alternate #1d1f22 r5 with outline; KSyntaxHighlighting Breeze Dark colours",
+        "iframes": "Element base dark; widget/call frame styled as Breeze group box (r5, outline)",
+        "icons": "Breeze 22px monochrome (LGPL) via mask-image + currentColor on known buttons; Compound icons recoloured elsewhere",
+        "motion": "150ms ease-out outline/fill fades (Breeze hover animation), popups fade+scale .96→1 150ms, menus slide 4px; off under reduced motion"
+      },
+      "difficulty": "easy",
+      "enhancer": "Same as kde-breeze-light (dark titlebar)"
+    },
+    {
+      "id": "kde-breeze-daylight",
+      "name": "Breeze · Daylight",
+      "stage": "pure",
+      "mode": "daylight",
+      "seriousness": 9,
+      "hype": 4,
+      "tagline": "Breeze Light by day, Breeze Classic at dusk, Breeze Dark at night — with KWin Night Color warming the edges.",
+      "palette": {
+        "bg": "#eff0f1",
+        "surface": "#ffffff",
+        "sidebar": "#eff0f1",
+        "rail": "#e3e5e7",
+        "text": "#232629",
+        "muted": "#5c6670",
+        "accent": "#3daee9",
+        "onAccent": "#232629",
+        "border": "#c6c8c9",
+        "own": "#e2f3fc",
+        "other": "#ffffff",
+        "critical": "#da4453",
+        "success": "#27ae60"
+      },
+      "phases": {
+        "dawn": {
+          "bg": "#eff0f1",
+          "surface": "#ffffff",
+          "sidebar": "#eff0f1",
+          "rail": "#e3e5e7",
+          "text": "#232629",
+          "muted": "#5c6670",
+          "accent": "#3daee9",
+          "onAccent": "#232629",
+          "border": "#c6c8c9",
+          "own": "#e2f3fc",
+          "other": "#ffffff",
+          "critical": "#da4453",
+          "success": "#27ae60"
+        },
+        "day": {
+          "bg": "#eff0f1",
+          "surface": "#ffffff",
+          "sidebar": "#eff0f1",
+          "rail": "#e3e5e7",
+          "text": "#232629",
+          "muted": "#5c6670",
+          "accent": "#3daee9",
+          "onAccent": "#232629",
+          "border": "#c6c8c9",
+          "own": "#e2f3fc",
+          "other": "#ffffff",
+          "critical": "#da4453",
+          "success": "#27ae60"
+        },
+        "dusk": {
+          "bg": "#eff0f1",
+          "surface": "#fcfcfc",
+          "sidebar": "#eff0f1",
+          "rail": "#31363b",
+          "text": "#232627",
+          "muted": "#5c6670",
+          "accent": "#3daee9",
+          "onAccent": "#232627",
+          "border": "#c6c8c9",
+          "own": "#e2f3fc",
+          "other": "#fcfcfc",
+          "critical": "#da4453",
+          "success": "#27ae60"
+        },
+        "night": {
+          "bg": "#202326",
+          "surface": "#141618",
+          "sidebar": "#202326",
+          "rail": "#1b1e20",
+          "text": "#fcfcfc",
+          "muted": "#a1a9b1",
+          "accent": "#3daee9",
+          "onAccent": "#141618",
+          "border": "#4c4e51",
+          "own": "#1c3442",
+          "other": "#141618",
+          "critical": "#da4453",
+          "success": "#27ae60"
+        }
+      },
+      "schedule": [
+        {
+          "from": "05:30",
+          "phase": "dawn",
+          "base": "light"
+        },
+        {
+          "from": "08:00",
+          "phase": "day",
+          "base": "light"
+        },
+        {
+          "from": "17:30",
+          "phase": "dusk",
+          "base": "light"
+        },
+        {
+          "from": "21:30",
+          "phase": "night",
+          "base": "dark"
+        }
+      ],
+      "fonts": {
+        "ui": "Noto Sans (bundled, var 400–700)",
+        "display": "Noto Sans 600/700 (Kirigami Heading)",
+        "mono": "Hack (bundled)"
+      },
+      "shape": {
+        "radius": "5px",
+        "border": "hairline",
+        "shadow": "as Breeze Light/Dark per phase",
+        "density": "normal"
+      },
+      "texture": "Night Color: fixed multiply overlay #ffb366 at 6% (dawn) / 8% (dusk, 4500K) / 10% (night, 3500K)",
+      "motion": "2s colour crossfade at phase boundaries; Breeze fades otherwise; all off under reduced motion",
+      "signature": [
+        "Phases are real Breeze schemes: Light → Classic (Plasma 5, dark #475057 titlebar, #31363b panel) → Dark",
+        "KWin Night Color warm overlay at dawn, dusk and night",
+        "Unified #dee0e2 titlebar+header band with circular chevron window buttons (red circle close on hover)",
+        "Light-grey Window canvas with white 5px View message cards (NeoChat)",
+        "Plasma-blue #3daee9 selection at 30% alpha plus 1px outline on rooms, spaces, menus, settings tabs"
+      ],
+      "regions": {
+        "shell": "Per phase: Breeze Light (dawn/day), Breeze Classic with dark #475057 titlebar (dusk), Breeze Dark (night); Night Color overlay as html::after multiply",
+        "spaces": "52px column: #e3e5e7 (day), Complementary #31363b with light icons (dusk), #1b1e20 (night); KDE logo home, Plasma clock",
+        "roomlist": "Kirigami sidebar on Window: 52px rows, 32px round avatars, bold unread names, 'Favourite ——— ⌃' section rules, selection 30% accent + 1px #3daee9 outline r5",
+        "header": "Header band #dee0e2, room name 15px 600, flat 34px tool buttons with Breeze icons that gain an outline/fill on hover",
+        "timeline": "Window #eff0f1 canvas, messages as View #ffffff cards r5 with hairline shadow; own card tinted 15% accent; mention card neutral tint + 3px #f67400 bar; IRC = flat View with #f7f7f7 zebra rows",
+        "names-avatars": "Round avatars; initials = HIG hue text + 1px ring on 15% tint; bold usernames in darkened HIG hues",
+        "composer": "View #ffffff strip under a 1px separator; Breeze line edit (r5, #c6c8c9 outline, accent border on focus); flat tool buttons attach/emoji/voice; send = document-send tool button",
+        "rightpanel": "Window page with Kirigami headings, hairline group frames, flat list delegates with 30% accent selection",
+        "buttons": "Breeze push button: Button bg, 1px #d1d1d2 outline, r5, 0 1px 1px rgb(0 0 0/.125); hover/focus pen #3daee9; pressed mix 30% accent; default button accent-tinted; destructive = #da4453 text + outline",
+        "inputs": "View fill, 1px #c6c8c9 outline r5, 6px padding; focus = 1px #3daee9 border + 2px focus-visible ring; check box r4 with 30% accent fill and blue tick; toggle = Breeze switch (accent track)",
+        "dialogs": "Window sheet r5, title in Header band, 0 4px 14px rgb(0 0 0/.25) + outline; KDE button order (Help left, OK/Apply/Cancel right, default tinted)",
+        "menus": "View popup r5, 4px margins, item highlight 30% accent + outline, separators hairline; tooltips Tooltip colours r5 with soft shadow",
+        "settings": "System-Settings layout: left icon+label sidebar (30% accent selection), pages on Window, group boxes as hairline frames, Breeze tabs with 3px accent underline",
+        "auth": "Plasma lock-screen feel: Hanabi wallpaper light behind a centred Breeze card (r5), Noto Sans, big clock heading",
+        "scrollbars": "8px groove-less pill, text colour at 50%, turns #3daee9 on hover; hidden arrows",
+        "focus": "2px #3daee9 outline at 1px offset (thicker than pure Breeze 1px for WCAG)",
+        "badges": "Unread counts as plain right-aligned numbers; highlight/mention = #da4453 pill white text; dots in accent",
+        "code": "Hack 13px on View alternate #f7f7f7 r5 with outline; KSyntaxHighlighting Breeze Light colours",
+        "iframes": "base light for dawn/day/dusk, dark at night (loader flips base)",
+        "icons": "Breeze 22px monochrome (LGPL) via mask-image + currentColor on known buttons; Compound icons recoloured elsewhere",
+        "motion": "Phase change crossfades background/colour over 2s; Breeze 150ms hover fades; Night Color fades with phase; none under reduced motion"
+      },
+      "difficulty": "medium",
+      "enhancer": "Breeze titlebar overlay (colour follows phase: Header colour, Classic dark at dusk) + Plasma clock; phase switching itself is loader/CSS"
+    },
+    {
+      "id": "kde-oxygen",
+      "name": "Oxygen · KDE 4",
+      "stage": "past",
+      "mode": "light",
+      "seriousness": 7,
+      "hype": 5,
+      "tagline": "KDE 4 Oxygen: radial-lit window, glossy jelly buttons, the blue glow and a dark glass panel.",
+      "palette": {
+        "bg": "#d6d2d0",
+        "surface": "#ffffff",
+        "sidebar": "#ffffff",
+        "rail": "#181513",
+        "text": "#221f1e",
+        "muted": "#5e5a57",
+        "accent": "#43ace8",
+        "onAccent": "#ffffff",
+        "border": "#b3aeaa",
+        "own": "#e3f2fb",
+        "other": "#ffffff",
+        "critical": "#bf0303",
+        "success": "#006e28"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Oxygen 400 (bundled)",
+        "display": "Oxygen 700 / 300",
+        "mono": "Oxygen Mono (bundled)"
+      },
+      "shape": {
+        "radius": "4px",
+        "border": "bevel",
+        "shadow": "inset 0 1px rgb(255 255 255/.8), 0 1px 2px rgb(0 0 0/.25); glow 0 0 6px 1px #6ed6ff on hover",
+        "density": "compact"
+      },
+      "texture": "radial-gradient window background (lit top-centre #e9e7e5 → #d6d2d0), glossy gradients, dark glass panel with gloss",
+      "motion": "Soft 250ms glow fades on hover/focus, 200ms dialog fade; off under reduced motion",
+      "signature": [
+        "Window background lit from the top centre (radial gradient over #d6d2d0)",
+        "Glossy gradient push buttons with inner highlight and the #6ed6ff hover glow",
+        "Dark glass Plasma panel (#181513 at 86% + gloss) with colourful Oxygen icons and the KDE 4 logo",
+        "Glossy blue selection gradient #5bbaf0→#3e9fe0 with white text",
+        "Sunken 'hole' line edits and Oxygen font everywhere"
+      ],
+      "regions": {
+        "shell": "Window #d6d2d0 with radial top-centre highlight; Oxygen titlebar overlay continuous with window gradient, bold centred title",
+        "spaces": "Dark glass KDE 4 Plasma panel rgb(24 21 19/.86) + top gloss, colourful 48px Oxygen PNG icons at 28px, selected space glows #6ed6ff, KDE 4 logo home",
+        "roomlist": "White View list, dense 30px rows, alternate #f8f7f6, glossy blue gradient selection with white text r3",
+        "header": "Window-gradient toolbar with etched bottom line, Oxygen colour icons on flat buttons that glow on hover",
+        "timeline": "Flat white View, group layout without cards, etched 1px dark+light separators between senders; own messages faint #e3f2fb wash",
+        "names-avatars": "Round avatars with glossy ring highlight; usernames in Oxygen palette (#0057ae, #924c9d, #006e28, #b08000, #bf0303, #644a9b)",
+        "composer": "Sunken white hole (inset shadow, r4) with glossy 'Send' push button carrying the Oxygen mail-send icon",
+        "rightpanel": "Window gradient page, KDE 4 group boxes (rounded frame, subtle inner shadow), bold Oxygen headings",
+        "buttons": "linear-gradient(#f3f1f0,#d8d4d1) r4, inset highlight + drop shadow; hover glow #6ed6ff; pressed sunken; default button has focus-blue glow",
+        "inputs": "Inset hole on white, r4; focus = #3aa7dd 1px border + glow; check boxes glossy with dark tick",
+        "dialogs": "Window-gradient sheet r6 with big soft shadow 0 8px 24px rgb(0 0 0/.35), Oxygen titlebar strip, glossy buttons right",
+        "menus": "White r5 menu, glossy blue item highlight, 0 4px 12px shadow; tooltips dark #181513 / #e7fdff r6 at .92 opacity",
+        "settings": "KDE 4 System Settings look: left list with colourful icons, glossy selection, page on Window gradient, rounded group boxes",
+        "auth": "KDM-style login: Oxygen blue-air gradient backdrop, centred rounded white card, KDE 4 logo",
+        "scrollbars": "12px rounded gradient handle #dfdcd9→#c9c4c1 in an inset groove; hover glow",
+        "focus": "1px #3aa7dd outline + 0 0 6px #6ed6ff glow, 2px offset",
+        "badges": "Glossy pill: blue #43ace8 gradient for unread, #bf0303 gradient for mentions, white text",
+        "code": "Oxygen Mono 13px on #f8f7f6, Kate KDE 4 default colours (keyword bold #1f1c1b, string #bf0303, comment #898887, type #0057ae)",
+        "iframes": "Element base light; frame as rounded KDE 4 group box",
+        "icons": "Oxygen colourful icons (LGPL) as background-image PNG on known buttons; others recoloured Compound",
+        "motion": "250ms glow fades, 200ms dialog fade; off under reduced motion"
+      },
+      "difficulty": "hard",
+      "enhancer": "Oxygen titlebar overlay (jelly circle buttons, bold title, maximise→fullscreen) + Plasma clock in the dark panel"
+    },
+    {
+      "id": "kde-ocean",
+      "name": "Ocean · Plasma Next",
+      "stage": "future",
+      "mode": "light",
+      "seriousness": 8,
+      "hype": 6,
+      "tagline": "KDE's next design system, built from the VDG's Ocean tokens: Inter, a #2058C3 tonal ramp, pills and soft depth.",
+      "palette": {
+        "bg": "#fbfcfe",
+        "surface": "#ffffff",
+        "sidebar": "#f5f3f7",
+        "rail": "#efedf1",
+        "text": "#1b1b1f",
+        "muted": "#5e5e62",
+        "accent": "#2058c3",
+        "onAccent": "#ffffff",
+        "border": "#c5c6d0",
+        "own": "#dae2ff",
+        "other": "#efedf1",
+        "critical": "#b7211e",
+        "success": "#4c6d0e"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Inter var (bundled) 14/20, labels 500",
+        "display": "Inter 600, Display XS 24/32",
+        "mono": "Hack (bundled)"
+      },
+      "shape": {
+        "radius": "6px controls / 8px cards+menus / 16px badges / full avatars",
+        "border": "hairline",
+        "shadow": "0 1px 2px rgb(0 0 0/.047), 0 2px 6px rgb(0 0 0/.094) (Ocean button); shadow-lg for menus/tooltips",
+        "density": "airy"
+      },
+      "texture": "soft gradients only on the home tile and empty states (#5e8cfa→#2058c3)",
+      "motion": "200ms emphasized cubic-bezier(.2,0,0,1); selection pill morph; toggle slide 150ms",
+      "signature": [
+        "Ocean Aurorae titlebar: buttons on the left as 18px gradient circles (red close, green minimise, orange maximise)",
+        "Pill selection in Ocean Selection colour #dae2ff with #001847 text",
+        "Filled #4172de primary buttons and a round filled send button with two-layer soft shadow",
+        "Floating card panels (surface-container-low #f5f3f7, r8) on a #fbfcfe surface",
+        "Inter throughout, 24px 2px-stroke Ocean icons, #eef0ff/#2058c3 initials avatars"
+      ],
+      "regions": {
+        "shell": "Surface #fbfcfe; room list and right panel as floating cards (8px inset, r8, shadow sm); Ocean titlebar overlay with left traffic-light buttons",
+        "spaces": "Rail on surface-container #efedf1, 40px round items, active = #dae2ff pill + #2058c3 icon, home = gradient squircle tile with white KDE logo",
+        "roomlist": "Card #f5f3f7 r8; 56px rows, Inter 14/20 500 names, 12px secondary #5e5e62, selection pill #dae2ff r8, Ocean pill badges",
+        "header": "56px on surface, room title Inter 600 18/28, round 40px icon buttons (hover #f2f0f4)",
+        "timeline": "View white; bubbles r8: own primary-container #dae2ff (#001847 text), others #efedf1; 8px grid spacing",
+        "names-avatars": "Initials #2058c3 on #eef0ff for everyone, selected ring 4px #dae2ff, online dot #5b8211 with white stroke; names in Ocean secondary *30 hues",
+        "composer": "44px Ocean input r6, #757780 border, 10/14 padding, focus #88a9ff + 2px #e9ebf8 spread + #2058c3 outline; filled round #4172de send button",
+        "rightpanel": "Floating card r8 on #f5f3f7, Inter section titles 600, Ocean list rows 44px",
+        "buttons": "Ocean hierarchy: primary #4172de/#faf8ff (hover #0040a0), secondary #eef0ff/#0040a0, gray white/#f2f0f4 border/#46464a, link #0040a0; destructive #da3c34; r6, 600 weight",
+        "inputs": "Ocean input (44px, r6, #757780, focus #88a9ff); toggles 44x24 on #4172de off #e4e2e6; check boxes r4 filled #4172de with white tick",
+        "dialogs": "White sheet r8, shadow box-shadow3 (0 24px 32px rgb(0 0 0/.10)), Display XS title, buttons right: gray Cancel + primary OK",
+        "menus": "White r8 dropdown menu, 40px items 10/16 padding, hover #f2f0f4, selected #dae2ff, divider #e4e2e6; tooltips dark #1b1b1f r6 12px",
+        "settings": "Left nav with pill selection #dae2ff, content cards r8, Ocean toggles and inputs",
+        "auth": "Ocean card r8 centred on a soft #faf8ff→#dae2ff gradient, primary CTA",
+        "scrollbars": "6px #c7c6ca pill, 10px on hover #919094, no groove",
+        "focus": "2px #2058c3 outline + 4px #e9ebf8 halo (Ocean ring made visible)",
+        "badges": "Ocean pills r16: unread #eef0ff/#0040a0, mention #ffedea/#93000a, Inter 12/18 500",
+        "code": "Hack 13px on #f5f3f7 r6, Breeze Light syntax colours shifted to Ocean ramp (type #2058c3)",
+        "iframes": "Element base light; frame as Ocean card r8",
+        "icons": "Ocean 24px 2px-stroke monochrome icons via mask-image, #46464a default, #2058c3 when active",
+        "motion": "200ms emphasized; pill morph on selection; off under reduced motion"
+      },
+      "difficulty": "medium",
+      "enhancer": "Ocean titlebar overlay (left traffic-light circles with hover glyphs, centred Inter title, maximise→fullscreen)"
+    },
+    {
+      "id": "kde-usable",
+      "name": "Breeze · Usable",
+      "stage": "usable",
+      "mode": "light",
+      "seriousness": 10,
+      "hype": 2,
+      "tagline": "Breeze for eight-hour chat days: no titlebar, compact zebra rows, AA text and thick focus rings.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#ffffff",
+        "sidebar": "#eff0f1",
+        "rail": "#e3e5e7",
+        "text": "#232629",
+        "muted": "#5c6670",
+        "accent": "#1e6fa5",
+        "onAccent": "#ffffff",
+        "border": "#9aa0a6",
+        "own": "#e2f3fc",
+        "other": "#f7f7f7",
+        "critical": "#b0303e",
+        "success": "#1d7a45"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Noto Sans 14.5px/1.45 (bundled)",
+        "display": "Noto Sans 700",
+        "mono": "Hack 14px (bundled)"
+      },
+      "shape": {
+        "radius": "5px",
+        "border": "hairline",
+        "shadow": "0 1px 1px rgb(0 0 0/.125)",
+        "density": "compact"
+      },
+      "texture": "Qt alternate-row zebra #f7f7f7",
+      "motion": "100ms hover fades only",
+      "signature": [
+        "No decorative titlebar — all height goes to the conversation",
+        "Qt item-view zebra rows in timeline and room list",
+        "3px #1e6fa5 focus ring with white gap, focus bar on room rows",
+        "Strong mention rows: 4px #f67400 bar on #fef1e6",
+        "Dark-blue #1e5774 unread pills, permanent 10px scrollbars"
+      ],
+      "regions": {
+        "shell": "Breeze Light Window, no titlebar, 44px Header band",
+        "spaces": "48px column #e3e5e7, KDE logo home, selection 30% accent + 3px edge line, larger 40px targets",
+        "roomlist": "Window list, 44px rows, 28px avatars, zebra #f7f7f7 on #eff0f1, unread = bold + 2px accent left line, selection 30% accent + outline",
+        "header": "44px Header band #dee0e2, 15px 600 title, labelled tooltips on tool buttons",
+        "timeline": "View white, compact cards (2px continuation gap) with zebra rows, timestamps always visible #5c6670, mentions 4px #f67400 bar on #fef1e6",
+        "names-avatars": "Round 32px avatars, ring initials, AA usernames #1b6aa5 #126fb4 #1d7a45 #a8500a #b0303e #7a3e96",
+        "composer": "Taller Breeze line edit (min 44px), 3px focus ring, labelled send button 'Send' with icon",
+        "rightpanel": "As Breeze Light, 14.5px text, more spacing between groups",
+        "buttons": "Breeze push buttons min 32px tall; default button #1e6fa5 fill + white text for clarity",
+        "inputs": "View fill, 1px #9aa0a6 outline (3:1), focus #1e6fa5 2px border + ring",
+        "dialogs": "Breeze dialog without fade, larger 15px body, KDE button order",
+        "menus": "View r5, 32px items, highlight 30% accent + outline",
+        "settings": "System-Settings layout with larger hit areas",
+        "auth": "Plain Breeze card on Window, no wallpaper",
+        "scrollbars": "Permanent 10px handle #9aa0a6 in visible #e3e5e7 groove",
+        "focus": "3px #1e6fa5 outline + 2px white gap",
+        "badges": "#1e5774 pills white text (counts), #b0303e mention pills",
+        "code": "Hack 14px, View alt #f7f7f7, Breeze Light syntax",
+        "iframes": "Element base light, Breeze group box frame",
+        "icons": "Breeze 22px monochrome, labels shown where space allows",
+        "motion": "100ms hover fades only; none under reduced motion"
+      },
+      "difficulty": "easy",
+      "enhancer": null
+    },
+    {
+      "id": "kde-glass",
+      "name": "Breeze · Glass",
+      "stage": "exciting",
+      "mode": "dark",
+      "seriousness": 5,
+      "hype": 8,
+      "tagline": "Translucent Breeze Dark over the Plasma Hanabi wallpaper, KWin blur everywhere and an accent-from-wallpaper glow.",
+      "palette": {
+        "bg": "#141618",
+        "surface": "#202326",
+        "sidebar": "#202326",
+        "rail": "#202326",
+        "text": "#fcfcfc",
+        "muted": "#b4bbc2",
+        "accent": "#7f6df2",
+        "onAccent": "#ffffff",
+        "border": "#4c4e51",
+        "own": "#2a2550",
+        "other": "#1d1f22",
+        "critical": "#ff5c6c",
+        "success": "#3ddc84"
+      },
+      "phases": null,
+      "fonts": {
+        "ui": "Noto Sans (bundled, var 400–700)",
+        "display": "Noto Sans 600/700 (Kirigami Heading)",
+        "mono": "Hack (bundled)"
+      },
+      "shape": {
+        "radius": "8px panes / 12px floating panel / 5px controls",
+        "border": "glow",
+        "shadow": "0 0 0 1px #9d8cff, 0 0 14px rgb(127 109 242/.55) on selected/focused; 0 12px 40px rgb(0 0 0/.5) floating panes",
+        "density": "normal"
+      },
+      "texture": "Plasma 'Hanabi' wallpaper (dark) behind backdrop-filter blur(24px) saturate(1.4) panes",
+      "motion": "Magic-Lamp-lite dialog entry 220ms, single glow pulse on focus, 150ms fades; all off under reduced motion",
+      "signature": [
+        "Plasma Hanabi wallpaper visible through every pane (KWin Blur)",
+        "Floating rounded Plasma panel as space column",
+        "Accent-from-wallpaper violet #7f6df2 with glow halos",
+        "Ember-orange #ff9a3c mentions taken from the wallpaper",
+        "Glass dialogs over a dim scrim with a Magic Lamp-ish entry"
+      ],
+      "regions": {
+        "shell": "Fixed Hanabi wallpaper; translucent Breeze Dark panes with backdrop blur; glass Breeze titlebar overlay",
+        "spaces": "Floating Plasma panel: 8px gap, r12, rgb(32 35 38/.6) + blur, inner 1px white/8% highlight, selected space glows violet",
+        "roomlist": "Glass pane rgb(32 35 38/.72) blur 24; selection violet 30% + glow outline; Plasma clock",
+        "header": "Translucent band rgb(41 44 48/.7), white Breeze icons",
+        "timeline": "Canvas rgb(20 22 24/.62) blurred; message cards rgb(29 31 34/.55) r8 without per-tile blur; own cards violet-tinted #2a2550 at 80%",
+        "names-avatars": "Round avatars, own avatar gets violet glow ring; Breeze Dark HIG hues for names",
+        "composer": "Glass strip, dark field with violet focus glow, glowing round violet send button",
+        "rightpanel": "Glass card r8 blur 24",
+        "buttons": "Translucent white/8% fill, 1px white/14% border r5; hover violet border + glow; primary = violet fill white text",
+        "inputs": "rgb(0 0 0/.35) field, white/14% border, focus violet glow ring",
+        "dialogs": "Glass sheet blur 40 r12 over rgb(0 0 0/.45) scrim, Magic-Lamp-lite entry",
+        "menus": "Glass r8 blur 24, violet item highlight, tooltips glass",
+        "settings": "Glass panes over wallpaper, violet pill selection",
+        "auth": "Plasma lock screen: Hanabi dark wallpaper, big clock, glass login card",
+        "scrollbars": "Thin 6px white/35% pill, violet on hover",
+        "focus": "Violet ring 0 0 0 2px #9d8cff + 14px glow",
+        "badges": "Violet pills with glow; mentions ember #ff9a3c with dark text",
+        "code": "Hack on rgb(20 22 24/.8) r5, Breeze Dark syntax",
+        "iframes": "Element base dark; glass frame around widgets/calls",
+        "icons": "Breeze 22px monochrome in #fcfcfc, active in #9d8cff",
+        "motion": "Magic-Lamp-lite dialogs, glow pulse, fades; off under reduced motion; opaque fallback without backdrop-filter"
+      },
+      "difficulty": "hard",
+      "enhancer": "Glass Breeze titlebar overlay + Plasma clock in the floating panel"
+    }
+  ]
+}

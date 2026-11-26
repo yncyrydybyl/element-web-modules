@@ -1,0 +1,366 @@
+/* comic-unreadable: level 5, READABILITY IS NOT A GOAL. Loaded after comic-poster.css (which it extends).
+   Selectors use html[data-tl-family][data-tl-theme] so they out-rank the shared poster rules.
+   Kept usable on purpose: keyboard focus, the composer, settings rows, and every .tl-ui surface (picker,
+   switcher, the settings dialog that contains the Themes tab). No flashing above 1 Hz, no luminance strobe. */
+
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"],
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] body,
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] [class*="cpd-theme-"] {
+  --cpd-color-bg-canvas-default: #00ffff;
+  --cpd-color-bg-canvas-default-level-1: #00ffff;
+  --cpd-color-bg-subtle-secondary: #ffff00;
+  --cpd-color-bg-subtle-primary: #ff00ff;
+  --cpd-color-text-primary: #ff00ff;
+  --cpd-color-text-secondary: #ff6600;
+  --cpd-color-text-action-accent: #00b000;
+  --cpd-color-text-link-external: #0000ff;
+  --cpd-color-icon-primary: #ff0000;
+  --cpd-color-icon-secondary: #0000ff;
+  --cpd-color-icon-tertiary: #ff00ff;
+  --cpd-color-bg-action-primary-rest: #00ff00;
+  --cpd-color-bg-accent-rest: #00ff00;
+  --cpd-color-text-on-solid-primary: #ff00ff;
+  --cpd-color-icon-on-solid-primary: #ff00ff;
+  --cpd-color-border-interactive-primary: #ff0000;
+  --cpd-color-bg-action-tertiary-hovered: #ff00ff;
+  --ewt-extrude: 1px 1px 0 #ff0000, 2px 2px 0 #ff7f00, 3px 3px 0 #ffff00, 4px 4px 0 #00ff00, 5px 5px 0 #0000ff, 6px 6px 0 #8b00ff;
+  scrollbar-color: #ff00ff #00ff00;
+}
+
+/* ------------------------------------------------------------------ shell: psychedelic + slow hue rotation */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MatrixChat_wrapper,
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MatrixChat {
+  background: #ff00ff url("assets/tile-psych.gif") repeat;
+  background-blend-mode: normal;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MatrixChat {
+  animation: ewt-un-hue 20s linear infinite;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"].ewt-no-hue .mx_MatrixChat { animation: none; }
+@keyframes ewt-un-hue {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_SpacePanel,
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_LeftPanel_outerWrapper,
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomView_body,
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RightPanel {
+  border: 6px ridge #ff0000;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_SpacePanel { background: #ff6600; }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_SpaceButton .mx_BaseAvatar {
+  animation: ewt-spin 9s linear infinite;
+}
+
+/* ------------------------------------------------------------------ room list: yellow on yellow, marquees */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_LeftPanel_outerWrapper,
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_LeftPanel {
+  background: #ffff00 url("assets/tile-marble-green.png") repeat;
+  background-blend-mode: multiply;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView {
+  background: #ffff00;
+  border-radius: 30px 0;
+  border: 3px dashed #ff0000;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView:has([data-color="1"]),
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView:has([data-color="4"]) { background: #00ff00; transform: rotate(2deg); }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView:has([data-color="2"]),
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView:has([data-color="5"]) { background: #ff9933; transform: rotate(-2deg); }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView:has([data-color="3"]),
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView:has([data-color="6"]) { background: #ffff00; transform: rotate(1.5deg); }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView [class*="_roomName_"] {
+  color: #ff00ff;
+  text-shadow: 2px 2px 0 #00ffff;
+  overflow: visible;
+  animation: ewt-un-marquee 7s linear infinite;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView .mx_BaseAvatar {
+  animation: ewt-spin 6s linear infinite;
+}
+@keyframes ewt-un-marquee {
+  from { transform: translateX(60%); }
+  to { transform: translateX(-100%); }
+}
+
+/* ------------------------------------------------------------------ header */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomHeader {
+  background: #ff00ff url("assets/tile-stars-twinkle.gif") repeat;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomHeader_heading {
+  animation: ewt-un-wobble 2.4s ease-in-out infinite alternate;
+  letter-spacing: 0.12em;
+}
+@keyframes ewt-un-wobble {
+  from { transform: rotate(-4deg) scale(1); }
+  to { transform: rotate(3deg) scale(1.08); }
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomHeader::after {
+  content: "CLICK HERE!!!";
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomHeader[data-ewt-count]::after {
+  content: "VISITOR #" attr(data-ewt-count);
+  font-size: 11px;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomView_body::before {
+  background: #00ff00;
+  color: #ff00ff;
+  content: "\2605 WARNING: THIS PAGE IS UNDER CONSTRUCTION \2605 YOU ARE THE 1.000.000th VISITOR \2605 CLICK THE MONKEY \2605 SIGN MY GUESTBOOK \2605 WARNING: THIS PAGE IS UNDER CONSTRUCTION \2605 YOU ARE THE 1.000.000th VISITOR \2605 CLICK THE MONKEY \2605 SIGN MY GUESTBOOK \2605";
+  animation-duration: 9s;
+}
+
+/* ------------------------------------------------------------------ timeline: chaos */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomView_body {
+  background: #00ffff url("assets/tile-psych.gif") repeat;
+}
+/* the sticker behind each message rocks; the content itself stays put so it can still be clicked */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_EventTile:not([class*="_stateInfo_"]):not(.mx_GenericEventListSummary) > .mx_EventTile_line {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+  position: relative;
+  isolation: isolate;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_EventTile:not([class*="_stateInfo_"]):not(.mx_GenericEventListSummary) > .mx_EventTile_line::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #00ff00;
+  border: 4px ridge #ff0000;
+  border-radius: 0 24px 0 24px;
+  box-shadow: 4px 4px 0 #000000;
+  pointer-events: none;
+  animation: ewt-un-rock 4s ease-in-out infinite alternate;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomView_MessageList > li:nth-child(3n) > .mx_EventTile_line::before { animation-duration: 3s; animation-direction: alternate-reverse; }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomView_MessageList > li:nth-child(3n+1) > .mx_EventTile_line::before { animation-duration: 5s; }
+@keyframes ewt-un-rock {
+  from { transform: rotate(-2.5deg); }
+  to { transform: rotate(2deg) translateX(8px); }
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_EventTile[class*="_stateOwnEvent_"] > .mx_EventTile_line::before {
+  background: #ffff00;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_EventTile_body {
+  color: #ff00ff;
+  font-weight: 700;
+  font-size: 1.05em;
+  letter-spacing: 0.04em;
+  text-shadow: var(--ewt-extrude);
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_EventTile .mx_BaseAvatar {
+  animation: ewt-spin 6s linear infinite;
+  border-radius: 50%;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MessageTimestamp {
+  color: #ff0000;
+  font-family: var(--ewt-times);
+  font-style: italic;
+  animation: ewt-blink 1s steps(1) infinite;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_TimelineSeparator > hr {
+  height: 24px;
+  background: url("assets/bar-flames.gif") repeat-x bottom / auto 24px;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_TimelineSeparator h2 {
+  animation: ewt-spin 12s linear infinite;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_EventTile_body pre,
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_EventTile_pre_container {
+  background: #ff00ff;
+  transform: rotate(1deg);
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_EventTile_body pre code { color: #00ff00; }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_GenericEventListSummary,
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_EventTile[class*="_stateInfo_"] {
+  text-shadow: 1px 1px 0 #ffff00;
+}
+
+/* ------------------------------------------------------------------ composer */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MessageComposer {
+  background: #ff00ff url("assets/tile-stars-twinkle.gif");
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MessageComposer_wrapper {
+  background:
+    linear-gradient(#ffff00, #ffff00) padding-box,
+    repeating-linear-gradient(90deg, #ff0000 0 57px, #ff7f00 57px 114px, #ffff00 114px 171px, #00ff00 171px 228px, #0000ff 228px 285px, #8b00ff 285px 342px, #ff00ff 342px 400px) 0 0 / 400px 100% border-box;
+  animation-duration: 2s;
+  border-style: ridge;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_BasicMessageComposer_input {
+  --placeholder: "TYPE HERE!!!!!" !important;
+  color: #ff00ff;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MessageComposer_sendMessage {
+  background: #00ff00;
+  animation: ewt-blink 1s steps(1) infinite;
+}
+
+/* ------------------------------------------------------------------ chrome */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RightPanel {
+  background: #ff00ff url("assets/tile-hazard.png");
+  --cpd-color-text-primary: #ffff00;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RightPanel .mx_BaseCard { background: rgba(255, 0, 255, 0.88); }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] button[class*="_button_"][data-kind="primary"],
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_AccessibleButton_kind_primary {
+  background: #00ff00;
+  color: #ff00ff;
+  border: 4px ridge #ff0000;
+  font-family: "Chewy", var(--ewt-comic);
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] button[class*="_button_"][data-kind]:hover,
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_AccessibleButton_kind_primary:hover {
+  animation: ewt-wiggle 0.3s linear infinite;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_Dialog {
+  background: #ffff00 url("assets/tile-stars-twinkle.gif");
+  border: 8px solid transparent;
+  border-image: url("assets/tile-hazard.png") 8 round;
+  transform: rotate(-2deg);
+  --cpd-color-text-primary: #ff00ff;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] [role="menu"],
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_ContextualMenu {
+  background: linear-gradient(180deg, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #ff00ff);
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] [role="menu"] [role^="menuitem"]:hover {
+  background: #000000;
+  color: #ffff00;
+  --cpd-color-text-primary: #ffff00;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] body { cursor: url("assets/cursor-rainbow.png") 1 1, auto; }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_AuthPage {
+  background: #ff00ff url("assets/tile-psych.gif") repeat !important;
+}
+
+/* the one thing that never moves: focus */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] :focus-visible {
+  outline: 4px solid #000000;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 8px #ffffff;
+  animation: none;
+}
+
+/* ------------------------------------------------------------------ safety: the loader UI and its dialog */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_Dialog:has(.tl-ui),
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .tl-ui {
+  --cpd-color-bg-canvas-default: #ffffff;
+  --cpd-color-bg-subtle-secondary: #f0f0f0;
+  --cpd-color-bg-subtle-primary: #e6e6e6;
+  --cpd-color-text-primary: #000000;
+  --cpd-color-text-secondary: #444444;
+  --cpd-color-text-action-accent: #0000aa;
+  --cpd-color-icon-primary: #000000;
+  --cpd-color-icon-secondary: #333333;
+  --cpd-color-bg-action-primary-rest: #000080;
+  --cpd-color-bg-accent-rest: #000080;
+  --cpd-color-text-on-solid-primary: #ffffff;
+  --cpd-color-icon-on-solid-primary: #ffffff;
+  --cpd-color-border-interactive-primary: #666666;
+  --cpd-color-bg-action-tertiary-hovered: #e6e6ff;
+  background: #ffffff;
+  border-image: none;
+  border: 3px solid #000000;
+  transform: none;
+  color: #000000;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_Dialog:has(.tl-ui) * {
+  animation: none !important;
+  text-shadow: none;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_Dialog:has(.tl-ui) button[class*="_button_"][data-kind],
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_Dialog:has(.tl-ui) .mx_AccessibleButton_kind_primary {
+  font-family: var(--ewt-comic);
+  text-transform: none;
+  -webkit-text-stroke: 0;
+  border: 2px solid #000000;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .tl-ui.tl-header-button {
+  background: #ffffff;
+  border: 2px solid #000000;
+  --cpd-color-icon-secondary: #000000;
+}
+
+/* ------------------------------------------------------------------ enhancer overlays */
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-panic {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  font: 400 14px/1 "Luckiest Guy", var(--ewt-impact);
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  background: #cc0000;
+  border: 3px solid #000000;
+  box-shadow: 3px 3px 0 #000000;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-panic:focus-visible { outline: 4px solid #000; outline-offset: 2px; box-shadow: 0 0 0 8px #fff; }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-warning {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.82);
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-warning-box {
+  max-width: 460px;
+  padding: 0 0 18px;
+  background: #ffffff;
+  color: #000000;
+  border: 4px solid #000000;
+  box-shadow: 10px 10px 0 #ffff00;
+  font: 16px/1.4 var(--ewt-comic);
+  text-align: center;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-warning-box h2 {
+  margin: 0 0 12px;
+  padding: 18px 12px 22px;
+  background: #ffff00 url("assets/tile-hazard.png") repeat-x bottom / 16px 10px;
+  font: 400 30px/1 var(--ewt-impact);
+  letter-spacing: 0.04em;
+  color: #cc0000;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-warning-box p { margin: 0 20px 14px; }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-warning-box button {
+  font: 700 15px var(--ewt-comic);
+  margin: 4px 6px;
+  padding: 8px 14px;
+  border: 3px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+}
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-warning-box button.ewt-accept { background: #ff0066; color: #ffffff; }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-warning-box button:focus-visible { outline: 4px solid #0000ee; outline-offset: 2px; }
+html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .ewt-sparkle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  background: url("assets/sparkle.gif") center / 16px 16px no-repeat;
+  animation: ewt-sparkle-fall 0.9s ease-in forwards;
+}
+@keyframes ewt-sparkle-fall {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(26px) scale(0.4); }
+}
+
+/* ------------------------------------------------------------------ reduced motion: everything static */
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MatrixChat,
+  html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MatrixChat_wrapper,
+  html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomView_body { background-image: url("assets/tile-psych-static.png"); filter: none; }
+  html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_AuthPage { background-image: url("assets/tile-psych-static.png") !important; }
+  html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomHeader,
+  html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_MessageComposer,
+  html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_Dialog { background-image: url("assets/tile-stars-twinkle-static.png"); }
+  html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_TimelineSeparator > hr { background-image: url("assets/bar-flames-static.png"); }
+  html[data-tl-family="comic"][data-tl-theme="comic-unreadable"] .mx_RoomListItemView [class*="_roomName_"] { transform: none; overflow: hidden; }
+}

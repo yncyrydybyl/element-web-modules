@@ -1,0 +1,1488 @@
+/* ==========================================================================
+   LCARS family: shared frame (CONTRACT §3, docs/styleguides/lcars.md §3)
+   Every variant only sets the --lc-* variables (and a few overrides).
+   Original CSS. Not derived from thelcars.com or louh/lcars.
+   ========================================================================== */
+
+/* ---------- 1. defaults (TNG metrics) -------------------------------------- */
+html[data-tl-family="lcars"] {
+  --lc-bg: #000;
+  --lc-surface: #000;
+  --lc-text: #ffcc99;
+  --lc-muted: #9999cc;
+  --lc-accent: #ff9900;
+  --lc-on: #000;          /* label colour on colour blocks */
+  --lc-crit: #cc6666;
+  --lc-ok: #99cc99;
+  --lc-c1: #ff9900; --lc-c2: #ffcc99; --lc-c3: #cc99cc; --lc-c4: #9999cc;
+  --lc-c5: #cc6666; --lc-c6: #ffcc66; --lc-c7: #9999ff; --lc-c8: #ff9966;
+  --lc-link: #99ccff;
+  --lc-panel: #111118;    /* menus, tooltips, hovered rows */
+  --lc-line: #333344;     /* hairlines inside dialogs */
+
+  --lc-arm: 116px;        /* vertical frame (space panel) */
+  --lc-band: 74px;        /* header band A height (bar included) */
+  --lc-gap: 6px;          /* black gap between segments */
+  --lc-bar: 18px;         /* bar thickness */
+  --lc-bbar: 18px;        /* bottom bar thickness */
+  --lc-ro: 58px;          /* elbow outer radius */
+  --lc-ri: 26px;          /* elbow inner (concave) radius */
+  --lc-top: calc(var(--lc-band) + var(--lc-gap) + var(--lc-bar)); /* total top frame height */
+  --lc-pill-h: 38px;
+  --lc-pill-r: 999px;
+  --lc-btn-r: 999px;
+  --lc-ink-w: 0px;        /* comic outline width */
+  --lc-ink: #000;
+  --lc-cel: none;         /* comic cel shadow */
+
+  --lc-font: "Antonio", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --lc-body-font: var(--lc-font);
+  --lc-body-size: 17px;
+  --lc-body-weight: 400;
+  --lc-body-track: 0.015em;
+  --lc-label-weight: 500;
+  --lc-label-track: 0.05em;
+  --lc-caps: uppercase;   /* chrome labels */
+  --lc-name-case: uppercase;
+
+  --lc-blink: lc-blink 1s steps(2, jump-none) infinite;
+}
+
+/* ---------- 2. Compound tokens -------------------------------------------- */
+html[data-tl-family="lcars"],
+html[data-tl-family="lcars"] body,
+html[data-tl-family="lcars"] [class*="cpd-theme-"] {
+  --cpd-color-theme-bg: var(--lc-bg);
+  --cpd-color-bg-canvas-default: var(--lc-bg);
+  --cpd-color-bg-canvas-default-level-1: var(--lc-panel);
+  --cpd-color-bg-canvas-disabled: var(--lc-panel);
+  --cpd-color-bg-subtle-primary: var(--lc-panel);
+  --cpd-color-bg-subtle-secondary: var(--lc-bg);
+  --cpd-color-bg-subtle-secondary-level-0: var(--lc-bg);
+  --cpd-color-bg-subtle-tertiary: var(--lc-panel);
+  --cpd-color-bg-action-primary-rest: var(--lc-accent);
+  --cpd-color-bg-action-primary-hovered: var(--lc-c6);
+  --cpd-color-bg-action-primary-pressed: var(--lc-c2);
+  --cpd-color-bg-action-primary-disabled: #444455;
+  --cpd-color-bg-action-secondary-rest: var(--lc-bg);
+  --cpd-color-bg-action-secondary-hovered: var(--lc-panel);
+  --cpd-color-bg-action-secondary-pressed: var(--lc-line);
+  --cpd-color-bg-action-tertiary-rest: transparent;
+  --cpd-color-bg-action-tertiary-hovered: var(--lc-panel);
+  --cpd-color-bg-action-tertiary-selected: var(--lc-line);
+  --cpd-color-bg-accent-rest: var(--lc-accent);
+  --cpd-color-bg-accent-hovered: var(--lc-c6);
+  --cpd-color-bg-accent-pressed: var(--lc-c2);
+  --cpd-color-bg-accent-selected: var(--lc-line);
+  --cpd-color-bg-critical-primary: var(--lc-crit);
+  --cpd-color-bg-critical-hovered: var(--lc-crit);
+  --cpd-color-bg-critical-subtle: #2a0d0d;
+  --cpd-color-bg-critical-subtle-hovered: #3a1414;
+  --cpd-color-bg-success-subtle: #0f2214;
+  --cpd-color-bg-info-subtle: #10182a;
+  --cpd-color-bg-badge-default: var(--lc-c4);
+  --cpd-color-bg-badge-accent: var(--lc-accent);
+  --cpd-color-bg-badge-info: var(--lc-c7);
+  --cpd-color-bg-badge-critical: var(--lc-crit);
+  --cpd-color-bg-decorative-1: var(--lc-c1);
+  --cpd-color-bg-decorative-2: var(--lc-c3);
+  --cpd-color-bg-decorative-3: var(--lc-c4);
+  --cpd-color-bg-decorative-4: var(--lc-c6);
+  --cpd-color-bg-decorative-5: var(--lc-c7);
+  --cpd-color-bg-decorative-6: var(--lc-c8);
+  --cpd-color-text-decorative-1: var(--lc-on);
+  --cpd-color-text-decorative-2: var(--lc-on);
+  --cpd-color-text-decorative-3: var(--lc-on);
+  --cpd-color-text-decorative-4: var(--lc-on);
+  --cpd-color-text-decorative-5: var(--lc-on);
+  --cpd-color-text-decorative-6: var(--lc-on);
+  --cpd-color-text-primary: var(--lc-text);
+  --cpd-color-text-secondary: var(--lc-muted);
+  --cpd-color-text-placeholder: var(--lc-muted);
+  --cpd-color-text-disabled: #6a6a7a;
+  --cpd-color-text-action-primary: var(--lc-text);
+  --cpd-color-text-action-accent: var(--lc-accent);
+  --cpd-color-text-link-external: var(--lc-link);
+  --cpd-color-text-on-solid-primary: var(--lc-on);
+  --cpd-color-text-critical-primary: var(--lc-crit);
+  --cpd-color-text-success-primary: var(--lc-ok);
+  --cpd-color-text-info-primary: var(--lc-c7);
+  --cpd-color-icon-primary: var(--lc-text);
+  --cpd-color-icon-secondary: var(--lc-muted);
+  --cpd-color-icon-tertiary: var(--lc-muted);
+  --cpd-color-icon-quaternary: #555566;
+  --cpd-color-icon-primary-alpha: var(--lc-text);
+  --cpd-color-icon-secondary-alpha: var(--lc-muted);
+  --cpd-color-icon-tertiary-alpha: var(--lc-muted);
+  --cpd-color-icon-accent-primary: var(--lc-accent);
+  --cpd-color-icon-accent-tertiary: var(--lc-accent);
+  --cpd-color-icon-critical-primary: var(--lc-crit);
+  --cpd-color-icon-success-primary: var(--lc-ok);
+  --cpd-color-icon-info-primary: var(--lc-c7);
+  --cpd-color-icon-on-solid-primary: var(--lc-on);
+  --cpd-color-border-interactive-primary: var(--lc-c4);
+  --cpd-color-border-interactive-secondary: var(--lc-line);
+  --cpd-color-border-interactive-hovered: var(--lc-c2);
+  --cpd-color-border-focused: var(--lc-accent);
+  --cpd-color-border-critical-primary: var(--lc-crit);
+  --cpd-color-border-critical-subtle: var(--lc-crit);
+  --cpd-color-border-accent-subtle: var(--lc-accent);
+  --cpd-color-border-success-subtle: var(--lc-ok);
+  --cpd-color-border-disabled: var(--lc-line);
+  --cpd-color-separator-primary: var(--lc-line);
+  --cpd-color-separator-secondary: var(--lc-line);
+  --cpd-color-alpha-gray-300: rgba(255, 255, 255, 0.06);
+  --cpd-color-alpha-gray-400: rgba(255, 255, 255, 0.1);
+  --cpd-color-gray-300: var(--lc-panel);
+  --cpd-color-gray-400: var(--lc-line);
+  --cpd-color-gray-800: var(--lc-muted);
+  --cpd-color-gray-1400: var(--lc-text);
+  --cpd-color-green-900: var(--lc-accent);
+  --cpd-color-green-1100: var(--lc-accent);
+  --cpd-avatar-radius: 0;
+  --cpd-radius-pill-effect: var(--lc-btn-r);
+}
+
+/* ---------- 3. base ------------------------------------------------------- */
+html[data-tl-family="lcars"] {
+  background: var(--lc-bg);
+  color-scheme: dark;
+  overflow: clip;
+
+  /* never let scrollIntoView scroll the app shell (the frame must stay put) */
+  & body, & #matrixchat, & .mx_MatrixChat_wrapper, & .mx_MatrixChat, & .mx_RoomView_wrapper, & .mx_RoomView,
+  & .mx_MainSplit, & .mx_RoomView_body, & .mx_LeftPanel_outerWrapper, & .mx_LeftPanel_wrapper, & .mx_LeftPanel { overflow: clip; }
+
+  & body,
+  & .mx_MatrixChat_wrapper,
+  & .mx_MatrixChat,
+  & .mx_RoomView,
+  & .mx_RoomView_body,
+  & .mx_LeftPanel,
+  & .mx_LeftPanel_wrapper,
+  & .mx_LeftPanel_outerWrapper,
+  & .mx_RoomListPanel,
+  & .mx_MainSplit {
+    background-color: var(--lc-bg);
+  }
+
+  & .mx_MatrixChat { font-variant-numeric: tabular-nums; }
+
+  /* the drag separator between room list and room becomes a black gap */
+  & .mx_MatrixChat > .mx_Separator,
+  & .mx_MatrixChat [class*="_separator_"][role="separator"] {
+    background: var(--lc-bg);
+    position: relative;
+    z-index: 2;
+  }
+  & [class*="_activeSeparator_"] { background: transparent; }
+  & [class*="_separator_"][role="separator"]:hover [class*="_activeSeparator_"],
+  & [class*="_separator_"][role="separator"]:focus-visible [class*="_activeSeparator_"] { background: var(--lc-accent); }
+
+  /* focus: always visible */
+  & :focus-visible {
+    outline: 3px solid var(--lc-accent) !important;
+    outline-offset: 2px;
+  }
+
+  /* scrollbars */
+  & * { scrollbar-color: var(--lc-c4) var(--lc-bg); scrollbar-width: thin; }
+  & ::-webkit-scrollbar { width: 8px; height: 8px; background: var(--lc-bg); }
+  & ::-webkit-scrollbar-thumb { background: var(--lc-c4); border-radius: 999px; }
+  & ::-webkit-scrollbar-track { background: var(--lc-bg); }
+
+  & ::selection { background: var(--lc-accent); color: var(--lc-on); }
+}
+
+/* ---------- 4. SPACE PANEL = vertical frame arm -------------------------- */
+html[data-tl-family="lcars"] .mx_SpacePanel {
+  --lc-arm-gap: var(--lc-gap);
+  position: relative;
+  box-sizing: border-box;
+  background: var(--lc-bg);
+  padding: 0 !important;
+  padding-top: calc(var(--lc-top) + var(--lc-gap)) !important;
+  padding-bottom: calc(150px + 2 * var(--lc-gap)) !important;
+  margin-right: var(--lc-gap);
+  border: 0 !important;
+  isolation: isolate;
+  font-family: var(--lc-font);
+
+  &.collapsed { width: var(--lc-arm); }
+
+  /* band A block: elbow sweeping right into header bar at its bottom-left */
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0; right: calc(-1 * var(--lc-gap)); top: 0;
+    height: var(--lc-band);
+    background: var(--lc-c3);
+    border-bottom-left-radius: var(--lc-ro);
+    z-index: -1;
+  }
+  /* band B block: elbow sweeping right into the second top bar */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0; right: calc(-1 * var(--lc-gap));
+    top: calc(var(--lc-band) + var(--lc-gap));
+    height: calc(var(--lc-bar) + var(--lc-ro));
+    background: var(--lc-c1);
+    border-top-left-radius: var(--lc-ro);
+    z-index: -1;
+  }
+
+  /* user menu sits inside the band A block */
+  & .mx_UserMenu {
+    position: absolute !important;
+    top: 10px; left: 0; right: 0;
+    height: calc(var(--lc-band) - var(--lc-bar) - 12px);
+    display: flex; align-items: flex-start; justify-content: flex-end;
+    padding-right: 14px;
+    margin: 0 !important;
+  }
+  & .mx_UserMenu [class*="_avatar_"] {
+    border: 2px solid var(--lc-on);
+  }
+
+  & .mx_SpacePanel_toggleCollapse {
+    position: absolute;
+    top: calc(var(--lc-band) - var(--lc-bar) - 22px);
+    left: 10px;
+    background: var(--lc-on) !important;
+    border-radius: 999px;
+  }
+  & .mx_SpacePanel_toggleCollapse svg { color: var(--lc-c3); fill: currentColor; }
+
+  /* tree: block stack */
+  & > .mx_SpaceTreeLevel,
+  & .mx_AutoHideScrollbar.mx_SpaceTreeLevel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--lc-gap);
+    padding: 0 !important;
+    margin: calc(var(--lc-ro) - 4px) 0 0 0 !important;
+    counter-reset: lc-space;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-width: none;
+    width: 100% !important;
+    scrollbar-width: none;
+    scrollbar-gutter: auto;
+    overflow-x: hidden;
+  }
+  & .mx_SpaceTreeLevel::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none; }
+  & > .mx_SpaceTreeLevel::after {
+    content: "";
+    flex: 1 0 24px;
+    background: var(--lc-c4);
+    margin-top: 0;
+  }
+  & .mx_SpaceTreeLevel .mx_SpaceTreeLevel { display: block; margin-left: 0; }
+
+  & .mx_SpaceItem {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    counter-increment: lc-space;
+    flex: 0 0 auto;
+  }
+  & .mx_SpaceButton {
+    position: relative;
+    width: 100% !important;
+    min-height: 58px;
+    padding: 6px 12px 6px 10px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    background: var(--lc-sp, var(--lc-c2));
+    color: var(--lc-on);
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-shadow: none;
+  }
+  & > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+1) > .mx_SpaceButton { --lc-sp: var(--lc-c2); }
+  & > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+2) > .mx_SpaceButton { --lc-sp: var(--lc-c4); }
+  & > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+3) > .mx_SpaceButton { --lc-sp: var(--lc-c8); }
+  & > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+4) > .mx_SpaceButton { --lc-sp: var(--lc-c7); }
+  & > .mx_SpaceTreeLevel > .mx_SpaceItem:nth-child(5n+5) > .mx_SpaceButton { --lc-sp: var(--lc-c6); }
+  & .mx_SpaceButton.mx_SpaceButton_active { --lc-sp: var(--lc-accent) !important; }
+  & .mx_SpaceButton:hover { filter: brightness(1.12); }
+  & .mx_SpaceButton[data-lc-code]::after { content: counter(lc-space, decimal-leading-zero) "-" attr(data-lc-code); }
+  & .mx_SpaceButton::after {
+    content: counter(lc-space, decimal-leading-zero);
+    position: absolute;
+    right: 10px; bottom: 4px;
+    font: var(--lc-label-weight) 15px/1 var(--lc-font);
+    letter-spacing: var(--lc-label-track);
+    color: var(--lc-on);
+  }
+  & .mx_SpaceButton_selectionWrapper {
+    background: transparent !important;
+    padding: 0 !important;
+    width: auto !important;
+    border: 0 !important;
+  }
+  & .mx_SpaceButton_avatarWrapper { margin: 0; }
+  & .mx_SpaceButton [class*="_avatar_"] {
+    --cpd-avatar-size: 24px !important;
+    width: 24px !important; height: 24px !important;
+    border: 2px solid var(--lc-on);
+  }
+  & .mx_SpaceButton_avatarPlaceholder,
+  & .mx_SpaceButton_icon {
+    width: 24px !important; height: 24px !important;
+    background: var(--lc-on) !important;
+    border-radius: 0 !important;
+  }
+  & .mx_SpaceButton_icon::before { background-color: var(--lc-sp, var(--lc-c2)) !important; }
+  & .mx_SpaceButton_icon svg { color: var(--lc-sp, var(--lc-c2)); }
+  & .mx_SpaceButton_name {
+    color: var(--lc-on);
+    font: var(--lc-label-weight) 16px/1.1 var(--lc-font);
+    text-transform: var(--lc-caps);
+    letter-spacing: var(--lc-label-track);
+    align-self: flex-end;
+  }
+  & .mx_SpacePanel_badgeContainer { position: absolute; left: 40px; top: 4px; }
+
+  /* threads + quick settings: the bottom blocks; quick settings is the bottom elbow */
+  & .mx_ThreadsActivityCentre_container {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: calc(92px + var(--lc-gap));
+    height: 56px;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--lc-c5);
+    display: flex; align-items: flex-start; justify-content: flex-start;
+  }
+  & .mx_ThreadsActivityCentreButton {
+    margin: 8px 0 0 10px !important;
+    color: var(--lc-on) !important;
+  }
+  & .mx_ThreadsActivityCentre_container::after {
+    content: "04-" attr(data-lc-n) "THREADS";
+    position: absolute; right: 10px; bottom: 4px;
+    font: var(--lc-label-weight) 15px/1 var(--lc-font);
+    letter-spacing: var(--lc-label-track);
+    color: var(--lc-on);
+    pointer-events: none;
+  }
+  & .mx_QuickSettingsButton {
+    position: absolute !important;
+    left: 0; right: calc(-1 * var(--lc-gap)); bottom: 0;
+    width: auto !important;
+    aspect-ratio: auto !important;
+    height: 92px !important;
+    margin: 0 !important;
+    padding: 10px 0 0 10px !important;
+    border-radius: 0 0 0 var(--lc-ro) !important;
+    background: var(--lc-c2) !important;
+    color: var(--lc-on) !important;
+    display: flex !important; align-items: flex-start; justify-content: flex-start;
+  }
+  & .mx_QuickSettingsButton::before { background-color: var(--lc-on) !important; }
+  & .mx_QuickSettingsButton svg { color: var(--lc-on); width: 22px; height: 22px; }
+  & .mx_QuickSettingsButton::after {
+    content: "05-CONFIG";
+    position: absolute;
+    right: calc(10px + var(--lc-gap)); top: calc(92px - var(--lc-bbar) - 22px);
+    font: var(--lc-label-weight) 15px/1 var(--lc-font);
+    letter-spacing: var(--lc-label-track);
+    color: var(--lc-on);
+  }
+  & .mx_QuickSettingsButton:hover { filter: brightness(1.12); }
+}
+html[data-tl-family="lcars"] .mx_SpacePanel:not(.collapsed) .mx_SpaceButton::after { display: none; }
+
+/* ---------- 5. ROOM LIST = second frame column --------------------------- */
+html[data-tl-family="lcars"] .mx_RoomListPanel {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  font-family: var(--lc-font);
+  padding-top: var(--lc-top);
+  padding-bottom: calc(var(--lc-bbar) + var(--lc-gap));
+  /* bars + concave fillets painted as background layers (shared top with header) */
+  background:
+    /* band A fillet (concave inner corner of the top elbow) */
+    radial-gradient(circle at 100% 0, transparent calc(var(--lc-ri) - 0.5px), var(--lc-c3) var(--lc-ri))
+      0 calc(var(--lc-band) - var(--lc-bar) - var(--lc-ri)) / var(--lc-ri) var(--lc-ri) no-repeat,
+    /* band A bar */
+    linear-gradient(var(--lc-c3), var(--lc-c3))
+      0 calc(var(--lc-band) - var(--lc-bar)) / 100% var(--lc-bar) no-repeat,
+    /* band B fillet */
+    radial-gradient(circle at 100% 100%, transparent calc(var(--lc-ri) - 0.5px), var(--lc-c1) var(--lc-ri))
+      0 var(--lc-top) / var(--lc-ri) var(--lc-ri) no-repeat,
+    /* band B bar */
+    linear-gradient(var(--lc-c1), var(--lc-c1))
+      0 calc(var(--lc-band) + var(--lc-gap)) / 100% var(--lc-bar) no-repeat,
+    /* bottom fillet */
+    radial-gradient(circle at 100% 0, transparent calc(var(--lc-ri) - 0.5px), var(--lc-c2) var(--lc-ri))
+      0 calc(100% - var(--lc-bbar)) / var(--lc-ri) var(--lc-ri) no-repeat,
+    /* bottom bar */
+    linear-gradient(var(--lc-c2), var(--lc-c2))
+      0 100% / 100% var(--lc-bbar) no-repeat,
+    var(--lc-bg) !important;
+}
+html[data-tl-family="lcars"] .mx_RoomListPanel {
+  /* search: sits in the black area of band A */
+  & > [role="search"] {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: calc(var(--lc-band) - var(--lc-bar));
+    padding: 0 12px 8px calc(var(--lc-ri) + 8px) !important;
+    display: flex; align-items: flex-end;
+    background: transparent !important;
+    border: 0 !important;
+  }
+  & > [role="search"] > button {
+    height: 30px !important;
+    border-radius: var(--lc-btn-r) !important;
+    background: var(--lc-bg) !important;
+    border: 2px solid var(--lc-c4) !important;
+    color: var(--lc-muted) !important;
+    font: var(--lc-label-weight) 16px/1 var(--lc-font) !important;
+    text-transform: var(--lc-caps);
+    letter-spacing: var(--lc-label-track);
+  }
+  & > [role="search"] > button svg, & > [role="search"] > button * { color: var(--lc-muted) !important; }
+
+  /* "Theme Lab" header below the bars */
+  & > header {
+    border: 0 !important;
+    padding: 10px 10px 4px calc(var(--lc-ri) + 6px) !important;
+    height: auto !important;
+  }
+  & > header h1 {
+    font: 600 26px/1.05 var(--lc-font) !important;
+    text-transform: var(--lc-caps);
+    letter-spacing: 0.04em;
+    color: var(--lc-accent);
+  }
+  & > header button { color: var(--lc-c4); }
+  & > header button:hover { color: var(--lc-accent); background: transparent; }
+
+  /* filters: small pills */
+  & [class*="_roomListPrimaryFilters_"] {
+    padding: 2px 10px 6px calc(var(--lc-ri) + 6px) !important;
+    border: 0 !important;
+  }
+  & [class*="_roomListPrimaryFilters_"] [role="option"],
+  & [class*="_roomListPrimaryFilters_"] button {
+    border-radius: var(--lc-btn-r) !important;
+    background: var(--lc-bg) !important;
+    border: 2px solid var(--lc-c7) !important;
+    color: var(--lc-muted) !important;
+    font: var(--lc-label-weight) 15px/1 var(--lc-font) !important;
+    text-transform: var(--lc-caps);
+    letter-spacing: var(--lc-label-track);
+    padding: 4px 12px !important;
+    height: auto;
+    box-shadow: none !important;
+  }
+  & [class*="_roomListPrimaryFilters_"] [aria-selected="true"],
+  & [class*="_roomListPrimaryFilters_"] [aria-pressed="true"] {
+    background: var(--lc-c7) !important;
+    color: var(--lc-on) !important;
+  }
+}
+
+/* room pills (virtualized: colours keyed on data-item-index, never :nth-child) */
+html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index] {
+  padding: 0 10px 0 calc(var(--lc-ri) + 6px);
+}
+html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="0"], html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="5"] { --lc-pill: var(--lc-c2); }
+html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="1"], html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="6"] { --lc-pill: var(--lc-c4); }
+html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="2"], html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="7"] { --lc-pill: var(--lc-c8); }
+html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="3"], html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="8"] { --lc-pill: var(--lc-c3); }
+html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="4"], html[data-tl-family="lcars"] .mx_RoomListPanel [data-item-index$="9"] { --lc-pill: var(--lc-c7); }
+
+html[data-tl-family="lcars"] .mx_RoomListItemView {
+  position: relative;
+  height: var(--lc-pill-h) !important;
+  min-height: 0 !important;
+  margin: calc((48px - var(--lc-pill-h)) / 2) 0;
+  width: calc(100% - var(--lc-pill-h) / 2 - var(--lc-gap)) !important;
+  padding: 0 calc(var(--lc-pill-h) / 2) 0 10px !important;
+  border-radius: 0 var(--lc-pill-r) var(--lc-pill-r) 0 !important;
+  background: var(--lc-pill, var(--lc-c2)) !important;
+  color: var(--lc-on) !important;
+  border: var(--lc-ink-w) solid var(--lc-ink);
+  box-shadow: var(--lc-cel);
+  transition: none;
+
+  & [class*="_container_"] { background: transparent !important; height: 100%; align-items: flex-end !important; padding-bottom: 4px; gap: 8px; }
+  & [class*="_avatar_"], & .mx_RoomAvatarView { display: none; }
+  & [class*="_content_"] { justify-content: flex-end; min-width: 0; flex: 1 1 auto; }
+  & [class*="_ellipsis_"] { min-width: 0; flex: 1 1 auto; text-align: right; }
+  & [class*="_roomName_"] {
+    color: var(--lc-on) !important;
+    font: var(--lc-label-weight) 18px/1.1 var(--lc-font) !important;
+    text-transform: var(--lc-caps);
+    letter-spacing: var(--lc-label-track);
+    text-align: right;
+  }
+  & [class*="_messagePreview_"], & [class*="_preview_"] { display: none; }
+  & [class*="_hoverMenu_"] { order: -1; }
+  & [class*="_hoverMenu_"] button { color: var(--lc-on) !important; background: transparent !important; }
+  & [class*="_hoverMenu_"] svg { color: var(--lc-on) !important; }
+  & [class*="_notificationDecoration_"] { order: -2; color: var(--lc-on); }
+
+  &:hover, &[class*="_keyboardActive_"], &[data-state="open"] {
+    filter: brightness(1.12);
+    background: var(--lc-pill, var(--lc-c2)) !important;
+  }
+}
+/* selected: accent pill + detached blinking endcap */
+html[data-tl-family="lcars"] .mx_RoomListItemView.mx_RoomListItemView_selected {
+  background: var(--lc-accent) !important;
+  &::after {
+    content: "";
+    position: absolute;
+    right: calc(-1 * (var(--lc-pill-h) / 2 + var(--lc-gap)));
+    top: calc(var(--lc-ink-w) * -1);
+    width: calc(var(--lc-pill-h) / 2);
+    height: var(--lc-pill-h);
+    border-radius: 0 var(--lc-pill-r) var(--lc-pill-r) 0;
+    background: var(--lc-accent);
+    border: var(--lc-ink-w) solid var(--lc-ink);
+    animation: var(--lc-blink);
+  }
+}
+html[data-tl-family="lcars"] .mx_RoomListItemView[class*="_bold_"] [class*="_roomName_"] { font-weight: 700 !important; }
+
+/* unread/notification badges in the pill: black numeral block */
+html[data-tl-family="lcars"] .mx_RoomListItemView [class*="_notificationDecoration_"] [class*="_unread-counter_"],
+html[data-tl-family="lcars"] .mx_RoomListItemView [class*="_notificationDecoration_"] [class*="_unreadCounter_"],
+html[data-tl-family="lcars"] .mx_SpacePanel [class*="_notificationBadge_"][class*="_visible_"] {
+  background: var(--lc-on) !important;
+  color: var(--lc-pill, var(--lc-c2)) !important;
+  border-radius: 0 !important;
+  font: 600 14px/1 var(--lc-font) !important;
+  padding: 3px 5px !important;
+  min-width: 22px;
+  & * { color: inherit !important; }
+}
+html[data-tl-family="lcars"] .mx_SpacePanel [class*="_notificationBadge_"][class*="_visible_"] { color: var(--lc-sp, var(--lc-c2)) !important; height: 20px !important; }
+html[data-tl-family="lcars"] .mx_SpacePanel [class*="_notificationBadge_"][class*="_highlight_"] { background: var(--lc-crit) !important; color: var(--lc-on) !important; }
+html[data-tl-family="lcars"] .mx_RoomListItemView [class*="_notificationDecoration_"] svg { color: var(--lc-on) !important; }
+
+/* ---------- 6. ROOM HEADER = top bars ------------------------------------ */
+html[data-tl-family="lcars"] .mx_RoomHeader {
+  position: relative;
+  height: var(--lc-top) !important;
+  min-height: var(--lc-top);
+  padding: 0 calc(var(--lc-bar) + var(--lc-gap) + 4px) calc(var(--lc-bar) * 2 + var(--lc-gap) + 6px) var(--lc-gap) !important;
+  align-items: center !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  font-family: var(--lc-font);
+  background:
+    /* band A: segmented bar */
+    linear-gradient(to right,
+      var(--lc-c3) 0 18%, transparent 18% calc(18% + var(--lc-gap)),
+      var(--lc-c6) calc(18% + var(--lc-gap)) 26%, transparent 26% calc(26% + var(--lc-gap)),
+      var(--lc-c4) calc(26% + var(--lc-gap)) 64%, transparent 64% calc(64% + var(--lc-gap)),
+      var(--lc-c8) calc(64% + var(--lc-gap)) calc(100% - var(--lc-bar) / 2))
+      0 calc(var(--lc-band) - var(--lc-bar)) / 100% var(--lc-bar) no-repeat,
+    /* band A endcap */
+    radial-gradient(circle at 0 50%, var(--lc-c8) calc(var(--lc-bar) / 2 - 0.5px), transparent calc(var(--lc-bar) / 2))
+      100% calc(var(--lc-band) - var(--lc-bar)) / calc(var(--lc-bar) / 2) var(--lc-bar) no-repeat,
+    /* band B: segmented bar */
+    linear-gradient(to right,
+      var(--lc-c1) 0 34%, transparent 34% calc(34% + var(--lc-gap)),
+      var(--lc-c2) calc(34% + var(--lc-gap)) 41%, transparent 41% calc(41% + var(--lc-gap)),
+      var(--lc-c7) calc(41% + var(--lc-gap)) 80%, transparent 80% calc(80% + var(--lc-gap)),
+      var(--lc-c5) calc(80% + var(--lc-gap)) calc(100% - var(--lc-bar) / 2))
+      0 calc(var(--lc-band) + var(--lc-gap)) / 100% var(--lc-bar) no-repeat,
+    radial-gradient(circle at 0 50%, var(--lc-c5) calc(var(--lc-bar) / 2 - 0.5px), transparent calc(var(--lc-bar) / 2))
+      100% calc(var(--lc-band) + var(--lc-gap)) / calc(var(--lc-bar) / 2) var(--lc-bar) no-repeat,
+    var(--lc-bg) !important;
+  /* the header content lives in band A's black area */
+  align-items: flex-end !important;
+  padding-top: 0 !important;
+  padding-bottom: calc(var(--lc-top) - var(--lc-band) + var(--lc-bar) + 6px) !important;
+
+  /* data code (enhancer fills data-lc-code) in band B area, left */
+  &::after {
+    content: attr(data-lc-code);
+    position: absolute;
+    left: calc(34% + var(--lc-gap) * 2);
+    top: calc(var(--lc-band) + var(--lc-gap));
+    height: var(--lc-bar);
+    padding: 0 8px;
+    background: var(--lc-bg);
+    color: var(--lc-c2);
+    font: 500 15px/var(--lc-bar) var(--lc-font);
+    letter-spacing: 0.06em;
+    max-width: calc(66% - 3 * var(--lc-gap) - var(--lc-bar));
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+  }
+  &:not([data-lc-code])::after { display: none; }
+
+  & > [class*="_avatar_"] {
+    width: 36px !important; height: 36px !important;
+    border: 2px solid var(--lc-c4);
+    flex: 0 0 auto;
+  }
+  & .mx_RoomHeader_infoWrapper {
+    padding: 0 !important;
+    justify-content: flex-end;
+    text-align: right;
+    min-width: 0;
+  }
+  & .mx_RoomHeader_info { justify-content: flex-end; width: 100%; }
+  & .mx_RoomHeader_heading {
+    font: 500 34px/1 var(--lc-font) !important;
+    color: var(--lc-accent) !important;
+    text-transform: var(--lc-caps);
+    letter-spacing: 0.04em;
+    justify-content: flex-end;
+    text-align: right;
+  }
+  & .mx_RoomHeader_heading > span,
+  & .mx_RoomHeader_truncated { text-align: right; }
+  & .mx_RoomHeader_topic { display: none; }
+
+  /* header buttons: small pills */
+  & > button:not([class*="_avatar_"]):not(.mx_RoomHeader_infoWrapper),
+  & > div > button,
+  & .mx_RoomHeader_videoCallOption > button {
+    height: 30px !important;
+    width: max-content !important;
+    aspect-ratio: auto !important;
+    box-sizing: border-box;
+    min-width: 30px;
+    padding: 0 10px !important;
+    border-radius: var(--lc-btn-r) !important;
+    background: var(--lc-hb, var(--lc-c4)) !important;
+    color: var(--lc-on) !important;
+    border: var(--lc-ink-w) solid var(--lc-ink);
+    display: inline-flex !important; align-items: flex-end !important; justify-content: flex-end;
+    padding-bottom: 4px !important;
+    gap: 4px;
+  }
+  & > button svg, & > div > button svg { color: var(--lc-on) !important; width: 18px; height: 18px; align-self: center; }
+  & > button:hover:not(.mx_RoomHeader_infoWrapper), & > div > button:hover { filter: brightness(1.15); }
+
+  & > button[aria-label="Video call"], & > div > button[aria-label="Video call"] { --lc-hb: var(--lc-c7); }
+  & > button[aria-label="Voice call"], & > div > button[aria-label="Voice call"] { --lc-hb: var(--lc-c8); }
+  & > button[aria-label="Threads"] { --lc-hb: var(--lc-c3); }
+  & > button[aria-label="Room info"]:not(.mx_RoomHeader_infoWrapper) { --lc-hb: var(--lc-c2); }
+  & > button[aria-label="Video call"]::after { content: "VISUAL"; }
+  & > button[aria-label="Voice call"]::after { content: "COMM"; }
+  & > button[aria-label="Threads"]::after { content: "THREADS"; }
+  & > button[aria-label="Room info"]:not(.mx_RoomHeader_infoWrapper)::after { content: "INFO"; }
+  & > .mx_RoomHeader_infoWrapper::after { content: none !important; }
+  & > button[aria-label]::after {
+    font: var(--lc-label-weight) 15px/1 var(--lc-font);
+    letter-spacing: var(--lc-label-track);
+    color: var(--lc-on);
+  }
+  & > button[aria-label="Video call"] svg, & > button[aria-label="Voice call"] svg,
+  & > button[aria-label="Threads"] svg, & > button[aria-label="Room info"]:not(.mx_RoomHeader_infoWrapper) svg { display: none; }
+
+  & .mx_FacePile { color: var(--lc-c4); font-family: var(--lc-font); }
+  & .mx_FacePile [class*="_avatar_"] { border: 1px solid var(--lc-bg); }
+}
+
+/* ---------- 7. TIMELINE --------------------------------------------------- */
+html[data-tl-family="lcars"] .mx_RoomView_body {
+  & .mx_RoomView_timeline { position: relative; }
+  & .mx_RoomView_messagePanel { background: var(--lc-bg); }
+}
+
+html[data-tl-family="lcars"] .mx_RoomView_MessageList,
+html[data-tl-family="lcars"] .mx_ThreadView,
+html[data-tl-family="lcars"] .mx_TimelineView_list {
+  font-family: var(--lc-body-font);
+}
+
+html[data-tl-family="lcars"] .mx_EventTile {
+  --lc-runbar: transparent;
+  font-family: var(--lc-body-font);
+
+  & .mx_EventTile_body,
+  & [class*="_slotBody_"] .mx_EventTile_content,
+  & .markdown-body {
+    font-family: var(--lc-body-font) !important;
+    font-size: var(--lc-body-size);
+    font-weight: var(--lc-body-weight);
+    letter-spacing: var(--lc-body-track);
+    line-height: 1.38;
+    color: var(--lc-text);
+  }
+  & .mx_DisambiguatedProfile,
+  & [class*="_slotSender_"] {
+    font-family: var(--lc-font) !important;
+    text-transform: var(--lc-name-case);
+    letter-spacing: var(--lc-label-track);
+  }
+  & .mx_DisambiguatedProfile_displayName { font-weight: 600 !important; font-size: 17px; }
+  & .mx_DisambiguatedProfile_mxid { color: var(--lc-muted) !important; text-transform: none; font-family: var(--lc-font); }
+  & .mx_MessageTimestamp {
+    font-family: var(--lc-font) !important;
+    color: var(--lc-muted) !important;
+    letter-spacing: 0.06em;
+    font-size: 14px !important;
+  }
+  & a { color: var(--lc-link); }
+}
+/* run bar: thin colour bar on the left of each message */
+html[data-tl-family="lcars"] .mx_RoomView_body[data-layout="group"] .mx_EventTile:not([class*="_stateInfo_"]) > .mx_EventTile_line,
+html[data-tl-family="lcars"] .mx_RoomView_body[data-layout="irc"] .mx_EventTile:not([class*="_stateInfo_"]) > .mx_EventTile_line {
+  box-shadow: inset 4px 0 0 var(--lc-runbar);
+  border-radius: 0 !important;
+}
+html[data-tl-family="lcars"] .mx_EventTile:has(.mx_Username_color1) { --lc-runbar: var(--lc-c1); }
+html[data-tl-family="lcars"] .mx_EventTile:has(.mx_Username_color2) { --lc-runbar: var(--lc-c3); }
+html[data-tl-family="lcars"] .mx_EventTile:has(.mx_Username_color3) { --lc-runbar: var(--lc-c4); }
+html[data-tl-family="lcars"] .mx_EventTile:has(.mx_Username_color4) { --lc-runbar: var(--lc-c6); }
+html[data-tl-family="lcars"] .mx_EventTile:has(.mx_Username_color5) { --lc-runbar: var(--lc-c7); }
+html[data-tl-family="lcars"] .mx_EventTile:has(.mx_Username_color6) { --lc-runbar: var(--lc-c8); }
+html[data-tl-family="lcars"] .mx_EventTile[class*="_stateOwnEvent_"] { --lc-runbar: var(--lc-accent); }
+
+/* username colours -> palette (text, not on blocks) */
+html[data-tl-family="lcars"] .mx_Username_color1 { color: var(--lc-c1) !important; }
+html[data-tl-family="lcars"] .mx_Username_color2 { color: var(--lc-c3) !important; }
+html[data-tl-family="lcars"] .mx_Username_color3 { color: var(--lc-c4) !important; }
+html[data-tl-family="lcars"] .mx_Username_color4 { color: var(--lc-c6) !important; }
+html[data-tl-family="lcars"] .mx_Username_color5 { color: var(--lc-c7) !important; }
+html[data-tl-family="lcars"] .mx_Username_color6 { color: var(--lc-c8) !important; }
+
+/* IRC layout: keep the body clear of the run bar */
+html[data-tl-family="lcars"] .mx_IRCLayout .mx_EventTile > .mx_EventTile_line,
+html[data-tl-family="lcars"] .mx_EventTile[class*="_layoutIrc_"] > .mx_EventTile_line { padding-left: 10px !important; }
+
+/* highlighted (mentions) and selected */
+html[data-tl-family="lcars"] .mx_EventTile[class*="_stateHighlighted_"] > .mx_EventTile_line {
+  background: color-mix(in srgb, var(--lc-crit) 16%, transparent) !important;
+  box-shadow: inset 6px 0 0 var(--lc-crit) !important;
+}
+html[data-tl-family="lcars"] .mx_EventTile:hover > .mx_EventTile_line,
+html[data-tl-family="lcars"] .mx_EventTile[class*="_stateSelected_"] > .mx_EventTile_line,
+html[data-tl-family="lcars"] .mx_EventTile[class*="_stateActionBarFocused_"] > .mx_EventTile_line {
+  background-color: var(--lc-panel) !important;
+}
+
+/* avatars square with palette frame */
+html[data-tl-family="lcars"] [class*="_avatar_"] { border-radius: 0 !important; }
+html[data-tl-family="lcars"] [class*="_avatar_"] img { border-radius: 0 !important; }
+html[data-tl-family="lcars"] .mx_EventTile [class*="_slotAvatar_"] [class*="_avatar_"] {
+  outline: 2px solid var(--lc-runbar);
+  outline-offset: 1px;
+}
+html[data-tl-family="lcars"] [class*="_avatar_"][data-color] {
+  color: var(--lc-on) !important;
+  font-family: var(--lc-font) !important;
+  font-weight: 600 !important;
+}
+
+/* bubble layout: flat blocks, no radius */
+html[data-tl-family="lcars"] [data-layout="bubble"] .mx_EventTile .mx_EventTile_line,
+html[data-tl-family="lcars"] .mx_EventTile[class*="_layoutBubble_"] .mx_EventTile_line {
+  border-radius: 0 var(--lc-btn-r) var(--lc-btn-r) 0 !important;
+  background: #121218 !important;
+  box-shadow: inset 6px 0 0 var(--lc-runbar) !important;
+}
+html[data-tl-family="lcars"] [data-layout="bubble"] .mx_EventTile[class*="_stateOwnEvent_"] .mx_EventTile_line,
+html[data-tl-family="lcars"] .mx_EventTile[class*="_layoutBubble_"][class*="_stateOwnEvent_"] .mx_EventTile_line {
+  border-radius: var(--lc-btn-r) 0 0 var(--lc-btn-r) !important;
+  background: #1a140c !important;
+  box-shadow: inset -6px 0 0 var(--lc-accent) !important;
+}
+
+/* date separators: segmented bar with caps date */
+html[data-tl-family="lcars"] .mx_TimelineSeparator,
+html[data-tl-family="lcars"] .mx_DateSeparator,
+html[data-tl-family="lcars"] [class*="_dateSeparator_"],
+html[data-tl-family="lcars"] [class*="_timelineSeparator_"] {
+  font-family: var(--lc-font) !important;
+  text-transform: var(--lc-caps);
+  letter-spacing: 0.08em;
+  color: var(--lc-c2) !important;
+  font-size: 16px;
+
+  & hr, & > div:empty {
+    border: 0 !important;
+    height: 8px !important;
+    background: var(--lc-c4) !important;
+    border-radius: 999px;
+    opacity: 1;
+  }
+}
+
+/* code blocks: data panel */
+html[data-tl-family="lcars"] .mx_EventTile pre,
+html[data-tl-family="lcars"] .mx_EventTile_pre_container {
+  background: #0b0b10 !important;
+  border: 0 !important;
+  border-left: 6px solid var(--lc-c4) !important;
+  border-radius: 0 !important;
+  font-family: "Inconsolata", ui-monospace, monospace !important;
+  color: var(--lc-text);
+}
+html[data-tl-family="lcars"] .mx_EventTile code {
+  font-family: "Inconsolata", ui-monospace, monospace !important;
+  background: #16161e !important;
+  color: var(--lc-c2);
+  border-radius: 0 !important;
+}
+html[data-tl-family="lcars"] .mx_EventTile pre code { background: transparent !important; }
+html[data-tl-family="lcars"] .hljs { background: transparent !important; color: var(--lc-text); }
+html[data-tl-family="lcars"] .hljs-keyword, html[data-tl-family="lcars"] .hljs-selector-tag, html[data-tl-family="lcars"] .hljs-built_in { color: var(--lc-c1); }
+html[data-tl-family="lcars"] .hljs-string, html[data-tl-family="lcars"] .hljs-attr { color: var(--lc-c6); }
+html[data-tl-family="lcars"] .hljs-number, html[data-tl-family="lcars"] .hljs-literal { color: var(--lc-c3); }
+html[data-tl-family="lcars"] .hljs-title, html[data-tl-family="lcars"] .hljs-function, html[data-tl-family="lcars"] .hljs-name { color: var(--lc-c7); }
+html[data-tl-family="lcars"] .hljs-comment, html[data-tl-family="lcars"] .hljs-quote { color: #7a7a99; font-style: italic; }
+html[data-tl-family="lcars"] .hljs-variable, html[data-tl-family="lcars"] .hljs-params, html[data-tl-family="lcars"] .hljs-property { color: var(--lc-c2); }
+html[data-tl-family="lcars"] .hljs-type, html[data-tl-family="lcars"] .hljs-meta { color: var(--lc-c8); }
+
+html[data-tl-family="lcars"] .mx_EventTile blockquote {
+  border-left: 4px solid var(--lc-c3) !important;
+  color: var(--lc-c2);
+}
+html[data-tl-family="lcars"] .mx_EventTile table th { background: var(--lc-c4); color: var(--lc-on); font-family: var(--lc-font); text-transform: uppercase; }
+html[data-tl-family="lcars"] .mx_EventTile table td, html[data-tl-family="lcars"] .mx_EventTile table th { border-color: var(--lc-line) !important; }
+
+/* reactions: small pills */
+html[data-tl-family="lcars"] .mx_ReactionsRowButton {
+  border-radius: 999px !important;
+  background: var(--lc-bg) !important;
+  border: 2px solid var(--lc-c4) !important;
+  font-family: var(--lc-font);
+  color: var(--lc-text);
+}
+html[data-tl-family="lcars"] .mx_ReactionsRowButton.mx_ReactionsRowButton_selected {
+  background: var(--lc-c4) !important;
+  color: var(--lc-on) !important;
+  & .mx_ReactionsRowButton_count { color: var(--lc-on) !important; }
+}
+
+/* message action bar */
+html[data-tl-family="lcars"] .mx_MessageActionBar {
+  background: var(--lc-bg) !important;
+  border: 2px solid var(--lc-c4) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+}
+
+/* thread summary, polls, files: outlined data blocks */
+html[data-tl-family="lcars"] .mx_ThreadSummary,
+html[data-tl-family="lcars"] [class*="_threadSummary_"] {
+  background: var(--lc-bg) !important;
+  border: 2px solid var(--lc-c3) !important;
+  border-radius: 0 999px 999px 0 !important;
+  font-family: var(--lc-font);
+}
+html[data-tl-family="lcars"] .mx_MPollBody_option {
+  border: 2px solid var(--lc-c4) !important;
+  border-radius: 0 999px 999px 0 !important;
+  background: var(--lc-bg);
+  font-family: var(--lc-font);
+}
+html[data-tl-family="lcars"] .mx_MPollBody_option_checked { border-color: var(--lc-accent) !important; }
+html[data-tl-family="lcars"] .mx_PollOption_popularityBackground { background: var(--lc-line) !important; border-radius: 0 !important; }
+html[data-tl-family="lcars"] .mx_PollOption_popularityAmount { background: var(--lc-accent) !important; border-radius: 0 !important; }
+html[data-tl-family="lcars"] .mx_MFileBody_info,
+html[data-tl-family="lcars"] .mx_MediaBody {
+  background: var(--lc-panel) !important;
+  border-left: 6px solid var(--lc-c7);
+  border-radius: 0 !important;
+}
+
+/* read marker */
+html[data-tl-family="lcars"] .mx_RoomView_myReadMarker { background: var(--lc-accent) !important; height: 3px; }
+
+/* ---------- 8. COMPOSER = bottom bar ------------------------------------- */
+html[data-tl-family="lcars"] .mx_MessageComposer {
+  position: relative;
+  /* Element sizes the composer at width 100%; with the bottom-bar padding below a content-box composer ran
+     ~25 px past the right edge (MORE pill half off-screen, VP-10; emoji picker anchored off-screen, CMP-05) */
+  box-sizing: border-box;
+  padding: 6px calc(var(--lc-bbar) / 2 + var(--lc-gap) + 4px) calc(var(--lc-bbar) + 10px) var(--lc-gap) !important;
+  border: 0 !important;
+  background:
+    linear-gradient(to right,
+      var(--lc-c2) 0 52%, transparent 52% calc(52% + var(--lc-gap)),
+      var(--lc-c5) calc(52% + var(--lc-gap)) 60%, transparent 60% calc(60% + var(--lc-gap)),
+      var(--lc-c4) calc(60% + var(--lc-gap)) calc(100% - var(--lc-bbar) / 2))
+      0 100% / 100% var(--lc-bbar) no-repeat,
+    radial-gradient(circle at 0 50%, var(--lc-c4) calc(var(--lc-bbar) / 2 - 0.5px), transparent calc(var(--lc-bbar) / 2))
+      100% 100% / calc(var(--lc-bbar) / 2) var(--lc-bbar) no-repeat,
+    var(--lc-bg) !important;
+  font-family: var(--lc-font);
+
+  & .mx_MessageComposer_wrapper { padding: 0 !important; background: transparent; }
+  & .mx_MessageComposer_row {
+    margin: 0 !important;
+    align-items: center;
+    gap: var(--lc-gap);
+  }
+  & .mx_SendMessageComposer,
+  & .mx_MessageComposer_wysiwyg {
+    background: var(--lc-bg);
+    border: 2px solid var(--lc-c4);
+    border-left: 14px solid var(--lc-c4);
+    border-radius: var(--lc-btn-r) 0 0 var(--lc-btn-r);
+    padding: 6px 12px !important;
+    min-height: 44px;
+  }
+  & .mx_SendMessageComposer:focus-within { border-color: var(--lc-accent); }
+  & .mx_BasicMessageComposer_input:focus-visible { outline: none !important; }
+  & .mx_BasicMessageComposer_input {
+    font-family: var(--lc-body-font) !important;
+    font-size: var(--lc-body-size);
+    color: var(--lc-text);
+    caret-color: var(--lc-accent);
+  }
+  & .mx_BasicMessageComposer_input [data-placeholder]::before,
+  & .mx_BasicMessageComposer_inputEmpty > :first-child::before {
+    color: var(--lc-muted) !important;
+    text-transform: var(--lc-caps);
+    letter-spacing: var(--lc-label-track);
+    font-family: var(--lc-font);
+  }
+  & .mx_MessageComposer_e2eIconWrapper { display: none; }
+
+  /* action pills */
+  & .mx_MessageComposer_actions { gap: var(--lc-gap); margin: 0 !important; align-items: stretch; }
+  & .mx_MessageComposer_actions > * {
+    height: 44px !important;
+    width: max-content !important;
+    aspect-ratio: auto !important;
+    box-sizing: border-box;
+    min-width: 44px;
+    margin: 0 !important;
+    padding: 0 12px 5px !important;
+    border-radius: 0 !important;
+    background: var(--lc-ab, var(--lc-c3)) !important;
+    color: var(--lc-on) !important;
+    display: inline-flex !important;
+    align-items: flex-end !important;
+    justify-content: flex-end !important;
+    border: var(--lc-ink-w) solid var(--lc-ink);
+  }
+  & .mx_MessageComposer_actions > *:last-child { border-radius: 0 var(--lc-btn-r) var(--lc-btn-r) 0 !important; padding-right: 18px !important; }
+  & .mx_MessageComposer_actions > *::after {
+    font: var(--lc-label-weight) 15px/1 var(--lc-font);
+    letter-spacing: var(--lc-label-track);
+    color: var(--lc-on);
+  }
+  & .mx_MessageComposer_actions > *::before { background-color: var(--lc-on) !important; }
+  & .mx_MessageComposer_actions svg { color: var(--lc-on) !important; }
+  & .mx_MessageComposer_actions > .mx_EmojiButton { --lc-ab: var(--lc-c6); }
+  & .mx_MessageComposer_actions > .mx_EmojiButton::after { content: "SYMBOLS"; }
+  & .mx_MessageComposer_actions > [aria-label="Attachment"] { --lc-ab: var(--lc-c7); }
+  & .mx_MessageComposer_actions > [aria-label="Attachment"]::after { content: "DATA"; }
+  & .mx_MessageComposer_actions > .mx_MessageComposer_buttonMenu { --lc-ab: var(--lc-c3); }
+  & .mx_MessageComposer_actions > .mx_MessageComposer_buttonMenu::after { content: "MORE"; }
+  & .mx_MessageComposer_actions > .mx_EmojiButton svg,
+  & .mx_MessageComposer_actions > [aria-label="Attachment"] svg,
+  & .mx_MessageComposer_actions > .mx_MessageComposer_buttonMenu svg { display: none; }
+  & .mx_MessageComposer_actions > *:hover { filter: brightness(1.15); }
+
+  & .mx_MessageComposer_sendMessageWrapper,
+  & .mx_MessageComposer_sendMessage {
+    height: 44px !important;
+    width: auto !important;
+    margin: 0 !important;
+    border-radius: 0 var(--lc-btn-r) var(--lc-btn-r) 0 !important;
+    background: var(--lc-accent) !important;
+    padding: 0 22px 5px 14px !important;
+    display: inline-flex !important; align-items: flex-end; justify-content: flex-end;
+  }
+  & .mx_MessageComposer_sendMessage::before { display: none !important; }
+  & .mx_MessageComposer_sendMessage svg { display: none; }
+  & .mx_MessageComposer_sendMessage::after {
+    content: "TRANSMIT";
+    font: 600 16px/1 var(--lc-font);
+    letter-spacing: var(--lc-label-track);
+    color: var(--lc-on);
+  }
+}
+html[data-tl-family="lcars"] .mx_RoomView_statusAreaBox_line { background: transparent !important; border: 0 !important; }
+html[data-tl-family="lcars"] .mx_ReplyPreview, html[data-tl-family="lcars"] .mx_EditMessageComposer {
+  background: var(--lc-panel) !important;
+  border-left: 6px solid var(--lc-c3) !important;
+  border-radius: 0 !important;
+}
+
+/* autocomplete */
+html[data-tl-family="lcars"] .mx_Autocomplete {
+  background: var(--lc-bg) !important;
+  border: 0 !important;
+  border-left: 14px solid var(--lc-c7) !important;
+  border-top: 8px solid var(--lc-c7) !important;
+  border-top-left-radius: 34px !important;
+  box-shadow: none !important;
+  font-family: var(--lc-font);
+}
+html[data-tl-family="lcars"] .mx_Autocomplete_ProviderSection_title,
+html[data-tl-family="lcars"] .mx_Autocomplete_provider_name {
+  font-family: var(--lc-font) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--lc-c7) !important;
+}
+html[data-tl-family="lcars"] .mx_Autocomplete_Completion.selected,
+html[data-tl-family="lcars"] .mx_Autocomplete_Completion:hover {
+  background: var(--lc-c7) !important;
+  color: var(--lc-on) !important;
+  border-radius: 0 999px 999px 0 !important;
+  & * { color: var(--lc-on) !important; }
+}
+
+/* ---------- 9. RIGHT PANEL = mirrored frame ------------------------------ */
+html[data-tl-family="lcars"] .mx_RightPanel {
+  position: relative;
+  background:
+    linear-gradient(var(--lc-c4), var(--lc-c4)) 0 calc(var(--lc-band) - var(--lc-bar)) / calc(100% - var(--lc-ri)) var(--lc-bar) no-repeat,
+    radial-gradient(circle at 0 0, transparent calc(var(--lc-ri) - 0.5px), var(--lc-c4) var(--lc-ri))
+      100% calc(var(--lc-band) - var(--lc-bar)) / var(--lc-ri) var(--lc-ri) no-repeat,
+    var(--lc-bg) !important;
+  border: 0 !important;
+  border-right: var(--lc-bar) solid var(--lc-c4) !important;
+  border-top-right-radius: 0;
+  padding-top: var(--lc-band);
+  margin-left: var(--lc-gap);
+  font-family: var(--lc-font);
+
+  &::before {
+    /* outer top-right corner of the mirrored elbow */
+    content: "";
+    position: absolute;
+    right: calc(-1 * var(--lc-bar)); top: 0;
+    width: calc(var(--lc-bar) + var(--lc-ri));
+    height: var(--lc-band);
+    background: var(--lc-bg);
+    border-bottom-right-radius: var(--lc-ro);
+    box-shadow: inset 0 calc(-1 * var(--lc-bar)) 0 var(--lc-c4);
+    pointer-events: none;
+    display: none;
+  }
+  & .mx_BaseCard { background: var(--lc-bg) !important; }
+  & .mx_BaseCard_header,
+  & [class*="_header_"] {
+    font-family: var(--lc-font);
+  }
+  & .mx_BaseCard_header h2,
+  & .mx_BaseCard_header_title,
+  & [class*="_header_"] h2 {
+    font: 500 24px/1.1 var(--lc-font) !important;
+    color: var(--lc-accent) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* ---------- 10. BUTTONS / INPUTS ----------------------------------------- */
+html[data-tl-family="lcars"] {
+  & [class*="_button_"][data-kind="primary"],
+  & .mx_AccessibleButton_kind_primary,
+  & .mx_Dialog_primary {
+    background: var(--lc-accent) !important;
+    color: var(--lc-on) !important;
+    border: var(--lc-ink-w) solid var(--lc-ink) !important;
+    border-radius: var(--lc-btn-r) !important;
+    font-family: var(--lc-font) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: var(--lc-label-track);
+    box-shadow: var(--lc-cel);
+  }
+  & [class*="_button_"][data-kind="secondary"],
+  & .mx_AccessibleButton_kind_secondary,
+  & .mx_AccessibleButton_kind_primary_outline {
+    background: var(--lc-c4) !important;
+    color: var(--lc-on) !important;
+    border: var(--lc-ink-w) solid var(--lc-ink) !important;
+    border-radius: var(--lc-btn-r) !important;
+    font-family: var(--lc-font) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: var(--lc-label-track);
+    box-shadow: var(--lc-cel);
+  }
+  & [class*="_button_"][data-kind="tertiary"],
+  & .mx_AccessibleButton_kind_link {
+    font-family: var(--lc-font) !important;
+    text-transform: uppercase;
+    letter-spacing: var(--lc-label-track);
+    color: var(--lc-c2) !important;
+  }
+  & [class*="_button_"][data-kind="primary"][class*="_destructive_"],
+  & [class*="_button_"][data-kind="secondary"][class*="_destructive_"],
+  & .mx_AccessibleButton_kind_danger,
+  & .mx_AccessibleButton_kind_danger_outline {
+    background: var(--lc-crit) !important;
+    color: var(--lc-on) !important;
+    border-color: var(--lc-ink) !important;
+  }
+  & [class*="_button_"]:hover, & .mx_AccessibleButton_kind_primary:hover, & .mx_AccessibleButton_kind_secondary:hover { filter: brightness(1.12); }
+  & [class*="_button_"]:active { filter: brightness(1.25); }
+  & [class*="_button_"][aria-disabled="true"], & .mx_AccessibleButton_disabled { filter: grayscale(1) brightness(0.6); }
+
+  /* text inputs: black slot with colour underline + left cap */
+  & .mx_Field,
+  & [class*="_control_"][class*="_textInput_"],
+  & input[type="text"]:not(.mx_BasicMessageComposer_input),
+  & input[type="search"], & input[type="password"], & input[type="email"], & textarea {
+    border-radius: 0 !important;
+  }
+  & .mx_Field {
+    border: 2px solid var(--lc-c4) !important;
+    border-left-width: 12px !important;
+    background: var(--lc-bg);
+  }
+  & .mx_Field:focus-within { border-color: var(--lc-accent) !important; }
+  & .mx_Field label {
+    background: var(--lc-bg) !important;
+    font-family: var(--lc-font);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--lc-muted) !important;
+  }
+  & [class*="_control_"][class*="_textInput_"],
+  & [class*="_input_"][class*="_textControl_"] {
+    background: var(--lc-bg) !important;
+    border: 2px solid var(--lc-c4) !important;
+    color: var(--lc-text) !important;
+  }
+  & [class*="_label_"] {
+    font-family: var(--lc-font);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* toggles / checkboxes */
+  & [class*="_toggle_"] input:checked + *,
+  & [class*="_toggle_"]:has(input:checked) { background-color: var(--lc-accent) !important; border-color: var(--lc-accent) !important; }
+  & .mx_ToggleSwitch_on { background-color: var(--lc-accent) !important; }
+}
+
+/* ---------- 11. DIALOGS = mini frames ------------------------------------ */
+html[data-tl-family="lcars"] {
+  & .mx_Dialog_background { background: #000 !important; opacity: 0.85 !important; }
+  & .mx_Dialog,
+  & [role="dialog"][class*="_dialog_"] {
+    background: var(--lc-bg) !important;
+    color: var(--lc-text);
+    border: 0 !important;
+    border-left: 22px solid var(--lc-dlg, var(--lc-c3)) !important;
+    border-top: 16px solid var(--lc-dlg, var(--lc-c3)) !important;
+    border-bottom: 10px solid var(--lc-dlg2, var(--lc-c4)) !important;
+    border-radius: 48px 0 0 32px !important;
+    box-shadow: none !important;
+    font-family: var(--lc-font);
+  }
+  & .mx_Dialog_border { background: transparent !important; box-shadow: none !important; padding: 0 !important; }
+  & .mx_Dialog_border > .mx_Dialog { border-radius: 48px 0 0 32px !important; }
+  & .mx_Dialog_title,
+  & .mx_Dialog_header h1,
+  & .mx_Dialog_header h2,
+  & [role="dialog"] h2 {
+    font: 500 30px/1.1 var(--lc-font) !important;
+    color: var(--lc-accent) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: right;
+  }
+  & .mx_Dialog_cancelButton { background: var(--lc-c5) !important; border-radius: 999px; }
+  & .mx_Dialog_cancelButton::before { background-color: var(--lc-on) !important; }
+  & .mx_Dialog_buttons .mx_Dialog_primary::after { content: none; }
+
+  /* settings: tab list as numbered block stack */
+  & .mx_TabbedView_tabLabels { counter-reset: lc-tab; padding-right: var(--lc-gap); }
+  & .mx_TabbedView_tabLabel {
+    counter-increment: lc-tab;
+    position: relative;
+    border-radius: 0 !important;
+    background: var(--lc-c4) !important;
+    color: var(--lc-on) !important;
+    margin-bottom: 4px !important;
+    min-height: 38px;
+    padding: 4px 10px !important;
+    font-family: var(--lc-font) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    align-items: flex-end;
+  }
+  & .mx_TabbedView_tabLabel:nth-child(4n+2) { background: var(--lc-c2) !important; }
+  & .mx_TabbedView_tabLabel:nth-child(4n+3) { background: var(--lc-c3) !important; }
+  & .mx_TabbedView_tabLabel:nth-child(4n+4) { background: var(--lc-c8) !important; }
+  & .mx_TabbedView_tabLabel::after {
+    content: counter(lc-tab, decimal-leading-zero);
+    margin-left: auto;
+    padding-left: 8px;
+    font: 500 14px/1 var(--lc-font);
+    color: var(--lc-on);
+  }
+  & .mx_TabbedView_tabLabel_active,
+  & .mx_TabbedView_tabLabel[aria-selected="true"] { background: var(--lc-accent) !important; }
+  & .mx_TabbedView_tabLabel * { color: var(--lc-on) !important; }
+  & .mx_TabbedView_tabLabel .mx_TabbedView_maskedIcon::before { background-color: var(--lc-on) !important; }
+  & .mx_TabbedView_tabLabel svg { color: var(--lc-on) !important; fill: currentColor; }
+  & .mx_SettingsSection_header, & .mx_SettingsSubsection_heading, & .mx_SettingsTab_heading,
+  & [class*="_settingsSection_"] h2, & .mx_SettingsSubsectionHeading_heading {
+    font-family: var(--lc-font) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--lc-accent) !important;
+  }
+}
+
+/* ---------- 12. MENUS / TOOLTIPS ----------------------------------------- */
+html[data-tl-family="lcars"] {
+  & .mx_ContextualMenu,
+  & [role="menu"],
+  & [role="listbox"][data-radix-popper-content-wrapper] > *,
+  & [data-radix-popper-content-wrapper] [role="menu"] {
+    background: var(--lc-bg) !important;
+    border: 0 !important;
+    border-left: 10px solid var(--lc-c7) !important;
+    border-radius: 0 !important;
+    box-shadow: 0 0 0 2px var(--lc-c7) !important;
+    font-family: var(--lc-font);
+  }
+  & [role="menuitem"], & [role="menuitemradio"], & [role="menuitemcheckbox"],
+  & .mx_IconizedContextMenu_item {
+    font-family: var(--lc-font) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 0 999px 999px 0 !important;
+    color: var(--lc-text);
+  }
+  & [role="menuitem"]:hover, & [role="menuitem"]:focus-visible, & [role="menuitem"][data-highlighted],
+  & .mx_IconizedContextMenu_item:hover {
+    background: var(--lc-c7) !important;
+    color: var(--lc-on) !important;
+    & * { color: var(--lc-on) !important; }
+    & svg { color: var(--lc-on) !important; }
+  }
+  & [role="tooltip"], & [class*="_tooltip_"]:not([class*="_tooltipTrigger"]) {
+    background: var(--lc-bg) !important;
+    color: var(--lc-text) !important;
+    border: 0 !important;
+    border-left: 6px solid var(--lc-accent) !important;
+    box-shadow: 0 0 0 1px var(--lc-accent) !important;
+    border-radius: 0 !important;
+    font-family: var(--lc-font) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  & [role="tooltip"] *, & [class*="_tooltip_"] * { color: inherit; }
+  & [class*="_arrow_"] { fill: var(--lc-accent) !important; }
+}
+
+/* ---------- 13. AUTH / WELCOME ------------------------------------------- */
+html[data-tl-family="lcars"] {
+  & .mx_AuthPage { background: var(--lc-bg) !important; }
+  & .mx_AuthPage_modal {
+    background: var(--lc-bg) !important;
+    border-left: 28px solid var(--lc-c3);
+    border-top: 22px solid var(--lc-c3);
+    border-bottom: 14px solid var(--lc-c4);
+    border-radius: 64px 0 0 44px !important;
+    box-shadow: none !important;
+  }
+  & .mx_AuthPage_modalBlur { display: none; }
+  & .mx_AuthHeader, & .mx_AuthBody, & .mx_AuthFooter { background: var(--lc-bg) !important; border-radius: 0 !important; }
+  & .mx_AuthBody h1, & .mx_AuthBody h2 {
+    font: 500 30px/1.1 var(--lc-font) !important;
+    color: var(--lc-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  & .mx_AuthBody h1::before {
+    content: "LIBRARY COMPUTER ACCESS AND RETRIEVAL SYSTEM";
+    display: block;
+    font-size: 14px;
+    color: var(--lc-c4);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  & .mx_AuthFooter, & .mx_AuthFooter a { color: var(--lc-muted) !important; opacity: 1 !important; font-family: var(--lc-font); }
+}
+
+/* ---------- 14. misc chrome ---------------------------------------------- */
+html[data-tl-family="lcars"] {
+  & .mx_JumpToBottomButton_scrollDown, & .mx_TopUnreadMessagesBar_scrollUp {
+    background: var(--lc-c4) !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+  }
+  & .mx_JumpToBottomButton_scrollDown::before, & .mx_TopUnreadMessagesBar_scrollUp::before { background-color: var(--lc-on) !important; }
+  & .mx_JumpToBottomButton svg, & .mx_TopUnreadMessagesBar svg { color: var(--lc-on) !important; }
+  & .mx_JumpToBottomButton_highlight .mx_JumpToBottomButton_scrollDown { background: var(--lc-crit) !important; }
+  & [class*="_badge_"]:not([class*="_notificationBadge_"]) {
+    font-family: var(--lc-font);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 999px;
+  }
+  & [class*="_badge_"][data-kind], & .mx_RoomSummaryCard [class*="_badge_"] { color: var(--lc-on) !important; }
+  & [class*="_badge_"][data-kind] svg, & .mx_RoomSummaryCard [class*="_badge_"] svg { color: var(--lc-on) !important; }
+  & .mx_HomePage_default_buttons .mx_AccessibleButton { color: var(--lc-on) !important; border-radius: 0 999px 999px 0 !important; font-family: var(--lc-font); text-transform: uppercase; letter-spacing: 0.05em; }
+  & .mx_HomePage_default_buttons .mx_AccessibleButton::before { background-color: var(--lc-on) !important; }
+  & .mx_Toast_toast {
+    background: var(--lc-bg) !important;
+    border-left: 14px solid var(--lc-c1) !important;
+    border-top: 8px solid var(--lc-c1) !important;
+    border-radius: 30px 0 0 0 !important;
+    box-shadow: 0 0 0 2px var(--lc-c1) !important;
+    font-family: var(--lc-font);
+    color: var(--lc-text);
+  }
+  & .mx_Toast_title h2 { font-family: var(--lc-font) !important; text-transform: uppercase; color: var(--lc-c1); letter-spacing: 0.05em; }
+  & .mx_AppTile, & .mx_AppTileMenuBar {
+    background: var(--lc-c4) !important;
+    border-radius: 0 !important;
+    color: var(--lc-on);
+    font-family: var(--lc-font);
+    text-transform: uppercase;
+  }
+  & .mx_PinnedMessageBanner {
+    background: var(--lc-bg) !important;
+    border-bottom: 0 !important;
+    box-shadow: inset 6px 0 0 var(--lc-c6) !important;
+    font-family: var(--lc-font);
+  }
+  & .mx_RoomPreviewBar, & .mx_RoomPreviewCard { background: var(--lc-bg) !important; font-family: var(--lc-font); }
+  & .mx_HomePage, & .mx_HomePage_default { background: var(--lc-bg) !important; font-family: var(--lc-font); }
+  & .mx_HomePage h1 { text-transform: uppercase; color: var(--lc-accent); letter-spacing: 0.05em; }
+  & .mx_E2EIcon_verified::after, & .mx_E2EIcon_normal::after { background-color: var(--lc-ok) !important; }
+  & .mx_UserInfo_profile h2, & .mx_UserInfo h3 { font-family: var(--lc-font); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* the loader's own UI must stay readable */
+  & .tl-ui { font-family: var(--lc-font); }
+}
+
+/* ---------- 14b. compact contexts: icons instead of labels -------------- */
+html[data-tl-family="lcars"] .mx_MainSplit:has(.mx_RightPanel) .mx_RoomHeader > button[aria-label]::after,
+html[data-tl-family="lcars"] .mx_RightPanel .mx_MessageComposer_actions > *::after { content: none !important; }
+html[data-tl-family="lcars"] .mx_MainSplit:has(.mx_RightPanel) .mx_RoomHeader > button[aria-label] svg,
+html[data-tl-family="lcars"] .mx_RightPanel .mx_MessageComposer_actions > * svg { display: block !important; color: var(--lc-on) !important; fill: var(--lc-on) !important; opacity: 1 !important; }
+html[data-tl-family="lcars"] .mx_MainSplit:has(.mx_RightPanel) .mx_RoomHeader > button[aria-label],
+html[data-tl-family="lcars"] .mx_RightPanel .mx_MessageComposer_actions > * {
+  padding: 0 8px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+html[data-tl-family="lcars"] .mx_RightPanel .mx_MessageComposer_sendMessage::after { content: "TX"; }
+
+@media (max-width: 800px) {
+  /* [data-tl-theme]: beat the variants' own frame sizes (lower-decks 120 px arm, picard 92, usable 76 left no
+     message column at 320 px) */
+  html[data-tl-family="lcars"][data-tl-theme] {
+    --lc-arm: 52px;
+    --lc-band: 60px;
+    --lc-bar: 12px;
+    --lc-bbar: 12px;
+    --lc-ro: 34px;
+    --lc-ri: 16px;
+    --lc-gap: 4px;
+  }
+  html[data-tl-family="lcars"] .mx_SpacePanel .mx_SpaceButton::after,
+  html[data-tl-family="lcars"] .mx_SpacePanel .mx_ThreadsActivityCentre_container::after,
+  html[data-tl-family="lcars"] .mx_SpacePanel .mx_QuickSettingsButton::after,
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label]::after,
+  html[data-tl-family="lcars"] .mx_MessageComposer_actions > *::after { content: none !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label] svg,
+  html[data-tl-family="lcars"] .mx_MessageComposer_actions > * svg { display: block !important; color: var(--lc-on) !important; fill: var(--lc-on) !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label],
+  html[data-tl-family="lcars"] .mx_MessageComposer_actions > * { padding: 0 6px !important; align-items: center !important; justify-content: center !important; min-width: 32px; }
+  html[data-tl-family="lcars"] .mx_SpacePanel .mx_SpaceButton { padding: 6px 4px !important; min-height: 44px; }
+  html[data-tl-family="lcars"] .mx_SpacePanel .mx_UserMenu { padding-right: 6px; }
+  html[data-tl-family="lcars"] .mx_SpacePanel .mx_UserMenu [class*="_avatar_"] { width: 28px !important; height: 28px !important; }
+  html[data-tl-family="lcars"] .mx_SpacePanel .mx_QuickSettingsButton { height: 64px !important; }
+  html[data-tl-family="lcars"] .mx_SpacePanel .mx_ThreadsActivityCentre_container { bottom: calc(64px + var(--lc-gap)); height: 44px; }
+  html[data-tl-family="lcars"] .mx_SpacePanel { padding-bottom: calc(108px + 2 * var(--lc-gap)) !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader .mx_RoomHeader_heading { font-size: 24px !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader .mx_FacePile { display: none; }
+  html[data-tl-family="lcars"] .mx_MessageComposer_sendMessage::after { content: "TX" !important; }
+}
+
+/* ---------- 15. motion --------------------------------------------------- */
+@keyframes lc-blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+@keyframes lc-press {
+  0% { filter: brightness(1.35); }
+  100% { filter: brightness(1); }
+}
+html[data-tl-family="lcars"] button:active,
+html[data-tl-family="lcars"] .mx_AccessibleButton:active { animation: lc-press 120ms steps(2) 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-tl-family="lcars"] *,
+  html[data-tl-family="lcars"] *::before,
+  html[data-tl-family="lcars"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- Other datanauten modules (production) -------------------------
+   teams-welcome guide, speed-start card and the full-screen overlays (room-checker, keyboard-shortcuts,
+   space-room-map, people-map) use Compound tokens (colours follow), but were plain rounded cards. They get the
+   same mini-frame as dialogs (§11) and LCARS headings. */
+html[data-tl-family="lcars"] {
+  & :is(.twl-guide-panel, .speed-start-card, .ks-panel, .srm-panel, .pm-panel, .rc-panel) {
+    background: var(--lc-bg) !important;
+    border: 0 !important;
+    border-left: 22px solid var(--lc-dlg, var(--lc-c3)) !important;
+    border-top: 16px solid var(--lc-dlg, var(--lc-c3)) !important;
+    border-bottom: 10px solid var(--lc-dlg2, var(--lc-c4)) !important;
+    border-radius: 48px 0 0 32px !important;
+    box-shadow: none !important;
+  }
+  & :is(.ks-backdrop, .srm-backdrop, .pm-backdrop, .rc-backdrop) { background: rgb(0 0 0 / .85) !important; }
+  & :is(.twl-title, .speed-start-card_title) {
+    font: 500 24px/1.1 var(--lc-font) !important; color: var(--lc-accent) !important;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  & :is(.twl-button, .drm-button, .ks-button, .rc-button, .pm-button, .fh-button) {
+    border-radius: 999px !important; font-family: var(--lc-font) !important; text-transform: uppercase; letter-spacing: .04em;
+  }
+  & .speed-start-card_fill { background: var(--lc-accent) !important; }
+}
+
+/* Room header on production: ~8 module buttons join Element's labelled pills (VISUAL, COMM, THREADS, INFO) and
+   the row overflowed (labels drawn over neighbouring pills, last buttons cut off). Narrow header → icon pills,
+   like the compact contexts in §14b. */
+/* the header itself is the query container (not its parent: containment there re-anchors absolutely
+   positioned frame parts); so only its children change, its own gap is compensated with negative margins */
+html[data-tl-family="lcars"] .mx_RoomHeader { container: tl-room-header / inline-size; }
+@container tl-room-header (max-width: 1050px) {
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label]::after { content: none !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label] svg { display: block !important; color: var(--lc-on) !important; fill: var(--lc-on) !important; opacity: 1 !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label],
+  html[data-tl-family="lcars"] .mx_RoomHeader > div > button {
+    padding: 0 6px !important; align-items: center !important; justify-content: center !important; min-width: 30px;
+  }
+  html[data-tl-family="lcars"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -6px !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader .mx_FacePile { display: none !important; }
+}
+@container tl-room-header (max-width: 700px) {
+  html[data-tl-family="lcars"] .mx_RoomHeader .mx_RoomHeader_heading { font-size: 24px !important; }
+}
+@container tl-room-header (max-width: 560px) {
+  html[data-tl-family="lcars"] .mx_RoomHeader > button[aria-label]:not(.mx_RoomHeader_infoWrapper),
+  html[data-tl-family="lcars"] .mx_RoomHeader > div > button { padding: 0 3px !important; min-width: 26px !important; }
+  html[data-tl-family="lcars"] .mx_RoomHeader > :is(button, div):not(:first-child) { margin-inline-start: -8px !important; }
+}
+/* lcars-picard draws header buttons as outlines on black: their icons (incl. the module buttons) must use the text
+   colour, also in the compact header above (whose --lc-on icon colour is meant for filled pills) */
+html[data-tl-family="lcars"][data-tl-theme="lcars-picard"] .mx_RoomHeader > button[aria-label] svg,
+html[data-tl-family="lcars"][data-tl-theme="lcars-picard"] .mx_RoomHeader > div > button[aria-label] svg {
+  color: var(--lc-text) !important; fill: currentColor !important;
+}

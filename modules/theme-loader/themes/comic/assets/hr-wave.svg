@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 12" width="120" height="12">
+<!-- comic family, original work, CC0 1.0: tileable rainbow wave separator -->
+<defs><linearGradient id="r" x1="0" x2="1"><stop offset="0.000" stop-color="#FF0000"/><stop offset="0.167" stop-color="#FF7F00"/><stop offset="0.333" stop-color="#FFFF00"/><stop offset="0.500" stop-color="#00FF00"/><stop offset="0.667" stop-color="#0000FF"/><stop offset="0.833" stop-color="#4B0082"/><stop offset="1.000" stop-color="#8B00FF"/></linearGradient></defs>
+<path d="M0 6 Q15 0 30 6 T60 6 T90 6 T120 6" fill="none" stroke="url(#r)" stroke-width="4"/>
+</svg>

@@ -1,0 +1,1139 @@
+{
+    "brand": "Element",
+    "branding": {
+        "auth_footer_links": null,
+        "auth_header_logo_url": "themes/element/img/logos/element-logo.svg",
+        "welcome_background_url": "themes/element/img/backgrounds/lake.jpg"
+    },
+    "bug_report_endpoint_url": "https://element.io/bugreports/submit",
+    "de.datanauten.files_hub": {
+        "cloud_link_cards": true
+    },
+    "de.datanauten.remote_modules": {
+        "about": {
+            "activity": {
+                "description": {
+                    "de": "Ein Aktivit\u00e4ts-Feed mit Erw\u00e4hnungen, Antworten, Reaktionen und Thread-Antworten aus all deinen R\u00e4umen.",
+                    "en": "One Activity feed of mentions, replies, reactions and thread replies across all your rooms."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/activity#readme",
+                "usage": {
+                    "de": [
+                        "Aktivit\u00e4t in der Space-Leiste (links): der Feed; Klick auf einen Eintrag springt zur Nachricht.",
+                        "Aktivit\u00e4t im Raumkopf: dasselbe f\u00fcr diesen Raum."
+                    ],
+                    "en": [
+                        "Activity in the space bar (left): the feed; click an entry to jump to the message.",
+                        "Activity in the room header: the same for this room."
+                    ]
+                }
+            },
+            "files-hub": {
+                "description": {
+                    "de": "Alle Dateien aus all deinen R\u00e4umen an einem Ort, verschl\u00fcsselte inklusive, entschl\u00fcsselt in deinem Browser.",
+                    "en": "All files from all your rooms in one place, encrypted ones included, decrypted in your browser."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/files-hub#readme",
+                "usage": {
+                    "de": [
+                        "Dateien in der Space-Leiste (links): alle Dateien, mit Filtern und Vorschau.",
+                        "Dateien im Raumkopf: die Dateien dieses Raums."
+                    ],
+                    "en": [
+                        "Files in the space bar (left): every file, with filters and previews.",
+                        "Files in the room header: the files of this room."
+                    ]
+                }
+            },
+            "keyboard-shortcuts": {
+                "description": {
+                    "de": "Eine \u00dcbersicht aller Tastenk\u00fcrzel, und eigene K\u00fcrzel.",
+                    "en": "An overview of every keyboard shortcut, and shortcuts of your own."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/keyboard-shortcuts#readme",
+                "usage": {
+                    "de": [
+                        "? (wenn du gerade nicht tippst): \u00dcbersicht \u00f6ffnen; Esc schlie\u00dft sie.",
+                        "Im Suchfeld tippen, um ein K\u00fcrzel zu finden, z. B. fett oder Shift.",
+                        "Anpassen \u2192 \u270e neben einer Aktion \u2192 neue Tastenkombination dr\u00fccken; \u21ba entfernt sie. Deine K\u00fcrzel gelten auf allen Ger\u00e4ten."
+                    ],
+                    "en": [
+                        "? (when you're not typing): open the overview; Esc closes it.",
+                        "Type in its search box to find a shortcut, e.g. bold or shift.",
+                        "Customise \u2192 \u270e next to an action \u2192 press your combo; \u21ba removes it. Yours follow you to every device."
+                    ]
+                }
+            },
+            "marcade": {
+                "description": {
+                    "de": "Ein Apps-Knopf in jedem Raumkopf, der den Marcade Store f\u00fcr diesen Raum \u00f6ffnet, und ein Knopf, der eine App des Raums in ein eigenes Fenster l\u00f6st.",
+                    "en": "An Apps button in every room header that opens the Marcade Store for that room, and a Pop out button that moves a room's app into its own window."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/marcade#readme",
+                "usage": {
+                    "de": [
+                        "Apps im Raumkopf: \u00f6ffnet den Store rechts in der Seitenleiste; ein zweiter Klick schlie\u00dft ihn.",
+                        "Noch nicht im Raum: Er wird hinzugef\u00fcgt, wenn du Widgets hinzuf\u00fcgen darfst, sonst muss ein Moderator das tun.",
+                        "Herausl\u00f6sen im Raumkopf (solange eine App offen ist): Die App wandert in ein kleines Fenster, das im Vordergrund bleibt (Chrome, Edge, Firefox), oder in ein Popup; sie l\u00e4dt dabei einmal neu. Zur\u00fcckholen oder das Fenster schlie\u00dfen bringt sie zur\u00fcck."
+                    ],
+                    "en": [
+                        "Apps in the room header: opens the store in the right panel; a second click closes it.",
+                        "Not in the room yet: it's added if you may add widgets, otherwise a moderator has to add it.",
+                        "Pop out in the room header (while an app is open): the app moves into a small window that stays on top (Chrome, Edge, Firefox) or a popup; it reloads once. Bring back, or close the window, to return it."
+                    ]
+                }
+            },
+            "multi-tab": {
+                "description": {
+                    "de": "Element in beliebig vielen Browser-Tabs offen halten. Der erste Tab synchronisiert und h\u00e4lt deine Schl\u00fcssel; die anderen laufen \u00fcber ihn.",
+                    "en": "Keep Element open in as many browser tabs as you like. The first tab syncs and holds your keys; the others go through it."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/multi-tab#readme",
+                "usage": {
+                    "de": [
+                        "Nichts zu tun: \u00d6ffne Element einfach in einem weiteren Tab.",
+                        "Sind mehrere Tabs offen, hat dein Avatar (oben links) in jedem Tab einen farbigen Ring.",
+                        "Einstellungen \u2192 Optionen \u2192 \u201eOpen tabs\u201c listet sie auf, samt Haupt-Tab.",
+                        "Ger\u00e4te verifizieren und Schl\u00fcsselsicherung gehen nur im Haupt-Tab."
+                    ],
+                    "en": [
+                        "Nothing to do: just open Element in another tab.",
+                        "With several tabs open, your avatar (top left) has a coloured ring per tab.",
+                        "Settings \u2192 Preferences \u2192 Open tabs lists them, and which one is the main tab.",
+                        "Verifying devices and key backup only work in the main tab."
+                    ]
+                }
+            },
+            "people-map": {
+                "description": {
+                    "de": "Eine Karte der Leute, mit denen du R\u00e4ume teilst: Je n\u00e4her jemand sitzt, desto mehr habt ihr gemeinsam. Wird in deinem Browser berechnet; nichts wird verschickt.",
+                    "en": "A map of the people you share rooms with: the closer they sit, the more you have in common. Worked out in your browser; nothing is sent anywhere."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/people-map#readme",
+                "usage": {
+                    "de": [
+                        "Alt+P: Karte \u00f6ffnen oder schlie\u00dfen.",
+                        "Jeder Sektor zeigt, woher du die Leute kennst: ein Space, ein Bridge-Netzwerk oder deine Direktnachrichten.",
+                        "Die Liste daneben: suchen, filtern, sortieren. Klick auf eine Person zeigt ihre Karte, mit eurer Direktnachricht, ihrem Profil und euren gemeinsamen R\u00e4umen.",
+                        "Optionen: Einstellungen \u2192 Optionen \u2192 Personen-Karte."
+                    ],
+                    "en": [
+                        "Alt+P: open or close the map.",
+                        "Each sector is where you know people from: a space, a bridge network or your DMs.",
+                        "The list beside it: search, filter and sort. Click a person for their card, with your DM, their profile and your shared rooms.",
+                        "Options: Settings \u2192 Preferences \u2192 People map."
+                    ]
+                }
+            },
+            "profile-status": {
+                "description": {
+                    "de": "Ein Status, Verf\u00fcgbarkeit und Abwesenheit, dazu Position, Abteilung und Telefon auf deiner Profilkarte.",
+                    "en": "A status, availability and out of office, plus job title, department and phone on your profile card."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/profile-status#readme",
+                "usage": {
+                    "de": [
+                        "Avatar-Men\u00fc \u2192 Status festlegen: Verf\u00fcgbarkeit, Nachricht, bis wann, Abwesenheit.",
+                        "Avatar-Men\u00fc \u2192 Profilkarte bearbeiten: Position, Abteilung, Telefon. Andere sehen sie auf deiner Karte."
+                    ],
+                    "en": [
+                        "Your avatar menu \u2192 Set status: availability, message, until when, out of office.",
+                        "Your avatar menu \u2192 Edit profile card: job title, department, phone. Others see them on your card."
+                    ]
+                }
+            },
+            "remote-modules": {
+                "description": {
+                    "de": "Dieser Tab. Hier schaltest du die Module des Servers f\u00fcr dein Konto aus oder ein.",
+                    "en": "This tab. Turn the server's modules off or on for your account."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/remote-modules#readme",
+                "usage": {
+                    "de": [
+                        "Ausschalten / Einschalten: wirkt ab dem n\u00e4chsten Neuladen, auf allen deinen Ger\u00e4ten.",
+                        "Immer an: dieses Modul selbst und alle, die vor ihm laden."
+                    ],
+                    "en": [
+                        "Turn off / Turn on: takes effect when Element reloads, on all your devices.",
+                        "Always on: this module itself, and any loaded before it."
+                    ]
+                }
+            },
+            "room-checker": {
+                "description": {
+                    "de": "Pr\u00fcft die R\u00e4ume eines Space gegen Raum-Richtlinien, die im Space hinterlegt sind (Name, Verschl\u00fcsselung, wer beitreten darf \u2026), und behebt, was fehlschl\u00e4gt.",
+                    "en": "Checks a space's rooms against room policies kept in the space (name, encryption, who can join \u2026) and fixes what fails."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/room-checker#readme",
+                "usage": {
+                    "de": [
+                        "Alt+R: die R\u00e4ume eines Space pr\u00fcfen.",
+                        "Tab R\u00e4ume: welche R\u00e4ume welche Richtlinie verletzen. Klick auf einen Raum behebt es dort, auf den Balken einer Richtlinie in vielen R\u00e4umen auf einmal.",
+                        "Tab Richtlinien: die Regeln des Space; wer die Space-Einstellungen \u00e4ndern darf, kann sie bearbeiten und Ausnahmen zulassen."
+                    ],
+                    "en": [
+                        "Alt+R: check the rooms of a space.",
+                        "Rooms tab: which rooms fail which policy. Click a room to fix it there, or a policy's bar to fix it in many rooms at once.",
+                        "Policies tab: the space's rules; those who may change the space's settings can edit them and accept exceptions."
+                    ]
+                }
+            },
+            "space-room-map": {
+                "description": {
+                    "de": "Eine zoombare Karte deiner Spaces und R\u00e4ume, mit ungelesenen Nachrichten auf einen Blick.",
+                    "en": "A zoomable map of your spaces and rooms, with unread messages at a glance."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/space-room-map#readme",
+                "usage": {
+                    "de": [
+                        "Strg+I (\u2318+I auf macOS): Karte \u00f6ffnen oder schlie\u00dfen.",
+                        "Auf einen Space in der Liste zeigen, oder \u2191 \u2193: Die Karte fliegt hin. Enter \u00f6ffnet ihn.",
+                        "Tippen, um einen Raum zu finden. Klick auf einen Raum \u00f6ffnet ihn, auf einen Space zoomt hinein.",
+                        "Kreise / U-Bahn-Plan: zwei Ansichten. Optionen: Einstellungen \u2192 Optionen \u2192 Space-Karte."
+                    ],
+                    "en": [
+                        "Ctrl+I (\u2318+I on macOS): open or close the map.",
+                        "Point at a space in the list, or \u2191 \u2193: the map flies there. Enter opens it.",
+                        "Type to find a room. Click a room to open it, a space to zoom in.",
+                        "Circles / Tube map: two views. Options: Settings \u2192 Preferences \u2192 Space map."
+                    ]
+                }
+            },
+            "speed-start": {
+                "description": {
+                    "de": "Zeigt beim Start sofort deine letzte Raumliste statt des Ladekreises und blendet in die echte \u00fcber, sobald Element bereit ist.",
+                    "en": "Shows your last room list as soon as Element starts, instead of the spinner, and fades into the real one when Element is ready."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/speed-start#readme",
+                "usage": {
+                    "de": [
+                        "Nichts zu tun: Es wirkt bei jedem Start, solange du angemeldet bist.",
+                        "Klick auf einen Raum darin: Element \u00f6ffnet ihn, sobald es bereit ist."
+                    ],
+                    "en": [
+                        "Nothing to do: it works on every start while you're logged in.",
+                        "Click a room in it: Element opens that room as soon as it's ready."
+                    ]
+                }
+            },
+            "tag-mentions": {
+                "description": {
+                    "de": "Eine Gruppe auf einmal erw\u00e4hnen: @team, @oncall oder jeden Tag, der im Raum oder Space hinterlegt ist.",
+                    "en": "Mention a group at once: @team, @oncall or any tag kept in the room or space."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/tag-mentions#readme",
+                "usage": {
+                    "de": [
+                        "@ im Composer tippen: Tags werden neben Personen vorgeschlagen.",
+                        "Tags im Raumkopf: Tags anlegen und bearbeiten (braucht das Recht, Raumeinstellungen zu \u00e4ndern)."
+                    ],
+                    "en": [
+                        "Type @ in the composer: tags are suggested next to people.",
+                        "Tags in the room header: create and edit tags (needs the right to change room settings)."
+                    ]
+                }
+            },
+            "teams-welcome": {
+                "description": {
+                    "de": "Eine kurze Anleitung f\u00fcr Leute, die von Microsoft Teams kommen: Schl\u00fcssel, wo was ist, Profil, Spaces.",
+                    "en": "A short guide for people coming from Microsoft Teams: keys, where things are, profile, spaces."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/teams-welcome#readme",
+                "usage": {
+                    "de": [
+                        "\u00d6ffnet sich einmal beim ersten Login; sp\u00e4ter \u00fcber das Avatar-Men\u00fc \u2192 Umstieg von Teams"
+                    ],
+                    "en": [
+                        "Opens once on first login; later from your avatar menu \u2192 Coming from Teams?"
+                    ]
+                }
+            },
+            "teamwork": {
+                "description": {
+                    "de": "Sp\u00e4ter senden, wichtige und dringende Nachrichten, gespeicherte Nachrichten und Lob, wie in Teams.",
+                    "en": "Send later, important and urgent messages, saved messages and praise, like in Teams."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/teamwork#readme",
+                "usage": {
+                    "de": [
+                        "Composer + \u2192 Sp\u00e4ter senden, Wichtig oder dringend, oder Lob.",
+                        "Lesezeichen in der Aktionsleiste einer Nachricht speichert sie; das Lesezeichen im Raumkopf listet sie auf.",
+                        "Dringend: Die unter Benachrichtigen angehakten Leute werden erw\u00e4hnt und erinnert, bis sie es gelesen haben."
+                    ],
+                    "en": [
+                        "Composer + \u2192 Send later, Important or urgent, or Praise.",
+                        "Bookmark in a message's action bar saves it; the bookmark in the room header lists them.",
+                        "Urgent: the people ticked under Notify are mentioned and reminded until they read it."
+                    ]
+                }
+            },
+            "user-account-widgets": {
+                "description": {
+                    "de": "Deine eigenen Apps (Widgets) in jedem Raum, ohne sie dem Raum hinzuzuf\u00fcgen. Nur du siehst sie.",
+                    "en": "Your own apps (widgets) in every room, without adding them to the room. Only you see them."
+                },
+                "link": "https://github.com/yncyrydybyl/element-web-modules/tree/main/modules/user-account-widgets#readme",
+                "usage": {
+                    "de": [
+                        "Meine Apps im Raumkopf: eine vorgeschlagene App w\u00e4hlen oder eine Widget-URL einf\u00fcgen; danach \u00f6ffnet der Knopf deine letzte App rechts.",
+                        "Beim ersten Mal zeigt eine App, was sie im Raum tun m\u00f6chte; deine Antwort wird gespeichert.",
+                        "Deine Apps sind auf allen Ger\u00e4ten da. Eine App sieht nur den ge\u00f6ffneten Raum und startet beim Raumwechsel neu."
+                    ],
+                    "en": [
+                        "My apps in the room header: pick a suggested app or paste a widget URL; later the button opens your last app on the right.",
+                        "On first use an app lists what it wants to do in the room; your answer is remembered.",
+                        "Your apps follow you to every device. The app only sees the room you have open and restarts when you switch rooms."
+                    ]
+                }
+            }
+        },
+        "allowed_users": [
+            "@yan:datanauten.de",
+            "@claude-dev:datanauten.de"
+        ]
+    },
+    "de.datanauten.tag_mentions": {
+        "max_mentions": 50
+    },
+    "de.datanauten.teamswelcome": {
+        "organisation": "datanauten"
+    },
+    "de.datanauten.user_account_widgets": {
+        "suggested": [
+            {
+                "name": "PDF viewer",
+                "url": "https://marcade.store/apps/de.minagawa.pdf-viewer/0.3.1/#/?theme=$org.matrix.msc2873.client_theme&roomId=$matrix_room_id"
+            }
+        ]
+    },
+    "default_country_code": "GB",
+    "default_server_config": {
+        "m.homeserver": {
+            "base_url": "https://matrix.datanauten.de",
+            "server_name": "datanauten"
+        }
+    },
+    "default_theme": "light",
+    "disable_custom_urls": true,
+    "disable_guests": true,
+    "element_call": {
+        "brand": "Element Call",
+        "participant_limit": 8,
+        "url": "https://call.element.datanauten.de",
+        "use_exclusively": true
+    },
+    "embedded_pages": {
+        "homeUrl": ""
+    },
+    "features": {
+        "feature_element_call_video_rooms": true,
+        "feature_group_calls": true,
+        "feature_oidc_native_flow": true,
+        "feature_video_rooms": true
+    },
+    "integrations_jitsi_widget_url": "https://scalar.vector.im/api/widgets/jitsi.html",
+    "integrations_rest_url": "https://scalar.vector.im/api",
+    "integrations_ui_url": "https://scalar.vector.im/",
+    "integrations_widgets_urls": [
+        "https://scalar.vector.im/api"
+    ],
+    "logout_redirect_url": "",
+    "mobile_guide_app_variant": "element",
+    "modules": [
+        "/element-modules/remote-modules/index.js?v=dc1a2928efd7",
+        "/element-modules/speed-start/index.js?v=f16a2f9778c1",
+        "/element-modules/marcade/index.js?v=d5dc0312ad0c",
+        "/element-modules/keyboard-shortcuts/index.js?v=16e189e0d639",
+        "/element-modules/space-room-map/index.js?v=42605533e242",
+        "/element-modules/people-map/index.js?v=9bfe9ce480f9",
+        "/element-modules/multi-tab/index.js?v=acb74fbf3f70",
+        "/element-modules/room-checker/index.js?v=fa27cba30f52",
+        "/element-modules/teamwork/index.js?v=9ce265487ab3",
+        "/element-modules/activity/index.js?v=17147f844bdd",
+        "/element-modules/tag-mentions/index.js?v=e1844c6bdbf1",
+        "/element-modules/profile-status/index.js?v=a30dd384be1d",
+        "/element-modules/files-hub/index.js?v=6ea205edce7b",
+        "/element-modules/teams-welcome/index.js?v=b1b680a662a4",
+        "/element-modules/user-account-widgets/index.js?v=938b734b9103"
+    ],
+    "permalink_prefix": "https://matrix.to",
+    "room_directory": {
+        "servers": [
+            "matrix.org"
+        ]
+    },
+    "setting_defaults": {
+        "custom_themes": [
+            {
+                "colors": {
+                    "accent-color": "#babbf1",
+                    "alert": "#faa81a",
+                    "avatar-background-colors": [
+                        "#8caaee",
+                        "#ca9ee6",
+                        "#a6d189"
+                    ],
+                    "focus-bg-color": "#626880",
+                    "menu-selected-color": "#51576d",
+                    "other-user-pill-bg-color": "#99d1db",
+                    "primary-color": "#babbf1",
+                    "reaction-row-button-selected-bg-color": "#51576d",
+                    "room-highlight-color": "#99d1db",
+                    "roomlist-background-color": "#292c3c",
+                    "roomlist-highlights-color": "#51576d",
+                    "roomlist-separator-color": "#838ba7",
+                    "roomlist-text-color": "#c6d0f5",
+                    "roomlist-text-secondary-color": "#303446",
+                    "secondary-content": "#c6d0f5",
+                    "sidebar-color": "#232634",
+                    "tertiary-content": "#c6d0f5",
+                    "timeline-background-color": "#303446",
+                    "timeline-highlights-color": "#292c3c",
+                    "timeline-text-color": "#c6d0f5",
+                    "timeline-text-secondary-color": "#a5adce",
+                    "togglesw-off-color": "#949cbb",
+                    "username-colors": [
+                        "#ca9ee6",
+                        "#ea999c",
+                        "#ef9f76",
+                        "#a6d189",
+                        "#81c8be",
+                        "#99d1db",
+                        "#85c1dc",
+                        "#babbf1"
+                    ],
+                    "warning-color": "#e78284"
+                },
+                "is_dark": true,
+                "name": "Catppuccin Frappe"
+            },
+            {
+                "colors": {
+                    "accent-color": "#7287fd",
+                    "alert": "#df8e1d",
+                    "avatar-background-colors": [
+                        "#1e66f5",
+                        "#8839ef",
+                        "#40a02b"
+                    ],
+                    "focus-bg-color": "#acb0be",
+                    "menu-selected-color": "#bcc0cc",
+                    "other-user-pill-bg-color": "#04a5e5",
+                    "primary-color": "#7287fd",
+                    "reaction-row-button-selected-bg-color": "#bcc0cc",
+                    "room-highlight-color": "#04a5e5",
+                    "roomlist-background-color": "#e6e9ef",
+                    "roomlist-highlights-color": "#bcc0cc",
+                    "roomlist-separator-color": "#8c8fa1",
+                    "roomlist-text-color": "#4c4f69",
+                    "roomlist-text-secondary-color": "#4c4f69",
+                    "secondary-content": "#4c4f69",
+                    "sidebar-color": "#dce0e8",
+                    "tertiary-content": "#4c4f69",
+                    "timeline-background-color": "#eff1f5",
+                    "timeline-highlights-color": "#bcc0cc",
+                    "timeline-text-color": "#4c4f69",
+                    "timeline-text-secondary-color": "#6c6f85",
+                    "togglesw-off-color": "#7c7f93",
+                    "username-colors": [
+                        "#8839ef",
+                        "#e64553",
+                        "#fe640b",
+                        "#40a02b",
+                        "#179299",
+                        "#04a5e5",
+                        "#209fb5",
+                        "#7287fd"
+                    ],
+                    "warning-color": "#d20f39"
+                },
+                "is_dark": false,
+                "name": "Catppuccin Latte"
+            },
+            {
+                "colors": {
+                    "accent-color": "#b7bdf8",
+                    "alert": "#eed49f",
+                    "avatar-background-colors": [
+                        "#8aadf4",
+                        "#c6a0f6",
+                        "#a6da95"
+                    ],
+                    "focus-bg-color": "#5b6078",
+                    "menu-selected-color": "#494d64",
+                    "other-user-pill-bg-color": "#91d7e3",
+                    "primary-color": "#b7bdf8",
+                    "reaction-row-button-selected-bg-color": "#494d64",
+                    "room-highlight-color": "#91d7e3",
+                    "roomlist-background-color": "#1e2030",
+                    "roomlist-highlights-color": "#494d64",
+                    "roomlist-separator-color": "#8087a2",
+                    "roomlist-text-color": "#cad3f5",
+                    "roomlist-text-secondary-color": "#24273a",
+                    "secondary-content": "#cad3f5",
+                    "sidebar-color": "#181926",
+                    "tertiary-content": "#cad3f5",
+                    "timeline-background-color": "#24273a",
+                    "timeline-highlights-color": "#1e2030",
+                    "timeline-text-color": "#cad3f5",
+                    "timeline-text-secondary-color": "#a5adcb",
+                    "togglesw-off-color": "#939ab7",
+                    "username-colors": [
+                        "#c6a0f6",
+                        "#ee99a0",
+                        "#f5a97f",
+                        "#a6da95",
+                        "#8bd5ca",
+                        "#91d7e3",
+                        "#7dc4e4",
+                        "#b7bdf8"
+                    ],
+                    "warning-color": "#ed8796"
+                },
+                "is_dark": true,
+                "name": "Catppuccin Macchiato"
+            },
+            {
+                "colors": {
+                    "accent-color": "#b4befe",
+                    "alert": "#e5c890",
+                    "avatar-background-colors": [
+                        "#89b4fa",
+                        "#cba6f7",
+                        "#a6e3a1"
+                    ],
+                    "focus-bg-color": "#585b70",
+                    "menu-selected-color": "#45475a",
+                    "other-user-pill-bg-color": "#89dceb",
+                    "primary-color": "#b4befe",
+                    "reaction-row-button-selected-bg-color": "#585b70",
+                    "room-highlight-color": "#89dceb",
+                    "roomlist-background-color": "#181825",
+                    "roomlist-highlights-color": "#45475a",
+                    "roomlist-separator-color": "#7f849c",
+                    "roomlist-text-color": "#cdd6f4",
+                    "roomlist-text-secondary-color": "#313234",
+                    "secondary-content": "#cdd6f4",
+                    "sidebar-color": "#11111b",
+                    "tertiary-content": "#cdd6f4",
+                    "timeline-background-color": "#1e1e2e",
+                    "timeline-highlights-color": "#181825",
+                    "timeline-text-color": "#cdd6f4",
+                    "timeline-text-secondary-color": "#a6adc8",
+                    "togglesw-off-color": "#9399b2",
+                    "username-colors": [
+                        "#cba6f7",
+                        "#eba0ac",
+                        "#fab387",
+                        "#a6e3a1",
+                        "#94e2d5",
+                        "#89dceb",
+                        "#74c7ec",
+                        "#b4befe"
+                    ],
+                    "warning-color": "#f38ba8"
+                },
+                "is_dark": true,
+                "name": "Catppuccin Mocha"
+            },
+            {
+                "colors": {
+                    "accent-color": "#25863c",
+                    "primary-color": "#4695f7",
+                    "reaction-row-button-selected-bg-color": "#132338",
+                    "roomlist-background-color": "#0d1117",
+                    "roomlist-highlights-color": "#161b22",
+                    "roomlist-separator-color": "#21262d",
+                    "roomlist-text-color": "#c9d1d9",
+                    "roomlist-text-secondary-color": "#b9b9b9",
+                    "secondary-content": "#c9d1d9",
+                    "sidebar-color": "#161b22",
+                    "tertiary-content": "#c9d1d9",
+                    "timeline-background-color": "#0d1117",
+                    "timeline-highlights-color": "#252525",
+                    "timeline-text-color": "#c9d1d9",
+                    "timeline-text-secondary-color": "#8b949e",
+                    "username-colors": [
+                        "#f85149",
+                        "#d29922",
+                        "#42b958",
+                        "#58a6fc",
+                        "#a271f3",
+                        "#f9524a",
+                        "#43ba59",
+                        "#a372f4"
+                    ],
+                    "warning-color": "#ed4a46"
+                },
+                "is_dark": true,
+                "name": "Covalence"
+            },
+            {
+                "colors": {
+                    "accent": "#747ff4",
+                    "accent-color": "#747ff4",
+                    "alert": "#faa81ad9",
+                    "focus-bg-color": "#4752c4",
+                    "menu-selected-color": "#4752c4",
+                    "other-user-pill-bg-color": "#4752c4",
+                    "primary-color": "#00aff4",
+                    "reaction-row-button-selected-bg-color": "#4752c4",
+                    "room-highlight-color": "#4752c4",
+                    "roomlist-background-color": "#191919",
+                    "roomlist-highlights-color": "#4f545c52",
+                    "roomlist-separator-color": "#40444b",
+                    "roomlist-text-color": "#dcddde",
+                    "roomlist-text-secondary-color": "#8e9297",
+                    "secondary-content": "#dcddde",
+                    "sidebar-color": "#000000",
+                    "tertiary-content": "#dcddde",
+                    "timeline-background-color": "#000000",
+                    "timeline-highlights-color": "#04040512",
+                    "timeline-text-color": "#dcddde",
+                    "timeline-text-secondary-color": "#b9bbbe",
+                    "togglesw-off-color": "#72767d",
+                    "warning-color": "#faa81ad9"
+                },
+                "is_dark": true,
+                "name": "Discord Black"
+            },
+            {
+                "colors": {
+                    "accent": "#747ff4",
+                    "accent-color": "#747ff4",
+                    "alert": "#faa81ad9",
+                    "focus-bg-color": "#4752c4",
+                    "menu-selected-color": "#4752c4",
+                    "other-user-pill-bg-color": "#4752c4",
+                    "primary-color": "#00aff4",
+                    "reaction-row-button-selected-bg-color": "#4752c4",
+                    "room-highlight-color": "#4752c4",
+                    "roomlist-background-color": "#2f3136",
+                    "roomlist-highlights-color": "#4f545c52",
+                    "roomlist-separator-color": "#40444b",
+                    "roomlist-text-color": "#dcddde",
+                    "roomlist-text-secondary-color": "#8e9297",
+                    "secondary-content": "#dcddde",
+                    "sidebar-color": "#202225",
+                    "tertiary-content": "#dcddde",
+                    "timeline-background-color": "#36393f",
+                    "timeline-highlights-color": "#04040512",
+                    "timeline-text-color": "#dcddde",
+                    "timeline-text-secondary-color": "#b9bbbe",
+                    "togglesw-off-color": "#72767d",
+                    "warning-color": "#faa81ad9"
+                },
+                "compound": {
+                    "--cpd-color-bg-accent-rest": "#4cb387",
+                    "--cpd-color-bg-action-primary-rest": "#dcddde",
+                    "--cpd-color-bg-action-secondary-rest": "#2f3136",
+                    "--cpd-color-bg-canvas-default": "#2f3136",
+                    "--cpd-color-bg-critical-hovered": "#fd3f3c",
+                    "--cpd-color-bg-critical-primary": "#fd3f3c",
+                    "--cpd-color-bg-critical-subtle": "#745862",
+                    "--cpd-color-bg-subtle-primary": "#4f545c52",
+                    "--cpd-color-bg-subtle-secondary": "#2f3136",
+                    "--cpd-color-border-critical-primary": "#fd3f3c",
+                    "--cpd-color-border-interactive-primary": "#5d6064",
+                    "--cpd-color-border-interactive-secondary": "#5d6064",
+                    "--cpd-color-border-success-subtle": "#4cb387",
+                    "--cpd-color-icon-accent-tertiary": "#4cb387",
+                    "--cpd-color-icon-primary": "#dcddde",
+                    "--cpd-color-icon-secondary": "#dcddde",
+                    "--cpd-color-icon-tertiary": "#a7a0a7",
+                    "--cpd-color-text-action-accent": "#b9bbbe",
+                    "--cpd-color-text-critical-primary": "#fd3f3c",
+                    "--cpd-color-text-primary": "#dcddde",
+                    "--cpd-color-text-secondary": "#b9bbbe",
+                    "--cpd-color-text-success-primary": "#4cb387",
+                    "--cpd-color-theme-bg": "#0019ff"
+                },
+                "is_dark": true,
+                "name": "Discord Dark"
+            },
+            {
+                "colors": {
+                    "accent-color": "#bd93f9",
+                    "primary-color": "#bd93f9",
+                    "reaction-row-button-selected-bg-color": "#b9bbbe",
+                    "roomlist-background-color": "#1e1f29",
+                    "roomlist-highlights-color": "#00000030",
+                    "roomlist-separator-color": "#00000000",
+                    "roomlist-text-color": "#eeeeee",
+                    "roomlist-text-secondary-color": "#eeeeee",
+                    "secondary-content": "#eeeeee",
+                    "sidebar-color": "#1e1f29",
+                    "tertiary-content": "#eeeeee",
+                    "timeline-background-color": "#1e1f29",
+                    "timeline-highlights-color": "#00000030",
+                    "timeline-text-color": "#eeeeee",
+                    "timeline-text-secondary-color": "#dddddd",
+                    "warning-color": "#bd93f9"
+                },
+                "is_dark": true,
+                "name": "Dracula Flat"
+            },
+            {
+                "colors": {
+                    "accent-color": "#bd93f9",
+                    "primary-color": "#bd93f9",
+                    "reaction-row-button-selected-bg-color": "#b9bbbe",
+                    "roomlist-background-color": "#1e1f29",
+                    "roomlist-highlights-color": "#00000030",
+                    "roomlist-separator-color": "#4d4d4d90",
+                    "roomlist-text-color": "#eeeeee",
+                    "roomlist-text-secondary-color": "#eeeeee",
+                    "secondary-content": "#eeeeee",
+                    "sidebar-color": "#1e1f29",
+                    "tertiary-content": "#eeeeee",
+                    "timeline-background-color": "#282A36",
+                    "timeline-highlights-color": "#00000030",
+                    "timeline-text-color": "#eeeeee",
+                    "timeline-text-secondary-color": "#dddddd",
+                    "warning-color": "#bd93f9"
+                },
+                "is_dark": true,
+                "name": "Dracula"
+            },
+            {
+                "colors": {
+                    "accent-color": "#a7c080",
+                    "primary-color": "#a7c080",
+                    "reaction-row-button-selected-bg-color": "#4b565c",
+                    "roomlist-background-color": "#2f383e",
+                    "roomlist-highlights-color": "#4b565c",
+                    "roomlist-separator-color": "#4b565c",
+                    "roomlist-text-color": "#d3c6aa",
+                    "roomlist-text-secondary-color": "#d3c6aa",
+                    "secondary-content": "#d3c6aa",
+                    "sidebar-color": "#323d43",
+                    "tertiary-content": "#d3c6aa",
+                    "timeline-background-color": "#2b3339",
+                    "timeline-highlights-color": "#4b565c",
+                    "timeline-text-color": "#d3c6aa",
+                    "timeline-text-secondary-color": "#a7c080",
+                    "warning-color": "#e67e80"
+                },
+                "is_dark": true,
+                "name": "Everforest dark hard"
+            },
+            {
+                "colors": {
+                    "accent-color": "#73ba25",
+                    "primary-color": "#35b9ab",
+                    "reaction-row-button-selected-bg-color": "#bf616a",
+                    "roomlist-background-color": "#4a4a4a",
+                    "roomlist-highlights-color": "#2a2a2a",
+                    "roomlist-separator-color": "#3a3a3a",
+                    "roomlist-text-color": "#ffffff",
+                    "roomlist-text-secondary-color": "#dddddd",
+                    "secondary-content": "#eeeeee",
+                    "sidebar-color": "#2a2a2a",
+                    "tertiary-content": "#eeeeee",
+                    "timeline-background-color": "#3a3a3a",
+                    "timeline-highlights-color": "#bf616a",
+                    "timeline-text-color": "#eeeeee",
+                    "timeline-text-secondary-color": "#6da741",
+                    "warning-color": "#bf616a"
+                },
+                "is_dark": true,
+                "name": "Geeko dark theme"
+            },
+            {
+                "colors": {
+                    "accent": "#689d6a",
+                    "accent-color": "#bd93f9",
+                    "alert": "#cc241d",
+                    "avatar-background-colors": [
+                        "#458588",
+                        "#b16286",
+                        "#689d6a"
+                    ],
+                    "icon-button-color": "#928374",
+                    "menu-selected-color": "#504945",
+                    "primary-color": "#fe8019",
+                    "quinary-content": "#504945",
+                    "reaction-row-button-selected-bg-color": "#689d6a",
+                    "roomlist-background-color": "#1d2021",
+                    "roomlist-highlights-color": "#00000030",
+                    "roomlist-separator-color": "#4d4d4d90",
+                    "roomlist-text-color": "#a89984",
+                    "roomlist-text-secondary-color": "#00ff00",
+                    "secondary-content": "#928374",
+                    "sidebar-color": "#282828",
+                    "tertiary-content": "#928374",
+                    "timeline-background-color": "#282828",
+                    "timeline-highlights-color": "#00000030",
+                    "timeline-text-color": "#ebdbb2",
+                    "timeline-text-secondary-color": "#a89984",
+                    "username-colors": [
+                        "#cc241d",
+                        "#98971a",
+                        "#d79921",
+                        "#458588",
+                        "#b16286",
+                        "#689d6a",
+                        "#a89984",
+                        "#d65d0e"
+                    ],
+                    "warning-color": "#fb4934"
+                },
+                "is_dark": true,
+                "name": "Gruvbox Dark"
+            },
+            {
+                "colors": {
+                    "accent": "#689d6a",
+                    "accent-color": "#cc241d",
+                    "alert": "#cc241d",
+                    "avatar-background-colors": [
+                        "#458588",
+                        "#b16286",
+                        "#689d6a"
+                    ],
+                    "icon-button-color": "#928374",
+                    "menu-selected-color": "#d5c4a1",
+                    "primary-color": "#af3a03",
+                    "quinary-content": "#d5c4a1",
+                    "reaction-row-button-selected-bg-color": "#689d6a",
+                    "roomlist-background-color": "#f9f5d7",
+                    "roomlist-highlights-color": "#ebdbb2",
+                    "roomlist-separator-color": "#d5c4a1",
+                    "roomlist-text-color": "#7c6f64",
+                    "roomlist-text-secondary-color": "#504945",
+                    "secondary-content": "#928374",
+                    "sidebar-color": "#fbf1c7",
+                    "system": "#fbf1c7",
+                    "tertiary-content": "#928374",
+                    "timeline-background-color": "#fbf1c7",
+                    "timeline-highlights-color": "#00000030",
+                    "timeline-text-color": "#3c3836",
+                    "timeline-text-secondary-color": "#7c6f64",
+                    "username-colors": [
+                        "#cc241d",
+                        "#98971a",
+                        "#d79921",
+                        "#458588",
+                        "#b16286",
+                        "#689d6a",
+                        "#a89984",
+                        "#d65d0e"
+                    ],
+                    "warning-color": "#9d0006"
+                },
+                "is_dark": false,
+                "name": "Gruvbox Light"
+            },
+            {
+                "colors": {
+                    "accent-color": "#D9BC00",
+                    "primary-color": "#FFDD00",
+                    "reaction-row-button-selected-bg-color": "#FFEC70",
+                    "roomlist-background-color": "#011223",
+                    "roomlist-highlights-color": "#1E354A",
+                    "roomlist-separator-color": "#05192D",
+                    "roomlist-text-color": "#FFEC70",
+                    "roomlist-text-secondary-color": "#FFF3A4",
+                    "secondary-content": "#FFF3A4",
+                    "sidebar-color": "#020F1B",
+                    "tertiary-content": "#FFF3A4",
+                    "timeline-background-color": "#05192D",
+                    "timeline-highlights-color": "#011223",
+                    "timeline-text-color": "#FFF3A4",
+                    "timeline-text-secondary-color": "#A79000",
+                    "warning-color": "#FBC403"
+                },
+                "is_dark": true,
+                "name": "Luxury Dark theme"
+            },
+            {
+                "colors": {
+                    "accent": "#fd6883",
+                    "accent-color": "#fff1f3",
+                    "alert": "#fd6883",
+                    "avatar-background-colors": [
+                        "#458588",
+                        "#b16286",
+                        "#adda78"
+                    ],
+                    "icon-button-color": "#f9cc6c",
+                    "menu-selected-color": "#f9cc6c",
+                    "primary-color": "#f38d70",
+                    "quinary-content": "#221f22",
+                    "reaction-row-button-selected-bg-color": "#adda78",
+                    "roomlist-background-color": "#221f22",
+                    "roomlist-highlights-color": "#3b394a",
+                    "roomlist-separator-color": "#2D2a2e",
+                    "roomlist-text-color": "#fff1ff",
+                    "roomlist-text-secondary-color": "#f9cc6c",
+                    "secondary-content": "#fff1f3",
+                    "sidebar-color": "#2d2a2e",
+                    "tertiary-content": "#fff1f3",
+                    "timeline-background-color": "#2D2a2e",
+                    "timeline-highlights-color": "#00000030",
+                    "timeline-text-color": "#fff1ff",
+                    "timeline-text-secondary-color": "#fff1ff",
+                    "username-colors": [
+                        "#cc241d",
+                        "#689d6a",
+                        "#f9cc6c",
+                        "#b16286",
+                        "#85dacc",
+                        "#adda78",
+                        "#a89984",
+                        "#f38d70"
+                    ],
+                    "warning-color": "#fd6883"
+                },
+                "is_dark": true,
+                "name": "Monokai Pro"
+            },
+            {
+                "colors": {
+                    "accent": "#d6deeb",
+                    "accent-color": "#122d42",
+                    "alert": "#b39554",
+                    "focus-bg-color": "#234d708c",
+                    "menu-selected-color": "#234d708c",
+                    "other-user-pill-bg-color": "#234d708c",
+                    "primary-color": "#122d42",
+                    "reaction-row-button-selected-bg-color": "#7e57c25a",
+                    "room-highlight-color": "#234d708c",
+                    "roomlist-background-color": "#011627",
+                    "roomlist-highlights-color": "#1085bb5d",
+                    "roomlist-separator-color": "#5f7e97",
+                    "roomlist-text-color": "#d6deeb",
+                    "roomlist-text-secondary-color": "#5f7e97",
+                    "secondary-content": "#5f7e97",
+                    "sidebar-color": "#011627",
+                    "tertiary-content": "#5f7e97",
+                    "timeline-background-color": "#011627",
+                    "timeline-highlights-color": "#5F7E9779",
+                    "timeline-text-color": "#5f7e97",
+                    "timeline-text-secondary-color": "#d6deeb",
+                    "togglesw-off-color": "#010b14",
+                    "warning-color": "#b39554"
+                },
+                "is_dark": true,
+                "name": "Night Owl"
+            },
+            {
+                "colors": {
+                    "accent-color": "#a3be8c",
+                    "primary-color": "#88c0d0",
+                    "reaction-row-button-selected-bg-color": "#bf616a",
+                    "roomlist-background-color": "#3b4252",
+                    "roomlist-highlights-color": "#2e3440",
+                    "roomlist-separator-color": "#434c5e",
+                    "roomlist-text-color": "#ebcb8b",
+                    "roomlist-text-secondary-color": "#e5e9f0",
+                    "secondary-content": "#eceff4",
+                    "sidebar-color": "#2e3440",
+                    "tertiary-content": "#eceff4",
+                    "timeline-background-color": "#434c5e",
+                    "timeline-highlights-color": "#3b4252",
+                    "timeline-text-color": "#eceff4",
+                    "timeline-text-secondary-color": "#81a1c1",
+                    "warning-color": "#bf616a"
+                },
+                "compound": {
+                    "--cpd-color-bg-accent-rest": "#a3be8c",
+                    "--cpd-color-bg-action-primary-rest": "#88c0d0",
+                    "--cpd-color-bg-canvas-default": "#434c5e",
+                    "--cpd-color-bg-critical-primary": "#bf616a",
+                    "--cpd-color-bg-subtle-primary": "#3b4252",
+                    "--cpd-color-bg-subtle-secondary": "#2e3440",
+                    "--cpd-color-border-critical-primary": "#bf616a",
+                    "--cpd-color-border-interactive-primary": "#434c5e",
+                    "--cpd-color-border-success-subtle": "#a3be8c",
+                    "--cpd-color-icon-accent-tertiary": "#a3be8c",
+                    "--cpd-color-icon-primary": "#eceff4",
+                    "--cpd-color-icon-secondary": "#81a1c1",
+                    "--cpd-color-icon-tertiary": "#e5e9f0",
+                    "--cpd-color-text-action-accent": "#88c0d0",
+                    "--cpd-color-text-critical-primary": "#bf616a",
+                    "--cpd-color-text-primary": "#eceff4",
+                    "--cpd-color-text-secondary": "#81a1c1",
+                    "--cpd-color-text-success-primary": "#a3be8c",
+                    "--cpd-color-theme-bg": "#2e3440"
+                },
+                "is_dark": true,
+                "name": "Nord dark theme"
+            },
+            {
+                "colors": {
+                    "accent-color": "#a3be8c",
+                    "primary-color": "#5e81ac",
+                    "reaction-row-button-selected-bg-color": "#bf616a",
+                    "roomlist-background-color": "#e5e9f0",
+                    "roomlist-highlights-color": "#eceff4",
+                    "roomlist-separator-color": "#eceff4",
+                    "roomlist-text-color": "#d08770",
+                    "roomlist-text-secondary-color": "#3b4252",
+                    "secondary-content": "#2e3440",
+                    "sidebar-color": "#d8dee9",
+                    "tertiary-content": "#2e3440",
+                    "timeline-background-color": "#eceff4",
+                    "timeline-highlights-color": "#e5e9f0",
+                    "timeline-text-color": "#2e3440",
+                    "timeline-text-secondary-color": "#3b4252",
+                    "warning-color": "#bf616a"
+                },
+                "compound": {
+                    "--cpd-color-bg-accent-rest": "#a3be8c",
+                    "--cpd-color-bg-action-primary-rest": "#5e81ac",
+                    "--cpd-color-bg-canvas-default": "#eceff4",
+                    "--cpd-color-bg-critical-primary": "#bf616a",
+                    "--cpd-color-bg-subtle-primary": "#e5e9f0",
+                    "--cpd-color-bg-subtle-secondary": "#d8dee9",
+                    "--cpd-color-border-critical-primary": "#bf616a",
+                    "--cpd-color-border-interactive-primary": "#eceff4",
+                    "--cpd-color-border-success-subtle": "#a3be8c",
+                    "--cpd-color-icon-accent-tertiary": "#a3be8c",
+                    "--cpd-color-icon-primary": "#2e3440",
+                    "--cpd-color-icon-secondary": "#3b4252",
+                    "--cpd-color-icon-tertiary": "#3b4252",
+                    "--cpd-color-text-action-accent": "#5e81ac",
+                    "--cpd-color-text-critical-primary": "#bf616a",
+                    "--cpd-color-text-primary": "#2e3440",
+                    "--cpd-color-text-secondary": "#3b4252",
+                    "--cpd-color-text-success-primary": "#a3be8c",
+                    "--cpd-color-theme-bg": "#d8dee9"
+                },
+                "is_dark": false,
+                "name": "Nord light theme"
+            },
+            {
+                "colors": {
+                    "accent-color": "#70b433",
+                    "primary-color": "#4695f7",
+                    "reaction-row-button-selected-bg-color": "#4695f7",
+                    "roomlist-background-color": "#252525",
+                    "roomlist-highlights-color": "#3b3b3b",
+                    "roomlist-separator-color": "#121212",
+                    "roomlist-text-color": "#ffffff",
+                    "roomlist-text-secondary-color": "#b9b9b9",
+                    "secondary-content": "#FFFFFF",
+                    "sidebar-color": "#181818",
+                    "tertiary-content": "#FFFFFF",
+                    "timeline-background-color": "#181818",
+                    "timeline-highlights-color": "#252525",
+                    "timeline-text-color": "#FFFFFF",
+                    "timeline-text-secondary-color": "#777777",
+                    "warning-color": "#ed4a46"
+                },
+                "is_dark": true,
+                "name": "Selenized black theme"
+            },
+            {
+                "colors": {
+                    "accent-color": "#41c7b9",
+                    "primary-color": "#4695f7",
+                    "reaction-row-button-selected-bg-color": "#4695f7",
+                    "roomlist-background-color": "#184956",
+                    "roomlist-highlights-color": "#2d5b69",
+                    "roomlist-separator-color": "#2d5b69",
+                    "roomlist-text-color": "#dbb32d",
+                    "roomlist-text-secondary-color": "#FFFFFF",
+                    "secondary-content": "#FFFFFF",
+                    "sidebar-color": "#103c48",
+                    "tertiary-content": "#FFFFFF",
+                    "timeline-background-color": "#2d5b69",
+                    "timeline-highlights-color": "#184956",
+                    "timeline-text-color": "#FFFFFF",
+                    "timeline-text-secondary-color": "#72898f",
+                    "warning-color": "#fa5750"
+                },
+                "is_dark": true,
+                "name": "Selenized dark theme"
+            },
+            {
+                "colors": {
+                    "accent-color": "#ad8900",
+                    "primary-color": "#009c8f",
+                    "reaction-row-button-selected-bg-color": "#4695f7",
+                    "roomlist-background-color": "#ece3cc",
+                    "roomlist-highlights-color": "#fbf3db",
+                    "roomlist-separator-color": "#fbf3db",
+                    "roomlist-text-color": "#c25d1e",
+                    "roomlist-text-secondary-color": "#000000",
+                    "secondary-content": "#000000",
+                    "sidebar-color": "#d5cdb6",
+                    "tertiary-content": "#000000",
+                    "timeline-background-color": "#fbf3db",
+                    "timeline-highlights-color": "#ece3cc",
+                    "timeline-text-color": "#000000",
+                    "timeline-text-secondary-color": "#777777",
+                    "warning-color": "#d2212d"
+                },
+                "is_dark": false,
+                "name": "Selenized light theme"
+            },
+            {
+                "colors": {
+                    "accent-color": "#b58900",
+                    "primary-color": "#268bd2",
+                    "reaction-row-button-selected-bg-color": "#268bd2",
+                    "roomlist-background-color": "#073642",
+                    "roomlist-highlights-color": "#586e75",
+                    "roomlist-text-color": "#839496",
+                    "roomlist-text-secondary-color": "#93a1a1",
+                    "secondary-content": "#839496",
+                    "sidebar-color": "#002b36",
+                    "tertiary-content": "#839496",
+                    "timeline-background-color": "#002b36",
+                    "timeline-highlights-color": "#073642",
+                    "timeline-text-color": "#839496",
+                    "timeline-text-secondary-color": "#586e75",
+                    "warning-color": "#dc322f"
+                },
+                "is_dark": true,
+                "name": "Solarized Dark"
+            },
+            {
+                "colors": {
+                    "accent-color": "#b58900",
+                    "primary-color": "#268bd2",
+                    "reaction-row-button-selected-bg-color": "#268bd2",
+                    "roomlist-background-color": "#eee8d5",
+                    "roomlist-highlights-color": "#93a1a1",
+                    "roomlist-text-color": "#657b83",
+                    "roomlist-text-secondary-color": "#586e75",
+                    "secondary-content": "#657b83",
+                    "sidebar-color": "#fdf6e3",
+                    "tertiary-content": "#657b83",
+                    "timeline-background-color": "#fdf6e3",
+                    "timeline-highlights-color": "#eee8d5",
+                    "timeline-text-color": "#657b83",
+                    "timeline-text-secondary-color": "#93a1a1",
+                    "warning-color": "#dc322f"
+                },
+                "is_dark": false,
+                "name": "Solarized Light"
+            },
+            {
+                "colors": {
+                    "accent-color": "#cc7b19",
+                    "primary-color": "#9F8652",
+                    "reaction-row-button-selected-bg-color": "#cc7b19",
+                    "roomlist-background-color": "#191919",
+                    "roomlist-highlights-color": "#323232",
+                    "roomlist-separator-color": "#4c4c4c",
+                    "roomlist-text-color": "#cc7b19",
+                    "roomlist-text-secondary-color": "#e5e5e5",
+                    "secondary-content": "#e5e5e5",
+                    "sidebar-color": "#000000",
+                    "tertiary-content": "#e5e5e5",
+                    "timeline-background-color": "#000000",
+                    "timeline-highlights-color": "#212121",
+                    "timeline-text-color": "#e5e5e5",
+                    "timeline-text-secondary-color": "#b2b2b2",
+                    "warning-color": "#f9c003"
+                },
+                "is_dark": true,
+                "name": "ThomCat black theme"
+            }
+        ]
+    },
+    "show_labs_settings": true
+}

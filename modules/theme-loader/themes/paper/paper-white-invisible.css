@@ -1,0 +1,18 @@
+/* paper-white-invisible — palette (style guide: docs/styleguides/paper.md). Everything else lives in shared.css. */
+html[data-tl-theme="paper-white-invisible"] {
+  --p-paper: #FFFFFF;
+  --p-ink: #222222;
+  --p-muted: #767676;
+  --p-accent: #505050;
+  --p-on-accent: #FFFFFF;
+  --p-line: #F7F7F7;
+  --p-wash: #FAFAFA;
+  --p-wash2: #F5F5F5;
+  --p-mention: #FAFAFA;
+  --p-critical: #B3261E;
+  --p-success: #2E7D32;
+  --p-caret: #222222;
+  --p-focus: #222222;
+  --p-scheme: light;
+  --p-muted-hc: #3D3D3D;
+}

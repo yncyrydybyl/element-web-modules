@@ -1,0 +1,57 @@
+/* LCARS · Ship's Clock: day = TNG, evening = reduced lighting, night = dim amber night condition. */
+html[data-tl-theme="lcars-daylight"] {
+  --lc-c1: #ff9900; --lc-c2: #ffcc99; --lc-c3: #cc99cc; --lc-c4: #9999cc;
+  --lc-c5: #cc6666; --lc-c6: #ffcc66; --lc-c7: #9999ff; --lc-c8: #ff9966;
+  --lc-text: #ffcc99; --lc-muted: #9999cc; --lc-accent: #ff9900; --lc-crit: #cc6666;
+  --lc-shift: "ALPHA SHIFT";
+}
+html[data-tl-theme="lcars-daylight"][data-tl-phase="evening"] {
+  --lc-c1: #d9862b; --lc-c2: #d9b08a; --lc-c3: #a982a9; --lc-c4: #8282aa;
+  --lc-c5: #b35a5a; --lc-c6: #d9b058; --lc-c7: #8a8ad0; --lc-c8: #d98a63;
+  --lc-text: #e6bb8f; --lc-muted: #9a9ac4; --lc-accent: #d9862b; --lc-crit: #c46a6a;
+  --lc-link: #9ab8d9;
+  --lc-shift: "BETA SHIFT · REDUCED LIGHTING";
+}
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] {
+  --lc-c1: #b36b00; --lc-c2: #a0641a; --lc-c3: #8a5a2a; --lc-c4: #a0641a;
+  --lc-c5: #b0442e; --lc-c6: #b07a3a; --lc-c7: #946018; --lc-c8: #b36b00;
+  --lc-text: #c9893f; --lc-muted: #9a7a50; --lc-accent: #b36b00; --lc-crit: #c0553a;
+  --lc-link: #c9893f; --lc-ok: #8a8a3a; --lc-panel: #0d0802; --lc-line: #3a2608;
+  --lc-shift: "GAMMA SHIFT · NIGHT CONDITION";
+  --lc-blink: none;
+}
+/* phase fade (the loader sets data-tl-phase-fading for ~2 s) */
+html[data-tl-theme="lcars-daylight"][data-tl-phase-fading] *,
+html[data-tl-theme="lcars-daylight"][data-tl-phase-fading] *::before,
+html[data-tl-theme="lcars-daylight"][data-tl-phase-fading] *::after {
+  transition: background-color 2s, color 2s, border-color 2s;
+}
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] img,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] video { filter: brightness(0.75) sepia(0.25); }
+/* night condition: usernames in readable ambers (frame ambers are too dark for small text) */
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_Username_color1,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_Username_color4 { color: #c9893f !important; }
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_Username_color2,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_Username_color5 { color: #b8956a !important; }
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_Username_color3,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_Username_color6 { color: #d09a5a !important; }
+/* night: room pills in the brighter ambers so black labels keep >= 4.5:1 */
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="0"],
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="3"],
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="6"],
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="9"] { --lc-pill: #b07a3a; }
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="1"],
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="4"],
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="7"] { --lc-pill: #b8823f; }
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="2"],
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="5"],
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .mx_RoomListPanel [data-item-index$="8"] { --lc-pill: #c08a4a; }
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .hljs-variable,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .hljs-params,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .hljs-property,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .hljs-title,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .hljs-function,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .hljs-name,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .language-rust { color: #c9893f; }
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .hljs-keyword,
+html[data-tl-theme="lcars-daylight"][data-tl-phase="night"] .hljs-built_in { color: #d09a5a; }

@@ -1,5 +1,5 @@
 # Releases one module: builds and tests it, then creates the tag <module>-v<version> and a GitHub release
-# with the build attached (index.js, index.js.map, SHA256SUMS).
+# with the build attached (index.js, index.js.map, SHA256SUMS; multi-file modules also <module>.tar.gz).
 #
 #   gh workflow run release.yml -f module=keyboard-shortcuts
 #
@@ -36,6 +36,8 @@ on:
           - profile-status
           - files-hub
           - teams-welcome
+          - theme-loader
+          - mobile-themes
 
 permissions:
   contents: write
@@ -79,7 +81,12 @@ jobs:
             out=dist
           fi
           mkdir -p "$GITHUB_WORKSPACE/dist/$MODULE"
-          cp "$out"/index.js* "$GITHUB_WORKSPACE/dist/$MODULE/"
+          if [ -f "$out/files.txt" ]; then
+            # Multi-file module (theme-loader: CSS, fonts, images next to index.js); files.txt lists them all.
+            cp "$out"/* "$GITHUB_WORKSPACE/dist/$MODULE/"
+          else
+            cp "$out"/index.js* "$GITHUB_WORKSPACE/dist/$MODULE/"
+          fi
           ls -l "$GITHUB_WORKSPACE/dist/$MODULE"
 
       - name: Create the tag on a commit that includes the build
@@ -96,7 +103,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cd "dist/$MODULE"
-          sha256sum index.js* > SHA256SUMS
+          assets=(index.js*)
+          if [ -f files.txt ]; then
+            # Too many files for release assets: one archive of the flat module directory instead.
+            tar -czf "../$MODULE.tar.gz" --exclude=files.txt -C . .
+            mv "../$MODULE.tar.gz" .
+            assets+=("$MODULE.tar.gz")
+          fi
+          sha256sum "${assets[@]}" > SHA256SUMS
           dl="https://github.com/$GITHUB_REPOSITORY/releases/download/$TAG/index.js"
           printf '%s\n' \
             "$MODULE $VERSION, built from ${GITHUB_SHA::7}." \
@@ -105,4 +119,4 @@ jobs:
             "" \
             "Serve it from your Element Web's own origin. For ESS Community, an init container can download it at startup; see the ESS section of modules/keyboard-shortcuts/docs/deployment.md. Module settings: modules/$MODULE/README.md." \
             > ../notes.md
-          gh release create "$TAG" --verify-tag --title "$MODULE $VERSION" --notes-file ../notes.md index.js* SHA256SUMS
+          gh release create "$TAG" --verify-tag --title "$MODULE $VERSION" --notes-file ../notes.md "${assets[@]}" SHA256SUMS

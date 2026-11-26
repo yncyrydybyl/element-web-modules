@@ -1,0 +1,495 @@
+#!/usr/bin/env python3
+"""Generates docs/styleguides/teams.json and themes/teams/themes.json (phase A skeleton)."""
+import copy, json, sys
+
+ROOT = sys.argv[1]
+
+UI = '"Segoe UI Variable Text", "Segoe UI" (local) → Selawik (bundled, OFL)'
+MONO = 'Cascadia Mono (bundled, OFL) → Consolas (local)'
+
+SOURCES = [
+    {"title": "@fluentui/tokens brandColors (brandTeams, brandTeamsV21) — MIT, checked 1.0.0-alpha.24 + nightly 2026-11-13",
+     "url": "https://github.com/microsoft/fluentui/blob/master/packages/tokens/src/global/brandColors.ts"},
+    {"title": "fluentui PR #34900 'Add new brand ramp version' (teams V21 themes, merged 2025-07-29)",
+     "url": "https://github.com/microsoft/fluentui/pull/34900"},
+    {"title": "Fluent 2 alias tokens lightColor / teamsDarkColor (MIT)",
+     "url": "https://github.com/microsoft/fluentui/tree/master/packages/tokens/src/alias"},
+    {"title": "Fluent UI Northstar 0.47 Teams colours (classic #6264A7)",
+     "url": "https://unpkg.com/@fluentui/react-northstar@0.47.0/dist/es/themes/teams/colors.js"},
+    {"title": "What's New in Microsoft Teams | May 2026 – Build Edition (product screenshots, brand #5B5FC7 sampled)",
+     "url": "https://techcommunity.microsoft.com/blog/microsoftteamsblog/whats-new-in-microsoft-teams--may-2026---build-edition/4524613"},
+    {"title": "What's New in Microsoft Teams | June 2026 – InfoComm Edition (screenshots, 2025 logo)",
+     "url": "https://techcommunity.microsoft.com/blog/microsoftteamsblog/what%E2%80%99s-new-in-microsoft-teams--june-2026-%E2%80%93-infocomm-edition/4531968"},
+    {"title": "What's new in Microsoft Teams (Aug–Sep 2026: purple chat indicators, chat sections)",
+     "url": "https://support.microsoft.com/en-us/teams/platform/what-s-new-in-microsoft-teams"},
+    {"title": "MC1115312 Teams accent colours — cancelled 2025-10-27",
+     "url": "https://mc.merill.net/message/MC1115312"},
+    {"title": "MC1458472 simplified, chat-centred Copilot in Teams (Oct 2026)",
+     "url": "https://mc.merill.net/message/MC1458472"},
+    {"title": "Microsoft Design — Designing the new era of Teams",
+     "url": "https://microsoft.design/articles/designing-the-new-era-of-teams/"},
+    {"title": "Fluent UI System Icons (MIT), @fluentui/svg-icons 1.1.346",
+     "url": "https://github.com/microsoft/fluentui-system-icons"},
+    {"title": "Selawik (OFL-1.1), Segoe UI metric-compatible fallback",
+     "url": "https://github.com/microsoft/Selawik"},
+    {"title": "Cascadia Code / Mono (OFL-1.1)", "url": "https://github.com/microsoft/cascadia-code"},
+    {"title": "Teams logo 2025–present (Wikimedia Commons, PD-textlogo; trademark Microsoft)",
+     "url": "https://commons.wikimedia.org/wiki/File:Microsoft_Office_Teams_(2025%E2%80%93present).svg"},
+    {"title": "Teams logo 2019–2025 (Wikimedia Commons, PD-textlogo; trademark Microsoft)",
+     "url": "https://commons.wikimedia.org/wiki/File:Microsoft_Office_Teams_(2019%E2%80%932025).svg"},
+    {"title": "Comic Neue, Bangers, Orbitron, Share Tech Mono (OFL-1.1, google/fonts)",
+     "url": "https://github.com/google/fonts/tree/main/ofl"},
+]
+
+LIMITS = [
+    "Element Call and widget iframes only get light/dark — Teams' meeting stage (centered toolbar, red Leave) is styled only on Element's frame around the iframe.",
+    "No real app bar: Element's SpacePanel lists spaces, not apps. The rail is styled like the Teams app bar (labels via attr(aria-label)), but its items stay Home + spaces.",
+    "Header tabs (Chat | Shared | Recap | +) do not exist in Element; the header buttons (threads, files/info, pins) are restyled into a tab-like strip; real tab semantics are not added.",
+    "Compound icons are inline SVG without per-icon classes; swapping to Fluent icons requires hiding the svg and painting a mask-image on the button, keyed by aria-label/class — only for ~30 high-visibility buttons, locale-dependent where aria-label is the only hook.",
+    "Teams' Fluent Emoji (animated 3D) cannot replace Element's Twemoji text rendering; we only point --emoji-font-family at local Segoe UI Emoji where present.",
+    "Presence dots: Matrix has no reliable presence on our homeserver; we show the dot only where Element renders presence (member list), never fake it on every avatar.",
+    "Own messages on the right exist only in Element's bubble layout; group/IRC layouts get the brand tint without moving the tile.",
+    "Default-avatar data-URL images (notifications, favicon) use Element's hard-coded palette.",
+    "Segoe UI / Segoe UI Variable are proprietary: used via local() only (Windows), Selawik is what Linux/macOS users see — metrics match, glyph shapes differ slightly.",
+]
+
+BASE_REGIONS = {
+    "shell": "48px title-bar strip in rail colour across the top (enhancer), white content area; no window chrome",
+    "spaces": "Teams app bar: 68px rail, 20px Fluent icon over 10px label (attr(aria-label)), selected = 3px left brand pill + filled brand icon; Teams logo on top",
+    "roomlist": "Chat list 320px: 'Chat' title Semibold 20, filter chips as Fluent pills, 32px avatars, name Semibold 14, preview 12 muted, time right; selected row white card radius 4",
+    "header": "64px: avatar 32 + name Semibold 18, header buttons restyled as a tab strip with 2px brand underline on the active (open right-panel) tab; call buttons as Fluent subtle buttons right",
+    "timeline": "others: grey cards radius 8 left; own: brand160 tint (right-aligned in bubble layout); avatar only on first of group; timestamp muted 12 next to name; hover reaction bar = Element action bar styled as floating card shadow8",
+    "names-avatars": "names Semibold 14 in text colour (not rainbow) — Teams does not colour names; decorative colours only for default-avatar backgrounds; circular avatars",
+    "composer": "rounded box radius 8 on canvas, 1px stroke, 2px brand bottom border on focus, icons right (emoji, attach, +), send = brand paper-plane",
+    "rightpanel": "Fluent side pane: white, 1px left stroke, title Semibold 16 + dismiss X, members list with presence where available",
+    "buttons": "primary brand fill radius 4 Semibold 14, 32px tall; secondary white with 1px #d1d1d1 stroke; subtle = transparent with brand hover",
+    "inputs": "Fluent input: 32px, radius 4, 1px stroke + 1px darker bottom, 2px brand bottom on focus",
+    "dialogs": "Fluent Dialog: radius 8, shadow64, title Semibold 20, buttons bottom-right primary first",
+    "menus": "Fluent Menu flyout: radius 8, shadow16, 32px items with icon, tooltips dark #242424 radius 4",
+    "settings": "Settings as Teams settings page: left nav list with brand pill on selected, content max-width 640",
+    "auth": "white card radius 8 shadow16 on soft lavender gradient, Teams logo above, brand primary button",
+    "scrollbars": "thin 6px overlay scrollbars, thumb #c7c7c7 / hover #8a8a8a, no track",
+    "focus": "Fluent focus: 2px #000 outer + 1px #fff inner outline, radius follows element",
+    "badges": "unread count = brand circle (mention = #c4314b), activity = purple dot (2026 indicator)",
+    "code": "Cascadia Mono 13, code block bg #f5f5f5 radius 4, hljs = VS Code Light+",
+    "iframes": "Element Call/widgets light; only the frame gets radius 8 and the centered Teams toolbar look on Element's call controls",
+    "icons": "Fluent System Icons regular (20) on rail/header/composer, filled + brand when active; via mask-image",
+    "motion": "Fluent durations 100–250ms, easyEase cubic-bezier(.33,0,.67,1); off under reduced motion",
+}
+
+def variant(**kw):
+    v = {
+        "phases": None, "difficulty": "medium", "enhancer": None,
+        "regions": copy.deepcopy(BASE_REGIONS),
+    }
+    regions = kw.pop("regions", {})
+    v.update(kw)
+    v["regions"].update(regions)
+    return v
+
+V = []
+
+# ---------- 2026 light (pure) ----------
+P2026L = {"bg": "#ffffff", "surface": "#ffffff", "sidebar": "#f5f5f5", "rail": "#ebebeb",
+          "text": "#242424", "muted": "#616161", "accent": "#5b5fc7", "onAccent": "#ffffff",
+          "border": "#e0e0e0", "own": "#e8ebfa", "other": "#f5f5f5", "critical": "#c4314b", "success": "#107c10"}
+V.append(variant(
+    id="teams-2026-light", name="Teams 2026 · Light", stage="pure", mode="light", seriousness=9, hype=3,
+    tagline="Teams as it ships in November 2026 — Fluent 2, #5B5FC7, chat sections, Copilot everywhere.",
+    palette=P2026L,
+    fonts={"ui": UI, "display": "Segoe UI Variable Display (local) → Selawik Semibold", "mono": MONO},
+    shape={"radius": "4px controls / 8px cards & bubbles", "border": "hairline",
+           "shadow": "Fluent shadow4 on cards (0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.14)), shadow16 menus, shadow64 dialogs",
+           "density": "normal"},
+    texture="none",
+    motion="Fluent 2: 150–200ms easyEase fades/slides on menus and hover bars; no idle motion",
+    signature=["3px brand pill + filled icon on the selected rail item, labels under rail icons",
+               "own messages in #E8EBFA bubbles, others in #F5F5F5 bubbles on a white canvas",
+               "2px #5B5FC7 underline on the focused composer and the active header tab",
+               "purple activity dot + 'Muted' / 'Meetings' section look in the chat list (2026 chat sections)",
+               "Copilot sparkle chip in header and composer with the Copilot gradient stroke, 2025 gradient Teams logo"],
+    regions={"badges": "unread = #5B5FC7 count pill, mention = #C4314B, room with activity gets the 2026 purple left dot",
+             "header": "64px: avatar 32 + name Semibold 18, header buttons as tab strip (2px brand underline), Copilot sparkle chip, video/call split button right"},
+    difficulty="medium",
+    enhancer=None,
+))
+
+# ---------- 2026 dark ----------
+P2026D = {"bg": "#242424", "surface": "#292929", "sidebar": "#1f1f1f", "rail": "#141414",
+          "text": "#ffffff", "muted": "#adadad", "accent": "#4f52b2", "onAccent": "#ffffff",
+          "border": "#525252", "own": "#2f2f4a", "other": "#292929", "critical": "#dc626d", "success": "#54b054"}
+V.append(variant(
+    id="teams-2026-dark", name="Teams 2026 · Dark", stage="pure", mode="dark", seriousness=9, hype=3,
+    tagline="The same Teams, in the darker 2.x dark theme — brand70 fills, brand100 text.",
+    palette=P2026D,
+    fonts={"ui": UI, "display": "Segoe UI Variable Display (local) → Selawik Semibold", "mono": MONO},
+    shape={"radius": "4px controls / 8px cards & bubbles", "border": "hairline",
+           "shadow": "Fluent dark shadows (ambient .24 / key .28)", "density": "normal"},
+    texture="none",
+    motion="as 2026 light",
+    signature=["near-black #141414 rail with #7F85F5 filled icon + pill on the selected item",
+               "own bubbles #2F2F4A (brand20), others #292929 on #242424",
+               "links and accent text #7F85F5 (brand100), buttons #4F52B2 (brand70)",
+               "2px #7F85F5 focus underline on composer and active tab",
+               "Copilot gradient chip glowing softly on dark"],
+    regions={"code": "Cascadia Mono 13, block bg #1f1f1f, hljs = VS Code Dark+",
+             "iframes": "Element Call/widgets dark",
+             "focus": "Fluent dark focus: 2px #fff outer + 1px #000 inner",
+             "scrollbars": "thin 6px, thumb #5c5c5c / hover #8a8a8a",
+             "auth": "#292929 card radius 8 on deep indigo gradient (#29274f → #1f1f1f), logo above",
+             "timeline": "others #292929 cards, own #2F2F4A, same grouping/hover bar as light"},
+    enhancer=None,
+))
+
+# ---------- 2026 daylight ----------
+dawn = dict(P2026L, bg="#fcfcff", sidebar="#f3f3f9", rail="#e9e9f3", own="#e8ebfa")
+dusk = dict(P2026L, bg="#fffbf5", surface="#fffdf9", sidebar="#f8f1e7", rail="#efe6da", own="#ece7f6",
+            other="#f6efe6", border="#e6dccf", muted="#635c55", text="#2a2522")
+V.append(variant(
+    id="teams-2026-daylight", name="Teams 2026 · Daylight", stage="pure", mode="daylight", seriousness=9, hype=4,
+    tagline="Light while you work, amber-warm after 18:00, Teams dark at night.",
+    palette=P2026L,
+    phases={"dawn": dawn, "day": P2026L, "dusk": dusk, "night": P2026D,
+            "schedule": [{"from": "06:00", "phase": "dawn", "base": "light"},
+                         {"from": "09:00", "phase": "day", "base": "light"},
+                         {"from": "18:00", "phase": "dusk", "base": "light"},
+                         {"from": "21:00", "phase": "night", "base": "dark"}]},
+    fonts={"ui": UI, "display": "Segoe UI Variable Display (local) → Selawik Semibold", "mono": MONO},
+    shape={"radius": "4px / 8px", "border": "hairline", "shadow": "Fluent per phase", "density": "normal"},
+    texture="none",
+    motion="phase changes cross-fade background/colour over 2s (none under reduced motion); otherwise as 2026",
+    signature=["the 2026 light UI by day", "a cool lavender cast at dawn", "night-light amber neutrals from 18:00 (brand stays #5B5FC7)",
+               "switches to 2026 dark at 21:00", "the title-bar logo shows the phase as a tiny sun/moon glyph"],
+    regions={"shell": "2026 light/dark shell; dawn/dusk only shift the neutrals (canvas, list, rail, borders)",
+             "iframes": "light for dawn/day/dusk, dark at night (data-tl-base)",
+             "motion": "2s colour cross-fade at phase boundaries, Fluent micro-motion otherwise; reduced motion = instant"},
+    difficulty="medium",
+    enhancer=None,
+))
+
+# ---------- 2024 (past) ----------
+P2024 = {"bg": "#ffffff", "surface": "#ffffff", "sidebar": "#f5f5f5", "rail": "#ebebeb",
+         "text": "#242424", "muted": "#616161", "accent": "#5b5fc7", "onAccent": "#ffffff",
+         "border": "#e0e0e0", "own": "#e8ebfa", "other": "#f5f5f5", "critical": "#c4314b", "success": "#107c10"}
+V.append(variant(
+    id="teams-2024", name="Teams 2024 · New Teams 2.0", stage="past", mode="light", seriousness=9, hype=2,
+    tagline="'New Teams' at launch: the first Fluent 2 client, restrained purple, 2019 logo, no Copilot yet.",
+    palette=P2024,
+    fonts={"ui": UI, "display": "Segoe UI Semibold (local) → Selawik Semibold", "mono": MONO},
+    shape={"radius": "4px everywhere (bubbles too)", "border": "hairline", "shadow": "Fluent shadow2 on bubbles", "density": "normal"},
+    texture="Mica hint: title bar and rail #ebebeb with a 2% lavender wash (static gradient, no blur)",
+    motion="Fluent 100–150ms, slightly snappier and fewer transitions than 2026",
+    signature=["2019 flat 'T' tile logo (#5059C9/#7B83EB)", "separate 'Chat' list — flat, no sections, no activity dots",
+               "4px radius bubbles with shadow2", "rail labels always visible, Activity/Chat/Teams/Calendar feel",
+               "no Copilot chips, no gradients anywhere"],
+    regions={"badges": "unread = #5B5FC7 count, mention = #C4314B with '@' glyph",
+             "header": "56px: name Semibold 18 + Chat/Shared tabs with 2px brand underline, video/call buttons right",
+             "timeline": "others #F5F5F5 bubbles radius 4 shadow2; own #E8EBFA; hover reaction bar"},
+    difficulty="easy",
+    enhancer=None,
+))
+
+# ---------- classic 2020 (past) ----------
+PCL = {"bg": "#f3f2f1", "surface": "#ffffff", "sidebar": "#f3f2f1", "rail": "#33344a",
+       "text": "#252423", "muted": "#605e5c", "accent": "#6264a7", "onAccent": "#ffffff",
+       "border": "#e1dfdd", "own": "#e5e5f1", "other": "#ffffff", "critical": "#c4314b", "success": "#237b4b"}
+V.append(variant(
+    id="teams-classic-2020", name="Teams Classic 2020", stage="past", mode="light", seriousness=8, hype=2,
+    tagline="Lockdown-era classic Teams: #464775 top bar, dark rail, #6264A7, grey canvas, white cards.",
+    palette=PCL,
+    fonts={"ui": '"Segoe UI" (local) → Selawik', "display": "Segoe UI Semibold/Bold (local) → Selawik", "mono": MONO},
+    shape={"radius": "3px", "border": "hairline", "shadow": "0 1px 2px rgba(0,0,0,.1) on cards", "density": "compact"},
+    texture="none",
+    motion="almost none: 100ms hover colour, no slides (Northstar era)",
+    signature=["full-width #464775 purple top bar with a centered white search box", "#33344A dark app bar, white icons, #6264A7 left pill",
+               "grey #F3F2F1 canvas with white message cards (radius 3) and #E5E5F1 own cards", "dense 13–14px text, Semibold names",
+               "purple #6264A7 everywhere: links, buttons, toggles; 2019 Teams logo top-left"],
+    regions={"shell": "48px #464775 top bar across the full width (enhancer) with white search box and avatar; grey canvas",
+             "spaces": "#33344A rail 68px, white 20px icons + 10px labels, selected #6264A7 left pill and lighter tile",
+             "roomlist": "#F3F2F1 list, 'Chat' header Bold 18, 32px avatars, selected row white, unread names Bold",
+             "header": "white header 48px with name Bold 18 and 'Chat | Files | +' tab strip, purple underline",
+             "timeline": "white cards radius 3 on #F3F2F1, own cards #E5E5F1 (right in bubble layout), names Semibold 13",
+             "composer": "white box, 1px #E1DFDD, purple 2px bottom on focus, toolbar icons below, send icon #6264A7",
+             "buttons": "#6264A7 fill radius 3 Semibold, secondary white with #E1DFDD stroke",
+             "inputs": "#F3F2F1 filled inputs radius 3, purple 2px bottom on focus (Northstar)",
+             "dialogs": "radius 3, shadow 0 6px 24px rgba(0,0,0,.25), title Bold 18",
+             "menus": "radius 3, shadow 0 3px 8px rgba(0,0,0,.2), #F3F2F1 hover",
+             "auth": "white card on #F3F2F1, purple button, 2019 logo",
+             "badges": "#C4314B red count pill (classic used red for unread), #6264A7 for mentions-free activity",
+             "code": "Cascadia Mono 13 → Consolas, #F3F2F1 block radius 3"},
+    difficulty="medium",
+    enhancer=None,
+))
+
+# ---------- 2028 (future) ----------
+P2028 = {"bg": "#f4f3fb", "surface": "#ffffffb8", "sidebar": "#ffffff99", "rail": "#ffffff73",
+         "text": "#1f1d2e", "muted": "#5c5a70", "accent": "#654cf5", "onAccent": "#ffffff",
+         "border": "#ffffffcc", "own": "#e8e8ff", "other": "#ffffffd9", "critical": "#c4314b", "success": "#107c10"}
+V.append(variant(
+    id="teams-2028", name="Teams 2028 · Copilot Glass", stage="future", mode="light", seriousness=7, hype=7,
+    tagline="Speculative: the staged V21 violet ramp (#654CF5), floating glass panes, Copilot as a first-class column.",
+    palette=P2028,
+    fonts={"ui": UI, "display": "Segoe UI Variable Display Semibold (local) → Selawik Semibold, optical size large", "mono": MONO},
+    shape={"radius": "16px panes / 12px bubbles / pill buttons", "border": "glow",
+           "shadow": "Fluent shadow28 (0 0 8px rgba(0,0,0,.12), 0 14px 28px rgba(0,0,0,.14)), 1px inner white highlight", "density": "airy"},
+    texture="aurora wallpaper from the 2025 logo stops (#a1d3ff → #bd96ff → #e3acfd) behind backdrop-filter: blur(30px) saturate(1.4) panes",
+    motion="250–300ms gentle spring on pane focus; Copilot chips shimmer once on mount; no idle loops; all off under reduced motion",
+    signature=["every region is a floating rounded glass pane with 12px gutters over an aurora wallpaper",
+               "#654CF5 V21 violet for actions, #E8E8FF own bubbles",
+               "right panel restyled as the 'Copilot' pane with gradient header (blue → teal → violet → pink)",
+               "AI suggestion chips with iridescent border above the composer",
+               "2025 gradient Teams logo as a floating orb at the top of the rail"],
+    regions={"shell": "aurora gradient wallpaper; rail, list, conversation and right panel as separate floating panes (gap 12px, radius 16)",
+             "spaces": "glass pill rail 64px floating, icons 24px no labels, selected = filled violet circle",
+             "roomlist": "glass pane, AI 'catch up' summary card at top (decorative), rows radius 12, selected row #E8E8FF",
+             "header": "transparent header inside the conversation pane, large Variable Display 22px name, Copilot 'Recap' chip",
+             "timeline": "bubbles radius 12; own #E8E8FF right; others white 85% glass; no backdrop-filter per tile (perf)",
+             "composer": "floating pill composer radius 24 with shadow28, violet send orb, AI chips row above",
+             "rightpanel": "'Copilot' pane: gradient header strip, glass body, cards radius 12",
+             "buttons": "pill buttons, violet fill, hover lifts 1px with shadow8",
+             "inputs": "pill inputs, 2px violet ring on focus",
+             "dialogs": "glass dialog radius 20, blur(30px), shadow64",
+             "menus": "glass flyouts radius 12, blur(20px)",
+             "auth": "aurora wallpaper with one centered glass card and the logo orb",
+             "badges": "violet pill counts, mention = pink-red #c4314b with soft glow",
+             "code": "Cascadia Mono, block on white 70% glass radius 12",
+             "icons": "Fluent filled 24 icons; sparkle glyph with Copilot gradient for AI surfaces",
+             "focus": "2px #654CF5 ring + 2px white halo"},
+    difficulty="hard",
+    enhancer="Copilot suggestion chips floating above the composer (overlay in ctx.root, follows the composer; click inserts a canned prompt, nothing is sent)",
+))
+
+# ---------- usable light ----------
+PUL = {"bg": "#ffffff", "surface": "#ffffff", "sidebar": "#f5f5f5", "rail": "#ebebeb",
+       "text": "#242424", "muted": "#424242", "accent": "#5b5fc7", "onAccent": "#ffffff",
+       "border": "#d1d1d1", "own": "#e8ebfa", "other": "#f5f5f5", "critical": "#b10e1c", "success": "#0e700e"}
+usable_regions = {
+    "timeline": "Teams bubbles/cards but Element's layout choice respected (group/IRC/bubble), threads summary, read receipts and E2EE padlocks kept visible",
+    "names-avatars": "names Semibold 14 in text colour; Element's per-user colour kept as a 3px avatar ring for disambiguation",
+    "rightpanel": "Fluent pane, all Element cards (threads, members, room info, verification) styled, nothing hidden",
+    "buttons": "primary brand fill radius 4, min 36px tall / 40px hit area; icon buttons 40×40",
+    "badges": "unread count + mention red with '@' glyph (not colour-only), activity dot kept",
+    "focus": "always visible: 2px #000 + 1px #fff (Fluent), never removed on mouse",
+    "icons": "Element/Compound icons kept (recoloured), only rail/composer swapped to Fluent — no meaning lost",
+    "motion": "Fluent micro-motion ≤150ms, off under reduced motion",
+}
+V.append(variant(
+    id="teams-usable-light", name="Teams Usable · Light", stage="usable", mode="light", seriousness=9, hype=2,
+    tagline="Feels like Teams, behaves like Element: threads, shields, receipts and bigger targets kept, AA+ contrast.",
+    palette=PUL,
+    fonts={"ui": UI, "display": "Selawik Semibold", "mono": MONO},
+    shape={"radius": "4px / 8px", "border": "hairline", "shadow": "Fluent shadow4", "density": "normal"},
+    texture="none",
+    motion="Fluent micro-motion, ≤150ms",
+    signature=["Teams rail, chat list and bubble colours", "muted text #424242 (7:1+) instead of #616161",
+               "E2EE shields and read receipts always visible", "40px hit areas on all icon buttons",
+               "Element's action bar on keyboard focus, not hover-only"],
+    regions=usable_regions,
+    difficulty="easy",
+    enhancer=None,
+))
+PUD = {"bg": "#242424", "surface": "#292929", "sidebar": "#1f1f1f", "rail": "#141414",
+       "text": "#ffffff", "muted": "#d6d6d6", "accent": "#5b5fc7", "onAccent": "#ffffff",
+       "border": "#666666", "own": "#2f2f4a", "other": "#2e2e2e", "critical": "#f1707b", "success": "#54b054"}
+V.append(variant(
+    id="teams-usable-dark", name="Teams Usable · Dark", stage="usable", mode="dark", seriousness=9, hype=2,
+    tagline="Usable Teams in dark: brighter muted text, #9299F7 links, visible strokes.",
+    palette=PUD,
+    fonts={"ui": UI, "display": "Selawik Semibold", "mono": MONO},
+    shape={"radius": "4px / 8px", "border": "hairline", "shadow": "Fluent dark shadow4", "density": "normal"},
+    texture="none",
+    motion="Fluent micro-motion, ≤150ms",
+    signature=["Teams dark structure", "muted #D6D6D6, links #9299F7 (brand110)", "#666666 strokes on every control",
+               "E2EE shields and receipts visible", "40px hit areas"],
+    regions=dict(usable_regions, focus="always visible: 2px #fff + 1px #000", code="Cascadia Mono, block #1f1f1f, hljs VS Code Dark+",
+                 iframes="Element Call/widgets dark"),
+    difficulty="easy",
+    enhancer=None,
+))
+
+# ---------- comic ----------
+PCO = {"bg": "#fff8e7", "surface": "#ffffff", "sidebar": "#fdefc3", "rail": "#5b5fc7",
+       "text": "#111111", "muted": "#4a4a4a", "accent": "#5b5fc7", "onAccent": "#ffffff",
+       "border": "#111111", "own": "#d9dbff", "other": "#ffffff", "critical": "#e8222e", "success": "#1e9e4a"}
+V.append(variant(
+    id="teams-comic", name="Teams · Comic", stage="comic", mode="light", seriousness=3, hype=8,
+    tagline="Monday stand-up as a comic strip: ink outlines, halftone, speech bubbles, PING!",
+    palette=PCO,
+    fonts={"ui": '"Comic Sans MS" (local) → Comic Neue (bundled, OFL)', "display": "Bangers (bundled, OFL)", "mono": MONO},
+    shape={"radius": "14px wobbly (border-radius 255px 15px 225px 15px / 15px 225px 15px 255px on bubbles)", "border": "sketch",
+           "shadow": "hard offset 4px 4px 0 #111", "density": "normal"},
+    texture="halftone dots (radial-gradient 1.5px, 8px grid, 8% ink) on canvas; yellow #FFE14D panel gutters",
+    motion="speech bubbles pop in (scale .9→1, 150ms) on new messages only; 'PING!' burst on new mentions; all off under reduced motion",
+    signature=["messages as speech bubbles with ink tails pointing at the avatar", "3px #111 outlines + hard 4px offset shadows on every panel",
+               "Bangers lettering for room names and dialog titles", "starburst badges, red 'PING!' burst for mentions",
+               "halftone canvas, panel gutters like a comic page; Teams purple rail as the masthead"],
+    regions={"shell": "comic page: yellow #FFE14D gutters, every region a panel with 3px ink border + offset shadow",
+             "spaces": "purple #5B5FC7 masthead rail, white icons with ink outline, selected = yellow starburst behind",
+             "roomlist": "panel on #FDEFC3, rows as small caption boxes, selected row white with ink border",
+             "header": "caption box: room name in Bangers 26 uppercase, buttons as ink-outlined circles",
+             "timeline": "speech bubbles with tails (CSS ::before), others white, own #D9DBFF; names as Bangers 15 captions",
+             "names-avatars": "avatars with 2.5px ink ring, names in Bangers, decorative colours as flat comic fills",
+             "composer": "a thought-bubble-shaped box, ink outline, 'SEND!' starburst button",
+             "rightpanel": "inset panel with ink border",
+             "buttons": "chunky ink-outlined pills, offset shadow, press = shadow collapses (translate 2px)",
+             "inputs": "white boxes with 2.5px ink border, yellow fill on focus",
+             "dialogs": "big panel tilted -0.5deg, Bangers title, halftone header strip",
+             "menus": "ink-outlined boxes, offset shadow; tooltips as small speech bubbles",
+             "settings": "panels per section, Bangers headings",
+             "auth": "cover page: 'TEAMS COMICS #1' masthead, halftone burst, login card as panel",
+             "scrollbars": "12px, ink thumb with white border",
+             "focus": "4px yellow #FFE14D outline + 2px ink outer",
+             "badges": "red starburst counts; mention burst says 'PING!' (Bangers)",
+             "code": "Cascadia Mono on white panel with ink border, hljs comic-bright",
+             "iframes": "light; frame gets ink border + offset shadow",
+             "icons": "Fluent filled icons with 1px ink stroke via drop-shadow trick on rail/composer",
+             "motion": "pop-in on new bubbles + PING! burst; no loops; reduced motion = static"},
+    difficulty="hard",
+    enhancer=None,
+))
+
+# ---------- cyberpunk ----------
+PCY = {"bg": "#0b0614", "surface": "#140c24", "sidebar": "#0f0a1c", "rail": "#07040d",
+       "text": "#e9e4ff", "muted": "#a59ad0", "accent": "#a66bff", "onAccent": "#0b0614",
+       "border": "#3a2a66", "own": "#241447", "other": "#140c24", "critical": "#ff3b5c", "success": "#2dff9a"}
+V.append(variant(
+    id="teams-cyberpunk", name="Teams · Night City", stage="cyberpunk", mode="dark", seriousness=3, hype=10,
+    tagline="Teams wired into Night City: neon violet, cyan and hot pink, chamfered panels, scanlines, glitch.",
+    palette=PCY,
+    fonts={"ui": UI, "display": "Orbitron (bundled, OFL, variable 400–900)", "mono": "Share Tech Mono (bundled, OFL) → Cascadia Mono"},
+    shape={"radius": "0 — chamfered corners via clip-path polygon (10px cut)", "border": "glow",
+           "shadow": "neon glow 0 0 12px rgba(166,107,255,.55); cyan #00f0ff for focus", "density": "normal"},
+    texture="scanlines (repeating-linear-gradient 2px, 6% opacity) as ONE fixed overlay; faint violet grid on the shell",
+    motion="RGB-split glitch on the room name on hover (200ms), cursor-blink caret in composer, slow neon flicker on the logo only; all off under reduced motion",
+    signature=["chamfered (cut-corner) panels with 1px neon borders", "#A66BFF violet + #00F0FF cyan + #FF2E97 pink, #FCEE0A warnings",
+               "Orbitron uppercase headers with letter-spacing .12em", "Share Tech Mono timestamps and metadata like a HUD",
+               "scanline overlay and glitch on the room title"],
+    regions={"shell": "#0b0614 with faint 40px violet grid, scanline overlay above everything (pointer-events none)",
+             "spaces": "#07040d rail, cyan icons, selected = violet glowing left bar + chamfered tile",
+             "roomlist": "rows with chamfered hover, unread names cyan, preview mono",
+             "header": "Orbitron 18 uppercase name with glitch on hover, buttons as chamfered neon outline",
+             "timeline": "chamfered cards, own #241447 with violet edge, others #140c24 with cyan hairline; mono timestamps",
+             "names-avatars": "names in neon decorative ramp (violet, cyan, pink, yellow, lime, orange) on dark; avatars hexagon clip",
+             "composer": "terminal-style input, '>' prompt glyph, blinking block caret, violet glow on focus",
+             "rightpanel": "HUD panel with corner brackets",
+             "buttons": "chamfered, violet fill + dark text or neon outline; hover = glow + 1px shift",
+             "inputs": "transparent with cyan bottom line, glow on focus",
+             "dialogs": "chamfered panel, Orbitron title, corner brackets, glitch-in once",
+             "menus": "chamfered, neon border, mono labels",
+             "settings": "HUD sections with Orbitron headings",
+             "auth": "full-bleed neon city gradient (violet→pink horizon), chamfered login card, 'JACK IN' button",
+             "scrollbars": "4px violet thumb with glow",
+             "focus": "2px #00F0FF outline + glow",
+             "badges": "pink #FF2E97 counts, mentions yellow #FCEE0A on black",
+             "code": "Share Tech Mono on #07040d, synthwave hljs (pink keywords, cyan strings)",
+             "iframes": "dark; frame gets neon chamfer border",
+             "icons": "Fluent regular icons in cyan, filled violet when active, drop-shadow glow",
+             "motion": "glitch on hover, caret blink, logo flicker; reduced motion = none"},
+    difficulty="hard",
+    enhancer=None,
+))
+
+guide = {
+    "family": "teams",
+    "name": "Microsoft Teams",
+    "concept": ("Element dressed as Microsoft Teams across three eras: classic purple Teams (2020), the first Fluent 2 'new Teams' (2024) "
+                "and Teams as it actually ships in November 2026 (light, dark and a clock-driven daylight variant). "
+                "From that faithful core the family fans out to usable variants that keep Element's affordances, a speculative 2028 "
+                "Copilot-glass Teams built on Microsoft's staged V21 violet ramp, and two hype takes: a comic strip and Night City cyberpunk."),
+    "sources": SOURCES,
+    "limits": LIMITS,
+    "variants": V,
+}
+
+with open(f"{ROOT}/docs/styleguides/teams.json", "w") as f:
+    json.dump(guide, f, indent=2, ensure_ascii=False)
+    f.write("\n")
+
+# ---------------- manifest ----------------
+SEG_LOCAL = {"300": ["Segoe UI Light", "SegoeUI-Light"], "350": ["Segoe UI Semilight", "SegoeUI-Semilight"],
+             "400": ["Segoe UI", "SegoeUI"], "600": ["Segoe UI Semibold", "SegoeUI-Semibold"], "700": ["Segoe UI Bold", "SegoeUI-Bold"]}
+SEG_FILE = {"300": "light", "350": "semilight", "400": "regular", "600": "semibold", "700": "bold"}
+SEL = [{"family": "TL Segoe", "local": SEG_LOCAL[w], "file": f"assets/selawik-{SEG_FILE[w]}.woff2", "weight": w,
+        "style": "normal", "display": "swap"} for w in ["300", "350", "400", "600", "700"]]
+CAS = [{"family": "TL Cascadia", "local": ["Cascadia Mono", "CascadiaMono-Regular"] if w == "400" else [f"Cascadia Mono {n}", f"CascadiaMono-{n}"],
+        "file": f"assets/cascadia-mono-{n.lower()}.woff2", "weight": w, "style": "normal", "display": "swap"}
+       for w, n in [("400", "Regular"), ("600", "SemiBold"), ("700", "Bold")]]
+COMIC = [
+    {"family": "TL Comic", "local": ["Comic Sans MS", "ComicSansMS"], "file": "assets/comic-neue-regular.woff2", "weight": "400", "style": "normal", "display": "swap"},
+    {"family": "TL Comic", "local": ["Comic Sans MS Bold", "ComicSansMS-Bold"], "file": "assets/comic-neue-bold.woff2", "weight": "700", "style": "normal", "display": "swap"},
+    {"family": "Bangers", "file": "assets/bangers-regular.woff2", "weight": "400", "style": "normal", "display": "swap"},
+]
+CYBER = [
+    {"family": "Orbitron", "file": "assets/orbitron-vf.woff2", "weight": "400 900", "style": "normal", "display": "swap"},
+    {"family": "Share Tech Mono", "file": "assets/share-tech-mono-regular.woff2", "weight": "400", "style": "normal", "display": "swap"},
+]
+SANS = '"Segoe UI Variable Text", "TL Segoe", -apple-system, BlinkMacSystemFont, system-ui, sans-serif, "Segoe UI Emoji"'
+MONO_STACK = '"TL Cascadia", Consolas, "Courier New", monospace'
+FONT_TOKENS = {
+    "teams-comic": ('"TL Comic", "Comic Sans MS", "Comic Neue", cursive, sans-serif', MONO_STACK),
+    "teams-cyberpunk": (SANS, '"Share Tech Mono", "TL Cascadia", monospace'),
+}
+
+def tokens(p, dark=False):
+    return {
+        "--cpd-color-bg-canvas-default": p["bg"][:7],
+        "--cpd-color-bg-subtle-secondary": p["sidebar"][:7],
+        "--cpd-color-bg-subtle-primary": p["rail"][:7],
+        "--cpd-color-text-primary": p["text"],
+        "--cpd-color-text-secondary": p["muted"],
+        "--cpd-color-bg-action-primary-rest": p["accent"],
+        "--cpd-color-bg-accent-rest": p["accent"],
+        "--cpd-color-text-on-solid-primary": p["onAccent"],
+        "--cpd-color-border-interactive-secondary": p["border"][:7],
+        "--cpd-color-bg-critical-primary": p["critical"],
+        "--cpd-color-text-critical-primary": p["critical"],
+        "--cpd-color-text-success-primary": p["success"],
+    }
+
+DESC = {
+    "teams-2026-light": "Microsoft Teams as shipped in November 2026: Fluent 2, brand #5B5FC7, app-bar rail, chat list with sections, bubble messages, Copilot chips.",
+    "teams-2026-dark": "Teams 2026 dark theme: #141414 rail, #242424 canvas, brand70 #4F52B2 buttons, brand100 #7F85F5 accents.",
+    "teams-2026-daylight": "Teams 2026 following the local clock: cool dawn, light day, amber dusk, Teams dark at night.",
+    "teams-2024": "'New Teams' 2.0 (2023–24): first Fluent 2 client, restrained #5B5FC7, 4px radii, 2019 logo, no Copilot.",
+    "teams-classic-2020": "Classic Teams (2020): #464775 top bar, #33344A rail, brand #6264A7, grey canvas with white cards, dense.",
+    "teams-2028": "Speculative Teams 2028: V21 violet #654CF5, floating glass panes over an aurora wallpaper, Copilot pane.",
+    "teams-usable-light": "Teams look with Element affordances kept: threads, shields, receipts, 40px targets, high-contrast text.",
+    "teams-usable-dark": "Usable Teams in dark with brighter text and visible strokes.",
+    "teams-comic": "Teams as a comic strip: ink outlines, halftone, speech-bubble messages, Bangers lettering, PING! bursts.",
+    "teams-cyberpunk": "Teams in Night City: neon violet/cyan/pink, chamfered panels, scanlines, glitching titles. Heavy effects; reduced motion respected.",
+}
+BASE = {"light": "light", "dark": "dark", "daylight": "light"}
+FONTS = {
+    "teams-comic": SEL + CAS + COMIC,
+    "teams-cyberpunk": SEL + CYBER + CAS,
+}
+ENH = {"teams-2028": True}
+
+manifest = {"family": "teams", "name": "Microsoft Teams", "variants": []}
+for v in V:
+    m = {
+        "id": v["id"], "name": v["name"], "stage": v["stage"], "mode": v["mode"],
+        "base": BASE[v["mode"]], "seriousness": v["seriousness"], "hype": v["hype"],
+        "description": DESC[v["id"]],
+        "css": ["shared.css", f"{v['id']}.css"],
+        "fonts": FONTS.get(v["id"], SEL + CAS),
+        "tokens": dict(tokens(v["palette"]), **{"--cpd-font-family-sans": FONT_TOKENS.get(v["id"], (SANS, MONO_STACK))[0],
+                                               "--cpd-font-family-mono": FONT_TOKENS.get(v["id"], (SANS, MONO_STACK))[1]}),
+        "enhance": ENH.get(v["id"], False),
+        "schedule": v["phases"]["schedule"] if v["phases"] else None,
+    }
+    if v["id"] in ("teams-2026-daylight",):
+        m["css"] = ["shared.css", "teams-2026-light.css", "teams-2026-dark.css", "teams-2026-daylight.css"]
+    if v["id"] == "teams-usable-dark":
+        m["css"] = ["shared.css", "teams-2026-dark.css", "teams-usable-light.css", "teams-usable-dark.css"]
+    if v["id"] == "teams-2028":
+        m["tokens"]["--cpd-color-bg-canvas-default"] = "#ffffff"
+        m["tokens"]["--cpd-color-bg-subtle-secondary"] = "#f7f6fd"
+        m["tokens"]["--cpd-color-bg-subtle-primary"] = "#efedfb"
+        m["tokens"]["--cpd-color-border-interactive-secondary"] = "#dcdbff"
+    manifest["variants"].append(m)
+
+with open(f"{ROOT}/themes/teams/themes.json", "w") as f:
+    json.dump(manifest, f, indent=2, ensure_ascii=False)
+    f.write("\n")
+print("ok", len(V))

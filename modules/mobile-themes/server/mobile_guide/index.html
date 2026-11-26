@@ -1,0 +1,73 @@
+<!doctype html>
+<!--
+    Replacement for Element Web's /mobile_guide/ page (deployed on element.datanauten.de and chat.od.blackpony.club; see mobile/README.md "Mobile guide
+    redirect"). Element sends iOS/Android browsers here before anything (config, modules) loads (MOB-01). This page:
+      - forwards straight to the app when the person opted in before on this device (localStorage, survives new tabs,
+        PWA launches and cold starts, unlike Element's per-tab sessionStorage flag, MOB-02), or when the link carries
+        ?mobile_web=1 (shareable opt-in link); ?mobile_web=0 forgets the choice
+      - otherwise offers the native app (Element X) or "continue in the browser" (remembered / just this time)
+    Self-contained: no external resources, no dependency on Element's hashed bundles, so Element image updates don't
+    break it. Element's own redirect logic is unchanged; we only set the flag it already honours
+    (sessionStorage.skip_mobile_redirect) and go to a deep link (#/home), which Element never redirects.
+    MODE: "opt-in" (default, shows the choice) or "always" (forward everyone, still shows nothing).
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Element</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="color-scheme" content="light dark" />
+        <script>
+            (function () {
+                var MODE = "opt-in"; // "opt-in" | "always"
+                var KEY = "mt_mobile_web";
+                function go() {
+                    try { sessionStorage.setItem("skip_mobile_redirect", "true"); } catch (e) {}
+                    location.replace("../#/home");
+                }
+                window.mtContinue = function (remember) {
+                    if (remember) { try { localStorage.setItem(KEY, "1"); } catch (e) {} }
+                    go();
+                };
+                var q = new URLSearchParams(location.search).get("mobile_web");
+                try {
+                    if (q === "0") localStorage.removeItem(KEY);
+                    if (q === "1") localStorage.setItem(KEY, "1");
+                    if (MODE === "always" || localStorage.getItem(KEY) === "1") go();
+                } catch (e) {
+                    if (MODE === "always" || q === "1") go();
+                }
+            })();
+        </script>
+        <style>
+            :root { color-scheme: light dark; --bg: #fff; --fg: #1b1d22; --muted: #656d77; --accent: #0dbd8b; --line: #e1e6ec; }
+            @media (prefers-color-scheme: dark) { :root { --bg: #101317; --fg: #ebeef2; --muted: #a3aab4; --line: #2b3038; } }
+            body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+            main { max-width: 440px; margin: 0 auto; padding: calc(32px + env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom)); }
+            h1 { font-size: 24px; line-height: 1.25; margin: 0 0 8px; }
+            p { color: var(--muted); margin: 0 0 24px; }
+            .btn { display: flex; align-items: center; justify-content: center; min-height: 48px; width: 100%; box-sizing: border-box; border-radius: 24px; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; margin-bottom: 12px; }
+            .primary { background: var(--accent); color: #fff; border: 0; }
+            .secondary { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+            .link { background: none; border: 0; color: var(--muted); text-decoration: underline; font-weight: 400; }
+            hr { border: 0; border-top: 1px solid var(--line); margin: 20px 0; }
+            :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Element on your phone</h1>
+            <p>The Element X app gives you notifications and the best experience. You can also use Element in this browser.</p>
+            <a class="btn primary" id="store" href="https://play.google.com/store/apps/details?id=io.element.android.x">Get the Element X app</a>
+            <button class="btn secondary" type="button" onclick="mtContinue(true)">Continue in the browser</button>
+            <button class="btn link" type="button" onclick="mtContinue(false)">Just this time</button>
+            <hr />
+            <p style="font-size: 14px">In the browser, notifications only arrive while Element is open.</p>
+        </main>
+        <script>
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                document.getElementById("store").href = "https://apps.apple.com/app/element-x-secure-chat-call/id1631335820";
+            }
+        </script>
+    </body>
+</html>
